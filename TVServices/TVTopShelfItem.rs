@@ -17,9 +17,13 @@ pub struct TVTopShelfItemImageTraits(pub NSUInteger);
 bitflags::bitflags! {
     impl TVTopShelfItemImageTraits: NSUInteger {
 /// Variant used when the device is running in 1x.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/imagetraits/screenscale1x?language=objc)
         #[doc(alias = "TVTopShelfItemImageTraitScreenScale1x")]
         const ScreenScale1x = 1<<0;
 /// Variant used when the device is running in 2x.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/imagetraits/screenscale2x?language=objc)
         #[doc(alias = "TVTopShelfItemImageTraitScreenScale2x")]
         const ScreenScale2x = 2<<0;
     }

@@ -18,12 +18,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKLabelVerticalAlignmentMode(pub NSInteger);
 impl SKLabelVerticalAlignmentMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelverticalalignmentmode/baseline?language=objc)
     #[doc(alias = "SKLabelVerticalAlignmentModeBaseline")]
     pub const Baseline: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelverticalalignmentmode/center?language=objc)
     #[doc(alias = "SKLabelVerticalAlignmentModeCenter")]
     pub const Center: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelverticalalignmentmode/top?language=objc)
     #[doc(alias = "SKLabelVerticalAlignmentModeTop")]
     pub const Top: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelverticalalignmentmode/bottom?language=objc)
     #[doc(alias = "SKLabelVerticalAlignmentModeBottom")]
     pub const Bottom: Self = Self(3);
 }
@@ -42,10 +46,13 @@ unsafe impl RefEncode for SKLabelVerticalAlignmentMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKLabelHorizontalAlignmentMode(pub NSInteger);
 impl SKLabelHorizontalAlignmentMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelhorizontalalignmentmode/center?language=objc)
     #[doc(alias = "SKLabelHorizontalAlignmentModeCenter")]
     pub const Center: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelhorizontalalignmentmode/left?language=objc)
     #[doc(alias = "SKLabelHorizontalAlignmentModeLeft")]
     pub const Left: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelhorizontalalignmentmode/right?language=objc)
     #[doc(alias = "SKLabelHorizontalAlignmentModeRight")]
     pub const Right: Self = Self(2);
 }

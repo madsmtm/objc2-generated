@@ -473,16 +473,22 @@ impl NSTypesetter {
 pub struct NSTypesetterControlCharacterAction(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTypesetterControlCharacterAction: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/zeroadvancementaction?language=objc)
         #[doc(alias = "NSTypesetterZeroAdvancementAction")]
         const ZeroAdvancementAction = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/whitespaceaction?language=objc)
         #[doc(alias = "NSTypesetterWhitespaceAction")]
         const WhitespaceAction = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/horizontaltabaction?language=objc)
         #[doc(alias = "NSTypesetterHorizontalTabAction")]
         const HorizontalTabAction = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/linebreakaction?language=objc)
         #[doc(alias = "NSTypesetterLineBreakAction")]
         const LineBreakAction = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/paragraphbreakaction?language=objc)
         #[doc(alias = "NSTypesetterParagraphBreakAction")]
         const ParagraphBreakAction = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/containerbreakaction?language=objc)
         #[doc(alias = "NSTypesetterContainerBreakAction")]
         const ContainerBreakAction = 1<<5;
     }

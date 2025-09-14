@@ -73,10 +73,13 @@ unsafe impl RefEncode for AuthorizationValueVector {
 pub struct AuthorizationContextFlags(pub u32);
 bitflags::bitflags! {
     impl AuthorizationContextFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcontextflags/kauthorizationcontextflagextractable?language=objc)
         #[doc(alias = "kAuthorizationContextFlagExtractable")]
         const Extractable = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcontextflags/kauthorizationcontextflagvolatile?language=objc)
         #[doc(alias = "kAuthorizationContextFlagVolatile")]
         const Volatile = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcontextflags/kauthorizationcontextflagsticky?language=objc)
         #[doc(alias = "kAuthorizationContextFlagSticky")]
         const Sticky = 1<<2;
     }
@@ -145,13 +148,17 @@ pub type AuthorizationSessionId = *mut c_void;
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum AuthorizationResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationresult/kauthorizationresultallow?language=objc)
     #[doc(alias = "kAuthorizationResultAllow")]
     #[default]
     Allow = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationresult/kauthorizationresultdeny?language=objc)
     #[doc(alias = "kAuthorizationResultDeny")]
     Deny = 1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationresult/kauthorizationresultundefined?language=objc)
     #[doc(alias = "kAuthorizationResultUndefined")]
     Undefined = 2,
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationresult/kauthorizationresultusercanceled?language=objc)
     #[doc(alias = "kAuthorizationResultUserCanceled")]
     UserCanceled = 3,
 }
@@ -347,6 +354,8 @@ extern "C-unwind" {
     /// - `callbacks` must be a valid pointer.
     /// - `out_plugin` must be a valid pointer.
     /// - `out_plugin_interface` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationplugincreate?language=objc)
     #[cfg(feature = "Authorization")]
     pub fn AuthorizationPluginCreate(
         callbacks: NonNull<AuthorizationCallbacks>,

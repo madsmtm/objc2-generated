@@ -4,16 +4,29 @@ use core::ffi::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicecapsindex?language=objc)
 pub const MPSDeviceCapsIndex: c_uint = 127;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfunctionconstantindex?language=objc)
 pub const MPSFunctionConstantIndex: c_uint = MPSDeviceCapsIndex - 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsbatchsizeindex?language=objc)
 pub const MPSBatchSizeIndex: c_uint = MPSDeviceCapsIndex - 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsuserconstantindex?language=objc)
 pub const MPSUserConstantIndex: c_uint = MPSDeviceCapsIndex - 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayconstantindex?language=objc)
 pub const MPSNDArrayConstantIndex: c_uint = MPSDeviceCapsIndex - 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfunctionconstantindexreserved?language=objc)
 pub const MPSFunctionConstantIndexReserved: c_uint = MPSDeviceCapsIndex - 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstexturelinkingconstantindex?language=objc)
 pub const MPSTextureLinkingConstantIndex: c_uint = MPSDeviceCapsIndex - 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayconstantmultidestindex?language=objc)
 pub const MPSNDArrayConstantMultiDestIndex: c_uint = MPSDeviceCapsIndex - 7;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayconstantmultidestindex0?language=objc)
 pub const MPSNDArrayConstantMultiDestIndex0: c_uint = MPSDeviceCapsIndex - 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayconstantmultidestindex1?language=objc)
 pub const MPSNDArrayConstantMultiDestIndex1: c_uint = MPSDeviceCapsIndex - 9;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayconstantmultidestsrcaddressingindex?language=objc)
 pub const MPSNDArrayConstantMultiDestSrcAddressingIndex: c_uint = MPSDeviceCapsIndex - 10;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayconstantmultidestdstaddressingindex?language=objc)
 pub const MPSNDArrayConstantMultiDestDstAddressingIndex: c_uint = MPSDeviceCapsIndex - 11;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsuseravailablefunctionconstantstartindex?language=objc)
 pub const MPSUserAvailableFunctionConstantStartIndex: c_uint = MPSDeviceCapsIndex - 12;

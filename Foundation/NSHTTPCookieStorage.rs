@@ -18,10 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHTTPCookieAcceptPolicy(pub NSUInteger);
 impl NSHTTPCookieAcceptPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookie/acceptpolicy/always?language=objc)
     #[doc(alias = "NSHTTPCookieAcceptPolicyAlways")]
     pub const Always: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookie/acceptpolicy/never?language=objc)
     #[doc(alias = "NSHTTPCookieAcceptPolicyNever")]
     pub const Never: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookie/acceptpolicy/onlyfrommaindocumentdomain?language=objc)
     #[doc(alias = "NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain")]
     pub const OnlyFromMainDocumentDomain: Self = Self(2);
 }

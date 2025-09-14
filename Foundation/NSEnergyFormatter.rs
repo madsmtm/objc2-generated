@@ -12,12 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSEnergyFormatterUnit(pub NSInteger);
 impl NSEnergyFormatterUnit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/energyformatter/unit/joule?language=objc)
     #[doc(alias = "NSEnergyFormatterUnitJoule")]
     pub const Joule: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/energyformatter/unit/kilojoule?language=objc)
     #[doc(alias = "NSEnergyFormatterUnitKilojoule")]
     pub const Kilojoule: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/energyformatter/unit/calorie?language=objc)
     #[doc(alias = "NSEnergyFormatterUnitCalorie")]
     pub const Calorie: Self = Self((7 << 8) + 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/energyformatter/unit/kilocalorie?language=objc)
     #[doc(alias = "NSEnergyFormatterUnitKilocalorie")]
     pub const Kilocalorie: Self = Self((7 << 8) + 2);
 }

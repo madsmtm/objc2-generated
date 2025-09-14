@@ -78,10 +78,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetImageGeneratorResult(pub NSInteger);
 impl AVAssetImageGeneratorResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/result/succeeded?language=objc)
     #[doc(alias = "AVAssetImageGeneratorSucceeded")]
     pub const Succeeded: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/result/failed?language=objc)
     #[doc(alias = "AVAssetImageGeneratorFailed")]
     pub const Failed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/result/cancelled?language=objc)
     #[doc(alias = "AVAssetImageGeneratorCancelled")]
     pub const Cancelled: Self = Self(2);
 }

@@ -30,8 +30,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEUpdateMode(pub NSInteger);
 impl PHASEUpdateMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/updatemode/automatic?language=objc)
     #[doc(alias = "PHASEUpdateModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/updatemode/manual?language=objc)
     #[doc(alias = "PHASEUpdateModeManual")]
     pub const Manual: Self = Self(1);
 }
@@ -61,8 +63,10 @@ unsafe impl RefEncode for PHASEUpdateMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASERenderingMode(pub NSInteger);
 impl PHASERenderingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/renderingmode/local?language=objc)
     #[doc(alias = "PHASERenderingModeLocal")]
     pub const Local: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/renderingmode/client?language=objc)
     #[doc(alias = "PHASERenderingModeClient")]
     pub const Client: Self = Self(1);
 }
@@ -89,10 +93,13 @@ unsafe impl RefEncode for PHASERenderingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASERenderingState(pub NSInteger);
 impl PHASERenderingState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/renderingstate-swift.enum/stopped?language=objc)
     #[doc(alias = "PHASERenderingStateStopped")]
     pub const Stopped: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/renderingstate-swift.enum/started?language=objc)
     #[doc(alias = "PHASERenderingStateStarted")]
     pub const Started: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/renderingstate-swift.enum/paused?language=objc)
     #[doc(alias = "PHASERenderingStatePaused")]
     pub const Paused: Self = Self(2);
 }
@@ -121,10 +128,13 @@ unsafe impl RefEncode for PHASERenderingState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESpatializationMode(pub NSInteger);
 impl PHASESpatializationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatializationmode/automatic?language=objc)
     #[doc(alias = "PHASESpatializationModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatializationmode/alwaysusebinaural?language=objc)
     #[doc(alias = "PHASESpatializationModeAlwaysUseBinaural")]
     pub const AlwaysUseBinaural: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatializationmode/alwaysusechannelbased?language=objc)
     #[doc(alias = "PHASESpatializationModeAlwaysUseChannelBased")]
     pub const AlwaysUseChannelBased: Self = Self(2);
 }
@@ -145,30 +155,43 @@ unsafe impl RefEncode for PHASESpatializationMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASEReverbPreset(pub NSInteger);
 impl PHASEReverbPreset {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/none?language=objc)
     #[doc(alias = "PHASEReverbPresetNone")]
     pub const None: Self = Self(0x724e6f6e);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/smallroom?language=objc)
     #[doc(alias = "PHASEReverbPresetSmallRoom")]
     pub const SmallRoom: Self = Self(0x7253526d);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/mediumroom?language=objc)
     #[doc(alias = "PHASEReverbPresetMediumRoom")]
     pub const MediumRoom: Self = Self(0x724d526d);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/largeroom?language=objc)
     #[doc(alias = "PHASEReverbPresetLargeRoom")]
     pub const LargeRoom: Self = Self(0x724c5231);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/largeroom2?language=objc)
     #[doc(alias = "PHASEReverbPresetLargeRoom2")]
     pub const LargeRoom2: Self = Self(0x724c5232);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/mediumchamber?language=objc)
     #[doc(alias = "PHASEReverbPresetMediumChamber")]
     pub const MediumChamber: Self = Self(0x724d4368);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/largechamber?language=objc)
     #[doc(alias = "PHASEReverbPresetLargeChamber")]
     pub const LargeChamber: Self = Self(0x724c4368);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/mediumhall?language=objc)
     #[doc(alias = "PHASEReverbPresetMediumHall")]
     pub const MediumHall: Self = Self(0x724d4831);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/mediumhall2?language=objc)
     #[doc(alias = "PHASEReverbPresetMediumHall2")]
     pub const MediumHall2: Self = Self(0x724d4832);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/mediumhall3?language=objc)
     #[doc(alias = "PHASEReverbPresetMediumHall3")]
     pub const MediumHall3: Self = Self(0x724d4833);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/largehall?language=objc)
     #[doc(alias = "PHASEReverbPresetLargeHall")]
     pub const LargeHall: Self = Self(0x724c4831);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/largehall2?language=objc)
     #[doc(alias = "PHASEReverbPresetLargeHall2")]
     pub const LargeHall2: Self = Self(0x724c4832);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/cathedral?language=objc)
     #[doc(alias = "PHASEReverbPresetCathedral")]
     pub const Cathedral: Self = Self(0x72437468);
 }
@@ -196,8 +219,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASEError(pub NSInteger);
 impl PHASEError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseerror-swift.struct/code/initializefailed?language=objc)
     #[doc(alias = "PHASEErrorInitializeFailed")]
     pub const InitializeFailed: Self = Self(0x50484561);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseerror-swift.struct/code/invalidobject?language=objc)
     #[doc(alias = "PHASEErrorInvalidObject")]
     pub const InvalidObject: Self = Self(0x50484562);
 }
@@ -225,16 +250,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASESoundEventError(pub NSInteger);
 impl PHASESoundEventError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/notfound?language=objc)
     #[doc(alias = "PHASESoundEventErrorNotFound")]
     pub const NotFound: Self = Self(0x50487461);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/baddata?language=objc)
     #[doc(alias = "PHASESoundEventErrorBadData")]
     pub const BadData: Self = Self(0x50487462);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/invalidinstance?language=objc)
     #[doc(alias = "PHASESoundEventErrorInvalidInstance")]
     pub const InvalidInstance: Self = Self(0x50487463);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/apimisuse?language=objc)
     #[doc(alias = "PHASESoundEventErrorAPIMisuse")]
     pub const APIMisuse: Self = Self(0x50487464);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/systemnotinitialized?language=objc)
     #[doc(alias = "PHASESoundEventErrorSystemNotInitialized")]
     pub const SystemNotInitialized: Self = Self(0x50487465);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/outofmemory?language=objc)
     #[doc(alias = "PHASESoundEventErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(0x50487466);
 }
@@ -262,16 +293,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASEAssetError(pub NSInteger);
 impl PHASEAssetError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/failedtoload?language=objc)
     #[doc(alias = "PHASEAssetErrorFailedToLoad")]
     pub const FailedToLoad: Self = Self(0x50486161);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/invalidengineinstance?language=objc)
     #[doc(alias = "PHASEAssetErrorInvalidEngineInstance")]
     pub const InvalidEngineInstance: Self = Self(0x50486162);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/badparameters?language=objc)
     #[doc(alias = "PHASEAssetErrorBadParameters")]
     pub const BadParameters: Self = Self(0x50486163);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/alreadyexists?language=objc)
     #[doc(alias = "PHASEAssetErrorAlreadyExists")]
     pub const AlreadyExists: Self = Self(0x50486164);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/generalerror?language=objc)
     #[doc(alias = "PHASEAssetErrorGeneralError")]
     pub const GeneralError: Self = Self(0x50486165);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/memoryallocation?language=objc)
     #[doc(alias = "PHASEAssetErrorMemoryAllocation")]
     pub const MemoryAllocation: Self = Self(0x50486166);
 }
@@ -292,10 +329,13 @@ unsafe impl RefEncode for PHASEAssetError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventPrepareHandlerReason(pub NSInteger);
 impl PHASESoundEventPrepareHandlerReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparehandlerreason/failure?language=objc)
     #[doc(alias = "PHASESoundEventPrepareHandlerReasonFailure")]
     pub const Failure: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparehandlerreason/prepared?language=objc)
     #[doc(alias = "PHASESoundEventPrepareHandlerReasonPrepared")]
     pub const Prepared: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparehandlerreason/terminated?language=objc)
     #[doc(alias = "PHASESoundEventPrepareHandlerReasonTerminated")]
     pub const Terminated: Self = Self(2);
 }
@@ -316,10 +356,13 @@ unsafe impl RefEncode for PHASESoundEventPrepareHandlerReason {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventStartHandlerReason(pub NSInteger);
 impl PHASESoundEventStartHandlerReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/starthandlerreason/failure?language=objc)
     #[doc(alias = "PHASESoundEventStartHandlerReasonFailure")]
     pub const Failure: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/starthandlerreason/finishedplaying?language=objc)
     #[doc(alias = "PHASESoundEventStartHandlerReasonFinishedPlaying")]
     pub const FinishedPlaying: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/starthandlerreason/terminated?language=objc)
     #[doc(alias = "PHASESoundEventStartHandlerReasonTerminated")]
     pub const Terminated: Self = Self(2);
 }
@@ -340,10 +383,13 @@ unsafe impl RefEncode for PHASESoundEventStartHandlerReason {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventSeekHandlerReason(pub NSInteger);
 impl PHASESoundEventSeekHandlerReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/seekhandlerreason/failure?language=objc)
     #[doc(alias = "PHASESoundEventSeekHandlerReasonFailure")]
     pub const Failure: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/seekhandlerreason/failureseekalreadyinprogress?language=objc)
     #[doc(alias = "PHASESoundEventSeekHandlerReasonFailureSeekAlreadyInProgress")]
     pub const FailureSeekAlreadyInProgress: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/seekhandlerreason/seeksuccessful?language=objc)
     #[doc(alias = "PHASESoundEventSeekHandlerReasonSeekSuccessful")]
     pub const SeekSuccessful: Self = Self(2);
 }
@@ -364,10 +410,13 @@ unsafe impl RefEncode for PHASESoundEventSeekHandlerReason {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventPrepareState(pub NSInteger);
 impl PHASESoundEventPrepareState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparestate-swift.enum/preparenotstarted?language=objc)
     #[doc(alias = "PHASESoundEventPrepareStatePrepareNotStarted")]
     pub const PrepareNotStarted: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparestate-swift.enum/prepareinprogress?language=objc)
     #[doc(alias = "PHASESoundEventPrepareStatePrepareInProgress")]
     pub const PrepareInProgress: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparestate-swift.enum/prepared?language=objc)
     #[doc(alias = "PHASESoundEventPrepareStatePrepared")]
     pub const Prepared: Self = Self(2);
 }
@@ -398,8 +447,10 @@ unsafe impl RefEncode for PHASESoundEventPrepareState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEAssetType(pub NSInteger);
 impl PHASEAssetType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasset/assettype/resident?language=objc)
     #[doc(alias = "PHASEAssetTypeResident")]
     pub const Resident: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasset/assettype/streamed?language=objc)
     #[doc(alias = "PHASEAssetTypeStreamed")]
     pub const Streamed: Self = Self(1);
 }
@@ -444,26 +495,37 @@ unsafe impl RefEncode for PHASEAssetType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASECurveType(pub NSInteger);
 impl PHASECurveType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/linear?language=objc)
     #[doc(alias = "PHASECurveTypeLinear")]
     pub const Linear: Self = Self(0x63724c6e);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/squared?language=objc)
     #[doc(alias = "PHASECurveTypeSquared")]
     pub const Squared: Self = Self(0x63725371);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/inversesquared?language=objc)
     #[doc(alias = "PHASECurveTypeInverseSquared")]
     pub const InverseSquared: Self = Self(0x63724951);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/cubed?language=objc)
     #[doc(alias = "PHASECurveTypeCubed")]
     pub const Cubed: Self = Self(0x63724375);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/inversecubed?language=objc)
     #[doc(alias = "PHASECurveTypeInverseCubed")]
     pub const InverseCubed: Self = Self(0x63724943);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/sine?language=objc)
     #[doc(alias = "PHASECurveTypeSine")]
     pub const Sine: Self = Self(0x6372536e);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/inversesine?language=objc)
     #[doc(alias = "PHASECurveTypeInverseSine")]
     pub const InverseSine: Self = Self(0x63724953);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/sigmoid?language=objc)
     #[doc(alias = "PHASECurveTypeSigmoid")]
     pub const Sigmoid: Self = Self(0x63725367);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/inversesigmoid?language=objc)
     #[doc(alias = "PHASECurveTypeInverseSigmoid")]
     pub const InverseSigmoid: Self = Self(0x63724947);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/holdstartvalue?language=objc)
     #[doc(alias = "PHASECurveTypeHoldStartValue")]
     pub const HoldStartValue: Self = Self(0x63724853);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/jumptoendvalue?language=objc)
     #[doc(alias = "PHASECurveTypeJumpToEndValue")]
     pub const JumpToEndValue: Self = Self(0x63724a45);
 }
@@ -496,14 +558,19 @@ unsafe impl RefEncode for PHASECurveType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASECullOption(pub NSInteger);
 impl PHASECullOption {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption/terminate?language=objc)
     #[doc(alias = "PHASECullOptionTerminate")]
     pub const Terminate: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption/sleepwakeatzero?language=objc)
     #[doc(alias = "PHASECullOptionSleepWakeAtZero")]
     pub const SleepWakeAtZero: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption/sleepwakeatrandomoffset?language=objc)
     #[doc(alias = "PHASECullOptionSleepWakeAtRandomOffset")]
     pub const SleepWakeAtRandomOffset: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption/sleepwakeatrealtimeoffset?language=objc)
     #[doc(alias = "PHASECullOptionSleepWakeAtRealtimeOffset")]
     pub const SleepWakeAtRealtimeOffset: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption/donotcull?language=objc)
     #[doc(alias = "PHASECullOptionDoNotCull")]
     pub const DoNotCull: Self = Self(4);
 }
@@ -528,8 +595,10 @@ unsafe impl RefEncode for PHASECullOption {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEPlaybackMode(pub NSInteger);
 impl PHASEPlaybackMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseplaybackmode/oneshot?language=objc)
     #[doc(alias = "PHASEPlaybackModeOneShot")]
     pub const OneShot: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseplaybackmode/looping?language=objc)
     #[doc(alias = "PHASEPlaybackModeLooping")]
     pub const Looping: Self = Self(1);
 }
@@ -559,8 +628,10 @@ unsafe impl RefEncode for PHASEPlaybackMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASENormalizationMode(pub NSInteger);
 impl PHASENormalizationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasenormalizationmode/none?language=objc)
     #[doc(alias = "PHASENormalizationModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasenormalizationmode/dynamic?language=objc)
     #[doc(alias = "PHASENormalizationModeDynamic")]
     pub const Dynamic: Self = Self(1);
 }
@@ -589,10 +660,13 @@ unsafe impl RefEncode for PHASENormalizationMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASECalibrationMode(pub NSInteger);
 impl PHASECalibrationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecalibrationmode/none?language=objc)
     #[doc(alias = "PHASECalibrationModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecalibrationmode/relativespl?language=objc)
     #[doc(alias = "PHASECalibrationModeRelativeSpl")]
     pub const RelativeSpl: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecalibrationmode/absolutespl?language=objc)
     #[doc(alias = "PHASECalibrationModeAbsoluteSpl")]
     pub const AbsoluteSpl: Self = Self(2);
 }
@@ -618,8 +692,10 @@ unsafe impl RefEncode for PHASECalibrationMode {
 pub struct PHASEAutomaticHeadTrackingFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASEAutomaticHeadTrackingFlags: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseautomaticheadtrackingflags/orientation?language=objc)
         #[doc(alias = "PHASEAutomaticHeadTrackingFlagOrientation")]
         const Orientation = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseautomaticheadtrackingflags/position?language=objc)
         #[doc(alias = "PHASEAutomaticHeadTrackingFlagPosition")]
         const Position = 1<<1;
     }

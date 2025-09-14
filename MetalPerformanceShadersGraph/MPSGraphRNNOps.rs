@@ -16,18 +16,28 @@ use crate::*;
 pub struct MPSGraphRNNActivation(pub NSUInteger);
 impl MPSGraphRNNActivation {
     /// Defines a pass through activation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation/none?language=objc)
     #[doc(alias = "MPSGraphRNNActivationNone")]
     pub const None: Self = Self(0);
     /// Defines a ReLU activation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation/relu?language=objc)
     #[doc(alias = "MPSGraphRNNActivationRelu")]
     pub const Relu: Self = Self(1);
     /// Defines a Tanh activation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation/tanh?language=objc)
     #[doc(alias = "MPSGraphRNNActivationTanh")]
     pub const Tanh: Self = Self(2);
     /// Defines a Sigmoid activation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation/sigmoid?language=objc)
     #[doc(alias = "MPSGraphRNNActivationSigmoid")]
     pub const Sigmoid: Self = Self(3);
     /// Defines a Hard sigmoid activation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation/hardsigmoid?language=objc)
     #[doc(alias = "MPSGraphRNNActivationHardSigmoid")]
     pub const HardSigmoid: Self = Self(4);
 }

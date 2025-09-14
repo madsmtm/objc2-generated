@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SWHighlightMembershipEventTrigger(pub NSInteger);
 impl SWHighlightMembershipEventTrigger {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightmembershipeventtrigger/addedcollaborator?language=objc)
     #[doc(alias = "SWHighlightMembershipEventTriggerAddedCollaborator")]
     pub const AddedCollaborator: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightmembershipeventtrigger/removedcollaborator?language=objc)
     #[doc(alias = "SWHighlightMembershipEventTriggerRemovedCollaborator")]
     pub const RemovedCollaborator: Self = Self(2);
 }

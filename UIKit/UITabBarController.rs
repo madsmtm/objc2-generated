@@ -16,12 +16,18 @@ impl UITabBarControllerMode {
     /// The default tab bar controller mode.
     /// Resolves to `tabSidebar` if any of the tab elements of the tab bar controller is a group, and
     /// if the platform supports displaying a sidebar mode. Otherwise, resolves to `tabBar`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/mode-swift.enum/automatic?language=objc)
     #[doc(alias = "UITabBarControllerModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Displays tabs in a tab bar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/mode-swift.enum/tabbar?language=objc)
     #[doc(alias = "UITabBarControllerModeTabBar")]
     pub const TabBar: Self = Self(1);
     /// Displays tabs in a tab bar and sidebar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/mode-swift.enum/tabsidebar?language=objc)
     #[doc(alias = "UITabBarControllerModeTabSidebar")]
     pub const TabSidebar: Self = Self(2);
 }
@@ -41,16 +47,24 @@ unsafe impl RefEncode for UITabBarControllerMode {
 pub struct UITabBarMinimizeBehavior(pub NSInteger);
 impl UITabBarMinimizeBehavior {
     /// Resolves to the system default minimize behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/minimizebehavior/automatic?language=objc)
     #[doc(alias = "UITabBarMinimizeBehaviorAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The tab bar does not minimize.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/minimizebehavior/never?language=objc)
     #[doc(alias = "UITabBarMinimizeBehaviorNever")]
     pub const Never: Self = Self(1);
     /// The tab bar minimizes when scrolling down, and expands when scrolling back up.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/minimizebehavior/onscrolldown?language=objc)
     #[doc(alias = "UITabBarMinimizeBehaviorOnScrollDown")]
     pub const OnScrollDown: Self = Self(2);
     /// The tab bar minimizes when scrolling up, and expands when scrolling back down.
     /// Recommended if the scroll view content is aligned to the bottom.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/minimizebehavior/onscrollup?language=objc)
     #[doc(alias = "UITabBarMinimizeBehaviorOnScrollUp")]
     pub const OnScrollUp: Self = Self(3);
 }

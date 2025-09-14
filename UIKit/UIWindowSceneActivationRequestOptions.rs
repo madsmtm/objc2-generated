@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWindowScenePresentationStyle(pub NSUInteger);
 impl UIWindowScenePresentationStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/presentationstyle/automatic?language=objc)
     #[doc(alias = "UIWindowScenePresentationStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/presentationstyle/standard?language=objc)
     #[doc(alias = "UIWindowScenePresentationStyleStandard")]
     pub const Standard: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/presentationstyle/prominent?language=objc)
     #[doc(alias = "UIWindowScenePresentationStyleProminent")]
     pub const Prominent: Self = Self(2);
 }

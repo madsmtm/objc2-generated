@@ -18,14 +18,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNGeometryPrimitiveType(pub NSInteger);
 impl SCNGeometryPrimitiveType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype/triangles?language=objc)
     #[doc(alias = "SCNGeometryPrimitiveTypeTriangles")]
     pub const Triangles: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype/trianglestrip?language=objc)
     #[doc(alias = "SCNGeometryPrimitiveTypeTriangleStrip")]
     pub const TriangleStrip: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype/line?language=objc)
     #[doc(alias = "SCNGeometryPrimitiveTypeLine")]
     pub const Line: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype/point?language=objc)
     #[doc(alias = "SCNGeometryPrimitiveTypePoint")]
     pub const Point: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype/polygon?language=objc)
     #[doc(alias = "SCNGeometryPrimitiveTypePolygon")]
     pub const Polygon: Self = Self(4);
 }
@@ -880,10 +885,13 @@ impl SCNGeometryElement {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNTessellationSmoothingMode(pub NSInteger);
 impl SCNTessellationSmoothingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntessellationsmoothingmode/none?language=objc)
     #[doc(alias = "SCNTessellationSmoothingModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntessellationsmoothingmode/pntriangles?language=objc)
     #[doc(alias = "SCNTessellationSmoothingModePNTriangles")]
     pub const PNTriangles: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntessellationsmoothingmode/phong?language=objc)
     #[doc(alias = "SCNTessellationSmoothingModePhong")]
     pub const Phong: Self = Self(2);
 }

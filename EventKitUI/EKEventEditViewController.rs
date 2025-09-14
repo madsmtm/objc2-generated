@@ -19,12 +19,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventEditViewAction(pub NSInteger);
 impl EKEventEditViewAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction/canceled?language=objc)
     #[doc(alias = "EKEventEditViewActionCanceled")]
     pub const Canceled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction/saved?language=objc)
     #[doc(alias = "EKEventEditViewActionSaved")]
     pub const Saved: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction/deleted?language=objc)
     #[doc(alias = "EKEventEditViewActionDeleted")]
     pub const Deleted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction/cancelled?language=objc)
     #[doc(alias = "EKEventEditViewActionCancelled")]
     pub const Cancelled: Self = Self(EKEventEditViewAction::Canceled.0);
 }

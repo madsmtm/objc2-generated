@@ -16,24 +16,38 @@ use crate::*;
 pub struct UIListEnvironment(pub NSInteger);
 impl UIListEnvironment {
     /// Indicates the absence of any information about whether or not the trait collection is from a view in a list environment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/unspecified?language=objc)
     #[doc(alias = "UIListEnvironmentUnspecified")]
     pub const Unspecified: Self = Self(0);
     /// There is no containing list.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/none?language=objc)
     #[doc(alias = "UIListEnvironmentNone")]
     pub const None: Self = Self(1);
     /// Contained within a plain-style list.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/plain?language=objc)
     #[doc(alias = "UIListEnvironmentPlain")]
     pub const Plain: Self = Self(2);
     /// Contained within a grouped-style list.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/grouped?language=objc)
     #[doc(alias = "UIListEnvironmentGrouped")]
     pub const Grouped: Self = Self(3);
     /// Contained within a inset-grouped-style list.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/insetgrouped?language=objc)
     #[doc(alias = "UIListEnvironmentInsetGrouped")]
     pub const InsetGrouped: Self = Self(4);
     /// Contained within a sidebar-style list.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/sidebar?language=objc)
     #[doc(alias = "UIListEnvironmentSidebar")]
     pub const Sidebar: Self = Self(5);
     /// Contained within a sidebar-plain-style list.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/sidebarplain?language=objc)
     #[doc(alias = "UIListEnvironmentSidebarPlain")]
     pub const SidebarPlain: Self = Self(6);
 }

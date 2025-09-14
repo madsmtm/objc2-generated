@@ -23,14 +23,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKAnnotationViewDragState(pub NSUInteger);
 impl MKAnnotationViewDragState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum/none?language=objc)
     #[doc(alias = "MKAnnotationViewDragStateNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum/starting?language=objc)
     #[doc(alias = "MKAnnotationViewDragStateStarting")]
     pub const Starting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum/dragging?language=objc)
     #[doc(alias = "MKAnnotationViewDragStateDragging")]
     pub const Dragging: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum/canceling?language=objc)
     #[doc(alias = "MKAnnotationViewDragStateCanceling")]
     pub const Canceling: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum/ending?language=objc)
     #[doc(alias = "MKAnnotationViewDragStateEnding")]
     pub const Ending: Self = Self(4);
 }
@@ -78,10 +83,13 @@ pub static MKAnnotationViewZPriorityMin: MKAnnotationViewZPriority = 0 as _;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKAnnotationViewCollisionMode(pub NSInteger);
 impl MKAnnotationViewCollisionMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.enum/rectangle?language=objc)
     #[doc(alias = "MKAnnotationViewCollisionModeRectangle")]
     pub const Rectangle: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.enum/circle?language=objc)
     #[doc(alias = "MKAnnotationViewCollisionModeCircle")]
     pub const Circle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.enum/none?language=objc)
     #[doc(alias = "MKAnnotationViewCollisionModeNone")]
     pub const None: Self = Self(2);
 }

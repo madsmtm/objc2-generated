@@ -77,6 +77,7 @@ unsafe impl RefEncode for CFUUIDBytes {
 }
 
 unsafe impl ConcreteType for CFUUID {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidgettypeid()?language=objc)
     #[doc(alias = "CFUUIDGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -88,6 +89,7 @@ unsafe impl ConcreteType for CFUUID {
 }
 
 impl CFUUID {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidcreate(_:)?language=objc)
     #[doc(alias = "CFUUIDCreate")]
     #[inline]
     pub fn new(alloc: Option<&CFAllocator>) -> Option<CFRetained<CFUUID>> {
@@ -98,6 +100,7 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidcreatewithbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFUUIDCreateWithBytes")]
     #[inline]
     pub fn with_bytes(
@@ -149,6 +152,7 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidcreatefromstring(_:_:)?language=objc)
     #[doc(alias = "CFUUIDCreateFromString")]
     #[inline]
     pub fn from_string(
@@ -165,6 +169,7 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidcreatestring(_:_:)?language=objc)
     #[doc(alias = "CFUUIDCreateString")]
     #[inline]
     pub fn new_string(
@@ -181,6 +186,7 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidgetconstantuuidwithbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFUUIDGetConstantUUIDWithBytes")]
     #[inline]
     pub fn constant_uuid_with_bytes(
@@ -232,6 +238,7 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidgetuuidbytes(_:)?language=objc)
     #[doc(alias = "CFUUIDGetUUIDBytes")]
     #[inline]
     pub fn uuid_bytes(&self) -> CFUUIDBytes {
@@ -241,6 +248,7 @@ impl CFUUID {
         unsafe { CFUUIDGetUUIDBytes(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidcreatefromuuidbytes(_:_:)?language=objc)
     #[doc(alias = "CFUUIDCreateFromUUIDBytes")]
     #[inline]
     pub fn from_uuid_bytes(

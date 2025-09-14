@@ -20,12 +20,16 @@ pub type UIGraphicsImageDrawingActions =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGraphicsImageRendererFormatRange(pub NSInteger);
 impl UIGraphicsImageRendererFormatRange {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat/range/unspecified?language=objc)
     #[doc(alias = "UIGraphicsImageRendererFormatRangeUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat/range/automatic?language=objc)
     #[doc(alias = "UIGraphicsImageRendererFormatRangeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat/range/extended?language=objc)
     #[doc(alias = "UIGraphicsImageRendererFormatRangeExtended")]
     pub const Extended: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat/range/standard?language=objc)
     #[doc(alias = "UIGraphicsImageRendererFormatRangeStandard")]
     pub const Standard: Self = Self(2);
 }

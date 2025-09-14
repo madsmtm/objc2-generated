@@ -58,6 +58,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for CGImageDestination {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationgettypeid()?language=objc)
     #[doc(alias = "CGImageDestinationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -69,6 +70,7 @@ unsafe impl ConcreteType for CGImageDestination {
 }
 
 impl CGImageDestination {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationcopytypeidentifiers()?language=objc)
     #[doc(alias = "CGImageDestinationCopyTypeIdentifiers")]
     #[inline]
     pub unsafe fn type_identifiers() -> CFRetained<CFArray> {
@@ -81,6 +83,8 @@ impl CGImageDestination {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationcreatewithdataconsumer(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -107,6 +111,8 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationcreatewithdata(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -131,6 +137,8 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationcreatewithurl(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -155,6 +163,8 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationsetproperties(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `properties` generic must be of the correct type.
@@ -171,6 +181,8 @@ impl CGImageDestination {
         unsafe { CGImageDestinationSetProperties(self, properties) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationaddimage(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `properties` generic must be of the correct type.
@@ -189,6 +201,8 @@ impl CGImageDestination {
         unsafe { CGImageDestinationAddImage(self, image, properties) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationaddimagefromsource(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `properties` generic must be of the correct type.
@@ -213,6 +227,7 @@ impl CGImageDestination {
         unsafe { CGImageDestinationAddImageFromSource(self, isrc, index, properties) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationfinalize(_:)?language=objc)
     #[doc(alias = "CGImageDestinationFinalize")]
     #[inline]
     pub unsafe fn finalize(&self) -> bool {
@@ -222,6 +237,8 @@ impl CGImageDestination {
         unsafe { CGImageDestinationFinalize(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationaddimageandmetadata(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -326,6 +343,8 @@ extern "C" {
 }
 
 impl CGImageDestination {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationcopyimagesource(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -351,6 +370,8 @@ impl CGImageDestination {
         unsafe { CGImageDestinationCopyImageSource(self, isrc, options, err) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationaddauxiliarydatainfo(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `auxiliary_data_info_dictionary` generic must be of the correct type.

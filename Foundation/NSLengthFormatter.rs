@@ -12,20 +12,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSLengthFormatterUnit(pub NSInteger);
 impl NSLengthFormatterUnit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/millimeter?language=objc)
     #[doc(alias = "NSLengthFormatterUnitMillimeter")]
     pub const Millimeter: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/centimeter?language=objc)
     #[doc(alias = "NSLengthFormatterUnitCentimeter")]
     pub const Centimeter: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/meter?language=objc)
     #[doc(alias = "NSLengthFormatterUnitMeter")]
     pub const Meter: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/kilometer?language=objc)
     #[doc(alias = "NSLengthFormatterUnitKilometer")]
     pub const Kilometer: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/inch?language=objc)
     #[doc(alias = "NSLengthFormatterUnitInch")]
     pub const Inch: Self = Self((5 << 8) + 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/foot?language=objc)
     #[doc(alias = "NSLengthFormatterUnitFoot")]
     pub const Foot: Self = Self((5 << 8) + 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/yard?language=objc)
     #[doc(alias = "NSLengthFormatterUnitYard")]
     pub const Yard: Self = Self((5 << 8) + 3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/mile?language=objc)
     #[doc(alias = "NSLengthFormatterUnitMile")]
     pub const Mile: Self = Self((5 << 8) + 4);
 }

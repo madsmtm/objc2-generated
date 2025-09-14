@@ -24,10 +24,13 @@ use crate::*;
 pub struct AVAudioPlayerNodeBufferOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioPlayerNodeBufferOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodebufferoptions/loops?language=objc)
         #[doc(alias = "AVAudioPlayerNodeBufferLoops")]
         const Loops = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodebufferoptions/interrupts?language=objc)
         #[doc(alias = "AVAudioPlayerNodeBufferInterrupts")]
         const Interrupts = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodebufferoptions/interruptsatloop?language=objc)
         #[doc(alias = "AVAudioPlayerNodeBufferInterruptsAtLoop")]
         const InterruptsAtLoop = 1<<2;
     }
@@ -63,10 +66,13 @@ unsafe impl RefEncode for AVAudioPlayerNodeBufferOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioPlayerNodeCompletionCallbackType(pub NSInteger);
 impl AVAudioPlayerNodeCompletionCallbackType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletioncallbacktype/dataconsumed?language=objc)
     #[doc(alias = "AVAudioPlayerNodeCompletionDataConsumed")]
     pub const DataConsumed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletioncallbacktype/datarendered?language=objc)
     #[doc(alias = "AVAudioPlayerNodeCompletionDataRendered")]
     pub const DataRendered: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletioncallbacktype/dataplayedback?language=objc)
     #[doc(alias = "AVAudioPlayerNodeCompletionDataPlayedBack")]
     pub const DataPlayedBack: Self = Self(2);
 }

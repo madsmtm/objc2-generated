@@ -13,18 +13,25 @@ use crate::*;
 pub struct NSTouchPhase(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTouchPhase: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/began?language=objc)
         #[doc(alias = "NSTouchPhaseBegan")]
         const Began = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/moved?language=objc)
         #[doc(alias = "NSTouchPhaseMoved")]
         const Moved = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/stationary?language=objc)
         #[doc(alias = "NSTouchPhaseStationary")]
         const Stationary = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/ended?language=objc)
         #[doc(alias = "NSTouchPhaseEnded")]
         const Ended = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/cancelled?language=objc)
         #[doc(alias = "NSTouchPhaseCancelled")]
         const Cancelled = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/touching?language=objc)
         #[doc(alias = "NSTouchPhaseTouching")]
         const Touching = NSTouchPhase::Began.0|NSTouchPhase::Moved.0|NSTouchPhase::Stationary.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/any?language=objc)
         #[doc(alias = "NSTouchPhaseAny")]
         const Any = NSUIntegerMax as _;
     }
@@ -44,8 +51,10 @@ unsafe impl RefEncode for NSTouchPhase {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTouchType(pub NSInteger);
 impl NSTouchType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtype/direct?language=objc)
     #[doc(alias = "NSTouchTypeDirect")]
     pub const Direct: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtype/indirect?language=objc)
     #[doc(alias = "NSTouchTypeIndirect")]
     pub const Indirect: Self = Self(1);
 }
@@ -65,8 +74,10 @@ unsafe impl RefEncode for NSTouchType {
 pub struct NSTouchTypeMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTouchTypeMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtypemask/direct?language=objc)
         #[doc(alias = "NSTouchTypeMaskDirect")]
         const Direct = 1<<NSTouchType::Direct.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtypemask/indirect?language=objc)
         #[doc(alias = "NSTouchTypeMaskIndirect")]
         const Indirect = 1<<NSTouchType::Indirect.0;
     }

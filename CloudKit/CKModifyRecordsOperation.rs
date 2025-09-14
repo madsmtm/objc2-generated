@@ -48,11 +48,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKRecordSavePolicy(pub NSInteger);
 impl CKRecordSavePolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy/ifserverrecordunchanged?language=objc)
     #[doc(alias = "CKRecordSaveIfServerRecordUnchanged")]
     pub const IfServerRecordUnchanged: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy/changedkeys?language=objc)
     #[doc(alias = "CKRecordSaveChangedKeys")]
     pub const ChangedKeys: Self = Self(1);
     /// Does not compare record change tags
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy/allkeys?language=objc)
     #[doc(alias = "CKRecordSaveAllKeys")]
     pub const AllKeys: Self = Self(2);
 }

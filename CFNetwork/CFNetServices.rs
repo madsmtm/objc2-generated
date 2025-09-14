@@ -74,22 +74,31 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNetServicesError(pub c_int);
 impl CFNetServicesError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/unknown?language=objc)
     #[doc(alias = "kCFNetServicesErrorUnknown")]
     pub const Unknown: Self = Self(-72000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/collision?language=objc)
     #[doc(alias = "kCFNetServicesErrorCollision")]
     pub const Collision: Self = Self(-72001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/notfound?language=objc)
     #[doc(alias = "kCFNetServicesErrorNotFound")]
     pub const NotFound: Self = Self(-72002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/inprogress?language=objc)
     #[doc(alias = "kCFNetServicesErrorInProgress")]
     pub const InProgress: Self = Self(-72003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/badargument?language=objc)
     #[doc(alias = "kCFNetServicesErrorBadArgument")]
     pub const BadArgument: Self = Self(-72004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/cancel?language=objc)
     #[doc(alias = "kCFNetServicesErrorCancel")]
     pub const Cancel: Self = Self(-72005);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/invalid?language=objc)
     #[doc(alias = "kCFNetServicesErrorInvalid")]
     pub const Invalid: Self = Self(-72006);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/timeout?language=objc)
     #[doc(alias = "kCFNetServicesErrorTimeout")]
     pub const Timeout: Self = Self(-72007);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/missingrequiredconfiguration?language=objc)
     #[doc(alias = "kCFNetServicesErrorMissingRequiredConfiguration")]
     pub const MissingRequiredConfiguration: Self = Self(-72008);
 }
@@ -110,6 +119,7 @@ unsafe impl RefEncode for CFNetServicesError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNetServiceMonitorType(pub c_int);
 impl CFNetServiceMonitorType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitortype/txt?language=objc)
     #[doc(alias = "kCFNetServiceMonitorTXT")]
     pub const TXT: Self = Self(1);
 }
@@ -131,6 +141,7 @@ unsafe impl RefEncode for CFNetServiceMonitorType {
 pub struct CFNetServiceRegisterFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNetServiceRegisterFlags: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregisterflags/noautorename?language=objc)
         #[doc(alias = "kCFNetServiceFlagNoAutoRename")]
         const FlagNoAutoRename = 1;
     }
@@ -153,15 +164,20 @@ unsafe impl RefEncode for CFNetServiceRegisterFlags {
 pub struct CFNetServiceBrowserFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNetServiceBrowserFlags: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags/morecoming?language=objc)
         #[doc(alias = "kCFNetServiceFlagMoreComing")]
         const FlagMoreComing = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags/isdomain?language=objc)
         #[doc(alias = "kCFNetServiceFlagIsDomain")]
         const FlagIsDomain = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags/isdefault?language=objc)
         #[doc(alias = "kCFNetServiceFlagIsDefault")]
         const FlagIsDefault = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags/isregistrationdomain?language=objc)
         #[doc(alias = "kCFNetServiceFlagIsRegistrationDomain")]
 #[deprecated]
         const FlagIsRegistrationDomain = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags/remove?language=objc)
         #[doc(alias = "kCFNetServiceFlagRemove")]
         const FlagRemove = 8;
     }
@@ -236,6 +252,7 @@ pub type CFNetServiceBrowserClientCallBack = Option<
 >;
 
 unsafe impl ConcreteType for CFNetService {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegettypeid()?language=objc)
     #[doc(alias = "CFNetServiceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -247,6 +264,7 @@ unsafe impl ConcreteType for CFNetService {
 }
 
 unsafe impl ConcreteType for CFNetServiceMonitor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorgettypeid()?language=objc)
     #[doc(alias = "CFNetServiceMonitorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -258,6 +276,7 @@ unsafe impl ConcreteType for CFNetServiceMonitor {
 }
 
 unsafe impl ConcreteType for CFNetServiceBrowser {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsergettypeid()?language=objc)
     #[doc(alias = "CFNetServiceBrowserGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -269,6 +288,7 @@ unsafe impl ConcreteType for CFNetServiceBrowser {
 }
 
 impl CFNetService {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreate(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFNetServiceCreate")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -294,6 +314,7 @@ impl CFNetService {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFNetServiceCreateCopy")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -313,6 +334,7 @@ impl CFNetService {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegetdomain(_:)?language=objc)
     #[doc(alias = "CFNetServiceGetDomain")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -326,6 +348,7 @@ impl CFNetService {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegettype(_:)?language=objc)
     #[doc(alias = "CFNetServiceGetType")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -339,6 +362,7 @@ impl CFNetService {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegetname(_:)?language=objc)
     #[doc(alias = "CFNetServiceGetName")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -352,6 +376,8 @@ impl CFNetService {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregisterwithoptions(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -374,6 +400,8 @@ impl CFNetService {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolvewithtimeout(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -396,6 +424,7 @@ impl CFNetService {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)?language=objc)
     #[doc(alias = "CFNetServiceCancel")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -406,6 +435,7 @@ impl CFNetService {
         unsafe { CFNetServiceCancel(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegettargethost(_:)?language=objc)
     #[doc(alias = "CFNetServiceGetTargetHost")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -417,6 +447,7 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegetportnumber(_:)?language=objc)
     #[doc(alias = "CFNetServiceGetPortNumber")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -427,6 +458,7 @@ impl CFNetService {
         unsafe { CFNetServiceGetPortNumber(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegetaddressing(_:)?language=objc)
     #[doc(alias = "CFNetServiceGetAddressing")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -438,6 +470,7 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegettxtdata(_:)?language=objc)
     #[doc(alias = "CFNetServiceGetTXTData")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -449,6 +482,7 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicesettxtdata(_:_:)?language=objc)
     #[doc(alias = "CFNetServiceSetTXTData")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -460,6 +494,7 @@ impl CFNetService {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreatedictionarywithtxtdata(_:_:)?language=objc)
     #[doc(alias = "CFNetServiceCreateDictionaryWithTXTData")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -477,6 +512,8 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreatetxtdatawithdictionary(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key_value_pairs` generic must be of the correct type.
@@ -498,6 +535,8 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
@@ -521,6 +560,8 @@ impl CFNetService {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceschedulewithrunloop(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
@@ -538,6 +579,8 @@ impl CFNetService {
         unsafe { CFNetServiceScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceunschedulefromrunloop(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
@@ -557,6 +600,8 @@ impl CFNetService {
 }
 
 impl CFNetServiceMonitor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorcreate(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
@@ -585,6 +630,7 @@ impl CFNetServiceMonitor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorinvalidate(_:)?language=objc)
     #[doc(alias = "CFNetServiceMonitorInvalidate")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -595,6 +641,8 @@ impl CFNetServiceMonitor {
         unsafe { CFNetServiceMonitorInvalidate(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstart(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -617,6 +665,8 @@ impl CFNetServiceMonitor {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstop(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -630,6 +680,8 @@ impl CFNetServiceMonitor {
         unsafe { CFNetServiceMonitorStop(self, error) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorschedulewithrunloop(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
@@ -647,6 +699,8 @@ impl CFNetServiceMonitor {
         unsafe { CFNetServiceMonitorScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorunschedulefromrunloop(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
@@ -666,6 +720,8 @@ impl CFNetServiceMonitor {
 }
 
 impl CFNetServiceBrowser {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsercreate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
@@ -691,6 +747,7 @@ impl CFNetServiceBrowser {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserinvalidate(_:)?language=objc)
     #[doc(alias = "CFNetServiceBrowserInvalidate")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -701,6 +758,8 @@ impl CFNetServiceBrowser {
         unsafe { CFNetServiceBrowserInvalidate(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -724,6 +783,8 @@ impl CFNetServiceBrowser {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchforservices(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -749,6 +810,8 @@ impl CFNetServiceBrowser {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserstopsearch(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -765,6 +828,8 @@ impl CFNetServiceBrowser {
         unsafe { CFNetServiceBrowserStopSearch(self, error) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserschedulewithrunloop(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
@@ -782,6 +847,8 @@ impl CFNetServiceBrowser {
         unsafe { CFNetServiceBrowserScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserunschedulefromrunloop(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
@@ -801,6 +868,8 @@ impl CFNetServiceBrowser {
 }
 
 impl CFNetService {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregister?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -818,6 +887,8 @@ impl CFNetService {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolve?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.

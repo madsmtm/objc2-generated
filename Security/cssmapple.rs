@@ -7,18 +7,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_apple_tp_ssl_opts_version?language=objc)
 pub const CSSM_APPLE_TP_SSL_OPTS_VERSION: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_apple_tp_crl_opts_version?language=objc)
 pub const CSSM_APPLE_TP_CRL_OPTS_VERSION: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_apple_tp_smime_opts_version?language=objc)
 pub const CSSM_APPLE_TP_SMIME_OPTS_VERSION: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_apple_tp_action_version?language=objc)
 pub const CSSM_APPLE_TP_ACTION_VERSION: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_apple_evidence_version?language=objc)
 pub const CSSM_TP_APPLE_EVIDENCE_VERSION: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kkeychainsuffix?language=objc)
 pub const kKeychainSuffix: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b".keychain\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kkeychaindbsuffix?language=objc)
 pub const kKeychainDbSuffix: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b".keychain-db\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/ksystemkeychainname?language=objc)
 pub const kSystemKeychainName: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"System.keychain\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/ksystemkeychaindir?language=objc)
 pub const kSystemKeychainDir: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"/Library/Keychains/\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/ksystemunlockfile?language=objc)
 pub const kSystemUnlockFile: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"/var/db/SystemKey\0") };
 extern "C" {
@@ -684,6 +694,7 @@ pub const CSSM_APPLEDL_OPEN_PARAMETERS_VERSION: c_uint = 1;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct cssm_appledl_open_parameters_mask(pub c_uint);
 impl cssm_appledl_open_parameters_mask {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/kcssm_appledl_mask_mode?language=objc)
     #[doc(alias = "kCSSM_APPLEDL_MASK_MODE")]
     pub const CSSM_APPLEDL_MASK_MODE: Self = Self(1 << 0);
 }
@@ -1323,6 +1334,8 @@ unsafe impl RefEncode for CSSM_APPLE_CL_CSR_REQUEST {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmperror(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `how` must be a valid pointer.
@@ -1331,6 +1344,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoidtoalg(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `oid` must be a valid pointer.
@@ -1340,6 +1355,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmalgtooid(_:)?language=objc)
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     pub fn cssmAlgToOid(alg_id: CSSM_ALGORITHMS) -> *const SecAsn1Oid;
 }

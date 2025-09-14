@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMMotionActivityConfidence(pub NSInteger);
 impl CMMotionActivityConfidence {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityconfidence/low?language=objc)
     #[doc(alias = "CMMotionActivityConfidenceLow")]
     pub const Low: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityconfidence/medium?language=objc)
     #[doc(alias = "CMMotionActivityConfidenceMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityconfidence/high?language=objc)
     #[doc(alias = "CMMotionActivityConfidenceHigh")]
     pub const High: Self = Self(2);
 }

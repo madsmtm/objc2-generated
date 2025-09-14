@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimatingState(pub NSInteger);
 impl UIViewAnimatingState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingstate/inactive?language=objc)
     #[doc(alias = "UIViewAnimatingStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingstate/active?language=objc)
     #[doc(alias = "UIViewAnimatingStateActive")]
     pub const Active: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingstate/stopped?language=objc)
     #[doc(alias = "UIViewAnimatingStateStopped")]
     pub const Stopped: Self = Self(2);
 }
@@ -37,10 +40,13 @@ unsafe impl RefEncode for UIViewAnimatingState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimatingPosition(pub NSInteger);
 impl UIViewAnimatingPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingposition/end?language=objc)
     #[doc(alias = "UIViewAnimatingPositionEnd")]
     pub const End: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingposition/start?language=objc)
     #[doc(alias = "UIViewAnimatingPositionStart")]
     pub const Start: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingposition/current?language=objc)
     #[doc(alias = "UIViewAnimatingPositionCurrent")]
     pub const Current: Self = Self(2);
 }

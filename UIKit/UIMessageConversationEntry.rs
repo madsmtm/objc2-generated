@@ -15,12 +15,18 @@ use crate::*;
 pub struct UIMessageConversationEntryDataKind(pub NSInteger);
 impl UIMessageConversationEntryDataKind {
     /// The message contains text.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext/messageentry/datakind-swift.enum/text?language=objc)
     #[doc(alias = "UIMessageConversationEntryDataKindText")]
     pub const Text: Self = Self(0);
     /// The message contains an attachment, such as an image or file.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext/messageentry/datakind-swift.enum/attachment?language=objc)
     #[doc(alias = "UIMessageConversationEntryDataKindAttachment")]
     pub const Attachment: Self = Self(1);
     /// The message contains other data, such as data that represents a sticker or a payment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext/messageentry/datakind-swift.enum/other?language=objc)
     #[doc(alias = "UIMessageConversationEntryDataKindOther")]
     pub const Other: Self = Self(2);
 }

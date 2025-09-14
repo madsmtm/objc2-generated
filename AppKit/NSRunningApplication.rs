@@ -19,10 +19,14 @@ bitflags::bitflags! {
 /// By default, activation brings only the main and key
 /// windows forward. If you specify `activateAllWindows`,
 /// all of the application's windows are brought forward.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationoptions/activateallwindows?language=objc)
         #[doc(alias = "NSApplicationActivateAllWindows")]
         const ActivateAllWindows = 1<<0;
 /// The application is activated regardless of the currently
 /// active app.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationoptions/activateignoringotherapps?language=objc)
         #[doc(alias = "NSApplicationActivateIgnoringOtherApps")]
 #[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
         const ActivateIgnoringOtherApps = 1<<1;
@@ -46,10 +50,13 @@ unsafe impl RefEncode for NSApplicationActivationOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationActivationPolicy(pub NSInteger);
 impl NSApplicationActivationPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationpolicy-swift.enum/regular?language=objc)
     #[doc(alias = "NSApplicationActivationPolicyRegular")]
     pub const Regular: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationpolicy-swift.enum/accessory?language=objc)
     #[doc(alias = "NSApplicationActivationPolicyAccessory")]
     pub const Accessory: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationpolicy-swift.enum/prohibited?language=objc)
     #[doc(alias = "NSApplicationActivationPolicyProhibited")]
     pub const Prohibited: Self = Self(2);
 }

@@ -15,14 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AURenderEventType(pub u8);
 impl AURenderEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype/parameter?language=objc)
     #[doc(alias = "AURenderEventParameter")]
     pub const Parameter: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype/parameterramp?language=objc)
     #[doc(alias = "AURenderEventParameterRamp")]
     pub const ParameterRamp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype/midi?language=objc)
     #[doc(alias = "AURenderEventMIDI")]
     pub const MIDI: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype/midisysex?language=objc)
     #[doc(alias = "AURenderEventMIDISysEx")]
     pub const MIDISysEx: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype/midieventlist?language=objc)
     #[doc(alias = "AURenderEventMIDIEventList")]
     pub const MIDIEventList: Self = Self(10);
 }

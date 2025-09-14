@@ -618,24 +618,34 @@ pub const kAUAudioMixParameter_RemixAmount: AudioUnitParameterID = 1;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUAudioMixRenderingStyle(pub u32);
 impl AUAudioMixRenderingStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle/audiomixrenderingstyle_cinematic?language=objc)
     #[doc(alias = "kAudioMixRenderingStyle_Cinematic")]
     pub const AudioMixRenderingStyle_Cinematic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle/audiomixrenderingstyle_studio?language=objc)
     #[doc(alias = "kAudioMixRenderingStyle_Studio")]
     pub const AudioMixRenderingStyle_Studio: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle/audiomixrenderingstyle_inframe?language=objc)
     #[doc(alias = "kAudioMixRenderingStyle_InFrame")]
     pub const AudioMixRenderingStyle_InFrame: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle/audiomixrenderingstyle_cinematicbackgroundstem?language=objc)
     #[doc(alias = "kAudioMixRenderingStyle_CinematicBackgroundStem")]
     pub const AudioMixRenderingStyle_CinematicBackgroundStem: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle/audiomixrenderingstyle_cinematicforegroundstem?language=objc)
     #[doc(alias = "kAudioMixRenderingStyle_CinematicForegroundStem")]
     pub const AudioMixRenderingStyle_CinematicForegroundStem: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle/audiomixrenderingstyle_studioforegroundstem?language=objc)
     #[doc(alias = "kAudioMixRenderingStyle_StudioForegroundStem")]
     pub const AudioMixRenderingStyle_StudioForegroundStem: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle/audiomixrenderingstyle_inframeforegroundstem?language=objc)
     #[doc(alias = "kAudioMixRenderingStyle_InFrameForegroundStem")]
     pub const AudioMixRenderingStyle_InFrameForegroundStem: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle/audiomixrenderingstyle_standard?language=objc)
     #[doc(alias = "kAudioMixRenderingStyle_Standard")]
     pub const AudioMixRenderingStyle_Standard: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle/audiomixrenderingstyle_studiobackgroundstem?language=objc)
     #[doc(alias = "kAudioMixRenderingStyle_StudioBackgroundStem")]
     pub const AudioMixRenderingStyle_StudioBackgroundStem: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle/audiomixrenderingstyle_inframebackgroundstem?language=objc)
     #[doc(alias = "kAudioMixRenderingStyle_InFrameBackgroundStem")]
     pub const AudioMixRenderingStyle_InFrameBackgroundStem: Self = Self(9);
 }

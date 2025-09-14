@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBackgroundActivityResult(pub NSInteger);
 impl NSBackgroundActivityResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/result/finished?language=objc)
     #[doc(alias = "NSBackgroundActivityResultFinished")]
     pub const Finished: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/result/deferred?language=objc)
     #[doc(alias = "NSBackgroundActivityResultDeferred")]
     pub const Deferred: Self = Self(2);
 }

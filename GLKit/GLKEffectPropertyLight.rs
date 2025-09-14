@@ -19,8 +19,10 @@ pub struct GLKLightingType(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKLightingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glklightingtype/pervertex?language=objc)
     #[doc(alias = "GLKLightingTypePerVertex")]
     pub const PerVertex: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glklightingtype/perpixel?language=objc)
     #[doc(alias = "GLKLightingTypePerPixel")]
     pub const PerPixel: Self = Self(1);
 }

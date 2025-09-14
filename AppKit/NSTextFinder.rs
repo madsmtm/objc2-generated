@@ -13,30 +13,43 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextFinderAction(pub NSInteger);
 impl NSTextFinderAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/showfindinterface?language=objc)
     #[doc(alias = "NSTextFinderActionShowFindInterface")]
     pub const ShowFindInterface: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/nextmatch?language=objc)
     #[doc(alias = "NSTextFinderActionNextMatch")]
     pub const NextMatch: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/previousmatch?language=objc)
     #[doc(alias = "NSTextFinderActionPreviousMatch")]
     pub const PreviousMatch: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/replaceall?language=objc)
     #[doc(alias = "NSTextFinderActionReplaceAll")]
     pub const ReplaceAll: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/replace?language=objc)
     #[doc(alias = "NSTextFinderActionReplace")]
     pub const Replace: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/replaceandfind?language=objc)
     #[doc(alias = "NSTextFinderActionReplaceAndFind")]
     pub const ReplaceAndFind: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/setsearchstring?language=objc)
     #[doc(alias = "NSTextFinderActionSetSearchString")]
     pub const SetSearchString: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/replaceallinselection?language=objc)
     #[doc(alias = "NSTextFinderActionReplaceAllInSelection")]
     pub const ReplaceAllInSelection: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/selectall?language=objc)
     #[doc(alias = "NSTextFinderActionSelectAll")]
     pub const SelectAll: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/selectallinselection?language=objc)
     #[doc(alias = "NSTextFinderActionSelectAllInSelection")]
     pub const SelectAllInSelection: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/hidefindinterface?language=objc)
     #[doc(alias = "NSTextFinderActionHideFindInterface")]
     pub const HideFindInterface: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/showreplaceinterface?language=objc)
     #[doc(alias = "NSTextFinderActionShowReplaceInterface")]
     pub const ShowReplaceInterface: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/action/hidereplaceinterface?language=objc)
     #[doc(alias = "NSTextFinderActionHideReplaceInterface")]
     pub const HideReplaceInterface: Self = Self(13);
 }
@@ -69,12 +82,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextFinderMatchingType(pub NSInteger);
 impl NSTextFinderMatchingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/matchingtype/contains?language=objc)
     #[doc(alias = "NSTextFinderMatchingTypeContains")]
     pub const Contains: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/matchingtype/startswith?language=objc)
     #[doc(alias = "NSTextFinderMatchingTypeStartsWith")]
     pub const StartsWith: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/matchingtype/fullword?language=objc)
     #[doc(alias = "NSTextFinderMatchingTypeFullWord")]
     pub const FullWord: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinder/matchingtype/endswith?language=objc)
     #[doc(alias = "NSTextFinderMatchingTypeEndsWith")]
     pub const EndsWith: Self = Self(3);
 }

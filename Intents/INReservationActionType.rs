@@ -10,8 +10,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INReservationActionType(pub NSInteger);
 impl INReservationActionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationactiontype/unknown?language=objc)
     #[doc(alias = "INReservationActionTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationactiontype/checkin?language=objc)
     #[doc(alias = "INReservationActionTypeCheckIn")]
     pub const CheckIn: Self = Self(1);
 }

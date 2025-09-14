@@ -8,6 +8,8 @@ use crate::*;
 
 #[cfg(feature = "CFURL")]
 impl CFURL {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatedataandpropertiesfromresource(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -57,6 +59,8 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlwritedataandpropertiestoresource(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_to_write` might not allow `None`.
@@ -93,6 +97,8 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurldestroyresource(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error_code` must be a valid pointer.
@@ -108,6 +114,8 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatepropertyfromresource(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -144,30 +152,39 @@ impl CFURL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLError(pub CFIndex);
 impl CFURLError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/unknownerror?language=objc)
     #[doc(alias = "kCFURLUnknownError")]
     #[deprecated = "Use CFError codes instead"]
     pub const UnknownError: Self = Self(-10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/unknownschemeerror?language=objc)
     #[doc(alias = "kCFURLUnknownSchemeError")]
     #[deprecated = "Use CFError codes instead"]
     pub const UnknownSchemeError: Self = Self(-11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/resourcenotfounderror?language=objc)
     #[doc(alias = "kCFURLResourceNotFoundError")]
     #[deprecated = "Use CFError codes instead"]
     pub const ResourceNotFoundError: Self = Self(-12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/resourceaccessviolationerror?language=objc)
     #[doc(alias = "kCFURLResourceAccessViolationError")]
     #[deprecated = "Use CFError codes instead"]
     pub const ResourceAccessViolationError: Self = Self(-13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/remotehostunavailableerror?language=objc)
     #[doc(alias = "kCFURLRemoteHostUnavailableError")]
     #[deprecated = "Use CFError codes instead"]
     pub const RemoteHostUnavailableError: Self = Self(-14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/improperargumentserror?language=objc)
     #[doc(alias = "kCFURLImproperArgumentsError")]
     #[deprecated = "Use CFError codes instead"]
     pub const ImproperArgumentsError: Self = Self(-15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/unknownpropertykeyerror?language=objc)
     #[doc(alias = "kCFURLUnknownPropertyKeyError")]
     #[deprecated = "Use CFError codes instead"]
     pub const UnknownPropertyKeyError: Self = Self(-16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/propertykeyunavailableerror?language=objc)
     #[doc(alias = "kCFURLPropertyKeyUnavailableError")]
     #[deprecated = "Use CFError codes instead"]
     pub const PropertyKeyUnavailableError: Self = Self(-17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/timeouterror?language=objc)
     #[doc(alias = "kCFURLTimeoutError")]
     #[deprecated = "Use CFError codes instead"]
     pub const TimeoutError: Self = Self(-18);

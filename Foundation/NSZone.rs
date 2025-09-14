@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdefaultmalloczone?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSDefaultMallocZone() -> NonNull<NSZone> {
     extern "C-unwind" {
@@ -15,6 +16,7 @@ pub extern "C-unwind" fn NSDefaultMallocZone() -> NonNull<NSZone> {
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatezone?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSCreateZone(
     start_size: NSUInteger,
@@ -33,6 +35,8 @@ pub extern "C-unwind" fn NSCreateZone(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecyclezone?language=objc)
+    ///
     /// # Safety
     ///
     /// `zone` must be a valid pointer.
@@ -40,6 +44,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssetzonename?language=objc)
+    ///
     /// # Safety
     ///
     /// `zone` must be a valid pointer or null.
@@ -47,6 +53,8 @@ extern "C-unwind" {
     pub fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonename?language=objc)
+///
 /// # Safety
 ///
 /// `zone` must be a valid pointer or null.
@@ -62,12 +70,16 @@ pub unsafe extern "C-unwind" fn NSZoneName(zone: *mut NSZone) -> Retained<NSStri
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonefrompointer?language=objc)
+    ///
     /// # Safety
     ///
     /// `ptr` must be a valid pointer.
     pub fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonemalloc?language=objc)
+///
 /// # Safety
 ///
 /// `zone` must be a valid pointer or null.
@@ -83,6 +95,8 @@ pub unsafe extern "C-unwind" fn NSZoneMalloc(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonecalloc?language=objc)
+///
 /// # Safety
 ///
 /// `zone` must be a valid pointer or null.
@@ -103,6 +117,8 @@ pub unsafe extern "C-unwind" fn NSZoneCalloc(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonerealloc?language=objc)
+///
 /// # Safety
 ///
 /// - `zone` must be a valid pointer or null.
@@ -125,6 +141,8 @@ pub unsafe extern "C-unwind" fn NSZoneRealloc(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonefree?language=objc)
+    ///
     /// # Safety
     ///
     /// - `zone` must be a valid pointer or null.
@@ -137,6 +155,7 @@ pub const NSScannedOption: NSUInteger = 1 << 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectordisabledoption?language=objc)
 pub const NSCollectorDisabledOption: NSUInteger = 1 << 1;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallocatecollectable?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSAllocateCollectable(
     size: NSUInteger,
@@ -149,6 +168,8 @@ pub extern "C-unwind" fn NSAllocateCollectable(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreallocatecollectable?language=objc)
+///
 /// # Safety
 ///
 /// `ptr` must be a valid pointer or null.
@@ -169,6 +190,7 @@ pub unsafe extern "C-unwind" fn NSReallocateCollectable(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspagesize()?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSPageSize() -> NSUInteger {
     extern "C-unwind" {
@@ -177,6 +199,7 @@ pub extern "C-unwind" fn NSPageSize() -> NSUInteger {
     unsafe { NSPageSize() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslogpagesize()?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSLogPageSize() -> NSUInteger {
     extern "C-unwind" {
@@ -185,6 +208,7 @@ pub extern "C-unwind" fn NSLogPageSize() -> NSUInteger {
     unsafe { NSLogPageSize() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrounduptomultipleofpagesize(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger {
     extern "C-unwind" {
@@ -193,6 +217,7 @@ pub extern "C-unwind" fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSU
     unsafe { NSRoundUpToMultipleOfPageSize(bytes) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrounddowntomultipleofpagesize(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger {
     extern "C-unwind" {
@@ -201,6 +226,7 @@ pub extern "C-unwind" fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> N
     unsafe { NSRoundDownToMultipleOfPageSize(bytes) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallocatememorypages(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void> {
     extern "C-unwind" {
@@ -211,6 +237,8 @@ pub extern "C-unwind" fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_v
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdeallocatememorypages(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `ptr` must be a valid pointer.
@@ -218,6 +246,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscopymemorypages(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `source` must be a valid pointer.
@@ -225,6 +255,7 @@ extern "C-unwind" {
     pub fn NSCopyMemoryPages(source: NonNull<c_void>, dest: NonNull<c_void>, bytes: NSUInteger);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrealmemoryavailable()?language=objc)
 #[deprecated = "Use NSProcessInfo instead"]
 #[inline]
 pub extern "C-unwind" fn NSRealMemoryAvailable() -> NSUInteger {

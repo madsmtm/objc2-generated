@@ -119,6 +119,7 @@ unsafe impl RefEncode for CGDataProviderDirectCallbacks {
 }
 
 unsafe impl ConcreteType for CGDataProvider {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/typeid?language=objc)
     #[doc(alias = "CGDataProviderGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -130,6 +131,8 @@ unsafe impl ConcreteType for CGDataProvider {
 }
 
 impl CGDataProvider {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(sequentialinfo:callbacks:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
@@ -151,6 +154,8 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(directinfo:size:callbacks:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
@@ -180,6 +185,8 @@ pub type CGDataProviderReleaseDataCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize)>;
 
 impl CGDataProvider {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(datainfo:data:size:releasedata:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
@@ -205,6 +212,7 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(data:)?language=objc)
     #[doc(alias = "CGDataProviderCreateWithCFData")]
     #[inline]
     pub fn with_cf_data(data: Option<&CFData>) -> Option<CFRetained<CGDataProvider>> {
@@ -217,6 +225,7 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(url:)?language=objc)
     #[doc(alias = "CGDataProviderCreateWithURL")]
     #[inline]
     pub fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataProvider>> {
@@ -227,6 +236,8 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(filename:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `filename` must be a valid pointer or null.
@@ -242,6 +253,7 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/data?language=objc)
     #[doc(alias = "CGDataProviderCopyData")]
     #[inline]
     pub fn data(provider: Option<&CGDataProvider>) -> Option<CFRetained<CFData>> {
@@ -253,6 +265,7 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/info?language=objc)
     #[doc(alias = "CGDataProviderGetInfo")]
     #[inline]
     pub fn info(provider: Option<&CGDataProvider>) -> *mut c_void {

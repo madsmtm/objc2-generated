@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralState(pub NSInteger);
 impl CBPeripheralState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate/disconnected?language=objc)
     #[doc(alias = "CBPeripheralStateDisconnected")]
     pub const Disconnected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate/connecting?language=objc)
     #[doc(alias = "CBPeripheralStateConnecting")]
     pub const Connecting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate/connected?language=objc)
     #[doc(alias = "CBPeripheralStateConnected")]
     pub const Connected: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate/disconnecting?language=objc)
     #[doc(alias = "CBPeripheralStateDisconnecting")]
     pub const Disconnecting: Self = Self(3);
 }
@@ -41,8 +45,10 @@ unsafe impl RefEncode for CBPeripheralState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCharacteristicWriteType(pub NSInteger);
 impl CBCharacteristicWriteType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype/withresponse?language=objc)
     #[doc(alias = "CBCharacteristicWriteWithResponse")]
     pub const WithResponse: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype/withoutresponse?language=objc)
     #[doc(alias = "CBCharacteristicWriteWithoutResponse")]
     pub const WithoutResponse: Self = Self(1);
 }

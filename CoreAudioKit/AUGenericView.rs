@@ -19,10 +19,13 @@ use crate::*;
 pub struct AUGenericViewDisplayFlags(pub u32);
 bitflags::bitflags! {
     impl AUGenericViewDisplayFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/augenericviewdisplayflags/viewtitledisplayflag?language=objc)
         #[doc(alias = "AUViewTitleDisplayFlag")]
         const ViewTitleDisplayFlag = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/augenericviewdisplayflags/viewpropertiesdisplayflag?language=objc)
         #[doc(alias = "AUViewPropertiesDisplayFlag")]
         const ViewPropertiesDisplayFlag = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/augenericviewdisplayflags/viewparametersdisplayflag?language=objc)
         #[doc(alias = "AUViewParametersDisplayFlag")]
         const ViewParametersDisplayFlag = 1<<2;
     }

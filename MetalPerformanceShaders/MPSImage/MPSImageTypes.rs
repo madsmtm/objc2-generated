@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSAlphaType(pub NSUInteger);
 impl MPSAlphaType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsalphatype/nonpremultiplied?language=objc)
     #[doc(alias = "MPSAlphaTypeNonPremultiplied")]
     pub const NonPremultiplied: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsalphatype/alphaisone?language=objc)
     #[doc(alias = "MPSAlphaTypeAlphaIsOne")]
     pub const AlphaIsOne: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsalphatype/premultiplied?language=objc)
     #[doc(alias = "MPSAlphaTypePremultiplied")]
     pub const Premultiplied: Self = Self(2);
 }

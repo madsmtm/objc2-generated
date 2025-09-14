@@ -10,8 +10,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INLocationSearchType(pub NSInteger);
 impl INLocationSearchType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlocationsearchtype/unknown?language=objc)
     #[doc(alias = "INLocationSearchTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlocationsearchtype/bylocationtrigger?language=objc)
     #[doc(alias = "INLocationSearchTypeByLocationTrigger")]
     pub const ByLocationTrigger: Self = Self(1);
 }

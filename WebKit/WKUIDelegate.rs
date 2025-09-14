@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKPermissionDecision(pub NSInteger);
 impl WKPermissionDecision {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpermissiondecision/prompt?language=objc)
     #[doc(alias = "WKPermissionDecisionPrompt")]
     pub const Prompt: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpermissiondecision/grant?language=objc)
     #[doc(alias = "WKPermissionDecisionGrant")]
     pub const Grant: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpermissiondecision/deny?language=objc)
     #[doc(alias = "WKPermissionDecisionDeny")]
     pub const Deny: Self = Self(2);
 }
@@ -35,10 +38,13 @@ unsafe impl RefEncode for WKPermissionDecision {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMediaCaptureType(pub NSInteger);
 impl WKMediaCaptureType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturetype/camera?language=objc)
     #[doc(alias = "WKMediaCaptureTypeCamera")]
     pub const Camera: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturetype/microphone?language=objc)
     #[doc(alias = "WKMediaCaptureTypeMicrophone")]
     pub const Microphone: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturetype/cameraandmicrophone?language=objc)
     #[doc(alias = "WKMediaCaptureTypeCameraAndMicrophone")]
     pub const CameraAndMicrophone: Self = Self(2);
 }
@@ -59,10 +65,13 @@ unsafe impl RefEncode for WKMediaCaptureType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKDialogResult(pub NSInteger);
 impl WKDialogResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdialogresult/showdefault?language=objc)
     #[doc(alias = "WKDialogResultShowDefault")]
     pub const ShowDefault: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdialogresult/askagain?language=objc)
     #[doc(alias = "WKDialogResultAskAgain")]
     pub const AskAgain: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdialogresult/handled?language=objc)
     #[doc(alias = "WKDialogResultHandled")]
     pub const Handled: Self = Self(3);
 }

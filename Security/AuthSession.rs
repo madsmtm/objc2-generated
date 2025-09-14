@@ -29,9 +29,13 @@ pub const callerSecuritySession: SecuritySessionId = 4294967295;
 pub struct SessionAttributeBits(pub u32);
 bitflags::bitflags! {
     impl SessionAttributeBits: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sessionattributebits/sessionisroot?language=objc)
         const sessionIsRoot = 0x0001;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sessionattributebits/sessionhasgraphicaccess?language=objc)
         const sessionHasGraphicAccess = 0x0010;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sessionattributebits/sessionhastty?language=objc)
         const sessionHasTTY = 0x0020;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sessionattributebits/sessionisremote?language=objc)
         const sessionIsRemote = 0x1000;
     }
 }
@@ -56,6 +60,7 @@ unsafe impl RefEncode for SessionAttributeBits {
 pub struct SessionCreationFlags(pub u32);
 bitflags::bitflags! {
     impl SessionCreationFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sessioncreationflags/sessionkeepcurrentbootstrap?language=objc)
         const sessionKeepCurrentBootstrap = 0x8000;
     }
 }
@@ -110,6 +115,8 @@ extern "C-unwind" {
     ///
     /// - `session_id` must be a valid pointer or null.
     /// - `attributes` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sessiongetinfo(_:_:_:)?language=objc)
     pub fn SessionGetInfo(
         session: SecuritySessionId,
         session_id: *mut SecuritySessionId,
@@ -149,6 +156,8 @@ extern "C-unwind" {
     /// errSessionInvalidAttributes -60501 Attempt to set invalid attribute bits
     /// errSessionAuthorizationDenied -60502 Attempt to re-initialize a session
     /// errSessionInvalidFlags -60011 Attempt to specify unsupported flag bits
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sessioncreate(_:_:)?language=objc)
     pub fn SessionCreate(flags: SessionCreationFlags, attributes: SessionAttributeBits)
         -> OSStatus;
 }

@@ -35,6 +35,8 @@ extern "C" {
 ///
 /// - `decode_type` should be of the correct type.
 /// - `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secdecodetransformcreate(_:_:)?language=objc)
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

@@ -38,6 +38,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for CVOpenGLBufferPool {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolgettypeid()?language=objc)
     #[doc(alias = "CVOpenGLBufferPoolGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -70,6 +71,8 @@ impl CVOpenGLBufferPool {
     /// - `open_gl_buffer_attributes` generic must be of the correct type.
     /// - `open_gl_buffer_attributes` generic must be of the correct type.
     /// - `pool_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CVOpenGLBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
@@ -103,6 +106,8 @@ impl CVOpenGLBufferPool {
     /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolgetattributes(_:)?language=objc)
     #[doc(alias = "CVOpenGLBufferPoolGetAttributes")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
@@ -124,6 +129,8 @@ impl CVOpenGLBufferPool {
     /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the OpenGL buffer attributes dictionary, or NULL on failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolgetopenglbufferattributes(_:)?language=objc)
     #[doc(alias = "CVOpenGLBufferPoolGetOpenGLBufferAttributes")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
@@ -152,6 +159,8 @@ impl CVOpenGLBufferPool {
     /// # Safety
     ///
     /// `open_gl_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolcreateopenglbuffer(_:_:_:)?language=objc)
     #[doc(alias = "CVOpenGLBufferPoolCreateOpenGLBuffer")]
     #[cfg(all(
         feature = "CVBuffer",

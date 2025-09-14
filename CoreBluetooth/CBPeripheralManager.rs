@@ -18,15 +18,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerAuthorizationStatus(pub NSInteger);
 impl CBPeripheralManagerAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusNotDetermined")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus/restricted?language=objc)
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusRestricted")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus/denied?language=objc)
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusDenied")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus/authorized?language=objc)
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusAuthorized")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Authorized: Self = Self(3);
@@ -49,26 +53,32 @@ unsafe impl RefEncode for CBPeripheralManagerAuthorizationStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerState(pub NSInteger);
 impl CBPeripheralManagerState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/unknown?language=objc)
     #[doc(alias = "CBPeripheralManagerStateUnknown")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unknown: Self = Self(CBManagerState::Unknown.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/resetting?language=objc)
     #[doc(alias = "CBPeripheralManagerStateResetting")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Resetting: Self = Self(CBManagerState::Resetting.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/unsupported?language=objc)
     #[doc(alias = "CBPeripheralManagerStateUnsupported")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unsupported: Self = Self(CBManagerState::Unsupported.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/unauthorized?language=objc)
     #[doc(alias = "CBPeripheralManagerStateUnauthorized")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unauthorized: Self = Self(CBManagerState::Unauthorized.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/poweredoff?language=objc)
     #[doc(alias = "CBPeripheralManagerStatePoweredOff")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const PoweredOff: Self = Self(CBManagerState::PoweredOff.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/poweredon?language=objc)
     #[doc(alias = "CBPeripheralManagerStatePoweredOn")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
@@ -91,10 +101,13 @@ unsafe impl RefEncode for CBPeripheralManagerState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerConnectionLatency(pub NSInteger);
 impl CBPeripheralManagerConnectionLatency {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency/low?language=objc)
     #[doc(alias = "CBPeripheralManagerConnectionLatencyLow")]
     pub const Low: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency/medium?language=objc)
     #[doc(alias = "CBPeripheralManagerConnectionLatencyMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency/high?language=objc)
     #[doc(alias = "CBPeripheralManagerConnectionLatencyHigh")]
     pub const High: Self = Self(2);
 }

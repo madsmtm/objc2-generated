@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLevelIndicatorPlaceholderVisibility(pub NSInteger);
 impl NSLevelIndicatorPlaceholderVisibility {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/placeholdervisibility-swift.enum/automatic?language=objc)
     #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/placeholdervisibility-swift.enum/always?language=objc)
     #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityAlways")]
     pub const Always: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/placeholdervisibility-swift.enum/whileediting?language=objc)
     #[doc(alias = "NSLevelIndicatorPlaceholderVisibilityWhileEditing")]
     pub const WhileEditing: Self = Self(2);
 }

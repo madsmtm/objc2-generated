@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothobjectidnull?language=objc)
 pub const kIOBluetoothObjectIDNULL: IOBluetoothObjectID = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobjectref?language=objc)
 #[repr(C)]
@@ -151,10 +152,13 @@ pub type IOBluetoothDeviceSearchOptions = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothDeviceSearchOptionsBits(pub c_uint);
 impl IOBluetoothDeviceSearchOptionsBits {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/ksearchoptionsnone?language=objc)
     #[doc(alias = "kSearchOptionsNone")]
     pub const SearchOptionsNone: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/ksearchoptionsalwaysstartinquiry?language=objc)
     #[doc(alias = "kSearchOptionsAlwaysStartInquiry")]
     pub const SearchOptionsAlwaysStartInquiry: Self = Self(1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/ksearchoptionsdiscardcachedresults?language=objc)
     #[doc(alias = "kSearchOptionsDiscardCachedResults")]
     pub const SearchOptionsDiscardCachedResults: Self = Self(1 << 1);
 }
@@ -250,8 +254,10 @@ pub type IOBluetoothDeviceSearchTypes = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothDeviceSearchTypesBits(pub c_uint);
 impl IOBluetoothDeviceSearchTypesBits {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothdevicesearchclassic?language=objc)
     #[doc(alias = "kIOBluetoothDeviceSearchClassic")]
     pub const Classic: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothdevicesearchle?language=objc)
     #[doc(alias = "kIOBluetoothDeviceSearchLE")]
     pub const LE: Self = Self(2);
 }
@@ -274,6 +280,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `device` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothignorehiddevice(_:)?language=objc)
     pub fn IOBluetoothIgnoreHIDDevice(device: Option<&IOBluetoothDeviceRef>);
 }
 
@@ -285,6 +293,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `device` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothremoveignoredhiddevice(_:)?language=objc)
     pub fn IOBluetoothRemoveIgnoredHIDDevice(device: Option<&IOBluetoothDeviceRef>);
 }
 
@@ -293,10 +303,13 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothUserNotificationChannelDirection(pub c_uint);
 impl IOBluetoothUserNotificationChannelDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothusernotificationchanneldirectionany?language=objc)
     #[doc(alias = "kIOBluetoothUserNotificationChannelDirectionAny")]
     pub const Any: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothusernotificationchanneldirectionincoming?language=objc)
     #[doc(alias = "kIOBluetoothUserNotificationChannelDirectionIncoming")]
     pub const Incoming: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothusernotificationchanneldirectionoutgoing?language=objc)
     #[doc(alias = "kIOBluetoothUserNotificationChannelDirectionOutgoing")]
     pub const Outgoing: Self = Self(2);
 }
@@ -339,6 +352,8 @@ impl IOBluetoothUserNotificationRef {
     /// target IOBluetoothUserNotificationRef is no longer valid.
     ///
     /// Parameter `notificationRef`: The target IOBluetoothUserNotificationRef to be unregistered
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotificationunregister(_:)?language=objc)
     #[doc(alias = "IOBluetoothUserNotificationUnregister")]
     #[inline]
     pub unsafe fn unregister(&self) {
@@ -373,6 +388,8 @@ impl IOBluetoothL2CAPChannelRef {
     ///
     /// - `callback` must be implemented correctly.
     /// - `in_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelregisterforchannelclosenotification(_:_:_:)?language=objc)
     #[doc(alias = "IOBluetoothL2CAPChannelRegisterForChannelCloseNotification")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -412,6 +429,8 @@ extern "C-unwind" {
     /// - `config_dict` generic must be of the correct type.
     /// - `config_dict` generic must be of the correct type.
     /// - `config_dict` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothaddscoaudiodevice?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn IOBluetoothAddSCOAudioDevice(
@@ -430,6 +449,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `device` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothremovescoaudiodevice?language=objc)
     #[deprecated]
     pub fn IOBluetoothRemoveSCOAudioDevice(device: Option<&IOBluetoothDeviceRef>) -> IOReturn;
 }

@@ -19,10 +19,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPListItemAccessoryType(pub NSInteger);
 impl CPListItemAccessoryType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemaccessorytype/none?language=objc)
     #[doc(alias = "CPListItemAccessoryTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemaccessorytype/disclosureindicator?language=objc)
     #[doc(alias = "CPListItemAccessoryTypeDisclosureIndicator")]
     pub const DisclosureIndicator: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemaccessorytype/cloud?language=objc)
     #[doc(alias = "CPListItemAccessoryTypeCloud")]
     pub const Cloud: Self = Self(2);
 }
@@ -41,8 +44,10 @@ unsafe impl RefEncode for CPListItemAccessoryType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPListItemPlayingIndicatorLocation(pub NSInteger);
 impl CPListItemPlayingIndicatorLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemplayingindicatorlocation/leading?language=objc)
     #[doc(alias = "CPListItemPlayingIndicatorLocationLeading")]
     pub const Leading: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemplayingindicatorlocation/trailing?language=objc)
     #[doc(alias = "CPListItemPlayingIndicatorLocationTrailing")]
     pub const Trailing: Self = Self(1);
 }

@@ -225,6 +225,7 @@ pub struct CVPixelBufferLockFlags(pub CVOptionFlags);
 #[cfg(feature = "CVBase")]
 bitflags::bitflags! {
     impl CVPixelBufferLockFlags: CVOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags/readonly?language=objc)
         #[doc(alias = "kCVPixelBufferLock_ReadOnly")]
         const ReadOnly = 0x00000001;
     }
@@ -543,6 +544,7 @@ extern "C" {
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVPixelBuffer = CVImageBuffer;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergettypeid()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetTypeID() -> CFTypeID {
     extern "C-unwind" {
@@ -567,6 +569,8 @@ extern "C-unwind" {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `resolved_dictionary_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreateresolvedattributesdictionary(_:_:_:)?language=objc)
     #[cfg(feature = "CVReturn")]
     pub fn CVPixelBufferCreateResolvedAttributesDictionary(
         allocator: Option<&CFAllocator>,
@@ -597,6 +601,8 @@ extern "C-unwind" {
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreate(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreate(
         allocator: Option<&CFAllocator>,
@@ -645,6 +651,8 @@ extern "C-unwind" {
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithbytes(_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithBytes(
         allocator: Option<&CFAllocator>,
@@ -712,6 +720,8 @@ extern "C-unwind" {
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithplanarbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithPlanarBytes(
         allocator: Option<&CFAllocator>,
@@ -742,6 +752,8 @@ extern "C-unwind" {
     /// Parameter `lockFlags`: See CVPixelBufferLockFlags.
     ///
     /// Returns: kCVReturnSuccess if the lock succeeded, or error code on failure
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockbaseaddress(_:_:)?language=objc)
     #[cfg(all(
         feature = "CVBase",
         feature = "CVBuffer",
@@ -762,6 +774,8 @@ extern "C-unwind" {
     /// Parameter `unlockFlags`: See CVPixelBufferLockFlags.
     ///
     /// Returns: kCVReturnSuccess if the unlock succeeded, or error code on failure
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferunlockbaseaddress(_:_:)?language=objc)
     #[cfg(all(
         feature = "CVBase",
         feature = "CVBuffer",
@@ -779,6 +793,8 @@ extern "C-unwind" {
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: Width in pixels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetwidth(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetWidth(pixel_buffer: &CVPixelBuffer) -> usize {
@@ -793,6 +809,8 @@ pub extern "C-unwind" fn CVPixelBufferGetWidth(pixel_buffer: &CVPixelBuffer) -> 
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: Height in pixels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetheight(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetHeight(pixel_buffer: &CVPixelBuffer) -> usize {
@@ -807,6 +825,8 @@ pub extern "C-unwind" fn CVPixelBufferGetHeight(pixel_buffer: &CVPixelBuffer) ->
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: OSType identifying the pixel format by its type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetpixelformattype(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetPixelFormatType(pixel_buffer: &CVPixelBuffer) -> OSType {
@@ -826,6 +846,8 @@ pub extern "C-unwind" fn CVPixelBufferGetPixelFormatType(pixel_buffer: &CVPixelB
 /// Returns: Base address of the pixels.
 /// For chunky buffers, this will return a pointer to the pixel at 0,0 in the buffer
 /// For planar buffers this will return a pointer to a PlanarComponentInfo struct (defined in QuickTime).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbaseaddress(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetBaseAddress(pixel_buffer: &CVPixelBuffer) -> *mut c_void {
@@ -841,6 +863,8 @@ pub extern "C-unwind" fn CVPixelBufferGetBaseAddress(pixel_buffer: &CVPixelBuffe
 ///
 /// Returns: Bytes per row of the image data.   For planar buffers this will return a rowBytes value such that bytesPerRow * height
 /// will cover the entire image including all planes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbytesperrow(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetBytesPerRow(pixel_buffer: &CVPixelBuffer) -> usize {
@@ -855,6 +879,8 @@ pub extern "C-unwind" fn CVPixelBufferGetBytesPerRow(pixel_buffer: &CVPixelBuffe
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: Data size used in CVPixelBufferCreateWithPlanarBytes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetdatasize(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetDataSize(pixel_buffer: &CVPixelBuffer) -> usize {
@@ -869,6 +895,8 @@ pub extern "C-unwind" fn CVPixelBufferGetDataSize(pixel_buffer: &CVPixelBuffer) 
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: True if the PixelBuffer was created using CVPixelBufferCreateWithPlanarBytes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferisplanar(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuffer) -> bool {
@@ -884,6 +912,8 @@ pub extern "C-unwind" fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuffer) -> 
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: Number of planes.  Returns 0 for non-planar CVPixelBufferRefs.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetplanecount(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetPlaneCount(pixel_buffer: &CVPixelBuffer) -> usize {
@@ -903,6 +933,8 @@ pub extern "C-unwind" fn CVPixelBufferGetPlaneCount(pixel_buffer: &CVPixelBuffer
 /// Parameter `planeIndex`: Identifying the plane.
 ///
 /// Returns: Width in pixels, or 0 for non-planar CVPixelBufferRefs.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetwidthofplane(_:_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetWidthOfPlane(
@@ -925,6 +957,8 @@ pub extern "C-unwind" fn CVPixelBufferGetWidthOfPlane(
 /// Parameter `planeIndex`: Identifying the plane.
 ///
 /// Returns: Height in pixels, or 0 for non-planar CVPixelBufferRefs.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetheightofplane(_:_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetHeightOfPlane(
@@ -949,6 +983,8 @@ pub extern "C-unwind" fn CVPixelBufferGetHeightOfPlane(
 /// Parameter `planeIndex`: Identifying the plane.
 ///
 /// Returns: Base address of the plane, or NULL for non-planar CVPixelBufferRefs.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbaseaddressofplane(_:_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetBaseAddressOfPlane(
@@ -974,6 +1010,8 @@ pub extern "C-unwind" fn CVPixelBufferGetBaseAddressOfPlane(
 /// Parameter `planeIndex`: Identifying the plane.
 ///
 /// Returns: Row bytes of the plane, or NULL for non-planar CVPixelBufferRefs.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbytesperrowofplane(_:_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetBytesPerRowOfPlane(
@@ -1011,6 +1049,8 @@ extern "C-unwind" {
     /// - `extra_columns_on_right` must be a valid pointer or null.
     /// - `extra_rows_on_top` must be a valid pointer or null.
     /// - `extra_rows_on_bottom` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetextendedpixels(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     pub fn CVPixelBufferGetExtendedPixels(
         pixel_buffer: &CVPixelBuffer,
@@ -1024,6 +1064,8 @@ extern "C-unwind" {
 /// Fills the extended pixels of the PixelBuffer.   This function replicates edge pixels to fill the entire extended region of the image.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferfillextendedpixels(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferFillExtendedPixels(pixel_buffer: &CVPixelBuffer) -> CVReturn {
@@ -1038,6 +1080,8 @@ pub extern "C-unwind" fn CVPixelBufferFillExtendedPixels(pixel_buffer: &CVPixelB
 /// Can be used to create similar pixelbuffers.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercopycreationattributes(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
@@ -1063,6 +1107,8 @@ pub extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
 ///
 /// - `attributes` generic must be of the correct type.
 /// - `attributes` generic must be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferiscompatiblewithattributes(_:_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CVPixelBufferIsCompatibleWithAttributes(

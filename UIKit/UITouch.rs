@@ -14,20 +14,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITouchPhase(pub NSInteger);
 impl UITouchPhase {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/began?language=objc)
     #[doc(alias = "UITouchPhaseBegan")]
     pub const Began: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/moved?language=objc)
     #[doc(alias = "UITouchPhaseMoved")]
     pub const Moved: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/stationary?language=objc)
     #[doc(alias = "UITouchPhaseStationary")]
     pub const Stationary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/ended?language=objc)
     #[doc(alias = "UITouchPhaseEnded")]
     pub const Ended: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/cancelled?language=objc)
     #[doc(alias = "UITouchPhaseCancelled")]
     pub const Cancelled: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionentered?language=objc)
     #[doc(alias = "UITouchPhaseRegionEntered")]
     pub const RegionEntered: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionmoved?language=objc)
     #[doc(alias = "UITouchPhaseRegionMoved")]
     pub const RegionMoved: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionexited?language=objc)
     #[doc(alias = "UITouchPhaseRegionExited")]
     pub const RegionExited: Self = Self(7);
 }
@@ -46,10 +54,13 @@ unsafe impl RefEncode for UITouchPhase {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIForceTouchCapability(pub NSInteger);
 impl UIForceTouchCapability {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiforcetouchcapability/unknown?language=objc)
     #[doc(alias = "UIForceTouchCapabilityUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiforcetouchcapability/unavailable?language=objc)
     #[doc(alias = "UIForceTouchCapabilityUnavailable")]
     pub const Unavailable: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiforcetouchcapability/available?language=objc)
     #[doc(alias = "UIForceTouchCapabilityAvailable")]
     pub const Available: Self = Self(2);
 }
@@ -68,14 +79,19 @@ unsafe impl RefEncode for UIForceTouchCapability {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITouchType(pub NSInteger);
 impl UITouchType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype/direct?language=objc)
     #[doc(alias = "UITouchTypeDirect")]
     pub const Direct: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype/indirect?language=objc)
     #[doc(alias = "UITouchTypeIndirect")]
     pub const Indirect: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype/pencil?language=objc)
     #[doc(alias = "UITouchTypePencil")]
     pub const Pencil: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype/stylus?language=objc)
     #[doc(alias = "UITouchTypeStylus")]
     pub const Stylus: Self = Self(UITouchType::Pencil.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype/indirectpointer?language=objc)
     #[doc(alias = "UITouchTypeIndirectPointer")]
     pub const IndirectPointer: Self = Self(3);
 }
@@ -95,14 +111,19 @@ unsafe impl RefEncode for UITouchType {
 pub struct UITouchProperties(pub NSInteger);
 bitflags::bitflags! {
     impl UITouchProperties: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties/force?language=objc)
         #[doc(alias = "UITouchPropertyForce")]
         const Force = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties/azimuth?language=objc)
         #[doc(alias = "UITouchPropertyAzimuth")]
         const Azimuth = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties/altitude?language=objc)
         #[doc(alias = "UITouchPropertyAltitude")]
         const Altitude = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties/location?language=objc)
         #[doc(alias = "UITouchPropertyLocation")]
         const Location = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties/roll?language=objc)
         #[doc(alias = "UITouchPropertyRoll")]
         const Roll = 1<<4;
     }

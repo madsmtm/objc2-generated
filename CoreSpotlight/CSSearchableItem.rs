@@ -39,10 +39,13 @@ extern "C" {
 pub struct CSSearchableItemUpdateListenerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl CSSearchableItemUpdateListenerOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitemupdatelisteneroptions/cssearchableitemupdatelisteneroptiondefault?language=objc)
         #[doc(alias = "CSSearchableItemUpdateListenerOptionDefault")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitem/updatelisteneroptions-swift.struct/summarization?language=objc)
         #[doc(alias = "CSSearchableItemUpdateListenerOptionSummarization")]
         const Summarization = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitem/updatelisteneroptions-swift.struct/priority?language=objc)
         #[doc(alias = "CSSearchableItemUpdateListenerOptionPriority")]
         const Priority = 1<<2;
     }

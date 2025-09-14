@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNCameraProjectionDirection(pub NSInteger);
 impl SCNCameraProjectionDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncameraprojectiondirection/vertical?language=objc)
     #[doc(alias = "SCNCameraProjectionDirectionVertical")]
     pub const Vertical: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncameraprojectiondirection/horizontal?language=objc)
     #[doc(alias = "SCNCameraProjectionDirectionHorizontal")]
     pub const Horizontal: Self = Self(1);
 }

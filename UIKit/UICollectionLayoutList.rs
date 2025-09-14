@@ -15,14 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutListAppearance(pub NSInteger);
 impl UICollectionLayoutListAppearance {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearanceplain?language=objc)
     #[doc(alias = "UICollectionLayoutListAppearancePlain")]
     pub const Plain: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearancegrouped?language=objc)
     #[doc(alias = "UICollectionLayoutListAppearanceGrouped")]
     pub const Grouped: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearanceinsetgrouped?language=objc)
     #[doc(alias = "UICollectionLayoutListAppearanceInsetGrouped")]
     pub const InsetGrouped: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearancesidebar?language=objc)
     #[doc(alias = "UICollectionLayoutListAppearanceSidebar")]
     pub const Sidebar: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearancesidebarplain?language=objc)
     #[doc(alias = "UICollectionLayoutListAppearanceSidebarPlain")]
     pub const SidebarPlain: Self = Self(4);
 }
@@ -42,12 +47,18 @@ unsafe impl RefEncode for UICollectionLayoutListAppearance {
 pub struct UICollectionLayoutListHeaderMode(pub NSInteger);
 impl UICollectionLayoutListHeaderMode {
     /// No headers are shown
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistheadermode/uicollectionlayoutlistheadermodenone?language=objc)
     #[doc(alias = "UICollectionLayoutListHeaderModeNone")]
     pub const None: Self = Self(0);
     /// Uses supplementary views of kind UICollectionElementKindSectionHeader to show headers
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistheadermode/uicollectionlayoutlistheadermodesupplementary?language=objc)
     #[doc(alias = "UICollectionLayoutListHeaderModeSupplementary")]
     pub const Supplementary: Self = Self(1);
     /// Styles the first item in a section as a header. This is especially useful when using hierarchical data sources to be able to expand and collapse the header.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistheadermode/uicollectionlayoutlistheadermodefirstiteminsection?language=objc)
     #[doc(alias = "UICollectionLayoutListHeaderModeFirstItemInSection")]
     pub const FirstItemInSection: Self = Self(2);
 }
@@ -67,9 +78,13 @@ unsafe impl RefEncode for UICollectionLayoutListHeaderMode {
 pub struct UICollectionLayoutListFooterMode(pub NSInteger);
 impl UICollectionLayoutListFooterMode {
     /// No footers are shown
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistfootermode/uicollectionlayoutlistfootermodenone?language=objc)
     #[doc(alias = "UICollectionLayoutListFooterModeNone")]
     pub const None: Self = Self(0);
     /// Uses supplementary views of kind UICollectionElementKindSectionFooter to show footers
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistfootermode/uicollectionlayoutlistfootermodesupplementary?language=objc)
     #[doc(alias = "UICollectionLayoutListFooterModeSupplementary")]
     pub const Supplementary: Self = Self(1);
 }
@@ -117,8 +132,10 @@ pub type UICollectionLayoutListItemSeparatorHandler = *mut block2::DynBlock<
 pub struct UICollectionLayoutListContentHuggingElements(pub NSUInteger);
 bitflags::bitflags! {
     impl UICollectionLayoutListContentHuggingElements: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistcontenthuggingelements/uicollectionlayoutlistcontenthuggingelementsnone?language=objc)
         #[doc(alias = "UICollectionLayoutListContentHuggingElementsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistcontenthuggingelements/uicollectionlayoutlistcontenthuggingelementssupplementaryheader?language=objc)
         #[doc(alias = "UICollectionLayoutListContentHuggingElementsSupplementaryHeader")]
         const SupplementaryHeader = 1<<0;
     }

@@ -14,6 +14,7 @@ use crate::*;
 pub struct NSTextListOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextListOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/options/prependenclosingmarker?language=objc)
         #[doc(alias = "NSTextListPrependEnclosingMarker")]
         const PrependEnclosingMarker = 1<<0;
     }

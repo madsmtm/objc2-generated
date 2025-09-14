@@ -54,11 +54,14 @@ extern_protocol!(
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKDeviceBrowserViewDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikdevicebrowserviewdisplaymode/table?language=objc)
     #[doc(alias = "IKDeviceBrowserViewDisplayModeTable")]
     #[default]
     Table = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikdevicebrowserviewdisplaymode/outline?language=objc)
     #[doc(alias = "IKDeviceBrowserViewDisplayModeOutline")]
     Outline = 1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikdevicebrowserviewdisplaymode/icon?language=objc)
     #[doc(alias = "IKDeviceBrowserViewDisplayModeIcon")]
     Icon = 2,
 }

@@ -10,22 +10,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCallRecordType(pub NSInteger);
 impl INCallRecordType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/unknown?language=objc)
     #[doc(alias = "INCallRecordTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/outgoing?language=objc)
     #[doc(alias = "INCallRecordTypeOutgoing")]
     pub const Outgoing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/missed?language=objc)
     #[doc(alias = "INCallRecordTypeMissed")]
     pub const Missed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/received?language=objc)
     #[doc(alias = "INCallRecordTypeReceived")]
     pub const Received: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/latest?language=objc)
     #[doc(alias = "INCallRecordTypeLatest")]
     pub const Latest: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/voicemail?language=objc)
     #[doc(alias = "INCallRecordTypeVoicemail")]
     pub const Voicemail: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/ringing?language=objc)
     #[doc(alias = "INCallRecordTypeRinging")]
     pub const Ringing: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/inprogress?language=objc)
     #[doc(alias = "INCallRecordTypeInProgress")]
     pub const InProgress: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/onhold?language=objc)
     #[doc(alias = "INCallRecordTypeOnHold")]
     pub const OnHold: Self = Self(8);
 }

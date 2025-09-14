@@ -15,6 +15,8 @@ use crate::*;
 pub struct MPSGraphDeviceType(pub u32);
 impl MPSGraphDeviceType {
     /// Device of type Metal
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevicetype/metal?language=objc)
     #[doc(alias = "MPSGraphDeviceTypeMetal")]
     pub const Metal: Self = Self(0);
 }

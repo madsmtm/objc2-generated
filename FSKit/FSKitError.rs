@@ -26,15 +26,21 @@ extern "C" {
 pub struct FSErrorCode(pub NSInteger);
 impl FSErrorCode {
     /// The module failed to load.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fserror/code/moduleloadfailed?language=objc)
     #[doc(alias = "FSErrorModuleLoadFailed")]
     pub const ModuleLoadFailed: Self = Self(4500);
     /// FSKit didn't recognize the resource, and probing failed to find a match.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fserror/code/resourceunrecognized?language=objc)
     #[doc(alias = "FSErrorResourceUnrecognized")]
     pub const ResourceUnrecognized: Self = Self(4501);
     /// The resource is damaged.
     ///
     /// This error indicates the resource needs a repair operation, or that a repair operation failed.
     /// > Note: The status in this error applies to the resource. A failing repair operation reports a more specific error status.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fserror/code/resourcedamaged?language=objc)
     #[doc(alias = "FSErrorResourceDamaged")]
     pub const ResourceDamaged: Self = Self(4502);
     /// FSKit recognizes the resource, but the resource isn't usable.
@@ -42,15 +48,23 @@ impl FSErrorCode {
     /// For example, this error occurs when a resource uses a file system's internal feature flags.
     /// If the only modules that support the file system don't support those feature flags, this code indicates an unusable resource.
     /// The error tells the person using the module why the resource isn't usable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fserror/code/resourceunusable?language=objc)
     #[doc(alias = "FSErrorResourceUnusable")]
     pub const ResourceUnusable: Self = Self(4503);
     /// An operation is in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fserror/code/statusoperationinprogress?language=objc)
     #[doc(alias = "FSErrorStatusOperationInProgress")]
     pub const StatusOperationInProgress: Self = Self(4504);
     /// An operation is paused.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fserror/code/statusoperationpaused?language=objc)
     #[doc(alias = "FSErrorStatusOperationPaused")]
     pub const StatusOperationPaused: Self = Self(4505);
     /// While enumerating a directory, the given cookie didn't resolve to a valid directory entry.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fserror/code/invaliddirectorycookie?language=objc)
     #[doc(alias = "FSErrorInvalidDirectoryCookie")]
     pub const InvalidDirectoryCookie: Self = Self(4506);
 }

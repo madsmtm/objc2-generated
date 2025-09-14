@@ -580,6 +580,7 @@ extern "C" {
 pub struct AVAudioSessionActivationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionActivationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionactivationoptions/avaudiosessionactivationoptionnone?language=objc)
         #[doc(alias = "AVAudioSessionActivationOptionNone")]
         const None = 0;
     }
@@ -602,10 +603,14 @@ unsafe impl RefEncode for AVAudioSessionActivationOptions {
 pub struct AVAudioSessionPortOverride(pub NSUInteger);
 impl AVAudioSessionPortOverride {
     /// No override.  Return audio routing to the default state for the current audio category.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/portoverride/none?language=objc)
     #[doc(alias = "AVAudioSessionPortOverrideNone")]
     pub const None: Self = Self(0);
     /// Route audio output to speaker.  Use this override with AVAudioSessionCategoryPlayAndRecord,
     /// which by default routes the output to the receiver.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/portoverride/speaker?language=objc)
     #[doc(alias = "AVAudioSessionPortOverrideSpeaker")]
     pub const Speaker: Self = Self(0x73706b72);
 }
@@ -628,32 +633,48 @@ unsafe impl RefEncode for AVAudioSessionPortOverride {
 pub struct AVAudioSessionRouteChangeReason(pub NSUInteger);
 impl AVAudioSessionRouteChangeReason {
     /// The reason is unknown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routechangereason/unknown?language=objc)
     #[doc(alias = "AVAudioSessionRouteChangeReasonUnknown")]
     pub const Unknown: Self = Self(0);
     /// A new device became available (e.g. headphones have been plugged in).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routechangereason/newdeviceavailable?language=objc)
     #[doc(alias = "AVAudioSessionRouteChangeReasonNewDeviceAvailable")]
     pub const NewDeviceAvailable: Self = Self(1);
     /// The old device became unavailable (e.g. headphones have been unplugged).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routechangereason/olddeviceunavailable?language=objc)
     #[doc(alias = "AVAudioSessionRouteChangeReasonOldDeviceUnavailable")]
     pub const OldDeviceUnavailable: Self = Self(2);
     /// The audio category has changed (e.g. AVAudioSessionCategoryPlayback has been changed to
     /// AVAudioSessionCategoryPlayAndRecord).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routechangereason/categorychange?language=objc)
     #[doc(alias = "AVAudioSessionRouteChangeReasonCategoryChange")]
     pub const CategoryChange: Self = Self(3);
     /// The route has been overridden (e.g. category is AVAudioSessionCategoryPlayAndRecord and
     /// the output has been changed from the receiver, which is the default, to the speaker).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routechangereason/override?language=objc)
     #[doc(alias = "AVAudioSessionRouteChangeReasonOverride")]
     pub const Override: Self = Self(4);
     /// The device woke from sleep.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routechangereason/wakefromsleep?language=objc)
     #[doc(alias = "AVAudioSessionRouteChangeReasonWakeFromSleep")]
     pub const WakeFromSleep: Self = Self(6);
     /// Returned when there is no route for the current category (for instance, the category is
     /// AVAudioSessionCategoryRecord but no input device is available).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routechangereason/nosuitablerouteforcategory?language=objc)
     #[doc(alias = "AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory")]
     pub const NoSuitableRouteForCategory: Self = Self(7);
     /// Indicates that the set of input and/our output ports has not changed, but some aspect of
     /// their configuration has changed.  For example, a port's selected data source has changed.
     /// (Introduced in iOS 7.0, watchOS 2.0, tvOS 9.0).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routechangereason/routeconfigurationchange?language=objc)
     #[doc(alias = "AVAudioSessionRouteChangeReasonRouteConfigurationChange")]
     pub const RouteConfigurationChange: Self = Self(8);
 }
@@ -698,6 +719,8 @@ bitflags::bitflags! {
 ///
 /// MixWithOthers is only valid with ``AVAudioSessionCategoryPlayAndRecord``,
 /// ``AVAudioSessionCategoryPlayback``, and ``AVAudioSessionCategoryMultiRoute``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/mixwithothers?language=objc)
         #[doc(alias = "AVAudioSessionCategoryOptionMixWithOthers")]
         const MixWithOthers = 0x1;
 /// Controls whether or not other active audio apps will be ducked when when your app's audio
@@ -715,9 +738,13 @@ bitflags::bitflags! {
 /// DuckOthers is only valid with ``AVAudioSessionCategoryAmbient``,
 /// ``AVAudioSessionCategoryPlayAndRecord``, ``AVAudioSessionCategoryPlayback``, and
 /// ``AVAudioSessionCategoryMultiRoute``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/duckothers?language=objc)
         #[doc(alias = "AVAudioSessionCategoryOptionDuckOthers")]
         const DuckOthers = 0x2;
 /// Deprecated - please see ``AVAudioSessionCategoryOptionAllowBluetoothHFP``
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/allowbluetooth?language=objc)
         #[doc(alias = "AVAudioSessionCategoryOptionAllowBluetooth")]
 #[deprecated]
         const AllowBluetooth = 0x4;
@@ -737,6 +764,8 @@ bitflags::bitflags! {
 /// - Other categories:
 /// AllowBluetoothHFP defaults to false and cannot be changed. Enabling Bluetooth for input in
 /// these categories is not allowed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/allowbluetoothhfp?language=objc)
         #[doc(alias = "AVAudioSessionCategoryOptionAllowBluetoothHFP")]
         const AllowBluetoothHFP = 0x4;
 /// Allows an application to change the default behavior of some audio session categories with
@@ -748,6 +777,8 @@ bitflags::bitflags! {
 ///
 /// - Other categories:
 /// DefaultToSpeaker is always false and cannot be changed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/defaulttospeaker?language=objc)
         #[doc(alias = "AVAudioSessionCategoryOptionDefaultToSpeaker")]
         const DefaultToSpeaker = 0x8;
 /// When a session with InterruptSpokenAudioAndMixWithOthers set goes active, then if there is
@@ -765,6 +796,8 @@ bitflags::bitflags! {
 ///
 /// Only valid with ``AVAudioSessionCategoryPlayAndRecord``,
 /// ``AVAudioSessionCategoryPlayback``, and ``AVAudioSessionCategoryMultiRoute``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/interruptspokenaudioandmixwithothers?language=objc)
         #[doc(alias = "AVAudioSessionCategoryOptionInterruptSpokenAudioAndMixWithOthers")]
         const InterruptSpokenAudioAndMixWithOthers = 0x11;
 /// Allows an application to change the default behavior of some audio session categories with
@@ -788,12 +821,16 @@ bitflags::bitflags! {
 /// allowed. In cases where a single Bluetooth device supports both HFP and A2DP, the HFP
 /// ports will be given a higher priority for routing. For HFP and A2DP ports on separate
 /// hardware devices, the last-in wins rule applies.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/allowbluetootha2dp?language=objc)
         #[doc(alias = "AVAudioSessionCategoryOptionAllowBluetoothA2DP")]
         const AllowBluetoothA2DP = 0x20;
 /// Allows an application to change the default behavior of some audio session categories
 /// with regard to showing AirPlay devices as available routes. This option applies to
 /// various categories in the same way as ``AVAudioSessionCategoryOptionAllowBluetoothA2DP``;
 /// see above for details. Only valid with ``AVAudioSessionCategoryPlayAndRecord``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/allowairplay?language=objc)
         #[doc(alias = "AVAudioSessionCategoryOptionAllowAirPlay")]
         const AllowAirPlay = 0x40;
 /// Some devices include a privacy feature that mutes the built-in microphone at a hardware level
@@ -814,6 +851,8 @@ bitflags::bitflags! {
 /// muted will fail.
 /// - Note This option has no relation to the recordPermission property, which indicates whether or
 /// not the user has granted permission to use microphone input.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/overridemutedmicrophoneinterruption?language=objc)
         #[doc(alias = "AVAudioSessionCategoryOptionOverrideMutedMicrophoneInterruption")]
         const OverrideMutedMicrophoneInterruption = 0x80;
 /// When this option is specified with a category that supports both input and output, the session
@@ -839,6 +878,8 @@ bitflags::bitflags! {
 /// - Note Apps using ``AVAudioSessionCategoryOptionBluetoothHighQualityRecording``
 /// may want to consider setting ``AVAudioSession/setPrefersNoInterruptionsFromSystemAlerts:error:``
 /// while recording, to avoid the recording session being interrupted by an incoming call ringtone.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/bluetoothhighqualityrecording?language=objc)
         #[doc(alias = "AVAudioSessionCategoryOptionBluetoothHighQualityRecording")]
         const BluetoothHighQualityRecording = 1<<19;
     }
@@ -862,9 +903,13 @@ unsafe impl RefEncode for AVAudioSessionCategoryOptions {
 pub struct AVAudioSessionInterruptionType(pub NSUInteger);
 impl AVAudioSessionInterruptionType {
     /// the system has interrupted your audio session
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/interruptiontype/began?language=objc)
     #[doc(alias = "AVAudioSessionInterruptionTypeBegan")]
     pub const Began: Self = Self(1);
     /// the interruption has ended
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/interruptiontype/ended?language=objc)
     #[doc(alias = "AVAudioSessionInterruptionTypeEnded")]
     pub const Ended: Self = Self(0);
 }
@@ -888,6 +933,8 @@ pub struct AVAudioSessionInterruptionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionInterruptionOptions: NSUInteger {
 /// Indicates that you should resume playback now that the interruption has ended.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/interruptionoptions/shouldresume?language=objc)
         #[doc(alias = "AVAudioSessionInterruptionOptionShouldResume")]
         const ShouldResume = 1;
     }
@@ -925,14 +972,19 @@ unsafe impl RefEncode for AVAudioSessionInterruptionOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionInterruptionReason(pub NSUInteger);
 impl AVAudioSessionInterruptionReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/interruptionreason/default?language=objc)
     #[doc(alias = "AVAudioSessionInterruptionReasonDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/interruptionreason/appwassuspended?language=objc)
     #[doc(alias = "AVAudioSessionInterruptionReasonAppWasSuspended")]
     #[deprecated = "wasSuspended reason no longer present"]
     pub const AppWasSuspended: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/interruptionreason/builtinmicmuted?language=objc)
     #[doc(alias = "AVAudioSessionInterruptionReasonBuiltInMicMuted")]
     pub const BuiltInMicMuted: Self = Self(2);
     /// The audio session was interrupted because route was disconnected.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/interruptionreason/routedisconnected?language=objc)
     #[doc(alias = "AVAudioSessionInterruptionReasonRouteDisconnected")]
     pub const RouteDisconnected: Self = Self(4);
 }
@@ -956,6 +1008,8 @@ bitflags::bitflags! {
     impl AVAudioSessionSetActiveOptions: NSUInteger {
 /// Notify an interrupted app that the interruption has ended and it may resume playback. Only
 /// valid on session deactivation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/setactiveoptions/notifyothersondeactivation?language=objc)
         #[doc(alias = "AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation")]
         const NotifyOthersOnDeactivation = 1;
     }
@@ -980,9 +1034,13 @@ unsafe impl RefEncode for AVAudioSessionSetActiveOptions {
 pub struct AVAudioSessionSilenceSecondaryAudioHintType(pub NSUInteger);
 impl AVAudioSessionSilenceSecondaryAudioHintType {
     /// Another application's primary audio has started.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/silencesecondaryaudiohinttype/begin?language=objc)
     #[doc(alias = "AVAudioSessionSilenceSecondaryAudioHintTypeBegin")]
     pub const Begin: Self = Self(1);
     /// Another application's primary audio has stopped.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/silencesecondaryaudiohinttype/end?language=objc)
     #[doc(alias = "AVAudioSessionSilenceSecondaryAudioHintTypeEnd")]
     pub const End: Self = Self(0);
 }
@@ -1040,8 +1098,10 @@ unsafe impl RefEncode for AVAudioSessionSilenceSecondaryAudioHintType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionIOType(pub NSUInteger);
 impl AVAudioSessionIOType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/iotype/notspecified?language=objc)
     #[doc(alias = "AVAudioSessionIOTypeNotSpecified")]
     pub const NotSpecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/iotype/aggregated?language=objc)
     #[doc(alias = "AVAudioSessionIOTypeAggregated")]
     pub const Aggregated: Self = Self(1);
 }
@@ -1093,15 +1153,20 @@ unsafe impl RefEncode for AVAudioSessionIOType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionRouteSharingPolicy(pub NSUInteger);
 impl AVAudioSessionRouteSharingPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routesharingpolicy-swift.enum/default?language=objc)
     #[doc(alias = "AVAudioSessionRouteSharingPolicyDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routesharingpolicy-swift.enum/longformaudio?language=objc)
     #[doc(alias = "AVAudioSessionRouteSharingPolicyLongFormAudio")]
     pub const LongFormAudio: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routesharingpolicy-swift.enum/longform?language=objc)
     #[doc(alias = "AVAudioSessionRouteSharingPolicyLongForm")]
     #[deprecated]
     pub const LongForm: Self = Self(AVAudioSessionRouteSharingPolicy::LongFormAudio.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routesharingpolicy-swift.enum/independent?language=objc)
     #[doc(alias = "AVAudioSessionRouteSharingPolicyIndependent")]
     pub const Independent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/routesharingpolicy-swift.enum/longformvideo?language=objc)
     #[doc(alias = "AVAudioSessionRouteSharingPolicyLongFormVideo")]
     pub const LongFormVideo: Self = Self(3);
 }
@@ -1136,10 +1201,13 @@ unsafe impl RefEncode for AVAudioSessionRouteSharingPolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionPromptStyle(pub NSUInteger);
 impl AVAudioSessionPromptStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/promptstyle-swift.enum/none?language=objc)
     #[doc(alias = "AVAudioSessionPromptStyleNone")]
     pub const None: Self = Self(0x6e6f6e65);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/promptstyle-swift.enum/short?language=objc)
     #[doc(alias = "AVAudioSessionPromptStyleShort")]
     pub const Short: Self = Self(0x73687274);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/promptstyle-swift.enum/normal?language=objc)
     #[doc(alias = "AVAudioSessionPromptStyleNormal")]
     pub const Normal: Self = Self(0x6e726d6c);
 }
@@ -1171,14 +1239,19 @@ unsafe impl RefEncode for AVAudioSessionPromptStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioStereoOrientation(pub NSInteger);
 impl AVAudioStereoOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/stereoorientation/none?language=objc)
     #[doc(alias = "AVAudioStereoOrientationNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/stereoorientation/portrait?language=objc)
     #[doc(alias = "AVAudioStereoOrientationPortrait")]
     pub const Portrait: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/stereoorientation/portraitupsidedown?language=objc)
     #[doc(alias = "AVAudioStereoOrientationPortraitUpsideDown")]
     pub const PortraitUpsideDown: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/stereoorientation/landscaperight?language=objc)
     #[doc(alias = "AVAudioStereoOrientationLandscapeRight")]
     pub const LandscapeRight: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/stereoorientation/landscapeleft?language=objc)
     #[doc(alias = "AVAudioStereoOrientationLandscapeLeft")]
     pub const LandscapeLeft: Self = Self(4);
 }
@@ -1207,12 +1280,15 @@ unsafe impl RefEncode for AVAudioStereoOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionRecordPermission(pub NSUInteger);
 impl AVAudioSessionRecordPermission {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/recordpermission-swift.enum/undetermined?language=objc)
     #[doc(alias = "AVAudioSessionRecordPermissionUndetermined")]
     #[deprecated]
     pub const Undetermined: Self = Self(0x756e6474);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/recordpermission-swift.enum/denied?language=objc)
     #[doc(alias = "AVAudioSessionRecordPermissionDenied")]
     #[deprecated]
     pub const Denied: Self = Self(0x64656e79);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/recordpermission-swift.enum/granted?language=objc)
     #[doc(alias = "AVAudioSessionRecordPermissionGranted")]
     #[deprecated]
     pub const Granted: Self = Self(0x67726e74);
@@ -1233,21 +1309,33 @@ unsafe impl RefEncode for AVAudioSessionRecordPermission {
 pub struct AVAudioSessionRenderingMode(pub NSInteger);
 impl AVAudioSessionRenderingMode {
     /// Default Mode when no asset is loaded or playing
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/renderingmode-swift.enum/notapplicable?language=objc)
     #[doc(alias = "AVAudioSessionRenderingModeNotApplicable")]
     pub const NotApplicable: Self = Self(0);
     /// Default mode for non multi-channel cases
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/renderingmode-swift.enum/monostereo?language=objc)
     #[doc(alias = "AVAudioSessionRenderingModeMonoStereo")]
     pub const MonoStereo: Self = Self(1);
     /// Default mode for multi-channel cases that do not fall into the modes below
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/renderingmode-swift.enum/surround?language=objc)
     #[doc(alias = "AVAudioSessionRenderingModeSurround")]
     pub const Surround: Self = Self(2);
     /// Fallback mode if provided content is Dolby variant but hardware capabilities don't support it
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/renderingmode-swift.enum/spatialaudio?language=objc)
     #[doc(alias = "AVAudioSessionRenderingModeSpatialAudio")]
     pub const SpatialAudio: Self = Self(3);
     /// Dolby Audio mode
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/renderingmode-swift.enum/dolbyaudio?language=objc)
     #[doc(alias = "AVAudioSessionRenderingModeDolbyAudio")]
     pub const DolbyAudio: Self = Self(4);
     /// Dolby Atmos mode
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/renderingmode-swift.enum/dolbyatmos?language=objc)
     #[doc(alias = "AVAudioSessionRenderingModeDolbyAtmos")]
     pub const DolbyAtmos: Self = Self(5);
 }
@@ -1274,9 +1362,13 @@ unsafe impl RefEncode for AVAudioSessionRenderingMode {
 pub struct AVAudioSessionMicrophoneInjectionMode(pub NSInteger);
 impl AVAudioSessionMicrophoneInjectionMode {
     /// Default state, microphone injection is not preferred
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/microphoneinjectionmode/none?language=objc)
     #[doc(alias = "AVAudioSessionMicrophoneInjectionModeNone")]
     pub const None: Self = Self(0);
     /// Inject Spoken Audio, like synthesized speech, with microphone audio
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/microphoneinjectionmode/spokenaudio?language=objc)
     #[doc(alias = "AVAudioSessionMicrophoneInjectionModeSpokenAudio")]
     pub const SpokenAudio: Self = Self(1);
 }

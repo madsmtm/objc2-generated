@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTagError(pub OSStatus);
 impl CMTagError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagerror/kcmtagerror_paramerr?language=objc)
     #[doc(alias = "kCMTagError_ParamErr")]
     pub const ParamErr: Self = Self(-15730);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagerror/kcmtagerror_allocationfailed?language=objc)
     #[doc(alias = "kCMTagError_AllocationFailed")]
     pub const AllocationFailed: Self = Self(-15731);
 }
@@ -41,26 +43,37 @@ unsafe impl RefEncode for CMTagError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTagCategory(pub FourCharCode);
 impl CMTagCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_undefined?language=objc)
     #[doc(alias = "kCMTagCategory_Undefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_mediatype?language=objc)
     #[doc(alias = "kCMTagCategory_MediaType")]
     pub const MediaType: Self = Self(0x6d646961);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_mediasubtype?language=objc)
     #[doc(alias = "kCMTagCategory_MediaSubType")]
     pub const MediaSubType: Self = Self(0x6d737562);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_trackid?language=objc)
     #[doc(alias = "kCMTagCategory_TrackID")]
     pub const TrackID: Self = Self(0x7472616b);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_channelid?language=objc)
     #[doc(alias = "kCMTagCategory_ChannelID")]
     pub const ChannelID: Self = Self(0x7663686e);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_videolayerid?language=objc)
     #[doc(alias = "kCMTagCategory_VideoLayerID")]
     pub const VideoLayerID: Self = Self(0x766c6179);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_pixelformat?language=objc)
     #[doc(alias = "kCMTagCategory_PixelFormat")]
     pub const PixelFormat: Self = Self(0x70697866);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_packingtype?language=objc)
     #[doc(alias = "kCMTagCategory_PackingType")]
     pub const PackingType: Self = Self(0x7061636b);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_projectiontype?language=objc)
     #[doc(alias = "kCMTagCategory_ProjectionType")]
     pub const ProjectionType: Self = Self(0x70726f6a);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_stereoview?language=objc)
     #[doc(alias = "kCMTagCategory_StereoView")]
     pub const StereoView: Self = Self(0x65796573);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory/kcmtagcategory_stereoviewinterpretation?language=objc)
     #[doc(alias = "kCMTagCategory_StereoViewInterpretation")]
     pub const StereoViewInterpretation: Self = Self(0x65796970);
 }
@@ -83,14 +96,19 @@ unsafe impl RefEncode for CMTagCategory {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTagDataType(pub u32);
 impl CMTagDataType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagdatatype/kcmtagdatatype_invalid?language=objc)
     #[doc(alias = "kCMTagDataType_Invalid")]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagdatatype/kcmtagdatatype_sint64?language=objc)
     #[doc(alias = "kCMTagDataType_SInt64")]
     pub const SInt64: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagdatatype/kcmtagdatatype_float64?language=objc)
     #[doc(alias = "kCMTagDataType_Float64")]
     pub const Float64: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagdatatype/kcmtagdatatype_ostype?language=objc)
     #[doc(alias = "kCMTagDataType_OSType")]
     pub const OSType: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagdatatype/kcmtagdatatype_flags?language=objc)
     #[doc(alias = "kCMTagDataType_Flags")]
     pub const Flags: Self = Self(7);
 }
@@ -153,6 +171,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag from which to extract the data type.
     ///
     /// Returns: kCMTagDataType_* value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggetvaluedatatype?language=objc)
     #[doc(alias = "CMTagGetValueDataType")]
     #[inline]
     pub unsafe fn value_data_type(self) -> CMTagDataType {
@@ -214,10 +234,13 @@ extern "C" {
 pub struct CMStereoViewComponents(pub u64);
 bitflags::bitflags! {
     impl CMStereoViewComponents: u64 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewcomponents/kcmstereoview_none?language=objc)
         #[doc(alias = "kCMStereoView_None")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewcomponents/lefteye?language=objc)
         #[doc(alias = "kCMStereoView_LeftEye")]
         const LeftEye = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewcomponents/righteye?language=objc)
         #[doc(alias = "kCMStereoView_RightEye")]
         const RightEye = 1<<1;
     }
@@ -272,10 +295,13 @@ extern "C" {
 pub struct CMStereoViewInterpretationOptions(pub u64);
 bitflags::bitflags! {
     impl CMStereoViewInterpretationOptions: u64 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewinterpretationoptions/kcmstereoviewinterpretation_default?language=objc)
         #[doc(alias = "kCMStereoViewInterpretation_Default")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewinterpretationoptions/stereoorderreversed?language=objc)
         #[doc(alias = "kCMStereoViewInterpretation_StereoOrderReversed")]
         const StereoOrderReversed = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewinterpretationoptions/additionalviews?language=objc)
         #[doc(alias = "kCMStereoViewInterpretation_AdditionalViews")]
         const AdditionalViews = 1<<1;
     }
@@ -308,14 +334,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMProjectionType(pub u64);
 impl CMProjectionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmprojectiontype/rectangular?language=objc)
     #[doc(alias = "kCMProjectionType_Rectangular")]
     pub const Rectangular: Self = Self(0x72656374);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmprojectiontype/equirectangular?language=objc)
     #[doc(alias = "kCMProjectionType_Equirectangular")]
     pub const Equirectangular: Self = Self(0x65717569);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmprojectiontype/halfequirectangular?language=objc)
     #[doc(alias = "kCMProjectionType_HalfEquirectangular")]
     pub const HalfEquirectangular: Self = Self(0x68657175);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmprojectiontype/fisheye?language=objc)
     #[doc(alias = "kCMProjectionType_Fisheye")]
     pub const Fisheye: Self = Self(0x66697368);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmprojectiontype/parametricimmersive?language=objc)
     #[doc(alias = "kCMProjectionType_ParametricImmersive")]
     pub const ParametricImmersive: Self = Self(0x7072696d);
 }
@@ -375,10 +406,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMPackingType(pub u64);
 impl CMPackingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpackingtype/none?language=objc)
     #[doc(alias = "kCMPackingType_None")]
     pub const None: Self = Self(0x6e6f6e65);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpackingtype/sidebyside?language=objc)
     #[doc(alias = "kCMPackingType_SideBySide")]
     pub const SideBySide: Self = Self(0x73696465);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpackingtype/overunder?language=objc)
     #[doc(alias = "kCMPackingType_OverUnder")]
     pub const OverUnder: Self = Self(0x6f766572);
 }
@@ -432,6 +466,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: Returns true if the CMTag carries a signed 64-bit value indicated by a data type of kCMTagDataType_SInt64, false otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaghassint64value?language=objc)
     #[doc(alias = "CMTagHasSInt64Value")]
     #[inline]
     pub unsafe fn has_s_int64_value(self) -> bool {
@@ -449,6 +485,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: Signed 64-bit integer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggetsint64value?language=objc)
     #[doc(alias = "CMTagGetSInt64Value")]
     #[inline]
     pub unsafe fn s_int64_value(self) -> i64 {
@@ -463,6 +501,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: Returns true if the CMTag carries a 64-bit float indicated by a data type of kCMTagDataType_Float64, false otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaghasfloat64value?language=objc)
     #[doc(alias = "CMTagHasFloat64Value")]
     #[inline]
     pub unsafe fn has_float64_value(self) -> bool {
@@ -480,6 +520,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: 64-bit float.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggetfloat64value?language=objc)
     #[doc(alias = "CMTagGetFloat64Value")]
     #[inline]
     pub unsafe fn float64_value(self) -> f64 {
@@ -494,6 +536,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: Returns true if the CMTag carries an OSType indicated by a data type of kCMTagDataType_OSType, false otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaghasostypevalue?language=objc)
     #[doc(alias = "CMTagHasOSTypeValue")]
     #[inline]
     pub unsafe fn has_os_type_value(self) -> bool {
@@ -511,6 +555,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: OSType.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggetostypevalue?language=objc)
     #[doc(alias = "CMTagGetOSTypeValue")]
     #[inline]
     pub unsafe fn os_type_value(self) -> OSType {
@@ -525,6 +571,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: Returns true if the CMTag carries 64 bits of flags indicated by a data type of kCMTagDataType_Flags, false otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaghasflagsvalue?language=objc)
     #[doc(alias = "CMTagHasFlagsValue")]
     #[inline]
     pub unsafe fn has_flags_value(self) -> bool {
@@ -542,6 +590,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag to evaluate.
     ///
     /// Returns: Unsigned 64-bit integer holding the flags value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggetflagsvalue?language=objc)
     #[doc(alias = "CMTagGetFlagsValue")]
     #[inline]
     pub unsafe fn flags_value(self) -> u64 {
@@ -560,6 +610,8 @@ impl CMTag {
     /// Parameter `value`: A signed 64-bit integer to encode in the returned CMTag.
     ///
     /// Returns: A CMTag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagmakewithsint64value?language=objc)
     #[doc(alias = "CMTagMakeWithSInt64Value")]
     #[inline]
     pub unsafe fn with_s_int64_value(category: CMTagCategory, value: i64) -> CMTag {
@@ -578,6 +630,8 @@ impl CMTag {
     /// Parameter `value`: A 64-bit float to encode in the returned CMTag.
     ///
     /// Returns: A CMTag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagmakewithfloat64value?language=objc)
     #[doc(alias = "CMTagMakeWithFloat64Value")]
     #[inline]
     pub unsafe fn with_float64_value(category: CMTagCategory, value: f64) -> CMTag {
@@ -596,6 +650,8 @@ impl CMTag {
     /// Parameter `value`: An OSType to encode in the returned CMTag.
     ///
     /// Returns: A CMTag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagmakewithostypevalue?language=objc)
     #[doc(alias = "CMTagMakeWithOSTypeValue")]
     #[inline]
     pub unsafe fn with_os_type_value(category: CMTagCategory, value: OSType) -> CMTag {
@@ -614,6 +670,8 @@ impl CMTag {
     /// Parameter `flagsForTag`: An unsigned 64-bit integer to encode in the returned CMTag.
     ///
     /// Returns: A CMTag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagmakewithflagsvalue?language=objc)
     #[doc(alias = "CMTagMakeWithFlagsValue")]
     #[inline]
     pub unsafe fn with_flags_value(category: CMTagCategory, flags_for_tag: u64) -> CMTag {
@@ -632,6 +690,8 @@ impl CMTag {
     /// Parameter `tag2`: Second CMTag to test for equality.
     ///
     /// Returns: Returns true if the two tags are equal, false otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagequaltotag?language=objc)
     #[doc(alias = "CMTagEqualToTag")]
     #[inline]
     pub unsafe fn equal_to_tag(self, tag2: CMTag) -> bool {
@@ -651,6 +711,8 @@ impl CMTag {
     /// Parameter `tag2`: Second CMTag to compare in ordered fashion.
     ///
     /// Returns: The CFComparisonResult indicating the order of tag1 compared to tag2.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcompare?language=objc)
     #[doc(alias = "CMTagCompare")]
     #[inline]
     pub unsafe fn compare(self, tag2: CMTag) -> CFComparisonResult {
@@ -671,6 +733,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag to hash.
     ///
     /// Returns: The created CFHashCode.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaghash?language=objc)
     #[doc(alias = "CMTagHash")]
     #[inline]
     pub unsafe fn hash(self) -> CFHashCode {
@@ -689,6 +753,8 @@ impl CMTag {
     /// Parameter `tag`: CMTag to describe.
     ///
     /// Returns: The created CFString description.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcopydescription?language=objc)
     #[doc(alias = "CMTagCopyDescription")]
     #[inline]
     pub unsafe fn description(
@@ -714,6 +780,8 @@ impl CMTag {
     /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDictionary version of the CMTag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcopyasdictionary?language=objc)
     #[doc(alias = "CMTagCopyAsDictionary")]
     #[inline]
     pub unsafe fn as_dictionary(
@@ -742,6 +810,8 @@ impl CMTag {
     ///
     /// - `dict` generic must be of the correct type.
     /// - `dict` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagmakefromdictionary?language=objc)
     #[doc(alias = "CMTagMakeFromDictionary")]
     #[inline]
     pub unsafe fn from_dictionary(dict: &CFDictionary) -> CMTag {

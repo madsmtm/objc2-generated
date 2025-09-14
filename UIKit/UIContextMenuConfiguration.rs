@@ -13,12 +13,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextMenuConfigurationElementOrder(pub NSInteger);
 impl UIContextMenuConfigurationElementOrder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuconfiguration/elementorder/automatic?language=objc)
     #[doc(alias = "UIContextMenuConfigurationElementOrderAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Allows the system to choose the appropriate ordering strategy for the current context.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuconfiguration/elementorder/priority?language=objc)
     #[doc(alias = "UIContextMenuConfigurationElementOrderPriority")]
     pub const Priority: Self = Self(1);
     /// Order menu elements according to priority. Keeping the first element in the UIMenu closest to user's interaction point.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuconfiguration/elementorder/fixed?language=objc)
     #[doc(alias = "UIContextMenuConfigurationElementOrderFixed")]
     pub const Fixed: Self = Self(2);
 }

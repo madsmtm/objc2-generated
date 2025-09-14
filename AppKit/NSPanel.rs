@@ -177,6 +177,8 @@ impl NSPanel {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsreleasealertpanel(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `panel` should be of the correct type.

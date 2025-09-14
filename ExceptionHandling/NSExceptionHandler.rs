@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nslogandhandleeveryexceptionmask?language=objc)
 pub const NSLogAndHandleEveryExceptionMask: c_uint = NSLogUncaughtExceptionMask
     | NSLogUncaughtSystemExceptionMask
     | NSLogUncaughtRuntimeErrorMask
@@ -17,6 +18,7 @@ pub const NSLogAndHandleEveryExceptionMask: c_uint = NSLogUncaughtExceptionMask
     | NSHandleTopLevelExceptionMask
     | NSLogOtherExceptionMask
     | NSHandleOtherExceptionMask;
+/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangoneveryexceptionmask?language=objc)
 pub const NSHangOnEveryExceptionMask: c_uint = NSHangOnUncaughtExceptionMask
     | NSHangOnUncaughtSystemExceptionMask
     | NSHangOnUncaughtRuntimeErrorMask
@@ -38,6 +40,7 @@ extern "C" {
 }
 
 impl NSExceptionHandler {
+    /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsexceptionhandlerresume()?language=objc)
     #[doc(alias = "NSExceptionHandlerResume")]
     #[inline]
     pub unsafe fn resume() {

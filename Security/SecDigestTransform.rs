@@ -125,6 +125,8 @@ extern "C" {
 ///
 /// - `digest_type` should be of the correct type.
 /// - `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secdigesttransformcreate(_:_:_:)?language=objc)
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -148,6 +150,8 @@ pub unsafe extern "C-unwind" fn SecDigestTransformCreate(
 /// Return the CFTypeID of a SecDigestTransform
 ///
 /// Returns: The CFTypeID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secdigesttransformgettypeid()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub extern "C-unwind" fn SecDigestTransformGetTypeID() -> CFTypeID {

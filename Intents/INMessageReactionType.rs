@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMessageReactionType(pub NSInteger);
 impl INMessageReactionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagereactiontype/unknown?language=objc)
     #[doc(alias = "INMessageReactionTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagereactiontype/emoji?language=objc)
     #[doc(alias = "INMessageReactionTypeEmoji")]
     pub const Emoji: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagereactiontype/generic?language=objc)
     #[doc(alias = "INMessageReactionTypeGeneric")]
     pub const Generic: Self = Self(2);
 }

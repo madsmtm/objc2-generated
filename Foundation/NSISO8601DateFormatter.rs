@@ -13,32 +13,46 @@ use crate::*;
 pub struct NSISO8601DateFormatOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSISO8601DateFormatOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withyear?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithYear")]
         const WithYear = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withmonth?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithMonth")]
         const WithMonth = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withweekofyear?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithWeekOfYear")]
         const WithWeekOfYear = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withday?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithDay")]
         const WithDay = 16;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withtime?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithTime")]
         const WithTime = 32;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withtimezone?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithTimeZone")]
         const WithTimeZone = 64;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withspacebetweendateandtime?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithSpaceBetweenDateAndTime")]
         const WithSpaceBetweenDateAndTime = 128;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withdashseparatorindate?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithDashSeparatorInDate")]
         const WithDashSeparatorInDate = 256;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withcolonseparatorintime?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithColonSeparatorInTime")]
         const WithColonSeparatorInTime = 512;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withcolonseparatorintimezone?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithColonSeparatorInTimeZone")]
         const WithColonSeparatorInTimeZone = 1024;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withfractionalseconds?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithFractionalSeconds")]
         const WithFractionalSeconds = 2048;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withfulldate?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithFullDate")]
         const WithFullDate = 275;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withfulltime?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithFullTime")]
         const WithFullTime = 1632;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withinternetdatetime?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithInternetDateTime")]
         const WithInternetDateTime = 1907;
     }

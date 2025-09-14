@@ -13,14 +13,19 @@ use crate::*;
 pub struct UNNotificationCategoryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNNotificationCategoryOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/customdismissaction?language=objc)
         #[doc(alias = "UNNotificationCategoryOptionCustomDismissAction")]
         const CustomDismissAction = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/allowincarplay?language=objc)
         #[doc(alias = "UNNotificationCategoryOptionAllowInCarPlay")]
         const AllowInCarPlay = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/hiddenpreviewsshowtitle?language=objc)
         #[doc(alias = "UNNotificationCategoryOptionHiddenPreviewsShowTitle")]
         const HiddenPreviewsShowTitle = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/hiddenpreviewsshowsubtitle?language=objc)
         #[doc(alias = "UNNotificationCategoryOptionHiddenPreviewsShowSubtitle")]
         const HiddenPreviewsShowSubtitle = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/allowannouncement?language=objc)
         #[doc(alias = "UNNotificationCategoryOptionAllowAnnouncement")]
 #[deprecated = "Announcement option is ignored"]
         const AllowAnnouncement = 1<<4;

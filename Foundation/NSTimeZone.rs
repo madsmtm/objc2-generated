@@ -127,16 +127,22 @@ impl DefaultRetained for NSTimeZone {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTimeZoneNameStyle(pub NSInteger);
 impl NSTimeZoneNameStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/standard?language=objc)
     #[doc(alias = "NSTimeZoneNameStyleStandard")]
     pub const Standard: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/shortstandard?language=objc)
     #[doc(alias = "NSTimeZoneNameStyleShortStandard")]
     pub const ShortStandard: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/daylightsaving?language=objc)
     #[doc(alias = "NSTimeZoneNameStyleDaylightSaving")]
     pub const DaylightSaving: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/shortdaylightsaving?language=objc)
     #[doc(alias = "NSTimeZoneNameStyleShortDaylightSaving")]
     pub const ShortDaylightSaving: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/generic?language=objc)
     #[doc(alias = "NSTimeZoneNameStyleGeneric")]
     pub const Generic: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/shortgeneric?language=objc)
     #[doc(alias = "NSTimeZoneNameStyleShortGeneric")]
     pub const ShortGeneric: Self = Self(5);
 }

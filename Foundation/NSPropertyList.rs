@@ -12,10 +12,13 @@ use crate::*;
 pub struct NSPropertyListMutabilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPropertyListMutabilityOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistmutabilityoptions/nspropertylistimmutable?language=objc)
         #[doc(alias = "NSPropertyListImmutable")]
         const Immutable = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/mutabilityoptions/mutablecontainers?language=objc)
         #[doc(alias = "NSPropertyListMutableContainers")]
         const MutableContainers = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/mutabilityoptions/mutablecontainersandleaves?language=objc)
         #[doc(alias = "NSPropertyListMutableContainersAndLeaves")]
         const MutableContainersAndLeaves = 2;
     }
@@ -35,10 +38,13 @@ unsafe impl RefEncode for NSPropertyListMutabilityOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPropertyListFormat(pub NSUInteger);
 impl NSPropertyListFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/propertylistformat/openstep?language=objc)
     #[doc(alias = "NSPropertyListOpenStepFormat")]
     pub const OpenStepFormat: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/propertylistformat/xml?language=objc)
     #[doc(alias = "NSPropertyListXMLFormat_v1_0")]
     pub const XMLFormat_v1_0: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/propertylistformat/binary?language=objc)
     #[doc(alias = "NSPropertyListBinaryFormat_v1_0")]
     pub const BinaryFormat_v1_0: Self = Self(200);
 }

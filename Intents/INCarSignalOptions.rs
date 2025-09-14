@@ -11,8 +11,10 @@ use crate::*;
 pub struct INCarSignalOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INCarSignalOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incarsignaloptions/audible?language=objc)
         #[doc(alias = "INCarSignalOptionAudible")]
         const Audible = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incarsignaloptions/visible?language=objc)
         #[doc(alias = "INCarSignalOptionVisible")]
         const Visible = 1<<1;
     }

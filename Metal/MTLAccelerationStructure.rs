@@ -19,11 +19,15 @@ bitflags::bitflags! {
 /// Refitting shall result in updated vertex data from the provided geometry descriptor.
 /// If not set, vertex buffers shall be ignored on the geometry descriptor and vertex data previously
 /// encoded shall be copied.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurerefitoptions/vertexdata?language=objc)
         #[doc(alias = "MTLAccelerationStructureRefitOptionVertexData")]
         const VertexData = 1<<0;
 /// Refitting shall result in updated per primitive data from the provided geometry descriptor.
 /// If not set, per primitive data buffers shall be ignored on the geometry descriptor and per primitive
 /// data previously encoded shall be copied.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurerefitoptions/perprimitivedata?language=objc)
         #[doc(alias = "MTLAccelerationStructureRefitOptionPerPrimitiveData")]
         const PerPrimitiveData = 1<<1;
     }
@@ -45,25 +49,37 @@ pub struct MTLAccelerationStructureUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLAccelerationStructureUsage: NSUInteger {
 /// Default usage
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/mtlaccelerationstructureusagenone?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsageNone")]
         const None = 0;
 /// Enable refitting for this acceleration structure. Note that this may reduce
 /// acceleration structure quality.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/refit?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsageRefit")]
         const Refit = 1<<0;
 /// Prefer building this acceleration structure quickly at the cost of reduced ray
 /// tracing performance.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/preferfastbuild?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsagePreferFastBuild")]
         const PreferFastBuild = 1<<1;
 /// Enable extended limits for this acceleration structure, possibly at the cost of
 /// reduced ray tracing performance.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/extendedlimits?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsageExtendedLimits")]
         const ExtendedLimits = 1<<2;
 /// Prioritize intersection performance over acceleration structure build time
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/preferfastintersection?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsagePreferFastIntersection")]
         const PreferFastIntersection = 1<<4;
 /// Minimize the size of the acceleration structure in memory, potentially at
 /// the cost of increased build time or reduced intersection performance.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/minimizememory?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsageMinimizeMemory")]
         const MinimizeMemory = 1<<5;
     }
@@ -85,20 +101,30 @@ pub struct MTLAccelerationStructureInstanceOptions(pub u32);
 bitflags::bitflags! {
     impl MTLAccelerationStructureInstanceOptions: u32 {
 /// No options
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions/mtlaccelerationstructureinstanceoptionnone?language=objc)
         #[doc(alias = "MTLAccelerationStructureInstanceOptionNone")]
         const None = 0;
 /// Disable triangle back or front face culling
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions/disabletriangleculling?language=objc)
         #[doc(alias = "MTLAccelerationStructureInstanceOptionDisableTriangleCulling")]
         const DisableTriangleCulling = 1<<0;
 /// Override triangle front-facing winding. By default, the winding is
 /// assumed to be clockwise unless overridden by the intersector object. This overrides
 /// the intersector's winding order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions/trianglefrontfacingwindingcounterclockwise?language=objc)
         #[doc(alias = "MTLAccelerationStructureInstanceOptionTriangleFrontFacingWindingCounterClockwise")]
         const TriangleFrontFacingWindingCounterClockwise = 1<<1;
 /// Geometry is opaque
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions/opaque?language=objc)
         #[doc(alias = "MTLAccelerationStructureInstanceOptionOpaque")]
         const Opaque = 1<<2;
 /// Geometry is non-opaque
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions/nonopaque?language=objc)
         #[doc(alias = "MTLAccelerationStructureInstanceOptionNonOpaque")]
         const NonOpaque = 1<<3;
     }
@@ -119,9 +145,13 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceOptions {
 pub struct MTLMatrixLayout(pub NSInteger);
 impl MTLMatrixLayout {
     /// Column-major order
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmatrixlayout/columnmajor?language=objc)
     #[doc(alias = "MTLMatrixLayoutColumnMajor")]
     pub const ColumnMajor: Self = Self(0);
     /// Row-major order
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmatrixlayout/rowmajor?language=objc)
     #[doc(alias = "MTLMatrixLayoutRowMajor")]
     pub const RowMajor: Self = Self(1);
 }
@@ -352,9 +382,13 @@ impl DefaultRetained for MTLAccelerationStructureGeometryDescriptor {
 pub struct MTLMotionBorderMode(pub u32);
 impl MTLMotionBorderMode {
     /// Motion is stopped. (default)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmotionbordermode/clamp?language=objc)
     #[doc(alias = "MTLMotionBorderModeClamp")]
     pub const Clamp: Self = Self(0);
     /// Object disappears
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmotionbordermode/vanish?language=objc)
     #[doc(alias = "MTLMotionBorderModeVanish")]
     pub const Vanish: Self = Self(1);
 }
@@ -1224,12 +1258,16 @@ impl MTLCurveType {
     /// advantage of having a real 3D shape consistent across different ray
     /// directions, well-defined surface normals, etc. However, they may be
     /// slower to intersect. These curves are ideal for viewing close-up.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvetype/round?language=objc)
     #[doc(alias = "MTLCurveTypeRound")]
     pub const Round: Self = Self(0);
     /// Curve with a flat cross-section aligned with the ray direction.
     /// These curves may be faster to intersect but do not have a consistent
     /// 3D structure across different rays. These curves are ideal for viewing
     /// at a distance or curves with a small radius such as hair and fur.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvetype/flat?language=objc)
     #[doc(alias = "MTLCurveTypeFlat")]
     pub const Flat: Self = Self(1);
 }
@@ -1256,6 +1294,8 @@ impl MTLCurveBasis {
     /// through the control points without additional control points at the
     /// beginning and end of the curve. Each curve segment can overlap
     /// N-1 control points.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis/bspline?language=objc)
     #[doc(alias = "MTLCurveBasisBSpline")]
     pub const BSpline: Self = Self(0);
     /// Catmull-Rom basis. Curves represented in this basis can also be
@@ -1273,13 +1313,19 @@ impl MTLCurveBasis {
     /// Curve segments join with C^1 continuity and the
     /// curve passes through the control points. Each curve segment can overlap
     /// 3 control points.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis/catmullrom?language=objc)
     #[doc(alias = "MTLCurveBasisCatmullRom")]
     pub const CatmullRom: Self = Self(1);
     /// Linear basis. The curve is made of a sequence of connected line
     /// segments each with 2 control points.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis/linear?language=objc)
     #[doc(alias = "MTLCurveBasisLinear")]
     pub const Linear: Self = Self(2);
     /// Bezier basis
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis/bezier?language=objc)
     #[doc(alias = "MTLCurveBasisBezier")]
     pub const Bezier: Self = Self(3);
 }
@@ -1302,12 +1348,18 @@ unsafe impl RefEncode for MTLCurveBasis {
 pub struct MTLCurveEndCaps(pub NSInteger);
 impl MTLCurveEndCaps {
     /// No end caps
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurveendcaps/none?language=objc)
     #[doc(alias = "MTLCurveEndCapsNone")]
     pub const None: Self = Self(0);
     /// Disk end caps
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurveendcaps/disk?language=objc)
     #[doc(alias = "MTLCurveEndCapsDisk")]
     pub const Disk: Self = Self(1);
     /// Spherical end caps
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurveendcaps/sphere?language=objc)
     #[doc(alias = "MTLCurveEndCapsSphere")]
     pub const Sphere: Self = Self(2);
 }
@@ -2002,18 +2054,28 @@ unsafe impl RefEncode for MTLAccelerationStructureUserIDInstanceDescriptor {
 pub struct MTLAccelerationStructureInstanceDescriptorType(pub NSUInteger);
 impl MTLAccelerationStructureInstanceDescriptorType {
     /// Default instance descriptor: MTLAccelerationStructureInstanceDescriptor
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype/default?language=objc)
     #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeDefault")]
     pub const Default: Self = Self(0);
     /// Instance descriptor with an added user-ID
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype/userid?language=objc)
     #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeUserID")]
     pub const UserID: Self = Self(1);
     /// Instance descriptor with support for motion
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype/motion?language=objc)
     #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeMotion")]
     pub const Motion: Self = Self(2);
     /// Instance descriptor with a resource handle for the instanced acceleration structure
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype/indirect?language=objc)
     #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeIndirect")]
     pub const Indirect: Self = Self(3);
     /// Motion instance descriptor with a resource handle for the instanced acceleration structure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype/indirectmotion?language=objc)
     #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeIndirectMotion")]
     pub const IndirectMotion: Self = Self(4);
 }
@@ -2191,11 +2253,15 @@ pub struct MTLTransformType(pub NSInteger);
 impl MTLTransformType {
     /// A tightly packed matrix with 4 columns and 3 rows. The full transform is assumed
     /// to be a 4x4 matrix with the last row being (0, 0, 0, 1).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltransformtype/packedfloat4x3?language=objc)
     #[doc(alias = "MTLTransformTypePackedFloat4x3")]
     pub const PackedFloat4x3: Self = Self(0);
     /// A transformation represented by individual components such as translation and
     /// rotation. The rotation is represented by a quaternion, allowing for correct motion
     /// interpolation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltransformtype/component?language=objc)
     #[doc(alias = "MTLTransformTypeComponent")]
     pub const Component: Self = Self(1);
 }

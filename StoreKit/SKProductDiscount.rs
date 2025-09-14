@@ -13,12 +13,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKProductDiscountPaymentMode(pub NSUInteger);
 impl SKProductDiscountPaymentMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/paymentmode-swift.enum/payasyougo?language=objc)
     #[doc(alias = "SKProductDiscountPaymentModePayAsYouGo")]
     #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     pub const PayAsYouGo: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/paymentmode-swift.enum/payupfront?language=objc)
     #[doc(alias = "SKProductDiscountPaymentModePayUpFront")]
     #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     pub const PayUpFront: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/paymentmode-swift.enum/freetrial?language=objc)
     #[doc(alias = "SKProductDiscountPaymentModeFreeTrial")]
     #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     pub const FreeTrial: Self = Self(2);
@@ -39,9 +42,11 @@ unsafe impl RefEncode for SKProductDiscountPaymentMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKProductDiscountType(pub NSUInteger);
 impl SKProductDiscountType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/type-swift.enum/introductory?language=objc)
     #[doc(alias = "SKProductDiscountTypeIntroductory")]
     #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
     pub const Introductory: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/type-swift.enum/subscription?language=objc)
     #[doc(alias = "SKProductDiscountTypeSubscription")]
     #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
     pub const Subscription: Self = Self(1);

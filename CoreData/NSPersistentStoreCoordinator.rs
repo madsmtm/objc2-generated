@@ -626,15 +626,19 @@ impl NSPersistentStoreCoordinator {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPersistentStoreUbiquitousTransitionType(pub NSUInteger);
 impl NSPersistentStoreUbiquitousTransitionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype/accountadded?language=objc)
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountAdded")]
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const AccountAdded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype/accountremoved?language=objc)
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountRemoved")]
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const AccountRemoved: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype/contentremoved?language=objc)
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeContentRemoved")]
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const ContentRemoved: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype/initialimportcompleted?language=objc)
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeInitialImportCompleted")]
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const InitialImportCompleted: Self = Self(4);

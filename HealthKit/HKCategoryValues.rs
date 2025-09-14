@@ -12,6 +12,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValue(pub NSInteger);
 impl HKCategoryValue {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable?language=objc)
     #[doc(alias = "HKCategoryValueNotApplicable")]
     pub const NotApplicable: Self = Self(0);
 }
@@ -32,12 +33,16 @@ unsafe impl RefEncode for HKCategoryValue {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValueAppetiteChanges(pub NSInteger);
 impl HKCategoryValueAppetiteChanges {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueappetitechanges/unspecified?language=objc)
     #[doc(alias = "HKCategoryValueAppetiteChangesUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueappetitechanges/nochange?language=objc)
     #[doc(alias = "HKCategoryValueAppetiteChangesNoChange")]
     pub const NoChange: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueappetitechanges/decreased?language=objc)
     #[doc(alias = "HKCategoryValueAppetiteChangesDecreased")]
     pub const Decreased: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueappetitechanges/increased?language=objc)
     #[doc(alias = "HKCategoryValueAppetiteChangesIncreased")]
     pub const Increased: Self = Self(3);
 }
@@ -64,8 +69,10 @@ unsafe impl RefEncode for HKCategoryValueAppetiteChanges {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValueAppleStandHour(pub NSInteger);
 impl HKCategoryValueAppleStandHour {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplestandhour/stood?language=objc)
     #[doc(alias = "HKCategoryValueAppleStandHourStood")]
     pub const Stood: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplestandhour/idle?language=objc)
     #[doc(alias = "HKCategoryValueAppleStandHourIdle")]
     pub const Idle: Self = Self(1);
 }
@@ -102,12 +109,16 @@ unsafe impl RefEncode for HKCategoryValueAppleStandHour {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueAppleWalkingSteadinessEvent(pub NSInteger);
 impl HKCategoryValueAppleWalkingSteadinessEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplewalkingsteadinessevent/initiallow?language=objc)
     #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventInitialLow")]
     pub const InitialLow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplewalkingsteadinessevent/initialverylow?language=objc)
     #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventInitialVeryLow")]
     pub const InitialVeryLow: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplewalkingsteadinessevent/repeatlow?language=objc)
     #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventRepeatLow")]
     pub const RepeatLow: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplewalkingsteadinessevent/repeatverylow?language=objc)
     #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventRepeatVeryLow")]
     pub const RepeatVeryLow: Self = Self(4);
 }
@@ -131,14 +142,19 @@ unsafe impl RefEncode for HKCategoryValueAppleWalkingSteadinessEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueCervicalMucusQuality(pub NSInteger);
 impl HKCategoryValueCervicalMucusQuality {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecervicalmucusquality/dry?language=objc)
     #[doc(alias = "HKCategoryValueCervicalMucusQualityDry")]
     pub const Dry: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecervicalmucusquality/sticky?language=objc)
     #[doc(alias = "HKCategoryValueCervicalMucusQualitySticky")]
     pub const Sticky: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecervicalmucusquality/creamy?language=objc)
     #[doc(alias = "HKCategoryValueCervicalMucusQualityCreamy")]
     pub const Creamy: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecervicalmucusquality/watery?language=objc)
     #[doc(alias = "HKCategoryValueCervicalMucusQualityWatery")]
     pub const Watery: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecervicalmucusquality/eggwhite?language=objc)
     #[doc(alias = "HKCategoryValueCervicalMucusQualityEggWhite")]
     pub const EggWhite: Self = Self(5);
 }
@@ -159,18 +175,25 @@ unsafe impl RefEncode for HKCategoryValueCervicalMucusQuality {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueContraceptive(pub NSInteger);
 impl HKCategoryValueContraceptive {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecontraceptive/unspecified?language=objc)
     #[doc(alias = "HKCategoryValueContraceptiveUnspecified")]
     pub const Unspecified: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecontraceptive/implant?language=objc)
     #[doc(alias = "HKCategoryValueContraceptiveImplant")]
     pub const Implant: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecontraceptive/injection?language=objc)
     #[doc(alias = "HKCategoryValueContraceptiveInjection")]
     pub const Injection: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecontraceptive/intrauterinedevice?language=objc)
     #[doc(alias = "HKCategoryValueContraceptiveIntrauterineDevice")]
     pub const IntrauterineDevice: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecontraceptive/intravaginalring?language=objc)
     #[doc(alias = "HKCategoryValueContraceptiveIntravaginalRing")]
     pub const IntravaginalRing: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecontraceptive/oral?language=objc)
     #[doc(alias = "HKCategoryValueContraceptiveOral")]
     pub const Oral: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecontraceptive/patch?language=objc)
     #[doc(alias = "HKCategoryValueContraceptivePatch")]
     pub const Patch: Self = Self(7);
 }
@@ -196,6 +219,7 @@ unsafe impl RefEncode for HKCategoryValueContraceptive {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueEnvironmentalAudioExposureEvent(pub NSInteger);
 impl HKCategoryValueEnvironmentalAudioExposureEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueenvironmentalaudioexposureevent/momentarylimit?language=objc)
     #[doc(alias = "HKCategoryValueEnvironmentalAudioExposureEventMomentaryLimit")]
     pub const MomentaryLimit: Self = Self(1);
 }
@@ -221,6 +245,7 @@ unsafe impl RefEncode for HKCategoryValueEnvironmentalAudioExposureEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueHeadphoneAudioExposureEvent(pub NSInteger);
 impl HKCategoryValueHeadphoneAudioExposureEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueheadphoneaudioexposureevent/sevendaylimit?language=objc)
     #[doc(alias = "HKCategoryValueHeadphoneAudioExposureEventSevenDayLimit")]
     pub const SevenDayLimit: Self = Self(1);
 }
@@ -245,6 +270,7 @@ unsafe impl RefEncode for HKCategoryValueHeadphoneAudioExposureEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueLowCardioFitnessEvent(pub NSInteger);
 impl HKCategoryValueLowCardioFitnessEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluelowcardiofitnessevent/lowfitness?language=objc)
     #[doc(alias = "HKCategoryValueLowCardioFitnessEventLowFitness")]
     pub const LowFitness: Self = Self(1);
 }
@@ -266,18 +292,23 @@ unsafe impl RefEncode for HKCategoryValueLowCardioFitnessEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueMenstrualFlow(pub NSInteger);
 impl HKCategoryValueMenstrualFlow {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluemenstrualflow/unspecified?language=objc)
     #[doc(alias = "HKCategoryValueMenstrualFlowUnspecified")]
     #[deprecated]
     pub const Unspecified: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluemenstrualflow/light?language=objc)
     #[doc(alias = "HKCategoryValueMenstrualFlowLight")]
     #[deprecated]
     pub const Light: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluemenstrualflow/medium?language=objc)
     #[doc(alias = "HKCategoryValueMenstrualFlowMedium")]
     #[deprecated]
     pub const Medium: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluemenstrualflow/heavy?language=objc)
     #[doc(alias = "HKCategoryValueMenstrualFlowHeavy")]
     #[deprecated]
     pub const Heavy: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluemenstrualflow/none?language=objc)
     #[doc(alias = "HKCategoryValueMenstrualFlowNone")]
     #[deprecated]
     pub const None: Self = Self(5);
@@ -303,15 +334,20 @@ unsafe impl RefEncode for HKCategoryValueMenstrualFlow {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueOvulationTestResult(pub NSInteger);
 impl HKCategoryValueOvulationTestResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueovulationtestresult/negative?language=objc)
     #[doc(alias = "HKCategoryValueOvulationTestResultNegative")]
     pub const Negative: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueovulationtestresult/luteinizinghormonesurge?language=objc)
     #[doc(alias = "HKCategoryValueOvulationTestResultLuteinizingHormoneSurge")]
     pub const LuteinizingHormoneSurge: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueovulationtestresult/positive?language=objc)
     #[doc(alias = "HKCategoryValueOvulationTestResultPositive")]
     #[deprecated]
     pub const Positive: Self = Self(HKCategoryValueOvulationTestResult::LuteinizingHormoneSurge.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueovulationtestresult/indeterminate?language=objc)
     #[doc(alias = "HKCategoryValueOvulationTestResultIndeterminate")]
     pub const Indeterminate: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueovulationtestresult/estrogensurge?language=objc)
     #[doc(alias = "HKCategoryValueOvulationTestResultEstrogenSurge")]
     pub const EstrogenSurge: Self = Self(4);
 }
@@ -336,10 +372,13 @@ unsafe impl RefEncode for HKCategoryValueOvulationTestResult {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValuePregnancyTestResult(pub NSInteger);
 impl HKCategoryValuePregnancyTestResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepregnancytestresult/negative?language=objc)
     #[doc(alias = "HKCategoryValuePregnancyTestResultNegative")]
     pub const Negative: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepregnancytestresult/positive?language=objc)
     #[doc(alias = "HKCategoryValuePregnancyTestResultPositive")]
     pub const Positive: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepregnancytestresult/indeterminate?language=objc)
     #[doc(alias = "HKCategoryValuePregnancyTestResultIndeterminate")]
     pub const Indeterminate: Self = Self(3);
 }
@@ -360,8 +399,10 @@ unsafe impl RefEncode for HKCategoryValuePregnancyTestResult {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValuePresence(pub NSInteger);
 impl HKCategoryValuePresence {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepresence/present?language=objc)
     #[doc(alias = "HKCategoryValuePresencePresent")]
     pub const Present: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepresence/notpresent?language=objc)
     #[doc(alias = "HKCategoryValuePresenceNotPresent")]
     pub const NotPresent: Self = Self(1);
 }
@@ -386,10 +427,13 @@ unsafe impl RefEncode for HKCategoryValuePresence {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueProgesteroneTestResult(pub NSInteger);
 impl HKCategoryValueProgesteroneTestResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueprogesteronetestresult/negative?language=objc)
     #[doc(alias = "HKCategoryValueProgesteroneTestResultNegative")]
     pub const Negative: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueprogesteronetestresult/positive?language=objc)
     #[doc(alias = "HKCategoryValueProgesteroneTestResultPositive")]
     pub const Positive: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueprogesteronetestresult/indeterminate?language=objc)
     #[doc(alias = "HKCategoryValueProgesteroneTestResultIndeterminate")]
     pub const Indeterminate: Self = Self(3);
 }
@@ -410,14 +454,19 @@ unsafe impl RefEncode for HKCategoryValueProgesteroneTestResult {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValueSeverity(pub NSInteger);
 impl HKCategoryValueSeverity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity/unspecified?language=objc)
     #[doc(alias = "HKCategoryValueSeverityUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity/notpresent?language=objc)
     #[doc(alias = "HKCategoryValueSeverityNotPresent")]
     pub const NotPresent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity/mild?language=objc)
     #[doc(alias = "HKCategoryValueSeverityMild")]
     pub const Mild: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity/moderate?language=objc)
     #[doc(alias = "HKCategoryValueSeverityModerate")]
     pub const Moderate: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity/severe?language=objc)
     #[doc(alias = "HKCategoryValueSeveritySevere")]
     pub const Severe: Self = Self(4);
 }
@@ -447,19 +496,26 @@ unsafe impl RefEncode for HKCategoryValueSeverity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValueSleepAnalysis(pub NSInteger);
 impl HKCategoryValueSleepAnalysis {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis/inbed?language=objc)
     #[doc(alias = "HKCategoryValueSleepAnalysisInBed")]
     pub const InBed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis/asleepunspecified?language=objc)
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleepUnspecified")]
     pub const AsleepUnspecified: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis/asleep?language=objc)
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleep")]
     #[deprecated]
     pub const Asleep: Self = Self(HKCategoryValueSleepAnalysis::AsleepUnspecified.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis/awake?language=objc)
     #[doc(alias = "HKCategoryValueSleepAnalysisAwake")]
     pub const Awake: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis/asleepcore?language=objc)
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleepCore")]
     pub const AsleepCore: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis/asleepdeep?language=objc)
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleepDeep")]
     pub const AsleepDeep: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis/asleeprem?language=objc)
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleepREM")]
     pub const AsleepREM: Self = Self(5);
 }
@@ -480,14 +536,19 @@ unsafe impl RefEncode for HKCategoryValueSleepAnalysis {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueVaginalBleeding(pub NSInteger);
 impl HKCategoryValueVaginalBleeding {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluevaginalbleeding/unspecified?language=objc)
     #[doc(alias = "HKCategoryValueVaginalBleedingUnspecified")]
     pub const Unspecified: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluevaginalbleeding/light?language=objc)
     #[doc(alias = "HKCategoryValueVaginalBleedingLight")]
     pub const Light: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluevaginalbleeding/medium?language=objc)
     #[doc(alias = "HKCategoryValueVaginalBleedingMedium")]
     pub const Medium: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluevaginalbleeding/heavy?language=objc)
     #[doc(alias = "HKCategoryValueVaginalBleedingHeavy")]
     pub const Heavy: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluevaginalbleeding/none?language=objc)
     #[doc(alias = "HKCategoryValueVaginalBleedingNone")]
     pub const None: Self = Self(5);
 }
@@ -509,6 +570,7 @@ unsafe impl RefEncode for HKCategoryValueVaginalBleeding {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueAudioExposureEvent(pub NSInteger);
 impl HKCategoryValueAudioExposureEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueaudioexposureevent/loudenvironment?language=objc)
     #[doc(alias = "HKCategoryValueAudioExposureEventLoudEnvironment")]
     #[deprecated]
     pub const LoudEnvironment: Self = Self(1);

@@ -13,14 +13,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTokenStyle(pub NSUInteger);
 impl NSTokenStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum/default?language=objc)
     #[doc(alias = "NSTokenStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum/none?language=objc)
     #[doc(alias = "NSTokenStyleNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum/rounded?language=objc)
     #[doc(alias = "NSTokenStyleRounded")]
     pub const Rounded: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum/squared?language=objc)
     #[doc(alias = "NSTokenStyleSquared")]
     pub const Squared: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum/plainsquared?language=objc)
     #[doc(alias = "NSTokenStylePlainSquared")]
     pub const PlainSquared: Self = Self(4);
 }

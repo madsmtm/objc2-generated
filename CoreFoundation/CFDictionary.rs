@@ -262,6 +262,8 @@ impl<K: ?Sized, V: ?Sized> CFMutableDictionary<K, V> {
 
 unsafe impl ConcreteType for CFDictionary {
     /// Returns the type identifier of all CFDictionary instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygettypeid()?language=objc)
     #[doc(alias = "CFDictionaryGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -367,6 +369,8 @@ impl CFDictionary {
     /// - `values` must be a valid pointer.
     /// - `key_call_backs` must be a valid pointer.
     /// - `value_call_backs` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycreate(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryCreate")]
     #[inline]
     pub unsafe fn new(
@@ -421,6 +425,8 @@ impl CFDictionary {
     /// not a valid CFDictionary, the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFDictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -518,6 +524,8 @@ impl CFMutableDictionary {
     /// - `value_call_backs` must be a valid pointer.
     /// - The returned generic must be of the correct type.
     /// - The returned generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycreatemutable(_:_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -580,6 +588,8 @@ impl CFMutableDictionary {
     /// - `the_dict` might not allow `None`.
     /// - The returned generic must be of the correct type.
     /// - The returned generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycreatemutablecopy(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -606,6 +616,8 @@ impl CFDictionary {
     /// not a valid CFDictionary, the behavior is undefined.
     ///
     /// Returns: The number of values in the dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetcount(_:)?language=objc)
     #[doc(alias = "CFDictionaryGetCount")]
     #[inline]
     pub fn count(&self) -> CFIndex {
@@ -637,6 +649,8 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetcountofkey(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryGetCountOfKey")]
     #[inline]
     pub unsafe fn count_of_key(&self, key: *const c_void) -> CFIndex {
@@ -665,6 +679,8 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetcountofvalue(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
@@ -698,6 +714,8 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycontainskey(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryContainsKey")]
     #[inline]
     pub unsafe fn contains_ptr_key(&self, key: *const c_void) -> bool {
@@ -727,6 +745,8 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycontainsvalue(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryContainsValue")]
     #[inline]
     pub unsafe fn contains_ptr_value(&self, value: *const c_void) -> bool {
@@ -762,6 +782,8 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetvalue(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryGetValue")]
     #[inline]
     pub unsafe fn value(&self, key: *const c_void) -> *const c_void {
@@ -801,6 +823,8 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetvalueifpresent(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryGetValueIfPresent")]
     #[inline]
     pub unsafe fn value_if_present(&self, key: *const c_void, value: *mut *const c_void) -> bool {
@@ -842,6 +866,8 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `keys` must be a valid pointer.
     /// - `values` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetkeysandvalues(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryGetKeysAndValues")]
     #[inline]
     pub unsafe fn keys_and_values(&self, keys: *mut *const c_void, values: *mut *const c_void) {
@@ -879,6 +905,8 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryapplyfunction(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
@@ -923,6 +951,8 @@ impl CFMutableDictionary {
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryaddvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryAddValue")]
     #[inline]
     pub unsafe fn add_value(
@@ -968,6 +998,8 @@ impl CFMutableDictionary {
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarysetvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionarySetValue")]
     #[inline]
     pub unsafe fn set_value(
@@ -1009,6 +1041,8 @@ impl CFMutableDictionary {
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryreplacevalue(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryReplaceValue")]
     #[inline]
     pub unsafe fn replace_value(
@@ -1043,6 +1077,8 @@ impl CFMutableDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryremovevalue(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryRemoveValue")]
     #[inline]
     pub unsafe fn remove_value(the_dict: Option<&CFMutableDictionary>, key: *const c_void) {
@@ -1057,6 +1093,8 @@ impl CFMutableDictionary {
     /// Parameter `theDict`: The dictionary from which all of the values are to be
     /// removed. If this parameter is not a valid mutable
     /// CFDictionary, the behavior is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryremoveallvalues(_:)?language=objc)
     #[doc(alias = "CFDictionaryRemoveAllValues")]
     #[inline]
     pub fn remove_all_values(the_dict: Option<&CFMutableDictionary>) {

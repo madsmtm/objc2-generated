@@ -18,24 +18,38 @@ use crate::*;
 pub struct UIPencilPreferredAction(pub NSInteger);
 impl UIPencilPreferredAction {
     /// No action, or the user has disabled pencil interactions in Accessibility settings
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/ignore?language=objc)
     #[doc(alias = "UIPencilPreferredActionIgnore")]
     pub const Ignore: Self = Self(0);
     /// Switch between the current tool and eraser
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/switcheraser?language=objc)
     #[doc(alias = "UIPencilPreferredActionSwitchEraser")]
     pub const SwitchEraser: Self = Self(1);
     /// Switch between the current tool and the previously used tool
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/switchprevious?language=objc)
     #[doc(alias = "UIPencilPreferredActionSwitchPrevious")]
     pub const SwitchPrevious: Self = Self(2);
     /// Show and hide the color palette
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/showcolorpalette?language=objc)
     #[doc(alias = "UIPencilPreferredActionShowColorPalette")]
     pub const ShowColorPalette: Self = Self(3);
     /// Show the ink attributes palette
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/showinkattributes?language=objc)
     #[doc(alias = "UIPencilPreferredActionShowInkAttributes")]
     pub const ShowInkAttributes: Self = Self(4);
     /// Show a contextual palette of markup tools, or undo/redo options if tools are not available
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/showcontextualpalette?language=objc)
     #[doc(alias = "UIPencilPreferredActionShowContextualPalette")]
     pub const ShowContextualPalette: Self = Self(5);
     /// The user has selected a system shortcut to run
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/runsystemshortcut?language=objc)
     #[doc(alias = "UIPencilPreferredActionRunSystemShortcut")]
     pub const RunSystemShortcut: Self = Self(6);
 }
@@ -59,15 +73,23 @@ unsafe impl RefEncode for UIPencilPreferredAction {
 pub struct UIPencilInteractionPhase(pub NSUInteger);
 impl UIPencilInteractionPhase {
     /// A continuous gesture on the pencil began
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/phase/began?language=objc)
     #[doc(alias = "UIPencilInteractionPhaseBegan")]
     pub const Began: Self = Self(0);
     /// A continuous gesture on the pencil changed
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/phase/changed?language=objc)
     #[doc(alias = "UIPencilInteractionPhaseChanged")]
     pub const Changed: Self = Self(1);
     /// A continuous gesture on the pencil ended, or a discrete gesture on the pencil recognized
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/phase/ended?language=objc)
     #[doc(alias = "UIPencilInteractionPhaseEnded")]
     pub const Ended: Self = Self(2);
     /// A continuous gesture on the pencil was cancelled
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/phase/cancelled?language=objc)
     #[doc(alias = "UIPencilInteractionPhaseCancelled")]
     pub const Cancelled: Self = Self(3);
 }

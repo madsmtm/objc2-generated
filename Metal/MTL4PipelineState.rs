@@ -17,12 +17,18 @@ pub struct MTL4ShaderReflection(pub NSUInteger);
 bitflags::bitflags! {
     impl MTL4ShaderReflection: NSUInteger {
 /// Requests no information.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4shaderreflection/mtl4shaderreflectionnone?language=objc)
         #[doc(alias = "MTL4ShaderReflectionNone")]
         const None = 0;
 /// Requests reflection information for bindings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4shaderreflection/bindinginfo?language=objc)
         #[doc(alias = "MTL4ShaderReflectionBindingInfo")]
         const BindingInfo = 1<<0;
 /// Requests reflection information for buffer types.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4shaderreflection/buffertypeinfo?language=objc)
         #[doc(alias = "MTL4ShaderReflectionBufferTypeInfo")]
         const BufferTypeInfo = 1<<1;
     }
@@ -45,9 +51,13 @@ unsafe impl RefEncode for MTL4ShaderReflection {
 pub struct MTL4AlphaToOneState(pub NSInteger);
 impl MTL4AlphaToOneState {
     /// Disables alpha-to-one.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatoonestate/disabled?language=objc)
     #[doc(alias = "MTL4AlphaToOneStateDisabled")]
     pub const Disabled: Self = Self(0);
     /// Enables alpha-to-one.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatoonestate/enabled?language=objc)
     #[doc(alias = "MTL4AlphaToOneStateEnabled")]
     pub const Enabled: Self = Self(1);
 }
@@ -69,9 +79,13 @@ unsafe impl RefEncode for MTL4AlphaToOneState {
 pub struct MTL4AlphaToCoverageState(pub NSInteger);
 impl MTL4AlphaToCoverageState {
     /// Disables alpha-to-coverage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatocoveragestate/disabled?language=objc)
     #[doc(alias = "MTL4AlphaToCoverageStateDisabled")]
     pub const Disabled: Self = Self(0);
     /// Enables alpha-to-coverage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatocoveragestate/enabled?language=objc)
     #[doc(alias = "MTL4AlphaToCoverageStateEnabled")]
     pub const Enabled: Self = Self(1);
 }
@@ -93,14 +107,20 @@ unsafe impl RefEncode for MTL4AlphaToCoverageState {
 pub struct MTL4BlendState(pub NSInteger);
 impl MTL4BlendState {
     /// Disables blending.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4blendstate/disabled?language=objc)
     #[doc(alias = "MTL4BlendStateDisabled")]
     pub const Disabled: Self = Self(0);
     /// Enables blending.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4blendstate/enabled?language=objc)
     #[doc(alias = "MTL4BlendStateEnabled")]
     pub const Enabled: Self = Self(1);
     /// Defers determining the blending stage.
     ///
     /// Behaves as ``MTL4BlendStateDisabled`` until you specialize this pipeline value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4blendstate/unspecialized?language=objc)
     #[doc(alias = "MTL4BlendStateUnspecialized")]
     pub const Unspecialized: Self = Self(2);
 }
@@ -122,9 +142,13 @@ unsafe impl RefEncode for MTL4BlendState {
 pub struct MTL4IndirectCommandBufferSupportState(pub NSInteger);
 impl MTL4IndirectCommandBufferSupportState {
     /// Disables support for indirect command buffers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4indirectcommandbuffersupportstate/disabled?language=objc)
     #[doc(alias = "MTL4IndirectCommandBufferSupportStateDisabled")]
     pub const Disabled: Self = Self(0);
     /// Enables support for indirect command buffers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4indirectcommandbuffersupportstate/enabled?language=objc)
     #[doc(alias = "MTL4IndirectCommandBufferSupportStateEnabled")]
     pub const Enabled: Self = Self(1);
 }

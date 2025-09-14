@@ -18,74 +18,109 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSEventType(pub NSUInteger);
 impl NSEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/leftmousedown?language=objc)
     #[doc(alias = "NSEventTypeLeftMouseDown")]
     pub const LeftMouseDown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/leftmouseup?language=objc)
     #[doc(alias = "NSEventTypeLeftMouseUp")]
     pub const LeftMouseUp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/rightmousedown?language=objc)
     #[doc(alias = "NSEventTypeRightMouseDown")]
     pub const RightMouseDown: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/rightmouseup?language=objc)
     #[doc(alias = "NSEventTypeRightMouseUp")]
     pub const RightMouseUp: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/mousemoved?language=objc)
     #[doc(alias = "NSEventTypeMouseMoved")]
     pub const MouseMoved: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/leftmousedragged?language=objc)
     #[doc(alias = "NSEventTypeLeftMouseDragged")]
     pub const LeftMouseDragged: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/rightmousedragged?language=objc)
     #[doc(alias = "NSEventTypeRightMouseDragged")]
     pub const RightMouseDragged: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/mouseentered?language=objc)
     #[doc(alias = "NSEventTypeMouseEntered")]
     pub const MouseEntered: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/mouseexited?language=objc)
     #[doc(alias = "NSEventTypeMouseExited")]
     pub const MouseExited: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/keydown?language=objc)
     #[doc(alias = "NSEventTypeKeyDown")]
     pub const KeyDown: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/keyup?language=objc)
     #[doc(alias = "NSEventTypeKeyUp")]
     pub const KeyUp: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/flagschanged?language=objc)
     #[doc(alias = "NSEventTypeFlagsChanged")]
     pub const FlagsChanged: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/appkitdefined?language=objc)
     #[doc(alias = "NSEventTypeAppKitDefined")]
     pub const AppKitDefined: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/systemdefined?language=objc)
     #[doc(alias = "NSEventTypeSystemDefined")]
     pub const SystemDefined: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/applicationdefined?language=objc)
     #[doc(alias = "NSEventTypeApplicationDefined")]
     pub const ApplicationDefined: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/periodic?language=objc)
     #[doc(alias = "NSEventTypePeriodic")]
     pub const Periodic: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/cursorupdate?language=objc)
     #[doc(alias = "NSEventTypeCursorUpdate")]
     pub const CursorUpdate: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/scrollwheel?language=objc)
     #[doc(alias = "NSEventTypeScrollWheel")]
     pub const ScrollWheel: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/tabletpoint?language=objc)
     #[doc(alias = "NSEventTypeTabletPoint")]
     pub const TabletPoint: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/tabletproximity?language=objc)
     #[doc(alias = "NSEventTypeTabletProximity")]
     pub const TabletProximity: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/othermousedown?language=objc)
     #[doc(alias = "NSEventTypeOtherMouseDown")]
     pub const OtherMouseDown: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/othermouseup?language=objc)
     #[doc(alias = "NSEventTypeOtherMouseUp")]
     pub const OtherMouseUp: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/othermousedragged?language=objc)
     #[doc(alias = "NSEventTypeOtherMouseDragged")]
     pub const OtherMouseDragged: Self = Self(27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/gesture?language=objc)
     #[doc(alias = "NSEventTypeGesture")]
     pub const Gesture: Self = Self(29);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/magnify?language=objc)
     #[doc(alias = "NSEventTypeMagnify")]
     pub const Magnify: Self = Self(30);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/swipe?language=objc)
     #[doc(alias = "NSEventTypeSwipe")]
     pub const Swipe: Self = Self(31);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/rotate?language=objc)
     #[doc(alias = "NSEventTypeRotate")]
     pub const Rotate: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/begingesture?language=objc)
     #[doc(alias = "NSEventTypeBeginGesture")]
     pub const BeginGesture: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/endgesture?language=objc)
     #[doc(alias = "NSEventTypeEndGesture")]
     pub const EndGesture: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/smartmagnify?language=objc)
     #[doc(alias = "NSEventTypeSmartMagnify")]
     pub const SmartMagnify: Self = Self(32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/quicklook?language=objc)
     #[doc(alias = "NSEventTypeQuickLook")]
     pub const QuickLook: Self = Self(33);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/pressure?language=objc)
     #[doc(alias = "NSEventTypePressure")]
     pub const Pressure: Self = Self(34);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/directtouch?language=objc)
     #[doc(alias = "NSEventTypeDirectTouch")]
     pub const DirectTouch: Self = Self(37);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/changemode?language=objc)
     #[doc(alias = "NSEventTypeChangeMode")]
     pub const ChangeMode: Self = Self(38);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/mousecancelled?language=objc)
     #[doc(alias = "NSEventTypeMouseCancelled")]
     pub const MouseCancelled: Self = Self(40);
 }
@@ -197,74 +232,109 @@ pub static NSOtherMouseDragged: NSEventType = NSEventType(NSEventType::OtherMous
 pub struct NSEventMask(pub c_ulonglong);
 bitflags::bitflags! {
     impl NSEventMask: c_ulonglong {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/leftmousedown?language=objc)
         #[doc(alias = "NSEventMaskLeftMouseDown")]
         const LeftMouseDown = 1<<NSEventType::LeftMouseDown.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/leftmouseup?language=objc)
         #[doc(alias = "NSEventMaskLeftMouseUp")]
         const LeftMouseUp = 1<<NSEventType::LeftMouseUp.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/rightmousedown?language=objc)
         #[doc(alias = "NSEventMaskRightMouseDown")]
         const RightMouseDown = 1<<NSEventType::RightMouseDown.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/rightmouseup?language=objc)
         #[doc(alias = "NSEventMaskRightMouseUp")]
         const RightMouseUp = 1<<NSEventType::RightMouseUp.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/mousemoved?language=objc)
         #[doc(alias = "NSEventMaskMouseMoved")]
         const MouseMoved = 1<<NSEventType::MouseMoved.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/leftmousedragged?language=objc)
         #[doc(alias = "NSEventMaskLeftMouseDragged")]
         const LeftMouseDragged = 1<<NSEventType::LeftMouseDragged.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/rightmousedragged?language=objc)
         #[doc(alias = "NSEventMaskRightMouseDragged")]
         const RightMouseDragged = 1<<NSEventType::RightMouseDragged.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/mouseentered?language=objc)
         #[doc(alias = "NSEventMaskMouseEntered")]
         const MouseEntered = 1<<NSEventType::MouseEntered.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/mouseexited?language=objc)
         #[doc(alias = "NSEventMaskMouseExited")]
         const MouseExited = 1<<NSEventType::MouseExited.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/keydown?language=objc)
         #[doc(alias = "NSEventMaskKeyDown")]
         const KeyDown = 1<<NSEventType::KeyDown.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/keyup?language=objc)
         #[doc(alias = "NSEventMaskKeyUp")]
         const KeyUp = 1<<NSEventType::KeyUp.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/flagschanged?language=objc)
         #[doc(alias = "NSEventMaskFlagsChanged")]
         const FlagsChanged = 1<<NSEventType::FlagsChanged.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/appkitdefined?language=objc)
         #[doc(alias = "NSEventMaskAppKitDefined")]
         const AppKitDefined = 1<<NSEventType::AppKitDefined.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/systemdefined?language=objc)
         #[doc(alias = "NSEventMaskSystemDefined")]
         const SystemDefined = 1<<NSEventType::SystemDefined.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/applicationdefined?language=objc)
         #[doc(alias = "NSEventMaskApplicationDefined")]
         const ApplicationDefined = 1<<NSEventType::ApplicationDefined.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/periodic?language=objc)
         #[doc(alias = "NSEventMaskPeriodic")]
         const Periodic = 1<<NSEventType::Periodic.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/cursorupdate?language=objc)
         #[doc(alias = "NSEventMaskCursorUpdate")]
         const CursorUpdate = 1<<NSEventType::CursorUpdate.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/scrollwheel?language=objc)
         #[doc(alias = "NSEventMaskScrollWheel")]
         const ScrollWheel = 1<<NSEventType::ScrollWheel.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/tabletpoint?language=objc)
         #[doc(alias = "NSEventMaskTabletPoint")]
         const TabletPoint = 1<<NSEventType::TabletPoint.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/tabletproximity?language=objc)
         #[doc(alias = "NSEventMaskTabletProximity")]
         const TabletProximity = 1<<NSEventType::TabletProximity.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/othermousedown?language=objc)
         #[doc(alias = "NSEventMaskOtherMouseDown")]
         const OtherMouseDown = 1<<NSEventType::OtherMouseDown.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/othermouseup?language=objc)
         #[doc(alias = "NSEventMaskOtherMouseUp")]
         const OtherMouseUp = 1<<NSEventType::OtherMouseUp.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/othermousedragged?language=objc)
         #[doc(alias = "NSEventMaskOtherMouseDragged")]
         const OtherMouseDragged = 1<<NSEventType::OtherMouseDragged.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/gesture?language=objc)
         #[doc(alias = "NSEventMaskGesture")]
         const Gesture = 1<<NSEventType::Gesture.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/magnify?language=objc)
         #[doc(alias = "NSEventMaskMagnify")]
         const Magnify = 1<<NSEventType::Magnify.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/swipe?language=objc)
         #[doc(alias = "NSEventMaskSwipe")]
         const Swipe = 1<<NSEventType::Swipe.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/rotate?language=objc)
         #[doc(alias = "NSEventMaskRotate")]
         const Rotate = 1<<NSEventType::Rotate.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/begingesture?language=objc)
         #[doc(alias = "NSEventMaskBeginGesture")]
         const BeginGesture = 1<<NSEventType::BeginGesture.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/endgesture?language=objc)
         #[doc(alias = "NSEventMaskEndGesture")]
         const EndGesture = 1<<NSEventType::EndGesture.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/smartmagnify?language=objc)
         #[doc(alias = "NSEventMaskSmartMagnify")]
         const SmartMagnify = 1<<NSEventType::SmartMagnify.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/pressure?language=objc)
         #[doc(alias = "NSEventMaskPressure")]
         const Pressure = 1<<NSEventType::Pressure.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/directtouch?language=objc)
         #[doc(alias = "NSEventMaskDirectTouch")]
         const DirectTouch = 1<<NSEventType::DirectTouch.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/changemode?language=objc)
         #[doc(alias = "NSEventMaskChangeMode")]
         const ChangeMode = 1<<NSEventType::ChangeMode.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/mousecancelled?language=objc)
         #[doc(alias = "NSEventMaskMouseCancelled")]
         const MouseCancelled = 1<<NSEventType::MouseCancelled.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/any?language=objc)
         #[doc(alias = "NSEventMaskAny")]
         const Any = NSUIntegerMax as _;
     }
@@ -385,22 +455,31 @@ impl NSEventMask {
 pub struct NSEventModifierFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventModifierFlags: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/capslock?language=objc)
         #[doc(alias = "NSEventModifierFlagCapsLock")]
         const CapsLock = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/shift?language=objc)
         #[doc(alias = "NSEventModifierFlagShift")]
         const Shift = 1<<17;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/control?language=objc)
         #[doc(alias = "NSEventModifierFlagControl")]
         const Control = 1<<18;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/option?language=objc)
         #[doc(alias = "NSEventModifierFlagOption")]
         const Option = 1<<19;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/command?language=objc)
         #[doc(alias = "NSEventModifierFlagCommand")]
         const Command = 1<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/numericpad?language=objc)
         #[doc(alias = "NSEventModifierFlagNumericPad")]
         const NumericPad = 1<<21;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/help?language=objc)
         #[doc(alias = "NSEventModifierFlagHelp")]
         const Help = 1<<22;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/function?language=objc)
         #[doc(alias = "NSEventModifierFlagFunction")]
         const Function = 1<<23;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/deviceindependentflagsmask?language=objc)
         #[doc(alias = "NSEventModifierFlagDeviceIndependentFlagsMask")]
         const DeviceIndependentFlagsMask = 0xffff0000;
     }
@@ -464,12 +543,16 @@ pub static NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPointingDeviceType(pub NSUInteger);
 impl NSPointingDeviceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.enum/unknown?language=objc)
     #[doc(alias = "NSPointingDeviceTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.enum/pen?language=objc)
     #[doc(alias = "NSPointingDeviceTypePen")]
     pub const Pen: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.enum/cursor?language=objc)
     #[doc(alias = "NSPointingDeviceTypeCursor")]
     pub const Cursor: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.enum/eraser?language=objc)
     #[doc(alias = "NSPointingDeviceTypeEraser")]
     pub const Eraser: Self = Self(3);
 }
@@ -509,10 +592,13 @@ pub static NSEraserPointingDevice: NSPointingDeviceType =
 pub struct NSEventButtonMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventButtonMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/buttonmask-swift.struct/pentip?language=objc)
         #[doc(alias = "NSEventButtonMaskPenTip")]
         const PenTip = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/buttonmask-swift.struct/penlowerside?language=objc)
         #[doc(alias = "NSEventButtonMaskPenLowerSide")]
         const PenLowerSide = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/buttonmask-swift.struct/penupperside?language=objc)
         #[doc(alias = "NSEventButtonMaskPenUpperSide")]
         const PenUpperSide = 4;
     }
@@ -547,18 +633,25 @@ pub static NSPenUpperSideMask: NSEventButtonMask =
 pub struct NSEventPhase(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventPhase: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventphase/nseventphasenone?language=objc)
         #[doc(alias = "NSEventPhaseNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/began?language=objc)
         #[doc(alias = "NSEventPhaseBegan")]
         const Began = 0x1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/stationary?language=objc)
         #[doc(alias = "NSEventPhaseStationary")]
         const Stationary = 0x1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/changed?language=objc)
         #[doc(alias = "NSEventPhaseChanged")]
         const Changed = 0x1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/ended?language=objc)
         #[doc(alias = "NSEventPhaseEnded")]
         const Ended = 0x1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/cancelled?language=objc)
         #[doc(alias = "NSEventPhaseCancelled")]
         const Cancelled = 0x1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/maybegin?language=objc)
         #[doc(alias = "NSEventPhaseMayBegin")]
         const MayBegin = 0x1<<5;
     }
@@ -578,10 +671,13 @@ unsafe impl RefEncode for NSEventPhase {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventGestureAxis(pub NSInteger);
 impl NSEventGestureAxis {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/gestureaxis/none?language=objc)
     #[doc(alias = "NSEventGestureAxisNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/gestureaxis/horizontal?language=objc)
     #[doc(alias = "NSEventGestureAxisHorizontal")]
     pub const Horizontal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/gestureaxis/vertical?language=objc)
     #[doc(alias = "NSEventGestureAxisVertical")]
     pub const Vertical: Self = Self(2);
 }
@@ -601,8 +697,10 @@ unsafe impl RefEncode for NSEventGestureAxis {
 pub struct NSEventSwipeTrackingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventSwipeTrackingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/swipetrackingoptions/lockdirection?language=objc)
         #[doc(alias = "NSEventSwipeTrackingLockDirection")]
         const LockDirection = 0x1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/swipetrackingoptions/clampgestureamount?language=objc)
         #[doc(alias = "NSEventSwipeTrackingClampGestureAmount")]
         const ClampGestureAmount = 0x1<<1;
     }
@@ -622,24 +720,34 @@ unsafe impl RefEncode for NSEventSwipeTrackingOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventSubtype(pub c_short);
 impl NSEventSubtype {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/windowexposed?language=objc)
     #[doc(alias = "NSEventSubtypeWindowExposed")]
     pub const WindowExposed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/applicationactivated?language=objc)
     #[doc(alias = "NSEventSubtypeApplicationActivated")]
     pub const ApplicationActivated: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/applicationdeactivated?language=objc)
     #[doc(alias = "NSEventSubtypeApplicationDeactivated")]
     pub const ApplicationDeactivated: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/windowmoved?language=objc)
     #[doc(alias = "NSEventSubtypeWindowMoved")]
     pub const WindowMoved: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/screenchanged?language=objc)
     #[doc(alias = "NSEventSubtypeScreenChanged")]
     pub const ScreenChanged: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/poweroff?language=objc)
     #[doc(alias = "NSEventSubtypePowerOff")]
     pub const PowerOff: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/mouseevent?language=objc)
     #[doc(alias = "NSEventSubtypeMouseEvent")]
     pub const MouseEvent: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/tabletpoint?language=objc)
     #[doc(alias = "NSEventSubtypeTabletPoint")]
     pub const TabletPoint: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/tabletproximity?language=objc)
     #[doc(alias = "NSEventSubtypeTabletProximity")]
     pub const TabletProximity: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/touch?language=objc)
     #[doc(alias = "NSEventSubtypeTouch")]
     pub const Touch: Self = Self(3);
 }
@@ -708,18 +816,25 @@ pub static NSTouchEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPressureBehavior(pub NSInteger);
 impl NSPressureBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/unknown?language=objc)
     #[doc(alias = "NSPressureBehaviorUnknown")]
     pub const Unknown: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primarydefault?language=objc)
     #[doc(alias = "NSPressureBehaviorPrimaryDefault")]
     pub const PrimaryDefault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primaryclick?language=objc)
     #[doc(alias = "NSPressureBehaviorPrimaryClick")]
     pub const PrimaryClick: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primarygeneric?language=objc)
     #[doc(alias = "NSPressureBehaviorPrimaryGeneric")]
     pub const PrimaryGeneric: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primaryaccelerator?language=objc)
     #[doc(alias = "NSPressureBehaviorPrimaryAccelerator")]
     pub const PrimaryAccelerator: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primarydeepclick?language=objc)
     #[doc(alias = "NSPressureBehaviorPrimaryDeepClick")]
     pub const PrimaryDeepClick: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primarydeepdrag?language=objc)
     #[doc(alias = "NSPressureBehaviorPrimaryDeepDrag")]
     pub const PrimaryDeepDrag: Self = Self(6);
 }

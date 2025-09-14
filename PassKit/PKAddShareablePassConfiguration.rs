@@ -259,8 +259,10 @@ impl PKShareablePassMetadata {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddShareablePassConfigurationPrimaryAction(pub NSUInteger);
 impl PKAddShareablePassConfigurationPrimaryAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddshareablepassconfigurationprimaryaction/add?language=objc)
     #[doc(alias = "PKAddShareablePassConfigurationPrimaryActionAdd")]
     pub const Add: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddshareablepassconfigurationprimaryaction/share?language=objc)
     #[doc(alias = "PKAddShareablePassConfigurationPrimaryActionShare")]
     pub const Share: Self = Self(1);
 }

@@ -14,6 +14,8 @@ use crate::*;
 pub struct ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle(pub NSInteger);
 impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle {
     /// Perform a request using the standard presentation style. This is the default style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialregistrationrequest/requeststyle-swift.enum/standard?language=objc)
     #[doc(alias = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyleStandard")]
     pub const Standard: Self = Self(0);
     /// Perform a conditional request. This style of request is meant to opportunistically add passkeys to existing
@@ -24,6 +26,8 @@ impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle {
     /// may proceed automatically, without further user interaction. If any of the internal conditions are not met,
     /// this request will return an error without showing any UI to the user, and may be retried the next time they
     /// sign in.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialregistrationrequest/requeststyle-swift.enum/conditional?language=objc)
     #[doc(alias = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyleConditional")]
     pub const Conditional: Self = Self(1);
 }

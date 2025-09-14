@@ -16,6 +16,8 @@ use crate::*;
 pub struct CNPostalAddressFormatterStyle(pub NSInteger);
 impl CNPostalAddressFormatterStyle {
     /// Combine the postal address components into a multi-line mailing address.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatterstyle/mailingaddress?language=objc)
     #[doc(alias = "CNPostalAddressFormatterStyleMailingAddress")]
     pub const MailingAddress: Self = Self(0);
 }

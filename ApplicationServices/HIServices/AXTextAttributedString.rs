@@ -301,12 +301,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXUnderlineStyle(pub u32);
 impl AXUnderlineStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axunderlinestyle/kaxunderlinestylenone?language=objc)
     #[doc(alias = "kAXUnderlineStyleNone")]
     pub const None: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axunderlinestyle/kaxunderlinestylesingle?language=objc)
     #[doc(alias = "kAXUnderlineStyleSingle")]
     pub const Single: Self = Self(0x1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axunderlinestyle/kaxunderlinestylethick?language=objc)
     #[doc(alias = "kAXUnderlineStyleThick")]
     pub const Thick: Self = Self(0x2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axunderlinestyle/kaxunderlinestyledouble?language=objc)
     #[doc(alias = "kAXUnderlineStyleDouble")]
     pub const Double: Self = Self(0x9);
 }

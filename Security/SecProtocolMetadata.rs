@@ -44,6 +44,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_negotiated_protocol(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol")]
     #[deprecated]
     #[inline]
@@ -68,6 +70,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_copy_negotiated_protocol(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_copy_negotiated_protocol")]
     #[inline]
     pub unsafe fn copy_negotiated_protocol(metadata: sec_protocol_metadata_t) -> *const c_char {
@@ -90,6 +94,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_negotiated_tls_protocol_version(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -115,6 +121,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_negotiated_protocol_version(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
@@ -139,6 +147,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_negotiated_tls_ciphersuite(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_ciphersuite")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -164,6 +174,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_negotiated_ciphersuite(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_negotiated_ciphersuite")]
     #[cfg(feature = "CipherSuite")]
     #[deprecated]
@@ -188,6 +200,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_early_data_accepted(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_early_data_accepted")]
     #[inline]
     pub unsafe fn early_data_accepted(metadata: sec_protocol_metadata_t) -> bool {
@@ -213,6 +227,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_access_peer_certificate_chain(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_access_peer_certificate_chain")]
     #[cfg(all(feature = "SecProtocolTypes", feature = "block2"))]
     #[inline]
@@ -244,6 +260,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_access_supported_signature_algorithms(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_access_supported_signature_algorithms")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -274,6 +292,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_server_name(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_server_name")]
     #[deprecated]
     #[inline]
@@ -301,6 +321,8 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_copy_server_name(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_copy_server_name")]
     #[inline]
     pub unsafe fn copy_server_name(metadata: sec_protocol_metadata_t) -> *const c_char {
@@ -328,6 +350,8 @@ impl sec_protocol_metadata {
     ///
     /// - `metadata_a` must be a valid pointer.
     /// - `metadata_b` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_peers_are_equal(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_peers_are_equal")]
     #[inline]
     pub unsafe fn peers_are_equal(
@@ -362,6 +386,8 @@ impl sec_protocol_metadata {
     ///
     /// - `metadata_a` must be a valid pointer.
     /// - `metadata_b` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_challenge_parameters_are_equal(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_challenge_parameters_are_equal")]
     #[inline]
     pub unsafe fn challenge_parameters_are_equal(

@@ -21,10 +21,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct QLThumbnailRepresentationType(pub NSInteger);
 impl QLThumbnailRepresentationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/representationtype/icon?language=objc)
     #[doc(alias = "QLThumbnailRepresentationTypeIcon")]
     pub const Icon: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/representationtype/lowqualitythumbnail?language=objc)
     #[doc(alias = "QLThumbnailRepresentationTypeLowQualityThumbnail")]
     pub const LowQualityThumbnail: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/representationtype/thumbnail?language=objc)
     #[doc(alias = "QLThumbnailRepresentationTypeThumbnail")]
     pub const Thumbnail: Self = Self(2);
 }

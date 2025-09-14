@@ -17,10 +17,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceObjectHorizontalAlignment(pub NSInteger);
 impl WKInterfaceObjectHorizontalAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjecthorizontalalignment/left?language=objc)
     #[doc(alias = "WKInterfaceObjectHorizontalAlignmentLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjecthorizontalalignment/center?language=objc)
     #[doc(alias = "WKInterfaceObjectHorizontalAlignmentCenter")]
     pub const Center: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjecthorizontalalignment/right?language=objc)
     #[doc(alias = "WKInterfaceObjectHorizontalAlignmentRight")]
     pub const Right: Self = Self(2);
 }
@@ -39,10 +42,13 @@ unsafe impl RefEncode for WKInterfaceObjectHorizontalAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceObjectVerticalAlignment(pub NSInteger);
 impl WKInterfaceObjectVerticalAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjectverticalalignment/top?language=objc)
     #[doc(alias = "WKInterfaceObjectVerticalAlignmentTop")]
     pub const Top: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjectverticalalignment/center?language=objc)
     #[doc(alias = "WKInterfaceObjectVerticalAlignmentCenter")]
     pub const Center: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjectverticalalignment/bottom?language=objc)
     #[doc(alias = "WKInterfaceObjectVerticalAlignmentBottom")]
     pub const Bottom: Self = Self(2);
 }

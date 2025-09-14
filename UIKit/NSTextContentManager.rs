@@ -14,8 +14,10 @@ use crate::*;
 pub struct NSTextContentManagerEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextContentManagerEnumerationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontentmanagerenumerationoptions/nstextcontentmanagerenumerationoptionsnone?language=objc)
         #[doc(alias = "NSTextContentManagerEnumerationOptionsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontentmanager/enumerationoptions/reverse?language=objc)
         #[doc(alias = "NSTextContentManagerEnumerationOptionsReverse")]
         const Reverse = 1<<0;
     }

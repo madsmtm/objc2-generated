@@ -2912,10 +2912,13 @@ impl SCNText {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNChamferMode(pub NSInteger);
 impl SCNChamferMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnchamfermode/both?language=objc)
     #[doc(alias = "SCNChamferModeBoth")]
     pub const Both: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnchamfermode/front?language=objc)
     #[doc(alias = "SCNChamferModeFront")]
     pub const Front: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnchamfermode/back?language=objc)
     #[doc(alias = "SCNChamferModeBack")]
     pub const Back: Self = Self(2);
 }

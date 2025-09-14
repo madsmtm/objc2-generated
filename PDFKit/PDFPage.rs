@@ -21,26 +21,37 @@ use crate::*;
 pub struct PDFAreaOfInterest(pub NSInteger);
 bitflags::bitflags! {
     impl PDFAreaOfInterest: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/kpdfnoarea?language=objc)
         #[doc(alias = "kPDFNoArea")]
         const NoArea = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/pagearea?language=objc)
         #[doc(alias = "kPDFPageArea")]
         const PageArea = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/textarea?language=objc)
         #[doc(alias = "kPDFTextArea")]
         const TextArea = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/annotationarea?language=objc)
         #[doc(alias = "kPDFAnnotationArea")]
         const AnnotationArea = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/linkarea?language=objc)
         #[doc(alias = "kPDFLinkArea")]
         const LinkArea = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/controlarea?language=objc)
         #[doc(alias = "kPDFControlArea")]
         const ControlArea = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/textfieldarea?language=objc)
         #[doc(alias = "kPDFTextFieldArea")]
         const TextFieldArea = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/iconarea?language=objc)
         #[doc(alias = "kPDFIconArea")]
         const IconArea = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/popuparea?language=objc)
         #[doc(alias = "kPDFPopupArea")]
         const PopupArea = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/imagearea?language=objc)
         #[doc(alias = "kPDFImageArea")]
         const ImageArea = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/anyarea?language=objc)
         #[doc(alias = "kPDFAnyArea")]
         const AnyArea = NSIntegerMax as _;
     }
@@ -60,14 +71,19 @@ unsafe impl RefEncode for PDFAreaOfInterest {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDisplayBox(pub NSInteger);
 impl PDFDisplayBox {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/mediabox?language=objc)
     #[doc(alias = "kPDFDisplayBoxMediaBox")]
     pub const MediaBox: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/cropbox?language=objc)
     #[doc(alias = "kPDFDisplayBoxCropBox")]
     pub const CropBox: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/bleedbox?language=objc)
     #[doc(alias = "kPDFDisplayBoxBleedBox")]
     pub const BleedBox: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/trimbox?language=objc)
     #[doc(alias = "kPDFDisplayBoxTrimBox")]
     pub const TrimBox: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/artbox?language=objc)
     #[doc(alias = "kPDFDisplayBoxArtBox")]
     pub const ArtBox: Self = Self(4);
 }

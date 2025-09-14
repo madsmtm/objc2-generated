@@ -33,9 +33,13 @@ unsafe impl RefEncode for MTL4TimestampHeapEntry {
 pub struct MTL4CounterHeapType(pub NSInteger);
 impl MTL4CounterHeapType {
     /// Specifies that ``MTL4CounterHeap`` entries contain invalid data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4counterheaptype/invalid?language=objc)
     #[doc(alias = "MTL4CounterHeapTypeInvalid")]
     pub const Invalid: Self = Self(0);
     /// Specifies that ``MTL4CounterHeap`` entries contain GPU timestamp data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4counterheaptype/timestamp?language=objc)
     #[doc(alias = "MTL4CounterHeapTypeTimestamp")]
     pub const Timestamp: Self = Self(1);
 }
@@ -64,11 +68,15 @@ impl MTL4TimestampGranularity {
     ///
     /// Using this granularity incurs in the lowest overhead, at the cost of precision. For example, it may sample at
     /// command encoder boundaries.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4timestampgranularity/relaxed?language=objc)
     #[doc(alias = "MTL4TimestampGranularityRelaxed")]
     pub const Relaxed: Self = Self(0);
     /// A timestamp as precise as possible.
     ///
     /// Using this granularity may incur in a performance penalty, for example, it may cause splitting of command encoders.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4timestampgranularity/precise?language=objc)
     #[doc(alias = "MTL4TimestampGranularityPrecise")]
     pub const Precise: Self = Self(1);
 }

@@ -7,6 +7,7 @@ use objc2_core_media::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtcopylocalizednameformediatype(_:)?language=objc)
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe extern "C-unwind" fn MTCopyLocalizedNameForMediaType(
@@ -19,6 +20,7 @@ pub unsafe extern "C-unwind" fn MTCopyLocalizedNameForMediaType(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtcopylocalizednameformediasubtype(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe extern "C-unwind" fn MTCopyLocalizedNameForMediaSubType(

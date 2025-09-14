@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAnimationCurve(pub NSUInteger);
 impl NSAnimationCurve {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/curve/easeinout?language=objc)
     #[doc(alias = "NSAnimationEaseInOut")]
     pub const EaseInOut: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/curve/easein?language=objc)
     #[doc(alias = "NSAnimationEaseIn")]
     pub const EaseIn: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/curve/easeout?language=objc)
     #[doc(alias = "NSAnimationEaseOut")]
     pub const EaseOut: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/curve/linear?language=objc)
     #[doc(alias = "NSAnimationLinear")]
     pub const Linear: Self = Self(3);
 }
@@ -37,10 +41,13 @@ unsafe impl RefEncode for NSAnimationCurve {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAnimationBlockingMode(pub NSUInteger);
 impl NSAnimationBlockingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/blockingmode/blocking?language=objc)
     #[doc(alias = "NSAnimationBlocking")]
     pub const Blocking: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/blockingmode/nonblocking?language=objc)
     #[doc(alias = "NSAnimationNonblocking")]
     pub const Nonblocking: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/blockingmode/nonblockingthreaded?language=objc)
     #[doc(alias = "NSAnimationNonblockingThreaded")]
     pub const NonblockingThreaded: Self = Self(2);
 }

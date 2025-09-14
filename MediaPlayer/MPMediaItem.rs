@@ -19,30 +19,43 @@ use crate::*;
 pub struct MPMediaType(pub NSUInteger);
 bitflags::bitflags! {
     impl MPMediaType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/music?language=objc)
         #[doc(alias = "MPMediaTypeMusic")]
         const Music = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/podcast?language=objc)
         #[doc(alias = "MPMediaTypePodcast")]
         const Podcast = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/audiobook?language=objc)
         #[doc(alias = "MPMediaTypeAudioBook")]
         const AudioBook = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/audioitunesu?language=objc)
         #[doc(alias = "MPMediaTypeAudioITunesU")]
         const AudioITunesU = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/anyaudio?language=objc)
         #[doc(alias = "MPMediaTypeAnyAudio")]
         const AnyAudio = 0x00ff;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/movie?language=objc)
         #[doc(alias = "MPMediaTypeMovie")]
         const Movie = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/tvshow?language=objc)
         #[doc(alias = "MPMediaTypeTVShow")]
         const TVShow = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/videopodcast?language=objc)
         #[doc(alias = "MPMediaTypeVideoPodcast")]
         const VideoPodcast = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/musicvideo?language=objc)
         #[doc(alias = "MPMediaTypeMusicVideo")]
         const MusicVideo = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/videoitunesu?language=objc)
         #[doc(alias = "MPMediaTypeVideoITunesU")]
         const VideoITunesU = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/homevideo?language=objc)
         #[doc(alias = "MPMediaTypeHomeVideo")]
         const HomeVideo = 1<<13;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/anyvideo?language=objc)
         #[doc(alias = "MPMediaTypeAnyVideo")]
         const AnyVideo = 0xff00;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/any?language=objc)
         #[doc(alias = "MPMediaTypeAny")]
         const Any = !0;
     }

@@ -218,8 +218,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLCameraProjection(pub NSUInteger);
 impl MDLCameraProjection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlcameraprojection/perspective?language=objc)
     #[doc(alias = "MDLCameraProjectionPerspective")]
     pub const Perspective: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlcameraprojection/orthographic?language=objc)
     #[doc(alias = "MDLCameraProjectionOrthographic")]
     pub const Orthographic: Self = Self(1);
 }

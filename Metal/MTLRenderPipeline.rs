@@ -13,42 +13,61 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBlendFactor(pub NSUInteger);
 impl MTLBlendFactor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/zero?language=objc)
     #[doc(alias = "MTLBlendFactorZero")]
     pub const Zero: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/one?language=objc)
     #[doc(alias = "MTLBlendFactorOne")]
     pub const One: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/sourcecolor?language=objc)
     #[doc(alias = "MTLBlendFactorSourceColor")]
     pub const SourceColor: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminussourcecolor?language=objc)
     #[doc(alias = "MTLBlendFactorOneMinusSourceColor")]
     pub const OneMinusSourceColor: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/sourcealpha?language=objc)
     #[doc(alias = "MTLBlendFactorSourceAlpha")]
     pub const SourceAlpha: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminussourcealpha?language=objc)
     #[doc(alias = "MTLBlendFactorOneMinusSourceAlpha")]
     pub const OneMinusSourceAlpha: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/destinationcolor?language=objc)
     #[doc(alias = "MTLBlendFactorDestinationColor")]
     pub const DestinationColor: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminusdestinationcolor?language=objc)
     #[doc(alias = "MTLBlendFactorOneMinusDestinationColor")]
     pub const OneMinusDestinationColor: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/destinationalpha?language=objc)
     #[doc(alias = "MTLBlendFactorDestinationAlpha")]
     pub const DestinationAlpha: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminusdestinationalpha?language=objc)
     #[doc(alias = "MTLBlendFactorOneMinusDestinationAlpha")]
     pub const OneMinusDestinationAlpha: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/sourcealphasaturated?language=objc)
     #[doc(alias = "MTLBlendFactorSourceAlphaSaturated")]
     pub const SourceAlphaSaturated: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/blendcolor?language=objc)
     #[doc(alias = "MTLBlendFactorBlendColor")]
     pub const BlendColor: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminusblendcolor?language=objc)
     #[doc(alias = "MTLBlendFactorOneMinusBlendColor")]
     pub const OneMinusBlendColor: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/blendalpha?language=objc)
     #[doc(alias = "MTLBlendFactorBlendAlpha")]
     pub const BlendAlpha: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminusblendalpha?language=objc)
     #[doc(alias = "MTLBlendFactorOneMinusBlendAlpha")]
     pub const OneMinusBlendAlpha: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/source1color?language=objc)
     #[doc(alias = "MTLBlendFactorSource1Color")]
     pub const Source1Color: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminussource1color?language=objc)
     #[doc(alias = "MTLBlendFactorOneMinusSource1Color")]
     pub const OneMinusSource1Color: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/source1alpha?language=objc)
     #[doc(alias = "MTLBlendFactorSource1Alpha")]
     pub const Source1Alpha: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminussource1alpha?language=objc)
     #[doc(alias = "MTLBlendFactorOneMinusSource1Alpha")]
     pub const OneMinusSource1Alpha: Self = Self(18);
     /// Defers assigning the blend factor.
@@ -56,6 +75,8 @@ impl MTLBlendFactor {
     /// Until you specialize this value in the pipeline state, it:
     /// * behaves as `MTLBlendFactorOne` for `sourceRGBBlendFactor` and `sourceAlphaBlendFactor`
     /// * behaves as `MTLBlendFactorZero` for `destinationRGBBlendFactor` and `destinationAlphaBlendFactor`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/unspecialized?language=objc)
     #[doc(alias = "MTLBlendFactorUnspecialized")]
     pub const Unspecialized: Self = Self(19);
 }
@@ -74,17 +95,24 @@ unsafe impl RefEncode for MTLBlendFactor {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBlendOperation(pub NSUInteger);
 impl MTLBlendOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/add?language=objc)
     #[doc(alias = "MTLBlendOperationAdd")]
     pub const Add: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/subtract?language=objc)
     #[doc(alias = "MTLBlendOperationSubtract")]
     pub const Subtract: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/reversesubtract?language=objc)
     #[doc(alias = "MTLBlendOperationReverseSubtract")]
     pub const ReverseSubtract: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/min?language=objc)
     #[doc(alias = "MTLBlendOperationMin")]
     pub const Min: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/max?language=objc)
     #[doc(alias = "MTLBlendOperationMax")]
     pub const Max: Self = Self(4);
     /// Defers assigning the blend operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/unspecialized?language=objc)
     #[doc(alias = "MTLBlendOperationUnspecialized")]
     pub const Unspecialized: Self = Self(5);
 }
@@ -104,21 +132,29 @@ unsafe impl RefEncode for MTLBlendOperation {
 pub struct MTLColorWriteMask(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLColorWriteMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/mtlcolorwritemasknone?language=objc)
         #[doc(alias = "MTLColorWriteMaskNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/red?language=objc)
         #[doc(alias = "MTLColorWriteMaskRed")]
         const Red = 0x1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/green?language=objc)
         #[doc(alias = "MTLColorWriteMaskGreen")]
         const Green = 0x1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/blue?language=objc)
         #[doc(alias = "MTLColorWriteMaskBlue")]
         const Blue = 0x1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/alpha?language=objc)
         #[doc(alias = "MTLColorWriteMaskAlpha")]
         const Alpha = 0x1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/all?language=objc)
         #[doc(alias = "MTLColorWriteMaskAll")]
         const All = 0xf;
 /// Defers assigning the color write mask.
 ///
 /// Until you specialize this value in the pipeline state, it behaves as `MTLColorWriteMaskAll`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/unspecialized?language=objc)
         #[doc(alias = "MTLColorWriteMaskUnspecialized")]
         const Unspecialized = 0x10;
     }
@@ -138,12 +174,16 @@ unsafe impl RefEncode for MTLColorWriteMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPrimitiveTopologyClass(pub NSUInteger);
 impl MTLPrimitiveTopologyClass {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetopologyclass/unspecified?language=objc)
     #[doc(alias = "MTLPrimitiveTopologyClassUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetopologyclass/point?language=objc)
     #[doc(alias = "MTLPrimitiveTopologyClassPoint")]
     pub const Point: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetopologyclass/line?language=objc)
     #[doc(alias = "MTLPrimitiveTopologyClassLine")]
     pub const Line: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetopologyclass/triangle?language=objc)
     #[doc(alias = "MTLPrimitiveTopologyClassTriangle")]
     pub const Triangle: Self = Self(3);
 }
@@ -162,12 +202,16 @@ unsafe impl RefEncode for MTLPrimitiveTopologyClass {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationPartitionMode(pub NSUInteger);
 impl MTLTessellationPartitionMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/pow2?language=objc)
     #[doc(alias = "MTLTessellationPartitionModePow2")]
     pub const Pow2: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/integer?language=objc)
     #[doc(alias = "MTLTessellationPartitionModeInteger")]
     pub const Integer: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/fractionalodd?language=objc)
     #[doc(alias = "MTLTessellationPartitionModeFractionalOdd")]
     pub const FractionalOdd: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/fractionaleven?language=objc)
     #[doc(alias = "MTLTessellationPartitionModeFractionalEven")]
     pub const FractionalEven: Self = Self(3);
 }
@@ -186,12 +230,16 @@ unsafe impl RefEncode for MTLTessellationPartitionMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationFactorStepFunction(pub NSUInteger);
 impl MTLTessellationFactorStepFunction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorstepfunction/constant?language=objc)
     #[doc(alias = "MTLTessellationFactorStepFunctionConstant")]
     pub const Constant: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorstepfunction/perpatch?language=objc)
     #[doc(alias = "MTLTessellationFactorStepFunctionPerPatch")]
     pub const PerPatch: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorstepfunction/perinstance?language=objc)
     #[doc(alias = "MTLTessellationFactorStepFunctionPerInstance")]
     pub const PerInstance: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorstepfunction/perpatchandperinstance?language=objc)
     #[doc(alias = "MTLTessellationFactorStepFunctionPerPatchAndPerInstance")]
     pub const PerPatchAndPerInstance: Self = Self(3);
 }
@@ -210,6 +258,7 @@ unsafe impl RefEncode for MTLTessellationFactorStepFunction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationFactorFormat(pub NSUInteger);
 impl MTLTessellationFactorFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorformat/half?language=objc)
     #[doc(alias = "MTLTessellationFactorFormatHalf")]
     pub const Half: Self = Self(0);
 }
@@ -228,10 +277,13 @@ unsafe impl RefEncode for MTLTessellationFactorFormat {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationControlPointIndexType(pub NSUInteger);
 impl MTLTessellationControlPointIndexType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationcontrolpointindextype/none?language=objc)
     #[doc(alias = "MTLTessellationControlPointIndexTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationcontrolpointindextype/uint16?language=objc)
     #[doc(alias = "MTLTessellationControlPointIndexTypeUInt16")]
     pub const UInt16: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationcontrolpointindextype/uint32?language=objc)
     #[doc(alias = "MTLTessellationControlPointIndexTypeUInt32")]
     pub const UInt32: Self = Self(2);
 }

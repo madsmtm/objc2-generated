@@ -12,15 +12,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKQuantityAggregationStyle(pub NSInteger);
 impl HKQuantityAggregationStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/cumulative?language=objc)
     #[doc(alias = "HKQuantityAggregationStyleCumulative")]
     pub const Cumulative: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discretearithmetic?language=objc)
     #[doc(alias = "HKQuantityAggregationStyleDiscreteArithmetic")]
     pub const DiscreteArithmetic: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discrete?language=objc)
     #[doc(alias = "HKQuantityAggregationStyleDiscrete")]
     #[deprecated]
     pub const Discrete: Self = Self(HKQuantityAggregationStyle::DiscreteArithmetic.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discretetemporallyweighted?language=objc)
     #[doc(alias = "HKQuantityAggregationStyleDiscreteTemporallyWeighted")]
     pub const DiscreteTemporallyWeighted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discreteequivalentcontinuouslevel?language=objc)
     #[doc(alias = "HKQuantityAggregationStyleDiscreteEquivalentContinuousLevel")]
     pub const DiscreteEquivalentContinuousLevel: Self = Self(3);
 }

@@ -16,28 +16,40 @@ use crate::*;
 pub struct NSFontTraitMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontTraitMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/italicfontmask?language=objc)
         #[doc(alias = "NSItalicFontMask")]
         const ItalicFontMask = 0x00000001;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/boldfontmask?language=objc)
         #[doc(alias = "NSBoldFontMask")]
         const BoldFontMask = 0x00000002;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/unboldfontmask?language=objc)
         #[doc(alias = "NSUnboldFontMask")]
         const UnboldFontMask = 0x00000004;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/nonstandardcharactersetfontmask?language=objc)
         #[doc(alias = "NSNonStandardCharacterSetFontMask")]
         const NonStandardCharacterSetFontMask = 0x00000008;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/narrowfontmask?language=objc)
         #[doc(alias = "NSNarrowFontMask")]
         const NarrowFontMask = 0x00000010;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/expandedfontmask?language=objc)
         #[doc(alias = "NSExpandedFontMask")]
         const ExpandedFontMask = 0x00000020;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/condensedfontmask?language=objc)
         #[doc(alias = "NSCondensedFontMask")]
         const CondensedFontMask = 0x00000040;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/smallcapsfontmask?language=objc)
         #[doc(alias = "NSSmallCapsFontMask")]
         const SmallCapsFontMask = 0x00000080;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/posterfontmask?language=objc)
         #[doc(alias = "NSPosterFontMask")]
         const PosterFontMask = 0x00000100;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/compressedfontmask?language=objc)
         #[doc(alias = "NSCompressedFontMask")]
         const CompressedFontMask = 0x00000200;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/fixedpitchfontmask?language=objc)
         #[doc(alias = "NSFixedPitchFontMask")]
         const FixedPitchFontMask = 0x00000400;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/unitalicfontmask?language=objc)
         #[doc(alias = "NSUnitalicFontMask")]
         const UnitalicFontMask = 0x01000000;
     }
@@ -58,6 +70,7 @@ unsafe impl RefEncode for NSFontTraitMask {
 pub struct NSFontCollectionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontCollectionOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionoptions/applicationonlymask?language=objc)
         #[doc(alias = "NSFontCollectionApplicationOnlyMask")]
         const ApplicationOnlyMask = 1<<0;
     }
@@ -77,20 +90,28 @@ unsafe impl RefEncode for NSFontCollectionOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontAction(pub NSUInteger);
 impl NSFontAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/nofontchangeaction?language=objc)
     #[doc(alias = "NSNoFontChangeAction")]
     pub const NoFontChangeAction: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/viapanelfontaction?language=objc)
     #[doc(alias = "NSViaPanelFontAction")]
     pub const ViaPanelFontAction: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/addtraitfontaction?language=objc)
     #[doc(alias = "NSAddTraitFontAction")]
     pub const AddTraitFontAction: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/sizeupfontaction?language=objc)
     #[doc(alias = "NSSizeUpFontAction")]
     pub const SizeUpFontAction: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/sizedownfontaction?language=objc)
     #[doc(alias = "NSSizeDownFontAction")]
     pub const SizeDownFontAction: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/heavierfontaction?language=objc)
     #[doc(alias = "NSHeavierFontAction")]
     pub const HeavierFontAction: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/lighterfontaction?language=objc)
     #[doc(alias = "NSLighterFontAction")]
     pub const LighterFontAction: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/removetraitfontaction?language=objc)
     #[doc(alias = "NSRemoveTraitFontAction")]
     pub const RemoveTraitFontAction: Self = Self(7);
 }

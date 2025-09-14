@@ -104,14 +104,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCControllerPlayerIndex(pub NSInteger);
 impl GCControllerPlayerIndex {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex/indexunset?language=objc)
     #[doc(alias = "GCControllerPlayerIndexUnset")]
     pub const IndexUnset: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex/index1?language=objc)
     #[doc(alias = "GCControllerPlayerIndex1")]
     pub const Index1: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex/index2?language=objc)
     #[doc(alias = "GCControllerPlayerIndex2")]
     pub const Index2: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex/index3?language=objc)
     #[doc(alias = "GCControllerPlayerIndex3")]
     pub const Index3: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex/index4?language=objc)
     #[doc(alias = "GCControllerPlayerIndex4")]
     pub const Index4: Self = Self(3);
 }

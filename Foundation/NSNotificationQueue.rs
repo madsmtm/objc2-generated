@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPostingStyle(pub NSUInteger);
 impl NSPostingStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/notificationqueue/postingstyle/whenidle?language=objc)
     #[doc(alias = "NSPostWhenIdle")]
     pub const PostWhenIdle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/notificationqueue/postingstyle/asap?language=objc)
     #[doc(alias = "NSPostASAP")]
     pub const PostASAP: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/notificationqueue/postingstyle/now?language=objc)
     #[doc(alias = "NSPostNow")]
     pub const PostNow: Self = Self(3);
 }
@@ -35,10 +38,13 @@ unsafe impl RefEncode for NSPostingStyle {
 pub struct NSNotificationCoalescing(pub NSUInteger);
 bitflags::bitflags! {
     impl NSNotificationCoalescing: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/notificationqueue/notificationcoalescing/none?language=objc)
         #[doc(alias = "NSNotificationNoCoalescing")]
         const NoCoalescing = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/notificationqueue/notificationcoalescing/onname?language=objc)
         #[doc(alias = "NSNotificationCoalescingOnName")]
         const CoalescingOnName = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/notificationqueue/notificationcoalescing/onsender?language=objc)
         #[doc(alias = "NSNotificationCoalescingOnSender")]
         const CoalescingOnSender = 2;
     }

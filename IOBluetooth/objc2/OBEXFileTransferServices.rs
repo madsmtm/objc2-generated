@@ -462,8 +462,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct FTSFileType(pub c_uint);
 impl FTSFileType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsfiletypefolder?language=objc)
     #[doc(alias = "kFTSFileTypeFolder")]
     pub const Folder: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsfiletypefile?language=objc)
     #[doc(alias = "kFTSFileTypeFile")]
     pub const File: Self = Self(2);
 }

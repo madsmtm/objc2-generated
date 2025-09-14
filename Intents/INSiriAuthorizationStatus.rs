@@ -10,12 +10,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSiriAuthorizationStatus(pub NSInteger);
 impl INSiriAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insiriauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "INSiriAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insiriauthorizationstatus/restricted?language=objc)
     #[doc(alias = "INSiriAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insiriauthorizationstatus/denied?language=objc)
     #[doc(alias = "INSiriAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insiriauthorizationstatus/authorized?language=objc)
     #[doc(alias = "INSiriAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }

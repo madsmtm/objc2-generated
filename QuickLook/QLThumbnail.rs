@@ -31,6 +31,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for QLThumbnail {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailgettypeid()?language=objc)
     #[doc(alias = "QLThumbnailGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -42,6 +43,8 @@ unsafe impl ConcreteType for QLThumbnail {
 }
 
 impl QLThumbnail {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailcreate(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -70,6 +73,7 @@ impl QLThumbnail {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailcopydocumenturl(_:)?language=objc)
     #[doc(alias = "QLThumbnailCopyDocumentURL")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
@@ -81,6 +85,7 @@ impl QLThumbnail {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailgetmaximumsize(_:)?language=objc)
     #[doc(alias = "QLThumbnailGetMaximumSize")]
     #[deprecated = "Use QLThumbnailGenerationRequest in QuickLookThumbnailing."]
     #[inline]
@@ -91,6 +96,7 @@ impl QLThumbnail {
         unsafe { QLThumbnailGetMaximumSize(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailcopyoptions(_:)?language=objc)
     #[doc(alias = "QLThumbnailCopyOptions")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
@@ -102,6 +108,8 @@ impl QLThumbnail {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnaildispatchasync(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -126,6 +134,7 @@ impl QLThumbnail {
         unsafe { QLThumbnailDispatchAsync(self, queue, completion) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailcopyimage(_:)?language=objc)
     #[doc(alias = "QLThumbnailCopyImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
@@ -138,6 +147,7 @@ impl QLThumbnail {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailgetcontentrect(_:)?language=objc)
     #[doc(alias = "QLThumbnailGetContentRect")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
@@ -148,6 +158,7 @@ impl QLThumbnail {
         unsafe { QLThumbnailGetContentRect(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailcancel(_:)?language=objc)
     #[doc(alias = "QLThumbnailCancel")]
     #[deprecated = "Use [QLThumbnailGenerator cancelRequest:] in QuickLookThumbnailing."]
     #[inline]
@@ -158,6 +169,7 @@ impl QLThumbnail {
         unsafe { QLThumbnailCancel(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailiscancelled(_:)?language=objc)
     #[doc(alias = "QLThumbnailIsCancelled")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]

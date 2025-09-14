@@ -32,14 +32,19 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPathDrawingMode(pub i32);
 impl CGPathDrawingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/fill?language=objc)
     #[doc(alias = "kCGPathFill")]
     pub const Fill: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/eofill?language=objc)
     #[doc(alias = "kCGPathEOFill")]
     pub const EOFill: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/stroke?language=objc)
     #[doc(alias = "kCGPathStroke")]
     pub const Stroke: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/fillstroke?language=objc)
     #[doc(alias = "kCGPathFillStroke")]
     pub const FillStroke: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/eofillstroke?language=objc)
     #[doc(alias = "kCGPathEOFillStroke")]
     pub const EOFillStroke: Self = Self(4);
 }
@@ -60,20 +65,28 @@ unsafe impl RefEncode for CGPathDrawingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGTextDrawingMode(pub i32);
 impl CGTextDrawingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/fill?language=objc)
     #[doc(alias = "kCGTextFill")]
     pub const Fill: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/stroke?language=objc)
     #[doc(alias = "kCGTextStroke")]
     pub const Stroke: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/fillstroke?language=objc)
     #[doc(alias = "kCGTextFillStroke")]
     pub const FillStroke: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/invisible?language=objc)
     #[doc(alias = "kCGTextInvisible")]
     pub const Invisible: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/fillclip?language=objc)
     #[doc(alias = "kCGTextFillClip")]
     pub const FillClip: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/strokeclip?language=objc)
     #[doc(alias = "kCGTextStrokeClip")]
     pub const StrokeClip: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/fillstrokeclip?language=objc)
     #[doc(alias = "kCGTextFillStrokeClip")]
     pub const FillStrokeClip: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/clip?language=objc)
     #[doc(alias = "kCGTextClip")]
     pub const Clip: Self = Self(7);
 }
@@ -95,9 +108,11 @@ unsafe impl RefEncode for CGTextDrawingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGTextEncoding(pub i32);
 impl CGTextEncoding {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextencoding/encodingfontspecific?language=objc)
     #[doc(alias = "kCGEncodingFontSpecific")]
     #[deprecated = "No longer supported"]
     pub const EncodingFontSpecific: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextencoding/encodingmacroman?language=objc)
     #[doc(alias = "kCGEncodingMacRoman")]
     #[deprecated = "No longer supported"]
     pub const EncodingMacRoman: Self = Self(1);
@@ -119,14 +134,19 @@ unsafe impl RefEncode for CGTextEncoding {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGInterpolationQuality(pub i32);
 impl CGInterpolationQuality {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality/default?language=objc)
     #[doc(alias = "kCGInterpolationDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality/none?language=objc)
     #[doc(alias = "kCGInterpolationNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality/low?language=objc)
     #[doc(alias = "kCGInterpolationLow")]
     pub const Low: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality/medium?language=objc)
     #[doc(alias = "kCGInterpolationMedium")]
     pub const Medium: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality/high?language=objc)
     #[doc(alias = "kCGInterpolationHigh")]
     pub const High: Self = Self(3);
 }
@@ -147,60 +167,88 @@ unsafe impl RefEncode for CGInterpolationQuality {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGBlendMode(pub i32);
 impl CGBlendMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/normal?language=objc)
     #[doc(alias = "kCGBlendModeNormal")]
     pub const Normal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/multiply?language=objc)
     #[doc(alias = "kCGBlendModeMultiply")]
     pub const Multiply: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/screen?language=objc)
     #[doc(alias = "kCGBlendModeScreen")]
     pub const Screen: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/overlay?language=objc)
     #[doc(alias = "kCGBlendModeOverlay")]
     pub const Overlay: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/darken?language=objc)
     #[doc(alias = "kCGBlendModeDarken")]
     pub const Darken: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/lighten?language=objc)
     #[doc(alias = "kCGBlendModeLighten")]
     pub const Lighten: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/colordodge?language=objc)
     #[doc(alias = "kCGBlendModeColorDodge")]
     pub const ColorDodge: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/colorburn?language=objc)
     #[doc(alias = "kCGBlendModeColorBurn")]
     pub const ColorBurn: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/softlight?language=objc)
     #[doc(alias = "kCGBlendModeSoftLight")]
     pub const SoftLight: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/hardlight?language=objc)
     #[doc(alias = "kCGBlendModeHardLight")]
     pub const HardLight: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/difference?language=objc)
     #[doc(alias = "kCGBlendModeDifference")]
     pub const Difference: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/exclusion?language=objc)
     #[doc(alias = "kCGBlendModeExclusion")]
     pub const Exclusion: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/hue?language=objc)
     #[doc(alias = "kCGBlendModeHue")]
     pub const Hue: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/saturation?language=objc)
     #[doc(alias = "kCGBlendModeSaturation")]
     pub const Saturation: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/color?language=objc)
     #[doc(alias = "kCGBlendModeColor")]
     pub const Color: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/luminosity?language=objc)
     #[doc(alias = "kCGBlendModeLuminosity")]
     pub const Luminosity: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/clear?language=objc)
     #[doc(alias = "kCGBlendModeClear")]
     pub const Clear: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/copy?language=objc)
     #[doc(alias = "kCGBlendModeCopy")]
     pub const Copy: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/sourcein?language=objc)
     #[doc(alias = "kCGBlendModeSourceIn")]
     pub const SourceIn: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/sourceout?language=objc)
     #[doc(alias = "kCGBlendModeSourceOut")]
     pub const SourceOut: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/sourceatop?language=objc)
     #[doc(alias = "kCGBlendModeSourceAtop")]
     pub const SourceAtop: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/destinationover?language=objc)
     #[doc(alias = "kCGBlendModeDestinationOver")]
     pub const DestinationOver: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/destinationin?language=objc)
     #[doc(alias = "kCGBlendModeDestinationIn")]
     pub const DestinationIn: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/destinationout?language=objc)
     #[doc(alias = "kCGBlendModeDestinationOut")]
     pub const DestinationOut: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/destinationatop?language=objc)
     #[doc(alias = "kCGBlendModeDestinationAtop")]
     pub const DestinationAtop: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/xor?language=objc)
     #[doc(alias = "kCGBlendModeXOR")]
     pub const XOR: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/plusdarker?language=objc)
     #[doc(alias = "kCGBlendModePlusDarker")]
     pub const PlusDarker: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/pluslighter?language=objc)
     #[doc(alias = "kCGBlendModePlusLighter")]
     pub const PlusLighter: Self = Self(27);
 }
@@ -216,6 +264,7 @@ unsafe impl RefEncode for CGBlendMode {
 }
 
 unsafe impl ConcreteType for CGContext {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/typeid?language=objc)
     #[doc(alias = "CGContextGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -228,6 +277,8 @@ unsafe impl ConcreteType for CGContext {
 
 impl CGContext {
     /// Graphics state functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/savegstate()?language=objc)
     #[doc(alias = "CGContextSaveGState")]
     #[inline]
     pub fn save_g_state(c: Option<&CGContext>) {
@@ -237,6 +288,7 @@ impl CGContext {
         unsafe { CGContextSaveGState(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/restoregstate()?language=objc)
     #[doc(alias = "CGContextRestoreGState")]
     #[inline]
     pub fn restore_g_state(c: Option<&CGContext>) {
@@ -247,6 +299,8 @@ impl CGContext {
     }
 
     /// Coordinate space transformations. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/scaleby(x:y:)?language=objc)
     #[doc(alias = "CGContextScaleCTM")]
     #[inline]
     pub fn scale_ctm(c: Option<&CGContext>, sx: CGFloat, sy: CGFloat) {
@@ -256,6 +310,7 @@ impl CGContext {
         unsafe { CGContextScaleCTM(c, sx, sy) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/translateby(x:y:)?language=objc)
     #[doc(alias = "CGContextTranslateCTM")]
     #[inline]
     pub fn translate_ctm(c: Option<&CGContext>, tx: CGFloat, ty: CGFloat) {
@@ -265,6 +320,7 @@ impl CGContext {
         unsafe { CGContextTranslateCTM(c, tx, ty) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/rotate(by:)?language=objc)
     #[doc(alias = "CGContextRotateCTM")]
     #[inline]
     pub fn rotate_ctm(c: Option<&CGContext>, angle: CGFloat) {
@@ -274,6 +330,7 @@ impl CGContext {
         unsafe { CGContextRotateCTM(c, angle) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/concatenate(_:)?language=objc)
     #[doc(alias = "CGContextConcatCTM")]
     #[inline]
     pub fn concat_ctm(c: Option<&CGContext>, transform: CGAffineTransform) {
@@ -283,6 +340,7 @@ impl CGContext {
         unsafe { CGContextConcatCTM(c, transform) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/ctm?language=objc)
     #[doc(alias = "CGContextGetCTM")]
     #[inline]
     pub fn ctm(c: Option<&CGContext>) -> CGAffineTransform {
@@ -293,6 +351,8 @@ impl CGContext {
     }
 
     /// Drawing attribute functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setlinewidth(_:)?language=objc)
     #[doc(alias = "CGContextSetLineWidth")]
     #[inline]
     pub fn set_line_width(c: Option<&CGContext>, width: CGFloat) {
@@ -302,6 +362,7 @@ impl CGContext {
         unsafe { CGContextSetLineWidth(c, width) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setlinecap(_:)?language=objc)
     #[doc(alias = "CGContextSetLineCap")]
     #[cfg(feature = "CGPath")]
     #[inline]
@@ -312,6 +373,7 @@ impl CGContext {
         unsafe { CGContextSetLineCap(c, cap) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setlinejoin(_:)?language=objc)
     #[doc(alias = "CGContextSetLineJoin")]
     #[cfg(feature = "CGPath")]
     #[inline]
@@ -322,6 +384,7 @@ impl CGContext {
         unsafe { CGContextSetLineJoin(c, join) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setmiterlimit(_:)?language=objc)
     #[doc(alias = "CGContextSetMiterLimit")]
     #[inline]
     pub fn set_miter_limit(c: Option<&CGContext>, limit: CGFloat) {
@@ -331,6 +394,8 @@ impl CGContext {
         unsafe { CGContextSetMiterLimit(c, limit) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextsetlinedash?language=objc)
+    ///
     /// # Safety
     ///
     /// `lengths` must be a valid pointer or null.
@@ -353,6 +418,7 @@ impl CGContext {
         unsafe { CGContextSetLineDash(c, phase, lengths, count) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setflatness(_:)?language=objc)
     #[doc(alias = "CGContextSetFlatness")]
     #[inline]
     pub fn set_flatness(c: Option<&CGContext>, flatness: CGFloat) {
@@ -362,6 +428,7 @@ impl CGContext {
         unsafe { CGContextSetFlatness(c, flatness) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setalpha(_:)?language=objc)
     #[doc(alias = "CGContextSetAlpha")]
     #[inline]
     pub fn set_alpha(c: Option<&CGContext>, alpha: CGFloat) {
@@ -371,6 +438,7 @@ impl CGContext {
         unsafe { CGContextSetAlpha(c, alpha) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setblendmode(_:)?language=objc)
     #[doc(alias = "CGContextSetBlendMode")]
     #[inline]
     pub fn set_blend_mode(c: Option<&CGContext>, mode: CGBlendMode) {
@@ -381,6 +449,8 @@ impl CGContext {
     }
 
     /// Path construction functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/beginpath()?language=objc)
     #[doc(alias = "CGContextBeginPath")]
     #[inline]
     pub fn begin_path(c: Option<&CGContext>) {
@@ -390,6 +460,7 @@ impl CGContext {
         unsafe { CGContextBeginPath(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextmovetopoint?language=objc)
     #[doc(alias = "CGContextMoveToPoint")]
     #[inline]
     pub fn move_to_point(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
@@ -399,6 +470,7 @@ impl CGContext {
         unsafe { CGContextMoveToPoint(c, x, y) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddlinetopoint?language=objc)
     #[doc(alias = "CGContextAddLineToPoint")]
     #[inline]
     pub fn add_line_to_point(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
@@ -408,6 +480,7 @@ impl CGContext {
         unsafe { CGContextAddLineToPoint(c, x, y) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddcurvetopoint?language=objc)
     #[doc(alias = "CGContextAddCurveToPoint")]
     #[inline]
     pub fn add_curve_to_point(
@@ -433,6 +506,7 @@ impl CGContext {
         unsafe { CGContextAddCurveToPoint(c, cp1x, cp1y, cp2x, cp2y, x, y) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddquadcurvetopoint?language=objc)
     #[doc(alias = "CGContextAddQuadCurveToPoint")]
     #[inline]
     pub fn add_quad_curve_to_point(
@@ -454,6 +528,7 @@ impl CGContext {
         unsafe { CGContextAddQuadCurveToPoint(c, cpx, cpy, x, y) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/closepath()?language=objc)
     #[doc(alias = "CGContextClosePath")]
     #[inline]
     pub fn close_path(c: Option<&CGContext>) {
@@ -464,6 +539,8 @@ impl CGContext {
     }
 
     /// Path construction convenience functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/addrect(_:)?language=objc)
     #[doc(alias = "CGContextAddRect")]
     #[inline]
     pub fn add_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -473,6 +550,8 @@ impl CGContext {
         unsafe { CGContextAddRect(c, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddrects?language=objc)
+    ///
     /// # Safety
     ///
     /// `rects` must be a valid pointer or null.
@@ -485,6 +564,8 @@ impl CGContext {
         unsafe { CGContextAddRects(c, rects, count) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddlines?language=objc)
+    ///
     /// # Safety
     ///
     /// `points` must be a valid pointer or null.
@@ -497,6 +578,7 @@ impl CGContext {
         unsafe { CGContextAddLines(c, points, count) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/addellipse(in:)?language=objc)
     #[doc(alias = "CGContextAddEllipseInRect")]
     #[inline]
     pub fn add_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -506,6 +588,7 @@ impl CGContext {
         unsafe { CGContextAddEllipseInRect(c, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddarc?language=objc)
     #[doc(alias = "CGContextAddArc")]
     #[inline]
     pub fn add_arc(
@@ -531,6 +614,7 @@ impl CGContext {
         unsafe { CGContextAddArc(c, x, y, radius, start_angle, end_angle, clockwise) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddarctopoint?language=objc)
     #[doc(alias = "CGContextAddArcToPoint")]
     #[inline]
     pub fn add_arc_to_point(
@@ -554,6 +638,7 @@ impl CGContext {
         unsafe { CGContextAddArcToPoint(c, x1, y1, x2, y2, radius) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/addpath(_:)?language=objc)
     #[doc(alias = "CGContextAddPath")]
     #[cfg(feature = "CGPath")]
     #[inline]
@@ -564,6 +649,7 @@ impl CGContext {
         unsafe { CGContextAddPath(c, path) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/replacepathwithstrokedpath()?language=objc)
     #[doc(alias = "CGContextReplacePathWithStrokedPath")]
     #[inline]
     pub fn replace_path_with_stroked_path(c: Option<&CGContext>) {
@@ -574,6 +660,8 @@ impl CGContext {
     }
 
     /// Path information functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/ispathempty?language=objc)
     #[doc(alias = "CGContextIsPathEmpty")]
     #[inline]
     pub fn is_path_empty(c: Option<&CGContext>) -> bool {
@@ -583,6 +671,7 @@ impl CGContext {
         unsafe { CGContextIsPathEmpty(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/currentpointofpath?language=objc)
     #[doc(alias = "CGContextGetPathCurrentPoint")]
     #[inline]
     pub fn path_current_point(c: Option<&CGContext>) -> CGPoint {
@@ -592,6 +681,7 @@ impl CGContext {
         unsafe { CGContextGetPathCurrentPoint(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/boundingboxofpath?language=objc)
     #[doc(alias = "CGContextGetPathBoundingBox")]
     #[inline]
     pub fn path_bounding_box(c: Option<&CGContext>) -> CGRect {
@@ -601,6 +691,7 @@ impl CGContext {
         unsafe { CGContextGetPathBoundingBox(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/path?language=objc)
     #[doc(alias = "CGContextCopyPath")]
     #[cfg(feature = "CGPath")]
     #[inline]
@@ -612,6 +703,7 @@ impl CGContext {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/pathcontains(_:mode:)?language=objc)
     #[doc(alias = "CGContextPathContainsPoint")]
     #[inline]
     pub fn path_contains_point(
@@ -630,6 +722,8 @@ impl CGContext {
     }
 
     /// Path drawing functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/drawpath(using:)?language=objc)
     #[doc(alias = "CGContextDrawPath")]
     #[inline]
     pub fn draw_path(c: Option<&CGContext>, mode: CGPathDrawingMode) {
@@ -640,6 +734,8 @@ impl CGContext {
     }
 
     /// Path drawing convenience functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextfillpath?language=objc)
     #[doc(alias = "CGContextFillPath")]
     #[inline]
     pub fn fill_path(c: Option<&CGContext>) {
@@ -649,6 +745,7 @@ impl CGContext {
         unsafe { CGContextFillPath(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontexteofillpath?language=objc)
     #[doc(alias = "CGContextEOFillPath")]
     #[inline]
     pub fn eo_fill_path(c: Option<&CGContext>) {
@@ -658,6 +755,7 @@ impl CGContext {
         unsafe { CGContextEOFillPath(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/strokepath()?language=objc)
     #[doc(alias = "CGContextStrokePath")]
     #[inline]
     pub fn stroke_path(c: Option<&CGContext>) {
@@ -667,6 +765,7 @@ impl CGContext {
         unsafe { CGContextStrokePath(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/fill(_:)-7a0rk?language=objc)
     #[doc(alias = "CGContextFillRect")]
     #[inline]
     pub fn fill_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -676,6 +775,8 @@ impl CGContext {
         unsafe { CGContextFillRect(c, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextfillrects?language=objc)
+    ///
     /// # Safety
     ///
     /// `rects` must be a valid pointer or null.
@@ -688,6 +789,7 @@ impl CGContext {
         unsafe { CGContextFillRects(c, rects, count) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/stroke(_:)?language=objc)
     #[doc(alias = "CGContextStrokeRect")]
     #[inline]
     pub fn stroke_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -697,6 +799,7 @@ impl CGContext {
         unsafe { CGContextStrokeRect(c, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/stroke(_:width:)?language=objc)
     #[doc(alias = "CGContextStrokeRectWithWidth")]
     #[inline]
     pub fn stroke_rect_with_width(c: Option<&CGContext>, rect: CGRect, width: CGFloat) {
@@ -706,6 +809,7 @@ impl CGContext {
         unsafe { CGContextStrokeRectWithWidth(c, rect, width) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/clear(_:)?language=objc)
     #[doc(alias = "CGContextClearRect")]
     #[inline]
     pub fn clear_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -715,6 +819,7 @@ impl CGContext {
         unsafe { CGContextClearRect(c, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/fillellipse(in:)?language=objc)
     #[doc(alias = "CGContextFillEllipseInRect")]
     #[inline]
     pub fn fill_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -724,6 +829,7 @@ impl CGContext {
         unsafe { CGContextFillEllipseInRect(c, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/strokeellipse(in:)?language=objc)
     #[doc(alias = "CGContextStrokeEllipseInRect")]
     #[inline]
     pub fn stroke_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -733,6 +839,8 @@ impl CGContext {
         unsafe { CGContextStrokeEllipseInRect(c, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextstrokelinesegments?language=objc)
+    ///
     /// # Safety
     ///
     /// `points` must be a valid pointer or null.
@@ -754,6 +862,8 @@ impl CGContext {
     }
 
     /// Clipping functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextclip?language=objc)
     #[doc(alias = "CGContextClip")]
     #[inline]
     pub fn clip(c: Option<&CGContext>) {
@@ -763,6 +873,7 @@ impl CGContext {
         unsafe { CGContextClip(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontexteoclip?language=objc)
     #[doc(alias = "CGContextEOClip")]
     #[inline]
     pub fn eo_clip(c: Option<&CGContext>) {
@@ -772,6 +883,7 @@ impl CGContext {
         unsafe { CGContextEOClip(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/resetclip()?language=objc)
     #[doc(alias = "CGContextResetClip")]
     #[inline]
     pub fn reset_clip(&self) {
@@ -781,6 +893,7 @@ impl CGContext {
         unsafe { CGContextResetClip(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/clip(to:mask:)?language=objc)
     #[doc(alias = "CGContextClipToMask")]
     #[cfg(feature = "CGImage")]
     #[inline]
@@ -791,6 +904,7 @@ impl CGContext {
         unsafe { CGContextClipToMask(c, rect, mask) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/boundingboxofclippath?language=objc)
     #[doc(alias = "CGContextGetClipBoundingBox")]
     #[inline]
     pub fn clip_bounding_box(c: Option<&CGContext>) -> CGRect {
@@ -801,6 +915,8 @@ impl CGContext {
     }
 
     /// Clipping convenience functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/clip(to:)-7cbwq?language=objc)
     #[doc(alias = "CGContextClipToRect")]
     #[inline]
     pub fn clip_to_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -810,6 +926,8 @@ impl CGContext {
         unsafe { CGContextClipToRect(c, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextcliptorects?language=objc)
+    ///
     /// # Safety
     ///
     /// `rects` must be a valid pointer.
@@ -823,6 +941,8 @@ impl CGContext {
     }
 
     /// Primitive color functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(_:)-8lhn8?language=objc)
     #[doc(alias = "CGContextSetFillColorWithColor")]
     #[cfg(feature = "CGColor")]
     #[inline]
@@ -833,6 +953,7 @@ impl CGContext {
         unsafe { CGContextSetFillColorWithColor(c, color) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(_:)-1sskg?language=objc)
     #[doc(alias = "CGContextSetStrokeColorWithColor")]
     #[cfg(feature = "CGColor")]
     #[inline]
@@ -844,6 +965,8 @@ impl CGContext {
     }
 
     /// Color space functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolorspace(_:)?language=objc)
     #[doc(alias = "CGContextSetFillColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -854,6 +977,7 @@ impl CGContext {
         unsafe { CGContextSetFillColorSpace(c, space) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolorspace(_:)?language=objc)
     #[doc(alias = "CGContextSetStrokeColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -869,6 +993,8 @@ impl CGContext {
     /// # Safety
     ///
     /// `components` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(_:)-756dy?language=objc)
     #[doc(alias = "CGContextSetFillColor")]
     #[inline]
     pub unsafe fn set_fill_color(c: Option<&CGContext>, components: *const CGFloat) {
@@ -878,6 +1004,8 @@ impl CGContext {
         unsafe { CGContextSetFillColor(c, components) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(_:)-4pd8p?language=objc)
+    ///
     /// # Safety
     ///
     /// `components` must be a valid pointer or null.
@@ -895,6 +1023,8 @@ impl CGContext {
     /// # Safety
     ///
     /// `components` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillpattern(_:colorcomponents:)?language=objc)
     #[doc(alias = "CGContextSetFillPattern")]
     #[cfg(feature = "CGPattern")]
     #[inline]
@@ -913,6 +1043,8 @@ impl CGContext {
         unsafe { CGContextSetFillPattern(c, pattern, components) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokepattern(_:colorcomponents:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `components` must be a valid pointer or null.
@@ -934,6 +1066,7 @@ impl CGContext {
         unsafe { CGContextSetStrokePattern(c, pattern, components) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setpatternphase(_:)?language=objc)
     #[doc(alias = "CGContextSetPatternPhase")]
     #[inline]
     pub fn set_pattern_phase(c: Option<&CGContext>, phase: CGSize) {
@@ -944,6 +1077,8 @@ impl CGContext {
     }
 
     /// Color convenience functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(gray:alpha:)?language=objc)
     #[doc(alias = "CGContextSetGrayFillColor")]
     #[inline]
     pub fn set_gray_fill_color(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat) {
@@ -953,6 +1088,7 @@ impl CGContext {
         unsafe { CGContextSetGrayFillColor(c, gray, alpha) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(gray:alpha:)?language=objc)
     #[doc(alias = "CGContextSetGrayStrokeColor")]
     #[inline]
     pub fn set_gray_stroke_color(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat) {
@@ -962,6 +1098,7 @@ impl CGContext {
         unsafe { CGContextSetGrayStrokeColor(c, gray, alpha) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(red:green:blue:alpha:)?language=objc)
     #[doc(alias = "CGContextSetRGBFillColor")]
     #[inline]
     pub fn set_rgb_fill_color(
@@ -983,6 +1120,7 @@ impl CGContext {
         unsafe { CGContextSetRGBFillColor(c, red, green, blue, alpha) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(red:green:blue:alpha:)?language=objc)
     #[doc(alias = "CGContextSetRGBStrokeColor")]
     #[inline]
     pub fn set_rgb_stroke_color(
@@ -1004,6 +1142,7 @@ impl CGContext {
         unsafe { CGContextSetRGBStrokeColor(c, red, green, blue, alpha) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(cyan:magenta:yellow:black:alpha:)?language=objc)
     #[doc(alias = "CGContextSetCMYKFillColor")]
     #[inline]
     pub fn set_cmyk_fill_color(
@@ -1027,6 +1166,7 @@ impl CGContext {
         unsafe { CGContextSetCMYKFillColor(c, cyan, magenta, yellow, black, alpha) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(cyan:magenta:yellow:black:alpha:)?language=objc)
     #[doc(alias = "CGContextSetCMYKStrokeColor")]
     #[inline]
     pub fn set_cmyk_stroke_color(
@@ -1051,6 +1191,8 @@ impl CGContext {
     }
 
     /// Rendering intent. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setrenderingintent(_:)?language=objc)
     #[doc(alias = "CGContextSetRenderingIntent")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -1061,6 +1203,7 @@ impl CGContext {
         unsafe { CGContextSetRenderingIntent(c, intent) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setedrtargetheadroom(_:)?language=objc)
     #[doc(alias = "CGContextSetEDRTargetHeadroom")]
     #[inline]
     pub fn set_edr_target_headroom(&self, headroom: c_float) -> bool {
@@ -1070,6 +1213,7 @@ impl CGContext {
         unsafe { CGContextSetEDRTargetHeadroom(self, headroom) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextgetedrtargetheadroom(_:)?language=objc)
     #[doc(alias = "CGContextGetEDRTargetHeadroom")]
     #[inline]
     pub fn edr_target_headroom(&self) -> c_float {
@@ -1080,6 +1224,8 @@ impl CGContext {
     }
 
     /// Image functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawimage?language=objc)
     #[doc(alias = "CGContextDrawImage")]
     #[cfg(feature = "CGImage")]
     #[inline]
@@ -1090,6 +1236,7 @@ impl CGContext {
         unsafe { CGContextDrawImage(c, rect, image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawtiledimage?language=objc)
     #[doc(alias = "CGContextDrawTiledImage")]
     #[cfg(feature = "CGImage")]
     #[inline]
@@ -1104,6 +1251,8 @@ impl CGContext {
         unsafe { CGContextDrawTiledImage(c, rect, image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawimageapplyingtonemapping?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -1130,6 +1279,7 @@ impl CGContext {
         unsafe { CGContextDrawImageApplyingToneMapping(self, r, image, method, options) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextgetcontenttonemappinginfo?language=objc)
     #[doc(alias = "CGContextGetContentToneMappingInfo")]
     #[cfg(feature = "CGToneMapping")]
     #[inline]
@@ -1140,6 +1290,8 @@ impl CGContext {
         unsafe { CGContextGetContentToneMappingInfo(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextsetcontenttonemappinginfo?language=objc)
+    ///
     /// # Safety
     ///
     /// `info` struct field 2 must be a valid pointer or null.
@@ -1153,6 +1305,7 @@ impl CGContext {
         unsafe { CGContextSetContentToneMappingInfo(self, info) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/interpolationquality?language=objc)
     #[doc(alias = "CGContextGetInterpolationQuality")]
     #[inline]
     pub fn interpolation_quality(c: Option<&CGContext>) -> CGInterpolationQuality {
@@ -1162,6 +1315,7 @@ impl CGContext {
         unsafe { CGContextGetInterpolationQuality(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextsetinterpolationquality?language=objc)
     #[doc(alias = "CGContextSetInterpolationQuality")]
     #[inline]
     pub fn set_interpolation_quality(c: Option<&CGContext>, quality: CGInterpolationQuality) {
@@ -1174,6 +1328,7 @@ impl CGContext {
         unsafe { CGContextSetInterpolationQuality(c, quality) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshadow(offset:blur:color:)?language=objc)
     #[doc(alias = "CGContextSetShadowWithColor")]
     #[cfg(feature = "CGColor")]
     #[inline]
@@ -1194,6 +1349,7 @@ impl CGContext {
         unsafe { CGContextSetShadowWithColor(c, offset, blur, color) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshadow(offset:blur:)?language=objc)
     #[doc(alias = "CGContextSetShadow")]
     #[inline]
     pub fn set_shadow(c: Option<&CGContext>, offset: CGSize, blur: CGFloat) {
@@ -1203,6 +1359,7 @@ impl CGContext {
         unsafe { CGContextSetShadow(c, offset, blur) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/drawlineargradient(_:start:end:options:)?language=objc)
     #[doc(alias = "CGContextDrawLinearGradient")]
     #[cfg(feature = "CGGradient")]
     #[inline]
@@ -1225,6 +1382,7 @@ impl CGContext {
         unsafe { CGContextDrawLinearGradient(c, gradient, start_point, end_point, options) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/drawradialgradient(_:startcenter:startradius:endcenter:endradius:options:)?language=objc)
     #[doc(alias = "CGContextDrawRadialGradient")]
     #[cfg(feature = "CGGradient")]
     #[inline]
@@ -1261,6 +1419,7 @@ impl CGContext {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawconicgradient(_:_:_:_:)?language=objc)
     #[doc(alias = "CGContextDrawConicGradient")]
     #[cfg(feature = "CGGradient")]
     #[inline]
@@ -1281,6 +1440,7 @@ impl CGContext {
         unsafe { CGContextDrawConicGradient(self, gradient, center, angle) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/drawshading(_:)?language=objc)
     #[doc(alias = "CGContextDrawShading")]
     #[cfg(feature = "CGShading")]
     #[inline]
@@ -1292,6 +1452,8 @@ impl CGContext {
     }
 
     /// Text functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setcharacterspacing(_:)?language=objc)
     #[doc(alias = "CGContextSetCharacterSpacing")]
     #[inline]
     pub fn set_character_spacing(c: Option<&CGContext>, spacing: CGFloat) {
@@ -1301,6 +1463,7 @@ impl CGContext {
         unsafe { CGContextSetCharacterSpacing(c, spacing) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextsettextposition?language=objc)
     #[doc(alias = "CGContextSetTextPosition")]
     #[inline]
     pub fn set_text_position(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
@@ -1310,6 +1473,7 @@ impl CGContext {
         unsafe { CGContextSetTextPosition(c, x, y) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextgettextposition?language=objc)
     #[doc(alias = "CGContextGetTextPosition")]
     #[inline]
     pub fn text_position(c: Option<&CGContext>) -> CGPoint {
@@ -1319,6 +1483,7 @@ impl CGContext {
         unsafe { CGContextGetTextPosition(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextsettextmatrix?language=objc)
     #[doc(alias = "CGContextSetTextMatrix")]
     #[inline]
     pub fn set_text_matrix(c: Option<&CGContext>, t: CGAffineTransform) {
@@ -1328,6 +1493,7 @@ impl CGContext {
         unsafe { CGContextSetTextMatrix(c, t) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/textmatrix?language=objc)
     #[doc(alias = "CGContextGetTextMatrix")]
     #[inline]
     pub fn text_matrix(c: Option<&CGContext>) -> CGAffineTransform {
@@ -1337,6 +1503,7 @@ impl CGContext {
         unsafe { CGContextGetTextMatrix(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/settextdrawingmode(_:)?language=objc)
     #[doc(alias = "CGContextSetTextDrawingMode")]
     #[inline]
     pub fn set_text_drawing_mode(c: Option<&CGContext>, mode: CGTextDrawingMode) {
@@ -1346,6 +1513,7 @@ impl CGContext {
         unsafe { CGContextSetTextDrawingMode(c, mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfont(_:)?language=objc)
     #[doc(alias = "CGContextSetFont")]
     #[cfg(feature = "CGFont")]
     #[inline]
@@ -1356,6 +1524,7 @@ impl CGContext {
         unsafe { CGContextSetFont(c, font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfontsize(_:)?language=objc)
     #[doc(alias = "CGContextSetFontSize")]
     #[inline]
     pub fn set_font_size(c: Option<&CGContext>, size: CGFloat) {
@@ -1365,6 +1534,8 @@ impl CGContext {
         unsafe { CGContextSetFontSize(c, size) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextshowglyphsatpositions?language=objc)
+    ///
     /// # Safety
     ///
     /// - `glyphs` must be a valid pointer or null.
@@ -1390,6 +1561,8 @@ impl CGContext {
     }
 
     /// PDF functions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/drawpdfpage(_:)?language=objc)
     #[doc(alias = "CGContextDrawPDFPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
@@ -1405,6 +1578,8 @@ impl CGContext {
     /// # Safety
     ///
     /// `media_box` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/beginpage(mediabox:)?language=objc)
     #[doc(alias = "CGContextBeginPage")]
     #[inline]
     pub unsafe fn begin_page(c: Option<&CGContext>, media_box: *const CGRect) {
@@ -1414,6 +1589,7 @@ impl CGContext {
         unsafe { CGContextBeginPage(c, media_box) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/endpage()?language=objc)
     #[doc(alias = "CGContextEndPage")]
     #[inline]
     pub fn end_page(c: Option<&CGContext>) {
@@ -1423,6 +1599,7 @@ impl CGContext {
         unsafe { CGContextEndPage(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/flush()?language=objc)
     #[doc(alias = "CGContextFlush")]
     #[inline]
     pub fn flush(c: Option<&CGContext>) {
@@ -1432,6 +1609,7 @@ impl CGContext {
         unsafe { CGContextFlush(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/synchronize()?language=objc)
     #[doc(alias = "CGContextSynchronize")]
     #[inline]
     pub fn synchronize(c: Option<&CGContext>) {
@@ -1441,6 +1619,7 @@ impl CGContext {
         unsafe { CGContextSynchronize(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/synchronizeattributes()?language=objc)
     #[doc(alias = "CGContextSynchronizeAttributes")]
     #[inline]
     pub fn synchronize_attributes(&self) {
@@ -1450,6 +1629,7 @@ impl CGContext {
         unsafe { CGContextSynchronizeAttributes(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldantialias(_:)?language=objc)
     #[doc(alias = "CGContextSetShouldAntialias")]
     #[inline]
     pub fn set_should_antialias(c: Option<&CGContext>, should_antialias: bool) {
@@ -1459,6 +1639,7 @@ impl CGContext {
         unsafe { CGContextSetShouldAntialias(c, should_antialias) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setallowsantialiasing(_:)?language=objc)
     #[doc(alias = "CGContextSetAllowsAntialiasing")]
     #[inline]
     pub fn set_allows_antialiasing(c: Option<&CGContext>, allows_antialiasing: bool) {
@@ -1468,6 +1649,7 @@ impl CGContext {
         unsafe { CGContextSetAllowsAntialiasing(c, allows_antialiasing) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldsmoothfonts(_:)?language=objc)
     #[doc(alias = "CGContextSetShouldSmoothFonts")]
     #[inline]
     pub fn set_should_smooth_fonts(c: Option<&CGContext>, should_smooth_fonts: bool) {
@@ -1477,6 +1659,7 @@ impl CGContext {
         unsafe { CGContextSetShouldSmoothFonts(c, should_smooth_fonts) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setallowsfontsmoothing(_:)?language=objc)
     #[doc(alias = "CGContextSetAllowsFontSmoothing")]
     #[inline]
     pub fn set_allows_font_smoothing(c: Option<&CGContext>, allows_font_smoothing: bool) {
@@ -1486,6 +1669,7 @@ impl CGContext {
         unsafe { CGContextSetAllowsFontSmoothing(c, allows_font_smoothing) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldsubpixelpositionfonts(_:)?language=objc)
     #[doc(alias = "CGContextSetShouldSubpixelPositionFonts")]
     #[inline]
     pub fn set_should_subpixel_position_fonts(
@@ -1501,6 +1685,7 @@ impl CGContext {
         unsafe { CGContextSetShouldSubpixelPositionFonts(c, should_subpixel_position_fonts) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setallowsfontsubpixelpositioning(_:)?language=objc)
     #[doc(alias = "CGContextSetAllowsFontSubpixelPositioning")]
     #[inline]
     pub fn set_allows_font_subpixel_positioning(
@@ -1516,6 +1701,7 @@ impl CGContext {
         unsafe { CGContextSetAllowsFontSubpixelPositioning(c, allows_font_subpixel_positioning) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldsubpixelquantizefonts(_:)?language=objc)
     #[doc(alias = "CGContextSetShouldSubpixelQuantizeFonts")]
     #[inline]
     pub fn set_should_subpixel_quantize_fonts(
@@ -1531,6 +1717,7 @@ impl CGContext {
         unsafe { CGContextSetShouldSubpixelQuantizeFonts(c, should_subpixel_quantize_fonts) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setallowsfontsubpixelquantization(_:)?language=objc)
     #[doc(alias = "CGContextSetAllowsFontSubpixelQuantization")]
     #[inline]
     pub fn set_allows_font_subpixel_quantization(
@@ -1552,6 +1739,8 @@ impl CGContext {
     ///
     /// - `auxiliary_info` generic must be of the correct type.
     /// - `auxiliary_info` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/begintransparencylayer(auxiliaryinfo:)?language=objc)
     #[doc(alias = "CGContextBeginTransparencyLayer")]
     #[inline]
     pub unsafe fn begin_transparency_layer(
@@ -1567,6 +1756,8 @@ impl CGContext {
         unsafe { CGContextBeginTransparencyLayer(c, auxiliary_info) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/begintransparencylayer(in:auxiliaryinfo:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `aux_info` generic must be of the correct type.
@@ -1588,6 +1779,7 @@ impl CGContext {
         unsafe { CGContextBeginTransparencyLayerWithRect(c, rect, aux_info) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/endtransparencylayer()?language=objc)
     #[doc(alias = "CGContextEndTransparencyLayer")]
     #[inline]
     pub fn end_transparency_layer(c: Option<&CGContext>) {
@@ -1598,6 +1790,8 @@ impl CGContext {
     }
 
     /// User space to device space tranformations. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/userspacetodevicespacetransform?language=objc)
     #[doc(alias = "CGContextGetUserSpaceToDeviceSpaceTransform")]
     #[inline]
     pub fn user_space_to_device_space_transform(c: Option<&CGContext>) -> CGAffineTransform {
@@ -1609,6 +1803,7 @@ impl CGContext {
         unsafe { CGContextGetUserSpaceToDeviceSpaceTransform(c) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttodevicespace(_:)-53m7u?language=objc)
     #[doc(alias = "CGContextConvertPointToDeviceSpace")]
     #[inline]
     pub fn convert_point_to_device_space(c: Option<&CGContext>, point: CGPoint) -> CGPoint {
@@ -1619,6 +1814,7 @@ impl CGContext {
         unsafe { CGContextConvertPointToDeviceSpace(c, point) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttouserspace(_:)-3mtg3?language=objc)
     #[doc(alias = "CGContextConvertPointToUserSpace")]
     #[inline]
     pub fn convert_point_to_user_space(c: Option<&CGContext>, point: CGPoint) -> CGPoint {
@@ -1628,6 +1824,7 @@ impl CGContext {
         unsafe { CGContextConvertPointToUserSpace(c, point) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttodevicespace(_:)-224h2?language=objc)
     #[doc(alias = "CGContextConvertSizeToDeviceSpace")]
     #[inline]
     pub fn convert_size_to_device_space(c: Option<&CGContext>, size: CGSize) -> CGSize {
@@ -1637,6 +1834,7 @@ impl CGContext {
         unsafe { CGContextConvertSizeToDeviceSpace(c, size) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttouserspace(_:)-693ur?language=objc)
     #[doc(alias = "CGContextConvertSizeToUserSpace")]
     #[inline]
     pub fn convert_size_to_user_space(c: Option<&CGContext>, size: CGSize) -> CGSize {
@@ -1646,6 +1844,7 @@ impl CGContext {
         unsafe { CGContextConvertSizeToUserSpace(c, size) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttodevicespace(_:)-91x5g?language=objc)
     #[doc(alias = "CGContextConvertRectToDeviceSpace")]
     #[inline]
     pub fn convert_rect_to_device_space(c: Option<&CGContext>, rect: CGRect) -> CGRect {
@@ -1655,6 +1854,7 @@ impl CGContext {
         unsafe { CGContextConvertRectToDeviceSpace(c, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttouserspace(_:)-1hk5r?language=objc)
     #[doc(alias = "CGContextConvertRectToUserSpace")]
     #[inline]
     pub fn convert_rect_to_user_space(c: Option<&CGContext>, rect: CGRect) -> CGRect {
@@ -1664,6 +1864,8 @@ impl CGContext {
         unsafe { CGContextConvertRectToUserSpace(c, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/selectfont(name:size:textencoding:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `name` must be a valid pointer or null.
@@ -1687,6 +1889,8 @@ impl CGContext {
         unsafe { CGContextSelectFont(c, name, size, text_encoding) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/showtext(string:length:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `string` must be a valid pointer or null.
@@ -1700,6 +1904,8 @@ impl CGContext {
         unsafe { CGContextShowText(c, string, length) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/showtextatpoint(x:y:string:length:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `string` must be a valid pointer or null.
@@ -1725,6 +1931,8 @@ impl CGContext {
         unsafe { CGContextShowTextAtPoint(c, x, y, string, length) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/showglyphs(g:count:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `g` must be a valid pointer or null.
@@ -1739,6 +1947,8 @@ impl CGContext {
         unsafe { CGContextShowGlyphs(c, g, count) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/showglyphsatpoint(x:y:glyphs:count:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `glyphs` must be a valid pointer or null.
@@ -1765,6 +1975,8 @@ impl CGContext {
         unsafe { CGContextShowGlyphsAtPoint(c, x, y, glyphs, count) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/showglyphswithadvances(glyphs:advances:count:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `glyphs` must be a valid pointer or null.
@@ -1790,6 +2002,7 @@ impl CGContext {
         unsafe { CGContextShowGlyphsWithAdvances(c, glyphs, advances, count) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawpdfdocument?language=objc)
     #[doc(alias = "CGContextDrawPDFDocument")]
     #[cfg(feature = "CGPDFDocument")]
     #[deprecated = "No longer supported"]

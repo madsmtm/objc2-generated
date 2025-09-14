@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSelectionGranularity(pub NSUInteger);
 impl NSSelectionGranularity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiongranularity/selectbycharacter?language=objc)
     #[doc(alias = "NSSelectByCharacter")]
     pub const SelectByCharacter: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiongranularity/selectbyword?language=objc)
     #[doc(alias = "NSSelectByWord")]
     pub const SelectByWord: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiongranularity/selectbyparagraph?language=objc)
     #[doc(alias = "NSSelectByParagraph")]
     pub const SelectByParagraph: Self = Self(2);
 }
@@ -37,8 +40,10 @@ unsafe impl RefEncode for NSSelectionGranularity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSelectionAffinity(pub NSUInteger);
 impl NSSelectionAffinity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectionaffinity/upstream?language=objc)
     #[doc(alias = "NSSelectionAffinityUpstream")]
     pub const Upstream: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectionaffinity/downstream?language=objc)
     #[doc(alias = "NSSelectionAffinityDownstream")]
     pub const Downstream: Self = Self(1);
 }
@@ -2388,24 +2393,34 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFindPanelAction(pub NSUInteger);
 impl NSFindPanelAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/showfindpanel?language=objc)
     #[doc(alias = "NSFindPanelActionShowFindPanel")]
     pub const ShowFindPanel: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/next?language=objc)
     #[doc(alias = "NSFindPanelActionNext")]
     pub const Next: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/previous?language=objc)
     #[doc(alias = "NSFindPanelActionPrevious")]
     pub const Previous: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/replaceall?language=objc)
     #[doc(alias = "NSFindPanelActionReplaceAll")]
     pub const ReplaceAll: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/replace?language=objc)
     #[doc(alias = "NSFindPanelActionReplace")]
     pub const Replace: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/replaceandfind?language=objc)
     #[doc(alias = "NSFindPanelActionReplaceAndFind")]
     pub const ReplaceAndFind: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/setfindstring?language=objc)
     #[doc(alias = "NSFindPanelActionSetFindString")]
     pub const SetFindString: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/replaceallinselection?language=objc)
     #[doc(alias = "NSFindPanelActionReplaceAllInSelection")]
     pub const ReplaceAllInSelection: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/selectall?language=objc)
     #[doc(alias = "NSFindPanelActionSelectAll")]
     pub const SelectAll: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/selectallinselection?language=objc)
     #[doc(alias = "NSFindPanelActionSelectAllInSelection")]
     pub const SelectAllInSelection: Self = Self(10);
 }
@@ -2444,12 +2459,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFindPanelSubstringMatchType(pub NSUInteger);
 impl NSFindPanelSubstringMatchType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype/contains?language=objc)
     #[doc(alias = "NSFindPanelSubstringMatchTypeContains")]
     pub const Contains: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype/startswith?language=objc)
     #[doc(alias = "NSFindPanelSubstringMatchTypeStartsWith")]
     pub const StartsWith: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype/fullword?language=objc)
     #[doc(alias = "NSFindPanelSubstringMatchTypeFullWord")]
     pub const FullWord: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype/endswith?language=objc)
     #[doc(alias = "NSFindPanelSubstringMatchTypeEndsWith")]
     pub const EndsWith: Self = Self(3);
 }

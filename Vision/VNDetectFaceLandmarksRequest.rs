@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNRequestFaceLandmarksConstellation(pub NSUInteger);
 impl VNRequestFaceLandmarksConstellation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestfacelandmarksconstellation/constellationnotdefined?language=objc)
     #[doc(alias = "VNRequestFaceLandmarksConstellationNotDefined")]
     pub const ConstellationNotDefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestfacelandmarksconstellation/constellation65points?language=objc)
     #[doc(alias = "VNRequestFaceLandmarksConstellation65Points")]
     pub const Constellation65Points: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestfacelandmarksconstellation/constellation76points?language=objc)
     #[doc(alias = "VNRequestFaceLandmarksConstellation76Points")]
     pub const Constellation76Points: Self = Self(2);
 }

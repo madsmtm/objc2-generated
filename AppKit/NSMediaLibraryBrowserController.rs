@@ -20,10 +20,13 @@ use crate::*;
 pub struct NSMediaLibrary(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMediaLibrary: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/library/audio?language=objc)
         #[doc(alias = "NSMediaLibraryAudio")]
         const Audio = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/library/image?language=objc)
         #[doc(alias = "NSMediaLibraryImage")]
         const Image = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/library/movie?language=objc)
         #[doc(alias = "NSMediaLibraryMovie")]
         const Movie = 1<<2;
     }

@@ -114,72 +114,106 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWErr(pub NSInteger);
 impl CWErr {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwnoerr?language=objc)
     #[doc(alias = "kCWNoErr")]
     pub const CWNoErr: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cweapolerr?language=objc)
     #[doc(alias = "kCWEAPOLErr")]
     pub const CWEAPOLErr: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwinvalidparametererr?language=objc)
     #[doc(alias = "kCWInvalidParameterErr")]
     pub const CWInvalidParameterErr: Self = Self(-3900);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwnomemoryerr?language=objc)
     #[doc(alias = "kCWNoMemoryErr")]
     pub const CWNoMemoryErr: Self = Self(-3901);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwunknownerr?language=objc)
     #[doc(alias = "kCWUnknownErr")]
     pub const CWUnknownErr: Self = Self(-3902);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwnotsupportederr?language=objc)
     #[doc(alias = "kCWNotSupportedErr")]
     pub const CWNotSupportedErr: Self = Self(-3903);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwinvalidformaterr?language=objc)
     #[doc(alias = "kCWInvalidFormatErr")]
     pub const CWInvalidFormatErr: Self = Self(-3904);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwtimeouterr?language=objc)
     #[doc(alias = "kCWTimeoutErr")]
     pub const CWTimeoutErr: Self = Self(-3905);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwunspecifiedfailureerr?language=objc)
     #[doc(alias = "kCWUnspecifiedFailureErr")]
     pub const CWUnspecifiedFailureErr: Self = Self(-3906);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwunsupportedcapabilitieserr?language=objc)
     #[doc(alias = "kCWUnsupportedCapabilitiesErr")]
     pub const CWUnsupportedCapabilitiesErr: Self = Self(-3907);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwreassociationdeniederr?language=objc)
     #[doc(alias = "kCWReassociationDeniedErr")]
     pub const CWReassociationDeniedErr: Self = Self(-3908);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwassociationdeniederr?language=objc)
     #[doc(alias = "kCWAssociationDeniedErr")]
     pub const CWAssociationDeniedErr: Self = Self(-3909);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwauthenticationalgorithmunsupportederr?language=objc)
     #[doc(alias = "kCWAuthenticationAlgorithmUnsupportedErr")]
     pub const CWAuthenticationAlgorithmUnsupportedErr: Self = Self(-3910);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwinvalidauthenticationsequencenumbererr?language=objc)
     #[doc(alias = "kCWInvalidAuthenticationSequenceNumberErr")]
     pub const CWInvalidAuthenticationSequenceNumberErr: Self = Self(-3911);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwchallengefailureerr?language=objc)
     #[doc(alias = "kCWChallengeFailureErr")]
     pub const CWChallengeFailureErr: Self = Self(-3912);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwapfullerr?language=objc)
     #[doc(alias = "kCWAPFullErr")]
     pub const CWAPFullErr: Self = Self(-3913);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwunsupportedrateseterr?language=objc)
     #[doc(alias = "kCWUnsupportedRateSetErr")]
     pub const CWUnsupportedRateSetErr: Self = Self(-3914);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwshortslotunsupportederr?language=objc)
     #[doc(alias = "kCWShortSlotUnsupportedErr")]
     pub const CWShortSlotUnsupportedErr: Self = Self(-3915);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwdsssofdmunsupportederr?language=objc)
     #[doc(alias = "kCWDSSSOFDMUnsupportedErr")]
     pub const CWDSSSOFDMUnsupportedErr: Self = Self(-3916);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwinvalidinformationelementerr?language=objc)
     #[doc(alias = "kCWInvalidInformationElementErr")]
     pub const CWInvalidInformationElementErr: Self = Self(-3917);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwinvalidgroupciphererr?language=objc)
     #[doc(alias = "kCWInvalidGroupCipherErr")]
     pub const CWInvalidGroupCipherErr: Self = Self(-3918);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwinvalidpairwiseciphererr?language=objc)
     #[doc(alias = "kCWInvalidPairwiseCipherErr")]
     pub const CWInvalidPairwiseCipherErr: Self = Self(-3919);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwinvalidakmperr?language=objc)
     #[doc(alias = "kCWInvalidAKMPErr")]
     pub const CWInvalidAKMPErr: Self = Self(-3920);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwunsupportedrsnversionerr?language=objc)
     #[doc(alias = "kCWUnsupportedRSNVersionErr")]
     pub const CWUnsupportedRSNVersionErr: Self = Self(-3921);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwinvalidrsncapabilitieserr?language=objc)
     #[doc(alias = "kCWInvalidRSNCapabilitiesErr")]
     pub const CWInvalidRSNCapabilitiesErr: Self = Self(-3922);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwciphersuiterejectederr?language=objc)
     #[doc(alias = "kCWCipherSuiteRejectedErr")]
     pub const CWCipherSuiteRejectedErr: Self = Self(-3923);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwinvalidpmkerr?language=objc)
     #[doc(alias = "kCWInvalidPMKErr")]
     pub const CWInvalidPMKErr: Self = Self(-3924);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwsupplicanttimeouterr?language=objc)
     #[doc(alias = "kCWSupplicantTimeoutErr")]
     pub const CWSupplicantTimeoutErr: Self = Self(-3925);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwhtfeaturesnotsupportederr?language=objc)
     #[doc(alias = "kCWHTFeaturesNotSupportedErr")]
     pub const CWHTFeaturesNotSupportedErr: Self = Self(-3926);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwpcotransitiontimenotsupportederr?language=objc)
     #[doc(alias = "kCWPCOTransitionTimeNotSupportedErr")]
     pub const CWPCOTransitionTimeNotSupportedErr: Self = Self(-3927);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwreferencenotbounderr?language=objc)
     #[doc(alias = "kCWReferenceNotBoundErr")]
     pub const CWReferenceNotBoundErr: Self = Self(-3928);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwipcfailureerr?language=objc)
     #[doc(alias = "kCWIPCFailureErr")]
     pub const CWIPCFailureErr: Self = Self(-3929);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwoperationnotpermittederr?language=objc)
     #[doc(alias = "kCWOperationNotPermittedErr")]
     pub const CWOperationNotPermittedErr: Self = Self(-3930);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr/cwerr?language=objc)
     #[doc(alias = "kCWErr")]
     pub const CWErr: Self = Self(-3931);
 }
@@ -222,18 +256,25 @@ unsafe impl RefEncode for CWErr {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWPHYMode(pub NSInteger);
 impl CWPHYMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode/modenone?language=objc)
     #[doc(alias = "kCWPHYModeNone")]
     pub const ModeNone: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode/mode11a?language=objc)
     #[doc(alias = "kCWPHYMode11a")]
     pub const Mode11a: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode/mode11b?language=objc)
     #[doc(alias = "kCWPHYMode11b")]
     pub const Mode11b: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode/mode11g?language=objc)
     #[doc(alias = "kCWPHYMode11g")]
     pub const Mode11g: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode/mode11n?language=objc)
     #[doc(alias = "kCWPHYMode11n")]
     pub const Mode11n: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode/mode11ac?language=objc)
     #[doc(alias = "kCWPHYMode11ac")]
     pub const Mode11ac: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode/mode11ax?language=objc)
     #[doc(alias = "kCWPHYMode11ax")]
     pub const Mode11ax: Self = Self(6);
 }
@@ -266,12 +307,16 @@ unsafe impl RefEncode for CWPHYMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWInterfaceMode(pub NSInteger);
 impl CWInterfaceMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwinterfacemode/none?language=objc)
     #[doc(alias = "kCWInterfaceModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwinterfacemode/station?language=objc)
     #[doc(alias = "kCWInterfaceModeStation")]
     pub const Station: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwinterfacemode/ibss?language=objc)
     #[doc(alias = "kCWInterfaceModeIBSS")]
     pub const IBSS: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwinterfacemode/hostap?language=objc)
     #[doc(alias = "kCWInterfaceModeHostAP")]
     pub const HostAP: Self = Self(3);
 }
@@ -337,38 +382,55 @@ unsafe impl RefEncode for CWInterfaceMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWSecurity(pub NSInteger);
 impl CWSecurity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/none?language=objc)
     #[doc(alias = "kCWSecurityNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/wep?language=objc)
     #[doc(alias = "kCWSecurityWEP")]
     pub const WEP: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/wpapersonal?language=objc)
     #[doc(alias = "kCWSecurityWPAPersonal")]
     pub const WPAPersonal: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/wpapersonalmixed?language=objc)
     #[doc(alias = "kCWSecurityWPAPersonalMixed")]
     pub const WPAPersonalMixed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/wpa2personal?language=objc)
     #[doc(alias = "kCWSecurityWPA2Personal")]
     pub const WPA2Personal: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/personal?language=objc)
     #[doc(alias = "kCWSecurityPersonal")]
     pub const Personal: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/dynamicwep?language=objc)
     #[doc(alias = "kCWSecurityDynamicWEP")]
     pub const DynamicWEP: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/wpaenterprise?language=objc)
     #[doc(alias = "kCWSecurityWPAEnterprise")]
     pub const WPAEnterprise: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/wpaenterprisemixed?language=objc)
     #[doc(alias = "kCWSecurityWPAEnterpriseMixed")]
     pub const WPAEnterpriseMixed: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/wpa2enterprise?language=objc)
     #[doc(alias = "kCWSecurityWPA2Enterprise")]
     pub const WPA2Enterprise: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/enterprise?language=objc)
     #[doc(alias = "kCWSecurityEnterprise")]
     pub const Enterprise: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/wpa3personal?language=objc)
     #[doc(alias = "kCWSecurityWPA3Personal")]
     pub const WPA3Personal: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/wpa3enterprise?language=objc)
     #[doc(alias = "kCWSecurityWPA3Enterprise")]
     pub const WPA3Enterprise: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/wpa3transition?language=objc)
     #[doc(alias = "kCWSecurityWPA3Transition")]
     pub const WPA3Transition: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/owe?language=objc)
     #[doc(alias = "kCWSecurityOWE")]
     pub const OWE: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/owetransition?language=objc)
     #[doc(alias = "kCWSecurityOWETransition")]
     pub const OWETransition: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity/unknown?language=objc)
     #[doc(alias = "kCWSecurityUnknown")]
     pub const Unknown: Self = Self(NSIntegerMax as _);
 }
@@ -399,12 +461,15 @@ unsafe impl RefEncode for CWSecurity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWIBSSModeSecurity(pub NSInteger);
 impl CWIBSSModeSecurity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwibssmodesecurity/none?language=objc)
     #[doc(alias = "kCWIBSSModeSecurityNone")]
     #[deprecated]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwibssmodesecurity/wep40?language=objc)
     #[doc(alias = "kCWIBSSModeSecurityWEP40")]
     #[deprecated]
     pub const WEP40: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwibssmodesecurity/wep104?language=objc)
     #[doc(alias = "kCWIBSSModeSecurityWEP104")]
     #[deprecated]
     pub const WEP104: Self = Self(2);
@@ -441,14 +506,19 @@ unsafe impl RefEncode for CWIBSSModeSecurity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWChannelWidth(pub NSInteger);
 impl CWChannelWidth {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelwidth/widthunknown?language=objc)
     #[doc(alias = "kCWChannelWidthUnknown")]
     pub const WidthUnknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelwidth/width20mhz?language=objc)
     #[doc(alias = "kCWChannelWidth20MHz")]
     pub const Width20MHz: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelwidth/width40mhz?language=objc)
     #[doc(alias = "kCWChannelWidth40MHz")]
     pub const Width40MHz: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelwidth/width80mhz?language=objc)
     #[doc(alias = "kCWChannelWidth80MHz")]
     pub const Width80MHz: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelwidth/width160mhz?language=objc)
     #[doc(alias = "kCWChannelWidth160MHz")]
     pub const Width160MHz: Self = Self(4);
 }
@@ -481,12 +551,16 @@ unsafe impl RefEncode for CWChannelWidth {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWChannelBand(pub NSInteger);
 impl CWChannelBand {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelband/bandunknown?language=objc)
     #[doc(alias = "kCWChannelBandUnknown")]
     pub const BandUnknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelband/band2ghz?language=objc)
     #[doc(alias = "kCWChannelBand2GHz")]
     pub const Band2GHz: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelband/band5ghz?language=objc)
     #[doc(alias = "kCWChannelBand5GHz")]
     pub const Band5GHz: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelband/band6ghz?language=objc)
     #[doc(alias = "kCWChannelBand6GHz")]
     pub const Band6GHz: Self = Self(3);
 }
@@ -523,14 +597,19 @@ unsafe impl RefEncode for CWChannelBand {
 pub struct CWCipherKeyFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl CWCipherKeyFlags: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcipherkeyflags/kcwcipherkeyflagsnone?language=objc)
         #[doc(alias = "kCWCipherKeyFlagsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcipherkeyflags/unicast?language=objc)
         #[doc(alias = "kCWCipherKeyFlagsUnicast")]
         const Unicast = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcipherkeyflags/multicast?language=objc)
         #[doc(alias = "kCWCipherKeyFlagsMulticast")]
         const Multicast = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcipherkeyflags/tx?language=objc)
         #[doc(alias = "kCWCipherKeyFlagsTx")]
         const Tx = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcipherkeyflags/rx?language=objc)
         #[doc(alias = "kCWCipherKeyFlagsRx")]
         const Rx = 1<<4;
     }
@@ -561,10 +640,13 @@ unsafe impl RefEncode for CWCipherKeyFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWKeychainDomain(pub NSInteger);
 impl CWKeychainDomain {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaindomain/none?language=objc)
     #[doc(alias = "kCWKeychainDomainNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaindomain/user?language=objc)
     #[doc(alias = "kCWKeychainDomainUser")]
     pub const User: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaindomain/system?language=objc)
     #[doc(alias = "kCWKeychainDomainSystem")]
     pub const System: Self = Self(2);
 }
@@ -615,26 +697,37 @@ unsafe impl RefEncode for CWKeychainDomain {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWEventType(pub NSInteger);
 impl CWEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/none?language=objc)
     #[doc(alias = "CWEventTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/powerdidchange?language=objc)
     #[doc(alias = "CWEventTypePowerDidChange")]
     pub const PowerDidChange: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/ssiddidchange?language=objc)
     #[doc(alias = "CWEventTypeSSIDDidChange")]
     pub const SSIDDidChange: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/bssiddidchange?language=objc)
     #[doc(alias = "CWEventTypeBSSIDDidChange")]
     pub const BSSIDDidChange: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/countrycodedidchange?language=objc)
     #[doc(alias = "CWEventTypeCountryCodeDidChange")]
     pub const CountryCodeDidChange: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/linkdidchange?language=objc)
     #[doc(alias = "CWEventTypeLinkDidChange")]
     pub const LinkDidChange: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/linkqualitydidchange?language=objc)
     #[doc(alias = "CWEventTypeLinkQualityDidChange")]
     pub const LinkQualityDidChange: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/modedidchange?language=objc)
     #[doc(alias = "CWEventTypeModeDidChange")]
     pub const ModeDidChange: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/scancacheupdated?language=objc)
     #[doc(alias = "CWEventTypeScanCacheUpdated")]
     pub const ScanCacheUpdated: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/btcoexstats?language=objc)
     #[doc(alias = "CWEventTypeBtCoexStats")]
     pub const BtCoexStats: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype/unknown?language=objc)
     #[doc(alias = "CWEventTypeUnknown")]
     pub const Unknown: Self = Self(NSIntegerMax as _);
 }

@@ -10,6 +10,7 @@ use crate::*;
 
 pub const kPMDuplexDefault: c_uint = kPMDuplexNone;
 pub const kPMDestinationTypeDefault: c_uint = kPMDestinationPrinter;
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcolorspacemodelcount?language=objc)
 pub const kPMColorSpaceModelCount: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmobject?language=objc)
 pub type PMObject = *const c_void;
@@ -425,10 +426,13 @@ pub type PMPaperMargins = PMRect;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PMDataFormat(pub c_uint);
 impl PMDataFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmdataformat/kpmdataformatxmldefault?language=objc)
     #[doc(alias = "kPMDataFormatXMLDefault")]
     pub const XMLDefault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmdataformat/kpmdataformatxmlminimal?language=objc)
     #[doc(alias = "kPMDataFormatXMLMinimal")]
     pub const XMLMinimal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmdataformat/kpmdataformatxmlcompressed?language=objc)
     #[doc(alias = "kPMDataFormatXMLCompressed")]
     pub const XMLCompressed: Self = Self(2);
 }

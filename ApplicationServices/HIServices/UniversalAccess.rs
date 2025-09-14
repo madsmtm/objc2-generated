@@ -32,6 +32,8 @@ pub const kUAZoomFocusTypeInsertionPoint: c_uint = 1;
 /// if the zoom feature is off or if the user
 /// has zoomed all the way out.
 /// Availability: Available in Mac OS X v10.4 and later (not available in CarbonLib 1.x and not available for nonCarbon CFM).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462288-uazoomenabled?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn UAZoomEnabled() -> bool {
     extern "C-unwind" {
@@ -100,6 +102,8 @@ extern "C-unwind" {
     ///
     /// - `in_rect` must be a valid pointer.
     /// - `in_highlight_rect` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458830-uazoomchangefocus?language=objc)
     pub fn UAZoomChangeFocus(
         in_rect: *const CGRect,
         in_highlight_rect: *const CGRect,

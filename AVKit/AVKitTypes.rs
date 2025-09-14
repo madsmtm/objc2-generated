@@ -27,16 +27,22 @@ use crate::*;
 pub struct AVVideoFrameAnalysisType(pub NSUInteger);
 bitflags::bitflags! {
     impl AVVideoFrameAnalysisType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/avvideoframeanalysistypenone?language=objc)
         #[doc(alias = "AVVideoFrameAnalysisTypeNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/default?language=objc)
         #[doc(alias = "AVVideoFrameAnalysisTypeDefault")]
         const Default = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/text?language=objc)
         #[doc(alias = "AVVideoFrameAnalysisTypeText")]
         const Text = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/subject?language=objc)
         #[doc(alias = "AVVideoFrameAnalysisTypeSubject")]
         const Subject = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/visualsearch?language=objc)
         #[doc(alias = "AVVideoFrameAnalysisTypeVisualSearch")]
         const VisualSearch = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/machinereadablecode?language=objc)
         #[doc(alias = "AVVideoFrameAnalysisTypeMachineReadableCode")]
         const MachineReadableCode = 1<<4;
     }
@@ -59,15 +65,23 @@ unsafe impl RefEncode for AVVideoFrameAnalysisType {
 pub struct AVDisplayDynamicRange(pub NSInteger);
 impl AVDisplayDynamicRange {
     /// Defines an automatic dynamic range. Indicates that the dynamic range will be set automatically.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange/automatic?language=objc)
     #[doc(alias = "AVDisplayDynamicRangeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Defines a standard dynamic range. Restricts the video content dynamic range to the standard range regardless of the actual range of the video content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange/standard?language=objc)
     #[doc(alias = "AVDisplayDynamicRangeStandard")]
     pub const Standard: Self = Self(1);
     /// Defines a constrained high dynamic range. Allows for constrained High Dynamic Range (HDR) video content which is useful for mixing HDR and Standard Dynamic Range (SDR) content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange/constrainedhigh?language=objc)
     #[doc(alias = "AVDisplayDynamicRangeConstrainedHigh")]
     pub const ConstrainedHigh: Self = Self(2);
     /// Defines a high dynamic range. Allows video content to use extended dynamic range if it has dynamic range content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange/high?language=objc)
     #[doc(alias = "AVDisplayDynamicRangeHigh")]
     pub const High: Self = Self(3);
 }

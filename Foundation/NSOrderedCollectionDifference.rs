@@ -15,13 +15,19 @@ pub struct NSOrderedCollectionDifferenceCalculationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSOrderedCollectionDifferenceCalculationOptions: NSUInteger {
 /// Insertion changes do not store a reference to the inserted object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifferencecalculationoptions/omitinsertedobjects?language=objc)
         #[doc(alias = "NSOrderedCollectionDifferenceCalculationOmitInsertedObjects")]
         const OmitInsertedObjects = 1<<0;
 /// Insertion changes do not store a reference to the removed object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifferencecalculationoptions/omitremovedobjects?language=objc)
         #[doc(alias = "NSOrderedCollectionDifferenceCalculationOmitRemovedObjects")]
         const OmitRemovedObjects = 1<<1;
 /// Assume objects that were uniquely removed and inserted were moved.
 /// This is useful when diffing based on identity instead of equality.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifferencecalculationoptions/infermoves?language=objc)
         #[doc(alias = "NSOrderedCollectionDifferenceCalculationInferMoves")]
         const InferMoves = 1<<2;
     }

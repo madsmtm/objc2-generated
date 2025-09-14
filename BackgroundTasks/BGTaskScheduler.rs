@@ -35,11 +35,15 @@ impl BGTaskSchedulerErrorCode {
     /// ://com.apple.documentation/documentation/bundleresources/information_property_list/nsextension/nsextensionattributes/requestsopenaccess>
     /// to `YES` in [The Info.plist File](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW22), or the user hasn’t granted open access.
     /// - The extension type isn’t able to schedule background tasks.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/error/code/unavailable?language=objc)
     #[doc(alias = "BGTaskSchedulerErrorCodeUnavailable")]
     pub const Unavailable: Self = Self(1);
     /// A task scheduling error indicating that there are too many pending tasks of the type requested.
     ///
     /// Try canceling some existing task requests and then resubmit the request that failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/error/code/toomanypendingtaskrequests?language=objc)
     #[doc(alias = "BGTaskSchedulerErrorCodeTooManyPendingTaskRequests")]
     pub const TooManyPendingTaskRequests: Self = Self(2);
     /// A task scheduling error indicating the app isn’t permitted to schedule the task.
@@ -56,6 +60,8 @@ impl BGTaskSchedulerErrorCode {
     /// array in [the Info.plist](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW22).
     /// - The task requested additional ``BGContinuedProcessingTaskRequestResources`` that are unavailable.
     /// - The user has explicitly denied background launches for your app.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/error/code/notpermitted?language=objc)
     #[doc(alias = "BGTaskSchedulerErrorCodeNotPermitted")]
     pub const NotPermitted: Self = Self(3);
     /// A ``BGContinuedProcessingTaskRequest`` was not allowed to immediately run due to system conditions.
@@ -63,6 +69,8 @@ impl BGTaskSchedulerErrorCode {
     /// This will only be returned when using the ``BGContinuedProcessingTaskRequestSubmissionStrategyFail`` when
     /// submitting a ``BGContinuedProcessingTaskRequest``. Task requests that are successfully ran will not be
     /// associated with any error code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/error/code/immediaterunineligible?language=objc)
     #[doc(alias = "BGTaskSchedulerErrorCodeImmediateRunIneligible")]
     pub const ImmediateRunIneligible: Self = Self(4);
 }

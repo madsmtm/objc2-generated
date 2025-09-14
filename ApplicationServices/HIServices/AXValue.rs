@@ -19,16 +19,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXValueType(pub u32);
 impl AXValueType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypecgpoint?language=objc)
     #[doc(alias = "kAXValueTypeCGPoint")]
     pub const CGPoint: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypecgsize?language=objc)
     #[doc(alias = "kAXValueTypeCGSize")]
     pub const CGSize: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypecgrect?language=objc)
     #[doc(alias = "kAXValueTypeCGRect")]
     pub const CGRect: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypecfrange?language=objc)
     #[doc(alias = "kAXValueTypeCFRange")]
     pub const CFRange: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypeaxerror?language=objc)
     #[doc(alias = "kAXValueTypeAXError")]
     pub const AXError: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypeillegal?language=objc)
     #[doc(alias = "kAXValueTypeIllegal")]
     pub const Illegal: Self = Self(0);
 }
@@ -79,6 +85,8 @@ cf_objc2_type!(
 unsafe impl ConcreteType for AXValue {
     /// Returns:
     /// Availability: Mac OS X version 10.3 or later
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460780-axvaluegettypeid?language=objc)
     #[doc(alias = "AXValueGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -100,6 +108,8 @@ impl AXValue {
     /// # Safety
     ///
     /// `value_ptr` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459351-axvaluecreate?language=objc)
     #[doc(alias = "AXValueCreate")]
     #[inline]
     pub unsafe fn new(
@@ -121,6 +131,8 @@ impl AXValue {
     ///
     /// Parameter `value`:
     /// Returns:
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460911-axvaluegettype?language=objc)
     #[doc(alias = "AXValueGetType")]
     #[inline]
     pub unsafe fn r#type(&self) -> AXValueType {
@@ -140,6 +152,8 @@ impl AXValue {
     /// # Safety
     ///
     /// `value_ptr` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462933-axvaluegetvalue?language=objc)
     #[doc(alias = "AXValueGetValue")]
     #[inline]
     pub unsafe fn value(&self, the_type: AXValueType, value_ptr: NonNull<c_void>) -> bool {

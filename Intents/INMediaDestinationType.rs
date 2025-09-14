@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaDestinationType(pub NSInteger);
 impl INMediaDestinationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediadestinationtype/unknown?language=objc)
     #[doc(alias = "INMediaDestinationTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediadestinationtype/library?language=objc)
     #[doc(alias = "INMediaDestinationTypeLibrary")]
     pub const Library: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediadestinationtype/playlist?language=objc)
     #[doc(alias = "INMediaDestinationTypePlaylist")]
     pub const Playlist: Self = Self(2);
 }

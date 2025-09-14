@@ -15,14 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFBorderStyle(pub NSInteger);
 impl PDFBorderStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle/solid?language=objc)
     #[doc(alias = "kPDFBorderStyleSolid")]
     pub const Solid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle/dashed?language=objc)
     #[doc(alias = "kPDFBorderStyleDashed")]
     pub const Dashed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle/beveled?language=objc)
     #[doc(alias = "kPDFBorderStyleBeveled")]
     pub const Beveled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle/inset?language=objc)
     #[doc(alias = "kPDFBorderStyleInset")]
     pub const Inset: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle/underline?language=objc)
     #[doc(alias = "kPDFBorderStyleUnderline")]
     pub const Underline: Self = Self(4);
 }

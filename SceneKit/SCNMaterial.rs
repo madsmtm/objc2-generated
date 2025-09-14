@@ -49,8 +49,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNFillMode(pub NSUInteger);
 impl SCNFillMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfillmode/fill?language=objc)
     #[doc(alias = "SCNFillModeFill")]
     pub const Fill: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfillmode/lines?language=objc)
     #[doc(alias = "SCNFillModeLines")]
     pub const Lines: Self = Self(1);
 }
@@ -69,8 +71,10 @@ unsafe impl RefEncode for SCNFillMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNCullMode(pub NSInteger);
 impl SCNCullMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncullmode/back?language=objc)
     #[doc(alias = "SCNCullModeBack")]
     pub const Back: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncullmode/front?language=objc)
     #[doc(alias = "SCNCullModeFront")]
     pub const Front: Self = Self(1);
 }
@@ -89,14 +93,19 @@ unsafe impl RefEncode for SCNCullMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNTransparencyMode(pub NSInteger);
 impl SCNTransparencyMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode/aone?language=objc)
     #[doc(alias = "SCNTransparencyModeAOne")]
     pub const AOne: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode/rgbzero?language=objc)
     #[doc(alias = "SCNTransparencyModeRGBZero")]
     pub const RGBZero: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode/singlelayer?language=objc)
     #[doc(alias = "SCNTransparencyModeSingleLayer")]
     pub const SingleLayer: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode/duallayer?language=objc)
     #[doc(alias = "SCNTransparencyModeDualLayer")]
     pub const DualLayer: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode/default?language=objc)
     #[doc(alias = "SCNTransparencyModeDefault")]
     pub const Default: Self = Self(SCNTransparencyMode::AOne.0);
 }
@@ -117,18 +126,25 @@ unsafe impl RefEncode for SCNTransparencyMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNBlendMode(pub NSInteger);
 impl SCNBlendMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/alpha?language=objc)
     #[doc(alias = "SCNBlendModeAlpha")]
     pub const Alpha: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/add?language=objc)
     #[doc(alias = "SCNBlendModeAdd")]
     pub const Add: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/subtract?language=objc)
     #[doc(alias = "SCNBlendModeSubtract")]
     pub const Subtract: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/multiply?language=objc)
     #[doc(alias = "SCNBlendModeMultiply")]
     pub const Multiply: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/screen?language=objc)
     #[doc(alias = "SCNBlendModeScreen")]
     pub const Screen: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/replace?language=objc)
     #[doc(alias = "SCNBlendModeReplace")]
     pub const Replace: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/max?language=objc)
     #[doc(alias = "SCNBlendModeMax")]
     pub const Max: Self = Self(6);
 }

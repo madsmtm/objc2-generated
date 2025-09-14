@@ -16,10 +16,13 @@ use crate::*;
 pub struct GKMeshGraphTriangulationMode(pub NSUInteger);
 bitflags::bitflags! {
     impl GKMeshGraphTriangulationMode: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkmeshgraphtriangulationmode/vertices?language=objc)
         #[doc(alias = "GKMeshGraphTriangulationModeVertices")]
         const Vertices = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkmeshgraphtriangulationmode/centers?language=objc)
         #[doc(alias = "GKMeshGraphTriangulationModeCenters")]
         const Centers = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkmeshgraphtriangulationmode/edgemidpoints?language=objc)
         #[doc(alias = "GKMeshGraphTriangulationModeEdgeMidpoints")]
         const EdgeMidpoints = 1<<2;
     }

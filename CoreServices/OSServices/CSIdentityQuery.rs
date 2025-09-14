@@ -10,6 +10,7 @@ use crate::*;
 
 #[cfg(feature = "CSIdentity")]
 unsafe impl ConcreteType for CSIdentityQuery {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429012-csidentityquerygettypeid?language=objc)
     #[doc(alias = "CSIdentityQueryGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,6 +39,8 @@ pub type CSIdentityQueryStringComparisonMethod = CFIndex;
 
 #[cfg(feature = "CSIdentity")]
 impl CSIdentityQuery {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429003-csidentityquerycreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -61,6 +64,8 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1428997-csidentityquerycreateforname?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -97,6 +102,8 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429007-csidentityquerycreateforuuid?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -121,6 +128,8 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1428990-csidentityquerycreateforposixid?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -152,6 +161,8 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1428991-csidentityquerycreateforpersiste?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -173,6 +184,8 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429037-csidentityquerycreateforcurrentu?language=objc)
+    ///
     /// # Safety
     ///
     /// `allocator` might not allow `None`.
@@ -191,6 +204,7 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429035-csidentityquerycopyresults?language=objc)
     #[doc(alias = "CSIdentityQueryCopyResults")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
@@ -202,6 +216,8 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429041-csidentityqueryexecute?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer.
@@ -283,6 +299,8 @@ unsafe impl RefEncode for CSIdentityQueryClientContext {
 
 #[cfg(feature = "CSIdentity")]
 impl CSIdentityQuery {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429011-csidentityqueryexecuteasynchrono?language=objc)
+    ///
     /// # Safety
     ///
     /// - `client_context` must be a valid pointer.
@@ -320,6 +338,7 @@ impl CSIdentityQuery {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429047-csidentityquerystop?language=objc)
     #[doc(alias = "CSIdentityQueryStop")]
     #[cfg(feature = "CSIdentity")]
     #[inline]

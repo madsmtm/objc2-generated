@@ -17,16 +17,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKNavigationType(pub NSInteger);
 impl WKNavigationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/linkactivated?language=objc)
     #[doc(alias = "WKNavigationTypeLinkActivated")]
     pub const LinkActivated: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/formsubmitted?language=objc)
     #[doc(alias = "WKNavigationTypeFormSubmitted")]
     pub const FormSubmitted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/backforward?language=objc)
     #[doc(alias = "WKNavigationTypeBackForward")]
     pub const BackForward: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/reload?language=objc)
     #[doc(alias = "WKNavigationTypeReload")]
     pub const Reload: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/formresubmitted?language=objc)
     #[doc(alias = "WKNavigationTypeFormResubmitted")]
     pub const FormResubmitted: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/other?language=objc)
     #[doc(alias = "WKNavigationTypeOther")]
     pub const Other: Self = Self(-1);
 }

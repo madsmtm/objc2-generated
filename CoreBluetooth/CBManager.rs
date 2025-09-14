@@ -22,16 +22,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBManagerState(pub NSInteger);
 impl CBManagerState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/unknown?language=objc)
     #[doc(alias = "CBManagerStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/resetting?language=objc)
     #[doc(alias = "CBManagerStateResetting")]
     pub const Resetting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/unsupported?language=objc)
     #[doc(alias = "CBManagerStateUnsupported")]
     pub const Unsupported: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/unauthorized?language=objc)
     #[doc(alias = "CBManagerStateUnauthorized")]
     pub const Unauthorized: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/poweredoff?language=objc)
     #[doc(alias = "CBManagerStatePoweredOff")]
     pub const PoweredOff: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/poweredon?language=objc)
     #[doc(alias = "CBManagerStatePoweredOn")]
     pub const PoweredOn: Self = Self(5);
 }
@@ -56,12 +62,16 @@ unsafe impl RefEncode for CBManagerState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBManagerAuthorization(pub NSInteger);
 impl CBManagerAuthorization {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization/notdetermined?language=objc)
     #[doc(alias = "CBManagerAuthorizationNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization/restricted?language=objc)
     #[doc(alias = "CBManagerAuthorizationRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization/denied?language=objc)
     #[doc(alias = "CBManagerAuthorizationDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization/allowedalways?language=objc)
     #[doc(alias = "CBManagerAuthorizationAllowedAlways")]
     pub const AllowedAlways: Self = Self(3);
 }

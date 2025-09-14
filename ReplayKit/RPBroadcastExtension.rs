@@ -110,10 +110,13 @@ impl RPBroadcastHandler {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct RPSampleBufferType(pub NSInteger);
 impl RPSampleBufferType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpsamplebuffertype/video?language=objc)
     #[doc(alias = "RPSampleBufferTypeVideo")]
     pub const Video: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpsamplebuffertype/audioapp?language=objc)
     #[doc(alias = "RPSampleBufferTypeAudioApp")]
     pub const AudioApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpsamplebuffertype/audiomic?language=objc)
     #[doc(alias = "RPSampleBufferTypeAudioMic")]
     pub const AudioMic: Self = Self(3);
 }

@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPreferencePaneUnselectReply(pub NSUInteger);
 impl NSPreferencePaneUnselectReply {
+    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneunselectreply/unselectcancel?language=objc)
     #[doc(alias = "NSUnselectCancel")]
     pub const UnselectCancel: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneunselectreply/unselectnow?language=objc)
     #[doc(alias = "NSUnselectNow")]
     pub const UnselectNow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneunselectreply/unselectlater?language=objc)
     #[doc(alias = "NSUnselectLater")]
     pub const UnselectLater: Self = Self(2);
 }

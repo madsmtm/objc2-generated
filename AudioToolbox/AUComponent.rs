@@ -228,20 +228,28 @@ pub const kAudioUnitSubType_AudioFilePlayer: u32 = 0x6166706c;
 pub struct AudioUnitRenderActionFlags(pub u32);
 bitflags::bitflags! {
     impl AudioUnitRenderActionFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags/unitrenderaction_prerender?language=objc)
         #[doc(alias = "kAudioUnitRenderAction_PreRender")]
         const UnitRenderAction_PreRender = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags/unitrenderaction_postrender?language=objc)
         #[doc(alias = "kAudioUnitRenderAction_PostRender")]
         const UnitRenderAction_PostRender = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags/unitrenderaction_outputissilence?language=objc)
         #[doc(alias = "kAudioUnitRenderAction_OutputIsSilence")]
         const UnitRenderAction_OutputIsSilence = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags/offlineunitrenderaction_preflight?language=objc)
         #[doc(alias = "kAudioOfflineUnitRenderAction_Preflight")]
         const OfflineUnitRenderAction_Preflight = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags/offlineunitrenderaction_render?language=objc)
         #[doc(alias = "kAudioOfflineUnitRenderAction_Render")]
         const OfflineUnitRenderAction_Render = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags/offlineunitrenderaction_complete?language=objc)
         #[doc(alias = "kAudioOfflineUnitRenderAction_Complete")]
         const OfflineUnitRenderAction_Complete = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags/unitrenderaction_postrendererror?language=objc)
         #[doc(alias = "kAudioUnitRenderAction_PostRenderError")]
         const UnitRenderAction_PostRenderError = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags/unitrenderaction_donotcheckrenderargs?language=objc)
         #[doc(alias = "kAudioUnitRenderAction_DoNotCheckRenderArgs")]
         const UnitRenderAction_DoNotCheckRenderArgs = 1<<9;
     }
@@ -381,8 +389,10 @@ pub type AudioUnitParameterValue = f32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUParameterEventType(pub u32);
 impl AUParameterEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametereventtype/parameterevent_immediate?language=objc)
     #[doc(alias = "kParameterEvent_Immediate")]
     pub const ParameterEvent_Immediate: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametereventtype/parameterevent_ramped?language=objc)
     #[doc(alias = "kParameterEvent_Ramped")]
     pub const ParameterEvent_Ramped: Self = Self(2);
 }
@@ -656,6 +666,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitinitialize(_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitInitialize(in_unit: AudioUnit) -> OSStatus;
 }
@@ -680,6 +692,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounituninitialize(_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitUninitialize(in_unit: AudioUnit) -> OSStatus;
 }
@@ -716,6 +730,8 @@ extern "C-unwind" {
     /// - `in_unit` must be a valid pointer.
     /// - `out_data_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitgetpropertyinfo(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitGetPropertyInfo(
         in_unit: AudioUnit,
@@ -756,6 +772,8 @@ extern "C-unwind" {
     /// - `in_unit` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
     /// - `io_data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitgetproperty(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitGetProperty(
         in_unit: AudioUnit,
@@ -797,6 +815,8 @@ extern "C-unwind" {
     ///
     /// - `in_unit` must be a valid pointer.
     /// - `in_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitsetproperty(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitSetProperty(
         in_unit: AudioUnit,
@@ -836,6 +856,8 @@ extern "C-unwind" {
     /// - `in_unit` must be a valid pointer.
     /// - `in_proc` must be implemented correctly.
     /// - `in_proc_user_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitaddpropertylistener(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitAddPropertyListener(
         in_unit: AudioUnit,
@@ -868,6 +890,8 @@ extern "C-unwind" {
     /// - `in_unit` must be a valid pointer.
     /// - `in_proc` must be implemented correctly.
     /// - `in_proc_user_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremovepropertylistenerwithuserdata(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitRemovePropertyListenerWithUserData(
         in_unit: AudioUnit,
@@ -905,6 +929,8 @@ extern "C-unwind" {
     /// - `in_unit` must be a valid pointer.
     /// - `in_proc` must be implemented correctly.
     /// - `in_proc_user_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitaddrendernotify(_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioUnitAddRenderNotify(
         in_unit: AudioUnit,
@@ -932,6 +958,8 @@ extern "C-unwind" {
     /// - `in_unit` must be a valid pointer.
     /// - `in_proc` must be implemented correctly.
     /// - `in_proc_user_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremoverendernotify(_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioUnitRemoveRenderNotify(
         in_unit: AudioUnit,
@@ -964,6 +992,8 @@ extern "C-unwind" {
     ///
     /// - `in_unit` must be a valid pointer.
     /// - `out_value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitgetparameter(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitGetParameter(
         in_unit: AudioUnit,
@@ -1001,6 +1031,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitsetparameter(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitSetParameter(
         in_unit: AudioUnit,
@@ -1059,6 +1091,8 @@ extern "C-unwind" {
     /// - `io_action_flags` must be a valid pointer or null.
     /// - `in_time_stamp` must be a valid pointer.
     /// - `io_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrender(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioUnitRender(
         in_unit: AudioUnit,
@@ -1071,6 +1105,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitprocess(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_unit` must be a valid pointer.
@@ -1088,6 +1124,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitprocessmultiple(_:_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_unit` must be a valid pointer.
@@ -1135,6 +1173,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitreset(_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitReset(
         in_unit: AudioUnit,
@@ -1165,6 +1205,8 @@ extern "C-unwind" {
     ///
     /// - `in_desc` must be a valid pointer.
     /// - `in_output_unit` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitpublish(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     #[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
     pub fn AudioOutputUnitPublish(
@@ -1189,6 +1231,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `comp` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentgetlastactivetime(_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     #[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
     pub fn AudioComponentGetLastActiveTime(comp: AudioComponent) -> CFAbsoluteTime;
@@ -1211,6 +1255,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `audio_component_info` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitextensionsetcomponentlist(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioUnitExtensionSetComponentList(
         extension_identifier: &CFString,
@@ -1225,6 +1271,8 @@ extern "C-unwind" {
 /// Returns: An array of dictionaries, one for each component, in the same format as
 /// described in AudioComponent.h for the Info.plist key "AudioComponents".
 /// The caller should release this value when done with it.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitextensioncopycomponentlist(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioUnitExtensionCopyComponentList(

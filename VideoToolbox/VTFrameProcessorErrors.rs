@@ -26,45 +26,73 @@ pub struct VTFrameProcessorError(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTFrameProcessorError {
     /// Returned if the processor failed for unknown reason.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/unknownerror?language=objc)
     #[doc(alias = "VTFrameProcessorUnknownError")]
     pub const UnknownError: Self = Self(-19730);
     /// Returned if the processor failed due to an unsupported resolution.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/unsupportedresolution?language=objc)
     #[doc(alias = "VTFrameProcessorUnsupportedResolution")]
     pub const UnsupportedResolution: Self = Self(-19731);
     /// Returned if the session is used to process frames without being started.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/sessionnotstarted?language=objc)
     #[doc(alias = "VTFrameProcessorSessionNotStarted")]
     pub const SessionNotStarted: Self = Self(-19732);
     /// Returned if a `startSessionWithConfiguration` call is made on a session which has already been started.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/sessionalreadyactive?language=objc)
     #[doc(alias = "VTFrameProcessorSessionAlreadyActive")]
     pub const SessionAlreadyActive: Self = Self(-19733);
     /// Returned if a fatal error is encoutnered during processing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/fatalerror?language=objc)
     #[doc(alias = "VTFrameProcessorFatalError")]
     pub const FatalError: Self = Self(-19734);
     /// Returned if processing failed and current session should be stopped.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/sessionlevelerror?language=objc)
     #[doc(alias = "VTFrameProcessorSessionLevelError")]
     pub const SessionLevelError: Self = Self(-19735);
     /// Returned if the session failed to initialize the processing pipeline.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/initializationfailed?language=objc)
     #[doc(alias = "VTFrameProcessorInitializationFailed")]
     pub const InitializationFailed: Self = Self(-19736);
     /// Returned to indicate that one or more frames is in a format which is not supproted by the processor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/unsupportedinput?language=objc)
     #[doc(alias = "VTFrameProcessorUnsupportedInput")]
     pub const UnsupportedInput: Self = Self(-19737);
     /// Returned if the session or processor is unable to allocate required memory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/memoryallocationfailure?language=objc)
     #[doc(alias = "VTFrameProcessorMemoryAllocationFailure")]
     pub const MemoryAllocationFailure: Self = Self(-19738);
     /// Returned if the specifed revision is not supported by the configured processor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/revisionnotsupported?language=objc)
     #[doc(alias = "VTFrameProcessorRevisionNotSupported")]
     pub const RevisionNotSupported: Self = Self(-19739);
     /// Returned if the processor encountered an issue preventing it from processing the provided frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/processingerror?language=objc)
     #[doc(alias = "VTFrameProcessorProcessingError")]
     pub const ProcessingError: Self = Self(-19740);
     /// Returned if one of the provided parameters is not valid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/invalidparametererror?language=objc)
     #[doc(alias = "VTFrameProcessorInvalidParameterError")]
     pub const InvalidParameterError: Self = Self(-19741);
     /// Returned if one of the provided `VTFrameProcessorFrame` objects has a presentation time which is not supported by the processor, either invalid or out-of-order.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/invalidframetiming?language=objc)
     #[doc(alias = "VTFrameProcessorInvalidFrameTiming")]
     pub const InvalidFrameTiming: Self = Self(-19742);
     /// Returned if download of a required model asset for the processor failed
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code/assetdownloadfailed?language=objc)
     #[doc(alias = "VTFrameProcessorAssetDownloadFailed")]
     pub const AssetDownloadFailed: Self = Self(-19743);
 }

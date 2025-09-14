@@ -18,12 +18,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertViewStyle(pub NSInteger);
 impl UIAlertViewStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewstyle/default?language=objc)
     #[doc(alias = "UIAlertViewStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewstyle/securetextinput?language=objc)
     #[doc(alias = "UIAlertViewStyleSecureTextInput")]
     pub const SecureTextInput: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewstyle/plaintextinput?language=objc)
     #[doc(alias = "UIAlertViewStylePlainTextInput")]
     pub const PlainTextInput: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewstyle/loginandpasswordinput?language=objc)
     #[doc(alias = "UIAlertViewStyleLoginAndPasswordInput")]
     pub const LoginAndPasswordInput: Self = Self(3);
 }

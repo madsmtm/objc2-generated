@@ -16,9 +16,13 @@ use crate::*;
 pub struct PTChannelJoinReason(pub NSInteger);
 impl PTChannelJoinReason {
     /// The app joined via a programmatic call to requestJoinChannelWithUUID:descriptor: while in the foreground
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneljoinreason/developerrequest?language=objc)
     #[doc(alias = "PTChannelJoinReasonDeveloperRequest")]
     pub const DeveloperRequest: Self = Self(0);
     /// Rejoined via channel restoration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneljoinreason/channelrestoration?language=objc)
     #[doc(alias = "PTChannelJoinReasonChannelRestoration")]
     pub const ChannelRestoration: Self = Self(1);
 }
@@ -37,15 +41,22 @@ unsafe impl RefEncode for PTChannelJoinReason {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTChannelLeaveReason(pub NSInteger);
 impl PTChannelLeaveReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelleavereason/unknown?language=objc)
     #[doc(alias = "PTChannelLeaveReasonUnknown")]
     pub const Unknown: Self = Self(0);
     /// User pressed the leave button in the system UI
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelleavereason/userrequest?language=objc)
     #[doc(alias = "PTChannelLeaveReasonUserRequest")]
     pub const UserRequest: Self = Self(1);
     /// The app made a call to leaveChannelWithUUID:
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelleavereason/developerrequest?language=objc)
     #[doc(alias = "PTChannelLeaveReasonDeveloperRequest")]
     pub const DeveloperRequest: Self = Self(2);
     /// For example, a new managed device restriction has come into effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelleavereason/systempolicy?language=objc)
     #[doc(alias = "PTChannelLeaveReasonSystemPolicy")]
     pub const SystemPolicy: Self = Self(3);
 }
@@ -64,15 +75,22 @@ unsafe impl RefEncode for PTChannelLeaveReason {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTChannelTransmitRequestSource(pub NSInteger);
 impl PTChannelTransmitRequestSource {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneltransmitrequestsource/unknown?language=objc)
     #[doc(alias = "PTChannelTransmitRequestSourceUnknown")]
     pub const Unknown: Self = Self(0);
     /// User pressed the transmit button in the on-screen system user interface
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneltransmitrequestsource/userrequest?language=objc)
     #[doc(alias = "PTChannelTransmitRequestSourceUserRequest")]
     pub const UserRequest: Self = Self(1);
     /// The app made a call to requestBeginTransmittingWithChannelUUID:
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneltransmitrequestsource/developerrequest?language=objc)
     #[doc(alias = "PTChannelTransmitRequestSourceDeveloperRequest")]
     pub const DeveloperRequest: Self = Self(2);
     /// User pressed a button on a hands-free device such as a wired headset
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneltransmitrequestsource/handsfreebutton?language=objc)
     #[doc(alias = "PTChannelTransmitRequestSourceHandsfreeButton")]
     pub const HandsfreeButton: Self = Self(3);
 }

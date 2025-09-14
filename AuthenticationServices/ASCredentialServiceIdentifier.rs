@@ -14,8 +14,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialServiceIdentifierType(pub NSInteger);
 impl ASCredentialServiceIdentifierType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialserviceidentifier/identifiertype/domain?language=objc)
     #[doc(alias = "ASCredentialServiceIdentifierTypeDomain")]
     pub const Domain: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialserviceidentifier/identifiertype/url?language=objc)
     #[doc(alias = "ASCredentialServiceIdentifierTypeURL")]
     pub const URL: Self = Self(1);
 }

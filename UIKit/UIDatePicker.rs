@@ -19,18 +19,28 @@ use crate::*;
 pub struct UIDatePickerMode(pub NSInteger);
 impl UIDatePickerMode {
     /// Displays hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. 6 | 53 | PM)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepicker/mode/time?language=objc)
     #[doc(alias = "UIDatePickerModeTime")]
     pub const Time: Self = Self(0);
     /// Displays month, day, and year depending on the locale setting (e.g. November | 15 | 2007)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepicker/mode/date?language=objc)
     #[doc(alias = "UIDatePickerModeDate")]
     pub const Date: Self = Self(1);
     /// Displays date, hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. Wed Nov 15 | 6 | 53 | PM)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepicker/mode/dateandtime?language=objc)
     #[doc(alias = "UIDatePickerModeDateAndTime")]
     pub const DateAndTime: Self = Self(2);
     /// Displays hour and minute (e.g. 1 | 53); only supported in `UIDatePickerStyleWheels`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepicker/mode/countdowntimer?language=objc)
     #[doc(alias = "UIDatePickerModeCountDownTimer")]
     pub const CountDownTimer: Self = Self(3);
     /// Displays year and month depending on the locale setting (e.g. March | 2024); only supported in `UIDatePickerStyleWheels`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepicker/mode/yearandmonth?language=objc)
     #[doc(alias = "UIDatePickerModeYearAndMonth")]
     pub const YearAndMonth: Self = Self(4);
 }
@@ -52,15 +62,23 @@ impl UIDatePickerStyle {
     /// Automatically pick the best style available for the current platform
     /// &
     /// mode.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepickerstyle/automatic?language=objc)
     #[doc(alias = "UIDatePickerStyleAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Use the wheels (UIPickerView) style. Editing occurs inline.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepickerstyle/wheels?language=objc)
     #[doc(alias = "UIDatePickerStyleWheels")]
     pub const Wheels: Self = Self(1);
     /// Use a compact style for the date picker. Editing occurs in an overlay.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepickerstyle/compact?language=objc)
     #[doc(alias = "UIDatePickerStyleCompact")]
     pub const Compact: Self = Self(2);
     /// Use a style for the date picker that allows editing in place.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepickerstyle/inline?language=objc)
     #[doc(alias = "UIDatePickerStyleInline")]
     pub const Inline: Self = Self(3);
 }

@@ -25,12 +25,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerLooperStatus(pub NSInteger);
 impl AVPlayerLooperStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.enum/unknown?language=objc)
     #[doc(alias = "AVPlayerLooperStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.enum/ready?language=objc)
     #[doc(alias = "AVPlayerLooperStatusReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.enum/failed?language=objc)
     #[doc(alias = "AVPlayerLooperStatusFailed")]
     pub const Failed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.enum/cancelled?language=objc)
     #[doc(alias = "AVPlayerLooperStatusCancelled")]
     pub const Cancelled: Self = Self(3);
 }
@@ -55,8 +59,10 @@ unsafe impl RefEncode for AVPlayerLooperStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerLooperItemOrdering(pub NSInteger);
 impl AVPlayerLooperItemOrdering {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/itemordering/loopingitemsprecedeexistingitems?language=objc)
     #[doc(alias = "AVPlayerLooperItemOrderingLoopingItemsPrecedeExistingItems")]
     pub const LoopingItemsPrecedeExistingItems: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/itemordering/loopingitemsfollowexistingitems?language=objc)
     #[doc(alias = "AVPlayerLooperItemOrderingLoopingItemsFollowExistingItems")]
     pub const LoopingItemsFollowExistingItems: Self = Self(1);
 }

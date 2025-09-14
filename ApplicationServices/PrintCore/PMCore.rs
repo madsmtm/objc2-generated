@@ -9,6 +9,8 @@ use objc2_core_graphics::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460190-pmretain?language=objc)
+    ///
     /// # Safety
     ///
     /// `object` must be a valid pointer or null.
@@ -17,6 +19,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease?language=objc)
+    ///
     /// # Safety
     ///
     /// `object` must be a valid pointer or null.
@@ -25,6 +29,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession?language=objc)
+    ///
     /// # Safety
     ///
     /// `print_session` must be a valid pointer.
@@ -33,6 +39,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460003-pmsessionerror?language=objc)
+    ///
     /// # Safety
     ///
     /// `print_session` must be a valid pointer.
@@ -41,6 +49,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460216-pmsessionseterror?language=objc)
+    ///
     /// # Safety
     ///
     /// `print_session` must be a valid pointer.
@@ -49,6 +59,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -63,6 +75,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464527-pmsessionenddocumentnodialog?language=objc)
+    ///
     /// # Safety
     ///
     /// `print_session` must be a valid pointer.
@@ -71,6 +85,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463416-pmsessionbeginpagenodialog?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -85,6 +101,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462014-pmsessionendpagenodialog?language=objc)
+    ///
     /// # Safety
     ///
     /// `print_session` must be a valid pointer.
@@ -93,6 +111,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -105,6 +125,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461071-pmsessiongetdestinationtype?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -119,6 +141,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464266-pmsessioncopydestinationformat?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -133,6 +157,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462967-pmsessioncopydestinationlocation?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -147,6 +173,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459855-pmsessionsetdestination?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -162,6 +190,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461332-pmsessioncopyoutputformatlist?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -175,6 +205,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463985-pmsessioncreatepageformatlist?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -189,6 +221,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460119-pmsessioncreateprinterlist?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -205,6 +239,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458998-pmsessiongetcurrentprinter?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -217,6 +253,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter?language=objc)
+    ///
     /// # Safety
     ///
     /// - `session` must be a valid pointer.
@@ -226,6 +264,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462964-pmsessiongetdatafromsession?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -239,6 +279,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461902-pmsessionsetdatainsession?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -252,6 +294,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459485-pmcreatepageformat?language=objc)
+    ///
     /// # Safety
     ///
     /// `page_format` must be a valid pointer.
@@ -260,6 +304,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462217-pmsessiondefaultpageformat?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -272,6 +318,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459090-pmsessionvalidatepageformat?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -286,6 +334,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464669-pmcopypageformat?language=objc)
+    ///
     /// # Safety
     ///
     /// - `format_src` must be a valid pointer.
@@ -295,6 +345,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459274-pmcreatepageformatwithpmpaper?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -307,6 +359,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464227-pmpageformatcreatedatarepresenta?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -320,6 +374,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462876-pmpageformatcreatewithdatarepres?language=objc)
+    ///
     /// # Safety
     ///
     /// `page_format` must be a valid pointer.
@@ -331,6 +387,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461543-pmgetadjustedpagerect?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -341,6 +399,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459167-pmgetadjustedpaperrect?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -353,6 +413,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459144-pmgetorientation?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -365,6 +427,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464455-pmgetpageformatextendeddata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -380,6 +444,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462961-pmpageformatgetprinterid?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -392,6 +458,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458796-pmgetscale?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -401,6 +469,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462944-pmgetunadjustedpagerect?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -413,6 +483,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462939-pmgetunadjustedpaperrect?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -429,6 +501,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `page_format` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459016-pmsetorientation?language=objc)
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe extern "C-unwind" fn PMSetOrientation(
@@ -447,6 +521,8 @@ pub unsafe extern "C-unwind" fn PMSetOrientation(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463464-pmsetpageformatextendeddata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_format` must be a valid pointer.
@@ -461,6 +537,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463343-pmsetscale?language=objc)
+    ///
     /// # Safety
     ///
     /// `page_format` must be a valid pointer.
@@ -469,6 +547,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463239-pmcreateprintsettings?language=objc)
+    ///
     /// # Safety
     ///
     /// `print_settings` must be a valid pointer.
@@ -477,6 +557,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460138-pmsessiondefaultprintsettings?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -489,6 +571,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458994-pmsessionvalidateprintsettings?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_session` must be a valid pointer.
@@ -503,6 +587,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462491-pmcopyprintsettings?language=objc)
+    ///
     /// # Safety
     ///
     /// - `setting_src` must be a valid pointer.
@@ -515,6 +601,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464570-pmprintsettingscreatedatareprese?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -528,6 +616,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462203-pmprintsettingscreatewithdatarep?language=objc)
+    ///
     /// # Safety
     ///
     /// `print_settings` must be a valid pointer.
@@ -539,6 +629,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464492-pmgetcollate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -548,6 +640,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464480-pmgetcopies?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -557,6 +651,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458921-pmgetduplex?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -569,6 +665,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460271-pmgetfirstpage?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -578,6 +676,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462747-pmgetlastpage?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -587,6 +687,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459324-pmgetpagerange?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -601,6 +703,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459233-pmprintsettingsgetjobname?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -613,6 +717,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460602-pmprintsettingsgetvalue?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -625,6 +731,8 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463223-pmsetcollate?language=objc)
+///
 /// # Safety
 ///
 /// `print_settings` must be a valid pointer.
@@ -640,6 +748,8 @@ pub unsafe extern "C-unwind" fn PMSetCollate(
     unsafe { PMSetCollate(print_settings, collate as _) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463804-pmsetcopies?language=objc)
+///
 /// # Safety
 ///
 /// `print_settings` must be a valid pointer.
@@ -657,6 +767,8 @@ pub unsafe extern "C-unwind" fn PMSetCopies(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462000-pmsetduplex?language=objc)
+    ///
     /// # Safety
     ///
     /// `print_settings` must be a valid pointer.
@@ -664,6 +776,8 @@ extern "C-unwind" {
     pub fn PMSetDuplex(print_settings: PMPrintSettings, duplex_setting: PMDuplexMode) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461519-pmsetfirstpage?language=objc)
+///
 /// # Safety
 ///
 /// `print_settings` must be a valid pointer.
@@ -680,6 +794,8 @@ pub unsafe extern "C-unwind" fn PMSetFirstPage(
     unsafe { PMSetFirstPage(print_settings, first, lock as _) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463595-pmsetlastpage?language=objc)
+///
 /// # Safety
 ///
 /// `print_settings` must be a valid pointer.
@@ -697,6 +813,8 @@ pub unsafe extern "C-unwind" fn PMSetLastPage(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462294-pmsetpagerange?language=objc)
+    ///
     /// # Safety
     ///
     /// `print_settings` must be a valid pointer.
@@ -709,6 +827,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460149-pmprintsettingssetjobname?language=objc)
+    ///
     /// # Safety
     ///
     /// `print_settings` must be a valid pointer.
@@ -716,6 +836,8 @@ extern "C-unwind" {
     pub fn PMPrintSettingsSetJobName(print_settings: PMPrintSettings, name: &CFString) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461697-pmprintsettingssetvalue?language=objc)
+///
 /// # Safety
 ///
 /// - `print_settings` must be a valid pointer.
@@ -740,6 +862,8 @@ pub unsafe extern "C-unwind" fn PMPrintSettingsSetValue(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -752,6 +876,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462730-pmprintsettingscopykeys?language=objc)
+    ///
     /// # Safety
     ///
     /// - `print_settings` must be a valid pointer.
@@ -783,11 +909,15 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `printer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461960-pmcreategenericprinter?language=objc)
     #[cfg(feature = "PMDefinitions")]
     pub fn PMCreateGenericPrinter(printer: NonNull<PMPrinter>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459953-pmservercreateprinterlist?language=objc)
+    ///
     /// # Safety
     ///
     /// - `server` must be a valid pointer or null.
@@ -800,6 +930,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460175-pmserverlaunchprinterbrowser?language=objc)
+    ///
     /// # Safety
     ///
     /// - `server` must be a valid pointer or null.
@@ -813,11 +945,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461363-pmprintercreatefromprinterid?language=objc)
     #[cfg(feature = "PMDefinitions")]
     pub fn PMPrinterCreateFromPrinterID(printer_id: &CFString) -> PMPrinter;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459187-pmprintercopydescriptionurl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -831,6 +966,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460543-pmprintercopydeviceuri?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -843,6 +980,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462076-pmprintercopyhostname?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -855,6 +994,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459117-pmprintercopypresets?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -867,6 +1008,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461069-pmprintergetcomminfo?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -880,6 +1023,8 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459606-pmprintergetid?language=objc)
+///
 /// # Safety
 ///
 /// `printer` must be a valid pointer.
@@ -893,6 +1038,8 @@ pub unsafe extern "C-unwind" fn PMPrinterGetID(printer: PMPrinter) -> Option<CFR
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461467-pmprintergetlocation?language=objc)
+///
 /// # Safety
 ///
 /// `printer` must be a valid pointer.
@@ -909,6 +1056,8 @@ pub unsafe extern "C-unwind" fn PMPrinterGetLocation(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459107-pmprintergetdrivercreator?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -918,6 +1067,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462004-pmprintergetprinterresolutioncou?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -930,6 +1081,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464490-pmprintergetindexedprinterresolu?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -943,6 +1096,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459076-pmprintergetoutputresolution?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -957,6 +1112,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459931-pmprintersetoutputresolution?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -971,6 +1128,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458956-pmprintergetlanguageinfo?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -980,6 +1139,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463347-pmprintergetmakeandmodelname?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -992,6 +1153,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460125-pmprintergetmimetypes?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1005,6 +1168,8 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459018-pmprintergetname?language=objc)
+///
 /// # Safety
 ///
 /// `printer` must be a valid pointer.
@@ -1021,6 +1186,8 @@ pub unsafe extern "C-unwind" fn PMPrinterGetName(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460088-pmprintergetpaperlist?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1033,6 +1200,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462954-pmprintergetstate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1041,6 +1210,8 @@ extern "C-unwind" {
     pub fn PMPrinterGetState(printer: PMPrinter, state: NonNull<PMPrinterState>) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459030-pmprinterisdefault?language=objc)
+///
 /// # Safety
 ///
 /// `printer` must be a valid pointer.
@@ -1054,6 +1225,8 @@ pub unsafe extern "C-unwind" fn PMPrinterIsDefault(printer: PMPrinter) -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462074-pmprinterisfavorite?language=objc)
+///
 /// # Safety
 ///
 /// `printer` must be a valid pointer.
@@ -1067,6 +1240,8 @@ pub unsafe extern "C-unwind" fn PMPrinterIsFavorite(printer: PMPrinter) -> bool 
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464168-pmprinterispostscriptcapable?language=objc)
+///
 /// # Safety
 ///
 /// `printer` must be a valid pointer.
@@ -1098,6 +1273,8 @@ extern "C-unwind" {
     ///
     /// - `printer` must be a valid pointer.
     /// - `is_ps_printer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462257-pmprinterispostscriptprinter?language=objc)
     #[cfg(feature = "PMDefinitions")]
     pub fn PMPrinterIsPostScriptPrinter(
         printer: PMPrinter,
@@ -1106,6 +1283,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461377-pmprinterisremote?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1115,6 +1294,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461118-pmprintersetdefault?language=objc)
+    ///
     /// # Safety
     ///
     /// `printer` must be a valid pointer.
@@ -1123,6 +1304,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460343-pmpresetcopyname?language=objc)
+    ///
     /// # Safety
     ///
     /// - `preset` must be a valid pointer.
@@ -1132,6 +1315,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463414-pmpresetcreateprintsettings?language=objc)
+    ///
     /// # Safety
     ///
     /// - `preset` must be a valid pointer.
@@ -1146,6 +1331,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459042-pmpresetgetattributes?language=objc)
+    ///
     /// # Safety
     ///
     /// - `preset` must be a valid pointer.
@@ -1158,6 +1345,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461319-pmgetpageformatpaper?language=objc)
+    ///
     /// # Safety
     ///
     /// - `format` must be a valid pointer.
@@ -1167,6 +1356,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459322-pmpapercreatecustom?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer or null.
@@ -1185,6 +1376,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459209-pmpapergetwidth?language=objc)
+    ///
     /// # Safety
     ///
     /// - `paper` must be a valid pointer.
@@ -1194,6 +1387,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460389-pmpapergetheight?language=objc)
+    ///
     /// # Safety
     ///
     /// - `paper` must be a valid pointer.
@@ -1203,6 +1398,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461994-pmpapergetmargins?language=objc)
+    ///
     /// # Safety
     ///
     /// - `paper` must be a valid pointer.
@@ -1212,6 +1409,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462910-pmpapergetid?language=objc)
+    ///
     /// # Safety
     ///
     /// - `paper` must be a valid pointer.
@@ -1221,6 +1420,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461039-pmpapergetppdpapername?language=objc)
+    ///
     /// # Safety
     ///
     /// - `paper` must be a valid pointer.
@@ -1231,6 +1432,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460981-pmpapercreatelocalizedname?language=objc)
+    ///
     /// # Safety
     ///
     /// - `paper` must be a valid pointer.
@@ -1245,6 +1448,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461737-pmpapergetprinterid?language=objc)
+    ///
     /// # Safety
     ///
     /// - `paper` must be a valid pointer.
@@ -1253,6 +1458,8 @@ extern "C-unwind" {
     pub fn PMPaperGetPrinterID(paper: PMPaper, printer_id: NonNull<*const CFString>) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459526-pmpaperiscustom?language=objc)
+///
 /// # Safety
 ///
 /// `paper` must be a valid pointer.
@@ -1267,6 +1474,8 @@ pub unsafe extern "C-unwind" fn PMPaperIsCustom(paper: PMPaper) -> bool {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459914-pmworkflowcopyitems?language=objc)
+    ///
     /// # Safety
     ///
     /// `workflow_items` must be a valid pointer.
@@ -1274,6 +1483,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463747-pmworkflowsubmitpdfwithoptions?language=objc)
+    ///
     /// # Safety
     ///
     /// `options` must be a valid pointer or null.
@@ -1286,6 +1497,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458874-pmworkflowsubmitpdfwithsettings?language=objc)
+    ///
     /// # Safety
     ///
     /// `settings` must be a valid pointer.
@@ -1298,6 +1511,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461110-pmprinterprintwithprovider?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1314,6 +1529,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464600-pmprinterprintwithfile?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1330,6 +1547,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459729-pmprinterwritepostscripttourl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1347,6 +1566,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459069-pmprintsettingstooptions?language=objc)
+    ///
     /// # Safety
     ///
     /// - `settings` must be a valid pointer.
@@ -1359,6 +1580,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459435-pmprintsettingstooptionswithprin?language=objc)
+    ///
     /// # Safety
     ///
     /// - `settings` must be a valid pointer.
@@ -1375,6 +1598,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463872-pmprintersendcommand?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1390,6 +1615,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460381-pmprintercopystate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1402,6 +1629,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464170-pmcopyavailableppds?language=objc)
+    ///
     /// # Safety
     ///
     /// `ppds` must be a valid pointer.
@@ -1410,6 +1639,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459690-pmcopylocalizedppd?language=objc)
+    ///
     /// # Safety
     ///
     /// `localized_ppd` must be a valid pointer.
@@ -1417,12 +1648,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460345-pmcopyppddata?language=objc)
+    ///
     /// # Safety
     ///
     /// `data` must be a valid pointer.
     pub fn PMCopyPPDData(ppd: &CFURL, data: NonNull<*const CFData>) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462361-pmcgimagecreatewithepsdataprovid?language=objc)
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn PMCGImageCreateWithEPSDataProvider(

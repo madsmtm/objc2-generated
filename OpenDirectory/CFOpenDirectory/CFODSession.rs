@@ -22,6 +22,8 @@ unsafe impl ConcreteType for ODSessionRef {
     /// Returns the typeID for ODSession objects
     ///
     /// Returns: a valid CFTypeID for the ODSession object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessiongettypeid()?language=objc)
     #[doc(alias = "ODSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -61,6 +63,8 @@ impl ODSessionRef {
     /// - `options` generic must be of the correct type.
     /// - `options` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessioncreate(_:_:_:)?language=objc)
     #[doc(alias = "ODSessionCreate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -97,6 +101,8 @@ impl ODSessionRef {
     /// - `allocator` might not allow `None`.
     /// - `session` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessioncopynodenames(_:_:_:)?language=objc)
     #[doc(alias = "ODSessionCopyNodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

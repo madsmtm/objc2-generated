@@ -13,33 +13,44 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INListRideOptionsIntentResponseCode(pub NSInteger);
 impl INListRideOptionsIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INListRideOptionsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/ready?language=objc)
     #[doc(alias = "INListRideOptionsIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INListRideOptionsIntentResponseCodeInProgress")]
     #[deprecated = "INListRideOptionsIntentResponseCodeInProgress is deprecated."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/success?language=objc)
     #[doc(alias = "INListRideOptionsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failure?language=objc)
     #[doc(alias = "INListRideOptionsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INListRideOptionsIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunchmustverifycredentials?language=objc)
     #[doc(
         alias = "INListRideOptionsIntentResponseCodeFailureRequiringAppLaunchMustVerifyCredentials"
     )]
     pub const FailureRequiringAppLaunchMustVerifyCredentials: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunchnoserviceinarea?language=objc)
     #[doc(alias = "INListRideOptionsIntentResponseCodeFailureRequiringAppLaunchNoServiceInArea")]
     pub const FailureRequiringAppLaunchNoServiceInArea: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunchservicetemporarilyunavailable?language=objc)
     #[doc(
         alias = "INListRideOptionsIntentResponseCodeFailureRequiringAppLaunchServiceTemporarilyUnavailable"
     )]
     pub const FailureRequiringAppLaunchServiceTemporarilyUnavailable: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunchpreviousrideneedscompletion?language=objc)
     #[doc(
         alias = "INListRideOptionsIntentResponseCodeFailureRequiringAppLaunchPreviousRideNeedsCompletion"
     )]
     pub const FailureRequiringAppLaunchPreviousRideNeedsCompletion: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurepreviousrideneedsfeedback?language=objc)
     #[doc(alias = "INListRideOptionsIntentResponseCodeFailurePreviousRideNeedsFeedback")]
     pub const FailurePreviousRideNeedsFeedback: Self = Self(10);
 }

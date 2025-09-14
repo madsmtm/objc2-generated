@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextInputTraitType(pub NSInteger);
 impl NSTextInputTraitType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputtraittype/default?language=objc)
     #[doc(alias = "NSTextInputTraitTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputtraittype/no?language=objc)
     #[doc(alias = "NSTextInputTraitTypeNo")]
     pub const No: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputtraittype/yes?language=objc)
     #[doc(alias = "NSTextInputTraitTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -35,12 +38,16 @@ unsafe impl RefEncode for NSTextInputTraitType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingToolsBehavior(pub NSInteger);
 impl NSWritingToolsBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsbehavior/none?language=objc)
     #[doc(alias = "NSWritingToolsBehaviorNone")]
     pub const None: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsbehavior/default?language=objc)
     #[doc(alias = "NSWritingToolsBehaviorDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsbehavior/complete?language=objc)
     #[doc(alias = "NSWritingToolsBehaviorComplete")]
     pub const Complete: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsbehavior/limited?language=objc)
     #[doc(alias = "NSWritingToolsBehaviorLimited")]
     pub const Limited: Self = Self(2);
 }
@@ -60,16 +67,22 @@ unsafe impl RefEncode for NSWritingToolsBehavior {
 pub struct NSWritingToolsResultOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWritingToolsResultOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/nswritingtoolsresultdefault?language=objc)
         #[doc(alias = "NSWritingToolsResultDefault")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/plaintext?language=objc)
         #[doc(alias = "NSWritingToolsResultPlainText")]
         const PlainText = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/richtext?language=objc)
         #[doc(alias = "NSWritingToolsResultRichText")]
         const RichText = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/list?language=objc)
         #[doc(alias = "NSWritingToolsResultList")]
         const List = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/table?language=objc)
         #[doc(alias = "NSWritingToolsResultTable")]
         const Table = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/presentationintent?language=objc)
         #[doc(alias = "NSWritingToolsResultPresentationIntent")]
         const PresentationIntent = 1<<4;
     }

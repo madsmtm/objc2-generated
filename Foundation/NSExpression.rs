@@ -12,30 +12,43 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSExpressionType(pub NSUInteger);
 impl NSExpressionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/constantvalue?language=objc)
     #[doc(alias = "NSConstantValueExpressionType")]
     pub const ConstantValueExpressionType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/evaluatedobject?language=objc)
     #[doc(alias = "NSEvaluatedObjectExpressionType")]
     pub const EvaluatedObjectExpressionType: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/variable?language=objc)
     #[doc(alias = "NSVariableExpressionType")]
     pub const VariableExpressionType: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/keypath?language=objc)
     #[doc(alias = "NSKeyPathExpressionType")]
     pub const KeyPathExpressionType: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/function?language=objc)
     #[doc(alias = "NSFunctionExpressionType")]
     pub const FunctionExpressionType: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/unionset?language=objc)
     #[doc(alias = "NSUnionSetExpressionType")]
     pub const UnionSetExpressionType: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/intersectset?language=objc)
     #[doc(alias = "NSIntersectSetExpressionType")]
     pub const IntersectSetExpressionType: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/minusset?language=objc)
     #[doc(alias = "NSMinusSetExpressionType")]
     pub const MinusSetExpressionType: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/subquery?language=objc)
     #[doc(alias = "NSSubqueryExpressionType")]
     pub const SubqueryExpressionType: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/aggregate?language=objc)
     #[doc(alias = "NSAggregateExpressionType")]
     pub const AggregateExpressionType: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/anykey?language=objc)
     #[doc(alias = "NSAnyKeyExpressionType")]
     pub const AnyKeyExpressionType: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/block?language=objc)
     #[doc(alias = "NSBlockExpressionType")]
     pub const BlockExpressionType: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/conditional?language=objc)
     #[doc(alias = "NSConditionalExpressionType")]
     pub const ConditionalExpressionType: Self = Self(20);
 }

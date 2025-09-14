@@ -15,11 +15,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerSourceType(pub NSInteger);
 impl UIImagePickerControllerSourceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/photolibrary?language=objc)
     #[doc(alias = "UIImagePickerControllerSourceTypePhotoLibrary")]
     #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const PhotoLibrary: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/camera?language=objc)
     #[doc(alias = "UIImagePickerControllerSourceTypeCamera")]
     pub const Camera: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/savedphotosalbum?language=objc)
     #[doc(alias = "UIImagePickerControllerSourceTypeSavedPhotosAlbum")]
     #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const SavedPhotosAlbum: Self = Self(2);
@@ -39,16 +42,22 @@ unsafe impl RefEncode for UIImagePickerControllerSourceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerQualityType(pub NSInteger);
 impl UIImagePickerControllerQualityType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/typehigh?language=objc)
     #[doc(alias = "UIImagePickerControllerQualityTypeHigh")]
     pub const TypeHigh: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/typemedium?language=objc)
     #[doc(alias = "UIImagePickerControllerQualityTypeMedium")]
     pub const TypeMedium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/typelow?language=objc)
     #[doc(alias = "UIImagePickerControllerQualityTypeLow")]
     pub const TypeLow: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/type640x480?language=objc)
     #[doc(alias = "UIImagePickerControllerQualityType640x480")]
     pub const Type640x480: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/typeiframe1280x720?language=objc)
     #[doc(alias = "UIImagePickerControllerQualityTypeIFrame1280x720")]
     pub const TypeIFrame1280x720: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/typeiframe960x540?language=objc)
     #[doc(alias = "UIImagePickerControllerQualityTypeIFrame960x540")]
     pub const TypeIFrame960x540: Self = Self(5);
 }
@@ -67,8 +76,10 @@ unsafe impl RefEncode for UIImagePickerControllerQualityType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerCameraCaptureMode(pub NSInteger);
 impl UIImagePickerControllerCameraCaptureMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.enum/photo?language=objc)
     #[doc(alias = "UIImagePickerControllerCameraCaptureModePhoto")]
     pub const Photo: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.enum/video?language=objc)
     #[doc(alias = "UIImagePickerControllerCameraCaptureModeVideo")]
     pub const Video: Self = Self(1);
 }
@@ -87,8 +98,10 @@ unsafe impl RefEncode for UIImagePickerControllerCameraCaptureMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerCameraDevice(pub NSInteger);
 impl UIImagePickerControllerCameraDevice {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameradevice-swift.enum/rear?language=objc)
     #[doc(alias = "UIImagePickerControllerCameraDeviceRear")]
     pub const Rear: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameradevice-swift.enum/front?language=objc)
     #[doc(alias = "UIImagePickerControllerCameraDeviceFront")]
     pub const Front: Self = Self(1);
 }
@@ -107,10 +120,13 @@ unsafe impl RefEncode for UIImagePickerControllerCameraDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerCameraFlashMode(pub NSInteger);
 impl UIImagePickerControllerCameraFlashMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/off?language=objc)
     #[doc(alias = "UIImagePickerControllerCameraFlashModeOff")]
     pub const Off: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/auto?language=objc)
     #[doc(alias = "UIImagePickerControllerCameraFlashModeAuto")]
     pub const Auto: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/on?language=objc)
     #[doc(alias = "UIImagePickerControllerCameraFlashModeOn")]
     pub const On: Self = Self(1);
 }
@@ -130,9 +146,11 @@ unsafe impl RefEncode for UIImagePickerControllerCameraFlashMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerImageURLExportPreset(pub NSInteger);
 impl UIImagePickerControllerImageURLExportPreset {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/imageurlexportpreset/compatible?language=objc)
     #[doc(alias = "UIImagePickerControllerImageURLExportPresetCompatible")]
     #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const Compatible: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/imageurlexportpreset/current?language=objc)
     #[doc(alias = "UIImagePickerControllerImageURLExportPresetCurrent")]
     #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const Current: Self = Self(1);
@@ -630,6 +648,8 @@ extern_protocol!(
 
 #[cfg(feature = "UIImage")]
 impl UIImage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagewritetosavedphotosalbum(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `completion_target` should be of the correct type.
@@ -663,6 +683,7 @@ impl UIImage {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivideoatpathiscompatiblewithsavedphotosalbum(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
     video_path: &NSString,
@@ -674,6 +695,8 @@ pub extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisavevideoatpathtosavedphotosalbum(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `completion_target` should be of the correct type.

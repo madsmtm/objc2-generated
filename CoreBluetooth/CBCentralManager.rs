@@ -20,26 +20,32 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCentralManagerState(pub NSInteger);
 impl CBCentralManagerState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/unknown?language=objc)
     #[doc(alias = "CBCentralManagerStateUnknown")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unknown: Self = Self(CBManagerState::Unknown.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/resetting?language=objc)
     #[doc(alias = "CBCentralManagerStateResetting")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Resetting: Self = Self(CBManagerState::Resetting.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/unsupported?language=objc)
     #[doc(alias = "CBCentralManagerStateUnsupported")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unsupported: Self = Self(CBManagerState::Unsupported.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/unauthorized?language=objc)
     #[doc(alias = "CBCentralManagerStateUnauthorized")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unauthorized: Self = Self(CBManagerState::Unauthorized.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/poweredoff?language=objc)
     #[doc(alias = "CBCentralManagerStatePoweredOff")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const PoweredOff: Self = Self(CBManagerState::PoweredOff.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/poweredon?language=objc)
     #[doc(alias = "CBCentralManagerStatePoweredOn")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
@@ -62,8 +68,10 @@ unsafe impl RefEncode for CBCentralManagerState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBConnectionEvent(pub NSInteger);
 impl CBConnectionEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectionevent/peerdisconnected?language=objc)
     #[doc(alias = "CBConnectionEventPeerDisconnected")]
     pub const PeerDisconnected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectionevent/peerconnected?language=objc)
     #[doc(alias = "CBConnectionEventPeerConnected")]
     pub const PeerConnected: Self = Self(1);
 }
@@ -85,6 +93,7 @@ unsafe impl RefEncode for CBConnectionEvent {
 pub struct CBCentralManagerFeature(pub NSUInteger);
 bitflags::bitflags! {
     impl CBCentralManagerFeature: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager/feature/extendedscanandconnect?language=objc)
         #[doc(alias = "CBCentralManagerFeatureExtendedScanAndConnect")]
         const ExtendedScanAndConnect = 1<<0;
     }

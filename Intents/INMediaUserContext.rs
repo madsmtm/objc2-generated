@@ -14,12 +14,18 @@ use crate::*;
 pub struct INMediaUserContextSubscriptionStatus(pub NSInteger);
 impl INMediaUserContextSubscriptionStatus {
     /// The app does not offer subscriptions, or the subscription status is unavailable
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmediausercontext/subscriptionstatus-swift.enum/unknown?language=objc)
     #[doc(alias = "INMediaUserContextSubscriptionStatusUnknown")]
     pub const Unknown: Self = Self(0);
     /// The user is not a subscriber, but subscriptions are offered
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmediausercontext/subscriptionstatus-swift.enum/notsubscribed?language=objc)
     #[doc(alias = "INMediaUserContextSubscriptionStatusNotSubscribed")]
     pub const NotSubscribed: Self = Self(1);
     /// The user is registered with a subscription (free, trial, or paid)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmediausercontext/subscriptionstatus-swift.enum/subscribed?language=objc)
     #[doc(alias = "INMediaUserContextSubscriptionStatusSubscribed")]
     pub const Subscribed: Self = Self(2);
 }

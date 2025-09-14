@@ -79,6 +79,8 @@ extern "C-unwind" {
     ///
     /// - `image_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncreatefrombigendianimagedescriptiondata(allocator:bigendianimagedescriptiondata:size:stringencoding:flavor:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -107,6 +109,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncreatefrombigendianimagedescriptionblockbuffer(allocator:bigendianimagedescriptionblockbuffer:stringencoding:flavor:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -139,6 +143,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncopyasbigendianimagedescriptionblockbuffer(allocator:videoformatdescription:stringencoding:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -160,6 +166,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `image_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendianimagedescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianImageDescriptionToHost(
         image_description_data: NonNull<u8>,
         image_description_size: usize,
@@ -177,6 +185,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `image_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendianimagedescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianImageDescriptionToBig(
         image_description_data: NonNull<u8>,
         image_description_size: usize,
@@ -241,6 +251,8 @@ extern "C-unwind" {
     ///
     /// - `sound_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptioncreatefrombigendiansounddescriptiondata(allocator:bigendiansounddescriptiondata:size:flavor:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -266,6 +278,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptioncreatefrombigendiansounddescriptionblockbuffer(allocator:bigendiansounddescriptionblockbuffer:flavor:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -295,6 +309,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptioncopyasbigendiansounddescriptionblockbuffer(allocator:audioformatdescription:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -310,6 +326,8 @@ extern "C-unwind" {
 /// Parameter `soundDescriptionBlockBuffer`: CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
 ///
 /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmdoesbigendiansounddescriptionrequirelegacycbrsampletablelayout(_:flavor:)?language=objc)
 #[cfg(feature = "CMBlockBuffer")]
 #[inline]
 pub unsafe extern "C-unwind" fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
@@ -342,6 +360,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `sound_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendiansounddescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianSoundDescriptionToHost(
         sound_description_data: NonNull<u8>,
         sound_description_size: usize,
@@ -359,6 +379,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `sound_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendiansounddescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianSoundDescriptionToBig(
         sound_description_data: NonNull<u8>,
         sound_description_size: usize,
@@ -389,6 +411,8 @@ extern "C-unwind" {
     ///
     /// - `text_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptioncreatefrombigendiantextdescriptiondata(allocator:bigendiantextdescriptiondata:size:flavor:mediatype:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -417,6 +441,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptioncreatefrombigendiantextdescriptionblockbuffer(allocator:bigendiantextdescriptionblockbuffer:flavor:mediatype:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -447,6 +473,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptioncopyasbigendiantextdescriptionblockbuffer(allocator:textformatdescription:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -467,6 +495,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `text_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendiantextdescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianTextDescriptionToHost(
         text_description_data: NonNull<u8>,
         text_description_size: usize,
@@ -484,6 +514,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `text_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendiantextdescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianTextDescriptionToBig(
         text_description_data: NonNull<u8>,
         text_description_size: usize,
@@ -512,6 +544,8 @@ extern "C-unwind" {
     ///
     /// - `closed_caption_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformatdescriptioncreatefrombigendianclosedcaptiondescriptiondata(allocator:bigendianclosedcaptiondescriptiondata:size:flavor:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -537,6 +571,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformatdescriptioncreatefrombigendianclosedcaptiondescriptionblockbuffer(allocator:bigendianclosedcaptiondescriptionblockbuffer:flavor:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -566,6 +602,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformatdescriptioncopyasbigendianclosedcaptiondescriptionblockbuffer(allocator:closedcaptionformatdescription:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -586,6 +624,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `closed_caption_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendianclosedcaptiondescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianClosedCaptionDescriptionToHost(
         closed_caption_description_data: NonNull<u8>,
         closed_caption_description_size: usize,
@@ -603,6 +643,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `closed_caption_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendianclosedcaptiondescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianClosedCaptionDescriptionToBig(
         closed_caption_description_data: NonNull<u8>,
         closed_caption_description_size: usize,
@@ -631,6 +673,8 @@ extern "C-unwind" {
     ///
     /// - `time_code_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptioncreatefrombigendiantimecodedescriptiondata(allocator:bigendiantimecodedescriptiondata:size:flavor:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -656,6 +700,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptioncreatefrombigendiantimecodedescriptionblockbuffer(allocator:bigendiantimecodedescriptionblockbuffer:flavor:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -685,6 +731,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptioncopyasbigendiantimecodedescriptionblockbuffer(allocator:timecodeformatdescription:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -705,6 +753,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `time_code_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendiantimecodedescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianTimeCodeDescriptionToHost(
         time_code_description_data: NonNull<u8>,
         time_code_description_size: usize,
@@ -722,6 +772,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `time_code_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendiantimecodedescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianTimeCodeDescriptionToBig(
         time_code_description_data: NonNull<u8>,
         time_code_description_size: usize,
@@ -750,6 +802,8 @@ extern "C-unwind" {
     ///
     /// - `metadata_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptioncreatefrombigendianmetadatadescriptiondata(allocator:bigendianmetadatadescriptiondata:size:flavor:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -775,6 +829,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptioncreatefrombigendianmetadatadescriptionblockbuffer(allocator:bigendianmetadatadescriptionblockbuffer:flavor:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -804,6 +860,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptioncopyasbigendianmetadatadescriptionblockbuffer(allocator:metadataformatdescription:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -824,6 +882,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `metadata_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendianmetadatadescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianMetadataDescriptionToHost(
         metadata_description_data: NonNull<u8>,
         metadata_description_size: usize,
@@ -841,6 +901,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `metadata_description_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendianmetadatadescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianMetadataDescriptionToBig(
         metadata_description_data: NonNull<u8>,
         metadata_description_size: usize,

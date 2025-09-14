@@ -493,19 +493,25 @@ impl CLKTimeIntervalTextProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKRelativeDateStyle(pub NSInteger);
 impl CLKRelativeDateStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/natural?language=objc)
     #[doc(alias = "CLKRelativeDateStyleNatural")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Natural: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/offset?language=objc)
     #[doc(alias = "CLKRelativeDateStyleOffset")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Offset: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/timer?language=objc)
     #[doc(alias = "CLKRelativeDateStyleTimer")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Timer: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/naturalabbreviated?language=objc)
     #[doc(alias = "CLKRelativeDateStyleNaturalAbbreviated")]
     pub const NaturalAbbreviated: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/offsetshort?language=objc)
     #[doc(alias = "CLKRelativeDateStyleOffsetShort")]
     pub const OffsetShort: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/naturalfull?language=objc)
     #[doc(alias = "CLKRelativeDateStyleNaturalFull")]
     pub const NaturalFull: Self = Self(5);
 }

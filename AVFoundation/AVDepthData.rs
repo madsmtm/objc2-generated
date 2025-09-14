@@ -16,8 +16,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDepthDataQuality(pub NSInteger);
 impl AVDepthDataQuality {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata/quality/low?language=objc)
     #[doc(alias = "AVDepthDataQualityLow")]
     pub const Low: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata/quality/high?language=objc)
     #[doc(alias = "AVDepthDataQualityHigh")]
     pub const High: Self = Self(1);
 }
@@ -36,8 +38,10 @@ unsafe impl RefEncode for AVDepthDataQuality {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDepthDataAccuracy(pub NSInteger);
 impl AVDepthDataAccuracy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata/accuracy/relative?language=objc)
     #[doc(alias = "AVDepthDataAccuracyRelative")]
     pub const Relative: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata/accuracy/absolute?language=objc)
     #[doc(alias = "AVDepthDataAccuracyAbsolute")]
     pub const Absolute: Self = Self(1);
 }

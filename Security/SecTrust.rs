@@ -56,21 +56,29 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustResultType(pub u32);
 impl SecTrustResultType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/invalid?language=objc)
     #[doc(alias = "kSecTrustResultInvalid")]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/proceed?language=objc)
     #[doc(alias = "kSecTrustResultProceed")]
     pub const Proceed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/confirm?language=objc)
     #[doc(alias = "kSecTrustResultConfirm")]
     #[deprecated]
     pub const Confirm: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/deny?language=objc)
     #[doc(alias = "kSecTrustResultDeny")]
     pub const Deny: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/unspecified?language=objc)
     #[doc(alias = "kSecTrustResultUnspecified")]
     pub const Unspecified: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/recoverabletrustfailure?language=objc)
     #[doc(alias = "kSecTrustResultRecoverableTrustFailure")]
     pub const RecoverableTrustFailure: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/fataltrustfailure?language=objc)
     #[doc(alias = "kSecTrustResultFatalTrustFailure")]
     pub const FatalTrustFailure: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/othererror?language=objc)
     #[doc(alias = "kSecTrustResultOtherError")]
     pub const OtherError: Self = Self(7);
 }
@@ -241,6 +249,8 @@ unsafe impl ConcreteType for SecTrust {
     /// Returns the type identifier of SecTrust instances.
     ///
     /// Returns: The CFTypeID of SecTrust instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgettypeid()?language=objc)
     #[doc(alias = "SecTrustGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -273,6 +283,8 @@ impl SecTrust {
     /// - `certificates` should be of the correct type.
     /// - `policies` should be of the correct type.
     /// - `trust` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)?language=objc)
     #[doc(alias = "SecTrustCreateWithCertificates")]
     #[inline]
     pub unsafe fn create_with_certificates(
@@ -305,6 +317,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `policies` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetpolicies(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetPolicies")]
     #[inline]
     pub unsafe fn set_policies(&self, policies: &CFType) -> OSStatus {
@@ -326,6 +340,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `policies` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopypolicies(_:_:)?language=objc)
     #[doc(alias = "SecTrustCopyPolicies")]
     #[inline]
     pub unsafe fn copy_policies(&self, policies: NonNull<*const CFArray>) -> OSStatus {
@@ -352,6 +368,8 @@ impl SecTrust {
     ///
     /// By default, network fetch of missing certificates is enabled if
     /// the trust evaluation includes the SSL policy, otherwise it is disabled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetnetworkfetchallowed(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetNetworkFetchAllowed")]
     #[inline]
     pub unsafe fn set_network_fetch_allowed(&self, allow_fetch: bool) -> OSStatus {
@@ -377,6 +395,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `allow_fetch` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetnetworkfetchallowed(_:_:)?language=objc)
     #[doc(alias = "SecTrustGetNetworkFetchAllowed")]
     #[inline]
     pub unsafe fn network_fetch_allowed(&self, allow_fetch: NonNull<Boolean>) -> OSStatus {
@@ -405,6 +425,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `anchor_certificates` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetAnchorCertificates")]
     #[inline]
     pub unsafe fn set_anchor_certificates(
@@ -430,6 +452,8 @@ impl SecTrust {
     /// the built in anchor certificates are also trusted.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetanchorcertificatesonly(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetAnchorCertificatesOnly")]
     #[inline]
     pub unsafe fn set_anchor_certificates_only(&self, anchor_certificates_only: bool) -> OSStatus {
@@ -457,6 +481,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `anchors` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopycustomanchorcertificates(_:_:)?language=objc)
     #[doc(alias = "SecTrustCopyCustomAnchorCertificates")]
     #[inline]
     pub unsafe fn copy_custom_anchor_certificates(
@@ -485,6 +511,8 @@ impl SecTrust {
     /// it was signed, even if the certificate has since expired.) If this function
     /// is not called, the time at which SecTrustEvaluate() is called is used
     /// implicitly as the verification time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetVerifyDate")]
     #[inline]
     pub unsafe fn set_verify_date(&self, verify_date: &CFDate) -> OSStatus {
@@ -505,6 +533,8 @@ impl SecTrust {
     /// trust reference, as set by a prior call to SecTrustSetVerifyDate(). If the
     /// verification time has not been set, this function returns a value of 0,
     /// indicating that the current date/time is implicitly used for verification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetverifytime(_:)?language=objc)
     #[doc(alias = "SecTrustGetVerifyTime")]
     #[inline]
     pub unsafe fn verify_time(&self) -> CFAbsoluteTime {
@@ -532,6 +562,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `result` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)?language=objc)
     #[doc(alias = "SecTrustEvaluate")]
     #[deprecated]
     #[inline]
@@ -568,6 +600,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)?language=objc)
     #[doc(alias = "SecTrustEvaluateWithError")]
     #[must_use]
     #[inline]
@@ -607,6 +641,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `result` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgettrustresult(_:_:)?language=objc)
     #[doc(alias = "SecTrustGetTrustResult")]
     #[inline]
     pub unsafe fn trust_result(&self, result: NonNull<SecTrustResultType>) -> OSStatus {
@@ -628,6 +664,8 @@ impl SecTrust {
     /// not be extracted (this can happen if the public key algorithm is not
     /// supported).  The caller is responsible for calling CFRelease on the
     /// returned key when it is no longer needed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopypublickey(_:)?language=objc)
     #[doc(alias = "SecTrustCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -651,6 +689,8 @@ impl SecTrust {
     /// returned key when it is no longer needed.
     ///
     /// RSA and ECDSA public keys are supported. All other public key algorithms are unsupported.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopykey(_:)?language=objc)
     #[doc(alias = "SecTrustCopyKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -673,6 +713,8 @@ impl SecTrust {
     /// this function will evaluate it first before returning. If speed is critical,
     /// you may want to call SecTrustGetTrustResult first to make sure that a
     /// result other than kSecTrustResultInvalid is present for the trust object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetcertificatecount(_:)?language=objc)
     #[doc(alias = "SecTrustGetCertificateCount")]
     #[inline]
     pub unsafe fn certificate_count(&self) -> CFIndex {
@@ -697,6 +739,8 @@ impl SecTrust {
     /// trust object may trigger trust evaluations that release the returned certificate or change the
     /// certificate chain as a thread is iterating through the certificate chain. The replacement function
     /// SecTrustCopyCertificateChain provides thread-safe results.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetcertificateatindex(_:_:)?language=objc)
     #[doc(alias = "SecTrustGetCertificateAtIndex")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -728,6 +772,8 @@ impl SecTrust {
     /// been presented to the user and the user decided to trust the current
     /// certificate chain regardless of the errors being presented, for the
     /// current application/server/protocol combination.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopyexceptions(_:)?language=objc)
     #[doc(alias = "SecTrustCopyExceptions")]
     #[inline]
     pub unsafe fn exceptions(&self) -> Option<CFRetained<CFData>> {
@@ -764,6 +810,8 @@ impl SecTrust {
     /// Examples of this context would be the server we are connecting to, the ssid
     /// of the wireless network for which this cert is needed, the account for which
     /// this cert should be considered valid, and so on.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetexceptions(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetExceptions")]
     #[inline]
     pub unsafe fn set_exceptions(&self, exceptions: Option<&CFData>) -> bool {
@@ -788,6 +836,8 @@ impl SecTrust {
     /// See the "Trust Property Constants" section for a list of currently defined keys.
     /// The error information conveyed via this interface is also conveyed via the
     /// returned error of SecTrustEvaluateWithError.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopyproperties(_:)?language=objc)
     #[doc(alias = "SecTrustCopyProperties")]
     #[deprecated]
     #[inline]
@@ -811,6 +861,8 @@ impl SecTrust {
     ///
     /// Returns a dictionary for the overall trust evaluation. See the
     /// "Trust Result Constants" section for a list of currently defined keys.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopyresult(_:)?language=objc)
     #[doc(alias = "SecTrustCopyResult")]
     #[inline]
     pub unsafe fn result(&self) -> Option<CFRetained<CFDictionary>> {
@@ -838,6 +890,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `response_data` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetocspresponse(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetOCSPResponse")]
     #[inline]
     pub unsafe fn set_ocsp_response(&self, response_data: Option<&CFType>) -> OSStatus {
@@ -865,6 +919,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `sct_array` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetsignedcertificatetimestamps(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetSignedCertificateTimestamps")]
     #[inline]
     pub unsafe fn set_signed_certificate_timestamps(
@@ -885,6 +941,8 @@ impl SecTrust {
     /// Parameter `trust`: Reference to a trust object.
     ///
     /// Returns: A CFArray of the SecCertificateRefs for the resulting certificate chain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopycertificatechain(_:)?language=objc)
     #[doc(alias = "SecTrustCopyCertificateChain")]
     #[inline]
     pub unsafe fn certificate_chain(&self) -> Option<CFRetained<CFArray>> {
@@ -927,18 +985,25 @@ pub type SecTrustUserSetting = SecTrustResultType;
 pub struct SecTrustOptionFlags(pub u32);
 bitflags::bitflags! {
     impl SecTrustOptionFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/allowexpired?language=objc)
         #[doc(alias = "kSecTrustOptionAllowExpired")]
         const AllowExpired = 0x00000001;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/leafisca?language=objc)
         #[doc(alias = "kSecTrustOptionLeafIsCA")]
         const LeafIsCA = 0x00000002;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/fetchissuerfromnet?language=objc)
         #[doc(alias = "kSecTrustOptionFetchIssuerFromNet")]
         const FetchIssuerFromNet = 0x00000004;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/allowexpiredroot?language=objc)
         #[doc(alias = "kSecTrustOptionAllowExpiredRoot")]
         const AllowExpiredRoot = 0x00000008;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/requirerevpercert?language=objc)
         #[doc(alias = "kSecTrustOptionRequireRevPerCert")]
         const RequireRevPerCert = 0x00000010;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/usetrustsettings?language=objc)
         #[doc(alias = "kSecTrustOptionUseTrustSettings")]
         const UseTrustSettings = 0x00000020;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/implicitanchors?language=objc)
         #[doc(alias = "kSecTrustOptionImplicitAnchors")]
         const ImplicitAnchors = 0x00000040;
     }
@@ -967,6 +1032,8 @@ impl SecTrust {
     /// and SecTrustCopyExceptions to modify default trust results, and
     /// SecTrustSetNetworkFetchAllowed to specify whether missing CA certificates
     /// can be fetched from the network.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetoptions(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetOptions")]
     #[inline]
     pub unsafe fn set_options(&self, options: SecTrustOptionFlags) -> OSStatus {
@@ -991,6 +1058,8 @@ impl SecTrust {
     /// should use SecTrustSetExceptions and SecTrustCopyExceptions to modify default
     /// trust results, and SecTrustSetNetworkFetchAllowed to specify whether missing
     /// CA certificates can be fetched from the network.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetparameters?language=objc)
     #[doc(alias = "SecTrustSetParameters")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1026,6 +1095,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `keychain_or_array` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetkeychains(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetKeychains")]
     #[deprecated]
     #[inline]
@@ -1067,6 +1138,8 @@ impl SecTrust {
     /// - `result` must be a valid pointer or null.
     /// - `cert_chain` must be a valid pointer or null.
     /// - `status_chain` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetresult?language=objc)
     #[doc(alias = "SecTrustGetResult")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -1110,6 +1183,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `result` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetcssmresult?language=objc)
     #[doc(alias = "SecTrustGetCssmResult")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1149,6 +1224,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `result_code` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetcssmresultcode?language=objc)
     #[doc(alias = "SecTrustGetCssmResultCode")]
     #[deprecated]
     #[inline]
@@ -1175,6 +1252,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `handle` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgettphandle?language=objc)
     #[doc(alias = "SecTrustGetTPHandle")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1200,6 +1279,8 @@ impl SecTrust {
     /// # Safety
     ///
     /// `anchors` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopyanchorcertificates(_:)?language=objc)
     #[doc(alias = "SecTrustCopyAnchorCertificates")]
     #[inline]
     pub unsafe fn copy_anchor_certificates(anchors: NonNull<*const CFArray>) -> OSStatus {

@@ -14,8 +14,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKUserScriptInjectionTime(pub NSInteger);
 impl WKUserScriptInjectionTime {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime/atdocumentstart?language=objc)
     #[doc(alias = "WKUserScriptInjectionTimeAtDocumentStart")]
     pub const AtDocumentStart: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime/atdocumentend?language=objc)
     #[doc(alias = "WKUserScriptInjectionTimeAtDocumentEnd")]
     pub const AtDocumentEnd: Self = Self(1);
 }

@@ -26,6 +26,7 @@ unsafe impl RefEncode for CGPDFContentStream {
 pub type CGPDFContentStreamRef = *mut CGPDFContentStream;
 
 impl CGPDFContentStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamcreatewithpage(_:)?language=objc)
     #[doc(alias = "CGPDFContentStreamCreateWithPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
@@ -36,6 +37,8 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamCreateWithPage(page) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamcreatewithstream(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `stream` must be a valid pointer.
@@ -59,6 +62,8 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamCreateWithStream(stream, stream_resources, parent) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamretain(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `cs` must be a valid pointer.
@@ -71,6 +76,8 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamRetain(cs) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamrelease(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `cs` must be a valid pointer.
@@ -83,6 +90,8 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamRelease(cs) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamgetstreams(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `cs` must be a valid pointer.
@@ -96,6 +105,8 @@ impl CGPDFContentStream {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamgetresource(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cs` must be a valid pointer.

@@ -593,10 +593,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityAnnotationPosition(pub NSInteger);
 impl NSAccessibilityAnnotationPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationposition/fullrange?language=objc)
     #[doc(alias = "NSAccessibilityAnnotationPositionFullRange")]
     pub const FullRange: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationposition/start?language=objc)
     #[doc(alias = "NSAccessibilityAnnotationPositionStart")]
     pub const Start: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationposition/end?language=objc)
     #[doc(alias = "NSAccessibilityAnnotationPositionEnd")]
     pub const End: Self = Self(2);
 }
@@ -739,10 +742,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityOrientation(pub NSInteger);
 impl NSAccessibilityOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorientation/unknown?language=objc)
     #[doc(alias = "NSAccessibilityOrientationUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorientation/vertical?language=objc)
     #[doc(alias = "NSAccessibilityOrientationVertical")]
     pub const Vertical: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorientation/horizontal?language=objc)
     #[doc(alias = "NSAccessibilityOrientationHorizontal")]
     pub const Horizontal: Self = Self(2);
 }
@@ -949,10 +955,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilitySortDirection(pub NSInteger);
 impl NSAccessibilitySortDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortdirection/unknown?language=objc)
     #[doc(alias = "NSAccessibilitySortDirectionUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortdirection/ascending?language=objc)
     #[doc(alias = "NSAccessibilitySortDirectionAscending")]
     pub const Ascending: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortdirection/descending?language=objc)
     #[doc(alias = "NSAccessibilitySortDirectionDescending")]
     pub const Descending: Self = Self(2);
 }
@@ -1109,20 +1118,28 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityRulerMarkerType(pub NSInteger);
 impl NSAccessibilityRulerMarkerType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/unknown?language=objc)
     #[doc(alias = "NSAccessibilityRulerMarkerTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/tabstopleft?language=objc)
     #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopLeft")]
     pub const TabStopLeft: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/tabstopright?language=objc)
     #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopRight")]
     pub const TabStopRight: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/tabstopcenter?language=objc)
     #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopCenter")]
     pub const TabStopCenter: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/tabstopdecimal?language=objc)
     #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopDecimal")]
     pub const TabStopDecimal: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/indenthead?language=objc)
     #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentHead")]
     pub const IndentHead: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/indenttail?language=objc)
     #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentTail")]
     pub const IndentTail: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/indentfirstline?language=objc)
     #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentFirstLine")]
     pub const IndentFirstLine: Self = Self(7);
 }
@@ -1170,14 +1187,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityUnits(pub NSInteger);
 impl NSAccessibilityUnits {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits/unknown?language=objc)
     #[doc(alias = "NSAccessibilityUnitsUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits/inches?language=objc)
     #[doc(alias = "NSAccessibilityUnitsInches")]
     pub const Inches: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits/centimeters?language=objc)
     #[doc(alias = "NSAccessibilityUnitsCentimeters")]
     pub const Centimeters: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits/points?language=objc)
     #[doc(alias = "NSAccessibilityUnitsPoints")]
     pub const Points: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits/picas?language=objc)
     #[doc(alias = "NSAccessibilityUnitsPicas")]
     pub const Picas: Self = Self(4);
 }
@@ -1987,6 +2009,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:userinfo:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `element` should be of the correct type.
@@ -2004,10 +2028,13 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAccessibilityPriorityLevel(pub NSInteger);
 impl NSAccessibilityPriorityLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprioritylevel/low?language=objc)
     #[doc(alias = "NSAccessibilityPriorityLow")]
     pub const Low: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprioritylevel/medium?language=objc)
     #[doc(alias = "NSAccessibilityPriorityMedium")]
     pub const Medium: Self = Self(50);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprioritylevel/high?language=objc)
     #[doc(alias = "NSAccessibilityPriorityHigh")]
     pub const High: Self = Self(90);
 }

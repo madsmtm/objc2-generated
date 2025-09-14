@@ -16,10 +16,13 @@ use crate::*;
 pub struct MTLResourceUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLResourceUsage: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceusage/read?language=objc)
         #[doc(alias = "MTLResourceUsageRead")]
         const Read = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceusage/write?language=objc)
         #[doc(alias = "MTLResourceUsageWrite")]
         const Write = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceusage/sample?language=objc)
         #[doc(alias = "MTLResourceUsageSample")]
 #[deprecated]
         const Sample = 1<<2;
@@ -43,10 +46,13 @@ unsafe impl RefEncode for MTLResourceUsage {
 pub struct MTLBarrierScope(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLBarrierScope: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbarrierscope/buffers?language=objc)
         #[doc(alias = "MTLBarrierScopeBuffers")]
         const Buffers = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbarrierscope/textures?language=objc)
         #[doc(alias = "MTLBarrierScopeTextures")]
         const Textures = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbarrierscope/rendertargets?language=objc)
         #[doc(alias = "MTLBarrierScopeRenderTargets")]
         const RenderTargets = 1<<2;
     }
@@ -77,36 +83,58 @@ pub struct MTLStages(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLStages: NSUInteger {
 /// Represents all vertex shader stage work in a render pass.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/vertex?language=objc)
         #[doc(alias = "MTLStageVertex")]
         const Vertex = 1<<0;
 /// Represents all fragment shader stage work in a render pass.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/fragment?language=objc)
         #[doc(alias = "MTLStageFragment")]
         const Fragment = 1<<1;
 /// Represents all tile shading stage work in a render pass.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/tile?language=objc)
         #[doc(alias = "MTLStageTile")]
         const Tile = 1<<2;
 /// Represents all object shader stage work in a render pass.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/object?language=objc)
         #[doc(alias = "MTLStageObject")]
         const Object = 1<<3;
 /// Represents all mesh shader stage work work in a render pass.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/mesh?language=objc)
         #[doc(alias = "MTLStageMesh")]
         const Mesh = 1<<4;
 /// Represents all sparse and placement sparse resource mapping updates.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/resourcestate?language=objc)
         #[doc(alias = "MTLStageResourceState")]
         const ResourceState = 1<<26;
 /// Represents all compute dispatches in a compute pass.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/dispatch?language=objc)
         #[doc(alias = "MTLStageDispatch")]
         const Dispatch = 1<<27;
 /// Represents all blit operations in a pass.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/blit?language=objc)
         #[doc(alias = "MTLStageBlit")]
         const Blit = 1<<28;
 /// Represents all acceleration structure operations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/accelerationstructure?language=objc)
         #[doc(alias = "MTLStageAccelerationStructure")]
         const AccelerationStructure = 1<<29;
 /// Represents all machine learning network dispatch operations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/machinelearning?language=objc)
         #[doc(alias = "MTLStageMachineLearning")]
         const MachineLearning = 1<<30;
 /// Convenience mask representing all stages of GPU work.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/all?language=objc)
         #[doc(alias = "MTLStageAll")]
         const All = NSIntegerMax as _;
     }

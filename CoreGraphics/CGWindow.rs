@@ -7,6 +7,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnullwindowid?language=objc)
 pub const kCGNullWindowID: CGWindowID = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowid?language=objc)
 pub type CGWindowID = u32;
@@ -17,10 +18,13 @@ pub type CGWindowID = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowSharingType(pub u32);
 impl CGWindowSharingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowsharingtype/none?language=objc)
     #[doc(alias = "kCGWindowSharingNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowsharingtype/readonly?language=objc)
     #[doc(alias = "kCGWindowSharingReadOnly")]
     pub const ReadOnly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowsharingtype/readwrite?language=objc)
     #[doc(alias = "kCGWindowSharingReadWrite")]
     pub const ReadWrite: Self = Self(2);
 }
@@ -41,10 +45,13 @@ unsafe impl RefEncode for CGWindowSharingType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowBackingType(pub u32);
 impl CGWindowBackingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowbackingtype/backingstoreretained?language=objc)
     #[doc(alias = "kCGBackingStoreRetained")]
     pub const BackingStoreRetained: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowbackingtype/backingstorenonretained?language=objc)
     #[doc(alias = "kCGBackingStoreNonretained")]
     pub const BackingStoreNonretained: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowbackingtype/backingstorebuffered?language=objc)
     #[doc(alias = "kCGBackingStoreBuffered")]
     pub const BackingStoreBuffered: Self = Self(2);
 }
@@ -132,16 +139,22 @@ extern "C" {
 pub struct CGWindowListOption(pub u32);
 bitflags::bitflags! {
     impl CGWindowListOption: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optionall?language=objc)
         #[doc(alias = "kCGWindowListOptionAll")]
         const OptionAll = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optiononscreenonly?language=objc)
         #[doc(alias = "kCGWindowListOptionOnScreenOnly")]
         const OptionOnScreenOnly = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optiononscreenabovewindow?language=objc)
         #[doc(alias = "kCGWindowListOptionOnScreenAboveWindow")]
         const OptionOnScreenAboveWindow = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optiononscreenbelowwindow?language=objc)
         #[doc(alias = "kCGWindowListOptionOnScreenBelowWindow")]
         const OptionOnScreenBelowWindow = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optionincludingwindow?language=objc)
         #[doc(alias = "kCGWindowListOptionIncludingWindow")]
         const OptionIncludingWindow = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/excludedesktopelements?language=objc)
         #[doc(alias = "kCGWindowListExcludeDesktopElements")]
         const ExcludeDesktopElements = 1<<4;
     }
@@ -157,6 +170,7 @@ unsafe impl RefEncode for CGWindowListOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistcopywindowinfo(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGWindowListCopyWindowInfo(
     option: CGWindowListOption,
@@ -172,6 +186,7 @@ pub extern "C-unwind" fn CGWindowListCopyWindowInfo(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistcreate?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGWindowListCreate(
     option: CGWindowListOption,
@@ -187,6 +202,8 @@ pub extern "C-unwind" fn CGWindowListCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistcreatedescriptionfromarray(_:)?language=objc)
+///
 /// # Safety
 ///
 /// `window_array` generic must be of the correct type.
@@ -210,16 +227,22 @@ pub unsafe extern "C-unwind" fn CGWindowListCreateDescriptionFromArray(
 pub struct CGWindowImageOption(pub u32);
 bitflags::bitflags! {
     impl CGWindowImageOption: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/kcgwindowimagedefault?language=objc)
         #[doc(alias = "kCGWindowImageDefault")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/boundsignoreframing?language=objc)
         #[doc(alias = "kCGWindowImageBoundsIgnoreFraming")]
         const BoundsIgnoreFraming = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/shouldbeopaque?language=objc)
         #[doc(alias = "kCGWindowImageShouldBeOpaque")]
         const ShouldBeOpaque = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/onlyshadows?language=objc)
         #[doc(alias = "kCGWindowImageOnlyShadows")]
         const OnlyShadows = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/bestresolution?language=objc)
         #[doc(alias = "kCGWindowImageBestResolution")]
         const BestResolution = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/nominalresolution?language=objc)
         #[doc(alias = "kCGWindowImageNominalResolution")]
         const NominalResolution = 1<<4;
     }
@@ -235,6 +258,7 @@ unsafe impl RefEncode for CGWindowImageOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistcreateimage(_:_:_:_:)?language=objc)
 #[cfg(feature = "CGImage")]
 #[deprecated = "Please use ScreenCaptureKit instead."]
 #[inline]
@@ -257,6 +281,8 @@ pub extern "C-unwind" fn CGWindowListCreateImage(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(windowlistfromarrayscreenbounds:windowarray:imageoption:)?language=objc)
+///
 /// # Safety
 ///
 /// `window_array` generic must be of the correct type.
@@ -280,6 +306,7 @@ pub unsafe extern "C-unwind" fn CGWindowListCreateImageFromArray(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpreflightscreencaptureaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGPreflightScreenCaptureAccess() -> bool {
     extern "C-unwind" {
@@ -288,6 +315,7 @@ pub extern "C-unwind" fn CGPreflightScreenCaptureAccess() -> bool {
     unsafe { CGPreflightScreenCaptureAccess() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrequestscreencaptureaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRequestScreenCaptureAccess() -> bool {
     extern "C-unwind" {

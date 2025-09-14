@@ -83,8 +83,10 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrubberMode(pub NSInteger);
 impl NSScrubberMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubber/mode-swift.enum/fixed?language=objc)
     #[doc(alias = "NSScrubberModeFixed")]
     pub const Fixed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubber/mode-swift.enum/free?language=objc)
     #[doc(alias = "NSScrubberModeFree")]
     pub const Free: Self = Self(1);
 }
@@ -105,12 +107,16 @@ unsafe impl RefEncode for NSScrubberMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrubberAlignment(pub NSInteger);
 impl NSScrubberAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubber/alignment/none?language=objc)
     #[doc(alias = "NSScrubberAlignmentNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubber/alignment/leading?language=objc)
     #[doc(alias = "NSScrubberAlignmentLeading")]
     pub const Leading: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubber/alignment/trailing?language=objc)
     #[doc(alias = "NSScrubberAlignmentTrailing")]
     pub const Trailing: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubber/alignment/center?language=objc)
     #[doc(alias = "NSScrubberAlignmentCenter")]
     pub const Center: Self = Self(3);
 }

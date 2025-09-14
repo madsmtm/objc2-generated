@@ -42,10 +42,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFHostInfoType(pub c_int);
 impl CFHostInfoType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype/addresses?language=objc)
     #[doc(alias = "kCFHostAddresses")]
     pub const Addresses: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype/names?language=objc)
     #[doc(alias = "kCFHostNames")]
     pub const Names: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype/reachability?language=objc)
     #[doc(alias = "kCFHostReachability")]
     pub const Reachability: Self = Self(2);
 }
@@ -97,6 +100,7 @@ pub type CFHostClientCallBack = Option<
 >;
 
 unsafe impl ConcreteType for CFHost {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostgettypeid()?language=objc)
     #[doc(alias = "CFHostGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -108,6 +112,7 @@ unsafe impl ConcreteType for CFHost {
 }
 
 impl CFHost {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostcreatewithname(_:_:)?language=objc)
     #[doc(alias = "CFHostCreateWithName")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -127,6 +132,7 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostcreatewithaddress(_:_:)?language=objc)
     #[doc(alias = "CFHostCreateWithAddress")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -146,6 +152,7 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostcreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFHostCreateCopy")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -162,6 +169,8 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhoststartinforesolution(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -184,6 +193,8 @@ impl CFHost {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostgetaddressing(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `has_been_resolved` must be a valid pointer or null.
@@ -204,6 +215,8 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostgetnames(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `has_been_resolved` must be a valid pointer or null.
@@ -221,6 +234,8 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostgetreachability(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `has_been_resolved` must be a valid pointer or null.
@@ -241,6 +256,7 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostcancelinforesolution(_:_:)?language=objc)
     #[doc(alias = "CFHostCancelInfoResolution")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -251,6 +267,8 @@ impl CFHost {
         unsafe { CFHostCancelInfoResolution(self, info) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostsetclient(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
@@ -274,6 +292,8 @@ impl CFHost {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostschedulewithrunloop(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
@@ -291,6 +311,8 @@ impl CFHost {
         unsafe { CFHostScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostunschedulefromrunloop(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.

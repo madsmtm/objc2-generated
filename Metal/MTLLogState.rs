@@ -15,16 +15,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLogLevel(pub NSInteger);
 impl MTLLogLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/undefined?language=objc)
     #[doc(alias = "MTLLogLevelUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/debug?language=objc)
     #[doc(alias = "MTLLogLevelDebug")]
     pub const Debug: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/info?language=objc)
     #[doc(alias = "MTLLogLevelInfo")]
     pub const Info: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/notice?language=objc)
     #[doc(alias = "MTLLogLevelNotice")]
     pub const Notice: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/error?language=objc)
     #[doc(alias = "MTLLogLevelError")]
     pub const Error: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/fault?language=objc)
     #[doc(alias = "MTLLogLevelFault")]
     pub const Fault: Self = Self(5);
 }
@@ -140,8 +146,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLLogStateError(pub NSUInteger);
 impl MTLLogStateError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstateerror/invalidsize?language=objc)
     #[doc(alias = "MTLLogStateErrorInvalidSize")]
     pub const InvalidSize: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstateerror/invalid?language=objc)
     #[doc(alias = "MTLLogStateErrorInvalid")]
     pub const Invalid: Self = Self(2);
 }

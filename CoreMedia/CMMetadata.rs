@@ -253,6 +253,8 @@ extern "C-unwind" {
     ///
     /// - `key` should be of the correct type.
     /// - `identifier_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatacreateidentifierforkeyandkeyspace(allocator:key:keyspace:identifierout:)?language=objc)
     pub fn CMMetadataCreateIdentifierForKeyAndKeySpace(
         allocator: Option<&CFAllocator>,
         key: &CFType,
@@ -278,6 +280,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `key_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatacreatekeyfromidentifier(allocator:identifier:keyout:)?language=objc)
     pub fn CMMetadataCreateKeyFromIdentifier(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
@@ -292,6 +296,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `key_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatacreatekeyfromidentifierascfdata(allocator:identifier:keyout:)?language=objc)
     pub fn CMMetadataCreateKeyFromIdentifierAsCFData(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
@@ -305,6 +311,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `key_space_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatacreatekeyspacefromidentifier(allocator:identifier:keyspaceout:)?language=objc)
     pub fn CMMetadataCreateKeySpaceFromIdentifier(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
@@ -550,6 +558,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `conforming_data_types` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistryregisterdatatype(_:description:conformingdatatypes:)?language=objc)
     pub fn CMMetadataDataTypeRegistryRegisterDataType(
         data_type: &CFString,
         description: &CFString,
@@ -558,6 +568,8 @@ extern "C-unwind" {
 }
 
 /// Tests a data type identifier to see if it has been registered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrydatatypeisregistered(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsRegistered(
     data_type: &CFString,
@@ -570,6 +582,8 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsRegistered(
 }
 
 /// Returns the data type's description (if any was provided when it was registered).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrygetdatatypedescription(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetDataTypeDescription(
     data_type: &CFString,
@@ -589,6 +603,8 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetDataTypeDescription
 ///
 /// Returns: List of conforming data types registered for the given data type.
 /// NULL is returned if the data type has not been registered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrygetconformingdatatypes(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetConformingDataTypes(
     data_type: &CFString,
@@ -618,6 +634,8 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetConformingDataTypes
 /// </ul>
 ///
 /// Returns: True if the first data type conforms to the second data type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrydatatypeconformstodatatype(_:conformsto:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeConformsToDataType(
     data_type: &CFString,
@@ -640,6 +658,8 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeConformsToData
 /// There are a set of base data types that seed the data type
 /// registry.  All valid data types will have their conformance search
 /// end with a base data type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrygetbasedatatypes()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypes(
 ) -> Option<CFRetained<CFArray>> {
@@ -655,6 +675,8 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypes(
 /// This is simply a convenience method to test to see if a given
 /// data type identifier is in the array returned by
 /// CMMetadataDataTypeRegistryGetBaseDataTypes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrydatatypeisbasedatatype(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(
     data_type: &CFString,
@@ -672,6 +694,8 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType
 /// There are a set of base data types that seed the data type
 /// registry.  All valid data types will have their conformance search
 /// end with a base data type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrygetbasedatatypeforconformingdatatype(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(
     data_type: &CFString,

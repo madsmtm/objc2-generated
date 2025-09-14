@@ -226,6 +226,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `p_psn` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501115-getcurrentprocess?language=objc)
     #[deprecated]
     pub fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
 }
@@ -242,6 +244,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `p_psn` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501050-getfrontprocess?language=objc)
     #[deprecated]
     pub fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
 }
@@ -261,10 +265,14 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `p_psn` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501061-getnextprocess?language=objc)
     #[deprecated]
     pub fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501104-processinformationcopydictionary?language=objc)
+///
 /// # Safety
 ///
 /// `psn` must be a valid pointer.
@@ -297,6 +305,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `p_psn` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501042-setfrontprocess?language=objc)
     #[deprecated]
     pub fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr;
 }
@@ -307,6 +317,8 @@ pub const kSetFrontProcessFrontWindowOnly: c_uint = 1 << 0;
 pub const kSetFrontProcessCausedByUser: c_uint = 1 << 1;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501003-setfrontprocesswithoptions?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_process` must be a valid pointer.
@@ -318,6 +330,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501091-wakeupprocess?language=objc)
+    ///
     /// # Safety
     ///
     /// `psn` must be a valid pointer.
@@ -326,6 +340,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501087-sameprocess?language=objc)
+    ///
     /// # Safety
     ///
     /// - `psn1` must be a valid pointer.
@@ -340,11 +356,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500985-exittoshell?language=objc)
     #[deprecated]
     pub fn ExitToShell();
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501110-killprocess?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_process` must be a valid pointer.
@@ -353,6 +372,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501067-copyprocessname?language=objc)
+    ///
     /// # Safety
     ///
     /// - `psn` must be a valid pointer.
@@ -363,6 +384,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500992-getprocesspid?language=objc)
+    ///
     /// # Safety
     ///
     /// - `psn` must be a valid pointer.
@@ -373,6 +396,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501069-getprocessforpid?language=objc)
+    ///
     /// # Safety
     ///
     /// `psn` must be a valid pointer.
@@ -388,6 +413,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `psn` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501035-isprocessvisible?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn IsProcessVisible(psn: *const ProcessSerialNumber) -> bool {
@@ -398,6 +425,8 @@ pub unsafe extern "C-unwind" fn IsProcessVisible(psn: *const ProcessSerialNumber
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501053-showhideprocess?language=objc)
+///
 /// # Safety
 ///
 /// `psn` must be a valid pointer.
@@ -414,6 +443,8 @@ pub unsafe extern "C-unwind" fn ShowHideProcess(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462420-transformprocesstype?language=objc)
+    ///
     /// # Safety
     ///
     /// `psn` must be a valid pointer.

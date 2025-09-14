@@ -18,28 +18,42 @@ use crate::*;
 pub struct ENStatus(pub NSInteger);
 impl ENStatus {
     /// Status of Exposure Notification is unknown. This is the status before ENManager has activated successfully.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/unknown?language=objc)
     #[doc(alias = "ENStatusUnknown")]
     pub const Unknown: Self = Self(0);
     /// Exposure Notification is active on the system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/active?language=objc)
     #[doc(alias = "ENStatusActive")]
     pub const Active: Self = Self(1);
     /// Exposure Notification is disabled. setExposureNotificationEnabled:completionHandler can be used to enable it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/disabled?language=objc)
     #[doc(alias = "ENStatusDisabled")]
     pub const Disabled: Self = Self(2);
     /// Bluetooth has been turned off on the system. Bluetooth is required for Exposure Notification.
     /// Note: this may not match the state of Bluetooth as reported by CoreBluetooth.
     /// Exposure Notification is a system service and can use Bluetooth in situations when apps cannot.
     /// So for the purposes of Exposure Notification, it's better to use this API instead of CoreBluetooth.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/bluetoothoff?language=objc)
     #[doc(alias = "ENStatusBluetoothOff")]
     pub const BluetoothOff: Self = Self(3);
     /// Exposure Notification is not active due to system restrictions, such as parental controls.
     /// When in this state, the app cannot enable Exposure Notification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/restricted?language=objc)
     #[doc(alias = "ENStatusRestricted")]
     pub const Restricted: Self = Self(4);
     /// For future use. Not returned by any APIs yet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/paused?language=objc)
     #[doc(alias = "ENStatusPaused")]
     pub const Paused: Self = Self(5);
     /// Exposure Notification is not available due to insufficient authorization.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/unauthorized?language=objc)
     #[doc(alias = "ENStatusUnauthorized")]
     pub const Unauthorized: Self = Self(6);
 }
@@ -62,15 +76,23 @@ pub struct ENActivityFlags(pub u32);
 bitflags::bitflags! {
     impl ENActivityFlags: u32 {
 /// Reserved field
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags/reserved1?language=objc)
         #[doc(alias = "ENActivityFlagsReserved1")]
         const Reserved1 = 1<<0;
 /// Reserved field
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags/reserved2?language=objc)
         #[doc(alias = "ENActivityFlagsReserved2")]
         const Reserved2 = 1<<1;
 /// The app launched in the background to perform periodic operations on iOS 12.5.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags/periodicrun?language=objc)
         #[doc(alias = "ENActivityFlagsPeriodicRun")]
         const PeriodicRun = 1<<2;
 /// The app launched in the foreground to display information about the pre-authorized key release
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags/preauthorizedkeyreleasenotificationtapped?language=objc)
         #[doc(alias = "ENActivityFlagsPreAuthorizedKeyReleaseNotificationTapped")]
         const PreAuthorizedKeyReleaseNotificationTapped = 1<<3;
     }

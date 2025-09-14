@@ -13,18 +13,28 @@ use crate::*;
 pub struct HMEventTriggerActivationState(pub NSUInteger);
 impl HMEventTriggerActivationState {
     /// Trigger is not active because it is disabled
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmeventtriggeractivationstate/disabled?language=objc)
     #[doc(alias = "HMEventTriggerActivationStateDisabled")]
     pub const Disabled: Self = Self(0);
     /// Trigger is not active because there is no HomeHub
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmeventtriggeractivationstate/disablednohomehub?language=objc)
     #[doc(alias = "HMEventTriggerActivationStateDisabledNoHomeHub")]
     pub const DisabledNoHomeHub: Self = Self(1);
     /// Trigger is not active because there is no compatible HomeHub
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmeventtriggeractivationstate/disablednocompatiblehomehub?language=objc)
     #[doc(alias = "HMEventTriggerActivationStateDisabledNoCompatibleHomeHub")]
     pub const DisabledNoCompatibleHomeHub: Self = Self(2);
     /// Trigger is not active because Location Authorization has been turned off by user
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmeventtriggeractivationstate/disablednolocationservicesauthorization?language=objc)
     #[doc(alias = "HMEventTriggerActivationStateDisabledNoLocationServicesAuthorization")]
     pub const DisabledNoLocationServicesAuthorization: Self = Self(3);
     /// Trigger is currently active
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmeventtriggeractivationstate/enabled?language=objc)
     #[doc(alias = "HMEventTriggerActivationStateEnabled")]
     pub const Enabled: Self = Self(4);
 }

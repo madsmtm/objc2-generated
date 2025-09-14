@@ -18,6 +18,8 @@ pub struct MPSTemporalWeighting(pub NSUInteger);
 impl MPSTemporalWeighting {
     /// Compute an average of all samples. This will fully utilize all samples but may lead
     /// to excessive ghosting artifacts under motion. Therefore, this is best for static images.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalweighting/average?language=objc)
     #[doc(alias = "MPSTemporalWeightingAverage")]
     pub const Average: Self = Self(0);
     /// Compute an exponential moving average by blending linearly between the previous
@@ -25,6 +27,8 @@ impl MPSTemporalWeighting {
     /// property. This will cause older samples to lose their contribution over time, which will
     /// prevent ghosting artifacts but will also never converge to a stable value. Therefore, this
     /// is best for images with motion.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalweighting/exponentialmovingaverage?language=objc)
     #[doc(alias = "MPSTemporalWeightingExponentialMovingAverage")]
     pub const ExponentialMovingAverage: Self = Self(1);
 }

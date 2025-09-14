@@ -17,12 +17,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFButtonType(pub c_uint);
 impl SFButtonType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfbuttontypecancel?language=objc)
     #[doc(alias = "SFButtonTypeCancel")]
     pub const Cancel: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfbuttontypeok?language=objc)
     #[doc(alias = "SFButtonTypeOK")]
     pub const OK: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfbuttontypeback?language=objc)
     #[doc(alias = "SFButtonTypeBack")]
     pub const Back: Self = Self(SFButtonType::Cancel.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfbuttontypelogin?language=objc)
     #[doc(alias = "SFButtonTypeLogin")]
     pub const Login: Self = Self(SFButtonType::OK.0);
 }
@@ -42,8 +46,10 @@ unsafe impl RefEncode for SFButtonType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFViewType(pub c_uint);
 impl SFViewType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfviewtypeidentityandcredentials?language=objc)
     #[doc(alias = "SFViewTypeIdentityAndCredentials")]
     pub const IdentityAndCredentials: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfviewtypecredentials?language=objc)
     #[doc(alias = "SFViewTypeCredentials")]
     pub const Credentials: Self = Self(1);
 }

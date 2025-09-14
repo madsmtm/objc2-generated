@@ -214,26 +214,37 @@ impl DefaultRetained for NSProcessInfo {
 pub struct NSActivityOptions(pub u64);
 bitflags::bitflags! {
     impl NSActivityOptions: u64 {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/idledisplaysleepdisabled?language=objc)
         #[doc(alias = "NSActivityIdleDisplaySleepDisabled")]
         const IdleDisplaySleepDisabled = 1<<40;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/idlesystemsleepdisabled?language=objc)
         #[doc(alias = "NSActivityIdleSystemSleepDisabled")]
         const IdleSystemSleepDisabled = 1<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/suddenterminationdisabled?language=objc)
         #[doc(alias = "NSActivitySuddenTerminationDisabled")]
         const SuddenTerminationDisabled = 1<<14;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/automaticterminationdisabled?language=objc)
         #[doc(alias = "NSActivityAutomaticTerminationDisabled")]
         const AutomaticTerminationDisabled = 1<<15;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/animationtrackingenabled?language=objc)
         #[doc(alias = "NSActivityAnimationTrackingEnabled")]
         const AnimationTrackingEnabled = 1<<45;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/trackingenabled?language=objc)
         #[doc(alias = "NSActivityTrackingEnabled")]
         const TrackingEnabled = 1<<46;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/userinitiated?language=objc)
         #[doc(alias = "NSActivityUserInitiated")]
         const UserInitiated = 0x00FFFFFF|NSActivityOptions::IdleSystemSleepDisabled.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/userinitiatedallowingidlesystemsleep?language=objc)
         #[doc(alias = "NSActivityUserInitiatedAllowingIdleSystemSleep")]
         const UserInitiatedAllowingIdleSystemSleep = NSActivityOptions::UserInitiated.0&!NSActivityOptions::IdleSystemSleepDisabled.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/background?language=objc)
         #[doc(alias = "NSActivityBackground")]
         const Background = 0x000000FF;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/latencycritical?language=objc)
         #[doc(alias = "NSActivityLatencyCritical")]
         const LatencyCritical = 0xFF00000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/userinteractive?language=objc)
         #[doc(alias = "NSActivityUserInteractive")]
         const UserInteractive = NSActivityOptions::UserInitiated.0|NSActivityOptions::LatencyCritical.0;
     }
@@ -311,12 +322,16 @@ impl NSProcessInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSProcessInfoThermalState(pub NSInteger);
 impl NSProcessInfoThermalState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum/nominal?language=objc)
     #[doc(alias = "NSProcessInfoThermalStateNominal")]
     pub const Nominal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum/fair?language=objc)
     #[doc(alias = "NSProcessInfoThermalStateFair")]
     pub const Fair: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum/serious?language=objc)
     #[doc(alias = "NSProcessInfoThermalStateSerious")]
     pub const Serious: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum/critical?language=objc)
     #[doc(alias = "NSProcessInfoThermalStateCritical")]
     pub const Critical: Self = Self(3);
 }

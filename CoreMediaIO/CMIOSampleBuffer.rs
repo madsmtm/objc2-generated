@@ -10,6 +10,7 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioinvalidsequencenumber?language=objc)
 pub const kCMIOInvalidSequenceNumber: c_uint = !(0);
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodiscontinuities?language=objc)
 pub const kCMIOSampleBufferNoDiscontinuities: c_uint = 0;
@@ -577,6 +578,8 @@ extern "C-unwind" {
     /// - `sample_timing_array` must be a valid pointer.
     /// - `sample_size_array` must be a valid pointer.
     /// - `s_buf_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffercreate?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferCreate(
         allocator: Option<&CFAllocator>,
@@ -627,6 +630,8 @@ extern "C-unwind" {
     /// - `format_description` might not allow `None`.
     /// - `sample_timing` must be a valid pointer.
     /// - `s_buf_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffercreateforimagebuffer?language=objc)
     #[cfg(all(
         feature = "objc2-core-foundation",
         feature = "objc2-core-media",
@@ -661,6 +666,8 @@ extern "C-unwind" {
     /// - `allocator` might not allow `None`.
     /// - `format_description` might not allow `None`.
     /// - `s_buf_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffercreatenodatamarker?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferCreateNoDataMarker(
         allocator: Option<&CFAllocator>,
@@ -689,6 +696,8 @@ extern "C-unwind" {
     ///
     /// - `allocator` might not allow `None`.
     /// - `sbuf` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffersetsequencenumber?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferSetSequenceNumber(
         allocator: Option<&CFAllocator>,
@@ -709,6 +718,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `sbuf` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffergetsequencenumber?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferGetSequenceNumber(sbuf: Option<&CMSampleBuffer>) -> u64;
 }
@@ -727,6 +738,8 @@ extern "C-unwind" {
     ///
     /// - `allocator` might not allow `None`.
     /// - `sbuf` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffersetdiscontinuityflags?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferSetDiscontinuityFlags(
         allocator: Option<&CFAllocator>,
@@ -747,6 +760,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `sbuf` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffergetdiscontinuityflags?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferGetDiscontinuityFlags(sbuf: Option<&CMSampleBuffer>) -> u32;
 }
@@ -765,6 +780,8 @@ extern "C-unwind" {
     ///
     /// - `source_s_buf` might not allow `None`.
     /// - `dest_s_buf` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffercopynonrequiredattachments?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferCopyNonRequiredAttachments(
         source_s_buf: Option<&CMSampleBuffer>,
@@ -790,6 +807,8 @@ extern "C-unwind" {
     ///
     /// - `source_s_buf` might not allow `None`.
     /// - `dest_s_buf` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffercopysampleattachments?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferCopySampleAttachments(
         source_s_buf: Option<&CMSampleBuffer>,

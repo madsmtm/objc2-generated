@@ -35,6 +35,7 @@ extern "C" {
 }
 
 impl CAFrameRateRange {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caframeraterangemake?language=objc)
     #[doc(alias = "CAFrameRateRangeMake")]
     #[inline]
     pub fn new(minimum: c_float, maximum: c_float, preferred: c_float) -> CAFrameRateRange {
@@ -48,6 +49,7 @@ impl CAFrameRateRange {
         unsafe { CAFrameRateRangeMake(minimum, maximum, preferred) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caframeraterangeisequaltorange?language=objc)
     #[doc(alias = "CAFrameRateRangeIsEqualToRange")]
     #[inline]
     pub fn is_equal_to_range(self, other: CAFrameRateRange) -> bool {

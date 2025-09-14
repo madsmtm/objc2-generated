@@ -16,9 +16,13 @@ use crate::*;
 pub struct NSGlassEffectViewStyle(pub NSInteger);
 impl NSGlassEffectViewStyle {
     /// Standard glass effect style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglasseffectview/style-swift.enum/regular?language=objc)
     #[doc(alias = "NSGlassEffectViewStyleRegular")]
     pub const Regular: Self = Self(0);
     /// Clear glass effect style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglasseffectview/style-swift.enum/clear?language=objc)
     #[doc(alias = "NSGlassEffectViewStyleClear")]
     pub const Clear: Self = Self(1);
 }

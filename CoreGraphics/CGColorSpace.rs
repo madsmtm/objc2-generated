@@ -32,14 +32,19 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGColorRenderingIntent(pub i32);
 impl CGColorRenderingIntent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/defaultintent?language=objc)
     #[doc(alias = "kCGRenderingIntentDefault")]
     pub const RenderingIntentDefault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/absolutecolorimetric?language=objc)
     #[doc(alias = "kCGRenderingIntentAbsoluteColorimetric")]
     pub const RenderingIntentAbsoluteColorimetric: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/relativecolorimetric?language=objc)
     #[doc(alias = "kCGRenderingIntentRelativeColorimetric")]
     pub const RenderingIntentRelativeColorimetric: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/perceptual?language=objc)
     #[doc(alias = "kCGRenderingIntentPerceptual")]
     pub const RenderingIntentPerceptual: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/saturation?language=objc)
     #[doc(alias = "kCGRenderingIntentSaturation")]
     pub const RenderingIntentSaturation: Self = Self(4);
 }
@@ -60,22 +65,31 @@ unsafe impl RefEncode for CGColorRenderingIntent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGColorSpaceModel(pub i32);
 impl CGColorSpaceModel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/unknown?language=objc)
     #[doc(alias = "kCGColorSpaceModelUnknown")]
     pub const Unknown: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/monochrome?language=objc)
     #[doc(alias = "kCGColorSpaceModelMonochrome")]
     pub const Monochrome: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/rgb?language=objc)
     #[doc(alias = "kCGColorSpaceModelRGB")]
     pub const RGB: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/cmyk?language=objc)
     #[doc(alias = "kCGColorSpaceModelCMYK")]
     pub const CMYK: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/lab?language=objc)
     #[doc(alias = "kCGColorSpaceModelLab")]
     pub const Lab: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/devicen?language=objc)
     #[doc(alias = "kCGColorSpaceModelDeviceN")]
     pub const DeviceN: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/indexed?language=objc)
     #[doc(alias = "kCGColorSpaceModelIndexed")]
     pub const Indexed: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/pattern?language=objc)
     #[doc(alias = "kCGColorSpaceModelPattern")]
     pub const Pattern: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/xyz?language=objc)
     #[doc(alias = "kCGColorSpaceModelXYZ")]
     pub const XYZ: Self = Self(7);
 }
@@ -290,6 +304,7 @@ extern "C" {
 }
 
 impl CGColorSpace {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreatedevicegray()?language=objc)
     #[doc(alias = "CGColorSpaceCreateDeviceGray")]
     #[inline]
     pub fn new_device_gray() -> Option<CFRetained<CGColorSpace>> {
@@ -300,6 +315,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreatedevicergb()?language=objc)
     #[doc(alias = "CGColorSpaceCreateDeviceRGB")]
     #[inline]
     pub fn new_device_rgb() -> Option<CFRetained<CGColorSpace>> {
@@ -310,6 +326,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreatedevicecmyk()?language=objc)
     #[doc(alias = "CGColorSpaceCreateDeviceCMYK")]
     #[inline]
     pub fn new_device_cmyk() -> Option<CFRetained<CGColorSpace>> {
@@ -320,6 +337,8 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(iccdata:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `data` should be of the correct type.
@@ -335,6 +354,8 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(iccbasedncomponents:range:profile:alternate:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `range` must be a valid pointer or null.
@@ -359,6 +380,8 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(indexedbasespace:last:colortable:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `color_table` must be a valid pointer or null.
@@ -380,6 +403,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(patternbasespace:)?language=objc)
     #[doc(alias = "CGColorSpaceCreatePattern")]
     #[inline]
     pub fn new_pattern(base_space: Option<&CGColorSpace>) -> Option<CFRetained<CGColorSpace>> {
@@ -399,6 +423,7 @@ extern "C" {
 }
 
 impl CGColorSpace {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(name:)?language=objc)
     #[doc(alias = "CGColorSpaceCreateWithName")]
     #[inline]
     pub fn with_name(name: Option<&CFString>) -> Option<CFRetained<CGColorSpace>> {
@@ -410,6 +435,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacegetname?language=objc)
     #[doc(alias = "CGColorSpaceGetName")]
     #[inline]
     pub fn get_name(space: Option<&CGColorSpace>) -> Option<CFRetained<CFString>> {
@@ -420,6 +446,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/name?language=objc)
     #[doc(alias = "CGColorSpaceCopyName")]
     #[inline]
     pub fn name(space: Option<&CGColorSpace>) -> Option<CFRetained<CFString>> {
@@ -432,6 +459,7 @@ impl CGColorSpace {
 }
 
 unsafe impl ConcreteType for CGColorSpace {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/typeid?language=objc)
     #[doc(alias = "CGColorSpaceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -443,6 +471,7 @@ unsafe impl ConcreteType for CGColorSpace {
 }
 
 impl CGColorSpace {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/numberofcomponents?language=objc)
     #[doc(alias = "CGColorSpaceGetNumberOfComponents")]
     #[inline]
     pub fn number_of_components(space: Option<&CGColorSpace>) -> usize {
@@ -452,6 +481,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceGetNumberOfComponents(space) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/model?language=objc)
     #[doc(alias = "CGColorSpaceGetModel")]
     #[inline]
     pub fn model(space: Option<&CGColorSpace>) -> CGColorSpaceModel {
@@ -461,6 +491,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceGetModel(space) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/basecolorspace?language=objc)
     #[doc(alias = "CGColorSpaceGetBaseColorSpace")]
     #[inline]
     pub fn base_color_space(space: Option<&CGColorSpace>) -> Option<CFRetained<CGColorSpace>> {
@@ -473,6 +504,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecopybasecolorspace(_:)?language=objc)
     #[doc(alias = "CGColorSpaceCopyBaseColorSpace")]
     #[inline]
     pub fn copy_base_color_space(&self) -> CFRetained<CGColorSpace> {
@@ -487,6 +519,7 @@ impl CGColorSpace {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacegetcolortablecount?language=objc)
     #[doc(alias = "CGColorSpaceGetColorTableCount")]
     #[inline]
     pub fn color_table_count(space: Option<&CGColorSpace>) -> usize {
@@ -496,6 +529,8 @@ impl CGColorSpace {
         unsafe { CGColorSpaceGetColorTableCount(space) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacegetcolortable?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` must be a valid pointer or null.
@@ -508,6 +543,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceGetColorTable(space, table) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/copyiccdata()?language=objc)
     #[doc(alias = "CGColorSpaceCopyICCData")]
     #[inline]
     pub fn icc_data(space: Option<&CGColorSpace>) -> Option<CFRetained<CFData>> {
@@ -518,6 +554,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/iswidegamutrgb?language=objc)
     #[doc(alias = "CGColorSpaceIsWideGamutRGB")]
     #[inline]
     pub fn is_wide_gamut_rgb(&self) -> bool {
@@ -527,6 +564,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceIsWideGamutRGB(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/ishdr()?language=objc)
     #[doc(alias = "CGColorSpaceIsHDR")]
     #[inline]
     pub fn is_hdr(&self) -> bool {
@@ -536,6 +574,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceIsHDR(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspaceusesitur_2100tf(_:)?language=objc)
     #[doc(alias = "CGColorSpaceUsesITUR_2100TF")]
     #[inline]
     pub fn uses_itur_2100_tf(&self) -> bool {
@@ -545,6 +584,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceUsesITUR_2100TF(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspaceispqbased(_:)?language=objc)
     #[doc(alias = "CGColorSpaceIsPQBased")]
     #[inline]
     pub fn is_pq_based(&self) -> bool {
@@ -554,6 +594,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceIsPQBased(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspaceishlgbased(_:)?language=objc)
     #[doc(alias = "CGColorSpaceIsHLGBased")]
     #[inline]
     pub fn is_hlg_based(&self) -> bool {
@@ -563,6 +604,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceIsHLGBased(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/supportsoutput?language=objc)
     #[doc(alias = "CGColorSpaceSupportsOutput")]
     #[inline]
     pub fn supports_output(&self) -> bool {
@@ -572,6 +614,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceSupportsOutput(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/copypropertylist()?language=objc)
     #[doc(alias = "CGColorSpaceCopyPropertyList")]
     #[inline]
     pub fn property_list(&self) -> Option<CFRetained<CFPropertyList>> {
@@ -584,6 +627,8 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(propertylistplist:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `plist` should be of the correct type.
@@ -599,6 +644,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspaceusesextendedrange(_:)?language=objc)
     #[doc(alias = "CGColorSpaceUsesExtendedRange")]
     #[inline]
     pub fn uses_extended_range(&self) -> bool {
@@ -608,6 +654,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceUsesExtendedRange(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreatelinearized(_:)?language=objc)
     #[doc(alias = "CGColorSpaceCreateLinearized")]
     #[inline]
     pub fn linearized(&self) -> Option<CFRetained<CGColorSpace>> {
@@ -618,6 +665,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreateextended(_:)?language=objc)
     #[doc(alias = "CGColorSpaceCreateExtended")]
     #[inline]
     pub fn extended(&self) -> Option<CFRetained<CGColorSpace>> {
@@ -628,6 +676,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreateextendedlinearized(_:)?language=objc)
     #[doc(alias = "CGColorSpaceCreateExtendedLinearized")]
     #[inline]
     pub fn extended_linearized(&self) -> Option<CFRetained<CGColorSpace>> {
@@ -640,6 +689,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreatecopywithstandardrange(_:)?language=objc)
     #[doc(alias = "CGColorSpaceCreateCopyWithStandardRange")]
     #[inline]
     pub fn copy_with_standard_range(&self) -> CFRetained<CGColorSpace> {
@@ -654,6 +704,7 @@ impl CGColorSpace {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(iccprofiledata:)?language=objc)
     #[doc(alias = "CGColorSpaceCreateWithICCProfile")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -667,6 +718,7 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/iccdata?language=objc)
     #[doc(alias = "CGColorSpaceCopyICCProfile")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -678,6 +730,8 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(platformcolorspaceref:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer or null.

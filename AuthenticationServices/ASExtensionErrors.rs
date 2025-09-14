@@ -16,16 +16,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASExtensionErrorCode(pub NSInteger);
 impl ASExtensionErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code/failed?language=objc)
     #[doc(alias = "ASExtensionErrorCodeFailed")]
     pub const Failed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code/usercanceled?language=objc)
     #[doc(alias = "ASExtensionErrorCodeUserCanceled")]
     pub const UserCanceled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code/userinteractionrequired?language=objc)
     #[doc(alias = "ASExtensionErrorCodeUserInteractionRequired")]
     pub const UserInteractionRequired: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code/credentialidentitynotfound?language=objc)
     #[doc(alias = "ASExtensionErrorCodeCredentialIdentityNotFound")]
     pub const CredentialIdentityNotFound: Self = Self(101);
     /// This error should only be used for a passkey registration request, if the
     /// `excludedCredentials`property matches a known passkey.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code/matchedexcludedcredential?language=objc)
     #[doc(alias = "ASExtensionErrorCodeMatchedExcludedCredential")]
     pub const MatchedExcludedCredential: Self = Self(102);
 }

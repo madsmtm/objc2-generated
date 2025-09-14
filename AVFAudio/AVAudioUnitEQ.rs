@@ -65,26 +65,37 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioUnitEQFilterType(pub NSInteger);
 impl AVAudioUnitEQFilterType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/parametric?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeParametric")]
     pub const Parametric: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/lowpass?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeLowPass")]
     pub const LowPass: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/highpass?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeHighPass")]
     pub const HighPass: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/resonantlowpass?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeResonantLowPass")]
     pub const ResonantLowPass: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/resonanthighpass?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeResonantHighPass")]
     pub const ResonantHighPass: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/bandpass?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeBandPass")]
     pub const BandPass: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/bandstop?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeBandStop")]
     pub const BandStop: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/lowshelf?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeLowShelf")]
     pub const LowShelf: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/highshelf?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeHighShelf")]
     pub const HighShelf: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/resonantlowshelf?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeResonantLowShelf")]
     pub const ResonantLowShelf: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/resonanthighshelf?language=objc)
     #[doc(alias = "AVAudioUnitEQFilterTypeResonantHighShelf")]
     pub const ResonantHighShelf: Self = Self(10);
 }

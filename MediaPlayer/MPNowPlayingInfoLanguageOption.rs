@@ -62,8 +62,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPNowPlayingInfoLanguageOptionType(pub NSUInteger);
 impl MPNowPlayingInfoLanguageOptionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiontype/audible?language=objc)
     #[doc(alias = "MPNowPlayingInfoLanguageOptionTypeAudible")]
     pub const Audible: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiontype/legible?language=objc)
     #[doc(alias = "MPNowPlayingInfoLanguageOptionTypeLegible")]
     pub const Legible: Self = Self(1);
 }

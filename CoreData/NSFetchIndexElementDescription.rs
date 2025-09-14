@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFetchIndexElementType(pub NSUInteger);
 impl NSFetchIndexElementType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchindexelementtype/binary?language=objc)
     #[doc(alias = "NSFetchIndexElementTypeBinary")]
     pub const Binary: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchindexelementtype/rtree?language=objc)
     #[doc(alias = "NSFetchIndexElementTypeRTree")]
     pub const RTree: Self = Self(1);
 }

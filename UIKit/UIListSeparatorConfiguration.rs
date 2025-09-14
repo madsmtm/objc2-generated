@@ -14,12 +14,18 @@ use crate::*;
 pub struct UIListSeparatorVisibility(pub NSInteger);
 impl UIListSeparatorVisibility {
     /// UICollectionView list sections will resolve this to an appropriate value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorvisibility/uilistseparatorvisibilityautomatic?language=objc)
     #[doc(alias = "UIListSeparatorVisibilityAutomatic")]
     pub const Automatic: Self = Self(0);
     /// UICollectionView list sections will resolve this to an appropriate value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorvisibility/uilistseparatorvisibilityvisible?language=objc)
     #[doc(alias = "UIListSeparatorVisibilityVisible")]
     pub const Visible: Self = Self(1);
     /// UICollectionView list sections will resolve this to an appropriate value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorvisibility/uilistseparatorvisibilityhidden?language=objc)
     #[doc(alias = "UIListSeparatorVisibilityHidden")]
     pub const Hidden: Self = Self(2);
 }

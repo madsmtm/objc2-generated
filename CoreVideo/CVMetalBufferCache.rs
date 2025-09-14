@@ -35,6 +35,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CVMetalBufferCache {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercachegettypeid()?language=objc)
     #[doc(alias = "CVMetalBufferCacheGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -63,6 +64,8 @@ impl CVMetalBufferCache {
     /// - `cache_attributes` generic must be of the correct type.
     /// - `cache_attributes` generic must be of the correct type.
     /// - `cache_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercachecreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CVMetalBufferCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
@@ -105,6 +108,8 @@ impl CVMetalBufferCache {
     /// # Safety
     ///
     /// `buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercachecreatebufferfromimage(_:_:_:_:)?language=objc)
     #[doc(alias = "CVMetalBufferCacheCreateBufferFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -144,6 +149,8 @@ impl CVMetalBufferCache {
     /// Parameter `bufferCache`: The buffer cache object to flush
     ///
     /// Parameter `options`: Currently unused, set to 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercacheflush(_:_:)?language=objc)
     #[doc(alias = "CVMetalBufferCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]

@@ -22,21 +22,25 @@ extern "C" {
 // TODO: pub fn GLKQuaternionMakeWithAngleAndVector3Axis(radians: c_float,axis_vector: GLKVector3,) -> GLKQuaternion;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionmakewithmatrix3(_:)?language=objc)
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionMakeWithMatrix3(matrix: GLKMatrix3) -> GLKQuaternion;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionmakewithmatrix4(_:)?language=objc)
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionMakeWithMatrix4(matrix: GLKMatrix4) -> GLKQuaternion;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionangle(_:)?language=objc)
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionAngle(quaternion: GLKQuaternion) -> c_float;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionaxis(_:)?language=objc)
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionAxis(quaternion: GLKQuaternion) -> GLKVector3;
 }
@@ -48,6 +52,7 @@ extern "C-unwind" {
 // TODO: pub fn GLKQuaternionMultiply(quaternion_left: GLKQuaternion,quaternion_right: GLKQuaternion,) -> GLKQuaternion;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionslerp(_:_:_:)?language=objc)
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionSlerp(
         quaternion_start: GLKQuaternion,
@@ -67,6 +72,8 @@ extern "C-unwind" {
 // TODO: pub fn GLKQuaternionRotateVector3(quaternion: GLKQuaternion,vector: GLKVector3,) -> GLKVector3;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionrotatevector3array(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `vectors` must be a valid pointer.
@@ -81,6 +88,8 @@ extern "C-unwind" {
 // TODO: pub fn GLKQuaternionRotateVector4(quaternion: GLKQuaternion,vector: GLKVector4,) -> GLKVector4;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionrotatevector4array(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `vectors` must be a valid pointer.

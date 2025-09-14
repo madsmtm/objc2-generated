@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStickerType(pub NSInteger);
 impl INStickerType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insticker/stickertype/unknown?language=objc)
     #[doc(alias = "INStickerTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insticker/stickertype/emoji?language=objc)
     #[doc(alias = "INStickerTypeEmoji")]
     pub const Emoji: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insticker/stickertype/generic?language=objc)
     #[doc(alias = "INStickerTypeGeneric")]
     pub const Generic: Self = Self(2);
 }

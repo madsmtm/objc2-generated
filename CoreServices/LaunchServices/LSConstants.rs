@@ -130,18 +130,28 @@ pub struct LSRolesMask(pub OptionBits);
 bitflags::bitflags! {
     impl LSRolesMask: OptionBits {
 /// no claim is made about support for this type/scheme
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsrolesmask/klsrolesnone?language=objc)
         #[doc(alias = "kLSRolesNone")]
         const None = 0x00000001;
 /// claim to view items of this type
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsrolesmask/klsrolesviewer?language=objc)
         #[doc(alias = "kLSRolesViewer")]
         const Viewer = 0x00000002;
 /// claim to edit items of this type/scheme
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsrolesmask/klsroleseditor?language=objc)
         #[doc(alias = "kLSRolesEditor")]
         const Editor = 0x00000004;
 /// claim to execute items of this type
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsrolesmask/klsrolesshell?language=objc)
         #[doc(alias = "kLSRolesShell")]
         const Shell = 0x00000008;
 /// claim to do it all
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsrolesmask/klsrolesall?language=objc)
         #[doc(alias = "kLSRolesAll")]
         const All = 0xFFFFFFFF;
     }

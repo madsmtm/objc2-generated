@@ -38,6 +38,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for CFBoolean {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbooleangettypeid()?language=objc)
     #[doc(alias = "CFBooleanGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -49,6 +50,7 @@ unsafe impl ConcreteType for CFBoolean {
 }
 
 impl CFBoolean {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbooleangetvalue(_:)?language=objc)
     #[doc(alias = "CFBooleanGetValue")]
     #[inline]
     pub fn value(&self) -> bool {
@@ -66,38 +68,55 @@ impl CFBoolean {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNumberType(pub CFIndex);
 impl CFNumberType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/sint8type?language=objc)
     #[doc(alias = "kCFNumberSInt8Type")]
     pub const SInt8Type: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/sint16type?language=objc)
     #[doc(alias = "kCFNumberSInt16Type")]
     pub const SInt16Type: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/sint32type?language=objc)
     #[doc(alias = "kCFNumberSInt32Type")]
     pub const SInt32Type: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/sint64type?language=objc)
     #[doc(alias = "kCFNumberSInt64Type")]
     pub const SInt64Type: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/float32type?language=objc)
     #[doc(alias = "kCFNumberFloat32Type")]
     pub const Float32Type: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/float64type?language=objc)
     #[doc(alias = "kCFNumberFloat64Type")]
     pub const Float64Type: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/chartype?language=objc)
     #[doc(alias = "kCFNumberCharType")]
     pub const CharType: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/shorttype?language=objc)
     #[doc(alias = "kCFNumberShortType")]
     pub const ShortType: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/inttype?language=objc)
     #[doc(alias = "kCFNumberIntType")]
     pub const IntType: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/longtype?language=objc)
     #[doc(alias = "kCFNumberLongType")]
     pub const LongType: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/longlongtype?language=objc)
     #[doc(alias = "kCFNumberLongLongType")]
     pub const LongLongType: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/floattype?language=objc)
     #[doc(alias = "kCFNumberFloatType")]
     pub const FloatType: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/doubletype?language=objc)
     #[doc(alias = "kCFNumberDoubleType")]
     pub const DoubleType: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/cfindextype?language=objc)
     #[doc(alias = "kCFNumberCFIndexType")]
     pub const CFIndexType: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/nsintegertype?language=objc)
     #[doc(alias = "kCFNumberNSIntegerType")]
     pub const NSIntegerType: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/cgfloattype?language=objc)
     #[doc(alias = "kCFNumberCGFloatType")]
     pub const CGFloatType: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/maxtype?language=objc)
     #[doc(alias = "kCFNumberMaxType")]
     pub const MaxType: Self = Self(16);
 }
@@ -146,6 +165,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for CFNumber {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbergettypeid()?language=objc)
     #[doc(alias = "CFNumberGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -157,6 +177,8 @@ unsafe impl ConcreteType for CFNumber {
 }
 
 impl CFNumber {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbercreate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -179,6 +201,7 @@ impl CFNumber {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbergettype(_:)?language=objc)
     #[doc(alias = "CFNumberGetType")]
     #[inline]
     pub fn r#type(&self) -> CFNumberType {
@@ -188,6 +211,7 @@ impl CFNumber {
         unsafe { CFNumberGetType(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbergetbytesize(_:)?language=objc)
     #[doc(alias = "CFNumberGetByteSize")]
     #[inline]
     pub fn byte_size(&self) -> CFIndex {
@@ -197,6 +221,7 @@ impl CFNumber {
         unsafe { CFNumberGetByteSize(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberisfloattype(_:)?language=objc)
     #[doc(alias = "CFNumberIsFloatType")]
     #[inline]
     pub fn is_float_type(&self) -> bool {
@@ -207,6 +232,8 @@ impl CFNumber {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbergetvalue(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `value_ptr` must be a valid pointer.
@@ -224,6 +251,8 @@ impl CFNumber {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbercompare(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `other_number` might not allow `None`.

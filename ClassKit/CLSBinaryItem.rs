@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLSBinaryValueType(pub NSInteger);
 impl CLSBinaryValueType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryvaluetype/truefalse?language=objc)
     #[doc(alias = "CLSBinaryValueTypeTrueFalse")]
     pub const TrueFalse: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryvaluetype/passfail?language=objc)
     #[doc(alias = "CLSBinaryValueTypePassFail")]
     pub const PassFail: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryvaluetype/yesno?language=objc)
     #[doc(alias = "CLSBinaryValueTypeYesNo")]
     pub const YesNo: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryvaluetype/correctincorrect?language=objc)
     #[doc(alias = "CLSBinaryValueTypeCorrectIncorrect")]
     pub const CorrectIncorrect: Self = Self(3);
 }

@@ -23,12 +23,18 @@ use crate::*;
 pub struct PHPickerConfigurationAssetRepresentationMode(pub NSInteger);
 impl PHPickerConfigurationAssetRepresentationMode {
     /// Uses the best representation determined by the system. This may change in future releases.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode/automatic?language=objc)
     #[doc(alias = "PHPickerConfigurationAssetRepresentationModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Uses the current representation to avoid transcoding if possible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode/current?language=objc)
     #[doc(alias = "PHPickerConfigurationAssetRepresentationModeCurrent")]
     pub const Current: Self = Self(1);
     /// Uses the most compatible representation if possible, even if transcoding is required.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode/compatible?language=objc)
     #[doc(alias = "PHPickerConfigurationAssetRepresentationModeCompatible")]
     pub const Compatible: Self = Self(2);
 }
@@ -55,15 +61,23 @@ unsafe impl Sync for PHPickerConfigurationAssetRepresentationMode {}
 pub struct PHPickerConfigurationSelection(pub NSInteger);
 impl PHPickerConfigurationSelection {
     /// Uses the default selection behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection/default?language=objc)
     #[doc(alias = "PHPickerConfigurationSelectionDefault")]
     pub const Default: Self = Self(0);
     /// Uses the selection order made by the user. Selected assets are numbered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection/ordered?language=objc)
     #[doc(alias = "PHPickerConfigurationSelectionOrdered")]
     pub const Ordered: Self = Self(1);
     /// Selection can be delivered continuously.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection/continuous?language=objc)
     #[doc(alias = "PHPickerConfigurationSelectionContinuous")]
     pub const Continuous: Self = Self(2);
     /// Selection can be delivered continuously and uses the selection order made by the user. Selected assets are numbered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection/continuousandordered?language=objc)
     #[doc(alias = "PHPickerConfigurationSelectionContinuousAndOrdered")]
     pub const ContinuousAndOrdered: Self = Self(3);
 }
@@ -90,9 +104,13 @@ unsafe impl Sync for PHPickerConfigurationSelection {}
 pub struct PHPickerMode(pub NSInteger);
 impl PHPickerMode {
     /// Default picker mode.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode-c.enum/phpickermodedefault?language=objc)
     #[doc(alias = "PHPickerModeDefault")]
     pub const Default: Self = Self(0);
     /// Compact picker mode (single row).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode-c.enum/phpickermodecompact?language=objc)
     #[doc(alias = "PHPickerModeCompact")]
     pub const Compact: Self = Self(1);
 }
@@ -116,21 +134,33 @@ pub struct PHPickerCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl PHPickerCapabilities: NSUInteger {
 /// No specified capabilities.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/phpickercapabilitiesnone?language=objc)
         #[doc(alias = "PHPickerCapabilitiesNone")]
         const None = 0;
 /// The search bar.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/search?language=objc)
         #[doc(alias = "PHPickerCapabilitiesSearch")]
         const Search = 1<<0;
 /// The staging area.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/stagingarea?language=objc)
         #[doc(alias = "PHPickerCapabilitiesStagingArea")]
         const StagingArea = 1<<1;
 /// The sidebar or the albums tab.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/collectionnavigation?language=objc)
         #[doc(alias = "PHPickerCapabilitiesCollectionNavigation")]
         const CollectionNavigation = 1<<2;
 /// The "Cancel" and the "Add" (if possible) button.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/selectionactions?language=objc)
         #[doc(alias = "PHPickerCapabilitiesSelectionActions")]
         const SelectionActions = 1<<3;
 /// Show intervention UI explaining potential risks for kids or teens if a sensitive asset is selected. Analysis and intervention will only be performed if "Communication Safety" is enabled in ScreenTime.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/sensitivityanalysisintervention?language=objc)
         #[doc(alias = "PHPickerCapabilitiesSensitivityAnalysisIntervention")]
         const SensitivityAnalysisIntervention = 1<<4;
     }

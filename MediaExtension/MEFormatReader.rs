@@ -29,10 +29,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEFileInfoFragmentsStatus(pub NSInteger);
 impl MEFileInfoFragmentsStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfo/fragmentsstatus-swift.enum/couldnotcontainfragments?language=objc)
     #[doc(alias = "MEFileInfoCouldNotContainFragments")]
     pub const CouldNotContainFragments: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfo/fragmentsstatus-swift.enum/containsfragments?language=objc)
     #[doc(alias = "MEFileInfoContainsFragments")]
     pub const ContainsFragments: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfo/fragmentsstatus-swift.enum/couldcontainbutdoesnotcontainfragments?language=objc)
     #[doc(alias = "MEFileInfoCouldContainButDoesNotContainFragments")]
     pub const CouldContainButDoesNotContainFragments: Self = Self(2);
 }
@@ -62,10 +65,13 @@ unsafe impl RefEncode for MEFileInfoFragmentsStatus {
 pub struct MEFormatReaderParseAdditionalFragmentsStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl MEFormatReaderParseAdditionalFragmentsStatus: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderparseadditionalfragmentsstatus/sizeincreased?language=objc)
         #[doc(alias = "MEFormatReaderParseAdditionalFragmentsStatusSizeIncreased")]
         const SizeIncreased = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderparseadditionalfragmentsstatus/fragmentadded?language=objc)
         #[doc(alias = "MEFormatReaderParseAdditionalFragmentsStatusFragmentAdded")]
         const FragmentAdded = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderparseadditionalfragmentsstatus/fragmentscomplete?language=objc)
         #[doc(alias = "MEFormatReaderParseAdditionalFragmentsStatusFragmentsComplete")]
         const FragmentsComplete = 1<<2;
     }

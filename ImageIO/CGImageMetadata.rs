@@ -36,6 +36,8 @@ unsafe impl ConcreteType for CGImageMetadata {
     /// Gets the type identifier for the CGImageMetadata opaque type
     ///
     /// Returns: the type identifier for the CGImageMetadata opaque type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatagettypeid()?language=objc)
     #[doc(alias = "CGImageMetadataGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -69,6 +71,8 @@ cf_objc2_type!(
 
 impl CGMutableImageMetadata {
     /// Creates an empty CGMutableImageMetadataRef
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatacreatemutable()?language=objc)
     #[doc(alias = "CGImageMetadataCreateMutable")]
     #[inline]
     pub unsafe fn new() -> CFRetained<CGMutableImageMetadata> {
@@ -86,6 +90,8 @@ impl CGMutableImageMetadata {
     /// Before modifying an immutable CGImageMetadataRef (such as metadata
     /// from CGImageSourceCopyMetadataAtIndex) you must first make a copy.
     /// This function makes a deep copy of all CGImageMetadataTags and their values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatacreatemutablecopy(_:)?language=objc)
     #[doc(alias = "CGImageMetadataCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -136,6 +142,8 @@ unsafe impl ConcreteType for CGImageMetadataTag {
     /// Gets the type identifier for the CGImageMetadataTag opaque type
     ///
     /// Returns: the type identifier for the CGImageMetadataTagGetTypeID opaque type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatataggettypeid()?language=objc)
     #[doc(alias = "CGImageMetadataTagGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -286,20 +294,28 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageMetadataType(pub i32);
 impl CGImageMetadataType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype/invalid?language=objc)
     #[doc(alias = "kCGImageMetadataTypeInvalid")]
     pub const Invalid: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype/default?language=objc)
     #[doc(alias = "kCGImageMetadataTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype/string?language=objc)
     #[doc(alias = "kCGImageMetadataTypeString")]
     pub const String: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype/arrayunordered?language=objc)
     #[doc(alias = "kCGImageMetadataTypeArrayUnordered")]
     pub const ArrayUnordered: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype/arrayordered?language=objc)
     #[doc(alias = "kCGImageMetadataTypeArrayOrdered")]
     pub const ArrayOrdered: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype/alternatearray?language=objc)
     #[doc(alias = "kCGImageMetadataTypeAlternateArray")]
     pub const AlternateArray: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype/alternatetext?language=objc)
     #[doc(alias = "kCGImageMetadataTypeAlternateText")]
     pub const AlternateText: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype/structure?language=objc)
     #[doc(alias = "kCGImageMetadataTypeStructure")]
     pub const Structure: Self = Self(6);
 }
@@ -367,6 +383,8 @@ impl CGImageMetadataTag {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatagcreate(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataTagCreate")]
     #[inline]
     pub unsafe fn new(
@@ -394,6 +412,8 @@ impl CGImageMetadataTag {
     ///
     ///
     /// Returns a copy of the tag's namespace
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatagcopynamespace(_:)?language=objc)
     #[doc(alias = "CGImageMetadataTagCopyNamespace")]
     #[inline]
     pub unsafe fn namespace(&self) -> Option<CFRetained<CFString>> {
@@ -407,6 +427,8 @@ impl CGImageMetadataTag {
     }
 
     /// Returns a copy of the tag's prefix
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatagcopyprefix(_:)?language=objc)
     #[doc(alias = "CGImageMetadataTagCopyPrefix")]
     #[inline]
     pub unsafe fn prefix(&self) -> Option<CFRetained<CFString>> {
@@ -418,6 +440,8 @@ impl CGImageMetadataTag {
     }
 
     /// Returns a copy of the tag's name
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatagcopyname(_:)?language=objc)
     #[doc(alias = "CGImageMetadataTagCopyName")]
     #[inline]
     pub unsafe fn name(&self) -> Option<CFRetained<CFString>> {
@@ -436,6 +460,8 @@ impl CGImageMetadataTag {
     /// may not actually mutate the value in the CGImageMetadata. It is recommended
     /// to create a new tag followed by CGImageMetadataSetTagWithPath, or use
     /// CGImageMetadataSetValueWithPath to mutate a metadata value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatagcopyvalue(_:)?language=objc)
     #[doc(alias = "CGImageMetadataTagCopyValue")]
     #[inline]
     pub unsafe fn value(&self) -> Option<CFRetained<CFType>> {
@@ -450,6 +476,8 @@ impl CGImageMetadataTag {
     ///
     /// Returns: Returns a CGImageMetadataType constant for the CGImageMetadataTag.
     /// This is primarily used to determine how to interpret the tag's value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatataggettype(_:)?language=objc)
     #[doc(alias = "CGImageMetadataTagGetType")]
     #[inline]
     pub unsafe fn r#type(&self) -> CGImageMetadataType {
@@ -469,6 +497,8 @@ impl CGImageMetadataTag {
     /// Returns: Returns a copy of the array of qualifiers. Elements of the array are
     /// CGImageMetadataTags. Returns NULL if the tag does not have any qualifiers.
     /// The copy is shallow, the qualifiers are not deep copied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatagcopyqualifiers(_:)?language=objc)
     #[doc(alias = "CGImageMetadataTagCopyQualifiers")]
     #[inline]
     pub unsafe fn qualifiers(&self) -> Option<CFRetained<CFArray>> {
@@ -491,6 +521,8 @@ impl CGImageMetadata {
     ///
     /// Returns: Returns an array with a shallow copy of all top-level
     /// CGImageMetadataTagRefs in a CGImageMetadataRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatacopytags(_:)?language=objc)
     #[doc(alias = "CGImageMetadataCopyTags")]
     #[inline]
     pub unsafe fn tags(&self) -> Option<CFRetained<CFArray>> {
@@ -588,6 +620,8 @@ impl CGImageMetadata {
     /// function returns a copy of the tag's value, any modification of the tag's
     /// value must be followed by a CGImageMetadataSetTagWithPath to commit the
     /// change to the metadata container.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatacopytagwithpath(_:_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataCopyTagWithPath")]
     #[inline]
     pub unsafe fn tag_with_path(
@@ -631,6 +665,8 @@ impl CGImageMetadata {
     /// tag must be of type kCGImageMetadataTypeString or kCGImageMetadataTypeAlternateText.
     /// For AlternateText tags, the element with the "x-default" language qualifier
     /// will be returned. For other types, NULL will be returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatacopystringvaluewithpath(_:_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataCopyStringValueWithPath")]
     #[inline]
     pub unsafe fn string_value_with_path(
@@ -670,6 +706,8 @@ impl CGMutableImageMetadata {
     /// # Safety
     ///
     /// `err` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadataregisternamespaceforprefix(_:_:_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataRegisterNamespaceForPrefix")]
     #[inline]
     pub unsafe fn register_namespace_for_prefix(
@@ -748,6 +786,8 @@ impl CGMutableImageMetadata {
     /// will be retained.
     ///
     /// Returns: Returns true if successful, false otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatasettagwithpath(_:_:_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataSetTagWithPath")]
     #[inline]
     pub unsafe fn set_tag_with_path(
@@ -849,6 +889,8 @@ impl CGMutableImageMetadata {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatasetvaluewithpath(_:_:_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataSetValueWithPath")]
     #[inline]
     pub unsafe fn set_value_with_path(
@@ -890,6 +932,8 @@ impl CGMutableImageMetadata {
     ///
     /// for
     /// information about path syntax.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadataremovetagwithpath(_:_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataRemoveTagWithPath")]
     #[inline]
     pub unsafe fn remove_tag_with_path(
@@ -948,6 +992,8 @@ impl CGImageMetadata {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadataenumeratetagsusingblock(_:_:_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataEnumerateTagsUsingBlock")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1005,6 +1051,8 @@ impl CGImageMetadata {
     /// Returns: Returns a CGImageMetadataTagRef with the appropriate namespace, prefix,
     /// tag name, and XMP value for the corresponding CGImageProperty. Returns NULL if the
     /// property could not be found.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatacopytagmatchingimageproperty(_:_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataCopyTagMatchingImageProperty")]
     #[inline]
     pub unsafe fn tag_matching_image_property(
@@ -1066,6 +1114,8 @@ impl CGMutableImageMetadata {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatasetvaluematchingimageproperty(_:_:_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataSetValueMatchingImageProperty")]
     #[inline]
     pub unsafe fn set_value_matching_image_property(
@@ -1113,6 +1163,8 @@ impl CGImageMetadata {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatacreatexmpdata(_:_:)?language=objc)
     #[doc(alias = "CGImageMetadataCreateXMPData")]
     #[inline]
     pub unsafe fn xmp_data(&self, options: Option<&CFDictionary>) -> Option<CFRetained<CFData>> {
@@ -1137,6 +1189,8 @@ impl CGImageMetadata {
     /// Parameter `data`: The XMP data.
     ///
     /// Returns: Returns a collection of CGImageMetadata tags. Returns NULL if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatacreatefromxmpdata(_:)?language=objc)
     #[doc(alias = "CGImageMetadataCreateFromXMPData")]
     #[inline]
     pub unsafe fn from_xmp_data(data: &CFData) -> Option<CFRetained<CGImageMetadata>> {
@@ -1164,14 +1218,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageMetadataErrors(pub i32);
 impl CGImageMetadataErrors {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadataerrors/unknown?language=objc)
     #[doc(alias = "kCGImageMetadataErrorUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadataerrors/unsupportedformat?language=objc)
     #[doc(alias = "kCGImageMetadataErrorUnsupportedFormat")]
     pub const UnsupportedFormat: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadataerrors/badargument?language=objc)
     #[doc(alias = "kCGImageMetadataErrorBadArgument")]
     pub const BadArgument: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadataerrors/conflictingarguments?language=objc)
     #[doc(alias = "kCGImageMetadataErrorConflictingArguments")]
     pub const ConflictingArguments: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadataerrors/prefixconflict?language=objc)
     #[doc(alias = "kCGImageMetadataErrorPrefixConflict")]
     pub const PrefixConflict: Self = Self(4);
 }

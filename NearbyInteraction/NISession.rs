@@ -152,10 +152,14 @@ impl NISession {
 pub struct NINearbyObjectRemovalReason(pub NSInteger);
 impl NINearbyObjectRemovalReason {
     /// The system has not received new activity from this object for over the allowed period.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/removalreason/timeout?language=objc)
     #[doc(alias = "NINearbyObjectRemovalReasonTimeout")]
     pub const Timeout: Self = Self(0);
     /// The peer device has signaled that it will no longer participate in the session.
     /// This removal reason is delivered on a best effort basis and is not guaranteed to be received.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/removalreason/peerended?language=objc)
     #[doc(alias = "NINearbyObjectRemovalReasonPeerEnded")]
     pub const PeerEnded: Self = Self(1);
 }
@@ -177,12 +181,18 @@ unsafe impl RefEncode for NINearbyObjectRemovalReason {
 pub struct NIAlgorithmConvergenceStatus(pub NSInteger);
 impl NIAlgorithmConvergenceStatus {
     /// Algorithm convergence status is unknown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj/nialgorithmconvergencestatusunknown?language=objc)
     #[doc(alias = "NIAlgorithmConvergenceStatusUnknown")]
     pub const Unknown: Self = Self(0);
     /// Algorithm is not converged.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj/nialgorithmconvergencestatusnotconverged?language=objc)
     #[doc(alias = "NIAlgorithmConvergenceStatusNotConverged")]
     pub const NotConverged: Self = Self(1);
     /// Algorithm is converged.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj/nialgorithmconvergencestatusconverged?language=objc)
     #[doc(alias = "NIAlgorithmConvergenceStatusConverged")]
     pub const Converged: Self = Self(2);
 }

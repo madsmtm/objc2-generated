@@ -61,6 +61,8 @@ impl cp_drawable_render_context {
     /// # Safety
     ///
     /// `render_context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext/drawmaskonstencilattachment(commandencoder:value:)-65i67?language=objc)
     #[doc(alias = "cp_drawable_render_context_draw_mask_on_stencil_attachment")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -113,6 +115,8 @@ impl cp_drawable_render_context {
     /// # Safety
     ///
     /// `render_context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext/endencoding(commandencoder:)-4hx0m?language=objc)
     #[doc(alias = "cp_drawable_render_context_end_encoding")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -160,6 +164,8 @@ impl cp_drawable_render_context {
     /// # Safety
     ///
     /// `render_context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext/drawmaskonstencilattachment(commandencoder:value:)-7npim?language=objc)
     #[doc(alias = "cp_drawable_render_context_mtl4_draw_mask_on_stencil_attachment")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -212,6 +218,8 @@ impl cp_drawable_render_context {
     /// # Safety
     ///
     /// `render_context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext/endencoding(commandencoder:)-2l6lk?language=objc)
     #[doc(alias = "cp_drawable_render_context_mtl4_end_encoding")]
     #[cfg(feature = "objc2-metal")]
     #[inline]

@@ -42,24 +42,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEAppProxyFlowError(pub NSInteger);
 impl NEAppProxyFlowError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/notconnected?language=objc)
     #[doc(alias = "NEAppProxyFlowErrorNotConnected")]
     pub const NotConnected: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/peerreset?language=objc)
     #[doc(alias = "NEAppProxyFlowErrorPeerReset")]
     pub const PeerReset: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/hostunreachable?language=objc)
     #[doc(alias = "NEAppProxyFlowErrorHostUnreachable")]
     pub const HostUnreachable: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/invalidargument?language=objc)
     #[doc(alias = "NEAppProxyFlowErrorInvalidArgument")]
     pub const InvalidArgument: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/aborted?language=objc)
     #[doc(alias = "NEAppProxyFlowErrorAborted")]
     pub const Aborted: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/refused?language=objc)
     #[doc(alias = "NEAppProxyFlowErrorRefused")]
     pub const Refused: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/timedout?language=objc)
     #[doc(alias = "NEAppProxyFlowErrorTimedOut")]
     pub const TimedOut: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/internal?language=objc)
     #[doc(alias = "NEAppProxyFlowErrorInternal")]
     pub const Internal: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/datagramtoolarge?language=objc)
     #[doc(alias = "NEAppProxyFlowErrorDatagramTooLarge")]
     pub const DatagramTooLarge: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/readalreadypending?language=objc)
     #[doc(alias = "NEAppProxyFlowErrorReadAlreadyPending")]
     pub const ReadAlreadyPending: Self = Self(10);
 }
@@ -164,40 +174,58 @@ impl NEAppProxyFlow {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEProviderStopReason(pub NSInteger);
 impl NEProviderStopReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/none?language=objc)
     #[doc(alias = "NEProviderStopReasonNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/userinitiated?language=objc)
     #[doc(alias = "NEProviderStopReasonUserInitiated")]
     pub const UserInitiated: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/providerfailed?language=objc)
     #[doc(alias = "NEProviderStopReasonProviderFailed")]
     pub const ProviderFailed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/nonetworkavailable?language=objc)
     #[doc(alias = "NEProviderStopReasonNoNetworkAvailable")]
     pub const NoNetworkAvailable: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/unrecoverablenetworkchange?language=objc)
     #[doc(alias = "NEProviderStopReasonUnrecoverableNetworkChange")]
     pub const UnrecoverableNetworkChange: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/providerdisabled?language=objc)
     #[doc(alias = "NEProviderStopReasonProviderDisabled")]
     pub const ProviderDisabled: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/authenticationcanceled?language=objc)
     #[doc(alias = "NEProviderStopReasonAuthenticationCanceled")]
     pub const AuthenticationCanceled: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/configurationfailed?language=objc)
     #[doc(alias = "NEProviderStopReasonConfigurationFailed")]
     pub const ConfigurationFailed: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/idletimeout?language=objc)
     #[doc(alias = "NEProviderStopReasonIdleTimeout")]
     pub const IdleTimeout: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/configurationdisabled?language=objc)
     #[doc(alias = "NEProviderStopReasonConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/configurationremoved?language=objc)
     #[doc(alias = "NEProviderStopReasonConfigurationRemoved")]
     pub const ConfigurationRemoved: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/superceded?language=objc)
     #[doc(alias = "NEProviderStopReasonSuperceded")]
     pub const Superceded: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/userlogout?language=objc)
     #[doc(alias = "NEProviderStopReasonUserLogout")]
     pub const UserLogout: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/userswitch?language=objc)
     #[doc(alias = "NEProviderStopReasonUserSwitch")]
     pub const UserSwitch: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/connectionfailed?language=objc)
     #[doc(alias = "NEProviderStopReasonConnectionFailed")]
     pub const ConnectionFailed: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/sleep?language=objc)
     #[doc(alias = "NEProviderStopReasonSleep")]
     pub const Sleep: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/appupdate?language=objc)
     #[doc(alias = "NEProviderStopReasonAppUpdate")]
     pub const AppUpdate: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/internalerror?language=objc)
     #[doc(alias = "NEProviderStopReasonInternalError")]
     pub const InternalError: Self = Self(17);
 }
@@ -380,10 +408,13 @@ impl NEProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NETunnelProviderError(pub NSInteger);
 impl NETunnelProviderError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererror-swift.struct/code/networksettingsinvalid?language=objc)
     #[doc(alias = "NETunnelProviderErrorNetworkSettingsInvalid")]
     pub const NetworkSettingsInvalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererror-swift.struct/code/networksettingscanceled?language=objc)
     #[doc(alias = "NETunnelProviderErrorNetworkSettingsCanceled")]
     pub const NetworkSettingsCanceled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererror-swift.struct/code/networksettingsfailed?language=objc)
     #[doc(alias = "NETunnelProviderErrorNetworkSettingsFailed")]
     pub const NetworkSettingsFailed: Self = Self(3);
 }
@@ -404,10 +435,13 @@ unsafe impl RefEncode for NETunnelProviderError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NETunnelProviderRoutingMethod(pub NSInteger);
 impl NETunnelProviderRoutingMethod {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderroutingmethod/destinationip?language=objc)
     #[doc(alias = "NETunnelProviderRoutingMethodDestinationIP")]
     pub const DestinationIP: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderroutingmethod/sourceapplication?language=objc)
     #[doc(alias = "NETunnelProviderRoutingMethodSourceApplication")]
     pub const SourceApplication: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderroutingmethod/networkrule?language=objc)
     #[doc(alias = "NETunnelProviderRoutingMethodNetworkRule")]
     pub const NetworkRule: Self = Self(3);
 }
@@ -618,16 +652,22 @@ impl NEAppProxyProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNError(pub NSInteger);
 impl NEVPNError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/configurationinvalid?language=objc)
     #[doc(alias = "NEVPNErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/configurationdisabled?language=objc)
     #[doc(alias = "NEVPNErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/connectionfailed?language=objc)
     #[doc(alias = "NEVPNErrorConnectionFailed")]
     pub const ConnectionFailed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/configurationstale?language=objc)
     #[doc(alias = "NEVPNErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/configurationreadwritefailed?language=objc)
     #[doc(alias = "NEVPNErrorConfigurationReadWriteFailed")]
     pub const ConfigurationReadWriteFailed: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/configurationunknown?language=objc)
     #[doc(alias = "NEVPNErrorConfigurationUnknown")]
     pub const ConfigurationUnknown: Self = Self(6);
 }
@@ -1279,12 +1319,16 @@ impl NEAppRule {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEDNSProxyManagerError(pub NSInteger);
 impl NEDNSProxyManagerError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanagererror/configurationinvalid?language=objc)
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanagererror/configurationdisabled?language=objc)
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanagererror/configurationstale?language=objc)
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanagererror/configurationcannotberemoved?language=objc)
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
 }
@@ -2116,10 +2160,13 @@ impl NEDNSProxyProviderProtocol {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEDNSProtocol(pub NSInteger);
 impl NEDNSProtocol {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsprotocol/cleartext?language=objc)
     #[doc(alias = "NEDNSProtocolCleartext")]
     pub const Cleartext: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsprotocol/tls?language=objc)
     #[doc(alias = "NEDNSProtocolTLS")]
     pub const TLS: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsprotocol/https?language=objc)
     #[doc(alias = "NEDNSProtocolHTTPS")]
     pub const HTTPS: Self = Self(3);
 }
@@ -2428,12 +2475,16 @@ impl NEDNSOverHTTPSSettings {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEDNSSettingsManagerError(pub NSInteger);
 impl NEDNSSettingsManagerError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror/configurationinvalid?language=objc)
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror/configurationdisabled?language=objc)
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror/configurationstale?language=objc)
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror/configurationcannotberemoved?language=objc)
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
 }
@@ -2575,10 +2626,13 @@ impl NEDNSSettingsManager {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NENetworkRuleProtocol(pub NSInteger);
 impl NENetworkRuleProtocol {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkrule/protocol/any?language=objc)
     #[doc(alias = "NENetworkRuleProtocolAny")]
     pub const Any: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkrule/protocol/tcp?language=objc)
     #[doc(alias = "NENetworkRuleProtocolTCP")]
     pub const TCP: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkrule/protocol/udp?language=objc)
     #[doc(alias = "NENetworkRuleProtocolUDP")]
     pub const UDP: Self = Self(2);
 }
@@ -2599,10 +2653,13 @@ unsafe impl RefEncode for NENetworkRuleProtocol {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NETrafficDirection(pub NSInteger);
 impl NETrafficDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netrafficdirection/any?language=objc)
     #[doc(alias = "NETrafficDirectionAny")]
     pub const Any: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netrafficdirection/inbound?language=objc)
     #[doc(alias = "NETrafficDirectionInbound")]
     pub const Inbound: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netrafficdirection/outbound?language=objc)
     #[doc(alias = "NETrafficDirectionOutbound")]
     pub const Outbound: Self = Self(2);
 }
@@ -3117,12 +3174,16 @@ impl NEFilterProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterReportFrequency(pub NSInteger);
 impl NEFilterReportFrequency {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/frequency/none?language=objc)
     #[doc(alias = "NEFilterReportFrequencyNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/frequency/low?language=objc)
     #[doc(alias = "NEFilterReportFrequencyLow")]
     pub const Low: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/frequency/medium?language=objc)
     #[doc(alias = "NEFilterReportFrequencyMedium")]
     pub const Medium: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/frequency/high?language=objc)
     #[doc(alias = "NEFilterReportFrequencyHigh")]
     pub const High: Self = Self(3);
 }
@@ -3433,14 +3494,19 @@ impl NEFilterControlVerdict {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterAction(pub NSInteger);
 impl NEFilterAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction/invalid?language=objc)
     #[doc(alias = "NEFilterActionInvalid")]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction/allow?language=objc)
     #[doc(alias = "NEFilterActionAllow")]
     pub const Allow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction/drop?language=objc)
     #[doc(alias = "NEFilterActionDrop")]
     pub const Drop: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction/remediate?language=objc)
     #[doc(alias = "NEFilterActionRemediate")]
     pub const Remediate: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction/filterdata?language=objc)
     #[doc(alias = "NEFilterActionFilterData")]
     pub const FilterData: Self = Self(4);
 }
@@ -3461,12 +3527,16 @@ unsafe impl RefEncode for NEFilterAction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterReportEvent(pub NSInteger);
 impl NEFilterReportEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.enum/newflow?language=objc)
     #[doc(alias = "NEFilterReportEventNewFlow")]
     pub const NewFlow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.enum/datadecision?language=objc)
     #[doc(alias = "NEFilterReportEventDataDecision")]
     pub const DataDecision: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.enum/flowclosed?language=objc)
     #[doc(alias = "NEFilterReportEventFlowClosed")]
     pub const FlowClosed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.enum/statistics?language=objc)
     #[doc(alias = "NEFilterReportEventStatistics")]
     pub const Statistics: Self = Self(4);
 }
@@ -3682,6 +3752,7 @@ impl NEFilterControlProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterDataAttribute(pub NSInteger);
 impl NEFilterDataAttribute {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataattribute/hasipheader?language=objc)
     #[doc(alias = "NEFilterDataAttributeHasIPHeader")]
     pub const HasIPHeader: Self = Self(0x00000001);
 }
@@ -4051,16 +4122,22 @@ impl NEFilterRemediationVerdict {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterManagerError(pub NSInteger);
 impl NEFilterManagerError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationinvalid?language=objc)
     #[doc(alias = "NEFilterManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationdisabled?language=objc)
     #[doc(alias = "NEFilterManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationstale?language=objc)
     #[doc(alias = "NEFilterManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationcannotberemoved?language=objc)
     #[doc(alias = "NEFilterManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationpermissiondenied?language=objc)
     #[doc(alias = "NEFilterManagerErrorConfigurationPermissionDenied")]
     pub const ConfigurationPermissionDenied: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationinternalerror?language=objc)
     #[doc(alias = "NEFilterManagerErrorConfigurationInternalError")]
     pub const ConfigurationInternalError: Self = Self(6);
 }
@@ -4091,8 +4168,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterManagerGrade(pub NSInteger);
 impl NEFilterManagerGrade {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanager/grade-swift.enum/firewall?language=objc)
     #[doc(alias = "NEFilterManagerGradeFirewall")]
     pub const Firewall: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanager/grade-swift.enum/inspector?language=objc)
     #[doc(alias = "NEFilterManagerGradeInspector")]
     pub const Inspector: Self = Self(2);
 }
@@ -4274,10 +4353,13 @@ impl NEFilterPacketContext {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterPacketProviderVerdict(pub NSInteger);
 impl NEFilterPacketProviderVerdict {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/verdict/allow?language=objc)
     #[doc(alias = "NEFilterPacketProviderVerdictAllow")]
     pub const Allow: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/verdict/drop?language=objc)
     #[doc(alias = "NEFilterPacketProviderVerdictDrop")]
     pub const Drop: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/verdict/delay?language=objc)
     #[doc(alias = "NEFilterPacketProviderVerdictDelay")]
     pub const Delay: Self = Self(2);
 }
@@ -4761,14 +4843,19 @@ impl NEFlowMetaData {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotNetworkSecurityType(pub NSInteger);
 impl NEHotspotNetworkSecurityType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype/open?language=objc)
     #[doc(alias = "NEHotspotNetworkSecurityTypeOpen")]
     pub const Open: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype/wep?language=objc)
     #[doc(alias = "NEHotspotNetworkSecurityTypeWEP")]
     pub const WEP: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype/personal?language=objc)
     #[doc(alias = "NEHotspotNetworkSecurityTypePersonal")]
     pub const Personal: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype/enterprise?language=objc)
     #[doc(alias = "NEHotspotNetworkSecurityTypeEnterprise")]
     pub const Enterprise: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype/unknown?language=objc)
     #[doc(alias = "NEHotspotNetworkSecurityTypeUnknown")]
     pub const Unknown: Self = Self(4);
 }
@@ -4858,18 +4945,25 @@ impl NEHotspotNetwork {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperCommandType(pub NSInteger);
 impl NEHotspotHelperCommandType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/none?language=objc)
     #[doc(alias = "kNEHotspotHelperCommandTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/filterscanlist?language=objc)
     #[doc(alias = "kNEHotspotHelperCommandTypeFilterScanList")]
     pub const FilterScanList: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/evaluate?language=objc)
     #[doc(alias = "kNEHotspotHelperCommandTypeEvaluate")]
     pub const Evaluate: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/authenticate?language=objc)
     #[doc(alias = "kNEHotspotHelperCommandTypeAuthenticate")]
     pub const Authenticate: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/presentui?language=objc)
     #[doc(alias = "kNEHotspotHelperCommandTypePresentUI")]
     pub const PresentUI: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/maintain?language=objc)
     #[doc(alias = "kNEHotspotHelperCommandTypeMaintain")]
     pub const Maintain: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/logoff?language=objc)
     #[doc(alias = "kNEHotspotHelperCommandTypeLogoff")]
     pub const Logoff: Self = Self(6);
 }
@@ -4914,18 +5008,25 @@ unsafe impl RefEncode for NEHotspotHelperCommandType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperResult(pub NSInteger);
 impl NEHotspotHelperResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/success?language=objc)
     #[doc(alias = "kNEHotspotHelperResultSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/failure?language=objc)
     #[doc(alias = "kNEHotspotHelperResultFailure")]
     pub const Failure: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/uirequired?language=objc)
     #[doc(alias = "kNEHotspotHelperResultUIRequired")]
     pub const UIRequired: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/commandnotrecognized?language=objc)
     #[doc(alias = "kNEHotspotHelperResultCommandNotRecognized")]
     pub const CommandNotRecognized: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/authenticationrequired?language=objc)
     #[doc(alias = "kNEHotspotHelperResultAuthenticationRequired")]
     pub const AuthenticationRequired: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/unsupportednetwork?language=objc)
     #[doc(alias = "kNEHotspotHelperResultUnsupportedNetwork")]
     pub const UnsupportedNetwork: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/temporaryfailure?language=objc)
     #[doc(alias = "kNEHotspotHelperResultTemporaryFailure")]
     pub const TemporaryFailure: Self = Self(6);
 }
@@ -4955,10 +5056,13 @@ unsafe impl RefEncode for NEHotspotHelperResult {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperConfidence(pub NSInteger);
 impl NEHotspotHelperConfidence {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperconfidence/none?language=objc)
     #[doc(alias = "kNEHotspotHelperConfidenceNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperconfidence/low?language=objc)
     #[doc(alias = "kNEHotspotHelperConfidenceLow")]
     pub const Low: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperconfidence/high?language=objc)
     #[doc(alias = "kNEHotspotHelperConfidenceHigh")]
     pub const High: Self = Self(2);
 }
@@ -5371,12 +5475,16 @@ unsafe impl NSMutableURLRequestNEHotspotHelper for NSMutableURLRequest {}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEHotspotConfigurationEAPType(pub NSInteger);
 impl NEHotspotConfigurationEAPType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/eaptype/eaptls?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTypeEAPTLS")]
     pub const EAPTLS: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/eaptype/eapttls?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTypeEAPTTLS")]
     pub const EAPTTLS: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/eaptype/eappeap?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTypeEAPPEAP")]
     pub const EAPPEAP: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/eaptype/eapfast?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTypeEAPFAST")]
     pub const EAPFAST: Self = Self(43);
 }
@@ -5397,14 +5505,19 @@ unsafe impl RefEncode for NEHotspotConfigurationEAPType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationTTLSInnerAuthenticationType(pub NSInteger);
 impl NEHotspotConfigurationTTLSInnerAuthenticationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum/eapttlsinnerauthenticationpap?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationPAP")]
     pub const EAPTTLSInnerAuthenticationPAP: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum/eapttlsinnerauthenticationchap?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationCHAP")]
     pub const EAPTTLSInnerAuthenticationCHAP: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum/eapttlsinnerauthenticationmschap?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAP")]
     pub const EAPTTLSInnerAuthenticationMSCHAP: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum/eapttlsinnerauthenticationmschapv2?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAPv2")]
     pub const EAPTTLSInnerAuthenticationMSCHAPv2: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum/eapttlsinnerauthenticationeap?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationEAP")]
     pub const EAPTTLSInnerAuthenticationEAP: Self = Self(4);
 }
@@ -5425,10 +5538,13 @@ unsafe impl RefEncode for NEHotspotConfigurationTTLSInnerAuthenticationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationEAPTLSVersion(pub NSInteger);
 impl NEHotspotConfigurationEAPTLSVersion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion/nehotspotconfigurationeaptlsversion_1_0?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_0")]
     pub const Version_1_0: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion/nehotspotconfigurationeaptlsversion_1_1?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_1")]
     pub const Version_1_1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion/nehotspotconfigurationeaptlsversion_1_2?language=objc)
     #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_2")]
     pub const Version_1_2: Self = Self(2);
 }
@@ -5954,40 +6070,58 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationError(pub NSInteger);
 impl NEHotspotConfigurationError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalid?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorInvalid")]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidssid?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorInvalidSSID")]
     pub const InvalidSSID: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidwpapassphrase?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorInvalidWPAPassphrase")]
     pub const InvalidWPAPassphrase: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidweppassphrase?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorInvalidWEPPassphrase")]
     pub const InvalidWEPPassphrase: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalideapsettings?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorInvalidEAPSettings")]
     pub const InvalidEAPSettings: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidhs20settings?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorInvalidHS20Settings")]
     pub const InvalidHS20Settings: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidhs20domainname?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorInvalidHS20DomainName")]
     pub const InvalidHS20DomainName: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/userdenied?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorUserDenied")]
     pub const UserDenied: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/internal?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorInternal")]
     pub const Internal: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/pending?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorPending")]
     pub const Pending: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/systemconfiguration?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorSystemConfiguration")]
     pub const SystemConfiguration: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/unknown?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorUnknown")]
     pub const Unknown: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/joinoncenotsupported?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorJoinOnceNotSupported")]
     pub const JoinOnceNotSupported: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/alreadyassociated?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorAlreadyAssociated")]
     pub const AlreadyAssociated: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/applicationisnotinforeground?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorApplicationIsNotInForeground")]
     pub const ApplicationIsNotInForeground: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidssidprefix?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorInvalidSSIDPrefix")]
     pub const InvalidSSIDPrefix: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/userunauthorized?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorUserUnauthorized")]
     pub const UserUnauthorized: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/systemdenied?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorSystemDenied")]
     pub const SystemDenied: Self = Self(17);
 }
@@ -6975,12 +7109,16 @@ impl NEEthernetTunnelProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEOnDemandRuleAction(pub NSInteger);
 impl NEOnDemandRuleAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction/connect?language=objc)
     #[doc(alias = "NEOnDemandRuleActionConnect")]
     pub const Connect: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction/disconnect?language=objc)
     #[doc(alias = "NEOnDemandRuleActionDisconnect")]
     pub const Disconnect: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction/evaluateconnection?language=objc)
     #[doc(alias = "NEOnDemandRuleActionEvaluateConnection")]
     pub const EvaluateConnection: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction/ignore?language=objc)
     #[doc(alias = "NEOnDemandRuleActionIgnore")]
     pub const Ignore: Self = Self(4);
 }
@@ -7001,12 +7139,16 @@ unsafe impl RefEncode for NEOnDemandRuleAction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEOnDemandRuleInterfaceType(pub NSInteger);
 impl NEOnDemandRuleInterfaceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype/any?language=objc)
     #[doc(alias = "NEOnDemandRuleInterfaceTypeAny")]
     pub const Any: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype/ethernet?language=objc)
     #[doc(alias = "NEOnDemandRuleInterfaceTypeEthernet")]
     pub const Ethernet: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype/wifi?language=objc)
     #[doc(alias = "NEOnDemandRuleInterfaceTypeWiFi")]
     pub const WiFi: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype/cellular?language=objc)
     #[doc(alias = "NEOnDemandRuleInterfaceTypeCellular")]
     pub const Cellular: Self = Self(3);
 }
@@ -7365,8 +7507,10 @@ impl NEOnDemandRuleEvaluateConnection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEEvaluateConnectionRuleAction(pub NSInteger);
 impl NEEvaluateConnectionRuleAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neevaluateconnectionruleaction/connectifneeded?language=objc)
     #[doc(alias = "NEEvaluateConnectionRuleActionConnectIfNeeded")]
     pub const ConnectIfNeeded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neevaluateconnectionruleaction/neverconnect?language=objc)
     #[doc(alias = "NEEvaluateConnectionRuleActionNeverConnect")]
     pub const NeverConnect: Self = Self(2);
 }
@@ -7814,12 +7958,16 @@ impl NERelay {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NERelayManagerError(pub NSInteger);
 impl NERelayManagerError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagererror/configurationinvalid?language=objc)
     #[doc(alias = "NERelayManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagererror/configurationdisabled?language=objc)
     #[doc(alias = "NERelayManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagererror/configurationstale?language=objc)
     #[doc(alias = "NERelayManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagererror/configurationcannotberemoved?language=objc)
     #[doc(alias = "NERelayManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
 }
@@ -7845,24 +7993,34 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NERelayManagerClientError(pub NSInteger);
 impl NERelayManagerClientError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/none?language=objc)
     #[doc(alias = "NERelayManagerClientErrorNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/dnsfailed?language=objc)
     #[doc(alias = "NERelayManagerClientErrorDNSFailed")]
     pub const DNSFailed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/serverunreachable?language=objc)
     #[doc(alias = "NERelayManagerClientErrorServerUnreachable")]
     pub const ServerUnreachable: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/serverdisconnected?language=objc)
     #[doc(alias = "NERelayManagerClientErrorServerDisconnected")]
     pub const ServerDisconnected: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/certificatemissing?language=objc)
     #[doc(alias = "NERelayManagerClientErrorCertificateMissing")]
     pub const CertificateMissing: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/certificateinvalid?language=objc)
     #[doc(alias = "NERelayManagerClientErrorCertificateInvalid")]
     pub const CertificateInvalid: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/certificateexpired?language=objc)
     #[doc(alias = "NERelayManagerClientErrorCertificateExpired")]
     pub const CertificateExpired: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/servercertificateinvalid?language=objc)
     #[doc(alias = "NERelayManagerClientErrorServerCertificateInvalid")]
     pub const ServerCertificateInvalid: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/servercertificateexpired?language=objc)
     #[doc(alias = "NERelayManagerClientErrorServerCertificateExpired")]
     pub const ServerCertificateExpired: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/other?language=objc)
     #[doc(alias = "NERelayManagerClientErrorOther")]
     pub const Other: Self = Self(10);
 }
@@ -8292,16 +8450,22 @@ impl NETransparentProxyProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNStatus(pub NSInteger);
 impl NEVPNStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/invalid?language=objc)
     #[doc(alias = "NEVPNStatusInvalid")]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/disconnected?language=objc)
     #[doc(alias = "NEVPNStatusDisconnected")]
     pub const Disconnected: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/connecting?language=objc)
     #[doc(alias = "NEVPNStatusConnecting")]
     pub const Connecting: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/connected?language=objc)
     #[doc(alias = "NEVPNStatusConnected")]
     pub const Connected: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/reasserting?language=objc)
     #[doc(alias = "NEVPNStatusReasserting")]
     pub const Reasserting: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/disconnecting?language=objc)
     #[doc(alias = "NEVPNStatusDisconnecting")]
     pub const Disconnecting: Self = Self(5);
 }
@@ -8337,43 +8501,63 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNConnectionError(pub NSInteger);
 impl NEVPNConnectionError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/overslept?language=objc)
     #[doc(alias = "NEVPNConnectionErrorOverslept")]
     pub const Overslept: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/nonetworkavailable?language=objc)
     #[doc(alias = "NEVPNConnectionErrorNoNetworkAvailable")]
     pub const NoNetworkAvailable: Self = Self(2);
     /// way that the VPN connection could not be maintained.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/unrecoverablenetworkchange?language=objc)
     #[doc(alias = "NEVPNConnectionErrorUnrecoverableNetworkChange")]
     pub const UnrecoverableNetworkChange: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/configurationfailed?language=objc)
     #[doc(alias = "NEVPNConnectionErrorConfigurationFailed")]
     pub const ConfigurationFailed: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/serveraddressresolutionfailed?language=objc)
     #[doc(alias = "NEVPNConnectionErrorServerAddressResolutionFailed")]
     pub const ServerAddressResolutionFailed: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/servernotresponding?language=objc)
     #[doc(alias = "NEVPNConnectionErrorServerNotResponding")]
     pub const ServerNotResponding: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/serverdead?language=objc)
     #[doc(alias = "NEVPNConnectionErrorServerDead")]
     pub const ServerDead: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/authenticationfailed?language=objc)
     #[doc(alias = "NEVPNConnectionErrorAuthenticationFailed")]
     pub const AuthenticationFailed: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/clientcertificateinvalid?language=objc)
     #[doc(alias = "NEVPNConnectionErrorClientCertificateInvalid")]
     pub const ClientCertificateInvalid: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/clientcertificatenotyetvalid?language=objc)
     #[doc(alias = "NEVPNConnectionErrorClientCertificateNotYetValid")]
     pub const ClientCertificateNotYetValid: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/clientcertificateexpired?language=objc)
     #[doc(alias = "NEVPNConnectionErrorClientCertificateExpired")]
     pub const ClientCertificateExpired: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/pluginfailed?language=objc)
     #[doc(alias = "NEVPNConnectionErrorPluginFailed")]
     pub const PluginFailed: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/configurationnotfound?language=objc)
     #[doc(alias = "NEVPNConnectionErrorConfigurationNotFound")]
     pub const ConfigurationNotFound: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/plugindisabled?language=objc)
     #[doc(alias = "NEVPNConnectionErrorPluginDisabled")]
     pub const PluginDisabled: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/negotiationfailed?language=objc)
     #[doc(alias = "NEVPNConnectionErrorNegotiationFailed")]
     pub const NegotiationFailed: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/serverdisconnected?language=objc)
     #[doc(alias = "NEVPNConnectionErrorServerDisconnected")]
     pub const ServerDisconnected: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/servercertificateinvalid?language=objc)
     #[doc(alias = "NEVPNConnectionErrorServerCertificateInvalid")]
     pub const ServerCertificateInvalid: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/servercertificatenotyetvalid?language=objc)
     #[doc(alias = "NEVPNConnectionErrorServerCertificateNotYetValid")]
     pub const ServerCertificateNotYetValid: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/servercertificateexpired?language=objc)
     #[doc(alias = "NEVPNConnectionErrorServerCertificateExpired")]
     pub const ServerCertificateExpired: Self = Self(19);
 }
@@ -8658,10 +8842,13 @@ impl NETunnelProviderProtocol {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEAuthenticationMethod(pub NSInteger);
 impl NEVPNIKEAuthenticationMethod {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikeauthenticationmethod/none?language=objc)
     #[doc(alias = "NEVPNIKEAuthenticationMethodNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikeauthenticationmethod/certificate?language=objc)
     #[doc(alias = "NEVPNIKEAuthenticationMethodCertificate")]
     pub const Certificate: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikeauthenticationmethod/sharedsecret?language=objc)
     #[doc(alias = "NEVPNIKEAuthenticationMethodSharedSecret")]
     pub const SharedSecret: Self = Self(2);
 }
@@ -8791,22 +8978,29 @@ impl NEVPNProtocolIPSec {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNIKEv2EncryptionAlgorithm(pub NSInteger);
 impl NEVPNIKEv2EncryptionAlgorithm {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmdes?language=objc)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmDES")]
     #[deprecated = "DES is not supported"]
     pub const AlgorithmDES: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithm3des?language=objc)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithm3DES")]
     #[deprecated = "3DES is not supported"]
     pub const Algorithm3DES: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmaes128?language=objc)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128")]
     #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
     pub const AlgorithmAES128: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmaes256?language=objc)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES256")]
     pub const AlgorithmAES256: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmaes128gcm?language=objc)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128GCM")]
     #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
     pub const AlgorithmAES128GCM: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmaes256gcm?language=objc)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES256GCM")]
     pub const AlgorithmAES256GCM: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmchacha20poly1305?language=objc)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmChaCha20Poly1305")]
     pub const AlgorithmChaCha20Poly1305: Self = Self(7);
 }
@@ -8827,16 +9021,21 @@ unsafe impl RefEncode for NEVPNIKEv2EncryptionAlgorithm {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNIKEv2IntegrityAlgorithm(pub NSInteger);
 impl NEVPNIKEv2IntegrityAlgorithm {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm/sha96?language=objc)
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA96")]
     #[deprecated = "SHA-1 is not supported"]
     pub const SHA96: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm/sha160?language=objc)
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA160")]
     #[deprecated = "SHA-1 is not supported"]
     pub const SHA160: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm/sha256?language=objc)
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA256")]
     pub const SHA256: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm/sha384?language=objc)
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA384")]
     pub const SHA384: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm/sha512?language=objc)
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA512")]
     pub const SHA512: Self = Self(5);
 }
@@ -8857,12 +9056,16 @@ unsafe impl RefEncode for NEVPNIKEv2IntegrityAlgorithm {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2DeadPeerDetectionRate(pub NSInteger);
 impl NEVPNIKEv2DeadPeerDetectionRate {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate/none?language=objc)
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate/low?language=objc)
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateLow")]
     pub const Low: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate/medium?language=objc)
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateMedium")]
     pub const Medium: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate/high?language=objc)
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateHigh")]
     pub const High: Self = Self(3);
 }
@@ -8883,35 +9086,49 @@ unsafe impl RefEncode for NEVPNIKEv2DeadPeerDetectionRate {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2DiffieHellmanGroup(pub NSInteger);
 impl NEVPNIKEv2DiffieHellmanGroup {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/groupinvalid?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroupInvalid")]
     pub const GroupInvalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group1?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup1")]
     #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group2?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup2")]
     #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group5?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup5")]
     #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group5: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group14?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup14")]
     pub const Group14: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group15?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup15")]
     pub const Group15: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group16?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup16")]
     pub const Group16: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group17?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup17")]
     pub const Group17: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group18?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup18")]
     pub const Group18: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group19?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup19")]
     pub const Group19: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group20?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup20")]
     pub const Group20: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group21?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup21")]
     pub const Group21: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group31?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup31")]
     pub const Group31: Self = Self(31);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group32?language=objc)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup32")]
     pub const Group32: Self = Self(32);
 }
@@ -8932,10 +9149,13 @@ unsafe impl RefEncode for NEVPNIKEv2DiffieHellmanGroup {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2PostQuantumKeyExchangeMethod(pub NSInteger);
 impl NEVPNIKEv2PostQuantumKeyExchangeMethod {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2postquantumkeyexchangemethod/methodnone?language=objc)
     #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethodNone")]
     pub const MethodNone: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2postquantumkeyexchangemethod/method36?language=objc)
     #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethod36")]
     pub const Method36: Self = Self(36);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2postquantumkeyexchangemethod/method37?language=objc)
     #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethod37")]
     pub const Method37: Self = Self(37);
 }
@@ -8956,16 +9176,22 @@ unsafe impl RefEncode for NEVPNIKEv2PostQuantumKeyExchangeMethod {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNIKEv2CertificateType(pub NSInteger);
 impl NEVPNIKEv2CertificateType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/rsa?language=objc)
     #[doc(alias = "NEVPNIKEv2CertificateTypeRSA")]
     pub const RSA: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/ecdsa256?language=objc)
     #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA256")]
     pub const ECDSA256: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/ecdsa384?language=objc)
     #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA384")]
     pub const ECDSA384: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/ecdsa521?language=objc)
     #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA521")]
     pub const ECDSA521: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/ed25519?language=objc)
     #[doc(alias = "NEVPNIKEv2CertificateTypeEd25519")]
     pub const Ed25519: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/rsapss?language=objc)
     #[doc(alias = "NEVPNIKEv2CertificateTypeRSAPSS")]
     pub const RSAPSS: Self = Self(6);
 }
@@ -8986,12 +9212,16 @@ unsafe impl RefEncode for NEVPNIKEv2CertificateType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2TLSVersion(pub NSInteger);
 impl NEVPNIKEv2TLSVersion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion/versiondefault?language=objc)
     #[doc(alias = "NEVPNIKEv2TLSVersionDefault")]
     pub const VersionDefault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion/version1_0?language=objc)
     #[doc(alias = "NEVPNIKEv2TLSVersion1_0")]
     pub const Version1_0: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion/version1_1?language=objc)
     #[doc(alias = "NEVPNIKEv2TLSVersion1_1")]
     pub const Version1_1: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion/version1_2?language=objc)
     #[doc(alias = "NEVPNIKEv2TLSVersion1_2")]
     pub const Version1_2: Self = Self(3);
 }
@@ -9455,12 +9685,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEAppPushManagerError(pub NSInteger);
 impl NEAppPushManagerError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror-swift.struct/code/configurationinvalid?language=objc)
     #[doc(alias = "NEAppPushManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror-swift.struct/code/configurationnotloaded?language=objc)
     #[doc(alias = "NEAppPushManagerErrorConfigurationNotLoaded")]
     pub const ConfigurationNotLoaded: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror-swift.struct/code/internalerror?language=objc)
     #[doc(alias = "NEAppPushManagerErrorInternalError")]
     pub const InternalError: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror-swift.struct/code/inactivesession?language=objc)
     #[doc(alias = "NEAppPushManagerErrorInactiveSession")]
     pub const InactiveSession: Self = Self(4);
 }
@@ -10092,16 +10326,21 @@ impl NWBonjourServiceEndpoint {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWPathStatus(pub NSInteger);
 impl NWPathStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus/invalid?language=objc)
     #[doc(alias = "NWPathStatusInvalid")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus/satisfied?language=objc)
     #[doc(alias = "NWPathStatusSatisfied")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Satisfied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus/unsatisfied?language=objc)
     #[doc(alias = "NWPathStatusUnsatisfied")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Unsatisfied: Self = Self(2);
     /// a connection attempt.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus/satisfiable?language=objc)
     #[doc(alias = "NWPathStatusSatisfiable")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Satisfiable: Self = Self(3);
@@ -10183,27 +10422,37 @@ impl NWPath {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWTCPConnectionState(pub NSInteger);
 impl NWTCPConnectionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/invalid?language=objc)
     #[doc(alias = "NWTCPConnectionStateInvalid")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/connecting?language=objc)
     #[doc(alias = "NWTCPConnectionStateConnecting")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Connecting: Self = Self(1);
     /// waiting for better condition(s) before trying again.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/waiting?language=objc)
     #[doc(alias = "NWTCPConnectionStateWaiting")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Waiting: Self = Self(2);
     /// to transfer data. If TLS is in use, the TLS handshake would have finished when the connection
     /// is in this state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/connected?language=objc)
     #[doc(alias = "NWTCPConnectionStateConnected")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Connected: Self = Self(3);
     /// possible to transfer data. The application should call cancellation method to clean up resources
     /// when the connection is in this state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/disconnected?language=objc)
     #[doc(alias = "NWTCPConnectionStateDisconnected")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Disconnected: Self = Self(4);
     /// the cancellation method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/cancelled?language=objc)
     #[doc(alias = "NWTCPConnectionStateCancelled")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Cancelled: Self = Self(5);
@@ -10527,24 +10776,32 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWUDPSessionState(pub NSInteger);
 impl NWUDPSessionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/invalid?language=objc)
     #[doc(alias = "NWUDPSessionStateInvalid")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Invalid: Self = Self(0);
     /// attempting to make the session ready.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/waiting?language=objc)
     #[doc(alias = "NWUDPSessionStateWaiting")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Waiting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/preparing?language=objc)
     #[doc(alias = "NWUDPSessionStatePreparing")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Preparing: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/ready?language=objc)
     #[doc(alias = "NWUDPSessionStateReady")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Ready: Self = Self(3);
     /// at this time, either due to problems with the path or the client rejecting the
     /// endpoints.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/failed?language=objc)
     #[doc(alias = "NWUDPSessionStateFailed")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Failed: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/cancelled?language=objc)
     #[doc(alias = "NWUDPSessionStateCancelled")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Cancelled: Self = Self(5);
@@ -10832,10 +11089,13 @@ impl NWTLSParameters {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEURLFilterVerdict(pub NSInteger);
 impl NEURLFilterVerdict {
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilter/verdict/unknown?language=objc)
     #[doc(alias = "NEURLFilterVerdictUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilter/verdict/allow?language=objc)
     #[doc(alias = "NEURLFilterVerdictAllow")]
     pub const Allow: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilter/verdict/deny?language=objc)
     #[doc(alias = "NEURLFilterVerdictDeny")]
     pub const Deny: Self = Self(3);
 }

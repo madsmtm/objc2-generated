@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTCellularPlanProvisioningAddPlanResult(pub NSUInteger);
 impl CTCellularPlanProvisioningAddPlanResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningaddplanresult/unknown?language=objc)
     #[doc(alias = "CTCellularPlanProvisioningAddPlanResultUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningaddplanresult/fail?language=objc)
     #[doc(alias = "CTCellularPlanProvisioningAddPlanResultFail")]
     pub const Fail: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningaddplanresult/success?language=objc)
     #[doc(alias = "CTCellularPlanProvisioningAddPlanResultSuccess")]
     pub const Success: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningaddplanresult/cancel?language=objc)
     #[doc(alias = "CTCellularPlanProvisioningAddPlanResultCancel")]
     pub const Cancel: Self = Self(3);
 }

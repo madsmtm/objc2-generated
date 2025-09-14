@@ -21,12 +21,16 @@ impl QLPreviewViewStyle {
     ///
     /// The default style for a ``QuickLookUI/QLPreviewView`` object. Use this
     /// style should for larger, full-size previews.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewviewstyle/normal?language=objc)
     #[doc(alias = "QLPreviewViewStyleNormal")]
     pub const Normal: Self = Self(0);
     /// Provides a compact preview style suited for smaller previews or inspectors.
     ///
     /// A more compact style for a ``QuickLookUI/QLPreviewView`` object. Use this
     /// style for smaller previews or inspectors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewviewstyle/compact?language=objc)
     #[doc(alias = "QLPreviewViewStyleCompact")]
     pub const Compact: Self = Self(1);
 }

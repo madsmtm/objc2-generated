@@ -5,6 +5,8 @@ use core::ffi::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444957-createoffsetdescriptor?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_descriptor` must be a valid pointer.
@@ -12,6 +14,8 @@ extern "C-unwind" {
     pub fn CreateOffsetDescriptor(the_offset: c_long, the_descriptor: *mut AEDesc) -> OSErr;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449155-createcompdescriptor?language=objc)
+///
 /// # Safety
 ///
 /// - `operand1` must be a valid pointer.
@@ -46,6 +50,8 @@ pub unsafe extern "C-unwind" fn CreateCompDescriptor(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445212-createlogicaldescriptor?language=objc)
+///
 /// # Safety
 ///
 /// - `the_logical_terms` must be a valid pointer.
@@ -76,6 +82,8 @@ pub unsafe extern "C-unwind" fn CreateLogicalDescriptor(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450244-createobjspecifier?language=objc)
+///
 /// # Safety
 ///
 /// - `the_container` must be a valid pointer.
@@ -113,6 +121,8 @@ pub unsafe extern "C-unwind" fn CreateObjSpecifier(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444087-createrangedescriptor?language=objc)
+///
 /// # Safety
 ///
 /// - `range_start` must be a valid pointer.

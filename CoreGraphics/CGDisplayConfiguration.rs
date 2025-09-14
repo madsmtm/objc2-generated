@@ -26,6 +26,8 @@ unsafe impl RefEncode for _CGDisplayConfigRef {
 pub type CGDisplayConfigRef = *mut _CGDisplayConfigRef;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `config` must be a valid pointer or null.
@@ -34,6 +36,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplayorigin(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `config` must be a valid pointer or null.
@@ -47,6 +51,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaywithdisplaymode(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `config` must be a valid pointer or null.
@@ -61,6 +67,8 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaystereooperation(_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// `config` must be a valid pointer or null.
@@ -84,6 +92,8 @@ pub unsafe extern "C-unwind" fn CGConfigureDisplayStereoOperation(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaymirrorofdisplay(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `config` must be a valid pointer or null.
@@ -96,6 +106,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcanceldisplayconfiguration(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `config` must be a valid pointer or null.
@@ -110,10 +122,13 @@ extern "C-unwind" {
 pub struct CGConfigureOption(pub u32);
 bitflags::bitflags! {
     impl CGConfigureOption: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfigureoption/forapponly?language=objc)
         #[doc(alias = "kCGConfigureForAppOnly")]
         const ForAppOnly = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfigureoption/forsession?language=objc)
         #[doc(alias = "kCGConfigureForSession")]
         const ForSession = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfigureoption/permanently?language=objc)
         #[doc(alias = "kCGConfigurePermanently")]
         const Permanently = 2;
     }
@@ -130,6 +145,8 @@ unsafe impl RefEncode for CGConfigureOption {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcompletedisplayconfiguration(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `config` must be a valid pointer or null.
@@ -140,6 +157,7 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrestorepermanentdisplayconfiguration()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRestorePermanentDisplayConfiguration() {
     extern "C-unwind" {
@@ -155,26 +173,37 @@ pub extern "C-unwind" fn CGRestorePermanentDisplayConfiguration() {
 pub struct CGDisplayChangeSummaryFlags(pub u32);
 bitflags::bitflags! {
     impl CGDisplayChangeSummaryFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/beginconfigurationflag?language=objc)
         #[doc(alias = "kCGDisplayBeginConfigurationFlag")]
         const BeginConfigurationFlag = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/movedflag?language=objc)
         #[doc(alias = "kCGDisplayMovedFlag")]
         const MovedFlag = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/setmainflag?language=objc)
         #[doc(alias = "kCGDisplaySetMainFlag")]
         const SetMainFlag = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/setmodeflag?language=objc)
         #[doc(alias = "kCGDisplaySetModeFlag")]
         const SetModeFlag = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/addflag?language=objc)
         #[doc(alias = "kCGDisplayAddFlag")]
         const AddFlag = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/removeflag?language=objc)
         #[doc(alias = "kCGDisplayRemoveFlag")]
         const RemoveFlag = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/enabledflag?language=objc)
         #[doc(alias = "kCGDisplayEnabledFlag")]
         const EnabledFlag = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/disabledflag?language=objc)
         #[doc(alias = "kCGDisplayDisabledFlag")]
         const DisabledFlag = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/mirrorflag?language=objc)
         #[doc(alias = "kCGDisplayMirrorFlag")]
         const MirrorFlag = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/unmirrorflag?language=objc)
         #[doc(alias = "kCGDisplayUnMirrorFlag")]
         const UnMirrorFlag = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/desktopshapechangedflag?language=objc)
         #[doc(alias = "kCGDisplayDesktopShapeChangedFlag")]
         const DesktopShapeChangedFlag = 1<<12;
     }
@@ -197,6 +226,8 @@ pub type CGDisplayReconfigurationCallBack = Option<
 >;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayregisterreconfigurationcallback(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -209,6 +240,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayremovereconfigurationcallback(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -220,6 +253,7 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaysetstereooperation(_:_:_:_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplaySetStereoOperation(
@@ -239,6 +273,7 @@ pub extern "C-unwind" fn CGDisplaySetStereoOperation(
     unsafe { CGDisplaySetStereoOperation(display, stereo as _, force_blue_line as _, option) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisactive(_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsActive(display: CGDirectDisplayID) -> bool {
@@ -249,6 +284,7 @@ pub extern "C-unwind" fn CGDisplayIsActive(display: CGDirectDisplayID) -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisasleep(_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsAsleep(display: CGDirectDisplayID) -> bool {
@@ -259,6 +295,7 @@ pub extern "C-unwind" fn CGDisplayIsAsleep(display: CGDirectDisplayID) -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisonline(_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsOnline(display: CGDirectDisplayID) -> bool {
@@ -269,6 +306,7 @@ pub extern "C-unwind" fn CGDisplayIsOnline(display: CGDirectDisplayID) -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayismain(_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsMain(display: CGDirectDisplayID) -> bool {
@@ -279,6 +317,7 @@ pub extern "C-unwind" fn CGDisplayIsMain(display: CGDirectDisplayID) -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisbuiltin(_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -> bool {
@@ -289,6 +328,7 @@ pub extern "C-unwind" fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -> bool 
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisinmirrorset(_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsInMirrorSet(display: CGDirectDisplayID) -> bool {
@@ -299,6 +339,7 @@ pub extern "C-unwind" fn CGDisplayIsInMirrorSet(display: CGDirectDisplayID) -> b
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisalwaysinmirrorset(_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDisplayID) -> bool {
@@ -309,6 +350,7 @@ pub extern "C-unwind" fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDisplayID
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisinhwmirrorset(_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsInHWMirrorSet(display: CGDirectDisplayID) -> bool {
@@ -319,6 +361,7 @@ pub extern "C-unwind" fn CGDisplayIsInHWMirrorSet(display: CGDirectDisplayID) ->
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymirrorsdisplay(_:)?language=objc)
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayMirrorsDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID {
@@ -328,6 +371,7 @@ pub extern "C-unwind" fn CGDisplayMirrorsDisplay(display: CGDirectDisplayID) -> 
     unsafe { CGDisplayMirrorsDisplay(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayusesopenglacceleration(_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayUsesOpenGLAcceleration(display: CGDirectDisplayID) -> bool {
@@ -338,6 +382,7 @@ pub extern "C-unwind" fn CGDisplayUsesOpenGLAcceleration(display: CGDirectDispla
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisstereo(_:)?language=objc)
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsStereo(display: CGDirectDisplayID) -> bool {
@@ -348,6 +393,7 @@ pub extern "C-unwind" fn CGDisplayIsStereo(display: CGDirectDisplayID) -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayprimarydisplay(_:)?language=objc)
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayPrimaryDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID {
@@ -357,6 +403,7 @@ pub extern "C-unwind" fn CGDisplayPrimaryDisplay(display: CGDirectDisplayID) -> 
     unsafe { CGDisplayPrimaryDisplay(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayunitnumber(_:)?language=objc)
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayUnitNumber(display: CGDirectDisplayID) -> u32 {
@@ -366,6 +413,7 @@ pub extern "C-unwind" fn CGDisplayUnitNumber(display: CGDirectDisplayID) -> u32 
     unsafe { CGDisplayUnitNumber(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayvendornumber(_:)?language=objc)
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayVendorNumber(display: CGDirectDisplayID) -> u32 {
@@ -375,6 +423,7 @@ pub extern "C-unwind" fn CGDisplayVendorNumber(display: CGDirectDisplayID) -> u3
     unsafe { CGDisplayVendorNumber(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymodelnumber(_:)?language=objc)
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayModelNumber(display: CGDirectDisplayID) -> u32 {
@@ -384,6 +433,7 @@ pub extern "C-unwind" fn CGDisplayModelNumber(display: CGDirectDisplayID) -> u32
     unsafe { CGDisplayModelNumber(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayserialnumber(_:)?language=objc)
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplaySerialNumber(display: CGDirectDisplayID) -> u32 {
@@ -393,6 +443,7 @@ pub extern "C-unwind" fn CGDisplaySerialNumber(display: CGDirectDisplayID) -> u3
     unsafe { CGDisplaySerialNumber(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayscreensize(_:)?language=objc)
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayScreenSize(display: CGDirectDisplayID) -> CGSize {
@@ -402,6 +453,7 @@ pub extern "C-unwind" fn CGDisplayScreenSize(display: CGDirectDisplayID) -> CGSi
     unsafe { CGDisplayScreenSize(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayrotation(_:)?language=objc)
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayRotation(display: CGDirectDisplayID) -> c_double {
@@ -411,6 +463,7 @@ pub extern "C-unwind" fn CGDisplayRotation(display: CGDirectDisplayID) -> c_doub
     unsafe { CGDisplayRotation(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycopycolorspace(_:)?language=objc)
 #[cfg(all(feature = "CGColorSpace", feature = "CGDirectDisplay"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayCopyColorSpace(
@@ -425,6 +478,8 @@ pub extern "C-unwind" fn CGDisplayCopyColorSpace(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaymode(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `config` must be a valid pointer or null.

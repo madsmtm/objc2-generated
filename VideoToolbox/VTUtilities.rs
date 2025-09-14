@@ -34,6 +34,8 @@ extern "C-unwind" {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `image_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcreatecgimagefromcvpixelbuffer(_:options:imageout:)?language=objc)
     #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-video"))]
     pub fn VTCreateCGImageFromCVPixelBuffer(
         pixel_buffer: &CVPixelBuffer,
@@ -49,6 +51,8 @@ extern "C-unwind" {
     ///
     /// This call will find and register a video decoder for the provided CMVideoCodecType if
     /// such a decoder is available on the system but not registered by default.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtregistersupplementalvideodecoderifavailable(_:)?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn VTRegisterSupplementalVideoDecoderIfAvailable(codec_type: CMVideoCodecType);
 }
@@ -67,6 +71,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `media_extension_properties_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcopyvideodecoderextensionproperties?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopyVideoDecoderExtensionProperties(
         format_desc: &CMFormatDescription,
@@ -88,6 +94,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `media_extension_properties_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcopyrawprocessorextensionproperties?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopyRAWProcessorExtensionProperties(
         format_desc: &CMFormatDescription,

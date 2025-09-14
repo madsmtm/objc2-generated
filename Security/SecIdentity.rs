@@ -10,6 +10,8 @@ unsafe impl ConcreteType for SecIdentity {
     /// Returns the type identifier of SecIdentity instances.
     ///
     /// Returns: The CFTypeID of SecIdentity instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitygettypeid()?language=objc)
     #[doc(alias = "SecIdentityGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -33,6 +35,8 @@ impl SecIdentity {
     /// Returns: An identity reference.
     ///
     /// This interface returns null if the private does not key correspond to the public key in the certifcate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycreate(_:_:_:)?language=objc)
     #[doc(alias = "SecIdentityCreate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -66,6 +70,8 @@ impl SecIdentity {
     ///
     /// - `keychain_or_array` should be of the correct type.
     /// - `identity_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycreatewithcertificate(_:_:_:)?language=objc)
     #[doc(alias = "SecIdentityCreateWithCertificate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -100,6 +106,8 @@ impl SecIdentity {
     /// # Safety
     ///
     /// `certificate_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycopycertificate(_:_:)?language=objc)
     #[doc(alias = "SecIdentityCopyCertificate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -129,6 +137,8 @@ impl SecIdentity {
     /// # Safety
     ///
     /// `private_key_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycopyprivatekey(_:_:)?language=objc)
     #[doc(alias = "SecIdentityCopyPrivateKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -160,6 +170,8 @@ impl SecIdentity {
     ///
     /// - `valid_issuers` generic must be of the correct type.
     /// - `identity` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycopypreference?language=objc)
     #[doc(alias = "SecIdentityCopyPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -197,6 +209,8 @@ impl SecIdentity {
     ///
     /// - `key_usage` generic must be of the correct type.
     /// - `valid_issuers` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycopypreferred(_:_:_:)?language=objc)
     #[doc(alias = "SecIdentityCopyPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -227,6 +241,8 @@ impl SecIdentity {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Please use the SecIdentitySetPreferred API instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysetpreference?language=objc)
     #[doc(alias = "SecIdentitySetPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -257,6 +273,8 @@ impl SecIdentity {
     /// # Safety
     ///
     /// `key_usage` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysetpreferred(_:_:_:)?language=objc)
     #[doc(alias = "SecIdentitySetPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -300,6 +318,8 @@ impl SecIdentity {
     ///
     /// - `id_ref` must be a valid pointer.
     /// - `actual_domain` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycopysystemidentity(_:_:_:)?language=objc)
     #[doc(alias = "SecIdentityCopySystemIdentity")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -332,6 +352,8 @@ impl SecIdentity {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// The caller must be running as root.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysetsystemidentity(_:_:)?language=objc)
     #[doc(alias = "SecIdentitySetSystemIdentity")]
     #[cfg(feature = "SecBase")]
     #[inline]

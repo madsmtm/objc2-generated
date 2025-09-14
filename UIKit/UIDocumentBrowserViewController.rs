@@ -22,8 +22,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIDocumentBrowserErrorCode(pub NSInteger);
 impl UIDocumentBrowserErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowsererror/code/generic?language=objc)
     #[doc(alias = "UIDocumentBrowserErrorGeneric")]
     pub const Generic: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowsererror/code/nolocationavailable?language=objc)
     #[doc(alias = "UIDocumentBrowserErrorNoLocationAvailable")]
     pub const NoLocationAvailable: Self = Self(2);
 }
@@ -42,10 +44,13 @@ unsafe impl RefEncode for UIDocumentBrowserErrorCode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentBrowserImportMode(pub NSUInteger);
 impl UIDocumentBrowserImportMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/importmode/none?language=objc)
     #[doc(alias = "UIDocumentBrowserImportModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/importmode/copy?language=objc)
     #[doc(alias = "UIDocumentBrowserImportModeCopy")]
     pub const Copy: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/importmode/move?language=objc)
     #[doc(alias = "UIDocumentBrowserImportModeMove")]
     pub const Move: Self = Self(2);
 }
@@ -64,10 +69,13 @@ unsafe impl RefEncode for UIDocumentBrowserImportMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentBrowserUserInterfaceStyle(pub NSUInteger);
 impl UIDocumentBrowserUserInterfaceStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/browseruserinterfacestyle-swift.enum/white?language=objc)
     #[doc(alias = "UIDocumentBrowserUserInterfaceStyleWhite")]
     pub const White: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/browseruserinterfacestyle-swift.enum/light?language=objc)
     #[doc(alias = "UIDocumentBrowserUserInterfaceStyleLight")]
     pub const Light: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/browseruserinterfacestyle-swift.enum/dark?language=objc)
     #[doc(alias = "UIDocumentBrowserUserInterfaceStyleDark")]
     pub const Dark: Self = Self(2);
 }

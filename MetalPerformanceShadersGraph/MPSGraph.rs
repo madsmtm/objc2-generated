@@ -21,15 +21,23 @@ use crate::*;
 pub struct MPSGraphOptions(pub u64);
 impl MPSGraphOptions {
     /// No Options.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions/none?language=objc)
     #[doc(alias = "MPSGraphOptionsNone")]
     pub const None: Self = Self(0);
     /// The graph synchronizes results to the CPU using a blit encoder if on a discrete GPU at the end of execution.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions/synchronizeresults?language=objc)
     #[doc(alias = "MPSGraphOptionsSynchronizeResults")]
     pub const SynchronizeResults: Self = Self(1);
     /// The framework prints more logging info.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions/verbose?language=objc)
     #[doc(alias = "MPSGraphOptionsVerbose")]
     pub const Verbose: Self = Self(2);
     /// The framework uses these options as default if not overriden.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions/default?language=objc)
     #[doc(alias = "MPSGraphOptionsDefault")]
     pub const Default: Self = Self(MPSGraphOptions::SynchronizeResults.0);
 }
@@ -51,9 +59,13 @@ unsafe impl RefEncode for MPSGraphOptions {
 pub struct MPSGraphOptimization(pub u64);
 impl MPSGraphOptimization {
     /// Graph performs core optimizations only.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimization/level0?language=objc)
     #[doc(alias = "MPSGraphOptimizationLevel0")]
     pub const Level0: Self = Self(0);
     /// Graph performs additional Optimizations, like using the placement pass to dispatch across different HW blocks like the NeuralEngine and CPU along with the GPU.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimization/level1?language=objc)
     #[doc(alias = "MPSGraphOptimizationLevel1")]
     pub const Level1: Self = Self(1);
 }
@@ -75,9 +87,13 @@ unsafe impl RefEncode for MPSGraphOptimization {
 pub struct MPSGraphOptimizationProfile(pub u64);
 impl MPSGraphOptimizationProfile {
     /// Default, graph optimized for performance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimizationprofile/performance?language=objc)
     #[doc(alias = "MPSGraphOptimizationProfilePerformance")]
     pub const Performance: Self = Self(0);
     /// Graph optimized for power efficiency.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimizationprofile/powerefficiency?language=objc)
     #[doc(alias = "MPSGraphOptimizationProfilePowerEfficiency")]
     pub const PowerEfficiency: Self = Self(1);
 }
@@ -99,6 +115,8 @@ unsafe impl RefEncode for MPSGraphOptimizationProfile {
 pub struct MPSGraphExecutionStage(pub u64);
 impl MPSGraphExecutionStage {
     /// stage when execution of the graph completes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutionstage/completed?language=objc)
     #[doc(alias = "MPSGraphExecutionStageCompleted")]
     pub const Completed: Self = Self(0);
 }
@@ -121,15 +139,23 @@ pub struct MPSGraphReducedPrecisionFastMath(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSGraphReducedPrecisionFastMath: NSUInteger {
 /// Full precision math with maximum accuracy.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath/none?language=objc)
         #[doc(alias = "MPSGraphReducedPrecisionFastMathNone")]
         const None = 0;
 /// Execute winograd transform intermediate as FP16.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath/allowfp16conv2dwinogradtransformintermediate?language=objc)
         #[doc(alias = "MPSGraphReducedPrecisionFastMathAllowFP16Conv2DWinogradTransformIntermediate")]
         const AllowFP16Conv2DWinogradTransformIntermediate = 1<<1;
 /// Curated list allowing intermediates for multi-pass GPU kernels to be FP16.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath/allowfp16intermediates?language=objc)
         #[doc(alias = "MPSGraphReducedPrecisionFastMathAllowFP16Intermediates")]
         const AllowFP16Intermediates = MPSGraphReducedPrecisionFastMath::AllowFP16Conv2DWinogradTransformIntermediate.0;
 /// Default selection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath/mpsgraphreducedprecisionfastmathdefault?language=objc)
         #[doc(alias = "MPSGraphReducedPrecisionFastMathDefault")]
         const Default = MPSGraphReducedPrecisionFastMath::None.0;
     }

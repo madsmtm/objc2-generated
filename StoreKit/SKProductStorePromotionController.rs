@@ -13,13 +13,16 @@ use crate::*;
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SKProductStorePromotionVisibility {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotionvisibility/default?language=objc)
     #[doc(alias = "SKProductStorePromotionVisibilityDefault")]
     #[deprecated = "Use Product.PromotionInfo.Visibility"]
     #[default]
     Default = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotionvisibility/show?language=objc)
     #[doc(alias = "SKProductStorePromotionVisibilityShow")]
     #[deprecated = "Use Product.PromotionInfo.Visibility"]
     Show = 1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotionvisibility/hide?language=objc)
     #[doc(alias = "SKProductStorePromotionVisibilityHide")]
     #[deprecated = "Use Product.PromotionInfo.Visibility"]
     Hide = 2,

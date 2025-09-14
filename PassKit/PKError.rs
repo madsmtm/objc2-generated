@@ -16,14 +16,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKPassKitErrorCode(pub NSInteger);
 impl PKPassKitErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code/unknownerror?language=objc)
     #[doc(alias = "PKUnknownError")]
     pub const UnknownError: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code/invaliddataerror?language=objc)
     #[doc(alias = "PKInvalidDataError")]
     pub const InvalidDataError: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code/unsupportedversionerror?language=objc)
     #[doc(alias = "PKUnsupportedVersionError")]
     pub const UnsupportedVersionError: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code/invalidsignature?language=objc)
     #[doc(alias = "PKInvalidSignature")]
     pub const InvalidSignature: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code/notentitlederror?language=objc)
     #[doc(alias = "PKNotEntitledError")]
     pub const NotEntitledError: Self = Self(4);
 }
@@ -46,16 +51,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKPaymentErrorCode(pub NSInteger);
 impl PKPaymentErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/unknownerror?language=objc)
     #[doc(alias = "PKPaymentUnknownError")]
     pub const UnknownError: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/shippingcontactinvaliderror?language=objc)
     #[doc(alias = "PKPaymentShippingContactInvalidError")]
     pub const ShippingContactInvalidError: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/billingcontactinvaliderror?language=objc)
     #[doc(alias = "PKPaymentBillingContactInvalidError")]
     pub const BillingContactInvalidError: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/shippingaddressunserviceableerror?language=objc)
     #[doc(alias = "PKPaymentShippingAddressUnserviceableError")]
     pub const ShippingAddressUnserviceableError: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/couponcodeinvaliderror?language=objc)
     #[doc(alias = "PKPaymentCouponCodeInvalidError")]
     pub const CouponCodeInvalidError: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/couponcodeexpirederror?language=objc)
     #[doc(alias = "PKPaymentCouponCodeExpiredError")]
     pub const CouponCodeExpiredError: Self = Self(5);
 }
@@ -93,10 +104,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKDisbursementErrorCode(pub NSInteger);
 impl PKDisbursementErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerror/code/unknownerror?language=objc)
     #[doc(alias = "PKDisbursementUnknownError")]
     pub const UnknownError: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerror/code/unsupportedcarderror?language=objc)
     #[doc(alias = "PKDisbursementUnsupportedCardError")]
     pub const UnsupportedCardError: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerror/code/recipientcontactinvaliderror?language=objc)
     #[doc(alias = "PKDisbursementRecipientContactInvalidError")]
     pub const RecipientContactInvalidError: Self = Self(2);
 }
@@ -124,10 +138,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddPaymentPassError(pub NSInteger);
 impl PKAddPaymentPassError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpasserror/unsupported?language=objc)
     #[doc(alias = "PKAddPaymentPassErrorUnsupported")]
     pub const Unsupported: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpasserror/usercancelled?language=objc)
     #[doc(alias = "PKAddPaymentPassErrorUserCancelled")]
     pub const UserCancelled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpasserror/systemcancelled?language=objc)
     #[doc(alias = "PKAddPaymentPassErrorSystemCancelled")]
     pub const SystemCancelled: Self = Self(2);
 }
@@ -151,21 +168,29 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddSecureElementPassErrorCode(pub NSInteger);
 impl PKAddSecureElementPassErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/genericerror?language=objc)
     #[doc(alias = "PKAddSecureElementPassGenericError")]
     pub const GenericError: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserrorcode/pkaddsecureelementpassunknownerror?language=objc)
     #[doc(alias = "PKAddSecureElementPassUnknownError")]
     #[deprecated = "Use PKAddSecureElementPassGenericError instead."]
     pub const UnknownError: Self = Self(PKAddSecureElementPassErrorCode::GenericError.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/usercancelederror?language=objc)
     #[doc(alias = "PKAddSecureElementPassUserCanceledError")]
     pub const UserCanceledError: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/unavailableerror?language=objc)
     #[doc(alias = "PKAddSecureElementPassUnavailableError")]
     pub const UnavailableError: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/invalidconfigurationerror?language=objc)
     #[doc(alias = "PKAddSecureElementPassInvalidConfigurationError")]
     pub const InvalidConfigurationError: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/devicenotsupportederror?language=objc)
     #[doc(alias = "PKAddSecureElementPassDeviceNotSupportedError")]
     pub const DeviceNotSupportedError: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/devicenotreadyerror?language=objc)
     #[doc(alias = "PKAddSecureElementPassDeviceNotReadyError")]
     pub const DeviceNotReadyError: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/osversionnotsupportederror?language=objc)
     #[doc(alias = "PKAddSecureElementPassOSVersionNotSupportedError")]
     pub const OSVersionNotSupportedError: Self = Self(6);
 }
@@ -189,8 +214,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKShareSecureElementPassErrorCode(pub NSInteger);
 impl PKShareSecureElementPassErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksharesecureelementpasserror/code/unknownerror?language=objc)
     #[doc(alias = "PKShareSecureElementPassUnknownError")]
     pub const UnknownError: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksharesecureelementpasserror/code/setuperror?language=objc)
     #[doc(alias = "PKShareSecureElementPassSetupError")]
     pub const SetupError: Self = Self(1);
 }

@@ -33,18 +33,23 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNetDiagnosticStatusValues(pub c_int);
 impl CFNetDiagnosticStatusValues {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues/noerr?language=objc)
     #[doc(alias = "kCFNetDiagnosticNoErr")]
     #[deprecated]
     pub const NoErr: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues/err?language=objc)
     #[doc(alias = "kCFNetDiagnosticErr")]
     #[deprecated]
     pub const Err: Self = Self(-66560);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues/connectionup?language=objc)
     #[doc(alias = "kCFNetDiagnosticConnectionUp")]
     #[deprecated]
     pub const ConnectionUp: Self = Self(-66559);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues/connectionindeterminate?language=objc)
     #[doc(alias = "kCFNetDiagnosticConnectionIndeterminate")]
     #[deprecated]
     pub const ConnectionIndeterminate: Self = Self(-66558);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues/connectiondown?language=objc)
     #[doc(alias = "kCFNetDiagnosticConnectionDown")]
     #[deprecated]
     pub const ConnectionDown: Self = Self(-66557);
@@ -65,6 +70,7 @@ unsafe impl RefEncode for CFNetDiagnosticStatusValues {
 pub type CFNetDiagnosticStatus = CFIndex;
 
 impl CFNetDiagnostic {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcreatewithstreams(_:_:_:)?language=objc)
     #[doc(alias = "CFNetDiagnosticCreateWithStreams")]
     #[deprecated]
     #[inline]
@@ -86,6 +92,7 @@ impl CFNetDiagnostic {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcreatewithurl(_:_:)?language=objc)
     #[doc(alias = "CFNetDiagnosticCreateWithURL")]
     #[deprecated]
     #[inline]
@@ -102,6 +109,7 @@ impl CFNetDiagnostic {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticsetname(_:_:)?language=objc)
     #[doc(alias = "CFNetDiagnosticSetName")]
     #[deprecated]
     #[inline]
@@ -112,6 +120,7 @@ impl CFNetDiagnostic {
         unsafe { CFNetDiagnosticSetName(self, name) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticdiagnoseprobleminteractively(_:)?language=objc)
     #[doc(alias = "CFNetDiagnosticDiagnoseProblemInteractively")]
     #[deprecated]
     #[inline]
@@ -124,6 +133,8 @@ impl CFNetDiagnostic {
         unsafe { CFNetDiagnosticDiagnoseProblemInteractively(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcopynetworkstatuspassively(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `description` must be a valid pointer or null.

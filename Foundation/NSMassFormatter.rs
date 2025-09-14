@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMassFormatterUnit(pub NSInteger);
 impl NSMassFormatterUnit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit/gram?language=objc)
     #[doc(alias = "NSMassFormatterUnitGram")]
     pub const Gram: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit/kilogram?language=objc)
     #[doc(alias = "NSMassFormatterUnitKilogram")]
     pub const Kilogram: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit/ounce?language=objc)
     #[doc(alias = "NSMassFormatterUnitOunce")]
     pub const Ounce: Self = Self((6 << 8) + 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit/pound?language=objc)
     #[doc(alias = "NSMassFormatterUnitPound")]
     pub const Pound: Self = Self((6 << 8) + 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit/stone?language=objc)
     #[doc(alias = "NSMassFormatterUnitStone")]
     pub const Stone: Self = Self((6 << 8) + 3);
 }

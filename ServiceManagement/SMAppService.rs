@@ -34,12 +34,16 @@ use crate::*;
 pub struct SMAppServiceStatus(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl SMAppServiceStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice/status-swift.enum/notregistered?language=objc)
     #[doc(alias = "SMAppServiceStatusNotRegistered")]
     pub const NotRegistered: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice/status-swift.enum/enabled?language=objc)
     #[doc(alias = "SMAppServiceStatusEnabled")]
     pub const Enabled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice/status-swift.enum/requiresapproval?language=objc)
     #[doc(alias = "SMAppServiceStatusRequiresApproval")]
     pub const RequiresApproval: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice/status-swift.enum/notfound?language=objc)
     #[doc(alias = "SMAppServiceStatusNotFound")]
     pub const NotFound: Self = Self(3);
 }

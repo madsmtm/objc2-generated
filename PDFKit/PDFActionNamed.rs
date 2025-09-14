@@ -13,28 +13,40 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFActionNamedName(pub NSInteger);
 impl PDFActionNamedName {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/none?language=objc)
     #[doc(alias = "kPDFActionNamedNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/nextpage?language=objc)
     #[doc(alias = "kPDFActionNamedNextPage")]
     pub const NextPage: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/previouspage?language=objc)
     #[doc(alias = "kPDFActionNamedPreviousPage")]
     pub const PreviousPage: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/firstpage?language=objc)
     #[doc(alias = "kPDFActionNamedFirstPage")]
     pub const FirstPage: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/lastpage?language=objc)
     #[doc(alias = "kPDFActionNamedLastPage")]
     pub const LastPage: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/goback?language=objc)
     #[doc(alias = "kPDFActionNamedGoBack")]
     pub const GoBack: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/goforward?language=objc)
     #[doc(alias = "kPDFActionNamedGoForward")]
     pub const GoForward: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/gotopage?language=objc)
     #[doc(alias = "kPDFActionNamedGoToPage")]
     pub const GoToPage: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/find?language=objc)
     #[doc(alias = "kPDFActionNamedFind")]
     pub const Find: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/print?language=objc)
     #[doc(alias = "kPDFActionNamedPrint")]
     pub const Print: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/zoomin?language=objc)
     #[doc(alias = "kPDFActionNamedZoomIn")]
     pub const ZoomIn: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/zoomout?language=objc)
     #[doc(alias = "kPDFActionNamedZoomOut")]
     pub const ZoomOut: Self = Self(11);
 }

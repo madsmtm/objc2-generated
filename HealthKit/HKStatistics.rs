@@ -22,23 +22,32 @@ use crate::*;
 pub struct HKStatisticsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl HKStatisticsOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/hkstatisticsoptionnone?language=objc)
         #[doc(alias = "HKStatisticsOptionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/separatebysource?language=objc)
         #[doc(alias = "HKStatisticsOptionSeparateBySource")]
         const SeparateBySource = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/discreteaverage?language=objc)
         #[doc(alias = "HKStatisticsOptionDiscreteAverage")]
         const DiscreteAverage = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/discretemin?language=objc)
         #[doc(alias = "HKStatisticsOptionDiscreteMin")]
         const DiscreteMin = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/discretemax?language=objc)
         #[doc(alias = "HKStatisticsOptionDiscreteMax")]
         const DiscreteMax = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/cumulativesum?language=objc)
         #[doc(alias = "HKStatisticsOptionCumulativeSum")]
         const CumulativeSum = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/mostrecent?language=objc)
         #[doc(alias = "HKStatisticsOptionMostRecent")]
         const MostRecent = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/discretemostrecent?language=objc)
         #[doc(alias = "HKStatisticsOptionDiscreteMostRecent")]
 #[deprecated]
         const DiscreteMostRecent = HKStatisticsOptions::MostRecent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/duration?language=objc)
         #[doc(alias = "HKStatisticsOptionDuration")]
         const Duration = 1<<6;
     }

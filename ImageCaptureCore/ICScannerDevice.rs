@@ -96,8 +96,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerTransferMode(pub NSUInteger);
 impl ICScannerTransferMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannertransfermode/filebased?language=objc)
     #[doc(alias = "ICScannerTransferModeFileBased")]
     pub const FileBased: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannertransfermode/memorybased?language=objc)
     #[doc(alias = "ICScannerTransferModeMemoryBased")]
     pub const MemoryBased: Self = Self(1);
 }

@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTaskStatus(pub NSInteger);
 impl INTaskStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskstatus/unknown?language=objc)
     #[doc(alias = "INTaskStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskstatus/notcompleted?language=objc)
     #[doc(alias = "INTaskStatusNotCompleted")]
     pub const NotCompleted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskstatus/completed?language=objc)
     #[doc(alias = "INTaskStatusCompleted")]
     pub const Completed: Self = Self(2);
 }

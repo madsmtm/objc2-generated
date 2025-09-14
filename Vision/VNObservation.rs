@@ -2377,8 +2377,10 @@ impl VNRecognizedPoints3DObservation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNHumanBodyPose3DObservationHeightEstimation(pub NSInteger);
 impl VNHumanBodyPose3DObservationHeightEstimation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/heightestimation-swift.enum/reference?language=objc)
     #[doc(alias = "VNHumanBodyPose3DObservationHeightEstimationReference")]
     pub const Reference: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/heightestimation-swift.enum/measured?language=objc)
     #[doc(alias = "VNHumanBodyPose3DObservationHeightEstimationMeasured")]
     pub const Measured: Self = Self(1);
 }

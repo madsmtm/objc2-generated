@@ -17,21 +17,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVElementAlignment(pub NSInteger);
 impl TVElementAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementalignment/undefined?language=objc)
     #[doc(alias = "TVElementAlignmentUndefined")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementalignment/left?language=objc)
     #[doc(alias = "TVElementAlignmentLeft")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Left: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementalignment/center?language=objc)
     #[doc(alias = "TVElementAlignmentCenter")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Center: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementalignment/right?language=objc)
     #[doc(alias = "TVElementAlignmentRight")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Right: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementalignment/leading?language=objc)
     #[doc(alias = "TVElementAlignmentLeading")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Leading: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementalignment/trailing?language=objc)
     #[doc(alias = "TVElementAlignmentTrailing")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Trailing: Self = Self(5);
@@ -52,15 +58,19 @@ unsafe impl RefEncode for TVElementAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVElementContentAlignment(pub NSInteger);
 impl TVElementContentAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementcontentalignment/undefined?language=objc)
     #[doc(alias = "TVElementContentAlignmentUndefined")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementcontentalignment/top?language=objc)
     #[doc(alias = "TVElementContentAlignmentTop")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Top: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementcontentalignment/center?language=objc)
     #[doc(alias = "TVElementContentAlignmentCenter")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Center: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementcontentalignment/bottom?language=objc)
     #[doc(alias = "TVElementContentAlignmentBottom")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Bottom: Self = Self(3);
@@ -81,57 +91,75 @@ unsafe impl RefEncode for TVElementContentAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVElementPosition(pub NSInteger);
 impl TVElementPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/undefined?language=objc)
     #[doc(alias = "TVElementPositionUndefined")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/center?language=objc)
     #[doc(alias = "TVElementPositionCenter")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Center: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/top?language=objc)
     #[doc(alias = "TVElementPositionTop")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Top: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/bottom?language=objc)
     #[doc(alias = "TVElementPositionBottom")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Bottom: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/left?language=objc)
     #[doc(alias = "TVElementPositionLeft")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Left: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/right?language=objc)
     #[doc(alias = "TVElementPositionRight")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Right: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/topleft?language=objc)
     #[doc(alias = "TVElementPositionTopLeft")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const TopLeft: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/topright?language=objc)
     #[doc(alias = "TVElementPositionTopRight")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const TopRight: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/bottomleft?language=objc)
     #[doc(alias = "TVElementPositionBottomLeft")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const BottomLeft: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/bottomright?language=objc)
     #[doc(alias = "TVElementPositionBottomRight")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const BottomRight: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/header?language=objc)
     #[doc(alias = "TVElementPositionHeader")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Header: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/footer?language=objc)
     #[doc(alias = "TVElementPositionFooter")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Footer: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/leading?language=objc)
     #[doc(alias = "TVElementPositionLeading")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Leading: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/trailing?language=objc)
     #[doc(alias = "TVElementPositionTrailing")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Trailing: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/topleading?language=objc)
     #[doc(alias = "TVElementPositionTopLeading")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const TopLeading: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/toptrailing?language=objc)
     #[doc(alias = "TVElementPositionTopTrailing")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const TopTrailing: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/bottomleading?language=objc)
     #[doc(alias = "TVElementPositionBottomLeading")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const BottomLeading: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementposition/bottomtrailing?language=objc)
     #[doc(alias = "TVElementPositionBottomTrailing")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const BottomTrailing: Self = Self(17);

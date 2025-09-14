@@ -18,12 +18,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationBarNSToolbarSection(pub NSInteger);
 impl UINavigationBarNSToolbarSection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar/nstoolbarsection/none?language=objc)
     #[doc(alias = "UINavigationBarNSToolbarSectionNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar/nstoolbarsection/sidebar?language=objc)
     #[doc(alias = "UINavigationBarNSToolbarSectionSidebar")]
     pub const Sidebar: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar/nstoolbarsection/supplementary?language=objc)
     #[doc(alias = "UINavigationBarNSToolbarSectionSupplementary")]
     pub const Supplementary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar/nstoolbarsection/content?language=objc)
     #[doc(alias = "UINavigationBarNSToolbarSectionContent")]
     pub const Content: Self = Self(3);
 }

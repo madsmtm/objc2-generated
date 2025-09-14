@@ -20,12 +20,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDisplayMode(pub NSInteger);
 impl PDFDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode/singlepage?language=objc)
     #[doc(alias = "kPDFDisplaySinglePage")]
     pub const SinglePage: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode/singlepagecontinuous?language=objc)
     #[doc(alias = "kPDFDisplaySinglePageContinuous")]
     pub const SinglePageContinuous: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode/twoup?language=objc)
     #[doc(alias = "kPDFDisplayTwoUp")]
     pub const TwoUp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode/twoupcontinuous?language=objc)
     #[doc(alias = "kPDFDisplayTwoUpContinuous")]
     pub const TwoUpContinuous: Self = Self(3);
 }
@@ -44,8 +48,10 @@ unsafe impl RefEncode for PDFDisplayMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDisplayDirection(pub NSInteger);
 impl PDFDisplayDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaydirection/vertical?language=objc)
     #[doc(alias = "kPDFDisplayDirectionVertical")]
     pub const Vertical: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaydirection/horizontal?language=objc)
     #[doc(alias = "kPDFDisplayDirectionHorizontal")]
     pub const Horizontal: Self = Self(1);
 }
@@ -64,10 +70,13 @@ unsafe impl RefEncode for PDFDisplayDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFInterpolationQuality(pub NSInteger);
 impl PDFInterpolationQuality {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfinterpolationquality/none?language=objc)
     #[doc(alias = "kPDFInterpolationQualityNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfinterpolationquality/low?language=objc)
     #[doc(alias = "kPDFInterpolationQualityLow")]
     pub const Low: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfinterpolationquality/high?language=objc)
     #[doc(alias = "kPDFInterpolationQualityHigh")]
     pub const High: Self = Self(2);
 }

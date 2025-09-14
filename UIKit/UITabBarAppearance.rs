@@ -145,10 +145,13 @@ impl UITabBarItemStateAppearance {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabBarItemAppearanceStyle(pub NSInteger);
 impl UITabBarItemAppearanceStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritemappearance/style/stacked?language=objc)
     #[doc(alias = "UITabBarItemAppearanceStyleStacked")]
     pub const Stacked: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritemappearance/style/inline?language=objc)
     #[doc(alias = "UITabBarItemAppearanceStyleInline")]
     pub const Inline: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritemappearance/style/compactinline?language=objc)
     #[doc(alias = "UITabBarItemAppearanceStyleCompactInline")]
     pub const CompactInline: Self = Self(2);
 }

@@ -10,8 +10,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTicketedEventCategory(pub NSInteger);
 impl INTicketedEventCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inticketedeventcategory/unknown?language=objc)
     #[doc(alias = "INTicketedEventCategoryUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inticketedeventcategory/movie?language=objc)
     #[doc(alias = "INTicketedEventCategoryMovie")]
     pub const Movie: Self = Self(1);
 }

@@ -31,18 +31,24 @@ pub struct MTL4RenderEncoderOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTL4RenderEncoderOptions: NSUInteger {
 /// Declares that this render pass doesn't suspend nor resume.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/mtl4renderencoderoptionnone?language=objc)
         #[doc(alias = "MTL4RenderEncoderOptionNone")]
         const None = 0;
 /// Configures the render pass as *suspending*.
 ///
 /// Pass this option to ``MTL4CommandBuffer/renderCommandEncoderWithDescriptor:options:`` to specify that Metal can
 /// stitch the work a render command encoder encodes with a subsequent "resuming" render command encoder.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/suspending?language=objc)
         #[doc(alias = "MTL4RenderEncoderOptionSuspending")]
         const Suspending = 1<<0;
 /// Configures the render pass to as *resuming*.
 ///
 /// Pass this option to ``MTL4CommandBuffer/renderCommandEncoderWithDescriptor:options:`` to specify that Metal can
 /// stitch the work a render command encoder encodes with a prior "suspending" render command encoder.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/resuming?language=objc)
         #[doc(alias = "MTL4RenderEncoderOptionResuming")]
         const Resuming = 1<<1;
     }

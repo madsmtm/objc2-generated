@@ -23,6 +23,8 @@ extern "C-unwind" {
     /// 4. Using CoreMIDI API, confirm the peripheral's registration by locating its MIDIDeviceRef.
     /// 5. If present, CoreMIDI now owns a connection the peripheral.
     /// 6. Using CoreBluetooth API, disconnect from the peripheral now managed by CoreMIDI.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midibluetoothdriveractivateallconnections()?language=objc)
     pub fn MIDIBluetoothDriverActivateAllConnections() -> OSStatus;
 }
 
@@ -37,6 +39,8 @@ extern "C-unwind" {
     ///
     ///
     /// If a CoreMIDI is connected to a BLE MIDI peripheral with the supplied UUID, it will disconnect.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midibluetoothdriverdisconnect(_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIBluetoothDriverDisconnect(uuid: &CFString) -> OSStatus;
 }

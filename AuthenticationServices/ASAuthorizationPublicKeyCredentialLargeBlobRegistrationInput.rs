@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement(pub NSInteger);
 impl ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentiallargeblobsupportrequirement/asauthorizationpublickeycredentiallargeblobsupportrequirementrequired?language=objc)
     #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirementRequired")]
     pub const Required: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentiallargeblobsupportrequirement/asauthorizationpublickeycredentiallargeblobsupportrequirementpreferred?language=objc)
     #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirementPreferred")]
     pub const Preferred: Self = Self(1);
 }

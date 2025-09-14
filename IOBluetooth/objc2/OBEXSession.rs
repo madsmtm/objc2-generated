@@ -38,8 +38,10 @@ pub type OBEXTransportEventType = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXTransportEventTypes(pub c_uint);
 impl OBEXTransportEventTypes {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobextransporteventtypedatareceived?language=objc)
     #[doc(alias = "kOBEXTransportEventTypeDataReceived")]
     pub const DataReceived: Self = Self(0x44617441);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobextransporteventtypestatus?language=objc)
     #[doc(alias = "kOBEXTransportEventTypeStatus")]
     pub const Status: Self = Self(0x53746154);
 }

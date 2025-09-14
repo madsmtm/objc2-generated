@@ -251,6 +251,8 @@ pub type IconActionUPP = IconActionProcPtr;
 pub type IconGetterUPP = IconGetterProcPtr;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462738-newiconactionupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -258,6 +260,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458777-newicongetterupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -265,6 +269,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461028-disposeiconactionupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -272,6 +278,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461061-disposeicongetterupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -279,6 +287,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464116-invokeiconactionupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_icon` must be a valid pointer.
@@ -293,6 +303,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460976-invokeicongetterupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `your_data_ptr` must be a valid pointer.
@@ -315,6 +327,8 @@ pub const kPlotIconRefNoImage: c_uint = 1 << 1;
 pub const kPlotIconRefNoMask: c_uint = 1 << 2;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459977-iconreftoiconfamily?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_icon_ref` must be a valid pointer.
@@ -328,6 +342,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462050-seticonfamilydata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `icon_family` must be a valid pointer.
@@ -337,6 +353,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462743-geticonfamilydata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `icon_family` must be a valid pointer.
@@ -345,6 +363,8 @@ extern "C-unwind" {
     pub fn GetIconFamilyData(icon_family: IconFamilyHandle, icon_type: OSType, h: Handle) -> OSErr;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461049-iconrefcontainscgpoint?language=objc)
+///
 /// # Safety
 ///
 /// - `test_pt` must be a valid pointer.
@@ -380,6 +400,8 @@ pub unsafe extern "C-unwind" fn IconRefContainsCGPoint(
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462553-iconrefintersectscgrect?language=objc)
+///
 /// # Safety
 ///
 /// - `test_rect` must be a valid pointer.
@@ -415,6 +437,8 @@ pub unsafe extern "C-unwind" fn IconRefIntersectsCGRect(
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464005-iconreftohishape?language=objc)
+///
 /// # Safety
 ///
 /// - `icon_rect` must be a valid pointer.
@@ -440,6 +464,8 @@ pub unsafe extern "C-unwind" fn IconRefToHIShape(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464419-isiconrefmaskempty?language=objc)
+///
 /// # Safety
 ///
 /// `icon_ref` must be a valid pointer.
@@ -454,6 +480,8 @@ pub unsafe extern "C-unwind" fn IsIconRefMaskEmpty(icon_ref: IconRef) -> bool {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463088-geticonrefvariant?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_icon_ref` must be a valid pointer.

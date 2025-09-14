@@ -25,12 +25,18 @@ impl CLLocationButtonIcon {
     /// A style that doesn't display an icon.
     ///
     /// Use a different icon style if ``CLLocationButton/label`` is ``CLLocationButtonLabel/none``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonicon/none?language=objc)
     #[doc(alias = "CLLocationButtonIconNone")]
     pub const None: Self = Self(0);
     /// A style that displays a filled arrow icon.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonicon/arrowfilled?language=objc)
     #[doc(alias = "CLLocationButtonIconArrowFilled")]
     pub const ArrowFilled: Self = Self(1);
     /// A style that displays an unfilled, outline arrow icon.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonicon/arrowoutline?language=objc)
     #[doc(alias = "CLLocationButtonIconArrowOutline")]
     pub const ArrowOutline: Self = Self(2);
 }
@@ -54,21 +60,33 @@ impl CLLocationButtonLabel {
     /// A style that doesn’t display a text label.
     ///
     /// Use a different label style if ``CLLocationButton/icon`` is ``CLLocationButtonIcon/none``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/none?language=objc)
     #[doc(alias = "CLLocationButtonLabelNone")]
     pub const None: Self = Self(0);
     /// A button label with the text _Current Location_.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/currentlocation?language=objc)
     #[doc(alias = "CLLocationButtonLabelCurrentLocation")]
     pub const CurrentLocation: Self = Self(1);
     /// A button label with the text _Send Current Location_.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/sendcurrentlocation?language=objc)
     #[doc(alias = "CLLocationButtonLabelSendCurrentLocation")]
     pub const SendCurrentLocation: Self = Self(2);
     /// A button label with the text _Send My Current Location_.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/sendmycurrentlocation?language=objc)
     #[doc(alias = "CLLocationButtonLabelSendMyCurrentLocation")]
     pub const SendMyCurrentLocation: Self = Self(3);
     /// A button label with the text _Share Current Location_.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/sharecurrentlocation?language=objc)
     #[doc(alias = "CLLocationButtonLabelShareCurrentLocation")]
     pub const ShareCurrentLocation: Self = Self(4);
     /// A button label with the text _Share My Current Location_.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/sharemycurrentlocation?language=objc)
     #[doc(alias = "CLLocationButtonLabelShareMyCurrentLocation")]
     pub const ShareMyCurrentLocation: Self = Self(5);
 }

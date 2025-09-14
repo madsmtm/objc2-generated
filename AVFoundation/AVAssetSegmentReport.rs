@@ -21,8 +21,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAssetSegmentType(pub NSInteger);
 impl AVAssetSegmentType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttype/initialization?language=objc)
     #[doc(alias = "AVAssetSegmentTypeInitialization")]
     pub const Initialization: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttype/separable?language=objc)
     #[doc(alias = "AVAssetSegmentTypeSeparable")]
     pub const Separable: Self = Self(2);
 }

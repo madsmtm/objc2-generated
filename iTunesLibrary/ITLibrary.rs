@@ -17,6 +17,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibExportFeature(pub NSUInteger);
 impl ITLibExportFeature {
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibexportfeature/none?language=objc)
     #[doc(alias = "ITLibExportFeatureNone")]
     pub const None: Self = Self(0);
 }
@@ -41,9 +42,12 @@ unsafe impl RefEncode for ITLibExportFeature {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibInitOptions(pub NSUInteger);
 impl ITLibInitOptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibinitoptions/none?language=objc)
     #[doc(alias = "ITLibInitOptionNone")]
     pub const None: Self = Self(0);
     /// ITLibrary will be initialized but no iTunes library data will be loaded. Data will be lazy-loaded upon request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibinitoptions/lazyloaddata?language=objc)
     #[doc(alias = "ITLibInitOptionLazyLoadData")]
     pub const LazyLoadData: Self = Self(1);
 }

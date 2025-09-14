@@ -15,6 +15,7 @@ use crate::*;
 pub struct VZEFIVariableStoreInitializationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl VZEFIVariableStoreInitializationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestore/initializationoptions/allowoverwrite?language=objc)
         #[doc(alias = "VZEFIVariableStoreInitializationOptionAllowOverwrite")]
         const AllowOverwrite = 1<<0;
     }

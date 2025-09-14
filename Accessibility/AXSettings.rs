@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axprefershorizontaltextlayout?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXPrefersHorizontalTextLayout() -> bool {
     extern "C-unwind" {
@@ -20,6 +21,7 @@ extern "C" {
     pub static AXPrefersHorizontalTextLayoutDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axanimatedimagesenabled?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXAnimatedImagesEnabled() -> bool {
     extern "C-unwind" {
@@ -35,6 +37,8 @@ extern "C" {
 
 /// Returns whether Assistive Access is running.
 /// The value does not change during a process's lifetime, so it is not necessary to observe changes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitysettings/isassistiveaccessenabled?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXAssistiveAccessEnabled() -> bool {
     extern "C-unwind" {
@@ -43,6 +47,7 @@ pub unsafe extern "C-unwind" fn AXAssistiveAccessEnabled() -> bool {
     unsafe { AXAssistiveAccessEnabled() }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axprefersnonblinkingtextinsertionindicator?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXPrefersNonBlinkingTextInsertionIndicator() -> bool {
     extern "C-unwind" {
@@ -57,6 +62,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axprefersactionslideralternative?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXPrefersActionSliderAlternative() -> bool {
     extern "C-unwind" {
@@ -70,6 +76,7 @@ extern "C" {
     pub static AXPrefersActionSliderAlternativeDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axshowbordersenabled?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXShowBordersEnabled() -> bool {
     extern "C-unwind" {
@@ -89,14 +96,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AXSettingsFeature(pub NSInteger);
 impl AXSettingsFeature {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitysettings/feature/personalvoiceallowappstorequesttouse?language=objc)
     #[doc(alias = "AXSettingsFeaturePersonalVoiceAllowAppsToRequestToUse")]
     pub const PersonalVoiceAllowAppsToRequestToUse: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitysettings/feature/allowappstoaddaudiotocalls?language=objc)
     #[doc(alias = "AXSettingsFeatureAllowAppsToAddAudioToCalls")]
     pub const AllowAppsToAddAudioToCalls: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitysettings/feature/assistivetouch?language=objc)
     #[doc(alias = "AXSettingsFeatureAssistiveTouch")]
     pub const AssistiveTouch: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitysettings/feature/assistivetouchdevices?language=objc)
     #[doc(alias = "AXSettingsFeatureAssistiveTouchDevices")]
     pub const AssistiveTouchDevices: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitysettings/feature/dwellcontrol?language=objc)
     #[doc(alias = "AXSettingsFeatureDwellControl")]
     pub const DwellControl: Self = Self(5);
 }
@@ -110,6 +122,7 @@ unsafe impl RefEncode for AXSettingsFeature {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axopensettingsfeature?language=objc)
     #[cfg(feature = "block2")]
     pub fn AXOpenSettingsFeature(
         feature: AXSettingsFeature,

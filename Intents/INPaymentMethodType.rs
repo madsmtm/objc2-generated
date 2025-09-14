@@ -10,22 +10,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPaymentMethodType(pub NSInteger);
 impl INPaymentMethodType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/unknown?language=objc)
     #[doc(alias = "INPaymentMethodTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/checking?language=objc)
     #[doc(alias = "INPaymentMethodTypeChecking")]
     pub const Checking: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/savings?language=objc)
     #[doc(alias = "INPaymentMethodTypeSavings")]
     pub const Savings: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/brokerage?language=objc)
     #[doc(alias = "INPaymentMethodTypeBrokerage")]
     pub const Brokerage: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/debit?language=objc)
     #[doc(alias = "INPaymentMethodTypeDebit")]
     pub const Debit: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/credit?language=objc)
     #[doc(alias = "INPaymentMethodTypeCredit")]
     pub const Credit: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/prepaid?language=objc)
     #[doc(alias = "INPaymentMethodTypePrepaid")]
     pub const Prepaid: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/store?language=objc)
     #[doc(alias = "INPaymentMethodTypeStore")]
     pub const Store: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/applepay?language=objc)
     #[doc(alias = "INPaymentMethodTypeApplePay")]
     pub const ApplePay: Self = Self(8);
 }

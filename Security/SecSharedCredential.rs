@@ -31,6 +31,8 @@ extern "C-unwind" {
     /// This function adds a shared password item which will be accessible by Safari and applications that have the specified fully-qualified domain name in their 'com.apple.developer.associated-domains' entitlement. If a shared password item already exists for the specified website and account, it will be updated with the provided password. To remove a password, pass NULL for the password parameter.
     ///
     /// Note: since a request involving shared web credentials may potentially require user interaction or other verification to be approved, this function is dispatched asynchronously; your code provides a completion handler that will be called once the results (if any) are available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaddsharedwebcredential(_:_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn SecAddSharedWebCredential(
         fqdn: &CFString,
@@ -60,6 +62,8 @@ extern "C-unwind" {
     /// key: kSecAttrPort       value: CFNumberRef (the port number)
     ///
     /// Note: since a request involving shared web credentials may potentially require user interaction or other verification to be approved, this function is dispatched asynchronously; your code provides a completion handler that will be called once the results (if any) are available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequestsharedwebcredential(_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     #[deprecated = "Use ASAuthorizationController to make an ASAuthorizationPasswordRequest (AuthenticationServices framework)"]
     pub fn SecRequestSharedWebCredential(
@@ -72,6 +76,8 @@ extern "C-unwind" {
 /// Returns a randomly generated password.
 ///
 /// Returns: CFStringRef password in the form xxx-xxx-xxx-xxx where x is taken from the sets "abcdefghkmnopqrstuvwxy", "ABCDEFGHJKLMNPQRSTUVWXYZ", "3456789" with at least one character from each set being present.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccreatesharedwebcredentialpassword()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn SecCreateSharedWebCredentialPassword(
 ) -> Option<CFRetained<CFString>> {

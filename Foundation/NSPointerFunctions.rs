@@ -13,31 +13,44 @@ use crate::*;
 pub struct NSPointerFunctionsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPointerFunctionsOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/strongmemory?language=objc)
         #[doc(alias = "NSPointerFunctionsStrongMemory")]
         const StrongMemory = 0<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctionsoptions/nspointerfunctionszeroingweakmemory?language=objc)
         #[doc(alias = "NSPointerFunctionsZeroingWeakMemory")]
 #[deprecated = "GC no longer supported"]
         const ZeroingWeakMemory = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/opaquememory?language=objc)
         #[doc(alias = "NSPointerFunctionsOpaqueMemory")]
         const OpaqueMemory = 2<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/mallocmemory?language=objc)
         #[doc(alias = "NSPointerFunctionsMallocMemory")]
         const MallocMemory = 3<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/machvirtualmemory?language=objc)
         #[doc(alias = "NSPointerFunctionsMachVirtualMemory")]
         const MachVirtualMemory = 4<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/weakmemory?language=objc)
         #[doc(alias = "NSPointerFunctionsWeakMemory")]
         const WeakMemory = 5<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/objectpersonality?language=objc)
         #[doc(alias = "NSPointerFunctionsObjectPersonality")]
         const ObjectPersonality = 0<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/opaquepersonality?language=objc)
         #[doc(alias = "NSPointerFunctionsOpaquePersonality")]
         const OpaquePersonality = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/objectpointerpersonality?language=objc)
         #[doc(alias = "NSPointerFunctionsObjectPointerPersonality")]
         const ObjectPointerPersonality = 2<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/cstringpersonality?language=objc)
         #[doc(alias = "NSPointerFunctionsCStringPersonality")]
         const CStringPersonality = 3<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/structpersonality?language=objc)
         #[doc(alias = "NSPointerFunctionsStructPersonality")]
         const StructPersonality = 4<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/integerpersonality?language=objc)
         #[doc(alias = "NSPointerFunctionsIntegerPersonality")]
         const IntegerPersonality = 5<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/copyin?language=objc)
         #[doc(alias = "NSPointerFunctionsCopyIn")]
         const CopyIn = 1<<16;
     }

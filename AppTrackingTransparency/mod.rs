@@ -53,6 +53,8 @@ impl ATTrackingManagerAuthorizationStatus {
     ///
     /// - Note: If you call `ATTrackingManager.trackingAuthorizationStatus` in
     /// macOS, the result is always `ATTrackingManager.AuthorizationStatus.notDetermined`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/notdetermined?language=objc)
     #[doc(alias = "ATTrackingManagerAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
     /// The value that returns if authorization to access app-related data for
@@ -69,6 +71,8 @@ impl ATTrackingManagerAuthorizationStatus {
     /// users to opt in or out of allowing apps to request user consent to
     /// access app-related data that can be used for tracking the user or the
     /// device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/restricted?language=objc)
     #[doc(alias = "ATTrackingManagerAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
     /// The value that returns if the user denies authorization to access
@@ -76,6 +80,8 @@ impl ATTrackingManagerAuthorizationStatus {
     ///
     /// The end user has denied the authorization request to access app-related
     /// data that can be used for tracking the user or the device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/denied?language=objc)
     #[doc(alias = "ATTrackingManagerAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
     /// The value that returns if the user authorizes access to app-related data for
@@ -85,6 +91,8 @@ impl ATTrackingManagerAuthorizationStatus {
     /// consent to access app-related data for tracking the user or the device. End
     /// users can revoke permission at any time through the Allow Apps to Request to
     /// Track privacy setting on the device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/authorized?language=objc)
     #[doc(alias = "ATTrackingManagerAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }

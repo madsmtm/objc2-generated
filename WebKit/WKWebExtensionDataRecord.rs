@@ -21,12 +21,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionDataRecordError(pub NSInteger);
 impl WKWebExtensionDataRecordError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/error/code/unknown?language=objc)
     #[doc(alias = "WKWebExtensionDataRecordErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/error/code/localstoragefailed?language=objc)
     #[doc(alias = "WKWebExtensionDataRecordErrorLocalStorageFailed")]
     pub const LocalStorageFailed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/error/code/sessionstoragefailed?language=objc)
     #[doc(alias = "WKWebExtensionDataRecordErrorSessionStorageFailed")]
     pub const SessionStorageFailed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/error/code/synchronizedstoragefailed?language=objc)
     #[doc(alias = "WKWebExtensionDataRecordErrorSynchronizedStorageFailed")]
     pub const SynchronizedStorageFailed: Self = Self(4);
 }

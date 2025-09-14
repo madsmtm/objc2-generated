@@ -4,4 +4,5 @@ use core::ffi::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklook/quicklook_version?language=objc)
 pub const QUICKLOOK_VERSION: c_uint = 6250;

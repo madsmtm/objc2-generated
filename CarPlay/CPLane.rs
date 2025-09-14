@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPLaneStatus(pub NSInteger);
 impl CPLaneStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplanestatus/notgood?language=objc)
     #[doc(alias = "CPLaneStatusNotGood")]
     pub const NotGood: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplanestatus/good?language=objc)
     #[doc(alias = "CPLaneStatusGood")]
     pub const Good: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplanestatus/preferred?language=objc)
     #[doc(alias = "CPLaneStatusPreferred")]
     pub const Preferred: Self = Self(2);
 }

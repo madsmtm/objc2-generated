@@ -14,12 +14,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSMatrixDecompositionStatus(pub c_int);
 impl MPSMatrixDecompositionStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus/success?language=objc)
     #[doc(alias = "MPSMatrixDecompositionStatusSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus/failure?language=objc)
     #[doc(alias = "MPSMatrixDecompositionStatusFailure")]
     pub const Failure: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus/singular?language=objc)
     #[doc(alias = "MPSMatrixDecompositionStatusSingular")]
     pub const Singular: Self = Self(-2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus/nonpositivedefinite?language=objc)
     #[doc(alias = "MPSMatrixDecompositionStatusNonPositiveDefinite")]
     pub const NonPositiveDefinite: Self = Self(-3);
 }

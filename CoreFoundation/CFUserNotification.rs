@@ -30,6 +30,7 @@ pub type CFUserNotificationCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFUserNotification, CFOptionFlags)>;
 
 unsafe impl ConcreteType for CFUserNotification {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationgettypeid()?language=objc)
     #[doc(alias = "CFUserNotificationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -41,6 +42,8 @@ unsafe impl ConcreteType for CFUserNotification {
 }
 
 impl CFUserNotification {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationcreate(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -71,6 +74,8 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationreceiveresponse(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `response_flags` must be a valid pointer.
@@ -92,6 +97,8 @@ impl CFUserNotification {
         unsafe { CFUserNotificationReceiveResponse(self, timeout, response_flags) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationgetresponsevalue(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `key` might not allow `None`.
@@ -113,6 +120,7 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationgetresponsedictionary(_:)?language=objc)
     #[doc(alias = "CFUserNotificationGetResponseDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -126,6 +134,8 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationupdate(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dictionary` generic must be of the correct type.
@@ -151,6 +161,7 @@ impl CFUserNotification {
         unsafe { CFUserNotificationUpdate(self, timeout, flags, dictionary) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationcancel(_:)?language=objc)
     #[doc(alias = "CFUserNotificationCancel")]
     #[inline]
     pub fn cancel(&self) -> i32 {
@@ -160,6 +171,8 @@ impl CFUserNotification {
         unsafe { CFUserNotificationCancel(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationcreaterunloopsource(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -188,6 +201,7 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationdisplaynotice(_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFUserNotificationDisplayNotice")]
     #[cfg(all(feature = "CFDate", feature = "CFURL"))]
     #[inline]
@@ -227,6 +241,8 @@ impl CFUserNotification {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationdisplayalert(_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `icon_url` might not allow `None`.

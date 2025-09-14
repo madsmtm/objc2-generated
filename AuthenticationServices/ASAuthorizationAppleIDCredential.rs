@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASUserDetectionStatus(pub NSInteger);
 impl ASUserDetectionStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuserdetectionstatus/unsupported?language=objc)
     #[doc(alias = "ASUserDetectionStatusUnsupported")]
     pub const Unsupported: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuserdetectionstatus/unknown?language=objc)
     #[doc(alias = "ASUserDetectionStatusUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuserdetectionstatus/likelyreal?language=objc)
     #[doc(alias = "ASUserDetectionStatusLikelyReal")]
     pub const LikelyReal: Self = Self(2);
 }
@@ -34,10 +37,13 @@ unsafe impl RefEncode for ASUserDetectionStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASUserAgeRange(pub NSInteger);
 impl ASUserAgeRange {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuseragerange/unknown?language=objc)
     #[doc(alias = "ASUserAgeRangeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuseragerange/child?language=objc)
     #[doc(alias = "ASUserAgeRangeChild")]
     pub const Child: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuseragerange/notchild?language=objc)
     #[doc(alias = "ASUserAgeRangeNotChild")]
     pub const NotChild: Self = Self(2);
 }

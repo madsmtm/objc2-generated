@@ -12,20 +12,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetMessageAttributeIntentResponseCode(pub NSInteger);
 impl INSetMessageAttributeIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/ready?language=objc)
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/success?language=objc)
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/failure?language=objc)
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/failuremessagenotfound?language=objc)
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeFailureMessageNotFound")]
     pub const FailureMessageNotFound: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/failuremessageattributenotset?language=objc)
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeFailureMessageAttributeNotSet")]
     pub const FailureMessageAttributeNotSet: Self = Self(7);
 }

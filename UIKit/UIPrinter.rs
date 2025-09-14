@@ -19,22 +19,31 @@ use crate::*;
 pub struct UIPrinterJobTypes(pub NSInteger);
 bitflags::bitflags! {
     impl UIPrinterJobTypes: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/unknown?language=objc)
         #[doc(alias = "UIPrinterJobTypeUnknown")]
         const Unknown = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/document?language=objc)
         #[doc(alias = "UIPrinterJobTypeDocument")]
         const Document = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/envelope?language=objc)
         #[doc(alias = "UIPrinterJobTypeEnvelope")]
         const Envelope = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/label?language=objc)
         #[doc(alias = "UIPrinterJobTypeLabel")]
         const Label = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/photo?language=objc)
         #[doc(alias = "UIPrinterJobTypePhoto")]
         const Photo = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/receipt?language=objc)
         #[doc(alias = "UIPrinterJobTypeReceipt")]
         const Receipt = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/roll?language=objc)
         #[doc(alias = "UIPrinterJobTypeRoll")]
         const Roll = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/largeformat?language=objc)
         #[doc(alias = "UIPrinterJobTypeLargeFormat")]
         const LargeFormat = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/postcard?language=objc)
         #[doc(alias = "UIPrinterJobTypePostcard")]
         const Postcard = 1<<7;
     }

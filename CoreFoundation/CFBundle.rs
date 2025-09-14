@@ -77,6 +77,7 @@ extern "C" {
 }
 
 impl CFBundle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetmainbundle()?language=objc)
     #[doc(alias = "CFBundleGetMainBundle")]
     #[inline]
     pub fn main_bundle() -> Option<CFRetained<CFBundle>> {
@@ -87,6 +88,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetbundlewithidentifier(_:)?language=objc)
     #[doc(alias = "CFBundleGetBundleWithIdentifier")]
     #[inline]
     pub fn bundle_with_identifier(bundle_id: Option<&CFString>) -> Option<CFRetained<CFBundle>> {
@@ -99,6 +101,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetallbundles()?language=objc)
     #[doc(alias = "CFBundleGetAllBundles")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -112,6 +115,7 @@ impl CFBundle {
 }
 
 unsafe impl ConcreteType for CFBundle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegettypeid()?language=objc)
     #[doc(alias = "CFBundleGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -123,6 +127,7 @@ unsafe impl ConcreteType for CFBundle {
 }
 
 impl CFBundle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecreate(_:_:)?language=objc)
     #[doc(alias = "CFBundleCreate")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -140,6 +145,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecreatebundlesfromdirectory(_:_:_:)?language=objc)
     #[doc(alias = "CFBundleCreateBundlesFromDirectory")]
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
     #[inline]
@@ -160,6 +166,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopybundleurl(_:)?language=objc)
     #[doc(alias = "CFBundleCopyBundleURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -171,6 +178,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetvalueforinfodictionarykey(_:_:)?language=objc)
     #[doc(alias = "CFBundleGetValueForInfoDictionaryKey")]
     #[inline]
     pub fn value_for_info_dictionary_key(
@@ -187,6 +195,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetinfodictionary(_:)?language=objc)
     #[doc(alias = "CFBundleGetInfoDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -198,6 +207,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetlocalinfodictionary(_:)?language=objc)
     #[doc(alias = "CFBundleGetLocalInfoDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -209,6 +219,8 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetpackageinfo(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `package_type` must be a valid pointer.
@@ -226,6 +238,7 @@ impl CFBundle {
         unsafe { CFBundleGetPackageInfo(self, package_type, package_creator) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetidentifier(_:)?language=objc)
     #[doc(alias = "CFBundleGetIdentifier")]
     #[inline]
     pub fn identifier(&self) -> Option<CFRetained<CFString>> {
@@ -236,6 +249,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetversionnumber(_:)?language=objc)
     #[doc(alias = "CFBundleGetVersionNumber")]
     #[inline]
     pub fn version_number(&self) -> u32 {
@@ -245,6 +259,7 @@ impl CFBundle {
         unsafe { CFBundleGetVersionNumber(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetdevelopmentregion(_:)?language=objc)
     #[doc(alias = "CFBundleGetDevelopmentRegion")]
     #[inline]
     pub fn development_region(&self) -> Option<CFRetained<CFString>> {
@@ -255,6 +270,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopysupportfilesdirectoryurl(_:)?language=objc)
     #[doc(alias = "CFBundleCopySupportFilesDirectoryURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -266,6 +282,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourcesdirectoryurl(_:)?language=objc)
     #[doc(alias = "CFBundleCopyResourcesDirectoryURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -277,6 +294,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyprivateframeworksurl(_:)?language=objc)
     #[doc(alias = "CFBundleCopyPrivateFrameworksURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -288,6 +306,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopysharedframeworksurl(_:)?language=objc)
     #[doc(alias = "CFBundleCopySharedFrameworksURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -299,6 +318,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopysharedsupporturl(_:)?language=objc)
     #[doc(alias = "CFBundleCopySharedSupportURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -310,6 +330,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopybuiltinpluginsurl(_:)?language=objc)
     #[doc(alias = "CFBundleCopyBuiltInPlugInsURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -321,6 +342,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyinfodictionaryindirectory(_:)?language=objc)
     #[doc(alias = "CFBundleCopyInfoDictionaryInDirectory")]
     #[cfg(all(feature = "CFDictionary", feature = "CFURL"))]
     #[inline]
@@ -336,6 +358,8 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetpackageinfoindirectory(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `url` might not allow `None`.
@@ -360,6 +384,7 @@ impl CFBundle {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurl(_:_:_:_:)?language=objc)
     #[doc(alias = "CFBundleCopyResourceURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -382,6 +407,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlsoftype(_:_:_:)?language=objc)
     #[doc(alias = "CFBundleCopyResourceURLsOfType")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -401,6 +427,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizedstring(_:_:_:_:)?language=objc)
     #[doc(alias = "CFBundleCopyLocalizedString")]
     #[inline]
     pub fn localized_string(
@@ -437,6 +464,8 @@ impl CFBundle {
     /// - `table_name` might not allow `None`.
     /// - `localizations` generic must be of the correct type.
     /// - `localizations` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizedstringforlocalizations(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFBundleCopyLocalizedStringForLocalizations")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -462,6 +491,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlindirectory(_:_:_:_:)?language=objc)
     #[doc(alias = "CFBundleCopyResourceURLInDirectory")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -490,6 +520,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlsoftypeindirectory(_:_:_:)?language=objc)
     #[doc(alias = "CFBundleCopyResourceURLsOfTypeInDirectory")]
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
     #[inline]
@@ -511,6 +542,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopybundlelocalizations(_:)?language=objc)
     #[doc(alias = "CFBundleCopyBundleLocalizations")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -522,6 +554,8 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopypreferredlocalizationsfromarray(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `loc_array` generic must be of the correct type.
@@ -541,6 +575,8 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizationsforpreferences(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `loc_array` generic must be of the correct type.
@@ -564,6 +600,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlforlocalization(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFBundleCopyResourceURLForLocalization")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -595,6 +632,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlsoftypeforlocalization(_:_:_:_:)?language=objc)
     #[doc(alias = "CFBundleCopyResourceURLsOfTypeForLocalization")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -623,6 +661,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyinfodictionaryforurl(_:)?language=objc)
     #[doc(alias = "CFBundleCopyInfoDictionaryForURL")]
     #[cfg(all(feature = "CFDictionary", feature = "CFURL"))]
     #[inline]
@@ -636,6 +675,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizationsforurl(_:)?language=objc)
     #[doc(alias = "CFBundleCopyLocalizationsForURL")]
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
     #[inline]
@@ -647,6 +687,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyexecutablearchitecturesforurl(_:)?language=objc)
     #[doc(alias = "CFBundleCopyExecutableArchitecturesForURL")]
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
     #[inline]
@@ -660,6 +701,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyexecutableurl(_:)?language=objc)
     #[doc(alias = "CFBundleCopyExecutableURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -684,6 +726,7 @@ pub const kCFBundleExecutableArchitecturePPC64: c_uint = 0x01000012;
 pub const kCFBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 impl CFBundle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyexecutablearchitectures(_:)?language=objc)
     #[doc(alias = "CFBundleCopyExecutableArchitectures")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -695,6 +738,8 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlepreflightexecutable(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer.
@@ -709,6 +754,8 @@ impl CFBundle {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleloadexecutableandreturnerror(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer.
@@ -726,6 +773,7 @@ impl CFBundle {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleloadexecutable(_:)?language=objc)
     #[doc(alias = "CFBundleLoadExecutable")]
     #[inline]
     pub unsafe fn load_executable(&self) -> bool {
@@ -736,6 +784,7 @@ impl CFBundle {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleisexecutableloaded(_:)?language=objc)
     #[doc(alias = "CFBundleIsExecutableLoaded")]
     #[inline]
     pub fn is_executable_loaded(&self) -> bool {
@@ -746,6 +795,7 @@ impl CFBundle {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleunloadexecutable(_:)?language=objc)
     #[doc(alias = "CFBundleUnloadExecutable")]
     #[inline]
     pub unsafe fn unload_executable(&self) {
@@ -755,6 +805,7 @@ impl CFBundle {
         unsafe { CFBundleUnloadExecutable(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetfunctionpointerforname(_:_:)?language=objc)
     #[doc(alias = "CFBundleGetFunctionPointerForName")]
     #[inline]
     pub fn function_pointer_for_name(&self, function_name: Option<&CFString>) -> *mut c_void {
@@ -767,6 +818,8 @@ impl CFBundle {
         unsafe { CFBundleGetFunctionPointerForName(self, function_name) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetfunctionpointersfornames(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `function_names` generic must be of the correct type.
@@ -790,6 +843,7 @@ impl CFBundle {
         unsafe { CFBundleGetFunctionPointersForNames(self, function_names, ftbl) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetdatapointerforname(_:_:)?language=objc)
     #[doc(alias = "CFBundleGetDataPointerForName")]
     #[inline]
     pub fn data_pointer_for_name(&self, symbol_name: Option<&CFString>) -> *mut c_void {
@@ -802,6 +856,8 @@ impl CFBundle {
         unsafe { CFBundleGetDataPointerForName(self, symbol_name) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetdatapointersfornames(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `symbol_names` generic must be of the correct type.
@@ -825,6 +881,7 @@ impl CFBundle {
         unsafe { CFBundleGetDataPointersForNames(self, symbol_names, stbl) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyauxiliaryexecutableurl(_:_:)?language=objc)
     #[doc(alias = "CFBundleCopyAuxiliaryExecutableURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -842,6 +899,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleisexecutableloadable(_:)?language=objc)
     #[doc(alias = "CFBundleIsExecutableLoadable")]
     #[inline]
     pub fn is_executable_loadable(&self) -> bool {
@@ -852,6 +910,7 @@ impl CFBundle {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleisexecutableloadableforurl(_:)?language=objc)
     #[doc(alias = "CFBundleIsExecutableLoadableForURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -863,6 +922,7 @@ impl CFBundle {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleisarchitectureloadable(_:)?language=objc)
     #[doc(alias = "CFBundleIsArchitectureLoadable")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -874,6 +934,7 @@ impl CFBundle {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetplugin(_:)?language=objc)
     #[doc(alias = "CFBundleGetPlugIn")]
     #[inline]
     pub fn plug_in(&self) -> Option<CFRetained<CFPlugIn>> {
@@ -884,6 +945,7 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleopenbundleresourcemap(_:)?language=objc)
     #[doc(alias = "CFBundleOpenBundleResourceMap")]
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
     #[inline]
@@ -894,6 +956,8 @@ impl CFBundle {
         unsafe { CFBundleOpenBundleResourceMap(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleopenbundleresourcefiles(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ref_num` must be a valid pointer.
@@ -916,6 +980,7 @@ impl CFBundle {
         unsafe { CFBundleOpenBundleResourceFiles(self, ref_num, localized_ref_num) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleclosebundleresourcemap(_:_:)?language=objc)
     #[doc(alias = "CFBundleCloseBundleResourceMap")]
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
     #[inline]

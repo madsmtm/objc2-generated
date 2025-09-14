@@ -64,10 +64,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNShadowMode(pub NSInteger);
 impl SCNShadowMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadowmode/forward?language=objc)
     #[doc(alias = "SCNShadowModeForward")]
     pub const Forward: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadowmode/deferred?language=objc)
     #[doc(alias = "SCNShadowModeDeferred")]
     pub const Deferred: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadowmode/modulated?language=objc)
     #[doc(alias = "SCNShadowModeModulated")]
     pub const Modulated: Self = Self(2);
 }
@@ -86,8 +89,10 @@ unsafe impl RefEncode for SCNShadowMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNLightProbeType(pub NSInteger);
 impl SCNLightProbeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobetype/irradiance?language=objc)
     #[doc(alias = "SCNLightProbeTypeIrradiance")]
     pub const Irradiance: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobetype/radiance?language=objc)
     #[doc(alias = "SCNLightProbeTypeRadiance")]
     pub const Radiance: Self = Self(1);
 }
@@ -106,8 +111,10 @@ unsafe impl RefEncode for SCNLightProbeType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNLightProbeUpdateType(pub NSInteger);
 impl SCNLightProbeUpdateType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobeupdatetype/never?language=objc)
     #[doc(alias = "SCNLightProbeUpdateTypeNever")]
     pub const Never: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobeupdatetype/realtime?language=objc)
     #[doc(alias = "SCNLightProbeUpdateTypeRealtime")]
     pub const Realtime: Self = Self(1);
 }
@@ -126,8 +133,10 @@ unsafe impl RefEncode for SCNLightProbeUpdateType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCNLightAreaType(pub NSInteger);
 impl SCNLightAreaType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightareatype/rectangle?language=objc)
     #[doc(alias = "SCNLightAreaTypeRectangle")]
     pub const Rectangle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightareatype/polygon?language=objc)
     #[doc(alias = "SCNLightAreaTypePolygon")]
     pub const Polygon: Self = Self(4);
 }

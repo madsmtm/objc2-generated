@@ -61,6 +61,7 @@ unsafe impl RefEncode for CGFunctionCallbacks {
 }
 
 unsafe impl ConcreteType for CGFunction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunction/typeid?language=objc)
     #[doc(alias = "CGFunctionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -72,6 +73,8 @@ unsafe impl ConcreteType for CGFunction {
 }
 
 impl CGFunction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunction/init(info:domaindimension:domain:rangedimension:range:callbacks:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.

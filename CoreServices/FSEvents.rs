@@ -151,6 +151,8 @@ pub type FSEventStreamCallback = Option<
 >;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443980-fseventstreamcreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -168,6 +170,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447341-fseventstreamcreaterelativetodev?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -187,6 +191,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446030-fseventstreamgetlatesteventid?language=objc)
+    ///
     /// # Safety
     ///
     /// `stream_ref` must be a valid pointer.
@@ -195,6 +201,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449675-fseventstreamgetdevicebeingwatch?language=objc)
+    ///
     /// # Safety
     ///
     /// `stream_ref` must be a valid pointer.
@@ -202,6 +210,8 @@ extern "C-unwind" {
     pub fn FSEventStreamGetDeviceBeingWatched(stream_ref: ConstFSEventStreamRef) -> libc::dev_t;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447917-fseventstreamcopypathsbeingwatch?language=objc)
+///
 /// # Safety
 ///
 /// `stream_ref` must be a valid pointer.
@@ -220,9 +230,11 @@ pub unsafe extern "C-unwind" fn FSEventStreamCopyPathsBeingWatched(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442917-fseventsgetcurrenteventid?language=objc)
     pub fn FSEventsGetCurrentEventId() -> FSEventStreamEventId;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444453-fseventscopyuuidfordevice?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn FSEventsCopyUUIDForDevice(
@@ -236,6 +248,7 @@ pub unsafe extern "C-unwind" fn FSEventsCopyUUIDForDevice(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449772-fseventsgetlasteventidfordeviceb?language=objc)
     #[cfg(feature = "libc")]
     pub fn FSEventsGetLastEventIdForDeviceBeforeTime(
         dev: libc::dev_t,
@@ -243,6 +256,7 @@ extern "C-unwind" {
     ) -> FSEventStreamEventId;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447985-fseventspurgeeventsfordeviceupto?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn FSEventsPurgeEventsForDeviceUpToEventId(
@@ -260,6 +274,8 @@ pub unsafe extern "C-unwind" fn FSEventsPurgeEventsForDeviceUpToEventId(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444986-fseventstreamretain?language=objc)
+    ///
     /// # Safety
     ///
     /// `stream_ref` must be a valid pointer.
@@ -267,6 +283,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445989-fseventstreamrelease?language=objc)
+    ///
     /// # Safety
     ///
     /// `stream_ref` must be a valid pointer.
@@ -274,6 +292,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447824-fseventstreamschedulewithrunloop?language=objc)
+    ///
     /// # Safety
     ///
     /// - `stream_ref` must be a valid pointer.
@@ -287,6 +307,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441982-fseventstreamunschedulefromrunlo?language=objc)
+    ///
     /// # Safety
     ///
     /// - `stream_ref` must be a valid pointer.
@@ -300,6 +322,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444164-fseventstreamsetdispatchqueue?language=objc)
+    ///
     /// # Safety
     ///
     /// - `stream_ref` must be a valid pointer.
@@ -309,12 +333,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446990-fseventstreaminvalidate?language=objc)
+    ///
     /// # Safety
     ///
     /// `stream_ref` must be a valid pointer.
     pub fn FSEventStreamInvalidate(stream_ref: FSEventStreamRef);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448000-fseventstreamstart?language=objc)
+///
 /// # Safety
 ///
 /// `stream_ref` must be a valid pointer.
@@ -328,6 +356,8 @@ pub unsafe extern "C-unwind" fn FSEventStreamStart(stream_ref: FSEventStreamRef)
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441727-fseventstreamflushasync?language=objc)
+    ///
     /// # Safety
     ///
     /// `stream_ref` must be a valid pointer.
@@ -335,6 +365,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445629-fseventstreamflushsync?language=objc)
+    ///
     /// # Safety
     ///
     /// `stream_ref` must be a valid pointer.
@@ -342,6 +374,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447673-fseventstreamstop?language=objc)
+    ///
     /// # Safety
     ///
     /// `stream_ref` must be a valid pointer.
@@ -349,12 +383,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444302-fseventstreamshow?language=objc)
+    ///
     /// # Safety
     ///
     /// `stream_ref` must be a valid pointer.
     pub fn FSEventStreamShow(stream_ref: ConstFSEventStreamRef);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442676-fseventstreamcopydescription?language=objc)
+///
 /// # Safety
 ///
 /// `stream_ref` must be a valid pointer.
@@ -372,6 +410,8 @@ pub unsafe extern "C-unwind" fn FSEventStreamCopyDescription(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444666-fseventstreamsetexclusionpaths?language=objc)
+///
 /// # Safety
 ///
 /// - `stream_ref` must be a valid pointer.

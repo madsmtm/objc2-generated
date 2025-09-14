@@ -25,16 +25,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionContextError(pub NSInteger);
 impl WKWebExtensionContextError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/unknown?language=objc)
     #[doc(alias = "WKWebExtensionContextErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/alreadyloaded?language=objc)
     #[doc(alias = "WKWebExtensionContextErrorAlreadyLoaded")]
     pub const AlreadyLoaded: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/notloaded?language=objc)
     #[doc(alias = "WKWebExtensionContextErrorNotLoaded")]
     pub const NotLoaded: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/baseurlalreadyinuse?language=objc)
     #[doc(alias = "WKWebExtensionContextErrorBaseURLAlreadyInUse")]
     pub const BaseURLAlreadyInUse: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/nobackgroundcontent?language=objc)
     #[doc(alias = "WKWebExtensionContextErrorNoBackgroundContent")]
     pub const NoBackgroundContent: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/backgroundcontentfailedtoload?language=objc)
     #[doc(alias = "WKWebExtensionContextErrorBackgroundContentFailedToLoad")]
     pub const BackgroundContentFailedToLoad: Self = Self(6);
 }
@@ -62,18 +68,25 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionContextPermissionStatus(pub NSInteger);
 impl WKWebExtensionContextPermissionStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/deniedexplicitly?language=objc)
     #[doc(alias = "WKWebExtensionContextPermissionStatusDeniedExplicitly")]
     pub const DeniedExplicitly: Self = Self(-3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/deniedimplicitly?language=objc)
     #[doc(alias = "WKWebExtensionContextPermissionStatusDeniedImplicitly")]
     pub const DeniedImplicitly: Self = Self(-2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/requestedimplicitly?language=objc)
     #[doc(alias = "WKWebExtensionContextPermissionStatusRequestedImplicitly")]
     pub const RequestedImplicitly: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/unknown?language=objc)
     #[doc(alias = "WKWebExtensionContextPermissionStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/requestedexplicitly?language=objc)
     #[doc(alias = "WKWebExtensionContextPermissionStatusRequestedExplicitly")]
     pub const RequestedExplicitly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/grantedimplicitly?language=objc)
     #[doc(alias = "WKWebExtensionContextPermissionStatusGrantedImplicitly")]
     pub const GrantedImplicitly: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/grantedexplicitly?language=objc)
     #[doc(alias = "WKWebExtensionContextPermissionStatusGrantedExplicitly")]
     pub const GrantedExplicitly: Self = Self(3);
 }

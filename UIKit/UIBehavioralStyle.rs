@@ -14,12 +14,18 @@ use crate::*;
 pub struct UIBehavioralStyle(pub NSUInteger);
 impl UIBehavioralStyle {
     /// The system will choose the most appropriate style for the targetted platform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibehavioralstyle/automatic?language=objc)
     #[doc(alias = "UIBehavioralStyleAutomatic")]
     pub const Automatic: Self = Self(0);
     /// A style and set of behaviors best for iOS/iPadOS applications
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibehavioralstyle/pad?language=objc)
     #[doc(alias = "UIBehavioralStylePad")]
     pub const Pad: Self = Self(1);
     /// A style and set of behaviors best for macOS applications
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibehavioralstyle/mac?language=objc)
     #[doc(alias = "UIBehavioralStyleMac")]
     pub const Mac: Self = Self(2);
 }

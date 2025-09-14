@@ -117,8 +117,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIActivityCategory(pub NSInteger);
 impl UIActivityCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/category/action?language=objc)
     #[doc(alias = "UIActivityCategoryAction")]
     pub const Action: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/category/share?language=objc)
     #[doc(alias = "UIActivityCategoryShare")]
     pub const Share: Self = Self(1);
 }

@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextInteractionMode(pub NSInteger);
 impl UITextInteractionMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinteractionmode/editable?language=objc)
     #[doc(alias = "UITextInteractionModeEditable")]
     pub const Editable: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinteractionmode/noneditable?language=objc)
     #[doc(alias = "UITextInteractionModeNonEditable")]
     pub const NonEditable: Self = Self(1);
 }

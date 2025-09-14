@@ -21,10 +21,14 @@ impl NSMenuPresentationStyle {
     /// The default presentation style. Typically means the menu will
     /// be presented as either a popup or pulldown menu, based on the
     /// context.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/presentationstyle-swift.enum/regular?language=objc)
     #[doc(alias = "NSMenuPresentationStyleRegular")]
     pub const Regular: Self = Self(0);
     /// The menu marked as palette is to be displayed in place of the
     /// menu item presenting it, with its items aligned horizontally.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/presentationstyle-swift.enum/palette?language=objc)
     #[doc(alias = "NSMenuPresentationStylePalette")]
     pub const Palette: Self = Self(1);
 }
@@ -52,16 +56,22 @@ pub struct NSMenuSelectionMode(pub NSInteger);
 impl NSMenuSelectionMode {
     /// The menu will determine the appropriate selection mode based
     /// on the context and its contents.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/selectionmode-swift.enum/automatic?language=objc)
     #[doc(alias = "NSMenuSelectionModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The user will be allowed to select at most one menu item in
     /// the same selection group at a time. A change in selection
     /// will deselect any previously selected item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/selectionmode-swift.enum/selectone?language=objc)
     #[doc(alias = "NSMenuSelectionModeSelectOne")]
     pub const SelectOne: Self = Self(1);
     /// The user can select multiple items in the menu. A change in
     /// selection will not automatically deselect any previously
     /// selected item in the same selection group.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/selectionmode-swift.enum/selectany?language=objc)
     #[doc(alias = "NSMenuSelectionModeSelectAny")]
     pub const SelectAny: Self = Self(2);
 }
@@ -646,16 +656,22 @@ extern_protocol!(
 pub struct NSMenuProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMenuProperties: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemtitle?language=objc)
         #[doc(alias = "NSMenuPropertyItemTitle")]
         const ItemTitle = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemattributedtitle?language=objc)
         #[doc(alias = "NSMenuPropertyItemAttributedTitle")]
         const ItemAttributedTitle = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemkeyequivalent?language=objc)
         #[doc(alias = "NSMenuPropertyItemKeyEquivalent")]
         const ItemKeyEquivalent = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemimage?language=objc)
         #[doc(alias = "NSMenuPropertyItemImage")]
         const ItemImage = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemenabled?language=objc)
         #[doc(alias = "NSMenuPropertyItemEnabled")]
         const ItemEnabled = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemaccessibilitydescription?language=objc)
         #[doc(alias = "NSMenuPropertyItemAccessibilityDescription")]
         const ItemAccessibilityDescription = 1<<5;
     }

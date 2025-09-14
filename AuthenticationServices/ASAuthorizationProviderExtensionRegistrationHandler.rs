@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationProviderExtensionAuthenticationMethod(pub NSInteger);
 impl ASAuthorizationProviderExtensionAuthenticationMethod {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthenticationmethod/password?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodPassword")]
     pub const Password: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthenticationmethod/usersecureenclavekey?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodUserSecureEnclaveKey")]
     pub const UserSecureEnclaveKey: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthenticationmethod/smartcard?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodSmartCard")]
     pub const SmartCard: Self = Self(3);
 }
@@ -38,20 +41,28 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionAuthenticationMethod {
 pub struct ASAuthorizationProviderExtensionRequestOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAuthorizationProviderExtensionRequestOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/asauthorizationproviderextensionrequestoptionsnone?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/userinteractionenabled?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserInteractionEnabled")]
         const UserInteractionEnabled = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/registrationrepair?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationRepair")]
         const RegistrationRepair = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/registrationshareddevicekeys?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationSharedDeviceKeys")]
         const RegistrationSharedDeviceKeys = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/registrationdevicekeymigration?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationDeviceKeyMigration")]
         const RegistrationDeviceKeyMigration = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/strongerkeyavailable?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsStrongerKeyAvailable")]
         const StrongerKeyAvailable = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/userkeyinvalid?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserKeyInvalid")]
         const UserKeyInvalid = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/setupassistant?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsSetupAssistant")]
         const SetupAssistant = 1<<6;
     }
@@ -71,12 +82,16 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionRequestOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionRegistrationResult(pub NSInteger);
 impl ASAuthorizationProviderExtensionRegistrationResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/success?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/failed?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultFailed")]
     pub const Failed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/userinterfacerequired?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultUserInterfaceRequired")]
     pub const UserInterfaceRequired: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/failednoretry?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry")]
     pub const FailedNoRetry: Self = Self(3);
 }
@@ -96,14 +111,19 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionRegistrationResult {
 pub struct ASAuthorizationProviderExtensionSupportedGrantTypes(pub NSInteger);
 bitflags::bitflags! {
     impl ASAuthorizationProviderExtensionSupportedGrantTypes: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes/asauthorizationproviderextensionsupportedgranttypesnone?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes/password?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesPassword")]
         const Password = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes/jwtbearer?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesJWTBearer")]
         const JWTBearer = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes/saml1_1?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML1_1")]
         const SAML1_1 = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes/saml2_0?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML2_0")]
         const SAML2_0 = 1<<3;
     }
@@ -123,8 +143,10 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionSupportedGrantTypes {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionPlatformSSOProtocolVersion(pub NSInteger);
 impl ASAuthorizationProviderExtensionPlatformSSOProtocolVersion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionplatformssoprotocolversion/version1_0?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionPlatformSSOProtocolVersion1_0")]
     pub const Version1_0: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionplatformssoprotocolversion/version2_0?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionPlatformSSOProtocolVersion2_0")]
     pub const Version2_0: Self = Self(1);
 }

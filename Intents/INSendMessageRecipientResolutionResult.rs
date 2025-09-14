@@ -12,18 +12,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSendMessageRecipientUnsupportedReason(pub NSInteger);
 impl INSendMessageRecipientUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/noaccount?language=objc)
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonNoAccount")]
     pub const NoAccount: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/offline?language=objc)
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonOffline")]
     pub const Offline: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/messagingservicenotenabledforrecipient?language=objc)
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonMessagingServiceNotEnabledForRecipient")]
     pub const MessagingServiceNotEnabledForRecipient: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/novalidhandle?language=objc)
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonNoValidHandle")]
     pub const NoValidHandle: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/requestedhandleinvalid?language=objc)
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonRequestedHandleInvalid")]
     pub const RequestedHandleInvalid: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/nohandleforlabel?language=objc)
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonNoHandleForLabel")]
     pub const NoHandleForLabel: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/requiringinappauthentication?language=objc)
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonRequiringInAppAuthentication")]
     pub const RequiringInAppAuthentication: Self = Self(7);
 }

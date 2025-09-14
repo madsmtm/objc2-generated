@@ -95,8 +95,10 @@ impl HKWorkoutEffortRelationship {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWorkoutEffortRelationshipQueryOptions(pub NSInteger);
 impl HKWorkoutEffortRelationshipQueryOptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationshipqueryoptions/default?language=objc)
     #[doc(alias = "HKWorkoutEffortRelationshipQueryOptionsDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationshipqueryoptions/mostrelevant?language=objc)
     #[doc(alias = "HKWorkoutEffortRelationshipQueryOptionsMostRelevant")]
     pub const MostRelevant: Self = Self(1 << 0);
 }

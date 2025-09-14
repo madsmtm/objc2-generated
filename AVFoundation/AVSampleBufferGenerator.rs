@@ -143,10 +143,13 @@ impl AVSampleBufferGenerator {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSampleBufferRequestDirection(pub NSInteger);
 impl AVSampleBufferRequestDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/direction-swift.enum/forward?language=objc)
     #[doc(alias = "AVSampleBufferRequestDirectionForward")]
     pub const Forward: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/direction-swift.enum/none?language=objc)
     #[doc(alias = "AVSampleBufferRequestDirectionNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/direction-swift.enum/reverse?language=objc)
     #[doc(alias = "AVSampleBufferRequestDirectionReverse")]
     pub const Reverse: Self = Self(-1);
 }
@@ -174,10 +177,13 @@ unsafe impl RefEncode for AVSampleBufferRequestDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSampleBufferRequestMode(pub NSInteger);
 impl AVSampleBufferRequestMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/mode-swift.enum/immediate?language=objc)
     #[doc(alias = "AVSampleBufferRequestModeImmediate")]
     pub const Immediate: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/mode-swift.enum/scheduled?language=objc)
     #[doc(alias = "AVSampleBufferRequestModeScheduled")]
     pub const Scheduled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/mode-swift.enum/opportunistic?language=objc)
     #[doc(alias = "AVSampleBufferRequestModeOpportunistic")]
     pub const Opportunistic: Self = Self(2);
 }

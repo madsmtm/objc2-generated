@@ -16,8 +16,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarItemStyle(pub NSInteger);
 impl NSToolbarItemStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/style-swift.enum/plain?language=objc)
     #[doc(alias = "NSToolbarItemStylePlain")]
     pub const Plain: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/style-swift.enum/prominent?language=objc)
     #[doc(alias = "NSToolbarItemStyleProminent")]
     pub const Prominent: Self = Self(1);
 }

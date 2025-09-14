@@ -12,26 +12,37 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGError(pub i32);
 impl CGError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/success?language=objc)
     #[doc(alias = "kCGErrorSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/failure?language=objc)
     #[doc(alias = "kCGErrorFailure")]
     pub const Failure: Self = Self(1000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/illegalargument?language=objc)
     #[doc(alias = "kCGErrorIllegalArgument")]
     pub const IllegalArgument: Self = Self(1001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/invalidconnection?language=objc)
     #[doc(alias = "kCGErrorInvalidConnection")]
     pub const InvalidConnection: Self = Self(1002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/invalidcontext?language=objc)
     #[doc(alias = "kCGErrorInvalidContext")]
     pub const InvalidContext: Self = Self(1003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/cannotcomplete?language=objc)
     #[doc(alias = "kCGErrorCannotComplete")]
     pub const CannotComplete: Self = Self(1004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/notimplemented?language=objc)
     #[doc(alias = "kCGErrorNotImplemented")]
     pub const NotImplemented: Self = Self(1006);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/rangecheck?language=objc)
     #[doc(alias = "kCGErrorRangeCheck")]
     pub const RangeCheck: Self = Self(1007);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/typecheck?language=objc)
     #[doc(alias = "kCGErrorTypeCheck")]
     pub const TypeCheck: Self = Self(1008);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/invalidoperation?language=objc)
     #[doc(alias = "kCGErrorInvalidOperation")]
     pub const InvalidOperation: Self = Self(1010);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/noneavailable?language=objc)
     #[doc(alias = "kCGErrorNoneAvailable")]
     pub const NoneAvailable: Self = Self(1011);
 }
@@ -50,6 +61,8 @@ unsafe impl RefEncode for CGError {
 pub type CGErrorCallback = Option<unsafe extern "C-unwind" fn()>;
 
 impl CGError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerrorsetcallback(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `callback` must be implemented correctly.

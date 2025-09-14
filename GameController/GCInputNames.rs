@@ -155,6 +155,7 @@ extern "C" {
     pub static GCInputRightTrigger: Option<&'static GCInputButtonName>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbackleftbutton?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn GCInputBackLeftButton(
     position: NSInteger,
@@ -166,6 +167,7 @@ pub unsafe extern "C-unwind" fn GCInputBackLeftButton(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbackrightbutton?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn GCInputBackRightButton(
     position: NSInteger,
@@ -284,6 +286,8 @@ extern "C" {
 }
 
 /// Gets the name of an arcade button at a certain position.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputarcadebuttonname?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn GCInputArcadeButtonName(
     row: NSInteger,

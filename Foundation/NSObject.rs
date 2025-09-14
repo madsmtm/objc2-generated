@@ -121,6 +121,8 @@ unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 ///
 /// - `a_class` probably has further requirements.
 /// - `zone` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallocateobject?language=objc)
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllocateObject(
@@ -141,12 +143,16 @@ pub unsafe extern "C-unwind" fn NSAllocateObject(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdeallocateobject?language=objc)
+    ///
     /// # Safety
     ///
     /// `object` should be of the correct type.
     pub fn NSDeallocateObject(object: &AnyObject);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscopyobject?language=objc)
+///
 /// # Safety
 ///
 /// - `object` should be of the correct type.
@@ -171,6 +177,8 @@ pub unsafe extern "C-unwind" fn NSCopyObject(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshouldretainwithzone?language=objc)
+///
 /// # Safety
 ///
 /// - `an_object` should be of the correct type.
@@ -188,12 +196,16 @@ pub unsafe extern "C-unwind" fn NSShouldRetainWithZone(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsincrementextrarefcount?language=objc)
+    ///
     /// # Safety
     ///
     /// `object` should be of the correct type.
     pub fn NSIncrementExtraRefCount(object: &AnyObject);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecrementextrarefcountwaszero?language=objc)
+///
 /// # Safety
 ///
 /// `object` should be of the correct type.
@@ -206,6 +218,8 @@ pub unsafe extern "C-unwind" fn NSDecrementExtraRefCountWasZero(object: &AnyObje
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextrarefcount?language=objc)
+    ///
     /// # Safety
     ///
     /// `object` should be of the correct type.

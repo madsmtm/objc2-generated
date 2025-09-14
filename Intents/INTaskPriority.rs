@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTaskPriority(pub NSInteger);
 impl INTaskPriority {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskpriority/unknown?language=objc)
     #[doc(alias = "INTaskPriorityUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskpriority/notflagged?language=objc)
     #[doc(alias = "INTaskPriorityNotFlagged")]
     pub const NotFlagged: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskpriority/flagged?language=objc)
     #[doc(alias = "INTaskPriorityFlagged")]
     pub const Flagged: Self = Self(2);
 }

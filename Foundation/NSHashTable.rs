@@ -245,6 +245,8 @@ unsafe impl RefEncode for NSHashEnumerator {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfreehashtable(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
@@ -252,12 +254,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsresethashtable(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
     pub fn NSResetHashTable(table: &NSHashTable);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparehashtables(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `table1` generic should be of the correct type.
@@ -273,6 +279,8 @@ pub unsafe extern "C-unwind" fn NSCompareHashTables(
     unsafe { NSCompareHashTables(table1, table2) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscopyhashtablewithzone(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -291,6 +299,8 @@ pub unsafe extern "C-unwind" fn NSCopyHashTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashget(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -308,6 +318,8 @@ pub unsafe extern "C-unwind" fn NSHashGet(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashinsert(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `table` generic should be of the correct type.
@@ -316,6 +328,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashinsertknownabsent(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `table` generic should be of the correct type.
@@ -324,6 +338,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashinsertifabsent(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `table` generic should be of the correct type.
@@ -332,6 +348,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashremove(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `table` generic should be of the correct type.
@@ -340,6 +358,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumeratehashtable(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
@@ -347,6 +367,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnexthashenumeratoritem(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `enumerator` must be a valid pointer.
@@ -354,6 +376,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsendhashtableenumeration(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `enumerator` must be a valid pointer.
@@ -361,6 +385,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscounthashtable(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
@@ -369,6 +395,8 @@ extern "C-unwind" {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromhashtable(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
@@ -385,6 +413,8 @@ impl NSString {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallhashtableobjects(_:)?language=objc)
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -447,6 +477,8 @@ unsafe impl RefEncode for NSHashTableCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatehashtablewithzone(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `call_backs` struct field 1 must be implemented correctly.
@@ -474,6 +506,8 @@ pub unsafe extern "C-unwind" fn NSCreateHashTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatehashtable(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `call_backs` struct field 1 must be implemented correctly.

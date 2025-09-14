@@ -18,8 +18,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPBarButtonStyle(pub NSInteger);
 impl CPBarButtonStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttonstyle/none?language=objc)
     #[doc(alias = "CPBarButtonStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttonstyle/rounded?language=objc)
     #[doc(alias = "CPBarButtonStyleRounded")]
     pub const Rounded: Self = Self(1);
 }
@@ -41,8 +43,10 @@ unsafe impl RefEncode for CPBarButtonStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPBarButtonType(pub NSUInteger);
 impl CPBarButtonType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbutton/type/text?language=objc)
     #[doc(alias = "CPBarButtonTypeText")]
     pub const Text: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbutton/type/image?language=objc)
     #[doc(alias = "CPBarButtonTypeImage")]
     pub const Image: Self = Self(1);
 }

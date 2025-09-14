@@ -21,10 +21,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioApplicationRecordPermission(pub NSInteger);
 impl AVAudioApplicationRecordPermission {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/recordpermission-swift.enum/undetermined?language=objc)
     #[doc(alias = "AVAudioApplicationRecordPermissionUndetermined")]
     pub const Undetermined: Self = Self(0x756e6474);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/recordpermission-swift.enum/denied?language=objc)
     #[doc(alias = "AVAudioApplicationRecordPermissionDenied")]
     pub const Denied: Self = Self(0x64656e79);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/recordpermission-swift.enum/granted?language=objc)
     #[doc(alias = "AVAudioApplicationRecordPermissionGranted")]
     pub const Granted: Self = Self(0x67726e74);
 }
@@ -55,12 +58,16 @@ unsafe impl RefEncode for AVAudioApplicationRecordPermission {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioApplicationMicrophoneInjectionPermission(pub NSInteger);
 impl AVAudioApplicationMicrophoneInjectionPermission {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/servicedisabled?language=objc)
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionServiceDisabled")]
     pub const ServiceDisabled: Self = Self(0x73726473);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/undetermined?language=objc)
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionUndetermined")]
     pub const Undetermined: Self = Self(0x756e6474);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/denied?language=objc)
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionDenied")]
     pub const Denied: Self = Self(0x64656e79);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/granted?language=objc)
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionGranted")]
     pub const Granted: Self = Self(0x67726e74);
 }

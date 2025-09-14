@@ -18,12 +18,18 @@ use crate::*;
 pub struct MPSGraphSparseStorageType(pub u64);
 impl MPSGraphSparseStorageType {
     /// COO Storage
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsparsestoragetype/coo?language=objc)
     #[doc(alias = "MPSGraphSparseStorageCOO")]
     pub const COO: Self = Self(0);
     /// CSC Storage
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsparsestoragetype/csc?language=objc)
     #[doc(alias = "MPSGraphSparseStorageCSC")]
     pub const CSC: Self = Self(1);
     /// CSR Storage
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsparsestoragetype/csr?language=objc)
     #[doc(alias = "MPSGraphSparseStorageCSR")]
     pub const CSR: Self = Self(2);
 }

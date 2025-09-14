@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPNowPlayingInfoMediaType(pub NSUInteger);
 impl MPNowPlayingInfoMediaType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfomediatype/none?language=objc)
     #[doc(alias = "MPNowPlayingInfoMediaTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfomediatype/audio?language=objc)
     #[doc(alias = "MPNowPlayingInfoMediaTypeAudio")]
     pub const Audio: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfomediatype/video?language=objc)
     #[doc(alias = "MPNowPlayingInfoMediaTypeVideo")]
     pub const Video: Self = Self(2);
 }
@@ -35,14 +38,19 @@ unsafe impl RefEncode for MPNowPlayingInfoMediaType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPNowPlayingPlaybackState(pub NSUInteger);
 impl MPNowPlayingPlaybackState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate/unknown?language=objc)
     #[doc(alias = "MPNowPlayingPlaybackStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate/playing?language=objc)
     #[doc(alias = "MPNowPlayingPlaybackStatePlaying")]
     pub const Playing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate/paused?language=objc)
     #[doc(alias = "MPNowPlayingPlaybackStatePaused")]
     pub const Paused: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate/stopped?language=objc)
     #[doc(alias = "MPNowPlayingPlaybackStateStopped")]
     pub const Stopped: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate/interrupted?language=objc)
     #[doc(alias = "MPNowPlayingPlaybackStateInterrupted")]
     pub const Interrupted: Self = Self(4);
 }

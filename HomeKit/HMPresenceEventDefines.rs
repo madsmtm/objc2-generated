@@ -14,22 +14,34 @@ pub struct HMPresenceEventType(pub NSUInteger);
 impl HMPresenceEventType {
     /// This corresponds to trigger an event for every user entering a home.
     /// This cannot be added as predicate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresenceeventtype/everyentry?language=objc)
     #[doc(alias = "HMPresenceEventTypeEveryEntry")]
     pub const EveryEntry: Self = Self(1);
     /// This corresponds to trigger an event for every user exiting a home.
     /// This cannot be added as predicate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresenceeventtype/everyexit?language=objc)
     #[doc(alias = "HMPresenceEventTypeEveryExit")]
     pub const EveryExit: Self = Self(2);
     /// This corresponds to trigger an event for the first user entering a home.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresenceeventtype/firstentry?language=objc)
     #[doc(alias = "HMPresenceEventTypeFirstEntry")]
     pub const FirstEntry: Self = Self(3);
     /// This corresponds to trigger an event for the last user exiting a home.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresenceeventtype/lastexit?language=objc)
     #[doc(alias = "HMPresenceEventTypeLastExit")]
     pub const LastExit: Self = Self(4);
     /// Convenience value for First Entry to use in predicate of HMEventTrigger.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresenceeventtype/athome?language=objc)
     #[doc(alias = "HMPresenceEventTypeAtHome")]
     pub const AtHome: Self = Self(HMPresenceEventType::FirstEntry.0);
     /// Convenience value for Last Exit to use in predicate of HMEventTrigger.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresenceeventtype/notathome?language=objc)
     #[doc(alias = "HMPresenceEventTypeNotAtHome")]
     pub const NotAtHome: Self = Self(HMPresenceEventType::LastExit.0);
 }
@@ -51,12 +63,18 @@ unsafe impl RefEncode for HMPresenceEventType {
 pub struct HMPresenceEventUserType(pub NSUInteger);
 impl HMPresenceEventUserType {
     /// Only current user's presence is used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresenceeventusertype/currentuser?language=objc)
     #[doc(alias = "HMPresenceEventUserTypeCurrentUser")]
     pub const CurrentUser: Self = Self(1);
     /// Presence of all home users is used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresenceeventusertype/homeusers?language=objc)
     #[doc(alias = "HMPresenceEventUserTypeHomeUsers")]
     pub const HomeUsers: Self = Self(2);
     /// Presence of custom set of home users is used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresenceeventusertype/customusers?language=objc)
     #[doc(alias = "HMPresenceEventUserTypeCustomUsers")]
     pub const CustomUsers: Self = Self(3);
 }

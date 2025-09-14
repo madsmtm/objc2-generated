@@ -12,12 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialRequestType(pub NSInteger);
 impl ASCredentialRequestType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequesttype/password?language=objc)
     #[doc(alias = "ASCredentialRequestTypePassword")]
     pub const Password: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequesttype/passkeyassertion?language=objc)
     #[doc(alias = "ASCredentialRequestTypePasskeyAssertion")]
     pub const PasskeyAssertion: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequesttype/passkeyregistration?language=objc)
     #[doc(alias = "ASCredentialRequestTypePasskeyRegistration")]
     pub const PasskeyRegistration: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequesttype/onetimecode?language=objc)
     #[doc(alias = "ASCredentialRequestTypeOneTimeCode")]
     pub const OneTimeCode: Self = Self(3);
 }

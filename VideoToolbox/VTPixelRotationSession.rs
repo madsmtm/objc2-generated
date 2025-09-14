@@ -48,6 +48,8 @@ impl VTPixelRotationSession {
     /// # Safety
     ///
     /// `pixel_rotation_session_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixelrotationsessioncreate(_:_:)?language=objc)
     #[doc(alias = "VTPixelRotationSessionCreate")]
     #[inline]
     pub unsafe fn create(
@@ -70,6 +72,8 @@ impl VTPixelRotationSession {
     /// When an pixel rotation session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTPixelRotationSessionInvalidate ensures a deterministic, orderly teardown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixelrotationsessioninvalidate(_:)?language=objc)
     #[doc(alias = "VTPixelRotationSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -82,6 +86,8 @@ impl VTPixelRotationSession {
 
 unsafe impl ConcreteType for VTPixelRotationSession {
     /// Returns the CFTypeID for pixel rotation sessions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixelrotationsessiongettypeid()?language=objc)
     #[doc(alias = "VTPixelRotationSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -111,6 +117,8 @@ impl VTPixelRotationSession {
     /// Parameter `destinationBuffer`: The destination buffer.
     ///
     /// Returns: If the transfer was successful, noErr; otherwise an error code, such as kVTPixelRotationNotSupportedErr.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixelrotationsessionrotateimage(_:_:_:)?language=objc)
     #[doc(alias = "VTPixelRotationSessionRotateImage")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]

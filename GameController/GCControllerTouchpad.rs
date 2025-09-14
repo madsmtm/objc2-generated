@@ -14,10 +14,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCTouchState(pub NSInteger);
 impl GCTouchState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchstate-swift.enum/up?language=objc)
     #[doc(alias = "GCTouchStateUp")]
     pub const Up: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchstate-swift.enum/down?language=objc)
     #[doc(alias = "GCTouchStateDown")]
     pub const Down: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchstate-swift.enum/moving?language=objc)
     #[doc(alias = "GCTouchStateMoving")]
     pub const Moving: Self = Self(2);
 }

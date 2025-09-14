@@ -17,10 +17,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IKImageBrowserCellState(pub c_uint);
 impl IKImageBrowserCellState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagestatenoimage?language=objc)
     #[doc(alias = "IKImageStateNoImage")]
     pub const StateNoImage: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagestateinvalid?language=objc)
     #[doc(alias = "IKImageStateInvalid")]
     pub const StateInvalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagestateready?language=objc)
     #[doc(alias = "IKImageStateReady")]
     pub const StateReady: Self = Self(2);
 }

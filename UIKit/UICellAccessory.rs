@@ -16,12 +16,18 @@ use crate::*;
 pub struct UICellAccessoryDisplayedState(pub NSInteger);
 impl UICellAccessoryDisplayedState {
     /// The accessory is always displayed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisplayedstate/uicellaccessorydisplayedalways?language=objc)
     #[doc(alias = "UICellAccessoryDisplayedAlways")]
     pub const Always: Self = Self(0);
     /// The accessory is displayed only when the cell is editing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisplayedstate/uicellaccessorydisplayedwhenediting?language=objc)
     #[doc(alias = "UICellAccessoryDisplayedWhenEditing")]
     pub const WhenEditing: Self = Self(1);
     /// The accessory is displayed only when the cell is not editing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisplayedstate/uicellaccessorydisplayedwhennotediting?language=objc)
     #[doc(alias = "UICellAccessoryDisplayedWhenNotEditing")]
     pub const WhenNotEditing: Self = Self(2);
 }
@@ -679,14 +685,20 @@ impl UICellAccessoryMultiselect {
 pub struct UICellAccessoryOutlineDisclosureStyle(pub NSInteger);
 impl UICellAccessoryOutlineDisclosureStyle {
     /// The style will be automatically determined based on whether the cell is configured to be a section header or not.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosurestyle/uicellaccessoryoutlinedisclosurestyleautomatic?language=objc)
     #[doc(alias = "UICellAccessoryOutlineDisclosureStyleAutomatic")]
     pub const Automatic: Self = Self(0);
     /// A style appropriate for a section header, where a tap anywhere in the header will toggle the expansion state
     /// of the item (the cell cannot be selected).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosurestyle/uicellaccessoryoutlinedisclosurestyleheader?language=objc)
     #[doc(alias = "UICellAccessoryOutlineDisclosureStyleHeader")]
     pub const Header: Self = Self(1);
     /// A style appropriate for a cell which can be selected itself and also has nested children, where only taps on the
     /// outline disclosure will toggle the expansion state of the item; taps on the cell will select the item as normal.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosurestyle/uicellaccessoryoutlinedisclosurestylecell?language=objc)
     #[doc(alias = "UICellAccessoryOutlineDisclosureStyleCell")]
     pub const Cell: Self = Self(2);
 }
@@ -965,9 +977,13 @@ impl UICellAccessoryLabel {
 pub struct UICellAccessoryPlacement(pub NSInteger);
 impl UICellAccessoryPlacement {
     /// Accessory placed on the leading edge.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryplacement/uicellaccessoryplacementleading?language=objc)
     #[doc(alias = "UICellAccessoryPlacementLeading")]
     pub const Leading: Self = Self(0);
     /// Accessory placed on the trailing edge.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryplacement/uicellaccessoryplacementtrailing?language=objc)
     #[doc(alias = "UICellAccessoryPlacementTrailing")]
     pub const Trailing: Self = Self(1);
 }
@@ -994,6 +1010,8 @@ impl UICellAccessory {
     ///
     /// - `accessory_class` probably has further requirements.
     /// - The returned block's argument must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorypositionbeforeaccessoryofclass?language=objc)
     #[doc(alias = "UICellAccessoryPositionBeforeAccessoryOfClass")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1014,6 +1032,8 @@ impl UICellAccessory {
     ///
     /// - `accessory_class` probably has further requirements.
     /// - The returned block's argument must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorypositionafteraccessoryofclass?language=objc)
     #[doc(alias = "UICellAccessoryPositionAfterAccessoryOfClass")]
     #[cfg(feature = "block2")]
     #[inline]

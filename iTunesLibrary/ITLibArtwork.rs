@@ -34,22 +34,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibArtworkFormat(pub NSUInteger);
 impl ITLibArtworkFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartworkformat/none?language=objc)
     #[doc(alias = "ITLibArtworkFormatNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartworkformat/bitmap?language=objc)
     #[doc(alias = "ITLibArtworkFormatBitmap")]
     pub const Bitmap: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartworkformat/jpeg?language=objc)
     #[doc(alias = "ITLibArtworkFormatJPEG")]
     pub const JPEG: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartworkformat/jpeg2000?language=objc)
     #[doc(alias = "ITLibArtworkFormatJPEG2000")]
     pub const JPEG2000: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartworkformat/gif?language=objc)
     #[doc(alias = "ITLibArtworkFormatGIF")]
     pub const GIF: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartworkformat/png?language=objc)
     #[doc(alias = "ITLibArtworkFormatPNG")]
     pub const PNG: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartworkformat/bmp?language=objc)
     #[doc(alias = "ITLibArtworkFormatBMP")]
     pub const BMP: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartworkformat/tiff?language=objc)
     #[doc(alias = "ITLibArtworkFormatTIFF")]
     pub const TIFF: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartworkformat/pict?language=objc)
     #[doc(alias = "ITLibArtworkFormatPICT")]
     pub const PICT: Self = Self(8);
 }

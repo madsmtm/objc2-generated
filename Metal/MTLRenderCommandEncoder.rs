@@ -13,14 +13,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPrimitiveType(pub NSUInteger);
 impl MTLPrimitiveType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype/point?language=objc)
     #[doc(alias = "MTLPrimitiveTypePoint")]
     pub const Point: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype/line?language=objc)
     #[doc(alias = "MTLPrimitiveTypeLine")]
     pub const Line: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype/linestrip?language=objc)
     #[doc(alias = "MTLPrimitiveTypeLineStrip")]
     pub const LineStrip: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype/triangle?language=objc)
     #[doc(alias = "MTLPrimitiveTypeTriangle")]
     pub const Triangle: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype/trianglestrip?language=objc)
     #[doc(alias = "MTLPrimitiveTypeTriangleStrip")]
     pub const TriangleStrip: Self = Self(4);
 }
@@ -39,10 +44,13 @@ unsafe impl RefEncode for MTLPrimitiveType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLVisibilityResultMode(pub NSUInteger);
 impl MTLVisibilityResultMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresultmode/disabled?language=objc)
     #[doc(alias = "MTLVisibilityResultModeDisabled")]
     pub const Disabled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresultmode/boolean?language=objc)
     #[doc(alias = "MTLVisibilityResultModeBoolean")]
     pub const Boolean: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresultmode/counting?language=objc)
     #[doc(alias = "MTLVisibilityResultModeCounting")]
     pub const Counting: Self = Self(2);
 }
@@ -117,10 +125,13 @@ unsafe impl RefEncode for MTLViewport {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCullMode(pub NSUInteger);
 impl MTLCullMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcullmode/none?language=objc)
     #[doc(alias = "MTLCullModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcullmode/front?language=objc)
     #[doc(alias = "MTLCullModeFront")]
     pub const Front: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcullmode/back?language=objc)
     #[doc(alias = "MTLCullModeBack")]
     pub const Back: Self = Self(2);
 }
@@ -139,8 +150,10 @@ unsafe impl RefEncode for MTLCullMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLWinding(pub NSUInteger);
 impl MTLWinding {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlwinding/clockwise?language=objc)
     #[doc(alias = "MTLWindingClockwise")]
     pub const Clockwise: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlwinding/counterclockwise?language=objc)
     #[doc(alias = "MTLWindingCounterClockwise")]
     pub const CounterClockwise: Self = Self(1);
 }
@@ -159,8 +172,10 @@ unsafe impl RefEncode for MTLWinding {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDepthClipMode(pub NSUInteger);
 impl MTLDepthClipMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthclipmode/clip?language=objc)
     #[doc(alias = "MTLDepthClipModeClip")]
     pub const Clip: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthclipmode/clamp?language=objc)
     #[doc(alias = "MTLDepthClipModeClamp")]
     pub const Clamp: Self = Self(1);
 }
@@ -179,8 +194,10 @@ unsafe impl RefEncode for MTLDepthClipMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTriangleFillMode(pub NSUInteger);
 impl MTLTriangleFillMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltrianglefillmode/fill?language=objc)
     #[doc(alias = "MTLTriangleFillModeFill")]
     pub const Fill: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltrianglefillmode/lines?language=objc)
     #[doc(alias = "MTLTriangleFillModeLines")]
     pub const Lines: Self = Self(1);
 }
@@ -332,14 +349,19 @@ unsafe impl RefEncode for MTLTriangleTessellationFactorsHalf {
 pub struct MTLRenderStages(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLRenderStages: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages/vertex?language=objc)
         #[doc(alias = "MTLRenderStageVertex")]
         const Vertex = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages/fragment?language=objc)
         #[doc(alias = "MTLRenderStageFragment")]
         const Fragment = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages/tile?language=objc)
         #[doc(alias = "MTLRenderStageTile")]
         const Tile = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages/object?language=objc)
         #[doc(alias = "MTLRenderStageObject")]
         const Object = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages/mesh?language=objc)
         #[doc(alias = "MTLRenderStageMesh")]
         const Mesh = 1<<4;
     }

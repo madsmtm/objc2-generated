@@ -69,16 +69,22 @@ cf_objc2_type!(
 pub struct CTLineBoundsOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CTLineBoundsOptions: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/excludetypographicleading?language=objc)
         #[doc(alias = "kCTLineBoundsExcludeTypographicLeading")]
         const ExcludeTypographicLeading = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/excludetypographicshifts?language=objc)
         #[doc(alias = "kCTLineBoundsExcludeTypographicShifts")]
         const ExcludeTypographicShifts = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/usehangingpunctuation?language=objc)
         #[doc(alias = "kCTLineBoundsUseHangingPunctuation")]
         const UseHangingPunctuation = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/useglyphpathbounds?language=objc)
         #[doc(alias = "kCTLineBoundsUseGlyphPathBounds")]
         const UseGlyphPathBounds = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/useopticalbounds?language=objc)
         #[doc(alias = "kCTLineBoundsUseOpticalBounds")]
         const UseOpticalBounds = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/includelanguageextents?language=objc)
         #[doc(alias = "kCTLineBoundsIncludeLanguageExtents")]
         const IncludeLanguageExtents = 1<<5;
     }
@@ -116,10 +122,13 @@ unsafe impl RefEncode for CTLineBoundsOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTLineTruncationType(pub u32);
 impl CTLineTruncationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinetruncationtype/start?language=objc)
     #[doc(alias = "kCTLineTruncationStart")]
     pub const Start: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinetruncationtype/end?language=objc)
     #[doc(alias = "kCTLineTruncationEnd")]
     pub const End: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinetruncationtype/middle?language=objc)
     #[doc(alias = "kCTLineTruncationMiddle")]
     pub const Middle: Self = Self(2);
 }
@@ -136,6 +145,8 @@ unsafe impl RefEncode for CTLineTruncationType {
 
 unsafe impl ConcreteType for CTLine {
     /// Returns the CFType of the line object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegettypeid()?language=objc)
     #[doc(alias = "CTLineGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -162,6 +173,8 @@ impl CTLine {
     ///
     ///
     /// Returns: This function will return a reference to a CTLine object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinecreatewithattributedstring(_:)?language=objc)
     #[doc(alias = "CTLineCreateWithAttributedString")]
     #[inline]
     pub fn with_attributed_string(attr_string: &CFAttributedString) -> CFRetained<CTLine> {
@@ -202,6 +215,8 @@ impl CTLine {
     /// Returns: This function will return a reference to a truncated CTLine
     /// object if the call was successful. Otherwise, it will return
     /// NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinecreatetruncatedline(_:_:_:_:)?language=objc)
     #[doc(alias = "CTLineCreateTruncatedLine")]
     #[inline]
     pub fn truncated_line(
@@ -244,6 +259,8 @@ impl CTLine {
     /// Returns: This function will return a reference to a justified CTLine
     /// object if the call was successful. Otherwise, it will return
     /// NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinecreatejustifiedline(_:_:_:)?language=objc)
     #[doc(alias = "CTLineCreateJustifiedLine")]
     #[inline]
     pub fn justified_line(
@@ -274,6 +291,8 @@ impl CTLine {
     ///
     ///
     /// Returns: The total glyph count for the line passed in.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetglyphcount(_:)?language=objc)
     #[doc(alias = "CTLineGetGlyphCount")]
     #[inline]
     pub fn glyph_count(&self) -> CFIndex {
@@ -290,6 +309,8 @@ impl CTLine {
     ///
     ///
     /// Returns: A CFArrayRef containing the CTRun objects that make up the line.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetglyphruns(_:)?language=objc)
     #[doc(alias = "CTLineGetGlyphRuns")]
     #[inline]
     pub fn glyph_runs(&self) -> CFRetained<CFArray> {
@@ -312,6 +333,8 @@ impl CTLine {
     /// Returns: A CFRange that contains the range over the backing store string
     /// that spawned the glyphs. If the function fails for any reason, an
     /// empty range will be returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetstringrange(_:)?language=objc)
     #[doc(alias = "CTLineGetStringRange")]
     #[inline]
     pub fn string_range(&self) -> CFRange {
@@ -339,6 +362,8 @@ impl CTLine {
     ///
     /// Returns: A value which can be used to offset the current pen position for
     /// the flush operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetpenoffsetforflush(_:_:_:)?language=objc)
     #[doc(alias = "CTLineGetPenOffsetForFlush")]
     #[inline]
     pub fn pen_offset_for_flush(&self, flush_factor: CGFloat, flush_width: c_double) -> c_double {
@@ -367,6 +392,8 @@ impl CTLine {
     ///
     ///
     /// Parameter `context`: The context to which the line will be drawn.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinedraw(_:_:)?language=objc)
     #[doc(alias = "CTLineDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -411,6 +438,8 @@ impl CTLine {
     /// - `ascent` must be a valid pointer or null.
     /// - `descent` must be a valid pointer or null.
     /// - `leading` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegettypographicbounds(_:_:_:_:)?language=objc)
     #[doc(alias = "CTLineGetTypographicBounds")]
     #[inline]
     pub unsafe fn typographic_bounds(
@@ -443,6 +472,8 @@ impl CTLine {
     /// such that the coordinate origin is coincident with the line
     /// origin and the rect origin is at the bottom left. If the line
     /// is invalid this function will return CGRectNull.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetboundswithoptions(_:_:)?language=objc)
     #[doc(alias = "CTLineGetBoundsWithOptions")]
     #[inline]
     pub fn bounds_with_options(&self, options: CTLineBoundsOptions) -> CGRect {
@@ -465,6 +496,8 @@ impl CTLine {
     ///
     /// Returns: The width of the line's trailing whitespace. If line is invalid,
     /// this function will always return zero.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegettrailingwhitespacewidth(_:)?language=objc)
     #[doc(alias = "CTLineGetTrailingWhitespaceWidth")]
     #[inline]
     pub fn trailing_whitespace_width(&self) -> c_double {
@@ -502,6 +535,8 @@ impl CTLine {
     /// See also: CTLineGetBoundsWithOptions
     ///
     /// See also: CTLineGetPenOffsetForFlush
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetimagebounds(_:_:)?language=objc)
     #[doc(alias = "CTLineGetImageBounds")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -533,6 +568,8 @@ impl CTLine {
     /// range, this value will be no less than the first string index and
     /// no greater than one plus the last string index. In the event of
     /// failure, this function will return kCFNotFound.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetstringindexforposition(_:_:)?language=objc)
     #[doc(alias = "CTLineGetStringIndexForPosition")]
     #[inline]
     pub fn string_index_for_position(&self, position: CGPoint) -> CFIndex {
@@ -576,6 +613,8 @@ impl CTLine {
     /// # Safety
     ///
     /// `secondary_offset` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetoffsetforstringindex(_:_:_:)?language=objc)
     #[doc(alias = "CTLineGetOffsetForStringIndex")]
     #[inline]
     pub unsafe fn offset_for_string_index(
@@ -600,6 +639,8 @@ impl CTLine {
     ///
     ///
     /// Parameter `block`: The offset parameter is relative to the line origin. The leadingEdge parameter of this block refers to logical order.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineenumeratecaretoffsets(_:_:)?language=objc)
     #[doc(alias = "CTLineEnumerateCaretOffsets")]
     #[cfg(feature = "block2")]
     #[inline]

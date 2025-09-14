@@ -108,6 +108,8 @@ extern "C" {
     pub static NSNotApplicableMarker: &'static AnyObject;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsiscontrollermarker(_:)?language=objc)
+///
 /// # Safety
 ///
 /// `object` should be of the correct type.

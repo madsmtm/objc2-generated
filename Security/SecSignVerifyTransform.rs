@@ -58,6 +58,8 @@ extern "C" {
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secsigntransformcreate(_:_:)?language=objc)
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -100,6 +102,8 @@ pub unsafe extern "C-unwind" fn SecSignTransformCreate(
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secverifytransformcreate(_:_:_:)?language=objc)
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

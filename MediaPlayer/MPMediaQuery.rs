@@ -13,20 +13,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMediaGrouping(pub NSInteger);
 impl MPMediaGrouping {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/title?language=objc)
     #[doc(alias = "MPMediaGroupingTitle")]
     pub const Title: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/album?language=objc)
     #[doc(alias = "MPMediaGroupingAlbum")]
     pub const Album: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/artist?language=objc)
     #[doc(alias = "MPMediaGroupingArtist")]
     pub const Artist: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/albumartist?language=objc)
     #[doc(alias = "MPMediaGroupingAlbumArtist")]
     pub const AlbumArtist: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/composer?language=objc)
     #[doc(alias = "MPMediaGroupingComposer")]
     pub const Composer: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/genre?language=objc)
     #[doc(alias = "MPMediaGroupingGenre")]
     pub const Genre: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/playlist?language=objc)
     #[doc(alias = "MPMediaGroupingPlaylist")]
     pub const Playlist: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/podcasttitle?language=objc)
     #[doc(alias = "MPMediaGroupingPodcastTitle")]
     pub const PodcastTitle: Self = Self(7);
 }
@@ -217,8 +225,10 @@ impl MPMediaPredicate {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMediaPredicateComparison(pub NSInteger);
 impl MPMediaPredicateComparison {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediapredicatecomparison/equalto?language=objc)
     #[doc(alias = "MPMediaPredicateComparisonEqualTo")]
     pub const EqualTo: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediapredicatecomparison/contains?language=objc)
     #[doc(alias = "MPMediaPredicateComparisonContains")]
     pub const Contains: Self = Self(1);
 }

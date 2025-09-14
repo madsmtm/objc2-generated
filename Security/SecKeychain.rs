@@ -55,22 +55,31 @@ unsafe impl RefEncode for SecKeychainSettings {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecAuthenticationType(pub FourCharCode);
 impl SecAuthenticationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/ntlm?language=objc)
     #[doc(alias = "kSecAuthenticationTypeNTLM")]
     pub const NTLM: Self = Self(AUTH_TYPE_FIX_!(0x6e746c6d));
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/msn?language=objc)
     #[doc(alias = "kSecAuthenticationTypeMSN")]
     pub const MSN: Self = Self(AUTH_TYPE_FIX_!(0x6d736e61));
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/dpa?language=objc)
     #[doc(alias = "kSecAuthenticationTypeDPA")]
     pub const DPA: Self = Self(AUTH_TYPE_FIX_!(0x64706161));
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/rpa?language=objc)
     #[doc(alias = "kSecAuthenticationTypeRPA")]
     pub const RPA: Self = Self(AUTH_TYPE_FIX_!(0x72706161));
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/httpbasic?language=objc)
     #[doc(alias = "kSecAuthenticationTypeHTTPBasic")]
     pub const HTTPBasic: Self = Self(AUTH_TYPE_FIX_!(0x68747470));
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/httpdigest?language=objc)
     #[doc(alias = "kSecAuthenticationTypeHTTPDigest")]
     pub const HTTPDigest: Self = Self(AUTH_TYPE_FIX_!(0x68747464));
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/htmlform?language=objc)
     #[doc(alias = "kSecAuthenticationTypeHTMLForm")]
     pub const HTMLForm: Self = Self(AUTH_TYPE_FIX_!(0x666f726d));
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/default?language=objc)
     #[doc(alias = "kSecAuthenticationTypeDefault")]
     pub const Default: Self = Self(AUTH_TYPE_FIX_!(0x64666c74));
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/any?language=objc)
     #[doc(alias = "kSecAuthenticationTypeAny")]
     pub const Any: Self = Self(AUTH_TYPE_FIX_!(0));
 }
@@ -93,74 +102,109 @@ unsafe impl RefEncode for SecAuthenticationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecProtocolType(pub FourCharCode);
 impl SecProtocolType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ftp?language=objc)
     #[doc(alias = "kSecProtocolTypeFTP")]
     pub const FTP: Self = Self(0x66747020);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ftpaccount?language=objc)
     #[doc(alias = "kSecProtocolTypeFTPAccount")]
     pub const FTPAccount: Self = Self(0x66747061);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/http?language=objc)
     #[doc(alias = "kSecProtocolTypeHTTP")]
     pub const HTTP: Self = Self(0x68747470);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/irc?language=objc)
     #[doc(alias = "kSecProtocolTypeIRC")]
     pub const IRC: Self = Self(0x69726320);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/nntp?language=objc)
     #[doc(alias = "kSecProtocolTypeNNTP")]
     pub const NNTP: Self = Self(0x6e6e7470);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/pop3?language=objc)
     #[doc(alias = "kSecProtocolTypePOP3")]
     pub const POP3: Self = Self(0x706f7033);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/smtp?language=objc)
     #[doc(alias = "kSecProtocolTypeSMTP")]
     pub const SMTP: Self = Self(0x736d7470);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/socks?language=objc)
     #[doc(alias = "kSecProtocolTypeSOCKS")]
     pub const SOCKS: Self = Self(0x736f7820);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/imap?language=objc)
     #[doc(alias = "kSecProtocolTypeIMAP")]
     pub const IMAP: Self = Self(0x696d6170);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ldap?language=objc)
     #[doc(alias = "kSecProtocolTypeLDAP")]
     pub const LDAP: Self = Self(0x6c646170);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/appletalk?language=objc)
     #[doc(alias = "kSecProtocolTypeAppleTalk")]
     pub const AppleTalk: Self = Self(0x61746c6b);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/afp?language=objc)
     #[doc(alias = "kSecProtocolTypeAFP")]
     pub const AFP: Self = Self(0x61667020);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/telnet?language=objc)
     #[doc(alias = "kSecProtocolTypeTelnet")]
     pub const Telnet: Self = Self(0x74656c6e);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ssh?language=objc)
     #[doc(alias = "kSecProtocolTypeSSH")]
     pub const SSH: Self = Self(0x73736820);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ftps?language=objc)
     #[doc(alias = "kSecProtocolTypeFTPS")]
     pub const FTPS: Self = Self(0x66747073);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/https?language=objc)
     #[doc(alias = "kSecProtocolTypeHTTPS")]
     pub const HTTPS: Self = Self(0x68747073);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/httpproxy?language=objc)
     #[doc(alias = "kSecProtocolTypeHTTPProxy")]
     pub const HTTPProxy: Self = Self(0x68747078);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/httpsproxy?language=objc)
     #[doc(alias = "kSecProtocolTypeHTTPSProxy")]
     pub const HTTPSProxy: Self = Self(0x68747378);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ftpproxy?language=objc)
     #[doc(alias = "kSecProtocolTypeFTPProxy")]
     pub const FTPProxy: Self = Self(0x66747078);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/cifs?language=objc)
     #[doc(alias = "kSecProtocolTypeCIFS")]
     pub const CIFS: Self = Self(0x63696673);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/smb?language=objc)
     #[doc(alias = "kSecProtocolTypeSMB")]
     pub const SMB: Self = Self(0x736d6220);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/rtsp?language=objc)
     #[doc(alias = "kSecProtocolTypeRTSP")]
     pub const RTSP: Self = Self(0x72747370);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/rtspproxy?language=objc)
     #[doc(alias = "kSecProtocolTypeRTSPProxy")]
     pub const RTSPProxy: Self = Self(0x72747378);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/daap?language=objc)
     #[doc(alias = "kSecProtocolTypeDAAP")]
     pub const DAAP: Self = Self(0x64616170);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/eppc?language=objc)
     #[doc(alias = "kSecProtocolTypeEPPC")]
     pub const EPPC: Self = Self(0x65707063);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ipp?language=objc)
     #[doc(alias = "kSecProtocolTypeIPP")]
     pub const IPP: Self = Self(0x69707020);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/nntps?language=objc)
     #[doc(alias = "kSecProtocolTypeNNTPS")]
     pub const NNTPS: Self = Self(0x6e747073);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ldaps?language=objc)
     #[doc(alias = "kSecProtocolTypeLDAPS")]
     pub const LDAPS: Self = Self(0x6c647073);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/telnets?language=objc)
     #[doc(alias = "kSecProtocolTypeTelnetS")]
     pub const TelnetS: Self = Self(0x74656c73);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/imaps?language=objc)
     #[doc(alias = "kSecProtocolTypeIMAPS")]
     pub const IMAPS: Self = Self(0x696d7073);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ircs?language=objc)
     #[doc(alias = "kSecProtocolTypeIRCS")]
     pub const IRCS: Self = Self(0x69726373);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/pop3s?language=objc)
     #[doc(alias = "kSecProtocolTypePOP3S")]
     pub const POP3S: Self = Self(0x706f7073);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/cvspserver?language=objc)
     #[doc(alias = "kSecProtocolTypeCVSpserver")]
     pub const CVSpserver: Self = Self(0x63767370);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/svn?language=objc)
     #[doc(alias = "kSecProtocolTypeSVN")]
     pub const SVN: Self = Self(0x73766e20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/any?language=objc)
     #[doc(alias = "kSecProtocolTypeAny")]
     pub const Any: Self = Self(0);
 }
@@ -183,25 +227,35 @@ unsafe impl RefEncode for SecProtocolType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecKeychainEvent(pub u32);
 impl SecKeychainEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/lockevent?language=objc)
     #[doc(alias = "kSecLockEvent")]
     pub const LockEvent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/unlockevent?language=objc)
     #[doc(alias = "kSecUnlockEvent")]
     pub const UnlockEvent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/addevent?language=objc)
     #[doc(alias = "kSecAddEvent")]
     pub const AddEvent: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/deleteevent?language=objc)
     #[doc(alias = "kSecDeleteEvent")]
     pub const DeleteEvent: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/updateevent?language=objc)
     #[doc(alias = "kSecUpdateEvent")]
     pub const UpdateEvent: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/passwordchangedevent?language=objc)
     #[doc(alias = "kSecPasswordChangedEvent")]
     pub const PasswordChangedEvent: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/defaultchangedevent?language=objc)
     #[doc(alias = "kSecDefaultChangedEvent")]
     pub const DefaultChangedEvent: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/dataaccessevent?language=objc)
     #[doc(alias = "kSecDataAccessEvent")]
     #[deprecated = "Read events are no longer posted"]
     pub const DataAccessEvent: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/keychainlistchangedevent?language=objc)
     #[doc(alias = "kSecKeychainListChangedEvent")]
     pub const KeychainListChangedEvent: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/trustsettingschangedevent?language=objc)
     #[doc(alias = "kSecTrustSettingsChangedEvent")]
     pub const TrustSettingsChangedEvent: Self = Self(12);
 }
@@ -225,27 +279,38 @@ unsafe impl RefEncode for SecKeychainEvent {
 pub struct SecKeychainEventMask(pub u32);
 bitflags::bitflags! {
     impl SecKeychainEventMask: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/lockeventmask?language=objc)
         #[doc(alias = "kSecLockEventMask")]
         const LockEventMask = 1<<SecKeychainEvent::LockEvent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/unlockeventmask?language=objc)
         #[doc(alias = "kSecUnlockEventMask")]
         const UnlockEventMask = 1<<SecKeychainEvent::UnlockEvent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/addeventmask?language=objc)
         #[doc(alias = "kSecAddEventMask")]
         const AddEventMask = 1<<SecKeychainEvent::AddEvent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/deleteeventmask?language=objc)
         #[doc(alias = "kSecDeleteEventMask")]
         const DeleteEventMask = 1<<SecKeychainEvent::DeleteEvent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/updateeventmask?language=objc)
         #[doc(alias = "kSecUpdateEventMask")]
         const UpdateEventMask = 1<<SecKeychainEvent::UpdateEvent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/passwordchangedeventmask?language=objc)
         #[doc(alias = "kSecPasswordChangedEventMask")]
         const PasswordChangedEventMask = 1<<SecKeychainEvent::PasswordChangedEvent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/defaultchangedeventmask?language=objc)
         #[doc(alias = "kSecDefaultChangedEventMask")]
         const DefaultChangedEventMask = 1<<SecKeychainEvent::DefaultChangedEvent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/dataaccesseventmask?language=objc)
         #[doc(alias = "kSecDataAccessEventMask")]
 #[deprecated = "Read events are no longer posted"]
         const DataAccessEventMask = 1<<SecKeychainEvent::DataAccessEvent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/keychainlistchangedmask?language=objc)
         #[doc(alias = "kSecKeychainListChangedMask")]
         const KeychainListChangedMask = 1<<SecKeychainEvent::KeychainListChangedEvent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/trustsettingschangedeventmask?language=objc)
         #[doc(alias = "kSecTrustSettingsChangedEventMask")]
         const TrustSettingsChangedEventMask = 1<<SecKeychainEvent::TrustSettingsChangedEvent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/everyeventmask?language=objc)
         #[doc(alias = "kSecEveryEventMask")]
         const EveryEventMask = 0xffffffff;
     }
@@ -303,6 +368,8 @@ unsafe impl ConcreteType for SecKeychain {
     /// Returns the type identifier of SecKeychain instances.
     ///
     /// Returns: The CFTypeID of SecKeychain instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingettypeid()?language=objc)
     #[doc(alias = "SecKeychainGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -324,6 +391,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `return_vers` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetversion(_:)?language=objc)
     #[doc(alias = "SecKeychainGetVersion")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -348,6 +417,8 @@ impl SecKeychain {
     ///
     /// - `path_name` must be a valid pointer.
     /// - `keychain` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainopen(_:_:)?language=objc)
     #[doc(alias = "SecKeychainOpen")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -386,6 +457,8 @@ impl SecKeychain {
     /// - `path_name` must be a valid pointer.
     /// - `password` must be a valid pointer or null.
     /// - `keychain` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincreate(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -425,6 +498,8 @@ impl SecKeychain {
     /// Parameter `keychainOrArray`: A single keychain reference or a reference to an array of keychains to delete. IMPORTANT: SecKeychainDelete does not dispose the memory occupied by keychain references; use the CFRelease function when you are completely finished with a keychain.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecInvalidKeychain (-25295) may be returned if the keychain parameter is invalid (NULL).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaindelete(_:)?language=objc)
     #[doc(alias = "SecKeychainDelete")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -447,6 +522,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `new_settings` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetsettings(_:_:)?language=objc)
     #[doc(alias = "SecKeychainSetSettings")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -475,6 +552,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `out_settings` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopysettings(_:_:)?language=objc)
     #[doc(alias = "SecKeychainCopySettings")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -509,6 +588,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `password` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainunlock(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainUnlock")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -535,6 +616,8 @@ impl SecKeychain {
     /// Parameter `keychain`: A reference to the keychain to lock.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainlock(_:)?language=objc)
     #[doc(alias = "SecKeychainLock")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -549,6 +632,8 @@ impl SecKeychain {
     /// Locks all keychains belonging to the current user.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainlockall()?language=objc)
     #[doc(alias = "SecKeychainLockAll")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -568,6 +653,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `keychain` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopydefault(_:)?language=objc)
     #[doc(alias = "SecKeychainCopyDefault")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -584,6 +671,8 @@ impl SecKeychain {
     /// Parameter `keychain`: A reference to the keychain to set as default.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain parameter is invalid (NULL).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetdefault(_:)?language=objc)
     #[doc(alias = "SecKeychainSetDefault")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -604,6 +693,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `search_list` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopysearchlist(_:)?language=objc)
     #[doc(alias = "SecKeychainCopySearchList")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -623,6 +714,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `search_list` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetsearchlist(_:)?language=objc)
     #[doc(alias = "SecKeychainSetSearchList")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -640,12 +733,16 @@ impl SecKeychain {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecPreferencesDomain(pub c_int);
 impl SecPreferencesDomain {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain/user?language=objc)
     #[doc(alias = "kSecPreferencesDomainUser")]
     pub const User: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain/system?language=objc)
     #[doc(alias = "kSecPreferencesDomainSystem")]
     pub const System: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain/common?language=objc)
     #[doc(alias = "kSecPreferencesDomainCommon")]
     pub const Common: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain/dynamic?language=objc)
     #[doc(alias = "kSecPreferencesDomainDynamic")]
     pub const Dynamic: Self = Self(3);
 }
@@ -662,6 +759,8 @@ unsafe impl RefEncode for SecPreferencesDomain {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychain {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopydomaindefault(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `keychain` must be a valid pointer.
@@ -682,6 +781,7 @@ impl SecKeychain {
         unsafe { SecKeychainCopyDomainDefault(domain, keychain) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetdomaindefault(_:_:)?language=objc)
     #[doc(alias = "SecKeychainSetDomainDefault")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -699,6 +799,8 @@ impl SecKeychain {
         unsafe { SecKeychainSetDomainDefault(domain, keychain) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopydomainsearchlist(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `search_list` must be a valid pointer.
@@ -718,6 +820,8 @@ impl SecKeychain {
         unsafe { SecKeychainCopyDomainSearchList(domain, search_list) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetdomainsearchlist(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `search_list` generic must be of the correct type.
@@ -737,6 +841,7 @@ impl SecKeychain {
         unsafe { SecKeychainSetDomainSearchList(domain, search_list) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetpreferencedomain(_:)?language=objc)
     #[doc(alias = "SecKeychainSetPreferenceDomain")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -747,6 +852,8 @@ impl SecKeychain {
         unsafe { SecKeychainSetPreferenceDomain(domain) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetpreferencedomain(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `domain` must be a valid pointer.
@@ -771,6 +878,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `keychain_status` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetstatus(_:_:)?language=objc)
     #[doc(alias = "SecKeychainGetStatus")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -802,6 +911,8 @@ impl SecKeychain {
     ///
     /// - `io_path_length` must be a valid pointer.
     /// - `path_name` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetpath(_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainGetPath")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -836,6 +947,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `info` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattributeinfoforitemid(_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainAttributeInfoForItemID")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -864,6 +977,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `info` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainfreeattributeinfo(_:)?language=objc)
     #[doc(alias = "SecKeychainFreeAttributeInfo")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -921,6 +1036,8 @@ impl SecKeychain {
     ///
     /// - `callback_function` must be implemented correctly.
     /// - `user_context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainaddcallback(_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainAddCallback")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -949,6 +1066,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `callback_function` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainremovecallback(_:)?language=objc)
     #[doc(alias = "SecKeychainRemoveCallback")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1004,6 +1123,8 @@ impl SecKeychain {
     /// - `path` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer.
     /// - `item_ref` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainaddinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainAddInternetPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1111,6 +1232,8 @@ impl SecKeychain {
     /// - `password_length` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer or null.
     /// - `item_ref` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainfindinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainFindInternetPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1200,6 +1323,8 @@ impl SecKeychain {
     /// - `account_name` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer.
     /// - `item_ref` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainaddgenericpassword(_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainAddGenericPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1270,6 +1395,8 @@ impl SecKeychain {
     /// - `password_length` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer or null.
     /// - `item_ref` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainfindgenericpassword(_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainFindGenericPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1315,6 +1442,8 @@ impl SecKeychain {
     /// Parameter `state`: A boolean representing the state of user interaction.  You should pass TRUE to allow user interaction, and FALSE to disallow user interaction
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetuserinteractionallowed(_:)?language=objc)
     #[doc(alias = "SecKeychainSetUserInteractionAllowed")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -1334,6 +1463,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `state` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetuserinteractionallowed(_:)?language=objc)
     #[doc(alias = "SecKeychainGetUserInteractionAllowed")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -1357,6 +1488,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `csp_handle` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetcsphandle?language=objc)
     #[doc(alias = "SecKeychainGetCSPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1387,6 +1520,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `dldb_handle` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetdldbhandle?language=objc)
     #[doc(alias = "SecKeychainGetDLDBHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1415,6 +1550,8 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `access` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopyaccess(_:_:)?language=objc)
     #[doc(alias = "SecKeychainCopyAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1439,6 +1576,8 @@ impl SecKeychain {
     /// Parameter `access`: An access reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetaccess(_:_:)?language=objc)
     #[doc(alias = "SecKeychainSetAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

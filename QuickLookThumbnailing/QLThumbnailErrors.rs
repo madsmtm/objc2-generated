@@ -16,16 +16,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct QLThumbnailError(pub NSInteger);
 impl QLThumbnailError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/generationfailed?language=objc)
     #[doc(alias = "QLThumbnailErrorGenerationFailed")]
     pub const GenerationFailed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/savingtourlfailed?language=objc)
     #[doc(alias = "QLThumbnailErrorSavingToURLFailed")]
     pub const SavingToURLFailed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/nocachedthumbnail?language=objc)
     #[doc(alias = "QLThumbnailErrorNoCachedThumbnail")]
     pub const NoCachedThumbnail: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/nocloudthumbnail?language=objc)
     #[doc(alias = "QLThumbnailErrorNoCloudThumbnail")]
     pub const NoCloudThumbnail: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/requestinvalid?language=objc)
     #[doc(alias = "QLThumbnailErrorRequestInvalid")]
     pub const RequestInvalid: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/requestcancelled?language=objc)
     #[doc(alias = "QLThumbnailErrorRequestCancelled")]
     pub const RequestCancelled: Self = Self(5);
 }

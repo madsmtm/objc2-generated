@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAlertActionStyle(pub NSUInteger);
 impl CPAlertActionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertaction/style-swift.enum/default?language=objc)
     #[doc(alias = "CPAlertActionStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertaction/style-swift.enum/cancel?language=objc)
     #[doc(alias = "CPAlertActionStyleCancel")]
     pub const Cancel: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertaction/style-swift.enum/destructive?language=objc)
     #[doc(alias = "CPAlertActionStyleDestructive")]
     pub const Destructive: Self = Self(2);
 }

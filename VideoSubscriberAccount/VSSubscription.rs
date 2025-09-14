@@ -16,14 +16,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSSubscriptionAccessLevel(pub NSInteger);
 impl VSSubscriptionAccessLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vssubscriptionaccesslevel/unknown?language=objc)
     #[doc(alias = "VSSubscriptionAccessLevelUnknown")]
     #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
     pub const Unknown: Self = Self(0);
     /// The default access level. Setting a subscription with this level will raise an exception.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vssubscriptionaccesslevel/freewithaccount?language=objc)
     #[doc(alias = "VSSubscriptionAccessLevelFreeWithAccount")]
     #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
     pub const FreeWithAccount: Self = Self(1);
     /// The customer has access to content that is offered for free to users with a valid account.  This value corresponds content in your availability feed with the "account" offering type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vssubscriptionaccesslevel/paid?language=objc)
     #[doc(alias = "VSSubscriptionAccessLevelPaid")]
     #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
     pub const Paid: Self = Self(2);

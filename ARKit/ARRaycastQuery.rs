@@ -17,14 +17,20 @@ pub struct ARRaycastTarget(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARRaycastTarget {
     /// Ray's target is an already detected plane, considering the plane's estimated size and shape.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/target-swift.enum/existingplanegeometry?language=objc)
     #[doc(alias = "ARRaycastTargetExistingPlaneGeometry")]
     pub const ExistingPlaneGeometry: Self = Self(0);
     /// Ray's target is an already detected plane, without considering the plane's size.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/target-swift.enum/existingplaneinfinite?language=objc)
     #[doc(alias = "ARRaycastTargetExistingPlaneInfinite")]
     pub const ExistingPlaneInfinite: Self = Self(1);
     /// Ray's target is a plane that is estimated using the feature points around the ray.
     /// When alignment is ARRaycastTargetAlignmentAny, alignment of estimated planes is based on the normal of the real world
     /// surface corresponding to the estimated plane.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/target-swift.enum/estimatedplane?language=objc)
     #[doc(alias = "ARRaycastTargetEstimatedPlane")]
     pub const EstimatedPlane: Self = Self(2);
 }
@@ -50,12 +56,18 @@ pub struct ARRaycastTargetAlignment(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARRaycastTargetAlignment {
     /// A target that is horizontal with respect to gravity.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/targetalignment-swift.enum/horizontal?language=objc)
     #[doc(alias = "ARRaycastTargetAlignmentHorizontal")]
     pub const Horizontal: Self = Self(0);
     /// A target that is vertical with respect to gravity.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/targetalignment-swift.enum/vertical?language=objc)
     #[doc(alias = "ARRaycastTargetAlignmentVertical")]
     pub const Vertical: Self = Self(1);
     /// A target that is in any alignment, inclusive of horizontal and vertical.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/targetalignment-swift.enum/any?language=objc)
     #[doc(alias = "ARRaycastTargetAlignmentAny")]
     pub const Any: Self = Self(2);
 }

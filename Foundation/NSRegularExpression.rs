@@ -13,18 +13,25 @@ use crate::*;
 pub struct NSRegularExpressionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSRegularExpressionOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/caseinsensitive?language=objc)
         #[doc(alias = "NSRegularExpressionCaseInsensitive")]
         const CaseInsensitive = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/allowcommentsandwhitespace?language=objc)
         #[doc(alias = "NSRegularExpressionAllowCommentsAndWhitespace")]
         const AllowCommentsAndWhitespace = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/ignoremetacharacters?language=objc)
         #[doc(alias = "NSRegularExpressionIgnoreMetacharacters")]
         const IgnoreMetacharacters = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/dotmatcheslineseparators?language=objc)
         #[doc(alias = "NSRegularExpressionDotMatchesLineSeparators")]
         const DotMatchesLineSeparators = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/anchorsmatchlines?language=objc)
         #[doc(alias = "NSRegularExpressionAnchorsMatchLines")]
         const AnchorsMatchLines = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/useunixlineseparators?language=objc)
         #[doc(alias = "NSRegularExpressionUseUnixLineSeparators")]
         const UseUnixLineSeparators = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/useunicodewordboundaries?language=objc)
         #[doc(alias = "NSRegularExpressionUseUnicodeWordBoundaries")]
         const UseUnicodeWordBoundaries = 1<<6;
     }
@@ -139,14 +146,19 @@ impl DefaultRetained for NSRegularExpression {
 pub struct NSMatchingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMatchingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/reportprogress?language=objc)
         #[doc(alias = "NSMatchingReportProgress")]
         const ReportProgress = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/reportcompletion?language=objc)
         #[doc(alias = "NSMatchingReportCompletion")]
         const ReportCompletion = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/anchored?language=objc)
         #[doc(alias = "NSMatchingAnchored")]
         const Anchored = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/withtransparentbounds?language=objc)
         #[doc(alias = "NSMatchingWithTransparentBounds")]
         const WithTransparentBounds = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/withoutanchoringbounds?language=objc)
         #[doc(alias = "NSMatchingWithoutAnchoringBounds")]
         const WithoutAnchoringBounds = 1<<4;
     }
@@ -167,14 +179,19 @@ unsafe impl RefEncode for NSMatchingOptions {
 pub struct NSMatchingFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMatchingFlags: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags/progress?language=objc)
         #[doc(alias = "NSMatchingProgress")]
         const Progress = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags/completed?language=objc)
         #[doc(alias = "NSMatchingCompleted")]
         const Completed = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags/hitend?language=objc)
         #[doc(alias = "NSMatchingHitEnd")]
         const HitEnd = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags/requiredend?language=objc)
         #[doc(alias = "NSMatchingRequiredEnd")]
         const RequiredEnd = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags/internalerror?language=objc)
         #[doc(alias = "NSMatchingInternalError")]
         const InternalError = 1<<4;
     }

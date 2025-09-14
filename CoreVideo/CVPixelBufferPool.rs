@@ -37,6 +37,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for CVPixelBufferPool {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolgettypeid()?language=objc)
     #[doc(alias = "CVPixelBufferPoolGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -65,6 +66,8 @@ impl CVPixelBufferPool {
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pool_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CVPixelBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[inline]
@@ -97,6 +100,8 @@ impl CVPixelBufferPool {
     /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolgetattributes(_:)?language=objc)
     #[doc(alias = "CVPixelBufferPoolGetAttributes")]
     #[inline]
     pub fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
@@ -117,6 +122,8 @@ impl CVPixelBufferPool {
     /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolgetpixelbufferattributes(_:)?language=objc)
     #[doc(alias = "CVPixelBufferPoolGetPixelBufferAttributes")]
     #[inline]
     pub fn pixel_buffer_attributes(&self) -> Option<CFRetained<CFDictionary>> {
@@ -144,6 +151,8 @@ impl CVPixelBufferPool {
     /// # Safety
     ///
     /// `pixel_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreatepixelbuffer(_:_:_:)?language=objc)
     #[doc(alias = "CVPixelBufferPoolCreatePixelBuffer")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -169,6 +178,8 @@ impl CVPixelBufferPool {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreatepixelbufferwithauxattributes(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `aux_attributes` generic must be of the correct type.
@@ -230,6 +241,7 @@ pub struct CVPixelBufferPoolFlushFlags(pub CVOptionFlags);
 #[cfg(feature = "CVBase")]
 bitflags::bitflags! {
     impl CVPixelBufferPoolFlushFlags: CVOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolflushflags/excessbuffers?language=objc)
         #[doc(alias = "kCVPixelBufferPoolFlushExcessBuffers")]
         const ExcessBuffers = 1;
     }
@@ -256,6 +268,8 @@ impl CVPixelBufferPool {
     ///
     /// Parameter `options`: Set to kCVPixelBufferPoolFlushExcessBuffers to free all unused buffers
     /// regardless of their age.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolflush(_:_:)?language=objc)
     #[doc(alias = "CVPixelBufferPoolFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]

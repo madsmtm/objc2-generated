@@ -18,16 +18,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWebViewNavigationType(pub NSInteger);
 impl UIWebViewNavigationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/linkclicked?language=objc)
     #[doc(alias = "UIWebViewNavigationTypeLinkClicked")]
     pub const LinkClicked: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/formsubmitted?language=objc)
     #[doc(alias = "UIWebViewNavigationTypeFormSubmitted")]
     pub const FormSubmitted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/backforward?language=objc)
     #[doc(alias = "UIWebViewNavigationTypeBackForward")]
     pub const BackForward: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/reload?language=objc)
     #[doc(alias = "UIWebViewNavigationTypeReload")]
     pub const Reload: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/formresubmitted?language=objc)
     #[doc(alias = "UIWebViewNavigationTypeFormResubmitted")]
     pub const FormResubmitted: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/other?language=objc)
     #[doc(alias = "UIWebViewNavigationTypeOther")]
     pub const Other: Self = Self(5);
 }
@@ -46,14 +52,19 @@ unsafe impl RefEncode for UIWebViewNavigationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWebPaginationMode(pub NSInteger);
 impl UIWebPaginationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum/unpaginated?language=objc)
     #[doc(alias = "UIWebPaginationModeUnpaginated")]
     pub const Unpaginated: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum/lefttoright?language=objc)
     #[doc(alias = "UIWebPaginationModeLeftToRight")]
     pub const LeftToRight: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum/toptobottom?language=objc)
     #[doc(alias = "UIWebPaginationModeTopToBottom")]
     pub const TopToBottom: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum/bottomtotop?language=objc)
     #[doc(alias = "UIWebPaginationModeBottomToTop")]
     pub const BottomToTop: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum/righttoleft?language=objc)
     #[doc(alias = "UIWebPaginationModeRightToLeft")]
     pub const RightToLeft: Self = Self(4);
 }
@@ -72,8 +83,10 @@ unsafe impl RefEncode for UIWebPaginationMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWebPaginationBreakingMode(pub NSInteger);
 impl UIWebPaginationBreakingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationbreakingmode-swift.enum/page?language=objc)
     #[doc(alias = "UIWebPaginationBreakingModePage")]
     pub const Page: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationbreakingmode-swift.enum/column?language=objc)
     #[doc(alias = "UIWebPaginationBreakingModeColumn")]
     pub const Column: Self = Self(1);
 }

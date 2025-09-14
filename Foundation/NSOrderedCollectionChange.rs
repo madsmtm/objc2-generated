@@ -11,8 +11,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionChangeType(pub NSInteger);
 impl NSCollectionChangeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectionchangetype/insert?language=objc)
     #[doc(alias = "NSCollectionChangeInsert")]
     pub const Insert: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectionchangetype/remove?language=objc)
     #[doc(alias = "NSCollectionChangeRemove")]
     pub const Remove: Self = Self(1);
 }

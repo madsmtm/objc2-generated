@@ -17,6 +17,8 @@ impl cp_layer_renderer_layout {
     ///
     /// When the layout contains multiple views, each view receives its
     /// own dedicated texture. The type of each texture is MTLTextureType2D.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/layout/dedicated?language=objc)
     #[doc(alias = "cp_layer_renderer_layout_dedicated")]
     pub const dedicated: Self = Self(0);
     /// A layout that uses a single texture to store the content for all
@@ -26,6 +28,8 @@ impl cp_layer_renderer_layout {
     /// for those views side-by-side. The texture map for each view contains
     /// a viewport that defines the boundaries of the view’s content. The
     /// type of each texture is MTLTextureType2D.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/layout/shared?language=objc)
     #[doc(alias = "cp_layer_renderer_layout_shared")]
     pub const shared: Self = Self(1);
     /// A layout that specifies each view’s content as a slice of a single
@@ -35,6 +39,8 @@ impl cp_layer_renderer_layout {
     /// views. The type of the texture is MTLTextureType2DArray. The texture
     /// map’s slice index indicates which array slot contains the view’s
     /// content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/layout/layered?language=objc)
     #[doc(alias = "cp_layer_renderer_layout_layered")]
     pub const layered: Self = Self(2);
 }

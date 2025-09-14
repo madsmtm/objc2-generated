@@ -14,9 +14,13 @@ use crate::*;
 pub struct NSComboButtonStyle(pub NSInteger);
 impl NSComboButtonStyle {
     /// The button will be split across 2 segments. The leading segment shows `title`, `image`, or both. If `action` is set, it will be performed when the leading segment is clicked. If `action` is `nil`, the leading segment will be disabled. The trailing segment shows a menu indicator. If `menu` is set, clicking the trailing segment will show it. If `menu` is empty, the trailing segment will be disabled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobutton/style-swift.enum/split?language=objc)
     #[doc(alias = "NSComboButtonStyleSplit")]
     pub const Split: Self = Self(0);
     /// The button will be unified in a single segment. If `action` is set, `menu` will appear on click and hold. If `action` is `nil`, then `menu` will appear on click.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobutton/style-swift.enum/unified?language=objc)
     #[doc(alias = "NSComboButtonStyleUnified")]
     pub const Unified: Self = Self(1);
 }

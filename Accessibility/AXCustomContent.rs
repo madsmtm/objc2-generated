@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXCustomContentImportance(pub NSUInteger);
 impl AXCustomContentImportance {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontent/importance-swift.enum/default?language=objc)
     #[doc(alias = "AXCustomContentImportanceDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontent/importance-swift.enum/high?language=objc)
     #[doc(alias = "AXCustomContentImportanceHigh")]
     pub const High: Self = Self(1);
 }

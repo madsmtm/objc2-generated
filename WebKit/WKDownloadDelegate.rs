@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKDownloadRedirectPolicy(pub NSInteger);
 impl WKDownloadRedirectPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownload/redirectpolicy/cancel?language=objc)
     #[doc(alias = "WKDownloadRedirectPolicyCancel")]
     pub const Cancel: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownload/redirectpolicy/allow?language=objc)
     #[doc(alias = "WKDownloadRedirectPolicyAllow")]
     pub const Allow: Self = Self(1);
 }
@@ -33,8 +35,10 @@ unsafe impl RefEncode for WKDownloadRedirectPolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKDownloadPlaceholderPolicy(pub NSInteger);
 impl WKDownloadPlaceholderPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownload/placeholderpolicy/disable?language=objc)
     #[doc(alias = "WKDownloadPlaceholderPolicyDisable")]
     pub const Disable: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownload/placeholderpolicy/enable?language=objc)
     #[doc(alias = "WKDownloadPlaceholderPolicyEnable")]
     pub const Enable: Self = Self(1);
 }

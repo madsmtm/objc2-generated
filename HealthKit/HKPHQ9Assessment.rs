@@ -14,14 +14,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKPHQ9AssessmentRisk(pub NSInteger);
 impl HKPHQ9AssessmentRisk {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/risk-swift.enum/nonetominimal?language=objc)
     #[doc(alias = "HKPHQ9AssessmentRiskNoneToMinimal")]
     pub const NoneToMinimal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/risk-swift.enum/mild?language=objc)
     #[doc(alias = "HKPHQ9AssessmentRiskMild")]
     pub const Mild: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/risk-swift.enum/moderate?language=objc)
     #[doc(alias = "HKPHQ9AssessmentRiskModerate")]
     pub const Moderate: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/risk-swift.enum/moderatelysevere?language=objc)
     #[doc(alias = "HKPHQ9AssessmentRiskModeratelySevere")]
     pub const ModeratelySevere: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/risk-swift.enum/severe?language=objc)
     #[doc(alias = "HKPHQ9AssessmentRiskSevere")]
     pub const Severe: Self = Self(5);
 }
@@ -42,14 +47,19 @@ unsafe impl RefEncode for HKPHQ9AssessmentRisk {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKPHQ9AssessmentAnswer(pub NSInteger);
 impl HKPHQ9AssessmentAnswer {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/answer/notatall?language=objc)
     #[doc(alias = "HKPHQ9AssessmentAnswerNotAtAll")]
     pub const NotAtAll: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/answer/severaldays?language=objc)
     #[doc(alias = "HKPHQ9AssessmentAnswerSeveralDays")]
     pub const SeveralDays: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/answer/morethanhalfthedays?language=objc)
     #[doc(alias = "HKPHQ9AssessmentAnswerMoreThanHalfTheDays")]
     pub const MoreThanHalfTheDays: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/answer/nearlyeveryday?language=objc)
     #[doc(alias = "HKPHQ9AssessmentAnswerNearlyEveryDay")]
     pub const NearlyEveryDay: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/answer/prefernottoanswer?language=objc)
     #[doc(alias = "HKPHQ9AssessmentAnswerPreferNotToAnswer")]
     pub const PreferNotToAnswer: Self = Self(4);
 }
@@ -64,11 +74,15 @@ unsafe impl RefEncode for HKPHQ9AssessmentAnswer {
 
 extern "C-unwind" {
     /// Returns the lower bound of the score range for the given PHQ-9 risk classification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkminimumscoreforphq9assessmentrisk?language=objc)
     pub fn HKMinimumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger;
 }
 
 extern "C-unwind" {
     /// Returns the upper bound of the score range for the given PHQ-9 risk classification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmaximumscoreforphq9assessmentrisk?language=objc)
     pub fn HKMaximumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger;
 }
 

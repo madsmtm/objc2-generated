@@ -27,6 +27,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for ColorSyncTransform {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformgettypeid()?language=objc)
     #[doc(alias = "ColorSyncTransformGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,6 +39,8 @@ unsafe impl ConcreteType for ColorSyncTransform {
 }
 
 impl ColorSyncTransform {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformcreate(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `profile_sequence` generic must be of the correct type.
@@ -59,6 +62,8 @@ impl ColorSyncTransform {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformcopyproperty(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` should be of the correct type.
@@ -82,6 +87,8 @@ impl ColorSyncTransform {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformsetproperty(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` should be of the correct type.
@@ -99,6 +106,7 @@ impl ColorSyncTransform {
         unsafe { ColorSyncTransformSetProperty(self, key, property) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformgetprofilesequence(_:)?language=objc)
     #[doc(alias = "ColorSyncTransformGetProfileSequence")]
     #[inline]
     pub unsafe fn profile_sequence(&self) -> Option<CFRetained<CFArray>> {
@@ -117,20 +125,28 @@ impl ColorSyncTransform {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ColorSyncDataDepth(pub c_uint);
 impl ColorSyncDataDepth {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync1bitgamut?language=objc)
     #[doc(alias = "kColorSync1BitGamut")]
     pub const Sync1BitGamut: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync8bitinteger?language=objc)
     #[doc(alias = "kColorSync8BitInteger")]
     pub const Sync8BitInteger: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync16bitinteger?language=objc)
     #[doc(alias = "kColorSync16BitInteger")]
     pub const Sync16BitInteger: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync16bitfloat?language=objc)
     #[doc(alias = "kColorSync16BitFloat")]
     pub const Sync16BitFloat: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync32bitinteger?language=objc)
     #[doc(alias = "kColorSync32BitInteger")]
     pub const Sync32BitInteger: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync32bitnamedcolorindex?language=objc)
     #[doc(alias = "kColorSync32BitNamedColorIndex")]
     pub const Sync32BitNamedColorIndex: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync32bitfloat?language=objc)
     #[doc(alias = "kColorSync32BitFloat")]
     pub const Sync32BitFloat: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync10bitinteger?language=objc)
     #[doc(alias = "kColorSync10BitInteger")]
     pub const Sync10BitInteger: Self = Self(8);
 }
@@ -150,18 +166,25 @@ unsafe impl RefEncode for ColorSyncDataDepth {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ColorSyncAlphaInfo(pub c_uint);
 impl ColorSyncAlphaInfo {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphanone?language=objc)
     #[doc(alias = "kColorSyncAlphaNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphapremultipliedlast?language=objc)
     #[doc(alias = "kColorSyncAlphaPremultipliedLast")]
     pub const PremultipliedLast: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphapremultipliedfirst?language=objc)
     #[doc(alias = "kColorSyncAlphaPremultipliedFirst")]
     pub const PremultipliedFirst: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphalast?language=objc)
     #[doc(alias = "kColorSyncAlphaLast")]
     pub const Last: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphafirst?language=objc)
     #[doc(alias = "kColorSyncAlphaFirst")]
     pub const First: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphanoneskiplast?language=objc)
     #[doc(alias = "kColorSyncAlphaNoneSkipLast")]
     pub const NoneSkipLast: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphanoneskipfirst?language=objc)
     #[doc(alias = "kColorSyncAlphaNoneSkipFirst")]
     pub const NoneSkipFirst: Self = Self(6);
 }
@@ -195,6 +218,8 @@ pub const kColorSyncByteOrder32Big: c_uint = 4 << 12;
 pub type ColorSyncDataLayout = u32;
 
 impl ColorSyncTransform {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformconvert(_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dst` must be a valid pointer.
@@ -502,6 +527,8 @@ extern "C" {
     pub static kColorSyncFixedPointRange: &'static CFString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccreatecodefragment(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `profile_sequence` generic must be of the correct type.

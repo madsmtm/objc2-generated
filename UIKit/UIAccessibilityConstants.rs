@@ -201,10 +201,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityNavigationStyle(pub NSInteger);
 impl UIAccessibilityNavigationStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynavigationstyle/automatic?language=objc)
     #[doc(alias = "UIAccessibilityNavigationStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynavigationstyle/separate?language=objc)
     #[doc(alias = "UIAccessibilityNavigationStyleSeparate")]
     pub const Separate: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynavigationstyle/combined?language=objc)
     #[doc(alias = "UIAccessibilityNavigationStyleCombined")]
     pub const Combined: Self = Self(2);
 }
@@ -223,14 +226,19 @@ unsafe impl RefEncode for UIAccessibilityNavigationStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityContainerType(pub NSInteger);
 impl UIAccessibilityContainerType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype/none?language=objc)
     #[doc(alias = "UIAccessibilityContainerTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype/datatable?language=objc)
     #[doc(alias = "UIAccessibilityContainerTypeDataTable")]
     pub const DataTable: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype/list?language=objc)
     #[doc(alias = "UIAccessibilityContainerTypeList")]
     pub const List: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype/landmark?language=objc)
     #[doc(alias = "UIAccessibilityContainerTypeLandmark")]
     pub const Landmark: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype/semanticgroup?language=objc)
     #[doc(alias = "UIAccessibilityContainerTypeSemanticGroup")]
     pub const SemanticGroup: Self = Self(4);
 }
@@ -250,10 +258,13 @@ unsafe impl RefEncode for UIAccessibilityContainerType {
 pub struct UIAccessibilityDirectTouchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIAccessibilityDirectTouchOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitydirecttouchoptions/uiaccessibilitydirecttouchoptionnone?language=objc)
         #[doc(alias = "UIAccessibilityDirectTouchOptionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/directtouchoptions/silentontouch?language=objc)
         #[doc(alias = "UIAccessibilityDirectTouchOptionSilentOnTouch")]
         const SilentOnTouch = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/directtouchoptions/requiresactivation?language=objc)
         #[doc(alias = "UIAccessibilityDirectTouchOptionRequiresActivation")]
         const RequiresActivation = 1<<1;
     }
@@ -331,10 +342,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityExpandedStatus(pub NSInteger);
 impl UIAccessibilityExpandedStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/expandedstatus/unsupported?language=objc)
     #[doc(alias = "UIAccessibilityExpandedStatusUnsupported")]
     pub const Unsupported: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/expandedstatus/expanded?language=objc)
     #[doc(alias = "UIAccessibilityExpandedStatusExpanded")]
     pub const Expanded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/expandedstatus/collapsed?language=objc)
     #[doc(alias = "UIAccessibilityExpandedStatusCollapsed")]
     pub const Collapsed: Self = Self(2);
 }

@@ -39,34 +39,49 @@ pub type CFXMLTree = CFTree;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFXMLNodeTypeCode(pub CFIndex);
 impl CFXMLNodeTypeCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/document?language=objc)
     #[doc(alias = "kCFXMLNodeTypeDocument")]
     pub const Document: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/element?language=objc)
     #[doc(alias = "kCFXMLNodeTypeElement")]
     pub const Element: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/attribute?language=objc)
     #[doc(alias = "kCFXMLNodeTypeAttribute")]
     pub const Attribute: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/processinginstruction?language=objc)
     #[doc(alias = "kCFXMLNodeTypeProcessingInstruction")]
     pub const ProcessingInstruction: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/comment?language=objc)
     #[doc(alias = "kCFXMLNodeTypeComment")]
     pub const Comment: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/text?language=objc)
     #[doc(alias = "kCFXMLNodeTypeText")]
     pub const Text: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/cdatasection?language=objc)
     #[doc(alias = "kCFXMLNodeTypeCDATASection")]
     pub const CDATASection: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/documentfragment?language=objc)
     #[doc(alias = "kCFXMLNodeTypeDocumentFragment")]
     pub const DocumentFragment: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/entity?language=objc)
     #[doc(alias = "kCFXMLNodeTypeEntity")]
     pub const Entity: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/entityreference?language=objc)
     #[doc(alias = "kCFXMLNodeTypeEntityReference")]
     pub const EntityReference: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/documenttype?language=objc)
     #[doc(alias = "kCFXMLNodeTypeDocumentType")]
     pub const DocumentType: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/whitespace?language=objc)
     #[doc(alias = "kCFXMLNodeTypeWhitespace")]
     pub const Whitespace: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/notation?language=objc)
     #[doc(alias = "kCFXMLNodeTypeNotation")]
     pub const Notation: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/elementtypedeclaration?language=objc)
     #[doc(alias = "kCFXMLNodeTypeElementTypeDeclaration")]
     pub const ElementTypeDeclaration: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/attributelistdeclaration?language=objc)
     #[doc(alias = "kCFXMLNodeTypeAttributeListDeclaration")]
     pub const AttributeListDeclaration: Self = Self(15);
 }
@@ -280,14 +295,19 @@ unsafe impl RefEncode for CFXMLAttributeListDeclarationInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFXMLEntityTypeCode(pub CFIndex);
 impl CFXMLEntityTypeCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode/parameter?language=objc)
     #[doc(alias = "kCFXMLEntityTypeParameter")]
     pub const Parameter: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode/parsedinternal?language=objc)
     #[doc(alias = "kCFXMLEntityTypeParsedInternal")]
     pub const ParsedInternal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode/parsedexternal?language=objc)
     #[doc(alias = "kCFXMLEntityTypeParsedExternal")]
     pub const ParsedExternal: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode/unparsed?language=objc)
     #[doc(alias = "kCFXMLEntityTypeUnparsed")]
     pub const Unparsed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode/character?language=objc)
     #[doc(alias = "kCFXMLEntityTypeCharacter")]
     pub const Character: Self = Self(4);
 }
@@ -349,6 +369,7 @@ unsafe impl RefEncode for CFXMLEntityReferenceInfo {
 }
 
 unsafe impl ConcreteType for CFXMLNode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodegettypeid?language=objc)
     #[doc(alias = "CFXMLNodeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -360,6 +381,8 @@ unsafe impl ConcreteType for CFXMLNode {
 }
 
 impl CFXMLNode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodecreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -389,6 +412,8 @@ impl CFXMLNode {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodecreatecopy?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -410,6 +435,7 @@ impl CFXMLNode {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodegettypecode?language=objc)
     #[doc(alias = "CFXMLNodeGetTypeCode")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -420,6 +446,7 @@ impl CFXMLNode {
         unsafe { CFXMLNodeGetTypeCode(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetstring?language=objc)
     #[doc(alias = "CFXMLNodeGetString")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -431,6 +458,7 @@ impl CFXMLNode {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr?language=objc)
     #[doc(alias = "CFXMLNodeGetInfoPtr")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -441,6 +469,7 @@ impl CFXMLNode {
         unsafe { CFXMLNodeGetInfoPtr(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetversion?language=objc)
     #[doc(alias = "CFXMLNodeGetVersion")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -452,6 +481,8 @@ impl CFXMLNode {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatewithnode?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -473,6 +504,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithNode(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreegetnode?language=objc)
 #[cfg(feature = "CFTree")]
 #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]

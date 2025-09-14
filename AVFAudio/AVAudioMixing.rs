@@ -162,18 +162,25 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudio3DMixingRenderingAlgorithm(pub NSInteger);
 impl AVAudio3DMixingRenderingAlgorithm {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/equalpowerpanning?language=objc)
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmEqualPowerPanning")]
     pub const EqualPowerPanning: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/sphericalhead?language=objc)
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmSphericalHead")]
     pub const SphericalHead: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/hrtf?language=objc)
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmHRTF")]
     pub const HRTF: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/soundfield?language=objc)
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmSoundField")]
     pub const SoundField: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/stereopassthrough?language=objc)
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmStereoPassThrough")]
     pub const StereoPassThrough: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/hrtfhq?language=objc)
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmHRTFHQ")]
     pub const HRTFHQ: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/auto?language=objc)
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmAuto")]
     pub const Auto: Self = Self(7);
 }
@@ -221,12 +228,16 @@ unsafe impl RefEncode for AVAudio3DMixingRenderingAlgorithm {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudio3DMixingSourceMode(pub NSInteger);
 impl AVAudio3DMixingSourceMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/spatializeifmono?language=objc)
     #[doc(alias = "AVAudio3DMixingSourceModeSpatializeIfMono")]
     pub const SpatializeIfMono: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/bypass?language=objc)
     #[doc(alias = "AVAudio3DMixingSourceModeBypass")]
     pub const Bypass: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/pointsource?language=objc)
     #[doc(alias = "AVAudio3DMixingSourceModePointSource")]
     pub const PointSource: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/ambiencebed?language=objc)
     #[doc(alias = "AVAudio3DMixingSourceModeAmbienceBed")]
     pub const AmbienceBed: Self = Self(3);
 }
@@ -259,8 +270,10 @@ unsafe impl RefEncode for AVAudio3DMixingSourceMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudio3DMixingPointSourceInHeadMode(pub NSInteger);
 impl AVAudio3DMixingPointSourceInHeadMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingpointsourceinheadmode/mono?language=objc)
     #[doc(alias = "AVAudio3DMixingPointSourceInHeadModeMono")]
     pub const Mono: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingpointsourceinheadmode/bypass?language=objc)
     #[doc(alias = "AVAudio3DMixingPointSourceInHeadModeBypass")]
     pub const Bypass: Self = Self(1);
 }

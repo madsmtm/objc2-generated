@@ -8,5 +8,7 @@ extern "C-unwind" {
     /// Allows the client to use media format readers appropriate for professional video workflows.
     ///
     /// By calling this function, a client indicates to MediaToolbox that it wishes to support Media Extension format readers. Note that this functionality is intended for applications supporting professional video workflows. It is not recommended for network-facing applications such as web browsers, messaging clients, mail clients, etc. By convention, format readers registered using this function should conform to the abstract UTType of "com.apple.mediaextension-content" which in turn conforms to the abstract type "public.movie". Clients can use the type "com.apple.mediaextension-content" to do type filtering (e.g. in Open... dialogs).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtregisterprofessionalvideoworkflowformatreaders()?language=objc)
     pub fn MTRegisterProfessionalVideoWorkflowFormatReaders();
 }

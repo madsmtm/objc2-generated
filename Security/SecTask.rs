@@ -31,6 +31,8 @@ unsafe impl ConcreteType for SecTask {
     /// Returns the type ID for CF instances of SecTask.
     ///
     /// Returns: A CFTypeID for SecTask
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskgettypeid()?language=objc)
     #[doc(alias = "SecTaskGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -46,6 +48,8 @@ impl SecTask {
     ///
     /// Returns: The newly created SecTask object or NULL on error.  The caller must
     /// CFRelease the returned object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskcreatefromself(_:)?language=objc)
     #[doc(alias = "SecTaskCreateFromSelf")]
     #[inline]
     pub unsafe fn from_self(allocator: Option<&CFAllocator>) -> Option<CFRetained<SecTask>> {
@@ -79,6 +83,8 @@ impl SecTask {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskcopyvalueforentitlement(_:_:_:)?language=objc)
     #[doc(alias = "SecTaskCopyValueForEntitlement")]
     #[inline]
     pub unsafe fn value_for_entitlement(
@@ -114,6 +120,8 @@ impl SecTask {
     ///
     /// - `entitlements` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskcopyvaluesforentitlements(_:_:_:)?language=objc)
     #[doc(alias = "SecTaskCopyValuesForEntitlements")]
     #[inline]
     pub unsafe fn values_for_entitlements(
@@ -143,6 +151,8 @@ impl SecTask {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskcopysigningidentifier(_:_:)?language=objc)
     #[doc(alias = "SecTaskCopySigningIdentifier")]
     #[inline]
     pub unsafe fn signing_identifier(
@@ -162,6 +172,8 @@ impl SecTask {
     /// Return the code sign status flags
     ///
     /// Parameter `task`: A previously created SecTask object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskgetcodesignstatus(_:)?language=objc)
     #[doc(alias = "SecTaskGetCodeSignStatus")]
     #[inline]
     pub unsafe fn code_sign_status(&self) -> u32 {

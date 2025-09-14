@@ -23,63 +23,103 @@ pub struct ARErrorCode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARErrorCode {
     /// Unsupported configuration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/unsupportedconfiguration?language=objc)
     #[doc(alias = "ARErrorCodeUnsupportedConfiguration")]
     pub const UnsupportedConfiguration: Self = Self(100);
     /// A sensor required to run the session is not available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/sensorunavailable?language=objc)
     #[doc(alias = "ARErrorCodeSensorUnavailable")]
     pub const SensorUnavailable: Self = Self(101);
     /// A sensor failed to provide the required input.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/sensorfailed?language=objc)
     #[doc(alias = "ARErrorCodeSensorFailed")]
     pub const SensorFailed: Self = Self(102);
     /// App does not have permission to use the camera. The user may change this in settings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/cameraunauthorized?language=objc)
     #[doc(alias = "ARErrorCodeCameraUnauthorized")]
     pub const CameraUnauthorized: Self = Self(103);
     /// App does not have permission to use the microphone. The user may change this in settings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/microphoneunauthorized?language=objc)
     #[doc(alias = "ARErrorCodeMicrophoneUnauthorized")]
     pub const MicrophoneUnauthorized: Self = Self(104);
     /// App does not have permission to use the location data of the device. The user may change this in settings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/locationunauthorized?language=objc)
     #[doc(alias = "ARErrorCodeLocationUnauthorized")]
     pub const LocationUnauthorized: Self = Self(105);
     /// A high-resolution frame is requested while another one is being captured.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/highresolutionframecaptureinprogress?language=objc)
     #[doc(alias = "ARErrorCodeHighResolutionFrameCaptureInProgress")]
     pub const HighResolutionFrameCaptureInProgress: Self = Self(106);
     /// High-resolution frame capture failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/highresolutionframecapturefailed?language=objc)
     #[doc(alias = "ARErrorCodeHighResolutionFrameCaptureFailed")]
     pub const HighResolutionFrameCaptureFailed: Self = Self(107);
     /// World tracking has encountered a fatal error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/worldtrackingfailed?language=objc)
     #[doc(alias = "ARErrorCodeWorldTrackingFailed")]
     pub const WorldTrackingFailed: Self = Self(200);
     /// Geo tracking is not available at this location.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/geotrackingnotavailableatlocation?language=objc)
     #[doc(alias = "ARErrorCodeGeoTrackingNotAvailableAtLocation")]
     pub const GeoTrackingNotAvailableAtLocation: Self = Self(201);
     /// Geo tracking has encountered a runtime error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/geotrackingfailed?language=objc)
     #[doc(alias = "ARErrorCodeGeoTrackingFailed")]
     pub const GeoTrackingFailed: Self = Self(202);
     /// Invalid reference image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/invalidreferenceimage?language=objc)
     #[doc(alias = "ARErrorCodeInvalidReferenceImage")]
     pub const InvalidReferenceImage: Self = Self(300);
     /// Invalid reference object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/invalidreferenceobject?language=objc)
     #[doc(alias = "ARErrorCodeInvalidReferenceObject")]
     pub const InvalidReferenceObject: Self = Self(301);
     /// Invalid world map.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/invalidworldmap?language=objc)
     #[doc(alias = "ARErrorCodeInvalidWorldMap")]
     pub const InvalidWorldMap: Self = Self(302);
     /// Invalid configuration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/invalidconfiguration?language=objc)
     #[doc(alias = "ARErrorCodeInvalidConfiguration")]
     pub const InvalidConfiguration: Self = Self(303);
     /// Invalid collaboration data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/invalidcollaborationdata?language=objc)
     #[doc(alias = "ARErrorCodeInvalidCollaborationData")]
     pub const InvalidCollaborationData: Self = Self(304);
     /// Insufficient features.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/insufficientfeatures?language=objc)
     #[doc(alias = "ARErrorCodeInsufficientFeatures")]
     pub const InsufficientFeatures: Self = Self(400);
     /// Object merge failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/objectmergefailed?language=objc)
     #[doc(alias = "ARErrorCodeObjectMergeFailed")]
     pub const ObjectMergeFailed: Self = Self(401);
     /// Unable to read or write to file.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/fileiofailed?language=objc)
     #[doc(alias = "ARErrorCodeFileIOFailed")]
     pub const FileIOFailed: Self = Self(500);
     /// Generic request failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/requestfailed?language=objc)
     #[doc(alias = "ARErrorCodeRequestFailed")]
     pub const RequestFailed: Self = Self(501);
 }

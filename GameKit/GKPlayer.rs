@@ -104,8 +104,10 @@ impl GKPlayer {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKPhotoSize(pub NSInteger);
 impl GKPhotoSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayer/photosize/small?language=objc)
     #[doc(alias = "GKPhotoSizeSmall")]
     pub const Small: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayer/photosize/normal?language=objc)
     #[doc(alias = "GKPhotoSizeNormal")]
     pub const Normal: Self = Self(1);
 }

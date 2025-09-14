@@ -104,11 +104,15 @@ impl UIInterpolatingMotionEffectType {
     /// Tracks the device being tilted left/right relative to the viewer. The minimum
     /// relative values maps to the device being tilted all the way to the left, the
     /// maximum to the right.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect/effecttype/tiltalonghorizontalaxis?language=objc)
     #[doc(alias = "UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis")]
     pub const TiltAlongHorizontalAxis: Self = Self(0);
     /// Tracks the device being tilted up/down relative to the viewer. The minimum
     /// relative values maps to the device being tilted all the way down, the maximum
     /// all the way up.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect/effecttype/tiltalongverticalaxis?language=objc)
     #[doc(alias = "UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis")]
     pub const TiltAlongVerticalAxis: Self = Self(1);
 }

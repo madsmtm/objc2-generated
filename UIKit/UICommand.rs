@@ -14,16 +14,22 @@ use crate::*;
 pub struct UIKeyModifierFlags(pub NSInteger);
 bitflags::bitflags! {
     impl UIKeyModifierFlags: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/alphashift?language=objc)
         #[doc(alias = "UIKeyModifierAlphaShift")]
         const AlphaShift = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/shift?language=objc)
         #[doc(alias = "UIKeyModifierShift")]
         const Shift = 1<<17;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/control?language=objc)
         #[doc(alias = "UIKeyModifierControl")]
         const Control = 1<<18;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/alternate?language=objc)
         #[doc(alias = "UIKeyModifierAlternate")]
         const Alternate = 1<<19;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/command?language=objc)
         #[doc(alias = "UIKeyModifierCommand")]
         const Command = 1<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/numericpad?language=objc)
         #[doc(alias = "UIKeyModifierNumericPad")]
         const NumericPad = 1<<21;
     }

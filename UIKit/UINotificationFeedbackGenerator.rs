@@ -14,10 +14,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINotificationFeedbackType(pub NSInteger);
 impl UINotificationFeedbackType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinotificationfeedbackgenerator/feedbacktype/success?language=objc)
     #[doc(alias = "UINotificationFeedbackTypeSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinotificationfeedbackgenerator/feedbacktype/warning?language=objc)
     #[doc(alias = "UINotificationFeedbackTypeWarning")]
     pub const Warning: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinotificationfeedbackgenerator/feedbacktype/error?language=objc)
     #[doc(alias = "UINotificationFeedbackTypeError")]
     pub const Error: Self = Self(2);
 }

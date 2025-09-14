@@ -14,15 +14,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKCloudServiceAuthorizationStatus(pub NSInteger);
 impl SKCloudServiceAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "SKCloudServiceAuthorizationStatusNotDetermined")]
     #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus/denied?language=objc)
     #[doc(alias = "SKCloudServiceAuthorizationStatusDenied")]
     #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const Denied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus/restricted?language=objc)
     #[doc(alias = "SKCloudServiceAuthorizationStatusRestricted")]
     #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const Restricted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus/authorized?language=objc)
     #[doc(alias = "SKCloudServiceAuthorizationStatusAuthorized")]
     #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const Authorized: Self = Self(3);
@@ -44,15 +48,19 @@ unsafe impl RefEncode for SKCloudServiceAuthorizationStatus {
 pub struct SKCloudServiceCapability(pub NSUInteger);
 bitflags::bitflags! {
     impl SKCloudServiceCapability: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability/skcloudservicecapabilitynone?language=objc)
         #[doc(alias = "SKCloudServiceCapabilityNone")]
 #[deprecated = "Use MusicSubscription from MusicKit"]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability/musiccatalogplayback?language=objc)
         #[doc(alias = "SKCloudServiceCapabilityMusicCatalogPlayback")]
 #[deprecated = "Use MusicSubscription from MusicKit"]
         const MusicCatalogPlayback = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability/musiccatalogsubscriptioneligible?language=objc)
         #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
 #[deprecated = "Use the canBecomeSubscriber property of MusicSubscription from MusicKit"]
         const MusicCatalogSubscriptionEligible = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability/addtocloudmusiclibrary?language=objc)
         #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
 #[deprecated = "Use MusicSubscription from MusicKit"]
         const AddToCloudMusicLibrary = 1<<8;

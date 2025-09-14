@@ -20,8 +20,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKOverlayLevel(pub NSInteger);
 impl MKOverlayLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlaylevel/aboveroads?language=objc)
     #[doc(alias = "MKOverlayLevelAboveRoads")]
     pub const AboveRoads: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlaylevel/abovelabels?language=objc)
     #[doc(alias = "MKOverlayLevelAboveLabels")]
     pub const AboveLabels: Self = Self(1);
 }
@@ -40,10 +42,13 @@ unsafe impl RefEncode for MKOverlayLevel {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKUserTrackingMode(pub NSInteger);
 impl MKUserTrackingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkusertrackingmode/none?language=objc)
     #[doc(alias = "MKUserTrackingModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkusertrackingmode/follow?language=objc)
     #[doc(alias = "MKUserTrackingModeFollow")]
     pub const Follow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkusertrackingmode/followwithheading?language=objc)
     #[doc(alias = "MKUserTrackingModeFollowWithHeading")]
     pub const FollowWithHeading: Self = Self(2);
 }

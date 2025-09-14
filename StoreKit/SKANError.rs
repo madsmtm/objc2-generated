@@ -17,28 +17,40 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKANError(pub NSInteger);
 impl SKANError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/impressionmissingrequiredvalue?language=objc)
     #[doc(alias = "SKANErrorImpressionMissingRequiredValue")]
     pub const ImpressionMissingRequiredValue: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/unsupported?language=objc)
     #[doc(alias = "SKANErrorUnsupported")]
     pub const Unsupported: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/adnetworkidmissing?language=objc)
     #[doc(alias = "SKANErrorAdNetworkIdMissing")]
     pub const AdNetworkIdMissing: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/mismatchedsourceappid?language=objc)
     #[doc(alias = "SKANErrorMismatchedSourceAppId")]
     pub const MismatchedSourceAppId: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/impressionnotfound?language=objc)
     #[doc(alias = "SKANErrorImpressionNotFound")]
     pub const ImpressionNotFound: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/invalidcampaignid?language=objc)
     #[doc(alias = "SKANErrorInvalidCampaignId")]
     pub const InvalidCampaignId: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/invalidconversionvalue?language=objc)
     #[doc(alias = "SKANErrorInvalidConversionValue")]
     pub const InvalidConversionValue: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/invalidsourceappid?language=objc)
     #[doc(alias = "SKANErrorInvalidSourceAppId")]
     pub const InvalidSourceAppId: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/invalidadvertisedappid?language=objc)
     #[doc(alias = "SKANErrorInvalidAdvertisedAppId")]
     pub const InvalidAdvertisedAppId: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/invalidversion?language=objc)
     #[doc(alias = "SKANErrorInvalidVersion")]
     pub const InvalidVersion: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/unknown?language=objc)
     #[doc(alias = "SKANErrorUnknown")]
     pub const Unknown: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/impressiontooshort?language=objc)
     #[doc(alias = "SKANErrorImpressionTooShort")]
     pub const ImpressionTooShort: Self = Self(11);
 }

@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLAnimatedValueInterpolation(pub NSUInteger);
 impl MDLAnimatedValueInterpolation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvalueinterpolation/constant?language=objc)
     #[doc(alias = "MDLAnimatedValueInterpolationConstant")]
     pub const Constant: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvalueinterpolation/linear?language=objc)
     #[doc(alias = "MDLAnimatedValueInterpolationLinear")]
     pub const Linear: Self = Self(1);
 }

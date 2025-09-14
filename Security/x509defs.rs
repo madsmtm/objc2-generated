@@ -240,8 +240,11 @@ pub type CSSM_X509EXT_BASICCONSTRAINTS_PTR = *mut cssm_x509ext_basicConstraints;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct extension_data_format(pub c_uint);
 impl extension_data_format {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_dataformat_encoded?language=objc)
     pub const CSSM_X509_DATAFORMAT_ENCODED: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_dataformat_parsed?language=objc)
     pub const CSSM_X509_DATAFORMAT_PARSED: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_dataformat_pair?language=objc)
     pub const CSSM_X509_DATAFORMAT_PAIR: Self = Self(2);
 }
 

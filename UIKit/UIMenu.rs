@@ -19,15 +19,23 @@ pub struct UIMenuOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIMenuOptions: NSUInteger {
 /// Show children inline in parent, instead of hierarchically
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/options-swift.struct/displayinline?language=objc)
         #[doc(alias = "UIMenuOptionsDisplayInline")]
         const DisplayInline = 1<<0;
 /// Indicates whether the menu should be rendered with a destructive appearance in its parent
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/options-swift.struct/destructive?language=objc)
         #[doc(alias = "UIMenuOptionsDestructive")]
         const Destructive = 1<<1;
 /// Indicates whether the menu (and any submenus) should only allow a single "on" menu item.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/options-swift.struct/singleselection?language=objc)
         #[doc(alias = "UIMenuOptionsSingleSelection")]
         const SingleSelection = 1<<5;
 /// Indicates that this menu should be rendered as a palette.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/options-swift.struct/displayaspalette?language=objc)
         #[doc(alias = "UIMenuOptionsDisplayAsPalette")]
         const DisplayAsPalette = 1<<7;
     }
@@ -47,13 +55,18 @@ unsafe impl RefEncode for UIMenuOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuElementSize(pub NSInteger);
 impl UIMenuElementSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/elementsize/small?language=objc)
     #[doc(alias = "UIMenuElementSizeSmall")]
     pub const Small: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/elementsize/medium?language=objc)
     #[doc(alias = "UIMenuElementSizeMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/elementsize/large?language=objc)
     #[doc(alias = "UIMenuElementSizeLarge")]
     pub const Large: Self = Self(2);
     /// Automatically determine the appropriate element size for the current context.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/elementsize/automatic?language=objc)
     #[doc(alias = "UIMenuElementSizeAutomatic")]
     pub const Automatic: Self = Self(-1);
 }

@@ -18,12 +18,18 @@ use crate::*;
 pub struct MPSGraphRandomDistribution(pub u64);
 impl MPSGraphRandomDistribution {
     /// The uniform distribution, with samples drawn uniformly from [min, max) for float types, and [min, max] for integer types.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomdistribution/uniform?language=objc)
     #[doc(alias = "MPSGraphRandomDistributionUniform")]
     pub const Uniform: Self = Self(0);
     /// The normal distribution defined by mean and standard deviation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomdistribution/normal?language=objc)
     #[doc(alias = "MPSGraphRandomDistributionNormal")]
     pub const Normal: Self = Self(1);
     /// The normal distribution defined by mean and standard deviation, truncated to the range [min, max)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomdistribution/truncatednormal?language=objc)
     #[doc(alias = "MPSGraphRandomDistributionTruncatedNormal")]
     pub const TruncatedNormal: Self = Self(2);
 }
@@ -45,9 +51,13 @@ unsafe impl RefEncode for MPSGraphRandomDistribution {
 pub struct MPSGraphRandomNormalSamplingMethod(pub u64);
 impl MPSGraphRandomNormalSamplingMethod {
     /// Use inverse erf to convert uniform values to values in the normal distribution
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomnormalsamplingmethod/invcdf?language=objc)
     #[doc(alias = "MPSGraphRandomNormalSamplingInvCDF")]
     pub const InvCDF: Self = Self(0);
     /// Use Box Muller transform to convert uniform values to values in the normal distribution. For bounded distributions this is a rejection sampling method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomnormalsamplingmethod/boxmuller?language=objc)
     #[doc(alias = "MPSGraphRandomNormalSamplingBoxMuller")]
     pub const BoxMuller: Self = Self(1);
 }

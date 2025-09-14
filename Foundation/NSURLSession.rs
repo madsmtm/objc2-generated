@@ -439,12 +439,16 @@ impl NSURLSession {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionTaskState(pub NSInteger);
 impl NSURLSessionTaskState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.enum/running?language=objc)
     #[doc(alias = "NSURLSessionTaskStateRunning")]
     pub const Running: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.enum/suspended?language=objc)
     #[doc(alias = "NSURLSessionTaskStateSuspended")]
     pub const Suspended: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.enum/canceling?language=objc)
     #[doc(alias = "NSURLSessionTaskStateCanceling")]
     pub const Canceling: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.enum/completed?language=objc)
     #[doc(alias = "NSURLSessionTaskStateCompleted")]
     pub const Completed: Self = Self(3);
 }
@@ -923,8 +927,10 @@ impl NSURLSessionStreamTask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionWebSocketMessageType(pub NSInteger);
 impl NSURLSessionWebSocketMessageType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketmessagetype/nsurlsessionwebsocketmessagetypedata?language=objc)
     #[doc(alias = "NSURLSessionWebSocketMessageTypeData")]
     pub const Data: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketmessagetype/nsurlsessionwebsocketmessagetypestring?language=objc)
     #[doc(alias = "NSURLSessionWebSocketMessageTypeString")]
     pub const String: Self = Self(1);
 }
@@ -994,30 +1000,43 @@ impl NSURLSessionWebSocketMessage {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionWebSocketCloseCode(pub NSInteger);
 impl NSURLSessionWebSocketCloseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/invalid?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalid")]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/normalclosure?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeNormalClosure")]
     pub const NormalClosure: Self = Self(1000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/goingaway?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeGoingAway")]
     pub const GoingAway: Self = Self(1001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/protocolerror?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeProtocolError")]
     pub const ProtocolError: Self = Self(1002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/unsupporteddata?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeUnsupportedData")]
     pub const UnsupportedData: Self = Self(1003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/nostatusreceived?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeNoStatusReceived")]
     pub const NoStatusReceived: Self = Self(1005);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/abnormalclosure?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeAbnormalClosure")]
     pub const AbnormalClosure: Self = Self(1006);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/invalidframepayloaddata?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalidFramePayloadData")]
     pub const InvalidFramePayloadData: Self = Self(1007);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/policyviolation?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodePolicyViolation")]
     pub const PolicyViolation: Self = Self(1008);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/messagetoobig?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeMessageTooBig")]
     pub const MessageTooBig: Self = Self(1009);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/mandatoryextensionmissing?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeMandatoryExtensionMissing")]
     pub const MandatoryExtensionMissing: Self = Self(1010);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/internalservererror?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeInternalServerError")]
     pub const InternalServerError: Self = Self(1011);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/tlshandshakefailure?language=objc)
     #[doc(alias = "NSURLSessionWebSocketCloseCodeTLSHandshakeFailure")]
     pub const TLSHandshakeFailure: Self = Self(1015);
 }
@@ -1161,12 +1180,16 @@ impl NSURLSessionWebSocketTask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionMultipathServiceType(pub NSInteger);
 impl NSURLSessionMultipathServiceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/multipathservicetype-swift.enum/none?language=objc)
     #[doc(alias = "NSURLSessionMultipathServiceTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/multipathservicetype-swift.enum/handover?language=objc)
     #[doc(alias = "NSURLSessionMultipathServiceTypeHandover")]
     pub const Handover: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/multipathservicetype-swift.enum/interactive?language=objc)
     #[doc(alias = "NSURLSessionMultipathServiceTypeInteractive")]
     pub const Interactive: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/multipathservicetype-swift.enum/aggregate?language=objc)
     #[doc(alias = "NSURLSessionMultipathServiceTypeAggregate")]
     pub const Aggregate: Self = Self(3);
 }
@@ -1559,10 +1582,13 @@ impl NSURLSessionConfiguration {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionDelayedRequestDisposition(pub NSInteger);
 impl NSURLSessionDelayedRequestDisposition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/delayedrequestdisposition/continueloading?language=objc)
     #[doc(alias = "NSURLSessionDelayedRequestContinueLoading")]
     pub const ContinueLoading: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/delayedrequestdisposition/usenewrequest?language=objc)
     #[doc(alias = "NSURLSessionDelayedRequestUseNewRequest")]
     pub const UseNewRequest: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/delayedrequestdisposition/cancel?language=objc)
     #[doc(alias = "NSURLSessionDelayedRequestCancel")]
     pub const Cancel: Self = Self(2);
 }
@@ -1581,12 +1607,16 @@ unsafe impl RefEncode for NSURLSessionDelayedRequestDisposition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionAuthChallengeDisposition(pub NSInteger);
 impl NSURLSessionAuthChallengeDisposition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition/usecredential?language=objc)
     #[doc(alias = "NSURLSessionAuthChallengeUseCredential")]
     pub const UseCredential: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition/performdefaulthandling?language=objc)
     #[doc(alias = "NSURLSessionAuthChallengePerformDefaultHandling")]
     pub const PerformDefaultHandling: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition/cancelauthenticationchallenge?language=objc)
     #[doc(alias = "NSURLSessionAuthChallengeCancelAuthenticationChallenge")]
     pub const CancelAuthenticationChallenge: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition/rejectprotectionspace?language=objc)
     #[doc(alias = "NSURLSessionAuthChallengeRejectProtectionSpace")]
     pub const RejectProtectionSpace: Self = Self(3);
 }
@@ -1605,12 +1635,16 @@ unsafe impl RefEncode for NSURLSessionAuthChallengeDisposition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionResponseDisposition(pub NSInteger);
 impl NSURLSessionResponseDisposition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/responsedisposition/cancel?language=objc)
     #[doc(alias = "NSURLSessionResponseCancel")]
     pub const Cancel: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/responsedisposition/allow?language=objc)
     #[doc(alias = "NSURLSessionResponseAllow")]
     pub const Allow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/responsedisposition/becomedownload?language=objc)
     #[doc(alias = "NSURLSessionResponseBecomeDownload")]
     pub const BecomeDownload: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/responsedisposition/becomestream?language=objc)
     #[doc(alias = "NSURLSessionResponseBecomeStream")]
     pub const BecomeStream: Self = Self(3);
 }
@@ -2030,13 +2064,17 @@ impl NSURLSessionConfiguration {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionTaskMetricsResourceFetchType(pub NSInteger);
 impl NSURLSessionTaskMetricsResourceFetchType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype/unknown?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype/networkload?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeNetworkLoad")]
     pub const NetworkLoad: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype/serverpush?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeServerPush")]
     #[deprecated = "Server push is no longer supported as of iOS 17 and aligned releases"]
     pub const ServerPush: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype/localcache?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeLocalCache")]
     pub const LocalCache: Self = Self(3);
 }
@@ -2055,14 +2093,19 @@ unsafe impl RefEncode for NSURLSessionTaskMetricsResourceFetchType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionTaskMetricsDomainResolutionProtocol(pub NSInteger);
 impl NSURLSessionTaskMetricsDomainResolutionProtocol {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol/unknown?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol/udp?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUDP")]
     pub const UDP: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol/tcp?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolTCP")]
     pub const TCP: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol/tls?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolTLS")]
     pub const TLS: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol/https?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolHTTPS")]
     pub const HTTPS: Self = Self(4);
 }

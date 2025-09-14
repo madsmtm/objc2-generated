@@ -33,6 +33,8 @@ impl LAPolicy {
     /// either at login window or in the preference sheets or even in application by the means of
     /// LAPolicyDeviceOwnerAuthentication. The system unlock is preferred user experience because
     /// we generaly don't want users to enter their account password at application's request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometrics?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometrics")]
     pub const DeviceOwnerAuthenticationWithBiometrics: Self = Self(1);
     /// Device owner will be authenticated by biometry or user password.
@@ -44,6 +46,8 @@ impl LAPolicy {
     /// Touch ID authentication dialog behaves similarly as the one used by
     /// LAPolicyDeviceOwnerAuthenticationWithBiometrics. However, the "Use Password.." button does
     /// not end the authentication. Instead, it switches the authentication mechanism to user password.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthentication?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthentication")]
     pub const DeviceOwnerAuthentication: Self = Self(2);
     /// Device owner will be authenticated by a companion device e.g. Watch, Mac, etc.
@@ -53,6 +57,8 @@ impl LAPolicy {
     /// LAErrorCompanionNotAvailable is returned.
     ///
     /// Users should follow instructions on the companion device to authenticate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithcompanion?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithCompanion")]
     pub const DeviceOwnerAuthenticationWithCompanion: Self = Self(3);
     /// Device owner will be authenticated by biometry or a companion device e.g. Watch, Mac, etc.
@@ -67,10 +73,14 @@ impl LAPolicy {
     /// or the companion authentication takes precedence
     /// and a user is asked to authenticate exclusively on the companion device if available.
     /// Users should follow instructions on the companion device to authenticate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometricsorcompanion?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion")]
     pub const DeviceOwnerAuthenticationWithBiometricsOrCompanion: Self = Self(4);
     /// Device owner will be authenticated by device passcode. The authentication will also succeed if the wrist detection is enabled,
     /// correct passcode was entered in the past and the watch has been on the wrist ever since.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithwristdetection?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWristDetection")]
     pub const DeviceOwnerAuthenticationWithWristDetection: Self = Self(5);
     /// Device owner will be authenticated by Watch.
@@ -81,6 +91,8 @@ impl LAPolicy {
     ///
     /// Watch authentication dialog looks and behaves similarly to the biometric variant. Users can
     /// confirm authentication by double-clicking the side button on their watch.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithwatch?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWatch")]
     #[deprecated]
     pub const DeviceOwnerAuthenticationWithWatch: Self = Self(3);
@@ -94,6 +106,8 @@ impl LAPolicy {
     /// Watch authentication dialog looks and behaves similarly to biometric variant. When both
     /// mechanisms are available, user is asked to use biometry and watch authentication will run in
     /// parallel.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometricsorwatch?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch")]
     #[deprecated]
     pub const DeviceOwnerAuthenticationWithBiometricsOrWatch: Self = Self(4);
@@ -129,6 +143,8 @@ impl LACredentialType {
     /// LocalAuthentication will not show password entry user interface.
     /// When entered from the LocalAuthentication user interface, the password is stored as
     /// UTF-8 encoded string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacredentialtype/applicationpassword?language=objc)
     #[doc(alias = "LACredentialTypeApplicationPassword")]
     pub const ApplicationPassword: Self = Self(0);
     /// Smart card PIN provided by application
@@ -139,6 +155,8 @@ impl LACredentialType {
     /// LocalAuthentication will not show the smart card PIN user interface.
     /// When entered from the LocalAuthentication user interface, the PIN is stored as
     /// UTF-8 encoded string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacredentialtype/smartcardpin?language=objc)
     #[doc(alias = "LACredentialTypeSmartCardPIN")]
     pub const SmartCardPIN: Self = Self(-3);
 }
@@ -158,21 +176,33 @@ unsafe impl RefEncode for LACredentialType {
 pub struct LAAccessControlOperation(pub NSInteger);
 impl LAAccessControlOperation {
     /// Access control will be used for item creation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/createitem?language=objc)
     #[doc(alias = "LAAccessControlOperationCreateItem")]
     pub const CreateItem: Self = Self(0);
     /// Access control will be used for accessing existing item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/useitem?language=objc)
     #[doc(alias = "LAAccessControlOperationUseItem")]
     pub const UseItem: Self = Self(1);
     /// Access control will be used for key creation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/createkey?language=objc)
     #[doc(alias = "LAAccessControlOperationCreateKey")]
     pub const CreateKey: Self = Self(2);
     /// Access control will be used for sign operation with existing key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/usekeysign?language=objc)
     #[doc(alias = "LAAccessControlOperationUseKeySign")]
     pub const UseKeySign: Self = Self(3);
     /// Access control will be used for data decryption using existing key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/usekeydecrypt?language=objc)
     #[doc(alias = "LAAccessControlOperationUseKeyDecrypt")]
     pub const UseKeyDecrypt: Self = Self(4);
     /// Access control will be used for key exchange.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/usekeykeyexchange?language=objc)
     #[doc(alias = "LAAccessControlOperationUseKeyKeyExchange")]
     pub const UseKeyKeyExchange: Self = Self(5);
 }

@@ -17,8 +17,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKCalendarChooserSelectionStyle(pub NSInteger);
 impl EKCalendarChooserSelectionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserselectionstyle/single?language=objc)
     #[doc(alias = "EKCalendarChooserSelectionStyleSingle")]
     pub const Single: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserselectionstyle/multiple?language=objc)
     #[doc(alias = "EKCalendarChooserSelectionStyleMultiple")]
     pub const Multiple: Self = Self(1);
 }
@@ -37,8 +39,10 @@ unsafe impl RefEncode for EKCalendarChooserSelectionStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKCalendarChooserDisplayStyle(pub NSInteger);
 impl EKCalendarChooserDisplayStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserdisplaystyle/allcalendars?language=objc)
     #[doc(alias = "EKCalendarChooserDisplayAllCalendars")]
     pub const AllCalendars: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserdisplaystyle/writablecalendarsonly?language=objc)
     #[doc(alias = "EKCalendarChooserDisplayWritableCalendarsOnly")]
     pub const WritableCalendarsOnly: Self = Self(1);
 }

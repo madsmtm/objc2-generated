@@ -72,19 +72,25 @@ pub type sec_certificate_t = *mut sec_certificate;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct tls_protocol_version_t(pub u16);
 impl tls_protocol_version_t {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_protocol_version_t/tlsv10?language=objc)
     #[doc(alias = "tls_protocol_version_TLSv10")]
     #[deprecated = "Use tls_protocol_version_TLSv12 or tls_protocol_version_TLSv13 instead."]
     pub const TLSv10: Self = Self(0x0301);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_protocol_version_t/tlsv11?language=objc)
     #[doc(alias = "tls_protocol_version_TLSv11")]
     #[deprecated = "Use tls_protocol_version_TLSv12 or tls_protocol_version_TLSv13 instead."]
     pub const TLSv11: Self = Self(0x0302);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_protocol_version_t/tlsv12?language=objc)
     #[doc(alias = "tls_protocol_version_TLSv12")]
     pub const TLSv12: Self = Self(0x0303);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_protocol_version_t/tlsv13?language=objc)
     #[doc(alias = "tls_protocol_version_TLSv13")]
     pub const TLSv13: Self = Self(0x0304);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_protocol_version_t/dtlsv10?language=objc)
     #[doc(alias = "tls_protocol_version_DTLSv10")]
     #[deprecated = "Use tls_protocol_version_DTLSv12 instead."]
     pub const DTLSv10: Self = Self(0xfeff);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_protocol_version_t/dtlsv12?language=objc)
     #[doc(alias = "tls_protocol_version_DTLSv12")]
     pub const DTLSv12: Self = Self(0xfefd);
 }
@@ -110,59 +116,85 @@ unsafe impl RefEncode for tls_protocol_version_t {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct tls_ciphersuite_t(pub u16);
 impl tls_ciphersuite_t {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/rsa_with_3des_ede_cbc_sha?language=objc)
     #[doc(alias = "tls_ciphersuite_RSA_WITH_3DES_EDE_CBC_SHA")]
     #[deprecated]
     pub const RSA_WITH_3DES_EDE_CBC_SHA: Self = Self(0x000A);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/rsa_with_aes_128_cbc_sha?language=objc)
     #[doc(alias = "tls_ciphersuite_RSA_WITH_AES_128_CBC_SHA")]
     pub const RSA_WITH_AES_128_CBC_SHA: Self = Self(0x002F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/rsa_with_aes_256_cbc_sha?language=objc)
     #[doc(alias = "tls_ciphersuite_RSA_WITH_AES_256_CBC_SHA")]
     pub const RSA_WITH_AES_256_CBC_SHA: Self = Self(0x0035);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/rsa_with_aes_128_gcm_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_RSA_WITH_AES_128_GCM_SHA256")]
     pub const RSA_WITH_AES_128_GCM_SHA256: Self = Self(0x009C);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/rsa_with_aes_256_gcm_sha384?language=objc)
     #[doc(alias = "tls_ciphersuite_RSA_WITH_AES_256_GCM_SHA384")]
     pub const RSA_WITH_AES_256_GCM_SHA384: Self = Self(0x009D);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/rsa_with_aes_128_cbc_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_RSA_WITH_AES_128_CBC_SHA256")]
     pub const RSA_WITH_AES_128_CBC_SHA256: Self = Self(0x003C);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/rsa_with_aes_256_cbc_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_RSA_WITH_AES_256_CBC_SHA256")]
     pub const RSA_WITH_AES_256_CBC_SHA256: Self = Self(0x003D);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_ecdsa_with_3des_ede_cbc_sha?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA")]
     #[deprecated]
     pub const ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA: Self = Self(0xC008);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_ecdsa_with_aes_128_cbc_sha?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_AES_128_CBC_SHA")]
     pub const ECDHE_ECDSA_WITH_AES_128_CBC_SHA: Self = Self(0xC009);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_ecdsa_with_aes_256_cbc_sha?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_AES_256_CBC_SHA")]
     pub const ECDHE_ECDSA_WITH_AES_256_CBC_SHA: Self = Self(0xC00A);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_rsa_with_3des_ede_cbc_sha?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA")]
     #[deprecated]
     pub const ECDHE_RSA_WITH_3DES_EDE_CBC_SHA: Self = Self(0xC012);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_rsa_with_aes_128_cbc_sha?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_RSA_WITH_AES_128_CBC_SHA")]
     pub const ECDHE_RSA_WITH_AES_128_CBC_SHA: Self = Self(0xC013);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_rsa_with_aes_256_cbc_sha?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_RSA_WITH_AES_256_CBC_SHA")]
     pub const ECDHE_RSA_WITH_AES_256_CBC_SHA: Self = Self(0xC014);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_ecdsa_with_aes_128_cbc_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256")]
     pub const ECDHE_ECDSA_WITH_AES_128_CBC_SHA256: Self = Self(0xC023);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_ecdsa_with_aes_256_cbc_sha384?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384")]
     pub const ECDHE_ECDSA_WITH_AES_256_CBC_SHA384: Self = Self(0xC024);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_rsa_with_aes_128_cbc_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_RSA_WITH_AES_128_CBC_SHA256")]
     pub const ECDHE_RSA_WITH_AES_128_CBC_SHA256: Self = Self(0xC027);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_rsa_with_aes_256_cbc_sha384?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_RSA_WITH_AES_256_CBC_SHA384")]
     pub const ECDHE_RSA_WITH_AES_256_CBC_SHA384: Self = Self(0xC028);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_ecdsa_with_aes_128_gcm_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256")]
     pub const ECDHE_ECDSA_WITH_AES_128_GCM_SHA256: Self = Self(0xC02B);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_ecdsa_with_aes_256_gcm_sha384?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384")]
     pub const ECDHE_ECDSA_WITH_AES_256_GCM_SHA384: Self = Self(0xC02C);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_rsa_with_aes_128_gcm_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_RSA_WITH_AES_128_GCM_SHA256")]
     pub const ECDHE_RSA_WITH_AES_128_GCM_SHA256: Self = Self(0xC02F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_rsa_with_aes_256_gcm_sha384?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_RSA_WITH_AES_256_GCM_SHA384")]
     pub const ECDHE_RSA_WITH_AES_256_GCM_SHA384: Self = Self(0xC030);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_rsa_with_chacha20_poly1305_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256")]
     pub const ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256: Self = Self(0xCCA8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/ecdhe_ecdsa_with_chacha20_poly1305_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256")]
     pub const ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256: Self = Self(0xCCA9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/aes_128_gcm_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_AES_128_GCM_SHA256")]
     pub const AES_128_GCM_SHA256: Self = Self(0x1301);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/aes_256_gcm_sha384?language=objc)
     #[doc(alias = "tls_ciphersuite_AES_256_GCM_SHA384")]
     pub const AES_256_GCM_SHA384: Self = Self(0x1302);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_t/chacha20_poly1305_sha256?language=objc)
     #[doc(alias = "tls_ciphersuite_CHACHA20_POLY1305_SHA256")]
     pub const CHACHA20_POLY1305_SHA256: Self = Self(0x1303);
 }
@@ -186,14 +218,19 @@ unsafe impl RefEncode for tls_ciphersuite_t {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tls_ciphersuite_group_t(pub u16);
 impl tls_ciphersuite_group_t {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_group_t/default?language=objc)
     #[doc(alias = "tls_ciphersuite_group_default")]
     pub const default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_group_t/compatibility?language=objc)
     #[doc(alias = "tls_ciphersuite_group_compatibility")]
     pub const compatibility: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_group_t/legacy?language=objc)
     #[doc(alias = "tls_ciphersuite_group_legacy")]
     pub const legacy: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_group_t/ats?language=objc)
     #[doc(alias = "tls_ciphersuite_group_ats")]
     pub const ats: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_group_t/ats_compatibility?language=objc)
     #[doc(alias = "tls_ciphersuite_group_ats_compatibility")]
     pub const ats_compatibility: Self = Self(4);
 }
@@ -219,42 +256,55 @@ unsafe impl RefEncode for tls_ciphersuite_group_t {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLProtocol(pub c_int);
 impl SSLProtocol {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/sslprotocolunknown?language=objc)
     #[doc(alias = "kSSLProtocolUnknown")]
     #[deprecated]
     pub const SSLProtocolUnknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/tlsprotocol1?language=objc)
     #[doc(alias = "kTLSProtocol1")]
     #[deprecated]
     pub const TLSProtocol1: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/tlsprotocol11?language=objc)
     #[doc(alias = "kTLSProtocol11")]
     #[deprecated]
     pub const TLSProtocol11: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/tlsprotocol12?language=objc)
     #[doc(alias = "kTLSProtocol12")]
     #[deprecated]
     pub const TLSProtocol12: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/dtlsprotocol1?language=objc)
     #[doc(alias = "kDTLSProtocol1")]
     #[deprecated]
     pub const DTLSProtocol1: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/tlsprotocol13?language=objc)
     #[doc(alias = "kTLSProtocol13")]
     #[deprecated]
     pub const TLSProtocol13: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/dtlsprotocol12?language=objc)
     #[doc(alias = "kDTLSProtocol12")]
     #[deprecated]
     pub const DTLSProtocol12: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/tlsprotocolmaxsupported?language=objc)
     #[doc(alias = "kTLSProtocolMaxSupported")]
     #[deprecated]
     pub const TLSProtocolMaxSupported: Self = Self(999);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/sslprotocol2?language=objc)
     #[doc(alias = "kSSLProtocol2")]
     #[deprecated]
     pub const SSLProtocol2: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/sslprotocol3?language=objc)
     #[doc(alias = "kSSLProtocol3")]
     #[deprecated]
     pub const SSLProtocol3: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/sslprotocol3only?language=objc)
     #[doc(alias = "kSSLProtocol3Only")]
     #[deprecated]
     pub const SSLProtocol3Only: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/tlsprotocol1only?language=objc)
     #[doc(alias = "kTLSProtocol1Only")]
     #[deprecated]
     pub const TLSProtocol1Only: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol/sslprotocolall?language=objc)
     #[doc(alias = "kSSLProtocolAll")]
     #[deprecated]
     pub const SSLProtocolAll: Self = Self(6);
@@ -278,6 +328,8 @@ impl sec_trust {
     ///
     ///
     /// Returns: a `sec_trust_t` instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_trust_create(_:)?language=objc)
     #[doc(alias = "sec_trust_create")]
     #[cfg(feature = "SecTrust")]
     #[inline]
@@ -299,6 +351,8 @@ impl sec_trust {
     /// # Safety
     ///
     /// `trust` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_trust_copy_ref(_:)?language=objc)
     #[doc(alias = "sec_trust_copy_ref")]
     #[cfg(feature = "SecTrust")]
     #[inline]
@@ -321,6 +375,8 @@ impl sec_identity {
     ///
     ///
     /// Returns: a `sec_identity_t` instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_identity_create(_:)?language=objc)
     #[doc(alias = "sec_identity_create")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -346,6 +402,8 @@ impl sec_identity {
     /// # Safety
     ///
     /// `certificates` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_identity_create_with_certificates(_:_:)?language=objc)
     #[doc(alias = "sec_identity_create_with_certificates")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -376,6 +434,8 @@ impl sec_identity {
     /// # Safety
     ///
     /// `identity` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_identity_access_certificates(_:_:)?language=objc)
     #[doc(alias = "sec_identity_access_certificates")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -403,6 +463,8 @@ impl sec_identity {
     /// # Safety
     ///
     /// `identity` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_identity_copy_ref(_:)?language=objc)
     #[doc(alias = "sec_identity_copy_ref")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -425,6 +487,8 @@ impl sec_identity {
     /// # Safety
     ///
     /// `identity` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_identity_copy_certificates_ref(_:)?language=objc)
     #[doc(alias = "sec_identity_copy_certificates_ref")]
     #[inline]
     pub unsafe fn certificates_ref(identity: sec_identity_t) -> Option<CFRetained<CFArray>> {
@@ -446,6 +510,8 @@ impl sec_certificate {
     ///
     ///
     /// Returns: a `sec_certificate_t` instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_certificate_create(_:)?language=objc)
     #[doc(alias = "sec_certificate_create")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -467,6 +533,8 @@ impl sec_certificate {
     /// # Safety
     ///
     /// `certificate` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_certificate_copy_ref(_:)?language=objc)
     #[doc(alias = "sec_certificate_copy_ref")]
     #[cfg(feature = "SecBase")]
     #[inline]

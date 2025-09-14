@@ -16,6 +16,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns a string representing the new (unique) child path; NULL
     /// if the specified path does not exist.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathcreateuniquechild(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathCreateUniqueChild")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -39,6 +41,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns the dictionary associated with the specified path; NULL
     /// if the path does not exist.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathgetvalue(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathGetValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -62,6 +66,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns the dictionary associated with the specified path; NULL
     /// if the path is not a link or does not exist.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathgetlink(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathGetLink")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -91,6 +97,8 @@ impl SCPreferences {
     ///
     /// - `value` generic must be of the correct type.
     /// - `value` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathsetvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathSetValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -117,6 +125,8 @@ impl SCPreferences {
     /// at the specified path.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathsetlink(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathSetLink")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -139,6 +149,8 @@ impl SCPreferences {
     /// Parameter `path`: A string that represents the path to be returned.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathremovevalue(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathRemoveValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]

@@ -16,12 +16,18 @@ use crate::*;
 pub struct AVAudioConverterPrimeMethod(pub NSInteger);
 impl AVAudioConverterPrimeMethod {
     /// Primes with leading + trailing input frames.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimemethod/pre?language=objc)
     #[doc(alias = "AVAudioConverterPrimeMethod_Pre")]
     pub const Pre: Self = Self(0);
     /// Only primes with trailing (zero latency). Leading frames are assumed to be silence.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimemethod/normal?language=objc)
     #[doc(alias = "AVAudioConverterPrimeMethod_Normal")]
     pub const Normal: Self = Self(1);
     /// Acts in "latency" mode. Both leading and trailing frames assumed to be silence.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimemethod/none?language=objc)
     #[doc(alias = "AVAudioConverterPrimeMethod_None")]
     pub const None: Self = Self(2);
 }
@@ -117,6 +123,8 @@ unsafe impl RefEncode for AVAudioConverterPrimeInfo {
 pub struct AVAudioConverterInputStatus(pub NSInteger);
 impl AVAudioConverterInputStatus {
     /// This is the normal case where you supply data to the converter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterinputstatus/havedata?language=objc)
     #[doc(alias = "AVAudioConverterInputStatus_HaveData")]
     pub const HaveData: Self = Self(0);
     /// If you are out of data for now, set *ioNumberOfPackets = 0 and return
@@ -124,10 +132,14 @@ impl AVAudioConverterInputStatus {
     /// may not be converted to output immediately, but instead may be converted to output only
     /// if/when more input is provided or the end-of-stream is indicated with the
     /// AVAudioConverterInputStatus_EndOfStream status code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterinputstatus/nodatanow?language=objc)
     #[doc(alias = "AVAudioConverterInputStatus_NoDataNow")]
     pub const NoDataNow: Self = Self(1);
     /// If you are at the end of stream, set *ioNumberOfPackets = 0 and return
     /// AVAudioConverterInputStatus_EndOfStream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterinputstatus/endofstream?language=objc)
     #[doc(alias = "AVAudioConverterInputStatus_EndOfStream")]
     pub const EndOfStream: Self = Self(2);
 }
@@ -149,16 +161,24 @@ unsafe impl RefEncode for AVAudioConverterInputStatus {
 pub struct AVAudioConverterOutputStatus(pub NSInteger);
 impl AVAudioConverterOutputStatus {
     /// All of the requested data was returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverteroutputstatus/havedata?language=objc)
     #[doc(alias = "AVAudioConverterOutputStatus_HaveData")]
     pub const HaveData: Self = Self(0);
     /// Not enough input was available to satisfy the request at the current time. The output buffer
     /// contains as much as could be converted.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverteroutputstatus/inputrandry?language=objc)
     #[doc(alias = "AVAudioConverterOutputStatus_InputRanDry")]
     pub const InputRanDry: Self = Self(1);
     /// The end of stream has been reached. No data was returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverteroutputstatus/endofstream?language=objc)
     #[doc(alias = "AVAudioConverterOutputStatus_EndOfStream")]
     pub const EndOfStream: Self = Self(2);
     /// An error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverteroutputstatus/error?language=objc)
     #[doc(alias = "AVAudioConverterOutputStatus_Error")]
     pub const Error: Self = Self(3);
 }

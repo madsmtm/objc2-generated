@@ -20,8 +20,10 @@ use crate::*;
 pub struct ARMatteResolution(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARMatteResolution {
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armattegenerator/resolution/full?language=objc)
     #[doc(alias = "ARMatteResolutionFull")]
     pub const Full: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armattegenerator/resolution/half?language=objc)
     #[doc(alias = "ARMatteResolutionHalf")]
     pub const Half: Self = Self(1);
 }

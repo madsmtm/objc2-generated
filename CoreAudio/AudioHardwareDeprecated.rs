@@ -10,8 +10,10 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarerunloopmode?language=objc)
 pub const kAudioHardwareRunLoopMode: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.audio.CoreAudio\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicemastersubdevicekey?language=objc)
 pub const kAudioAggregateDeviceMasterSubDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyscopeinput?language=objc)
@@ -62,36 +64,52 @@ pub const kAudioLevelControlPropertyDecibelsToScalarTransferFunction: AudioObjec
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioLevelControlTransferFunction(pub u32);
 impl AudioLevelControlTransferFunction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunctionlinear?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunctionLinear")]
     pub const TranferFunctionLinear: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction1over3?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction1Over3")]
     pub const TranferFunction1Over3: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction1over2?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction1Over2")]
     pub const TranferFunction1Over2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction3over4?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction3Over4")]
     pub const TranferFunction3Over4: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction3over2?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction3Over2")]
     pub const TranferFunction3Over2: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction2over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction2Over1")]
     pub const TranferFunction2Over1: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction3over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction3Over1")]
     pub const TranferFunction3Over1: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction4over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction4Over1")]
     pub const TranferFunction4Over1: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction5over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction5Over1")]
     pub const TranferFunction5Over1: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction6over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction6Over1")]
     pub const TranferFunction6Over1: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction7over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction7Over1")]
     pub const TranferFunction7Over1: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction8over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction8Over1")]
     pub const TranferFunction8Over1: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction9over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction9Over1")]
     pub const TranferFunction9Over1: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction10over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction10Over1")]
     pub const TranferFunction10Over1: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction11over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction11Over1")]
     pub const TranferFunction11Over1: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction12over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction12Over1")]
     pub const TranferFunction12Over1: Self = Self(15);
 }
@@ -180,6 +198,8 @@ extern "C-unwind" {
     /// Parameter `inRunLoopSource`: The CFRunLoopSource to add.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareaddrunloopsource?language=objc)
     #[deprecated]
     pub fn AudioHardwareAddRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus;
 }
@@ -195,6 +215,8 @@ extern "C-unwind" {
     /// Parameter `inRunLoopSource`: The CFRunLoopSource to remove.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareremoverunloopsource?language=objc)
     #[deprecated]
     pub fn AudioHardwareRemoveRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus;
 }
@@ -221,6 +243,8 @@ extern "C-unwind" {
     ///
     /// - `out_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwaregetpropertyinfo?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareGetPropertyInfo(
@@ -251,6 +275,8 @@ extern "C-unwind" {
     ///
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwaregetproperty?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareGetProperty(
@@ -280,6 +306,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwaresetproperty?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareSetProperty(
@@ -308,6 +336,8 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareaddpropertylistener?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareAddPropertyListener(
@@ -334,6 +364,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_proc` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareremovepropertylistener?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareRemovePropertyListener(
@@ -513,6 +545,8 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceaddioproc?language=objc)
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioDeviceAddIOProc(
@@ -535,6 +569,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_proc` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceremoveioproc?language=objc)
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioDeviceRemoveIOProc(
@@ -569,6 +605,8 @@ extern "C-unwind" {
     ///
     /// - `in_start_time` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceread?language=objc)
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioDeviceRead(
@@ -605,6 +643,8 @@ extern "C-unwind" {
 ///
 /// - `out_size` must be a valid pointer or null.
 /// - `out_writable` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicegetpropertyinfo?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -663,6 +703,8 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetPropertyInfo(
 ///
 /// - `io_property_data_size` must be a valid pointer.
 /// - `out_property_data` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicegetproperty?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -726,6 +768,8 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetProperty(
 ///
 /// - `in_when` must be a valid pointer or null.
 /// - `in_property_data` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicesetproperty?language=objc)
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 #[deprecated]
 #[inline]
@@ -786,6 +830,8 @@ pub unsafe extern "C-unwind" fn AudioDeviceSetProperty(
 ///
 /// - `in_proc` must be implemented correctly.
 /// - `in_client_data` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceaddpropertylistener?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -841,6 +887,8 @@ pub unsafe extern "C-unwind" fn AudioDeviceAddPropertyListener(
 /// # Safety
 ///
 /// `in_proc` must be implemented correctly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceremovepropertylistener?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -947,6 +995,8 @@ extern "C-unwind" {
     ///
     /// - `out_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamgetpropertyinfo?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamGetPropertyInfo(
@@ -982,6 +1032,8 @@ extern "C-unwind" {
     ///
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamgetproperty?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamGetProperty(
@@ -1022,6 +1074,8 @@ extern "C-unwind" {
     ///
     /// - `in_when` must be a valid pointer or null.
     /// - `in_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamsetproperty?language=objc)
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioStreamSetProperty(
@@ -1057,6 +1111,8 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamaddpropertylistener?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamAddPropertyListener(
@@ -1089,6 +1145,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_proc` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamremovepropertylistener?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamRemovePropertyListener(

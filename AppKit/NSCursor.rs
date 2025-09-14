@@ -15,30 +15,46 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum NSCursorFrameResizePosition {
     /// The top edge of the frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/top?language=objc)
     #[doc(alias = "NSCursorFrameResizePositionTop")]
     Top = 1 << 0,
     /// The left edge of the frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/left?language=objc)
     #[doc(alias = "NSCursorFrameResizePositionLeft")]
     Left = 1 << 1,
     /// The bottom edge of the frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/bottom?language=objc)
     #[doc(alias = "NSCursorFrameResizePositionBottom")]
     Bottom = 1 << 2,
     /// The right edge of the frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/right?language=objc)
     #[doc(alias = "NSCursorFrameResizePositionRight")]
     Right = 1 << 3,
     /// The top left corner of the frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/topleft?language=objc)
     #[doc(alias = "NSCursorFrameResizePositionTopLeft")]
     TopLeft = NSCursorFrameResizePosition::Top as NSUInteger
         | NSCursorFrameResizePosition::Left as NSUInteger,
     /// The top right corner of the frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/topright?language=objc)
     #[doc(alias = "NSCursorFrameResizePositionTopRight")]
     TopRight = NSCursorFrameResizePosition::Top as NSUInteger
         | NSCursorFrameResizePosition::Right as NSUInteger,
     /// The bottom left corner of the frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/bottomleft?language=objc)
     #[doc(alias = "NSCursorFrameResizePositionBottomLeft")]
     BottomLeft = NSCursorFrameResizePosition::Bottom as NSUInteger
         | NSCursorFrameResizePosition::Left as NSUInteger,
     /// The bottom right corner of the frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/bottomright?language=objc)
     #[doc(alias = "NSCursorFrameResizePositionBottomRight")]
     BottomRight = NSCursorFrameResizePosition::Bottom as NSUInteger
         | NSCursorFrameResizePosition::Right as NSUInteger,
@@ -62,12 +78,18 @@ pub struct NSCursorFrameResizeDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCursorFrameResizeDirections: NSUInteger {
 /// Indicates that the shape can be resized inwards to be smaller.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorframeresizedirections/nscursorframeresizedirectionsinward?language=objc)
         #[doc(alias = "NSCursorFrameResizeDirectionsInward")]
         const Inward = 1<<0;
 /// Indicates that the shape can be resized outwards to be larger.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorframeresizedirections/nscursorframeresizedirectionsoutward?language=objc)
         #[doc(alias = "NSCursorFrameResizeDirectionsOutward")]
         const Outward = 1<<1;
 /// Indicates that the shape can be resized inwards or wards to be either smaller or larger, respectively.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorframeresizedirections/nscursorframeresizedirectionsall?language=objc)
         #[doc(alias = "NSCursorFrameResizeDirectionsAll")]
         const All = NSCursorFrameResizeDirections::Inward.0|NSCursorFrameResizeDirections::Outward.0;
     }

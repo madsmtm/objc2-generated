@@ -16,15 +16,23 @@ use crate::*;
 pub struct WKExtendedRuntimeSessionState(pub NSInteger);
 impl WKExtendedRuntimeSessionState {
     /// Start has never been called on the session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate/notstarted?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionStateNotStarted")]
     pub const NotStarted: Self = Self(0);
     /// The session has been successfully scheduled to start at a future date, as specified by date passed to startAtDate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate/scheduled?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionStateScheduled")]
     pub const Scheduled: Self = Self(1);
     /// The session is actively running.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate/running?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionStateRunning")]
     pub const Running: Self = Self(2);
     /// The session is not running. Either the session ended, or hit an error. See WKExtendedRuntimeSessionInvalidationReason for a list of reasons why the session could be invalid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate/invalid?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionStateInvalid")]
     pub const Invalid: Self = Self(3);
 }
@@ -46,24 +54,36 @@ unsafe impl RefEncode for WKExtendedRuntimeSessionState {
 pub struct WKExtendedRuntimeSessionInvalidationReason(pub NSInteger);
 impl WKExtendedRuntimeSessionInvalidationReason {
     /// The session ended normally, likely through a direct call to invalidate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/none?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonNone")]
     pub const None: Self = Self(0);
     /// A session for this application has already been started, and is currently running, another session can not be started.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/sessioninprogress?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonSessionInProgress")]
     pub const SessionInProgress: Self = Self(1);
     /// The session hit its time limit, as noted by its expiration date.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/expired?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonExpired")]
     pub const Expired: Self = Self(2);
     /// The application has lost frontmost status, so the session ended.
     /// Examples of actions by the user which cause the session to lose frontmost status include:
     /// User pressing digital crown, tapping on a notification to go to another application,
     /// switching applications through the dock, or any other apps entering the foreground.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/resignedfrontmost?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonResignedFrontmost")]
     pub const ResignedFrontmost: Self = Self(3);
     /// Apple Watch is in a state that doesn't currently allow this session type to run.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/suppressedbysystem?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonSuppressedBySystem")]
     pub const SuppressedBySystem: Self = Self(4);
     /// The session did not end normally, and there is an error returned with more information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/error?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonError")]
     pub const Error: Self = Self(-1);
 }
@@ -87,24 +107,34 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKExtendedRuntimeSessionErrorCode(pub NSInteger);
 impl WKExtendedRuntimeSessionErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/unknown?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/scheduledtoofarinadvance?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorScheduledTooFarInAdvance")]
     pub const ScheduledTooFarInAdvance: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/mustbeactivetostartorschedule?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorMustBeActiveToStartOrSchedule")]
     pub const MustBeActiveToStartOrSchedule: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/notyetstarted?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorNotYetStarted")]
     pub const NotYetStarted: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/exceededresourcelimits?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorExceededResourceLimits")]
     pub const ExceededResourceLimits: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/bardisabled?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorBARDisabled")]
     pub const BARDisabled: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/notapprovedtostartsession?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorNotApprovedToStartSession")]
     pub const NotApprovedToStartSession: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/notapprovedtoschedule?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorNotApprovedToSchedule")]
     pub const NotApprovedToSchedule: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/mustbeactivetoprompt?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorMustBeActiveToPrompt")]
     pub const MustBeActiveToPrompt: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/unsupportedsessiontype?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorUnsupportedSessionType")]
     pub const UnsupportedSessionType: Self = Self(10);
 }
@@ -123,10 +153,13 @@ unsafe impl RefEncode for WKExtendedRuntimeSessionErrorCode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus(pub NSInteger);
 impl WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionautolaunchauthorizationstatus/unknown?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionAutoLaunchAuthorizationStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionautolaunchauthorizationstatus/inactive?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionAutoLaunchAuthorizationStatusInactive")]
     pub const Inactive: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionautolaunchauthorizationstatus/active?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionAutoLaunchAuthorizationStatusActive")]
     pub const Active: Self = Self(2);
 }

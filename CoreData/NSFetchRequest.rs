@@ -14,12 +14,16 @@ use crate::*;
 pub struct NSFetchRequestResultType(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFetchRequestResultType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestresulttype/managedobjectresulttype?language=objc)
         #[doc(alias = "NSManagedObjectResultType")]
         const ManagedObjectResultType = 0x00;
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestresulttype/managedobjectidresulttype?language=objc)
         #[doc(alias = "NSManagedObjectIDResultType")]
         const ManagedObjectIDResultType = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestresulttype/dictionaryresulttype?language=objc)
         #[doc(alias = "NSDictionaryResultType")]
         const DictionaryResultType = 0x02;
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestresulttype/countresulttype?language=objc)
         #[doc(alias = "NSCountResultType")]
         const CountResultType = 0x04;
     }

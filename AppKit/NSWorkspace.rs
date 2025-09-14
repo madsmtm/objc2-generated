@@ -17,8 +17,10 @@ use crate::*;
 pub struct NSWorkspaceIconCreationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWorkspaceIconCreationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/iconcreationoptions/excludequickdrawelementsiconcreationoption?language=objc)
         #[doc(alias = "NSExcludeQuickDrawElementsIconCreationOption")]
         const ExcludeQuickDrawElementsIconCreationOption = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/iconcreationoptions/exclude10_4elementsiconcreationoption?language=objc)
         #[doc(alias = "NSExclude10_4ElementsIconCreationOption")]
         const Exclude10_4ElementsIconCreationOption = 1<<2;
     }
@@ -542,10 +544,13 @@ impl NSWorkspace {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWorkspaceAuthorizationType(pub NSInteger);
 impl NSWorkspaceAuthorizationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/authorizationtype/createsymboliclink?language=objc)
     #[doc(alias = "NSWorkspaceAuthorizationTypeCreateSymbolicLink")]
     pub const CreateSymbolicLink: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/authorizationtype/setattributes?language=objc)
     #[doc(alias = "NSWorkspaceAuthorizationTypeSetAttributes")]
     pub const SetAttributes: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/authorizationtype/replacefile?language=objc)
     #[doc(alias = "NSWorkspaceAuthorizationTypeReplaceFile")]
     pub const ReplaceFile: Self = Self(2);
 }
@@ -766,39 +771,51 @@ pub type NSWorkspaceFileOperationName = NSString;
 pub struct NSWorkspaceLaunchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWorkspaceLaunchOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/andprint?language=objc)
         #[doc(alias = "NSWorkspaceLaunchAndPrint")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setForPrinting:YES] instead."]
         const AndPrint = 0x00000002;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/witherrorpresentation?language=objc)
         #[doc(alias = "NSWorkspaceLaunchWithErrorPresentation")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setPromptsUserIfNeeded:YES] instead."]
         const WithErrorPresentation = 0x00000040;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/inhibitingbackgroundonly?language=objc)
         #[doc(alias = "NSWorkspaceLaunchInhibitingBackgroundOnly")]
 #[deprecated = "This option does nothing."]
         const InhibitingBackgroundOnly = 0x00000080;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/withoutaddingtorecents?language=objc)
         #[doc(alias = "NSWorkspaceLaunchWithoutAddingToRecents")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setAddsToRecentItems:YES] instead."]
         const WithoutAddingToRecents = 0x00000100;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/withoutactivation?language=objc)
         #[doc(alias = "NSWorkspaceLaunchWithoutActivation")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setActivates:NO] instead."]
         const WithoutActivation = 0x00000200;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/async?language=objc)
         #[doc(alias = "NSWorkspaceLaunchAsync")]
 #[deprecated = "When using NSWorkspaceOpenConfiguration, all launches are asynchronous."]
         const Async = 0x00010000;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/newinstance?language=objc)
         #[doc(alias = "NSWorkspaceLaunchNewInstance")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setCreatesNewApplicationInstance:YES] instead."]
         const NewInstance = 0x00080000;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/andhide?language=objc)
         #[doc(alias = "NSWorkspaceLaunchAndHide")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHides:YES] instead."]
         const AndHide = 0x00100000;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/andhideothers?language=objc)
         #[doc(alias = "NSWorkspaceLaunchAndHideOthers")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
         const AndHideOthers = 0x00200000;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/default?language=objc)
         #[doc(alias = "NSWorkspaceLaunchDefault")]
 #[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
         const Default = NSWorkspaceLaunchOptions::Async.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/allowingclassicstartup?language=objc)
         #[doc(alias = "NSWorkspaceLaunchAllowingClassicStartup")]
 #[deprecated = "The Classic environment is no longer supported."]
         const AllowingClassicStartup = 0x00020000;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/preferringclassic?language=objc)
         #[doc(alias = "NSWorkspaceLaunchPreferringClassic")]
 #[deprecated = "The Classic environment is no longer supported."]
         const PreferringClassic = 0x00040000;

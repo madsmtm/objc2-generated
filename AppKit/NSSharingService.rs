@@ -319,12 +319,18 @@ impl NSSharingService {
 pub struct NSSharingContentScope(pub NSInteger);
 impl NSSharingContentScope {
     /// NSSharingContentScopeItem: use when sharing a clearly identified item, e.g. a file represented by its icon.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/sharingcontentscope/item?language=objc)
     #[doc(alias = "NSSharingContentScopeItem")]
     pub const Item: Self = Self(0);
     /// NSSharingContentScopePartial: use when sharing a portion of a more global content, e.g. part of a webpage
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/sharingcontentscope/partial?language=objc)
     #[doc(alias = "NSSharingContentScopePartial")]
     pub const Partial: Self = Self(1);
     /// NSSharingContentScopeFull: use when sharing the whole content of the current document, e.g. the url of the webpage
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/sharingcontentscope/full?language=objc)
     #[doc(alias = "NSSharingContentScopeFull")]
     pub const Full: Self = Self(2);
 }
@@ -450,18 +456,28 @@ pub struct NSCloudKitSharingServiceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCloudKitSharingServiceOptions: NSUInteger {
 /// Allow the user to configure the share with the standard set of options.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions/standard?language=objc)
         #[doc(alias = "NSCloudKitSharingServiceStandard")]
         const Standard = 0;
 /// The user is allowed to share publicly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions/allowpublic?language=objc)
         #[doc(alias = "NSCloudKitSharingServiceAllowPublic")]
         const AllowPublic = 1<<0;
 /// The user is allowed to share privately.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions/allowprivate?language=objc)
         #[doc(alias = "NSCloudKitSharingServiceAllowPrivate")]
         const AllowPrivate = 1<<1;
 /// The user is allowed to grant participants read-only permissions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions/allowreadonly?language=objc)
         #[doc(alias = "NSCloudKitSharingServiceAllowReadOnly")]
         const AllowReadOnly = 1<<4;
 /// The user is allowed to grant participants read/write permissions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions/allowreadwrite?language=objc)
         #[doc(alias = "NSCloudKitSharingServiceAllowReadWrite")]
         const AllowReadWrite = 1<<5;
     }

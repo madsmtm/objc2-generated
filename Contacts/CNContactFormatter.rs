@@ -16,9 +16,13 @@ use crate::*;
 pub struct CNContactFormatterStyle(pub NSInteger);
 impl CNContactFormatterStyle {
     /// Combine the contact name components into a displayable full name.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatterstyle/fullname?language=objc)
     #[doc(alias = "CNContactFormatterStyleFullName")]
     pub const FullName: Self = Self(0);
     /// Combine the contact phonetic name components into a displayable phonetic full name.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatterstyle/phoneticfullname?language=objc)
     #[doc(alias = "CNContactFormatterStylePhoneticFullName")]
     pub const PhoneticFullName: Self = Self(1);
 }
@@ -39,10 +43,13 @@ unsafe impl RefEncode for CNContactFormatterStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContactDisplayNameOrder(pub NSInteger);
 impl CNContactDisplayNameOrder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdisplaynameorder/userdefault?language=objc)
     #[doc(alias = "CNContactDisplayNameOrderUserDefault")]
     pub const UserDefault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdisplaynameorder/givennamefirst?language=objc)
     #[doc(alias = "CNContactDisplayNameOrderGivenNameFirst")]
     pub const GivenNameFirst: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdisplaynameorder/familynamefirst?language=objc)
     #[doc(alias = "CNContactDisplayNameOrderFamilyNameFirst")]
     pub const FamilyNameFirst: Self = Self(2);
 }

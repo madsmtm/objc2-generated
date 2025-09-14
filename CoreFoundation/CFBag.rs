@@ -145,6 +145,7 @@ impl<T: ?Sized> CFMutableBag<T> {
 }
 
 unsafe impl ConcreteType for CFBag {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggettypeid()?language=objc)
     #[doc(alias = "CFBagGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -156,6 +157,8 @@ unsafe impl ConcreteType for CFBag {
 }
 
 impl CFBag {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcreate(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -181,6 +184,8 @@ impl CFBag {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcreatecopy(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -204,6 +209,8 @@ impl CFBag {
 }
 
 impl CFMutableBag {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcreatemutable(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -227,6 +234,8 @@ impl CFMutableBag {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcreatemutablecopy(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -253,6 +262,8 @@ impl CFMutableBag {
 }
 
 impl CFBag {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggetcount(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_bag` generic must be of the correct type.
@@ -265,6 +276,8 @@ impl CFBag {
         unsafe { CFBagGetCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggetcountofvalue(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -278,6 +291,8 @@ impl CFBag {
         unsafe { CFBagGetCountOfValue(self, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcontainsvalue(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -292,6 +307,8 @@ impl CFBag {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggetvalue(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -305,6 +322,8 @@ impl CFBag {
         unsafe { CFBagGetValue(self, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggetvalueifpresent(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -328,6 +347,8 @@ impl CFBag {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggetvalues(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -341,6 +362,8 @@ impl CFBag {
         unsafe { CFBagGetValues(self, values) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagapplyfunction(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -361,6 +384,8 @@ impl CFBag {
 }
 
 impl CFMutableBag {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagaddvalue(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -375,6 +400,8 @@ impl CFMutableBag {
         unsafe { CFBagAddValue(the_bag, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagreplacevalue(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -389,6 +416,8 @@ impl CFMutableBag {
         unsafe { CFBagReplaceValue(the_bag, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagsetvalue(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -403,6 +432,8 @@ impl CFMutableBag {
         unsafe { CFBagSetValue(the_bag, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagremovevalue(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -417,6 +448,8 @@ impl CFMutableBag {
         unsafe { CFBagRemoveValue(the_bag, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagremoveallvalues(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.

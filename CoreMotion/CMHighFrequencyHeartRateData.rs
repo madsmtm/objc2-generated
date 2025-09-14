@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMHighFrequencyHeartRateDataConfidence(pub NSInteger);
 impl CMHighFrequencyHeartRateDataConfidence {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedataconfidence/low?language=objc)
     #[doc(alias = "CMHighFrequencyHeartRateDataConfidenceLow")]
     pub const Low: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedataconfidence/medium?language=objc)
     #[doc(alias = "CMHighFrequencyHeartRateDataConfidenceMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedataconfidence/high?language=objc)
     #[doc(alias = "CMHighFrequencyHeartRateDataConfidenceHigh")]
     pub const High: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedataconfidence/highest?language=objc)
     #[doc(alias = "CMHighFrequencyHeartRateDataConfidenceHighest")]
     pub const Highest: Self = Self(3);
 }

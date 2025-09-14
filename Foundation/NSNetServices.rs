@@ -24,22 +24,31 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSNetServicesError(pub NSInteger);
 impl NSNetServicesError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/unknownerror?language=objc)
     #[doc(alias = "NSNetServicesUnknownError")]
     pub const UnknownError: Self = Self(-72000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/collisionerror?language=objc)
     #[doc(alias = "NSNetServicesCollisionError")]
     pub const CollisionError: Self = Self(-72001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/notfounderror?language=objc)
     #[doc(alias = "NSNetServicesNotFoundError")]
     pub const NotFoundError: Self = Self(-72002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/activityinprogress?language=objc)
     #[doc(alias = "NSNetServicesActivityInProgress")]
     pub const ActivityInProgress: Self = Self(-72003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/badargumenterror?language=objc)
     #[doc(alias = "NSNetServicesBadArgumentError")]
     pub const BadArgumentError: Self = Self(-72004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/cancellederror?language=objc)
     #[doc(alias = "NSNetServicesCancelledError")]
     pub const CancelledError: Self = Self(-72005);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/invaliderror?language=objc)
     #[doc(alias = "NSNetServicesInvalidError")]
     pub const InvalidError: Self = Self(-72006);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/timeouterror?language=objc)
     #[doc(alias = "NSNetServicesTimeoutError")]
     pub const TimeoutError: Self = Self(-72007);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/missingrequiredconfigurationerror?language=objc)
     #[doc(alias = "NSNetServicesMissingRequiredConfigurationError")]
     pub const MissingRequiredConfigurationError: Self = Self(-72008);
 }
@@ -59,8 +68,10 @@ unsafe impl RefEncode for NSNetServicesError {
 pub struct NSNetServiceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSNetServiceOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/options/noautorename?language=objc)
         #[doc(alias = "NSNetServiceNoAutoRename")]
         const NoAutoRename = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/options/listenforconnections?language=objc)
         #[doc(alias = "NSNetServiceListenForConnections")]
         const ListenForConnections = 1<<1;
     }

@@ -11,15 +11,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCarDefroster(pub NSInteger);
 impl INCarDefroster {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incardefroster/unknown?language=objc)
     #[doc(alias = "INCarDefrosterUnknown")]
     #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incardefroster/front?language=objc)
     #[doc(alias = "INCarDefrosterFront")]
     #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const Front: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incardefroster/rear?language=objc)
     #[doc(alias = "INCarDefrosterRear")]
     #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const Rear: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incardefroster/all?language=objc)
     #[doc(alias = "INCarDefrosterAll")]
     #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const All: Self = Self(3);

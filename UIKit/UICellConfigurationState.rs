@@ -14,12 +14,18 @@ use crate::*;
 pub struct UICellConfigurationDragState(pub NSInteger);
 impl UICellConfigurationDragState {
     /// The cell is not associated with a drag session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdragstate/uicellconfigurationdragstatenone?language=objc)
     #[doc(alias = "UICellConfigurationDragStateNone")]
     pub const None: Self = Self(0);
     /// The cell is being lifted, before has joined a drag session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdragstate/uicellconfigurationdragstatelifting?language=objc)
     #[doc(alias = "UICellConfigurationDragStateLifting")]
     pub const Lifting: Self = Self(1);
     /// The cell is part of an active drag session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdragstate/uicellconfigurationdragstatedragging?language=objc)
     #[doc(alias = "UICellConfigurationDragStateDragging")]
     pub const Dragging: Self = Self(2);
 }
@@ -39,13 +45,19 @@ unsafe impl RefEncode for UICellConfigurationDragState {
 pub struct UICellConfigurationDropState(pub NSInteger);
 impl UICellConfigurationDropState {
     /// The cell is not associated with a drag session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdropstate/uicellconfigurationdropstatenone?language=objc)
     #[doc(alias = "UICellConfigurationDropStateNone")]
     pub const None: Self = Self(0);
     /// A drag session is active and may perform a drop in the cell's container, but the cell itself
     /// is not the drop target.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdropstate/uicellconfigurationdropstatenottargeted?language=objc)
     #[doc(alias = "UICellConfigurationDropStateNotTargeted")]
     pub const NotTargeted: Self = Self(1);
     /// The cell is the drop target for a drag session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdropstate/uicellconfigurationdropstatetargeted?language=objc)
     #[doc(alias = "UICellConfigurationDropStateTargeted")]
     pub const Targeted: Self = Self(2);
 }

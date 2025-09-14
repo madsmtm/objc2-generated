@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLSProgressReportingCapabilityKind(pub NSInteger);
 impl CLSProgressReportingCapabilityKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/duration?language=objc)
     #[doc(alias = "CLSProgressReportingCapabilityKindDuration")]
     pub const Duration: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/percent?language=objc)
     #[doc(alias = "CLSProgressReportingCapabilityKindPercent")]
     pub const Percent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/binary?language=objc)
     #[doc(alias = "CLSProgressReportingCapabilityKindBinary")]
     pub const Binary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/quantity?language=objc)
     #[doc(alias = "CLSProgressReportingCapabilityKindQuantity")]
     pub const Quantity: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/score?language=objc)
     #[doc(alias = "CLSProgressReportingCapabilityKindScore")]
     pub const Score: Self = Self(4);
 }

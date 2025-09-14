@@ -9,6 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhaptictimeimmediate?language=objc)
 pub const CHHapticTimeImmediate: NSTimeInterval = 0.0;
 /// A block which is called asynchronously when a call to start or stop the haptic engine completes.
 ///
@@ -34,8 +35,10 @@ pub type CHHapticCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CHHapticEngineFinishedAction(pub NSInteger);
 impl CHHapticEngineFinishedAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/finishedaction/stopengine?language=objc)
     #[doc(alias = "CHHapticEngineFinishedActionStopEngine")]
     pub const StopEngine: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/finishedaction/leaveenginerunning?language=objc)
     #[doc(alias = "CHHapticEngineFinishedActionLeaveEngineRunning")]
     pub const LeaveEngineRunning: Self = Self(2);
 }
@@ -89,18 +92,25 @@ pub type CHHapticEngineFinishedHandler =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CHHapticEngineStoppedReason(pub NSInteger);
 impl CHHapticEngineStoppedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/audiosessioninterrupt?language=objc)
     #[doc(alias = "CHHapticEngineStoppedReasonAudioSessionInterrupt")]
     pub const AudioSessionInterrupt: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/applicationsuspended?language=objc)
     #[doc(alias = "CHHapticEngineStoppedReasonApplicationSuspended")]
     pub const ApplicationSuspended: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/idletimeout?language=objc)
     #[doc(alias = "CHHapticEngineStoppedReasonIdleTimeout")]
     pub const IdleTimeout: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/notifywhenfinished?language=objc)
     #[doc(alias = "CHHapticEngineStoppedReasonNotifyWhenFinished")]
     pub const NotifyWhenFinished: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/enginedestroyed?language=objc)
     #[doc(alias = "CHHapticEngineStoppedReasonEngineDestroyed")]
     pub const EngineDestroyed: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/gamecontrollerdisconnect?language=objc)
     #[doc(alias = "CHHapticEngineStoppedReasonGameControllerDisconnect")]
     pub const GameControllerDisconnect: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/systemerror?language=objc)
     #[doc(alias = "CHHapticEngineStoppedReasonSystemError")]
     pub const SystemError: Self = Self(-1);
 }

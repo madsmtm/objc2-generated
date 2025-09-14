@@ -19,18 +19,25 @@ use crate::*;
 pub struct UICollectionViewScrollPosition(pub NSUInteger);
 bitflags::bitflags! {
     impl UICollectionViewScrollPosition: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewscrollposition/uicollectionviewscrollpositionnone?language=objc)
         #[doc(alias = "UICollectionViewScrollPositionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/top?language=objc)
         #[doc(alias = "UICollectionViewScrollPositionTop")]
         const Top = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/centeredvertically?language=objc)
         #[doc(alias = "UICollectionViewScrollPositionCenteredVertically")]
         const CenteredVertically = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/bottom?language=objc)
         #[doc(alias = "UICollectionViewScrollPositionBottom")]
         const Bottom = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/left?language=objc)
         #[doc(alias = "UICollectionViewScrollPositionLeft")]
         const Left = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/centeredhorizontally?language=objc)
         #[doc(alias = "UICollectionViewScrollPositionCenteredHorizontally")]
         const CenteredHorizontally = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/right?language=objc)
         #[doc(alias = "UICollectionViewScrollPositionRight")]
         const Right = 1<<5;
     }
@@ -50,10 +57,13 @@ unsafe impl RefEncode for UICollectionViewScrollPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewReorderingCadence(pub NSInteger);
 impl UICollectionViewReorderingCadence {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/reorderingcadence-swift.enum/immediate?language=objc)
     #[doc(alias = "UICollectionViewReorderingCadenceImmediate")]
     pub const Immediate: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/reorderingcadence-swift.enum/fast?language=objc)
     #[doc(alias = "UICollectionViewReorderingCadenceFast")]
     pub const Fast: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/reorderingcadence-swift.enum/slow?language=objc)
     #[doc(alias = "UICollectionViewReorderingCadenceSlow")]
     pub const Slow: Self = Self(2);
 }
@@ -73,13 +83,19 @@ unsafe impl RefEncode for UICollectionViewReorderingCadence {
 pub struct UICollectionViewSelfSizingInvalidation(pub NSInteger);
 impl UICollectionViewSelfSizingInvalidation {
     /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/selfsizinginvalidation-swift.enum/disabled?language=objc)
     #[doc(alias = "UICollectionViewSelfSizingInvalidationDisabled")]
     pub const Disabled: Self = Self(0);
     /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/selfsizinginvalidation-swift.enum/enabled?language=objc)
     #[doc(alias = "UICollectionViewSelfSizingInvalidationEnabled")]
     pub const Enabled: Self = Self(1);
     /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary, and
     /// any Auto Layout changes within the contentView of a self-sizing cell will automatically trigger -invalidateIntrinsicContentSize.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/selfsizinginvalidation-swift.enum/enabledincludingconstraints?language=objc)
     #[doc(alias = "UICollectionViewSelfSizingInvalidationEnabledIncludingConstraints")]
     pub const EnabledIncludingConstraints: Self = Self(2);
 }
@@ -1920,10 +1936,13 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewDropIntent(pub NSInteger);
 impl UICollectionViewDropIntent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropproposal/intent-swift.enum/unspecified?language=objc)
     #[doc(alias = "UICollectionViewDropIntentUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropproposal/intent-swift.enum/insertatdestinationindexpath?language=objc)
     #[doc(alias = "UICollectionViewDropIntentInsertAtDestinationIndexPath")]
     pub const InsertAtDestinationIndexPath: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropproposal/intent-swift.enum/insertintodestinationindexpath?language=objc)
     #[doc(alias = "UICollectionViewDropIntentInsertIntoDestinationIndexPath")]
     pub const InsertIntoDestinationIndexPath: Self = Self(2);
 }

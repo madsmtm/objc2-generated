@@ -48,15 +48,19 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentPickerMode(pub NSUInteger);
 impl UIDocumentPickerMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode/import?language=objc)
     #[doc(alias = "UIDocumentPickerModeImport")]
     #[deprecated = "Use appropriate initializers instead"]
     pub const Import: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode/open?language=objc)
     #[doc(alias = "UIDocumentPickerModeOpen")]
     #[deprecated = "Use appropriate initializers instead"]
     pub const Open: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode/exporttoservice?language=objc)
     #[doc(alias = "UIDocumentPickerModeExportToService")]
     #[deprecated = "Use appropriate initializers instead"]
     pub const ExportToService: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode/movetoservice?language=objc)
     #[doc(alias = "UIDocumentPickerModeMoveToService")]
     #[deprecated = "Use appropriate initializers instead"]
     pub const MoveToService: Self = Self(3);

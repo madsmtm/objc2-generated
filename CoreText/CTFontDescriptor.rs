@@ -33,6 +33,8 @@ unsafe impl ConcreteType for CTFontDescriptor {
     /// references.
     ///
     /// Returns: The identifier for the opaque type CTFontDescriptorRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorgettypeid()?language=objc)
     #[doc(alias = "CTFontDescriptorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -289,16 +291,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontOrientation(pub u32);
 impl CTFontOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/default?language=objc)
     #[doc(alias = "kCTFontOrientationDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/horizontal?language=objc)
     #[doc(alias = "kCTFontOrientationHorizontal")]
     pub const Horizontal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/vertical?language=objc)
     #[doc(alias = "kCTFontOrientationVertical")]
     pub const Vertical: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/kctfontdefaultorientation?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontDefaultOrientation: Self = Self(CTFontOrientation::Default.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/kctfonthorizontalorientation?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontHorizontalOrientation: Self = Self(CTFontOrientation::Horizontal.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/kctfontverticalorientation?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontVerticalOrientation: Self = Self(CTFontOrientation::Vertical.0);
 }
@@ -342,16 +350,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontFormat(pub u32);
 impl CTFontFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/unrecognized?language=objc)
     #[doc(alias = "kCTFontFormatUnrecognized")]
     pub const Unrecognized: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/opentypepostscript?language=objc)
     #[doc(alias = "kCTFontFormatOpenTypePostScript")]
     pub const OpenTypePostScript: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/opentypetruetype?language=objc)
     #[doc(alias = "kCTFontFormatOpenTypeTrueType")]
     pub const OpenTypeTrueType: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/truetype?language=objc)
     #[doc(alias = "kCTFontFormatTrueType")]
     pub const TrueType: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/postscript?language=objc)
     #[doc(alias = "kCTFontFormatPostScript")]
     pub const PostScript: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/bitmap?language=objc)
     #[doc(alias = "kCTFontFormatBitmap")]
     pub const Bitmap: Self = Self(5);
 }
@@ -462,6 +476,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// If you are trying to create a system UI font descriptor (with name beginning with a "."), you should create a font with CTFontCreateUIFontForLanguage() or appropriate AppKit/UIKit APIs instead, then use CTFontCopyFontDescriptor() to get its font descriptor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatewithnameandsize(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateWithNameAndSize")]
     #[inline]
     pub fn with_name_and_size(name: &CFString, size: CGFloat) -> CFRetained<CTFontDescriptor> {
@@ -489,6 +505,8 @@ impl CTFontDescriptor {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatewithattributes(_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateWithAttributes")]
     #[inline]
     pub unsafe fn with_attributes(attributes: &CFDictionary) -> CFRetained<CTFontDescriptor> {
@@ -530,6 +548,8 @@ impl CTFontDescriptor {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatecopywithattributes(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateCopyWithAttributes")]
     #[inline]
     pub unsafe fn copy_with_attributes(
@@ -558,6 +578,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: Returns a new font reference with the original traits in the given family, or NULL if none found in the system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatecopywithfamily(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateCopyWithFamily")]
     #[inline]
     pub fn copy_with_family(&self, family: &CFString) -> Option<CFRetained<CTFontDescriptor>> {
@@ -584,6 +606,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: Returns a new font descriptor reference in the same family with the given symbolic traits, or NULL if none found in the system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatecopywithsymbolictraits(_:_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateCopyWithSymbolicTraits")]
     #[cfg(feature = "CTFontTraits")]
     #[inline]
@@ -618,6 +642,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function returns a copy of the original font descriptor with a new variation instance. This is a convenience method for easily creating new variation font instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatecopywithvariation(_:_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateCopyWithVariation")]
     #[inline]
     pub fn copy_with_variation(
@@ -661,6 +687,8 @@ impl CTFontDescriptor {
     /// See also: CTFontDescriptorCreateCopyWithAttributes
     ///
     /// See also: kCTFontFeatureSettingsAttribute
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatecopywithfeature(_:_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateCopyWithFeature")]
     #[inline]
     pub fn copy_with_feature(
@@ -701,6 +729,8 @@ impl CTFontDescriptor {
     /// # Safety
     ///
     /// `mandatory_attributes` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatematchingfontdescriptors(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptors")]
     #[inline]
     pub unsafe fn matching_font_descriptors(
@@ -732,6 +762,8 @@ impl CTFontDescriptor {
     /// # Safety
     ///
     /// `mandatory_attributes` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatematchingfontdescriptor(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptor")]
     #[inline]
     pub unsafe fn matching_font_descriptor(
@@ -758,22 +790,31 @@ impl CTFontDescriptor {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontDescriptorMatchingState(pub u32);
 impl CTFontDescriptorMatchingState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/didbegin?language=objc)
     #[doc(alias = "kCTFontDescriptorMatchingDidBegin")]
     pub const DidBegin: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/didfinish?language=objc)
     #[doc(alias = "kCTFontDescriptorMatchingDidFinish")]
     pub const DidFinish: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/willbeginquerying?language=objc)
     #[doc(alias = "kCTFontDescriptorMatchingWillBeginQuerying")]
     pub const WillBeginQuerying: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/stalled?language=objc)
     #[doc(alias = "kCTFontDescriptorMatchingStalled")]
     pub const Stalled: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/willbegindownloading?language=objc)
     #[doc(alias = "kCTFontDescriptorMatchingWillBeginDownloading")]
     pub const WillBeginDownloading: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/downloading?language=objc)
     #[doc(alias = "kCTFontDescriptorMatchingDownloading")]
     pub const Downloading: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/didfinishdownloading?language=objc)
     #[doc(alias = "kCTFontDescriptorMatchingDidFinishDownloading")]
     pub const DidFinishDownloading: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/didmatch?language=objc)
     #[doc(alias = "kCTFontDescriptorMatchingDidMatch")]
     pub const DidMatch: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/didfailwitherror?language=objc)
     #[doc(alias = "kCTFontDescriptorMatchingDidFailWithError")]
     pub const DidFailWithError: Self = Self(8);
 }
@@ -834,6 +875,8 @@ pub type CTFontDescriptorProgressHandler =
     *mut block2::DynBlock<dyn Fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
 
 impl CTFontDescriptor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchfontdescriptorswithprogresshandler(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `descriptors` generic must be of the correct type.
@@ -870,6 +913,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: A retained reference to the font descriptor attributes dictionary. This dictionary will contain the minimum number of attributes to fully specify this particular font descriptor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcopyattributes(_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCopyAttributes")]
     #[inline]
     pub fn attributes(&self) -> CFRetained<CFDictionary> {
@@ -894,6 +939,8 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcopyattribute(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCopyAttribute")]
     #[inline]
     pub fn attribute(&self, attribute: &CFString) -> Option<CFRetained<CFType>> {
@@ -930,6 +977,8 @@ impl CTFontDescriptor {
     /// # Safety
     ///
     /// `language` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcopylocalizedattribute(_:_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCopyLocalizedAttribute")]
     #[inline]
     pub unsafe fn localized_attribute(

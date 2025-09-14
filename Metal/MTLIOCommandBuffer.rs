@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOStatus(pub NSInteger);
 impl MTLIOStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliostatus/pending?language=objc)
     #[doc(alias = "MTLIOStatusPending")]
     pub const Pending: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliostatus/cancelled?language=objc)
     #[doc(alias = "MTLIOStatusCancelled")]
     pub const Cancelled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliostatus/error?language=objc)
     #[doc(alias = "MTLIOStatusError")]
     pub const Error: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliostatus/complete?language=objc)
     #[doc(alias = "MTLIOStatusComplete")]
     pub const Complete: Self = Self(3);
 }

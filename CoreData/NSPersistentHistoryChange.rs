@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersistentHistoryChangeType(pub NSInteger);
 impl NSPersistentHistoryChangeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorychangetype/insert?language=objc)
     #[doc(alias = "NSPersistentHistoryChangeTypeInsert")]
     pub const Insert: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorychangetype/update?language=objc)
     #[doc(alias = "NSPersistentHistoryChangeTypeUpdate")]
     pub const Update: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorychangetype/delete?language=objc)
     #[doc(alias = "NSPersistentHistoryChangeTypeDelete")]
     pub const Delete: Self = Self(2);
 }

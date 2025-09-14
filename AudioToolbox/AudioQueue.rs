@@ -214,14 +214,19 @@ pub const kAudioQueueParam_Pan: AudioQueueParameterID = 13;
 pub struct AudioQueueProcessingTapFlags(pub u32);
 bitflags::bitflags! {
     impl AudioQueueProcessingTapFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags/preeffects?language=objc)
         #[doc(alias = "kAudioQueueProcessingTap_PreEffects")]
         const PreEffects = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags/posteffects?language=objc)
         #[doc(alias = "kAudioQueueProcessingTap_PostEffects")]
         const PostEffects = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags/siphon?language=objc)
         #[doc(alias = "kAudioQueueProcessingTap_Siphon")]
         const Siphon = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags/startofstream?language=objc)
         #[doc(alias = "kAudioQueueProcessingTap_StartOfStream")]
         const StartOfStream = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags/endofstream?language=objc)
         #[doc(alias = "kAudioQueueProcessingTap_EndOfStream")]
         const EndOfStream = 1<<9;
     }
@@ -695,6 +700,8 @@ extern "C-unwind" {
     /// - `in_user_data` must be a valid pointer or null.
     /// - `in_callback_run_loop` possibly has additional threading requirements.
     /// - `out_aq` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewoutput(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioQueueNewOutput(
         in_format: NonNull<AudioStreamBasicDescription>,
@@ -749,6 +756,8 @@ extern "C-unwind" {
     /// - `in_user_data` must be a valid pointer or null.
     /// - `in_callback_run_loop` possibly has additional threading requirements.
     /// - `out_aq` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewinput(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioQueueNewInput(
         in_format: NonNull<AudioStreamBasicDescription>,
@@ -791,6 +800,8 @@ extern "C-unwind" {
     /// - `in_format` must be a valid pointer.
     /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
     /// - `in_callback_block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewoutputwithdispatchqueue(_:_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -837,6 +848,8 @@ extern "C-unwind" {
     /// - `in_format` must be a valid pointer.
     /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
     /// - `in_callback_block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewinputwithdispatchqueue(_:_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -872,6 +885,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `in_aq` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuedispose(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioQueueDispose(
     in_aq: AudioQueueRef,
@@ -905,6 +920,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueallocatebuffer(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueAllocateBuffer(
         in_aq: AudioQueueRef,
@@ -937,6 +954,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueallocatebufferwithpacketdescriptions(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueAllocateBufferWithPacketDescriptions(
         in_aq: AudioQueueRef,
@@ -966,6 +985,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `in_buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuefreebuffer(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueFreeBuffer(in_aq: AudioQueueRef, in_buffer: AudioQueueBufferRef) -> OSStatus;
 }
@@ -1001,6 +1022,8 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_buffer` must be a valid pointer.
     /// - `in_packet_descs` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueenqueuebuffer(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueEnqueueBuffer(
         in_aq: AudioQueueRef,
@@ -1079,6 +1102,8 @@ extern "C-unwind" {
     /// - `in_param_values` must be a valid pointer or null.
     /// - `in_start_time` must be a valid pointer or null.
     /// - `out_actual_start_time` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueenqueuebufferwithparameters(_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueEnqueueBufferWithParameters(
         in_aq: AudioQueueRef,
@@ -1112,6 +1137,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `in_start_time` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuestart(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueStart(in_aq: AudioQueueRef, in_start_time: *const AudioTimeStamp) -> OSStatus;
 }
@@ -1147,6 +1174,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_number_of_frames_prepared` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprime(_:_:_:)?language=objc)
     pub fn AudioQueuePrime(
         in_aq: AudioQueueRef,
         in_number_of_frames_to_prepare: u32,
@@ -1182,6 +1211,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `in_aq` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuestop(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioQueueStop(
     in_aq: AudioQueueRef,
@@ -1207,6 +1238,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_aq` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuepause(_:)?language=objc)
     pub fn AudioQueuePause(in_aq: AudioQueueRef) -> OSStatus;
 }
 
@@ -1233,6 +1266,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_aq` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueflush(_:)?language=objc)
     pub fn AudioQueueFlush(in_aq: AudioQueueRef) -> OSStatus;
 }
 
@@ -1260,6 +1295,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_aq` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuereset(_:)?language=objc)
     pub fn AudioQueueReset(in_aq: AudioQueueRef) -> OSStatus;
 }
 
@@ -1284,6 +1321,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetparameter(_:_:_:)?language=objc)
     pub fn AudioQueueGetParameter(
         in_aq: AudioQueueRef,
         in_param_id: AudioQueueParameterID,
@@ -1305,6 +1344,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_aq` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuesetparameter(_:_:_:)?language=objc)
     pub fn AudioQueueSetParameter(
         in_aq: AudioQueueRef,
         in_param_id: AudioQueueParameterID,
@@ -1331,6 +1372,8 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
     /// - `io_data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetproperty(_:_:_:_:)?language=objc)
     pub fn AudioQueueGetProperty(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1357,6 +1400,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `in_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuesetproperty(_:_:_:_:)?language=objc)
     pub fn AudioQueueSetProperty(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1381,6 +1426,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetpropertysize(_:_:_:)?language=objc)
     pub fn AudioQueueGetPropertySize(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1412,6 +1459,8 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueaddpropertylistener(_:_:_:_:)?language=objc)
     pub fn AudioQueueAddPropertyListener(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1438,6 +1487,8 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueremovepropertylistener(_:_:_:_:)?language=objc)
     pub fn AudioQueueRemovePropertyListener(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1463,6 +1514,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_timeline` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuecreatetimeline(_:_:)?language=objc)
     pub fn AudioQueueCreateTimeline(
         in_aq: AudioQueueRef,
         out_timeline: NonNull<AudioQueueTimelineRef>,
@@ -1487,6 +1540,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `in_timeline` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuedisposetimeline(_:_:)?language=objc)
     pub fn AudioQueueDisposeTimeline(
         in_aq: AudioQueueRef,
         in_timeline: AudioQueueTimelineRef,
@@ -1524,6 +1579,8 @@ extern "C-unwind" {
     /// - `in_timeline` must be a valid pointer or null.
     /// - `out_time_stamp` must be a valid pointer or null.
     /// - `out_timeline_discontinuity` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetcurrenttime(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueGetCurrentTime(
         in_aq: AudioQueueRef,
@@ -1553,6 +1610,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_time_stamp` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuedevicegetcurrenttime(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceGetCurrentTime(
         in_aq: AudioQueueRef,
@@ -1591,6 +1650,8 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_time` must be a valid pointer.
     /// - `out_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuedevicetranslatetime(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceTranslateTime(
         in_aq: AudioQueueRef,
@@ -1614,6 +1675,8 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `io_requested_start_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuedevicegetneareststarttime(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceGetNearestStartTime(
         in_aq: AudioQueueRef,
@@ -1646,6 +1709,8 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_format` must be a valid pointer or null.
     /// - `in_layout` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuesetofflinerenderformat(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueSetOfflineRenderFormat(
         in_aq: AudioQueueRef,
@@ -1674,6 +1739,8 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_timestamp` must be a valid pointer.
     /// - `io_buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueofflinerender(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueOfflineRender(
         in_aq: AudioQueueRef,
@@ -1744,6 +1811,8 @@ extern "C-unwind" {
     /// - `out_max_frames` must be a valid pointer.
     /// - `out_processing_format` must be a valid pointer.
     /// - `out_aq_tap` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapnew(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueProcessingTapNew(
         in_aq: AudioQueueRef,
@@ -1771,6 +1840,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_aq_tap` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapdispose(_:)?language=objc)
     pub fn AudioQueueProcessingTapDispose(in_aq_tap: AudioQueueProcessingTapRef) -> OSStatus;
 }
 
@@ -1811,6 +1882,8 @@ extern "C-unwind" {
     /// - `out_flags` must be a valid pointer.
     /// - `out_number_frames` must be a valid pointer.
     /// - `io_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapgetsourceaudio(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueProcessingTapGetSourceAudio(
         in_aq_tap: AudioQueueProcessingTapRef,
@@ -1849,6 +1922,8 @@ extern "C-unwind" {
     /// - `in_aq_tap` must be a valid pointer.
     /// - `out_queue_sample_time` must be a valid pointer.
     /// - `out_queue_frame_count` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapgetqueuetime(_:_:_:)?language=objc)
     pub fn AudioQueueProcessingTapGetQueueTime(
         in_aq_tap: AudioQueueProcessingTapRef,
         out_queue_sample_time: NonNull<f64>,

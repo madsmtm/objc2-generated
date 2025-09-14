@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKInterpolationMode(pub NSInteger);
 impl SKInterpolationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skinterpolationmode/linear?language=objc)
     #[doc(alias = "SKInterpolationModeLinear")]
     pub const Linear: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skinterpolationmode/spline?language=objc)
     #[doc(alias = "SKInterpolationModeSpline")]
     pub const Spline: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skinterpolationmode/step?language=objc)
     #[doc(alias = "SKInterpolationModeStep")]
     pub const Step: Self = Self(3);
 }
@@ -37,8 +40,10 @@ unsafe impl RefEncode for SKInterpolationMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKRepeatMode(pub NSInteger);
 impl SKRepeatMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skrepeatmode/clamp?language=objc)
     #[doc(alias = "SKRepeatModeClamp")]
     pub const Clamp: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skrepeatmode/loop?language=objc)
     #[doc(alias = "SKRepeatModeLoop")]
     pub const Loop: Self = Self(2);
 }

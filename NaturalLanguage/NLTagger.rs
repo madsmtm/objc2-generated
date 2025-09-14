@@ -14,16 +14,22 @@ use crate::*;
 pub struct NLTaggerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NLTaggerOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/omitwords?language=objc)
         #[doc(alias = "NLTaggerOmitWords")]
         const OmitWords = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/omitpunctuation?language=objc)
         #[doc(alias = "NLTaggerOmitPunctuation")]
         const OmitPunctuation = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/omitwhitespace?language=objc)
         #[doc(alias = "NLTaggerOmitWhitespace")]
         const OmitWhitespace = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/omitother?language=objc)
         #[doc(alias = "NLTaggerOmitOther")]
         const OmitOther = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/joinnames?language=objc)
         #[doc(alias = "NLTaggerJoinNames")]
         const JoinNames = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/joincontractions?language=objc)
         #[doc(alias = "NLTaggerJoinContractions")]
         const JoinContractions = 1<<5;
     }
@@ -43,10 +49,13 @@ unsafe impl RefEncode for NLTaggerOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLTaggerAssetsResult(pub NSInteger);
 impl NLTaggerAssetsResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/assetsresult/available?language=objc)
     #[doc(alias = "NLTaggerAssetsResultAvailable")]
     pub const Available: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/assetsresult/notavailable?language=objc)
     #[doc(alias = "NLTaggerAssetsResultNotAvailable")]
     pub const NotAvailable: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/assetsresult/error?language=objc)
     #[doc(alias = "NLTaggerAssetsResultError")]
     pub const Error: Self = Self(2);
 }

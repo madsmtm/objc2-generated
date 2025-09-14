@@ -37,6 +37,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CVMetalTextureCache {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecachegettypeid()?language=objc)
     #[doc(alias = "CVMetalTextureCacheGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -69,6 +70,8 @@ impl CVMetalTextureCache {
     /// - `texture_attributes` generic must be of the correct type.
     /// - `texture_attributes` generic must be of the correct type.
     /// - `cache_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecachecreate(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CVMetalTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
@@ -161,6 +164,8 @@ impl CVMetalTextureCache {
     /// - `texture_attributes` generic must be of the correct type.
     /// - `texture_attributes` generic must be of the correct type.
     /// - `texture_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecachecreatetexturefromimage(_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CVMetalTextureCacheCreateTextureFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -217,6 +222,8 @@ impl CVMetalTextureCache {
     /// Parameter `textureCache`: The texture cache object to flush
     ///
     /// Parameter `options`: Currently unused, set to 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecacheflush(_:_:)?language=objc)
     #[doc(alias = "CVMetalTextureCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]

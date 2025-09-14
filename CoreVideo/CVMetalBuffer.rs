@@ -20,6 +20,7 @@ use crate::*;
 #[cfg(feature = "CVBuffer")]
 pub type CVMetalBuffer = CVBuffer;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffergettypeid()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVMetalBufferGetTypeID() -> CFTypeID {
     extern "C-unwind" {
@@ -33,6 +34,8 @@ pub extern "C-unwind" fn CVMetalBufferGetTypeID() -> CFTypeID {
 /// Parameter `buffer`: Target CVMetalBuffer
 ///
 /// Returns: Metal buffer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffergetbuffer(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "objc2", feature = "objc2-metal"))]
 #[cfg(not(target_os = "watchos"))]
 #[inline]

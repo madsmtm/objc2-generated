@@ -16,6 +16,8 @@ use crate::*;
 pub struct CNEntityType(pub NSInteger);
 impl CNEntityType {
     /// The user's contacts.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnentitytype/contacts?language=objc)
     #[doc(alias = "CNEntityTypeContacts")]
     pub const Contacts: Self = Self(0);
 }
@@ -37,19 +39,29 @@ unsafe impl RefEncode for CNEntityType {
 pub struct CNAuthorizationStatus(pub NSInteger);
 impl CNAuthorizationStatus {
     /// The user has not yet made a choice regarding whether the application may access contact data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "CNAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
     /// The application is not authorized to access contact data.
     /// The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus/restricted?language=objc)
     #[doc(alias = "CNAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
     /// The user explicitly denied access to contact data for the application.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus/denied?language=objc)
     #[doc(alias = "CNAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
     /// The application is authorized to access contact data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus/authorized?language=objc)
     #[doc(alias = "CNAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
     /// This application is authorized to access some contact data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus/limited?language=objc)
     #[doc(alias = "CNAuthorizationStatusLimited")]
     pub const Limited: Self = Self(4);
 }

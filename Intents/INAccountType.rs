@@ -10,20 +10,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAccountType(pub NSInteger);
 impl INAccountType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/unknown?language=objc)
     #[doc(alias = "INAccountTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/checking?language=objc)
     #[doc(alias = "INAccountTypeChecking")]
     pub const Checking: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/credit?language=objc)
     #[doc(alias = "INAccountTypeCredit")]
     pub const Credit: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/debit?language=objc)
     #[doc(alias = "INAccountTypeDebit")]
     pub const Debit: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/investment?language=objc)
     #[doc(alias = "INAccountTypeInvestment")]
     pub const Investment: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/mortgage?language=objc)
     #[doc(alias = "INAccountTypeMortgage")]
     pub const Mortgage: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/prepaid?language=objc)
     #[doc(alias = "INAccountTypePrepaid")]
     pub const Prepaid: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/saving?language=objc)
     #[doc(alias = "INAccountTypeSaving")]
     pub const Saving: Self = Self(7);
 }

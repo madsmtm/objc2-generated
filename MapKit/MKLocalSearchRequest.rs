@@ -14,10 +14,13 @@ use crate::*;
 pub struct MKLocalSearchResultType(pub NSUInteger);
 bitflags::bitflags! {
     impl MKLocalSearchResultType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch/resulttype/address?language=objc)
         #[doc(alias = "MKLocalSearchResultTypeAddress")]
         const Address = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch/resulttype/pointofinterest?language=objc)
         #[doc(alias = "MKLocalSearchResultTypePointOfInterest")]
         const PointOfInterest = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch/resulttype/physicalfeature?language=objc)
         #[doc(alias = "MKLocalSearchResultTypePhysicalFeature")]
         const PhysicalFeature = 1<<2;
     }

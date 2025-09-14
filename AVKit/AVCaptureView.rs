@@ -26,12 +26,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureViewControlsStyle(pub NSInteger);
 impl AVCaptureViewControlsStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle/inline?language=objc)
     #[doc(alias = "AVCaptureViewControlsStyleInline")]
     pub const Inline: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle/floating?language=objc)
     #[doc(alias = "AVCaptureViewControlsStyleFloating")]
     pub const Floating: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle/inlinedeviceselection?language=objc)
     #[doc(alias = "AVCaptureViewControlsStyleInlineDeviceSelection")]
     pub const InlineDeviceSelection: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle/default?language=objc)
     #[doc(alias = "AVCaptureViewControlsStyleDefault")]
     pub const Default: Self = Self(AVCaptureViewControlsStyle::Inline.0);
 }

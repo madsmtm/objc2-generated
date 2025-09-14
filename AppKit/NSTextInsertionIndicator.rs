@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextInsertionIndicatorDisplayMode(pub NSInteger);
 impl NSTextInsertionIndicatorDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum/automatic?language=objc)
     #[doc(alias = "NSTextInsertionIndicatorDisplayModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum/hidden?language=objc)
     #[doc(alias = "NSTextInsertionIndicatorDisplayModeHidden")]
     pub const Hidden: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum/visible?language=objc)
     #[doc(alias = "NSTextInsertionIndicatorDisplayModeVisible")]
     pub const Visible: Self = Self(2);
 }
@@ -36,8 +39,10 @@ unsafe impl RefEncode for NSTextInsertionIndicatorDisplayMode {
 pub struct NSTextInsertionIndicatorAutomaticModeOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSTextInsertionIndicatorAutomaticModeOptions: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/automaticmodeoptions-swift.struct/showeffectsview?language=objc)
         #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView")]
         const ShowEffectsView = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/automaticmodeoptions-swift.struct/showwhiletracking?language=objc)
         #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking")]
         const ShowWhileTracking = 1<<1;
     }

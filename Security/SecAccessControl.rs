@@ -12,6 +12,8 @@ unsafe impl ConcreteType for SecAccessControl {
     /// Returns the type identifier of SecAccessControl instances.
     ///
     /// Returns: The CFTypeID of SecAccessControl instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolgettypeid()?language=objc)
     #[doc(alias = "SecAccessControlGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -69,31 +71,43 @@ unsafe impl ConcreteType for SecAccessControl {
 pub struct SecAccessControlCreateFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl SecAccessControlCreateFlags: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/userpresence?language=objc)
         #[doc(alias = "kSecAccessControlUserPresence")]
         const UserPresence = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/biometryany?language=objc)
         #[doc(alias = "kSecAccessControlBiometryAny")]
         const BiometryAny = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/touchidany?language=objc)
         #[doc(alias = "kSecAccessControlTouchIDAny")]
 #[deprecated]
         const TouchIDAny = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/biometrycurrentset?language=objc)
         #[doc(alias = "kSecAccessControlBiometryCurrentSet")]
         const BiometryCurrentSet = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/touchidcurrentset?language=objc)
         #[doc(alias = "kSecAccessControlTouchIDCurrentSet")]
 #[deprecated]
         const TouchIDCurrentSet = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/devicepasscode?language=objc)
         #[doc(alias = "kSecAccessControlDevicePasscode")]
         const DevicePasscode = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/watch?language=objc)
         #[doc(alias = "kSecAccessControlWatch")]
 #[deprecated]
         const Watch = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/companion?language=objc)
         #[doc(alias = "kSecAccessControlCompanion")]
         const Companion = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/or?language=objc)
         #[doc(alias = "kSecAccessControlOr")]
         const Or = 1<<14;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/and?language=objc)
         #[doc(alias = "kSecAccessControlAnd")]
         const And = 1<<15;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/privatekeyusage?language=objc)
         #[doc(alias = "kSecAccessControlPrivateKeyUsage")]
         const PrivateKeyUsage = 1<<30;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/applicationpassword?language=objc)
         #[doc(alias = "kSecAccessControlApplicationPassword")]
         const ApplicationPassword = 1<<31;
     }
@@ -134,6 +148,8 @@ impl SecAccessControl {
     ///
     /// - `protection` should be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreatewithflags(_:_:_:_:)?language=objc)
     #[doc(alias = "SecAccessControlCreateWithFlags")]
     #[cfg(feature = "SecBase")]
     #[inline]

@@ -69,6 +69,7 @@ unsafe impl RefEncode for CFFileDescriptorContext {
 }
 
 unsafe impl ConcreteType for CFFileDescriptor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorgettypeid()?language=objc)
     #[doc(alias = "CFFileDescriptorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -80,6 +81,8 @@ unsafe impl ConcreteType for CFFileDescriptor {
 }
 
 impl CFFileDescriptor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcreate(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -109,6 +112,7 @@ impl CFFileDescriptor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorgetnativedescriptor(_:)?language=objc)
     #[doc(alias = "CFFileDescriptorGetNativeDescriptor")]
     #[inline]
     pub fn native_descriptor(&self) -> CFFileDescriptorNativeDescriptor {
@@ -120,6 +124,8 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorGetNativeDescriptor(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorgetcontext(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -135,6 +141,7 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorGetContext(self, context) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorenablecallbacks(_:_:)?language=objc)
     #[doc(alias = "CFFileDescriptorEnableCallBacks")]
     #[inline]
     pub fn enable_call_backs(&self, call_back_types: CFOptionFlags) {
@@ -147,6 +154,7 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorEnableCallBacks(self, call_back_types) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptordisablecallbacks(_:_:)?language=objc)
     #[doc(alias = "CFFileDescriptorDisableCallBacks")]
     #[inline]
     pub fn disable_call_backs(&self, call_back_types: CFOptionFlags) {
@@ -159,6 +167,7 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorDisableCallBacks(self, call_back_types) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorinvalidate(_:)?language=objc)
     #[doc(alias = "CFFileDescriptorInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -168,6 +177,7 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorInvalidate(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorisvalid(_:)?language=objc)
     #[doc(alias = "CFFileDescriptorIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -178,6 +188,7 @@ impl CFFileDescriptor {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcreaterunloopsource(_:_:_:)?language=objc)
     #[doc(alias = "CFFileDescriptorCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]

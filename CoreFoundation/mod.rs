@@ -3002,91 +3002,177 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_0?language=objc)
 pub const kCFCoreFoundationVersionNumber10_0: c_float = 196.40;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_0_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_0_3: c_float = 196.50;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_1: c_float = 226.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_1_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_1_1: c_float = 226.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_1_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_1_2: c_float = 227.20;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_1_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_1_3: c_float = 227.20;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_1_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_1_4: c_float = 227.30;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_2: c_float = 263.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_2_1: c_float = 263.10;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_2_2: c_float = 263.10;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_2_3: c_float = 263.30;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_2_4: c_float = 263.30;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_5?language=objc)
 pub const kCFCoreFoundationVersionNumber10_2_5: c_float = 263.50;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_6?language=objc)
 pub const kCFCoreFoundationVersionNumber10_2_6: c_float = 263.50;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_7?language=objc)
 pub const kCFCoreFoundationVersionNumber10_2_7: c_float = 263.50;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_8?language=objc)
 pub const kCFCoreFoundationVersionNumber10_2_8: c_float = 263.50;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_3: c_float = 299.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_3_1: c_float = 299.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_3_2: c_float = 299.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_3_3: c_float = 299.30;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_3_4: c_float = 299.31;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_5?language=objc)
 pub const kCFCoreFoundationVersionNumber10_3_5: c_float = 299.31;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_6?language=objc)
 pub const kCFCoreFoundationVersionNumber10_3_6: c_float = 299.32;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_7?language=objc)
 pub const kCFCoreFoundationVersionNumber10_3_7: c_float = 299.33;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_8?language=objc)
 pub const kCFCoreFoundationVersionNumber10_3_8: c_float = 299.33;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_9?language=objc)
 pub const kCFCoreFoundationVersionNumber10_3_9: c_float = 299.35;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4: c_float = 368.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_1: c_float = 368.10;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_2: c_float = 368.11;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_3: c_float = 368.18;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_4_intel?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_4_Intel: c_float = 368.26;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_4_powerpc?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_4_PowerPC: c_float = 368.25;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_5_intel?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_5_Intel: c_float = 368.26;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_5_powerpc?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_5_PowerPC: c_float = 368.25;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_6_intel?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_6_Intel: c_float = 368.26;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_6_powerpc?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_6_PowerPC: c_float = 368.25;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_7?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_7: c_float = 368.27;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_8?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_8: c_float = 368.27;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_9?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_9: c_float = 368.28;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_10?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_10: c_float = 368.28;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_11?language=objc)
 pub const kCFCoreFoundationVersionNumber10_4_11: c_float = 368.31;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5?language=objc)
 pub const kCFCoreFoundationVersionNumber10_5: c_float = 476.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_5_1: c_float = 476.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_5_2: c_float = 476.10;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_5_3: c_float = 476.13;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_5_4: c_float = 476.14;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_5?language=objc)
 pub const kCFCoreFoundationVersionNumber10_5_5: c_float = 476.15;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_6?language=objc)
 pub const kCFCoreFoundationVersionNumber10_5_6: c_float = 476.17;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_7?language=objc)
 pub const kCFCoreFoundationVersionNumber10_5_7: c_float = 476.18;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_8?language=objc)
 pub const kCFCoreFoundationVersionNumber10_5_8: c_float = 476.19;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6?language=objc)
 pub const kCFCoreFoundationVersionNumber10_6: c_float = 550.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_6_1: c_float = 550.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_6_2: c_float = 550.13;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_6_3: c_float = 550.19;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_6_4: c_float = 550.29;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_5?language=objc)
 pub const kCFCoreFoundationVersionNumber10_6_5: c_float = 550.42;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_6?language=objc)
 pub const kCFCoreFoundationVersionNumber10_6_6: c_float = 550.42;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_7?language=objc)
 pub const kCFCoreFoundationVersionNumber10_6_7: c_float = 550.42;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_8?language=objc)
 pub const kCFCoreFoundationVersionNumber10_6_8: c_float = 550.43;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7?language=objc)
 pub const kCFCoreFoundationVersionNumber10_7: c_float = 635.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_7_1: c_float = 635.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_7_2: c_float = 635.15;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_7_3: c_float = 635.19;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_7_4: c_float = 635.21;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7_5?language=objc)
 pub const kCFCoreFoundationVersionNumber10_7_5: c_float = 635.21;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_8?language=objc)
 pub const kCFCoreFoundationVersionNumber10_8: c_float = 744.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_8_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_8_1: c_float = 744.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_8_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_8_2: c_float = 744.12;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_8_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_8_3: c_float = 744.18;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_8_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_8_4: c_float = 744.19;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_9?language=objc)
 pub const kCFCoreFoundationVersionNumber10_9: c_float = 855.11;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_9_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_9_1: c_float = 855.11;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_9_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_9_2: c_float = 855.14;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10: c_float = 1151.16;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_1: c_float = 1151.16;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_2: c_uint = 1152;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_3: c_float = 1153.18;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_4: c_float = 1153.18;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_5?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_5: c_float = 1153.18;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_max?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_Max: c_uint = 1199;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11: c_uint = 1253;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11_1: c_float = 1255.1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11_2: c_float = 1256.14;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11_3: c_float = 1256.14;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11_4: c_float = 1258.1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11_max?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11_Max: c_uint = 1299;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatortypeid?language=objc)
 pub type CFAllocatorTypeID = c_ulonglong;
@@ -3142,10 +3228,13 @@ pub type CFPropertyList = CFType;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFComparisonResult(pub CFIndex);
 impl CFComparisonResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult/comparelessthan?language=objc)
     #[doc(alias = "kCFCompareLessThan")]
     pub const CompareLessThan: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult/compareequalto?language=objc)
     #[doc(alias = "kCFCompareEqualTo")]
     pub const CompareEqualTo: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult/comparegreaterthan?language=objc)
     #[doc(alias = "kCFCompareGreaterThan")]
     pub const CompareGreaterThan: Self = Self(1);
 }
@@ -3205,6 +3294,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFNull {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnullgettypeid()?language=objc)
     #[doc(alias = "CFNullGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -3334,6 +3424,7 @@ unsafe impl RefEncode for CFAllocatorContext {
 }
 
 unsafe impl ConcreteType for CFAllocator {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorgettypeid()?language=objc)
     #[doc(alias = "CFAllocatorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -3345,6 +3436,7 @@ unsafe impl ConcreteType for CFAllocator {
 }
 
 impl CFAllocator {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorsetdefault(_:)?language=objc)
     #[doc(alias = "CFAllocatorSetDefault")]
     #[inline]
     pub fn set_default(allocator: Option<&CFAllocator>) {
@@ -3354,6 +3446,7 @@ impl CFAllocator {
         unsafe { CFAllocatorSetDefault(allocator) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorgetdefault()?language=objc)
     #[doc(alias = "CFAllocatorGetDefault")]
     #[inline]
     pub fn default() -> Option<CFRetained<CFAllocator>> {
@@ -3364,6 +3457,8 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcreate(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -3384,6 +3479,8 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcreatewithzone?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -3405,6 +3502,8 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocatetyped(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `allocator` might not allow `None`.
@@ -3427,6 +3526,8 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocateTyped(allocator, size, descriptor, hint) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreallocatetyped(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -3452,6 +3553,7 @@ impl CFAllocator {
         unsafe { CFAllocatorReallocateTyped(allocator, ptr, newsize, descriptor, hint) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocatebytes(_:_:_:)?language=objc)
     #[doc(alias = "CFAllocatorAllocateBytes")]
     #[inline]
     pub fn allocate_bytes(
@@ -3469,6 +3571,8 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocateBytes(allocator, size, hint) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreallocatebytes(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -3492,6 +3596,7 @@ impl CFAllocator {
         unsafe { CFAllocatorReallocateBytes(allocator, ptr, newsize, hint) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocate(_:_:_:)?language=objc)
     #[doc(alias = "CFAllocatorAllocate")]
     #[inline]
     pub fn allocate(
@@ -3509,6 +3614,8 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocate(allocator, size, hint) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreallocate(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -3532,6 +3639,8 @@ impl CFAllocator {
         unsafe { CFAllocatorReallocate(allocator, ptr, newsize, hint) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatordeallocate(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -3545,6 +3654,7 @@ impl CFAllocator {
         unsafe { CFAllocatorDeallocate(allocator, ptr) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorgetpreferredsizeforsize(_:_:_:)?language=objc)
     #[doc(alias = "CFAllocatorGetPreferredSizeForSize")]
     #[inline]
     pub fn preferred_size_for_size(
@@ -3562,6 +3672,8 @@ impl CFAllocator {
         unsafe { CFAllocatorGetPreferredSizeForSize(allocator, size, hint) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorgetcontext(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -3579,6 +3691,7 @@ impl CFAllocator {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID {
     extern "C-unwind" {
@@ -3587,6 +3700,7 @@ pub extern "C-unwind" fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID {
     unsafe { CFGetTypeID(cf) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcopytypeiddescription(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFCopyTypeIDDescription(
     type_id: CFTypeID,
@@ -3598,6 +3712,7 @@ pub extern "C-unwind" fn CFCopyTypeIDDescription(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgetretaincount(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex {
     extern "C-unwind" {
@@ -3606,6 +3721,7 @@ pub extern "C-unwind" fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex {
     unsafe { CFGetRetainCount(cf) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfequal(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> bool {
     extern "C-unwind" {
@@ -3615,6 +3731,7 @@ pub extern "C-unwind" fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> 
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfhash(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFHash(cf: Option<&CFType>) -> CFHashCode {
     extern "C-unwind" {
@@ -3623,6 +3740,7 @@ pub extern "C-unwind" fn CFHash(cf: Option<&CFType>) -> CFHashCode {
     unsafe { CFHash(cf) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcopydescription(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -3632,6 +3750,7 @@ pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> Option<CFReta
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgetallocator(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFGetAllocator(cf: Option<&CFType>) -> Option<CFRetained<CFAllocator>> {
     extern "C-unwind" {

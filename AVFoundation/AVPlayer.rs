@@ -20,12 +20,18 @@ use crate::*;
 pub struct AVPlayerStatus(pub NSInteger);
 impl AVPlayerStatus {
     /// Indicates that the status of the player is not yet known because it has not tried to load new media resources for playback.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/status-swift.enum/unknown?language=objc)
     #[doc(alias = "AVPlayerStatusUnknown")]
     pub const Unknown: Self = Self(0);
     /// Indicates that the player is ready to play AVPlayerItem instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/status-swift.enum/readytoplay?language=objc)
     #[doc(alias = "AVPlayerStatusReadyToPlay")]
     pub const ReadyToPlay: Self = Self(1);
     /// Indicates that the player can no longer play AVPlayerItem instances because of an error. The error is described by the value of the player's error property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/status-swift.enum/failed?language=objc)
     #[doc(alias = "AVPlayerStatusFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -212,12 +218,18 @@ extern "C" {
 pub struct AVPlayerTimeControlStatus(pub NSInteger);
 impl AVPlayerTimeControlStatus {
     /// This state is entered upon receipt of a -pause message, an invocation of -setRate: with a value of 0.0, when a change in overall state requires playback to be halted, such as when an interruption occurs on iOS, as announced by AVAudioSession. In this state, playback is paused indefinitely and will not resume until 1) a subsequent -play message is received or 2) a -setRate: or -playImmediatelyAtRate: message with a non-zero value for rate is received and sufficient media data has been buffered for playback to proceed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.enum/paused?language=objc)
     #[doc(alias = "AVPlayerTimeControlStatusPaused")]
     pub const Paused: Self = Self(0);
     /// This state is entered when 1) the playback buffer becomes empty and playback stalls in AVPlayerTimeControlStatusPlaying, 2) when rate is set from zero to non-zero in AVPlayerTimeControlStatusPaused and insufficient media data has been buffered for playback to occur, or 3) when the player has no item to play, i.e. when the receiver's currentItem is nil. In this state, the value of the rate property is not currently effective but instead indicates the rate at which playback will start or resume. Refer to the value of reasonForWaitingToPlay for details about why the receiver is waiting and the conditions that allow waitStatus to change to AVPlayerWaitStatusPlaying. While waiting for buffering, you can attempt to start playback of any available media data via -playImmediatelyAtRate:.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.enum/waitingtoplayatspecifiedrate?language=objc)
     #[doc(alias = "AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate")]
     pub const WaitingToPlayAtSpecifiedRate: Self = Self(1);
     /// In this state, playback is currently progressing and rate changes will take effect immediately. Should playback stall because of insufficient media data, timeControlStatus will change to AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.enum/playing?language=objc)
     #[doc(alias = "AVPlayerTimeControlStatusPlaying")]
     pub const Playing: Self = Self(2);
 }
@@ -368,12 +380,18 @@ impl AVPlayer {
 pub struct AVPlayerActionAtItemEnd(pub NSInteger);
 impl AVPlayerActionAtItemEnd {
     /// Indicates that when an AVPlayerItem reaches its end time the player will automatically advance to the next item in its queue. This value is supported only for players of class AVQueuePlayer. An AVPlayer that's not an AVQueuePlayer will raise an NSInvalidArgumentException if an attempt is made to set its actionAtItemEnd to AVPlayerActionAtItemEndAdvance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/actionatitemend-swift.enum/advance?language=objc)
     #[doc(alias = "AVPlayerActionAtItemEndAdvance")]
     pub const Advance: Self = Self(0);
     /// Indicates that when an AVPlayerItem reaches its end time the player will automatically pause (which is to say, the player's rate will automatically be set to 0).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/actionatitemend-swift.enum/pause?language=objc)
     #[doc(alias = "AVPlayerActionAtItemEndPause")]
     pub const Pause: Self = Self(1);
     /// Indicates that when an AVPlayerItem reaches its end time the player will take no action (which is to say, the player's rate will not change, its currentItem will not change, and its currentTime will continue to be incremented or decremented as time elapses, according to its rate). After this, if the player's actionAtItemEnd is set to a value other than AVPlayerActionAtItemEndNone, the player will immediately take the action appropriate to that value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/actionatitemend-swift.enum/none?language=objc)
     #[doc(alias = "AVPlayerActionAtItemEndNone")]
     pub const None: Self = Self(2);
 }
@@ -944,14 +962,20 @@ pub struct AVPlayerHDRMode(pub NSInteger);
 bitflags::bitflags! {
     impl AVPlayerHDRMode: NSInteger {
 /// Indicates that HLG (Hybrid Log-Gamma) HDR mode is available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/hdrmode/hlg?language=objc)
         #[doc(alias = "AVPlayerHDRModeHLG")]
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         const HLG = 0x1;
 /// Indicates that HDR10 HDR mode is available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/hdrmode/hdr10?language=objc)
         #[doc(alias = "AVPlayerHDRModeHDR10")]
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         const HDR10 = 0x2;
 /// Indicates that Dolby Vision HDR mode is available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/hdrmode/dolbyvision?language=objc)
         #[doc(alias = "AVPlayerHDRModeDolbyVision")]
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
         const DolbyVision = 0x4;
@@ -1080,12 +1104,18 @@ impl AVPlayer {
 pub struct AVPlayerAudiovisualBackgroundPlaybackPolicy(pub NSInteger);
 impl AVPlayerAudiovisualBackgroundPlaybackPolicy {
     /// Indicates that the system is free to decide. This is the default policy.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeraudiovisualbackgroundplaybackpolicy/automatic?language=objc)
     #[doc(alias = "AVPlayerAudiovisualBackgroundPlaybackPolicyAutomatic")]
     pub const Automatic: Self = Self(1);
     /// Indicates that the player must be paused on going to background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeraudiovisualbackgroundplaybackpolicy/pauses?language=objc)
     #[doc(alias = "AVPlayerAudiovisualBackgroundPlaybackPolicyPauses")]
     pub const Pauses: Self = Self(2);
     /// Indicates that the player continues to play if possible in background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeraudiovisualbackgroundplaybackpolicy/continuesifpossible?language=objc)
     #[doc(alias = "AVPlayerAudiovisualBackgroundPlaybackPolicyContinuesIfPossible")]
     pub const ContinuesIfPossible: Self = Self(3);
 }
@@ -1172,12 +1202,18 @@ impl AVPlayer {
 pub struct AVPlayerNetworkResourcePriority(pub NSInteger);
 impl AVPlayerNetworkResourcePriority {
     /// The default priority level given to a player for loading network resources. Use this when the player requires an optimal level of network resources and streaming in high-quality resolution is ideal. Players with AVPlayerNetworkResourcePriorityHigh will take precedence over this player. This player will take precedence over players with AVPlayerNetworkResourcePriorityLow.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/networkresourcepriority-swift.enum/default?language=objc)
     #[doc(alias = "AVPlayerNetworkResourcePriorityDefault")]
     pub const Default: Self = Self(0);
     /// Indicates a low priority level for loading network resources. Use this when the player requires minimal network bandwidth and streaming in high-quality resolution is not crucial. Other players with higher priority will take precedence over this player.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/networkresourcepriority-swift.enum/low?language=objc)
     #[doc(alias = "AVPlayerNetworkResourcePriorityLow")]
     pub const Low: Self = Self(1);
     /// Indicates a high priority level for loading network resources. Use this when the player requires a high level of network resources and streaming in high-quality resolution is crucial. This player will take precedence over other lower priority players.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/networkresourcepriority-swift.enum/high?language=objc)
     #[doc(alias = "AVPlayerNetworkResourcePriorityHigh")]
     pub const High: Self = Self(2);
 }

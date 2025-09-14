@@ -10,36 +10,47 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLockMechanismLastKnownAction(pub NSInteger);
 impl HMCharacteristicValueLockMechanismLastKnownAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/securedusingphysicalmovementinterior?language=objc)
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredUsingPhysicalMovementInterior"
     )]
     pub const SecuredUsingPhysicalMovementInterior: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/unsecuredusingphysicalmovementinterior?language=objc)
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionUnsecuredUsingPhysicalMovementInterior"
     )]
     pub const UnsecuredUsingPhysicalMovementInterior: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/securedusingphysicalmovementexterior?language=objc)
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredUsingPhysicalMovementExterior"
     )]
     pub const SecuredUsingPhysicalMovementExterior: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/unsecuredusingphysicalmovementexterior?language=objc)
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionUnsecuredUsingPhysicalMovementExterior"
     )]
     pub const UnsecuredUsingPhysicalMovementExterior: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/securedwithkeypad?language=objc)
     #[doc(alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredWithKeypad")]
     pub const SecuredWithKeypad: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/unsecuredwithkeypad?language=objc)
     #[doc(alias = "HMCharacteristicValueLockMechanismLastKnownActionUnsecuredWithKeypad")]
     pub const UnsecuredWithKeypad: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/securedremotely?language=objc)
     #[doc(alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredRemotely")]
     pub const SecuredRemotely: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/unsecuredremotely?language=objc)
     #[doc(alias = "HMCharacteristicValueLockMechanismLastKnownActionUnsecuredRemotely")]
     pub const UnsecuredRemotely: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/securedwithautomaticsecuretimeout?language=objc)
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredWithAutomaticSecureTimeout"
     )]
     pub const SecuredWithAutomaticSecureTimeout: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/securedusingphysicalmovement?language=objc)
     #[doc(alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredUsingPhysicalMovement")]
     pub const SecuredUsingPhysicalMovement: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction/unsecuredusingphysicalmovement?language=objc)
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionUnsecuredUsingPhysicalMovement"
     )]
@@ -60,8 +71,10 @@ unsafe impl RefEncode for HMCharacteristicValueLockMechanismLastKnownAction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueAirParticulateSize(pub NSInteger);
 impl HMCharacteristicValueAirParticulateSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairparticulatesize/size2_5?language=objc)
     #[doc(alias = "HMCharacteristicValueAirParticulateSize2_5")]
     pub const Size2_5: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairparticulatesize/size10?language=objc)
     #[doc(alias = "HMCharacteristicValueAirParticulateSize10")]
     pub const Size10: Self = Self(1);
 }
@@ -80,16 +93,22 @@ unsafe impl RefEncode for HMCharacteristicValueAirParticulateSize {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueAirQuality(pub NSInteger);
 impl HMCharacteristicValueAirQuality {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairquality/unknown?language=objc)
     #[doc(alias = "HMCharacteristicValueAirQualityUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairquality/excellent?language=objc)
     #[doc(alias = "HMCharacteristicValueAirQualityExcellent")]
     pub const Excellent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairquality/good?language=objc)
     #[doc(alias = "HMCharacteristicValueAirQualityGood")]
     pub const Good: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairquality/fair?language=objc)
     #[doc(alias = "HMCharacteristicValueAirQualityFair")]
     pub const Fair: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairquality/inferior?language=objc)
     #[doc(alias = "HMCharacteristicValueAirQualityInferior")]
     pub const Inferior: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairquality/poor?language=objc)
     #[doc(alias = "HMCharacteristicValueAirQualityPoor")]
     pub const Poor: Self = Self(5);
 }
@@ -108,10 +127,13 @@ unsafe impl RefEncode for HMCharacteristicValueAirQuality {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValuePositionState(pub NSInteger);
 impl HMCharacteristicValuePositionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepositionstate/closing?language=objc)
     #[doc(alias = "HMCharacteristicValuePositionStateClosing")]
     pub const Closing: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepositionstate/opening?language=objc)
     #[doc(alias = "HMCharacteristicValuePositionStateOpening")]
     pub const Opening: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepositionstate/stopped?language=objc)
     #[doc(alias = "HMCharacteristicValuePositionStateStopped")]
     pub const Stopped: Self = Self(2);
 }
@@ -130,14 +152,19 @@ unsafe impl RefEncode for HMCharacteristicValuePositionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentSecuritySystemState(pub NSInteger);
 impl HMCharacteristicValueCurrentSecuritySystemState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentsecuritysystemstate/stayarm?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateStayArm")]
     pub const StayArm: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentsecuritysystemstate/awayarm?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateAwayArm")]
     pub const AwayArm: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentsecuritysystemstate/nightarm?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateNightArm")]
     pub const NightArm: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentsecuritysystemstate/disarmed?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateDisarmed")]
     pub const Disarmed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentsecuritysystemstate/triggered?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateTriggered")]
     pub const Triggered: Self = Self(4);
 }
@@ -156,12 +183,16 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentSecuritySystemState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetSecuritySystemState(pub NSInteger);
 impl HMCharacteristicValueTargetSecuritySystemState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetsecuritysystemstate/stayarm?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetSecuritySystemStateStayArm")]
     pub const StayArm: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetsecuritysystemstate/awayarm?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetSecuritySystemStateAwayArm")]
     pub const AwayArm: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetsecuritysystemstate/nightarm?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetSecuritySystemStateNightArm")]
     pub const NightArm: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetsecuritysystemstate/disarm?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetSecuritySystemStateDisarm")]
     pub const Disarm: Self = Self(3);
 }
@@ -180,8 +211,10 @@ unsafe impl RefEncode for HMCharacteristicValueTargetSecuritySystemState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueJammedStatus(pub NSInteger);
 impl HMCharacteristicValueJammedStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluejammedstatus/none?language=objc)
     #[doc(alias = "HMCharacteristicValueJammedStatusNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluejammedstatus/jammed?language=objc)
     #[doc(alias = "HMCharacteristicValueJammedStatusJammed")]
     pub const Jammed: Self = Self(1);
 }
@@ -200,8 +233,10 @@ unsafe impl RefEncode for HMCharacteristicValueJammedStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTamperedStatus(pub NSInteger);
 impl HMCharacteristicValueTamperedStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetamperedstatus/none?language=objc)
     #[doc(alias = "HMCharacteristicValueTamperedStatusNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetamperedstatus/tampered?language=objc)
     #[doc(alias = "HMCharacteristicValueTamperedStatusTampered")]
     pub const Tampered: Self = Self(1);
 }
@@ -220,8 +255,10 @@ unsafe impl RefEncode for HMCharacteristicValueTamperedStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLeakStatus(pub NSInteger);
 impl HMCharacteristicValueLeakStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueleakstatus/none?language=objc)
     #[doc(alias = "HMCharacteristicValueLeakStatusNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueleakstatus/detected?language=objc)
     #[doc(alias = "HMCharacteristicValueLeakStatusDetected")]
     pub const Detected: Self = Self(1);
 }
@@ -240,8 +277,10 @@ unsafe impl RefEncode for HMCharacteristicValueLeakStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueContactState(pub NSInteger);
 impl HMCharacteristicValueContactState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecontactstate/detected?language=objc)
     #[doc(alias = "HMCharacteristicValueContactStateDetected")]
     pub const Detected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecontactstate/none?language=objc)
     #[doc(alias = "HMCharacteristicValueContactStateNone")]
     pub const None: Self = Self(1);
 }
@@ -260,8 +299,10 @@ unsafe impl RefEncode for HMCharacteristicValueContactState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueStatusFault(pub NSInteger);
 impl HMCharacteristicValueStatusFault {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluestatusfault/nofault?language=objc)
     #[doc(alias = "HMCharacteristicValueStatusFaultNoFault")]
     pub const NoFault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluestatusfault/generalfault?language=objc)
     #[doc(alias = "HMCharacteristicValueStatusFaultGeneralFault")]
     pub const GeneralFault: Self = Self(1);
 }
@@ -280,8 +321,10 @@ unsafe impl RefEncode for HMCharacteristicValueStatusFault {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCarbonMonoxideDetectionStatus(pub NSInteger);
 impl HMCharacteristicValueCarbonMonoxideDetectionStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecarbonmonoxidedetectionstatus/notdetected?language=objc)
     #[doc(alias = "HMCharacteristicValueCarbonMonoxideDetectionStatusNotDetected")]
     pub const NotDetected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecarbonmonoxidedetectionstatus/detected?language=objc)
     #[doc(alias = "HMCharacteristicValueCarbonMonoxideDetectionStatusDetected")]
     pub const Detected: Self = Self(1);
 }
@@ -300,8 +343,10 @@ unsafe impl RefEncode for HMCharacteristicValueCarbonMonoxideDetectionStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCarbonDioxideDetectionStatus(pub NSInteger);
 impl HMCharacteristicValueCarbonDioxideDetectionStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecarbondioxidedetectionstatus/notdetected?language=objc)
     #[doc(alias = "HMCharacteristicValueCarbonDioxideDetectionStatusNotDetected")]
     pub const NotDetected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecarbondioxidedetectionstatus/detected?language=objc)
     #[doc(alias = "HMCharacteristicValueCarbonDioxideDetectionStatusDetected")]
     pub const Detected: Self = Self(1);
 }
@@ -320,8 +365,10 @@ unsafe impl RefEncode for HMCharacteristicValueCarbonDioxideDetectionStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueOccupancyStatus(pub NSInteger);
 impl HMCharacteristicValueOccupancyStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueoccupancystatus/notoccupied?language=objc)
     #[doc(alias = "HMCharacteristicValueOccupancyStatusNotOccupied")]
     pub const NotOccupied: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueoccupancystatus/occupied?language=objc)
     #[doc(alias = "HMCharacteristicValueOccupancyStatusOccupied")]
     pub const Occupied: Self = Self(1);
 }
@@ -340,8 +387,10 @@ unsafe impl RefEncode for HMCharacteristicValueOccupancyStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSecuritySystemAlarmType(pub NSInteger);
 impl HMCharacteristicValueSecuritySystemAlarmType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluesecuritysystemalarmtype/noalarm?language=objc)
     #[doc(alias = "HMCharacteristicValueSecuritySystemAlarmTypeNoAlarm")]
     pub const NoAlarm: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluesecuritysystemalarmtype/unknown?language=objc)
     #[doc(alias = "HMCharacteristicValueSecuritySystemAlarmTypeUnknown")]
     pub const Unknown: Self = Self(1);
 }
@@ -360,10 +409,13 @@ unsafe impl RefEncode for HMCharacteristicValueSecuritySystemAlarmType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentAirPurifierState(pub NSInteger);
 impl HMCharacteristicValueCurrentAirPurifierState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentairpurifierstate/inactive?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentAirPurifierStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentairpurifierstate/idle?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentAirPurifierStateIdle")]
     pub const Idle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentairpurifierstate/active?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentAirPurifierStateActive")]
     pub const Active: Self = Self(2);
 }
@@ -382,8 +434,10 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentAirPurifierState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetAirPurifierState(pub NSInteger);
 impl HMCharacteristicValueTargetAirPurifierState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetairpurifierstate/manual?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetAirPurifierStateManual")]
     pub const Manual: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetairpurifierstate/automatic?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetAirPurifierStateAutomatic")]
     pub const Automatic: Self = Self(1);
 }
@@ -402,10 +456,13 @@ unsafe impl RefEncode for HMCharacteristicValueTargetAirPurifierState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentSlatState(pub NSInteger);
 impl HMCharacteristicValueCurrentSlatState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentslatstate/stationary?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentSlatStateStationary")]
     pub const Stationary: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentslatstate/jammed?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentSlatStateJammed")]
     pub const Jammed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentslatstate/oscillating?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentSlatStateOscillating")]
     pub const Oscillating: Self = Self(2);
 }
@@ -424,8 +481,10 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentSlatState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSlatType(pub NSInteger);
 impl HMCharacteristicValueSlatType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueslattype/horizontal?language=objc)
     #[doc(alias = "HMCharacteristicValueSlatTypeHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueslattype/vertical?language=objc)
     #[doc(alias = "HMCharacteristicValueSlatTypeVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -444,8 +503,10 @@ unsafe impl RefEncode for HMCharacteristicValueSlatType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueFilterChange(pub NSInteger);
 impl HMCharacteristicValueFilterChange {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluefilterchange/notneeded?language=objc)
     #[doc(alias = "HMCharacteristicValueFilterChangeNotNeeded")]
     pub const NotNeeded: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluefilterchange/needed?language=objc)
     #[doc(alias = "HMCharacteristicValueFilterChangeNeeded")]
     pub const Needed: Self = Self(1);
 }
@@ -464,8 +525,10 @@ unsafe impl RefEncode for HMCharacteristicValueFilterChange {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLabelNamespace(pub NSInteger);
 impl HMCharacteristicValueLabelNamespace {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelabelnamespace/dot?language=objc)
     #[doc(alias = "HMCharacteristicValueLabelNamespaceDot")]
     pub const Dot: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelabelnamespace/numeral?language=objc)
     #[doc(alias = "HMCharacteristicValueLabelNamespaceNumeral")]
     pub const Numeral: Self = Self(1);
 }
@@ -484,10 +547,13 @@ unsafe impl RefEncode for HMCharacteristicValueLabelNamespace {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueProgramMode(pub NSInteger);
 impl HMCharacteristicValueProgramMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueprogrammode/notscheduled?language=objc)
     #[doc(alias = "HMCharacteristicValueProgramModeNotScheduled")]
     pub const NotScheduled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueprogrammode/scheduled?language=objc)
     #[doc(alias = "HMCharacteristicValueProgramModeScheduled")]
     pub const Scheduled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueprogrammode/scheduleoverriddentomanual?language=objc)
     #[doc(alias = "HMCharacteristicValueProgramModeScheduleOverriddenToManual")]
     pub const ScheduleOverriddenToManual: Self = Self(2);
 }
@@ -506,8 +572,10 @@ unsafe impl RefEncode for HMCharacteristicValueProgramMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueUsageState(pub NSInteger);
 impl HMCharacteristicValueUsageState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueusagestate/notinuse?language=objc)
     #[doc(alias = "HMCharacteristicValueUsageStateNotInUse")]
     pub const NotInUse: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueusagestate/inuse?language=objc)
     #[doc(alias = "HMCharacteristicValueUsageStateInUse")]
     pub const InUse: Self = Self(1);
 }
@@ -526,12 +594,16 @@ unsafe impl RefEncode for HMCharacteristicValueUsageState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueValveType(pub NSInteger);
 impl HMCharacteristicValueValveType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevalvetype/genericvalve?language=objc)
     #[doc(alias = "HMCharacteristicValueValveTypeGenericValve")]
     pub const GenericValve: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevalvetype/irrigation?language=objc)
     #[doc(alias = "HMCharacteristicValueValveTypeIrrigation")]
     pub const Irrigation: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevalvetype/showerhead?language=objc)
     #[doc(alias = "HMCharacteristicValueValveTypeShowerHead")]
     pub const ShowerHead: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevalvetype/waterfaucet?language=objc)
     #[doc(alias = "HMCharacteristicValueValveTypeWaterFaucet")]
     pub const WaterFaucet: Self = Self(3);
 }
@@ -550,12 +622,16 @@ unsafe impl RefEncode for HMCharacteristicValueValveType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueVolumeControlType(pub NSInteger);
 impl HMCharacteristicValueVolumeControlType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevolumecontroltype/none?language=objc)
     #[doc(alias = "HMCharacteristicValueVolumeControlTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevolumecontroltype/relative?language=objc)
     #[doc(alias = "HMCharacteristicValueVolumeControlTypeRelative")]
     pub const Relative: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevolumecontroltype/relativewithcurrent?language=objc)
     #[doc(alias = "HMCharacteristicValueVolumeControlTypeRelativeWithCurrent")]
     pub const RelativeWithCurrent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevolumecontroltype/absolute?language=objc)
     #[doc(alias = "HMCharacteristicValueVolumeControlTypeAbsolute")]
     pub const Absolute: Self = Self(3);
 }
@@ -574,8 +650,10 @@ unsafe impl RefEncode for HMCharacteristicValueVolumeControlType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueVolumeSelector(pub NSInteger);
 impl HMCharacteristicValueVolumeSelector {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevolumeselector/volumeincrement?language=objc)
     #[doc(alias = "HMCharacteristicValueVolumeSelectorVolumeIncrement")]
     pub const VolumeIncrement: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevolumeselector/volumedecrement?language=objc)
     #[doc(alias = "HMCharacteristicValueVolumeSelectorVolumeDecrement")]
     pub const VolumeDecrement: Self = Self(1);
 }
@@ -594,14 +672,19 @@ unsafe impl RefEncode for HMCharacteristicValueVolumeSelector {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueDoorState(pub NSInteger);
 impl HMCharacteristicValueDoorState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluedoorstate/open?language=objc)
     #[doc(alias = "HMCharacteristicValueDoorStateOpen")]
     pub const Open: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluedoorstate/closed?language=objc)
     #[doc(alias = "HMCharacteristicValueDoorStateClosed")]
     pub const Closed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluedoorstate/opening?language=objc)
     #[doc(alias = "HMCharacteristicValueDoorStateOpening")]
     pub const Opening: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluedoorstate/closing?language=objc)
     #[doc(alias = "HMCharacteristicValueDoorStateClosing")]
     pub const Closing: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluedoorstate/stopped?language=objc)
     #[doc(alias = "HMCharacteristicValueDoorStateStopped")]
     pub const Stopped: Self = Self(4);
 }
@@ -620,10 +703,13 @@ unsafe impl RefEncode for HMCharacteristicValueDoorState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentHeatingCooling(pub NSInteger);
 impl HMCharacteristicValueCurrentHeatingCooling {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentheatingcooling/off?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHeatingCoolingOff")]
     pub const Off: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentheatingcooling/heat?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHeatingCoolingHeat")]
     pub const Heat: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentheatingcooling/cool?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHeatingCoolingCool")]
     pub const Cool: Self = Self(2);
 }
@@ -642,12 +728,16 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentHeatingCooling {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLockMechanismState(pub NSInteger);
 impl HMCharacteristicValueLockMechanismState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismstate/unsecured?language=objc)
     #[doc(alias = "HMCharacteristicValueLockMechanismStateUnsecured")]
     pub const Unsecured: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismstate/secured?language=objc)
     #[doc(alias = "HMCharacteristicValueLockMechanismStateSecured")]
     pub const Secured: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismstate/jammed?language=objc)
     #[doc(alias = "HMCharacteristicValueLockMechanismStateJammed")]
     pub const Jammed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismstate/unknown?language=objc)
     #[doc(alias = "HMCharacteristicValueLockMechanismStateUnknown")]
     pub const Unknown: Self = Self(3);
 }
@@ -666,8 +756,10 @@ unsafe impl RefEncode for HMCharacteristicValueLockMechanismState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetLockMechanismState(pub NSInteger);
 impl HMCharacteristicValueTargetLockMechanismState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetlockmechanismstate/unsecured?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetLockMechanismStateUnsecured")]
     pub const Unsecured: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetlockmechanismstate/secured?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetLockMechanismStateSecured")]
     pub const Secured: Self = Self(1);
 }
@@ -686,8 +778,10 @@ unsafe impl RefEncode for HMCharacteristicValueTargetLockMechanismState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueRotationDirection(pub NSInteger);
 impl HMCharacteristicValueRotationDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluerotationdirection/clockwise?language=objc)
     #[doc(alias = "HMCharacteristicValueRotationDirectionClockwise")]
     pub const Clockwise: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluerotationdirection/counterclockwise?language=objc)
     #[doc(alias = "HMCharacteristicValueRotationDirectionCounterClockwise")]
     pub const CounterClockwise: Self = Self(1);
 }
@@ -706,8 +800,10 @@ unsafe impl RefEncode for HMCharacteristicValueRotationDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetDoorState(pub NSInteger);
 impl HMCharacteristicValueTargetDoorState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetdoorstate/open?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetDoorStateOpen")]
     pub const Open: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetdoorstate/closed?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetDoorStateClosed")]
     pub const Closed: Self = Self(1);
 }
@@ -726,12 +822,16 @@ unsafe impl RefEncode for HMCharacteristicValueTargetDoorState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueHeatingCooling(pub NSInteger);
 impl HMCharacteristicValueHeatingCooling {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueheatingcooling/off?language=objc)
     #[doc(alias = "HMCharacteristicValueHeatingCoolingOff")]
     pub const Off: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueheatingcooling/heat?language=objc)
     #[doc(alias = "HMCharacteristicValueHeatingCoolingHeat")]
     pub const Heat: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueheatingcooling/cool?language=objc)
     #[doc(alias = "HMCharacteristicValueHeatingCoolingCool")]
     pub const Cool: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueheatingcooling/auto?language=objc)
     #[doc(alias = "HMCharacteristicValueHeatingCoolingAuto")]
     pub const Auto: Self = Self(3);
 }
@@ -750,8 +850,10 @@ unsafe impl RefEncode for HMCharacteristicValueHeatingCooling {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTemperatureUnit(pub NSInteger);
 impl HMCharacteristicValueTemperatureUnit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetemperatureunit/celsius?language=objc)
     #[doc(alias = "HMCharacteristicValueTemperatureUnitCelsius")]
     pub const Celsius: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetemperatureunit/fahrenheit?language=objc)
     #[doc(alias = "HMCharacteristicValueTemperatureUnitFahrenheit")]
     pub const Fahrenheit: Self = Self(1);
 }
@@ -770,10 +872,13 @@ unsafe impl RefEncode for HMCharacteristicValueTemperatureUnit {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueInputEvent(pub NSInteger);
 impl HMCharacteristicValueInputEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputevent/singlepress?language=objc)
     #[doc(alias = "HMCharacteristicValueInputEventSinglePress")]
     pub const SinglePress: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputevent/doublepress?language=objc)
     #[doc(alias = "HMCharacteristicValueInputEventDoublePress")]
     pub const DoublePress: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputevent/longpress?language=objc)
     #[doc(alias = "HMCharacteristicValueInputEventLongPress")]
     pub const LongPress: Self = Self(2);
 }
@@ -792,8 +897,10 @@ unsafe impl RefEncode for HMCharacteristicValueInputEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSmokeDetectionStatus(pub NSInteger);
 impl HMCharacteristicValueSmokeDetectionStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluesmokedetectionstatus/none?language=objc)
     #[doc(alias = "HMCharacteristicValueSmokeDetectionStatusNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluesmokedetectionstatus/detected?language=objc)
     #[doc(alias = "HMCharacteristicValueSmokeDetectionStatusDetected")]
     pub const Detected: Self = Self(1);
 }
@@ -812,8 +919,10 @@ unsafe impl RefEncode for HMCharacteristicValueSmokeDetectionStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueBatteryStatus(pub NSInteger);
 impl HMCharacteristicValueBatteryStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluebatterystatus/normal?language=objc)
     #[doc(alias = "HMCharacteristicValueBatteryStatusNormal")]
     pub const Normal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluebatterystatus/low?language=objc)
     #[doc(alias = "HMCharacteristicValueBatteryStatusLow")]
     pub const Low: Self = Self(1);
 }
@@ -832,10 +941,13 @@ unsafe impl RefEncode for HMCharacteristicValueBatteryStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueChargingState(pub NSInteger);
 impl HMCharacteristicValueChargingState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluechargingstate/none?language=objc)
     #[doc(alias = "HMCharacteristicValueChargingStateNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluechargingstate/inprogress?language=objc)
     #[doc(alias = "HMCharacteristicValueChargingStateInProgress")]
     pub const InProgress: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluechargingstate/notchargeable?language=objc)
     #[doc(alias = "HMCharacteristicValueChargingStateNotChargeable")]
     pub const NotChargeable: Self = Self(2);
 }
@@ -854,8 +966,10 @@ unsafe impl RefEncode for HMCharacteristicValueChargingState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLockPhysicalControlsState(pub NSInteger);
 impl HMCharacteristicValueLockPhysicalControlsState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockphysicalcontrolsstate/notlocked?language=objc)
     #[doc(alias = "HMCharacteristicValueLockPhysicalControlsStateNotLocked")]
     pub const NotLocked: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockphysicalcontrolsstate/locked?language=objc)
     #[doc(alias = "HMCharacteristicValueLockPhysicalControlsStateLocked")]
     pub const Locked: Self = Self(1);
 }
@@ -874,10 +988,13 @@ unsafe impl RefEncode for HMCharacteristicValueLockPhysicalControlsState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentFanState(pub NSInteger);
 impl HMCharacteristicValueCurrentFanState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentfanstate/inactive?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentFanStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentfanstate/idle?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentFanStateIdle")]
     pub const Idle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentfanstate/active?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentFanStateActive")]
     pub const Active: Self = Self(2);
 }
@@ -896,8 +1013,10 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentFanState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueActivationState(pub NSInteger);
 impl HMCharacteristicValueActivationState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueactivationstate/inactive?language=objc)
     #[doc(alias = "HMCharacteristicValueActivationStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueactivationstate/active?language=objc)
     #[doc(alias = "HMCharacteristicValueActivationStateActive")]
     pub const Active: Self = Self(1);
 }
@@ -916,12 +1035,16 @@ unsafe impl RefEncode for HMCharacteristicValueActivationState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentHeaterCoolerState(pub NSInteger);
 impl HMCharacteristicValueCurrentHeaterCoolerState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentheatercoolerstate/inactive?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHeaterCoolerStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentheatercoolerstate/idle?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHeaterCoolerStateIdle")]
     pub const Idle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentheatercoolerstate/heating?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHeaterCoolerStateHeating")]
     pub const Heating: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentheatercoolerstate/cooling?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHeaterCoolerStateCooling")]
     pub const Cooling: Self = Self(3);
 }
@@ -940,10 +1063,13 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentHeaterCoolerState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetHeaterCoolerState(pub NSInteger);
 impl HMCharacteristicValueTargetHeaterCoolerState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetheatercoolerstate/automatic?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetHeaterCoolerStateAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetheatercoolerstate/heat?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetHeaterCoolerStateHeat")]
     pub const Heat: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetheatercoolerstate/cool?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetHeaterCoolerStateCool")]
     pub const Cool: Self = Self(2);
 }
@@ -962,12 +1088,16 @@ unsafe impl RefEncode for HMCharacteristicValueTargetHeaterCoolerState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentHumidifierDehumidifierState(pub NSInteger);
 impl HMCharacteristicValueCurrentHumidifierDehumidifierState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrenthumidifierdehumidifierstate/inactive?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHumidifierDehumidifierStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrenthumidifierdehumidifierstate/idle?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHumidifierDehumidifierStateIdle")]
     pub const Idle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrenthumidifierdehumidifierstate/humidifying?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHumidifierDehumidifierStateHumidifying")]
     pub const Humidifying: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrenthumidifierdehumidifierstate/dehumidifying?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentHumidifierDehumidifierStateDehumidifying")]
     pub const Dehumidifying: Self = Self(3);
 }
@@ -986,10 +1116,13 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentHumidifierDehumidifierStat
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetHumidifierDehumidifierState(pub NSInteger);
 impl HMCharacteristicValueTargetHumidifierDehumidifierState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargethumidifierdehumidifierstate/automatic?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetHumidifierDehumidifierStateAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargethumidifierdehumidifierstate/humidify?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetHumidifierDehumidifierStateHumidify")]
     pub const Humidify: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargethumidifierdehumidifierstate/dehumidify?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetHumidifierDehumidifierStateDehumidify")]
     pub const Dehumidify: Self = Self(2);
 }
@@ -1008,8 +1141,10 @@ unsafe impl RefEncode for HMCharacteristicValueTargetHumidifierDehumidifierState
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSwingMode(pub NSInteger);
 impl HMCharacteristicValueSwingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueswingmode/disabled?language=objc)
     #[doc(alias = "HMCharacteristicValueSwingModeDisabled")]
     pub const Disabled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueswingmode/enabled?language=objc)
     #[doc(alias = "HMCharacteristicValueSwingModeEnabled")]
     pub const Enabled: Self = Self(1);
 }
@@ -1028,8 +1163,10 @@ unsafe impl RefEncode for HMCharacteristicValueSwingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetFanState(pub NSInteger);
 impl HMCharacteristicValueTargetFanState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetfanstate/manual?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetFanStateManual")]
     pub const Manual: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetfanstate/automatic?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetFanStateAutomatic")]
     pub const Automatic: Self = Self(1);
 }
@@ -1048,8 +1185,10 @@ unsafe impl RefEncode for HMCharacteristicValueTargetFanState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueConfigurationState(pub NSInteger);
 impl HMCharacteristicValueConfigurationState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueconfigurationstate/notconfigured?language=objc)
     #[doc(alias = "HMCharacteristicValueConfigurationStateNotConfigured")]
     pub const NotConfigured: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueconfigurationstate/configured?language=objc)
     #[doc(alias = "HMCharacteristicValueConfigurationStateConfigured")]
     pub const Configured: Self = Self(1);
 }
@@ -1068,26 +1207,37 @@ unsafe impl RefEncode for HMCharacteristicValueConfigurationState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueInputSourceType(pub NSInteger);
 impl HMCharacteristicValueInputSourceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/other?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeOther")]
     pub const Other: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/homescreen?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeHomeScreen")]
     pub const HomeScreen: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/tuner?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeTuner")]
     pub const Tuner: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/hdmi?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeHDMI")]
     pub const HDMI: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/compositevideo?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeCompositeVideo")]
     pub const CompositeVideo: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/svideo?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeSVideo")]
     pub const SVideo: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/componentvideo?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeComponentVideo")]
     pub const ComponentVideo: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/dvi?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeDVI")]
     pub const DVI: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/airplay?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeAirPlay")]
     pub const AirPlay: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/usb?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeUSB")]
     pub const USB: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype/application?language=objc)
     #[doc(alias = "HMCharacteristicValueInputSourceTypeApplication")]
     pub const Application: Self = Self(10);
 }
@@ -1106,18 +1256,25 @@ unsafe impl RefEncode for HMCharacteristicValueInputSourceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueInputDeviceType(pub NSInteger);
 impl HMCharacteristicValueInputDeviceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputdevicetype/other?language=objc)
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeOther")]
     pub const Other: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputdevicetype/tv?language=objc)
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeTV")]
     pub const TV: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputdevicetype/recording?language=objc)
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeRecording")]
     pub const Recording: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputdevicetype/tuner?language=objc)
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeTuner")]
     pub const Tuner: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputdevicetype/playback?language=objc)
     #[doc(alias = "HMCharacteristicValueInputDeviceTypePlayback")]
     pub const Playback: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputdevicetype/audiosystem?language=objc)
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeAudioSystem")]
     pub const AudioSystem: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputdevicetype/none?language=objc)
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeNone")]
     pub const None: Self = Self(6);
 }
@@ -1136,8 +1293,10 @@ unsafe impl RefEncode for HMCharacteristicValueInputDeviceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueClosedCaptions(pub NSInteger);
 impl HMCharacteristicValueClosedCaptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueclosedcaptions/disabled?language=objc)
     #[doc(alias = "HMCharacteristicValueClosedCaptionsDisabled")]
     pub const Disabled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueclosedcaptions/enabled?language=objc)
     #[doc(alias = "HMCharacteristicValueClosedCaptionsEnabled")]
     pub const Enabled: Self = Self(1);
 }
@@ -1156,8 +1315,10 @@ unsafe impl RefEncode for HMCharacteristicValueClosedCaptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValuePowerModeSelection(pub NSInteger);
 impl HMCharacteristicValuePowerModeSelection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepowermodeselection/show?language=objc)
     #[doc(alias = "HMCharacteristicValuePowerModeSelectionShow")]
     pub const Show: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepowermodeselection/hide?language=objc)
     #[doc(alias = "HMCharacteristicValuePowerModeSelectionHide")]
     pub const Hide: Self = Self(1);
 }
@@ -1176,16 +1337,22 @@ unsafe impl RefEncode for HMCharacteristicValuePowerModeSelection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentMediaState(pub NSInteger);
 impl HMCharacteristicValueCurrentMediaState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentmediastate/playing?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentMediaStatePlaying")]
     pub const Playing: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentmediastate/paused?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentMediaStatePaused")]
     pub const Paused: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentmediastate/stopped?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentMediaStateStopped")]
     pub const Stopped: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentmediastate/unknown?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentMediaStateUnknown")]
     pub const Unknown: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentmediastate/loading?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentMediaStateLoading")]
     pub const Loading: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentmediastate/interrupted?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentMediaStateInterrupted")]
     pub const Interrupted: Self = Self(5);
 }
@@ -1204,38 +1371,55 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentMediaState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueRemoteKey(pub NSInteger);
 impl HMCharacteristicValueRemoteKey {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/rewind?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyRewind")]
     pub const Rewind: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/fastforward?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyFastForward")]
     pub const FastForward: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/nexttrack?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyNextTrack")]
     pub const NextTrack: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/previoustrack?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyPreviousTrack")]
     pub const PreviousTrack: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/arrowup?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyArrowUp")]
     pub const ArrowUp: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/arrowdown?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyArrowDown")]
     pub const ArrowDown: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/arrowleft?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyArrowLeft")]
     pub const ArrowLeft: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/arrowright?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyArrowRight")]
     pub const ArrowRight: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/select?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeySelect")]
     pub const Select: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/back?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyBack")]
     pub const Back: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/exit?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyExit")]
     pub const Exit: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/playpause?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyPlayPause")]
     pub const PlayPause: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/play?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyPlay")]
     pub const Play: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/pause?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyPause")]
     pub const Pause: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/menu?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyMenu")]
     pub const Menu: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/info?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyInfo")]
     pub const Info: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey/home?language=objc)
     #[doc(alias = "HMCharacteristicValueRemoteKeyHome")]
     pub const Home: Self = Self(16);
 }
@@ -1254,32 +1438,46 @@ unsafe impl RefEncode for HMCharacteristicValueRemoteKey {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValuePictureMode(pub NSInteger);
 impl HMCharacteristicValuePictureMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/standard?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeStandard")]
     pub const Standard: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/movie?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeMovie")]
     pub const Movie: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/sport?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeSport")]
     pub const Sport: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/game?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeGame")]
     pub const Game: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/photo?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModePhoto")]
     pub const Photo: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/vivid?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeVivid")]
     pub const Vivid: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/dark?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeDark")]
     pub const Dark: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/bright?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeBright")]
     pub const Bright: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/computer?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeComputer")]
     pub const Computer: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/night?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeNight")]
     pub const Night: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/calibrated?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeCalibrated")]
     pub const Calibrated: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/custom1?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeCustom1")]
     pub const Custom1: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/custom2?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeCustom2")]
     pub const Custom2: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode/custom3?language=objc)
     #[doc(alias = "HMCharacteristicValuePictureModeCustom3")]
     pub const Custom3: Self = Self(13);
 }
@@ -1298,8 +1496,10 @@ unsafe impl RefEncode for HMCharacteristicValuePictureMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetVisibilityState(pub NSInteger);
 impl HMCharacteristicValueTargetVisibilityState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetvisibilitystate/show?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetVisibilityStateShow")]
     pub const Show: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetvisibilitystate/hide?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetVisibilityStateHide")]
     pub const Hide: Self = Self(1);
 }
@@ -1318,12 +1518,16 @@ unsafe impl RefEncode for HMCharacteristicValueTargetVisibilityState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentVisibilityState(pub NSInteger);
 impl HMCharacteristicValueCurrentVisibilityState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentvisibilitystate/shown?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentVisibilityStateShown")]
     pub const Shown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentvisibilitystate/hidden?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentVisibilityStateHidden")]
     pub const Hidden: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentvisibilitystate/connected?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentVisibilityStateConnected")]
     pub const Connected: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentvisibilitystate/alwaysshown?language=objc)
     #[doc(alias = "HMCharacteristicValueCurrentVisibilityStateAlwaysShown")]
     pub const AlwaysShown: Self = Self(3);
 }
@@ -1342,10 +1546,13 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentVisibilityState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetMediaState(pub NSInteger);
 impl HMCharacteristicValueTargetMediaState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetmediastate/play?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetMediaStatePlay")]
     pub const Play: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetmediastate/pause?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetMediaStatePause")]
     pub const Pause: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetmediastate/stop?language=objc)
     #[doc(alias = "HMCharacteristicValueTargetMediaStateStop")]
     pub const Stop: Self = Self(2);
 }
@@ -1364,8 +1571,10 @@ unsafe impl RefEncode for HMCharacteristicValueTargetMediaState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueRouterStatus(pub NSInteger);
 impl HMCharacteristicValueRouterStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluerouterstatus/ready?language=objc)
     #[doc(alias = "HMCharacteristicValueRouterStatusReady")]
     pub const Ready: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluerouterstatus/notready?language=objc)
     #[doc(alias = "HMCharacteristicValueRouterStatusNotReady")]
     pub const NotReady: Self = Self(1);
 }
@@ -1384,10 +1593,13 @@ unsafe impl RefEncode for HMCharacteristicValueRouterStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueWiFiSatelliteStatus(pub NSInteger);
 impl HMCharacteristicValueWiFiSatelliteStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluewifisatellitestatus/unknown?language=objc)
     #[doc(alias = "HMCharacteristicValueWiFiSatelliteStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluewifisatellitestatus/connected?language=objc)
     #[doc(alias = "HMCharacteristicValueWiFiSatelliteStatusConnected")]
     pub const Connected: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluewifisatellitestatus/notconnected?language=objc)
     #[doc(alias = "HMCharacteristicValueWiFiSatelliteStatusNotConnected")]
     pub const NotConnected: Self = Self(2);
 }

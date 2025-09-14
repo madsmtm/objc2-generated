@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetCarLockStatusIntentResponseCode(pub NSInteger);
 impl INGetCarLockStatusIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/ready?language=objc)
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/success?language=objc)
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/failure?language=objc)
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }

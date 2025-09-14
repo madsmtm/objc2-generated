@@ -198,6 +198,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicemidievent(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn MusicDeviceMIDIEvent(
         in_unit: MusicDeviceComponent,
@@ -229,6 +231,8 @@ extern "C-unwind" {
     ///
     /// - `in_unit` must be a valid pointer.
     /// - `in_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicesysex(_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn MusicDeviceSysEx(
         in_unit: MusicDeviceComponent,
@@ -270,6 +274,8 @@ extern "C-unwind" {
     ///
     /// - `in_unit` must be a valid pointer.
     /// - `evt_list` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicemidieventlist(_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-midi"))]
     pub fn MusicDeviceMIDIEventList(
         in_unit: MusicDeviceComponent,
@@ -323,6 +329,8 @@ extern "C-unwind" {
     /// - `in_unit` must be a valid pointer.
     /// - `out_note_instance_id` must be a valid pointer.
     /// - `in_params` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestartnote(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn MusicDeviceStartNote(
         in_unit: MusicDeviceComponent,
@@ -356,6 +364,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestopnote(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn MusicDeviceStopNote(
         in_unit: MusicDeviceComponent,
@@ -458,6 +468,8 @@ pub type MusicDeviceStopNoteProc = Option<
 >;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdeviceprepareinstrument?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.
@@ -470,6 +482,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicereleaseinstrument?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.

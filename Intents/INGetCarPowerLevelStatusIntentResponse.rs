@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetCarPowerLevelStatusIntentResponseCode(pub NSInteger);
 impl INGetCarPowerLevelStatusIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/ready?language=objc)
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/success?language=objc)
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/failure?language=objc)
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }

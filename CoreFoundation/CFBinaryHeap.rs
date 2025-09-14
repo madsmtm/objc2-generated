@@ -168,6 +168,8 @@ impl<T: ?Sized> CFBinaryHeap<T> {
 
 unsafe impl ConcreteType for CFBinaryHeap {
     /// Returns the type identifier of all CFBinaryHeap instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgettypeid()?language=objc)
     #[doc(alias = "CFBinaryHeapGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -229,6 +231,8 @@ impl CFBinaryHeap {
     /// - `allocator` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - `compare_context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapCreate")]
     #[inline]
     pub unsafe fn new(
@@ -283,6 +287,8 @@ impl CFBinaryHeap {
     /// - `allocator` might not allow `None`.
     /// - `heap` generic must be of the correct type.
     /// - `heap` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcreatecopy(_:_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -311,6 +317,8 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// `heap` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgetcount(_:)?language=objc)
     #[doc(alias = "CFBinaryHeapGetCount")]
     #[inline]
     pub unsafe fn count(&self) -> CFIndex {
@@ -338,6 +346,8 @@ impl CFBinaryHeap {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgetcountofvalue(_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
@@ -365,6 +375,8 @@ impl CFBinaryHeap {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcontainsvalue(_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapContainsValue")]
     #[inline]
     pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
@@ -387,6 +399,8 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// `heap` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgetminimum(_:)?language=objc)
     #[doc(alias = "CFBinaryHeapGetMinimum")]
     #[inline]
     pub unsafe fn minimum(&self) -> *const c_void {
@@ -413,6 +427,8 @@ impl CFBinaryHeap {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgetminimumifpresent(_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapGetMinimumIfPresent")]
     #[inline]
     pub unsafe fn minimum_if_present(&self, value: *mut *const c_void) -> bool {
@@ -440,6 +456,8 @@ impl CFBinaryHeap {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `values` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgetvalues(_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapGetValues")]
     #[inline]
     pub unsafe fn values(&self, values: *mut *const c_void) {
@@ -472,6 +490,8 @@ impl CFBinaryHeap {
     /// - `heap` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapapplyfunction(_:_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
@@ -503,6 +523,8 @@ impl CFBinaryHeap {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapaddvalue(_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapAddValue")]
     #[inline]
     pub unsafe fn add_value(&self, value: *const c_void) {
@@ -520,6 +542,8 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// `heap` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapremoveminimumvalue(_:)?language=objc)
     #[doc(alias = "CFBinaryHeapRemoveMinimumValue")]
     #[inline]
     pub unsafe fn remove_minimum_value(&self) {
@@ -538,6 +562,8 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// `heap` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapremoveallvalues(_:)?language=objc)
     #[doc(alias = "CFBinaryHeapRemoveAllValues")]
     #[inline]
     pub unsafe fn remove_all_values(&self) {

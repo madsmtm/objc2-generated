@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPathStyle(pub NSInteger);
 impl NSPathStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcontrol/style/standard?language=objc)
     #[doc(alias = "NSPathStyleStandard")]
     pub const Standard: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcontrol/style/popup?language=objc)
     #[doc(alias = "NSPathStylePopUp")]
     pub const PopUp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathstyle/nspathstylenavigationbar?language=objc)
     #[doc(alias = "NSPathStyleNavigationBar")]
     #[deprecated]
     pub const NavigationBar: Self = Self(1);

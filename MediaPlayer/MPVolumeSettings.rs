@@ -6,15 +6,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpvolumesettingsalertshow()?language=objc)
     #[deprecated = "Use MPVolumeView to present volume controls."]
     pub fn MPVolumeSettingsAlertShow();
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpvolumesettingsalerthide()?language=objc)
     #[deprecated = "Use MPVolumeView to present volume controls."]
     pub fn MPVolumeSettingsAlertHide();
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpvolumesettingsalertisvisible()?language=objc)
 #[deprecated = "Use MPVolumeView to present volume controls."]
 #[inline]
 pub unsafe extern "C-unwind" fn MPVolumeSettingsAlertIsVisible() -> bool {

@@ -7,125 +7,179 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcopiesstr?language=objc)
 pub const kPMCopiesStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMCopies\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcopycollatestr?language=objc)
 pub const kPMCopyCollateStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMCopyCollate\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmoutputorderstr?language=objc)
 pub const kPMOutputOrderStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"OutputOrder\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpagesetstr?language=objc)
 pub const kPMPageSetStr: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"page-set\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmmirrorstr?language=objc)
 pub const kPMMirrorStr: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"mirror\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmprintselectiononlystr?language=objc)
 pub const kPMPrintSelectionOnlyStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMPrintSelectionOnly\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmborderstr?language=objc)
 pub const kPMBorderStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMBorder\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmbordertypestr?language=objc)
 pub const kPMBorderTypeStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMBorderType\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutnupstr?language=objc)
 pub const kPMLayoutNUpStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMLayoutNUp\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutrowsstr?language=objc)
 pub const kPMLayoutRowsStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMLayoutRows\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutcolumnsstr?language=objc)
 pub const kPMLayoutColumnsStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMLayoutColumns\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutdirectionstr?language=objc)
 pub const kPMLayoutDirectionStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMLayoutDirection\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayouttileorientationstr?language=objc)
 pub const kPMLayoutTileOrientationStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMLayoutTileOrientation\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmjobstatestr?language=objc)
 pub const kPMJobStateStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMJobState\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmjobholduntiltimestr?language=objc)
 pub const kPMJobHoldUntilTimeStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMJobHoldUntilTime\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmjobprioritystr?language=objc)
 pub const kPMJobPriorityStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMJobPriority\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmduplexingstr?language=objc)
 pub const kPMDuplexingStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMDuplexing\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcolorsyncprofileidstr?language=objc)
 pub const kPMColorSyncProfileIDStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMColorSyncProfileID\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmprimarypaperfeedstr?language=objc)
 pub const kPMPrimaryPaperFeedStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMPrimaryPaperFeed\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmsecondarypaperfeedstr?language=objc)
 pub const kPMSecondaryPaperFeedStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMSecondaryPaperFeed\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpserrorhandlerstr?language=objc)
 pub const kPMPSErrorHandlerStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMPSErrorHandler\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpstrayswitchstr?language=objc)
 pub const kPMPSTraySwitchStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMPSTraySwitch\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmtotalbeginpagesstr?language=objc)
 pub const kPMTotalBeginPagesStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMTotalBeginPages\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmtotalsidesimagedstr?language=objc)
 pub const kPMTotalSidesImagedStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMTotalSidesImaged\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfittopagestr?language=objc)
 pub const kPMFitToPageStr: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"fit-to-page\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmuseoptionalpinstr?language=objc)
 pub const kPMUseOptionalPINStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMUseOptionalPIN\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmuseoptionalaccountidstr?language=objc)
 pub const kPMUseOptionalAccountIDStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMUseOptionalAccountID\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxnumberstr?language=objc)
 pub const kPMFaxNumberStr: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"phone\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxtostr?language=objc)
 pub const kPMFaxToStr: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"faxTo\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxprefixstr?language=objc)
 pub const kPMFaxPrefixStr: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"faxPrefix\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxsubjectstr?language=objc)
 pub const kPMFaxSubjectStr: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"faxSubject\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxcoversheetstr?language=objc)
 pub const kPMFaxCoverSheetStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"faxCoverSheet\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxcoversheetmessagestr?language=objc)
 pub const kPMFaxCoverSheetMessageStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"faxCoverSheetMessage\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxtonedialingstr?language=objc)
 pub const kPMFaxToneDialingStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"faxToneDialing\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxusesoundstr?language=objc)
 pub const kPMFaxUseSoundStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"faxUseSound\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxwaitfordialtonestr?language=objc)
 pub const kPMFaxWaitForDialToneStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"faxWaitForDialTone\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxtolabelstr?language=objc)
 pub const kPMFaxToLabelStr: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"faxToLabel\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxfromlabelstr?language=objc)
 pub const kPMFaxFromLabelStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"faxFromLabel\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxdatelabelstr?language=objc)
 pub const kPMFaxDateLabelStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"faxDateLabel\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxsubjectlabelstr?language=objc)
 pub const kPMFaxSubjectLabelStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"faxSubjectLabel\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxsheetslabelstr?language=objc)
 pub const kPMFaxSheetsLabelStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"faxSheetsLabel\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcoverpagestr?language=objc)
 pub const kPMCoverPageStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMCoverPage\0") };
 pub const kPMCoverPageDefault: c_uint = kPMCoverPageNone;
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcoverpagesourcestr?language=objc)
 pub const kPMCoverPageSourceStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMCoverPageSource\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdestinationprinteridstr?language=objc)
 pub const kPMDestinationPrinterIDStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DestinationPrinterID\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpminlineworkflowstr?language=objc)
 pub const kPMInlineWorkflowStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"inlineWorkflow\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpagetopapermappingtypestr?language=objc)
 pub const kPMPageToPaperMappingTypeStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PageToPaperMappingType\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpagetopapermedianamestr?language=objc)
 pub const kPMPageToPaperMediaNameStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PageToPaperMappingMediaName\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpagetopapermappingallowscalingupstr?language=objc)
 pub const kPMPageToPaperMappingAllowScalingUpStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PageToPaperMappingAllowScalingUp\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcustomprofilepathstr?language=objc)
 pub const kPMCustomProfilePathStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PMCustomProfilePath\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmvendorcolormatchingstr?language=objc)
 pub const kPMVendorColorMatchingStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AP_VendorColorMatching\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmapplicationcolormatchingstr?language=objc)
 pub const kPMApplicationColorMatchingStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AP_ApplicationColorMatching\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcolormatchingmodestr?language=objc)
 pub const kPMColorMatchingModeStr: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AP_ColorMatchingMode\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdestinationtypestr?language=objc)
 pub const kPMDestinationTypeStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMDestinationType\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmoutputfilenamestr?language=objc)
 pub const kPMOutputFilenameStr: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.print.PrintSettings.PMOutputFilename\0")
 };
@@ -141,8 +195,10 @@ pub const kPMCoverPageAfter: c_uint = 3;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PMPageToPaperMappingType(pub c_uint);
 impl PMPageToPaperMappingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpagetopapermappingtype/kpmpagetopapermappingnone?language=objc)
     #[doc(alias = "kPMPageToPaperMappingNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpagetopapermappingtype/kpmpagetopapermappingscaletofit?language=objc)
     #[doc(alias = "kPMPageToPaperMappingScaleToFit")]
     pub const ScaleToFit: Self = Self(2);
 }

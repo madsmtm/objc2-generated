@@ -15,14 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionGranularity(pub NSInteger);
 impl NSTextSelectionGranularity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum/character?language=objc)
     #[doc(alias = "NSTextSelectionGranularityCharacter")]
     pub const Character: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum/word?language=objc)
     #[doc(alias = "NSTextSelectionGranularityWord")]
     pub const Word: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum/paragraph?language=objc)
     #[doc(alias = "NSTextSelectionGranularityParagraph")]
     pub const Paragraph: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum/line?language=objc)
     #[doc(alias = "NSTextSelectionGranularityLine")]
     pub const Line: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum/sentence?language=objc)
     #[doc(alias = "NSTextSelectionGranularitySentence")]
     pub const Sentence: Self = Self(4);
 }
@@ -41,8 +46,10 @@ unsafe impl RefEncode for NSTextSelectionGranularity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionAffinity(pub NSInteger);
 impl NSTextSelectionAffinity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/affinity-swift.enum/upstream?language=objc)
     #[doc(alias = "NSTextSelectionAffinityUpstream")]
     pub const Upstream: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/affinity-swift.enum/downstream?language=objc)
     #[doc(alias = "NSTextSelectionAffinityDownstream")]
     pub const Downstream: Self = Self(1);
 }

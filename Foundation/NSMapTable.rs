@@ -267,12 +267,16 @@ unsafe impl RefEncode for NSMapEnumerator {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsresetmaptable(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
     pub fn NSResetMapTable(table: &NSMapTable);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparemaptables(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `table1` generic should be of the correct type.
@@ -288,6 +292,8 @@ pub unsafe extern "C-unwind" fn NSCompareMapTables(
     unsafe { NSCompareMapTables(table1, table2) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscopymaptablewithzone(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -306,6 +312,8 @@ pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapmember(_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -331,6 +339,8 @@ pub unsafe extern "C-unwind" fn NSMapMember(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapget(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `table` generic should be of the correct type.
@@ -339,6 +349,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapinsert(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `table` generic should be of the correct type.
@@ -348,6 +360,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapinsertknownabsent(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `table` generic should be of the correct type.
@@ -357,6 +371,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapinsertifabsent(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `table` generic should be of the correct type.
@@ -370,6 +386,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapremove(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `table` generic should be of the correct type.
@@ -378,12 +396,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumeratemaptable(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
     pub fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnextmapenumeratorpair(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `enumerator` must be a valid pointer.
@@ -406,6 +428,8 @@ pub unsafe extern "C-unwind" fn NSNextMapEnumeratorPair(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsendmaptableenumeration(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `enumerator` must be a valid pointer.
@@ -413,6 +437,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountmaptable(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
@@ -421,6 +447,8 @@ extern "C-unwind" {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfrommaptable(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
@@ -437,6 +465,8 @@ impl NSString {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallmaptablekeys(_:)?language=objc)
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -451,6 +481,8 @@ pub unsafe extern "C-unwind" fn NSAllMapTableKeys(table: &NSMapTable) -> Retaine
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallmaptablevalues(_:)?language=objc)
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -533,6 +565,8 @@ unsafe impl RefEncode for NSMapTableValueCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatemaptablewithzone(_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `key_call_backs` struct field 1 must be implemented correctly.
@@ -566,6 +600,8 @@ pub unsafe extern "C-unwind" fn NSCreateMapTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatemaptable(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `key_call_backs` struct field 1 must be implemented correctly.

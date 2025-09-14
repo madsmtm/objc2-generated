@@ -74,23 +74,35 @@ extern "C" {
 pub struct AVCaptureSessionInterruptionReason(pub NSInteger);
 impl AVCaptureSessionInterruptionReason {
     /// An interruption caused by the app being sent to the background while using a camera. Camera usage is prohibited while in the background. Beginning in iOS 9.0, ``AVCaptureSession`` no longer produces an ``AVCaptureSessionRuntimeErrorNotification`` if you attempt to start running a camera while in the background. Instead, it sends an ``AVCaptureSessionWasInterruptedNotification`` with ``AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground``. Provided you don't explicitly call ``AVCaptureSession/stopRunning``, your ``AVCaptureSession/startRunning`` request is preserved, and when your app comes back to foreground, you receive ``AVCaptureSessionInterruptionEndedNotification`` and your session starts running.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/videodevicenotavailableinbackground?language=objc)
     #[doc(alias = "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground")]
     pub const VideoDeviceNotAvailableInBackground: Self = Self(1);
     /// An interruption caused by the audio hardware temporarily being made unavailable, for instance, for a phone call, or alarm.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/audiodeviceinusebyanotherclient?language=objc)
     #[doc(alias = "AVCaptureSessionInterruptionReasonAudioDeviceInUseByAnotherClient")]
     pub const AudioDeviceInUseByAnotherClient: Self = Self(2);
     /// An interruption caused by the video device temporarily being made unavailable, for instance, when stolen away by another ``AVCaptureSession``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/videodeviceinusebyanotherclient?language=objc)
     #[doc(alias = "AVCaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient")]
     pub const VideoDeviceInUseByAnotherClient: Self = Self(3);
     /// An interruption caused when the app is running in a multi-app layout, causing resource contention and degraded recording quality of service. Given your present ``AVCaptureSession`` configuration, the session may only be run if your app occupies the full screen.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/videodevicenotavailablewithmultipleforegroundapps?language=objc)
     #[doc(
         alias = "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps"
     )]
     pub const VideoDeviceNotAvailableWithMultipleForegroundApps: Self = Self(4);
     /// An interruption caused by the video device temporarily being made unavailable due to system pressure, such as thermal duress. See ``AVCaptureDevice/systemPressureState`` for more information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/videodevicenotavailableduetosystempressure?language=objc)
     #[doc(alias = "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableDueToSystemPressure")]
     pub const VideoDeviceNotAvailableDueToSystemPressure: Self = Self(5);
     /// An interruption caused by a ``SCVideoStreamAnalyzer`` when it detects sensitive content on an associated ``AVCaptureDeviceInput``.  To resume your capture session, call your analyzer's ``SCVideoStreamAnalyzer/continueStream`` method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/sensitivecontentmitigationactivated?language=objc)
     #[doc(alias = "AVCaptureSessionInterruptionReasonSensitiveContentMitigationActivated")]
     pub const SensitiveContentMitigationActivated: Self = Self(6);
 }
@@ -151,15 +163,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCaptureVideoOrientation(pub NSInteger);
 impl AVCaptureVideoOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation/portrait?language=objc)
     #[doc(alias = "AVCaptureVideoOrientationPortrait")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const Portrait: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation/portraitupsidedown?language=objc)
     #[doc(alias = "AVCaptureVideoOrientationPortraitUpsideDown")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const PortraitUpsideDown: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation/landscaperight?language=objc)
     #[doc(alias = "AVCaptureVideoOrientationLandscapeRight")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const LandscapeRight: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation/landscapeleft?language=objc)
     #[doc(alias = "AVCaptureVideoOrientationLandscapeLeft")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const LandscapeLeft: Self = Self(4);
@@ -979,12 +995,16 @@ impl AVCaptureMultiCamSession {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVVideoFieldMode(pub NSInteger);
 impl AVVideoFieldMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode/both?language=objc)
     #[doc(alias = "AVVideoFieldModeBoth")]
     pub const Both: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode/toponly?language=objc)
     #[doc(alias = "AVVideoFieldModeTopOnly")]
     pub const TopOnly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode/bottomonly?language=objc)
     #[doc(alias = "AVVideoFieldModeBottomOnly")]
     pub const BottomOnly: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode/deinterlace?language=objc)
     #[doc(alias = "AVVideoFieldModeDeinterlace")]
     pub const Deinterlace: Self = Self(3);
 }

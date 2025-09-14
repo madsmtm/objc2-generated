@@ -33,10 +33,13 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDQueryOptionFlags(pub c_uint);
 impl MDQueryOptionFlags {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdqueryoptionflags/kmdquerysynchronous?language=objc)
     #[doc(alias = "kMDQuerySynchronous")]
     pub const Synchronous: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdqueryoptionflags/kmdquerywantsupdates?language=objc)
     #[doc(alias = "kMDQueryWantsUpdates")]
     pub const WantsUpdates: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdqueryoptionflags/kmdqueryallowfstranslation?language=objc)
     #[doc(alias = "kMDQueryAllowFSTranslation")]
     pub const AllowFSTranslation: Self = Self(8);
 }
@@ -53,6 +56,8 @@ unsafe impl RefEncode for MDQueryOptionFlags {
 
 unsafe impl ConcreteType for MDQuery {
     /// Returns the type identifier of all MDQuery instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413037-mdquerygettypeid?language=objc)
     #[doc(alias = "MDQueryGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -109,6 +114,8 @@ impl MDQuery {
     /// - `value_list_attrs` might not allow `None`.
     /// - `sorting_attrs` generic must be of the correct type.
     /// - `sorting_attrs` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413029-mdquerycreate?language=objc)
     #[doc(alias = "MDQueryCreate")]
     #[inline]
     pub unsafe fn new(
@@ -181,6 +188,8 @@ impl MDQuery {
     /// - `value_list_attrs` might not allow `None`.
     /// - `sorting_attrs` generic must be of the correct type.
     /// - `sorting_attrs` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413027-mdquerycreatesubset?language=objc)
     #[doc(alias = "MDQueryCreateSubset")]
     #[inline]
     pub unsafe fn new_subset(
@@ -261,6 +270,8 @@ impl MDQuery {
     /// - `sorting_attrs` might not allow `None`.
     /// - `items` generic must be of the correct type.
     /// - `items` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413031-mdquerycreateforitems?language=objc)
     #[doc(alias = "MDQueryCreateForItems")]
     #[inline]
     pub unsafe fn new_for_items(
@@ -296,6 +307,8 @@ impl MDQuery {
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The query string of the query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413004-mdquerycopyquerystring?language=objc)
     #[doc(alias = "MDQueryCopyQueryString")]
     #[inline]
     pub unsafe fn query_string(&self) -> Option<CFRetained<CFString>> {
@@ -312,6 +325,8 @@ impl MDQuery {
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The list of value list attribute names of the query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413071-mdquerycopyvaluelistattributes?language=objc)
     #[doc(alias = "MDQueryCopyValueListAttributes")]
     #[inline]
     pub unsafe fn value_list_attributes(&self) -> Option<CFRetained<CFArray>> {
@@ -328,6 +343,8 @@ impl MDQuery {
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The list of sorting attribute names of the query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413059-mdquerycopysortingattributes?language=objc)
     #[doc(alias = "MDQueryCopySortingAttributes")]
     #[inline]
     pub unsafe fn sorting_attributes(&self) -> Option<CFRetained<CFArray>> {
@@ -420,6 +437,8 @@ impl MDQuery {
     ///
     /// Returns: An MDQueryBatchingParams structure with the current
     /// batching parameters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413006-mdquerygetbatchingparameters?language=objc)
     #[doc(alias = "MDQueryGetBatchingParameters")]
     #[inline]
     pub unsafe fn batching_parameters(&self) -> MDQueryBatchingParams {
@@ -433,6 +452,8 @@ impl MDQuery {
     ///
     /// Parameter `params`: An MDQueryBatchingParams structure with the batching
     /// parameters to set.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413103-mdquerysetbatchingparameters?language=objc)
     #[doc(alias = "MDQuerySetBatchingParameters")]
     #[inline]
     pub unsafe fn set_batching_parameters(&self, params: MDQueryBatchingParams) {
@@ -552,6 +573,8 @@ impl MDQuery {
     /// - `func` must be implemented correctly.
     /// - `context` must be a valid pointer.
     /// - `cb` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413064-mdquerysetcreateresultfunction?language=objc)
     #[doc(alias = "MDQuerySetCreateResultFunction")]
     #[cfg(feature = "MDItem")]
     #[inline]
@@ -679,6 +702,8 @@ impl MDQuery {
     /// - `func` must be implemented correctly.
     /// - `context` must be a valid pointer.
     /// - `cb` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413017-mdquerysetcreatevaluefunction?language=objc)
     #[doc(alias = "MDQuerySetCreateValueFunction")]
     #[inline]
     pub unsafe fn set_create_value_function(
@@ -712,6 +737,8 @@ impl MDQuery {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `queue` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413019-mdquerysetdispatchqueue?language=objc)
     #[doc(alias = "MDQuerySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -756,6 +783,8 @@ impl MDQuery {
     /// Returns: Returns true if the query was started (executed in the case
     /// of a synchronous query), false otherwise. Queries cannot be
     /// executed more than once.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413099-mdqueryexecute?language=objc)
     #[doc(alias = "MDQueryExecute")]
     #[inline]
     pub unsafe fn execute(&self, option_flags: CFOptionFlags) -> bool {
@@ -787,6 +816,8 @@ impl MDQuery {
     /// notification.
     ///
     /// Parameter `query`: The query to stop.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413077-mdquerystop?language=objc)
     #[doc(alias = "MDQueryStop")]
     #[inline]
     pub unsafe fn stop(&self) {
@@ -806,6 +837,8 @@ impl MDQuery {
     ///
     /// Returns: The generation number of the query. This changes each time the query's
     /// result set has changed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413041-mdquerydisableupdates?language=objc)
     #[doc(alias = "MDQueryDisableUpdates")]
     #[inline]
     pub unsafe fn disable_updates(&self) {
@@ -822,6 +855,8 @@ impl MDQuery {
     /// corresponding enable.
     ///
     /// Parameter `query`: The query for which updates are to be enabled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413066-mdqueryenableupdates?language=objc)
     #[doc(alias = "MDQueryEnableUpdates")]
     #[inline]
     pub unsafe fn enable_updates(&self) {
@@ -838,6 +873,8 @@ impl MDQuery {
     ///
     /// Returns: A boolean indicating whether or not the first phase
     /// of a query has completed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413032-mdqueryisgatheringcomplete?language=objc)
     #[doc(alias = "MDQueryIsGatheringComplete")]
     #[inline]
     pub unsafe fn is_gathering_complete(&self) -> bool {
@@ -855,6 +892,8 @@ impl MDQuery {
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The number of results in the query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413008-mdquerygetresultcount?language=objc)
     #[doc(alias = "MDQueryGetResultCount")]
     #[inline]
     pub unsafe fn result_count(&self) -> CFIndex {
@@ -883,6 +922,8 @@ impl MDQuery {
     /// Returns: Returns the MDItemRef currently at the given index, or
     /// if a result-create function has been set, returns the
     /// result returned by that function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413055-mdquerygetresultatindex?language=objc)
     #[doc(alias = "MDQueryGetResultAtIndex")]
     #[inline]
     pub unsafe fn result_at_index(&self, idx: CFIndex) -> *const c_void {
@@ -916,6 +957,8 @@ impl MDQuery {
     /// # Safety
     ///
     /// `result` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413093-mdquerygetindexofresult?language=objc)
     #[doc(alias = "MDQueryGetIndexOfResult")]
     #[inline]
     pub unsafe fn index_of_result(&self, result: *const c_void) -> CFIndex {
@@ -945,6 +988,8 @@ impl MDQuery {
     /// # Safety
     ///
     /// `name` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413046-mdquerygetattributevalueofresult?language=objc)
     #[doc(alias = "MDQueryGetAttributeValueOfResultAtIndex")]
     #[inline]
     pub unsafe fn attribute_value_of_result_at_index(
@@ -980,6 +1025,8 @@ impl MDQuery {
     /// # Safety
     ///
     /// `name` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413105-mdquerycopyvaluesofattribute?language=objc)
     #[doc(alias = "MDQueryCopyValuesOfAttribute")]
     #[inline]
     pub unsafe fn values_of_attribute(
@@ -1020,6 +1067,8 @@ impl MDQuery {
     /// - `name` might not allow `None`.
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413009-mdquerygetcountofresultswithattr?language=objc)
     #[doc(alias = "MDQueryGetCountOfResultsWithAttributeValue")]
     #[inline]
     pub unsafe fn count_of_results_with_attribute_value(
@@ -1053,6 +1102,8 @@ impl MDQuery {
     ///
     /// - `sorting_attrs` generic must be of the correct type.
     /// - `sorting_attrs` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413096-mdquerysetsortorder?language=objc)
     #[doc(alias = "MDQuerySetSortOrder")]
     #[inline]
     pub unsafe fn set_sort_order(&self, sorting_attrs: Option<&CFArray>) -> bool {
@@ -1069,6 +1120,7 @@ impl MDQuery {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDQuerySortOptionFlags(pub c_uint);
 impl MDQuerySortOptionFlags {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerysortoptionflags/kmdqueryreversesortorderflag?language=objc)
     #[doc(alias = "kMDQueryReverseSortOrderFlag")]
     pub const ReverseSortOrderFlag: Self = Self(1 << 0);
 }
@@ -1098,6 +1150,8 @@ impl MDQuery {
     /// # Safety
     ///
     /// `field_name` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413075-mdquerysetsortoptionflagsforattr?language=objc)
     #[doc(alias = "MDQuerySetSortOptionFlagsForAttribute")]
     #[inline]
     pub unsafe fn set_sort_option_flags_for_attribute(
@@ -1127,6 +1181,8 @@ impl MDQuery {
     /// # Safety
     ///
     /// `field_name` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413013-mdquerygetsortoptionflagsforattr?language=objc)
     #[doc(alias = "MDQueryGetSortOptionFlagsForAttribute")]
     #[inline]
     pub unsafe fn sort_option_flags_for_attribute(&self, field_name: Option<&CFString>) -> u32 {
@@ -1216,6 +1272,8 @@ impl MDQuery {
     ///
     /// - `comparator` must be implemented correctly.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413087-mdquerysetsortcomparator?language=objc)
     #[doc(alias = "MDQuerySetSortComparator")]
     #[inline]
     pub unsafe fn set_sort_comparator(
@@ -1233,6 +1291,8 @@ impl MDQuery {
         unsafe { MDQuerySetSortComparator(self, comparator, context) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413021-mdquerysetsortcomparatorblock?language=objc)
+    ///
     /// # Safety
     ///
     /// `comparator` might not allow `None`.
@@ -1406,6 +1466,8 @@ impl MDQuery {
     ///
     /// - `scope_directories` generic must be of the correct type.
     /// - `scope_directories` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413048-mdquerysetsearchscope?language=objc)
     #[doc(alias = "MDQuerySetSearchScope")]
     #[inline]
     pub unsafe fn set_search_scope(
@@ -1483,6 +1545,8 @@ impl MDQuery {
     /// Parameter `query`: The query object to modify.
     ///
     /// Parameter `size`: The maximum number of results desired.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413085-mdquerysetmaxcount?language=objc)
     #[doc(alias = "MDQuerySetMaxCount")]
     #[inline]
     pub unsafe fn set_max_count(&self, size: CFIndex) {

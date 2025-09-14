@@ -497,6 +497,8 @@ pub type AECoerceDescUPP = AECoerceDescProcPtr;
 pub type AECoercePtrUPP = AECoercePtrProcPtr;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445885-newaecoercedescupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -504,6 +506,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449962-newaecoerceptrupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -511,6 +515,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448721-disposeaecoercedescupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -518,6 +524,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450664-disposeaecoerceptrupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -525,6 +533,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445450-invokeaecoercedescupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `from_desc` must be a valid pointer.
@@ -541,6 +551,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447079-invokeaecoerceptrupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_ptr` must be a valid pointer.
@@ -561,6 +573,8 @@ extern "C-unwind" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoercionhandlerupp?language=objc)
 pub type AECoercionHandlerUPP = AECoerceDescUPP;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445548-aeinstallcoercionhandler?language=objc)
+///
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
@@ -596,6 +610,8 @@ pub unsafe extern "C-unwind" fn AEInstallCoercionHandler(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441907-aeremovecoercionhandler?language=objc)
+///
 /// # Safety
 ///
 /// `handler` must be implemented correctly.
@@ -617,6 +633,8 @@ pub unsafe extern "C-unwind" fn AERemoveCoercionHandler(
     unsafe { AERemoveCoercionHandler(from_type, to_type, handler, is_sys_handler as _) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445348-aegetcoercionhandler?language=objc)
+///
 /// # Safety
 ///
 /// - `handler` must be a valid pointer.
@@ -662,6 +680,8 @@ extern "C-unwind" {
     ///
     /// - `data_ptr` must be a valid pointer.
     /// - `result` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441846-aecoerceptr?language=objc)
     pub fn AECoercePtr(
         type_code: DescType,
         data_ptr: *const c_void,
@@ -672,6 +692,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446519-aecoercedesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc` must be a valid pointer.
@@ -693,10 +715,14 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `desc` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446047-aeinitializedesc?language=objc)
     pub fn AEInitializeDesc(desc: *mut AEDesc);
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448535-aecreatedesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_ptr` must be a valid pointer.
@@ -710,6 +736,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444208-aedisposedesc?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_ae_desc` must be a valid pointer.
@@ -717,6 +745,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442661-aeduplicatedesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc` must be a valid pointer.
@@ -732,6 +762,8 @@ pub type AEDisposeExternalProcPtr =
 pub type AEDisposeExternalUPP = AEDisposeExternalProcPtr;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446239-aecreatedescfromexternalptr?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_ptr` must be a valid pointer.
@@ -749,6 +781,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448782-aecomparedesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `desc1` must be a valid pointer.
@@ -773,6 +807,8 @@ extern "C-unwind" {
 ///
 /// - `factoring_ptr` must be a valid pointer.
 /// - `result_list` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448643-aecreatelist?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AECreateList(
     factoring_ptr: *const c_void,
@@ -792,6 +828,8 @@ pub unsafe extern "C-unwind" fn AECreateList(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449533-aecountitems?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc_list` must be a valid pointer.
@@ -800,6 +838,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445287-aeputptr?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc_list` must be a valid pointer.
@@ -814,6 +854,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450093-aeputdesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc_list` must be a valid pointer.
@@ -826,6 +868,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447539-aegetnthptr?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc_list` must be a valid pointer.
@@ -846,6 +890,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448326-aegetnthdesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc_list` must be a valid pointer.
@@ -861,6 +907,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447307-aesizeofnthitem?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc_list` must be a valid pointer.
@@ -875,6 +923,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445720-aegetarray?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc_list` must be a valid pointer.
@@ -894,6 +944,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442535-aeputarray?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc_list` must be a valid pointer.
@@ -909,6 +961,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447164-aedeleteitem?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_ae_desc_list` must be a valid pointer.
@@ -930,6 +984,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `the_desc` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444011-aecheckisrecord?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AECheckIsRecord(the_desc: *const AEDesc) -> bool {
     extern "C-unwind" {
@@ -948,6 +1004,8 @@ extern "C-unwind" {
     ///
     /// - `target` must be a valid pointer.
     /// - `result` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448525-aecreateappleevent?language=objc)
     pub fn AECreateAppleEvent(
         the_ae_event_class: AEEventClass,
         the_ae_event_id: AEEventID,
@@ -971,6 +1029,8 @@ extern "C-unwind" {
     ///
     /// - `the_apple_event` must be a valid pointer.
     /// - `data_ptr` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449263-aeputparamptr?language=objc)
     pub fn AEPutParamPtr(
         the_apple_event: *mut AppleEvent,
         the_ae_keyword: AEKeyword,
@@ -981,6 +1041,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447576-aeputparamdesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_apple_event` must be a valid pointer.
@@ -993,6 +1055,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444069-aegetparamptr?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_apple_event` must be a valid pointer.
@@ -1011,6 +1075,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449233-aegetparamdesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_apple_event` must be a valid pointer.
@@ -1024,6 +1090,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449998-aesizeofparam?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_apple_event` must be a valid pointer.
@@ -1038,6 +1106,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444338-aedeleteparam?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_apple_event` must be a valid pointer.
@@ -1045,6 +1115,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445109-aegetattributeptr?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_apple_event` must be a valid pointer.
@@ -1063,6 +1135,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450314-aegetattributedesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_apple_event` must be a valid pointer.
@@ -1076,6 +1150,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445764-aesizeofattribute?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_apple_event` must be a valid pointer.
@@ -1090,6 +1166,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445940-aeputattributeptr?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_apple_event` must be a valid pointer.
@@ -1104,6 +1182,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441790-aeputattributedesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_apple_event` must be a valid pointer.
@@ -1131,10 +1211,14 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `the_ae_desc` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447305-aesizeofflatteneddesc?language=objc)
     pub fn AESizeOfFlattenedDesc(the_ae_desc: *const AEDesc) -> Size;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441808-aeflattendesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_ae_desc` must be a valid pointer.
@@ -1149,6 +1233,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448997-aeunflattendesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `buffer` must be a valid pointer.
@@ -1174,6 +1260,8 @@ extern "C-unwind" {
     ///
     /// - `buffer` must be a valid pointer.
     /// - `result` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3553279-aeunflattendescfrombytes?language=objc)
     pub fn AEUnflattenDescFromBytes(
         buffer: *const c_void,
         buffer_len: usize,
@@ -1192,6 +1280,8 @@ extern "C-unwind" {
     ///
     /// - `the_ae_desc` must be a valid pointer.
     /// - `data_ptr` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444427-aegetdescdata?language=objc)
     pub fn AEGetDescData(
         the_ae_desc: *const AEDesc,
         data_ptr: *mut c_void,
@@ -1200,6 +1290,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450119-aegetdescdatasize?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_ae_desc` must be a valid pointer.
@@ -1207,6 +1299,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446695-aereplacedescdata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_ptr` must be a valid pointer.
@@ -1220,6 +1314,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446560-aegetdescdatarange?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_desc` must be a valid pointer.
@@ -1244,6 +1340,8 @@ pub type AEEventHandlerProcPtr =
 pub type AEEventHandlerUPP = AEEventHandlerProcPtr;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447774-newaedisposeexternalupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -1251,6 +1349,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446862-newaeeventhandlerupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -1258,6 +1358,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447284-disposeaedisposeexternalupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -1265,6 +1367,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442066-disposeaeeventhandlerupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -1272,6 +1376,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441717-invokeaedisposeexternalupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_ptr` must be a valid pointer.
@@ -1286,6 +1392,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446585-invokeaeeventhandlerupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_apple_event` must be a valid pointer.

@@ -19,10 +19,13 @@ pub struct GLKTextureTarget(pub GLenum);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKTextureTarget {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktexturetarget/target2d?language=objc)
     #[doc(alias = "GLKTextureTarget2D")]
     pub const Target2D: Self = Self(3553);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktexturetarget/targetcubemap?language=objc)
     #[doc(alias = "GLKTextureTargetCubeMap")]
     pub const TargetCubeMap: Self = Self(34067);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktexturetarget/targetct?language=objc)
     #[doc(alias = "GLKTextureTargetCt")]
     pub const TargetCt: Self = Self(2);
 }
@@ -49,10 +52,13 @@ pub struct GLKTextureEnvMode(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKTextureEnvMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureenvmode/replace?language=objc)
     #[doc(alias = "GLKTextureEnvModeReplace")]
     pub const Replace: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureenvmode/modulate?language=objc)
     #[doc(alias = "GLKTextureEnvModeModulate")]
     pub const Modulate: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureenvmode/decal?language=objc)
     #[doc(alias = "GLKTextureEnvModeDecal")]
     pub const Decal: Self = Self(2);
 }

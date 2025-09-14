@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrintInfoOutputType(pub NSInteger);
 impl UIPrintInfoOutputType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/general?language=objc)
     #[doc(alias = "UIPrintInfoOutputGeneral")]
     pub const General: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/photo?language=objc)
     #[doc(alias = "UIPrintInfoOutputPhoto")]
     pub const Photo: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/grayscale?language=objc)
     #[doc(alias = "UIPrintInfoOutputGrayscale")]
     pub const Grayscale: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/photograyscale?language=objc)
     #[doc(alias = "UIPrintInfoOutputPhotoGrayscale")]
     pub const PhotoGrayscale: Self = Self(3);
 }
@@ -37,8 +41,10 @@ unsafe impl RefEncode for UIPrintInfoOutputType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrintInfoOrientation(pub NSInteger);
 impl UIPrintInfoOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/orientation-swift.enum/portrait?language=objc)
     #[doc(alias = "UIPrintInfoOrientationPortrait")]
     pub const Portrait: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/orientation-swift.enum/landscape?language=objc)
     #[doc(alias = "UIPrintInfoOrientationLandscape")]
     pub const Landscape: Self = Self(1);
 }
@@ -57,10 +63,13 @@ unsafe impl RefEncode for UIPrintInfoOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrintInfoDuplex(pub NSInteger);
 impl UIPrintInfoDuplex {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/duplex-swift.enum/none?language=objc)
     #[doc(alias = "UIPrintInfoDuplexNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/duplex-swift.enum/longedge?language=objc)
     #[doc(alias = "UIPrintInfoDuplexLongEdge")]
     pub const LongEdge: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/duplex-swift.enum/shortedge?language=objc)
     #[doc(alias = "UIPrintInfoDuplexShortEdge")]
     pub const ShortEdge: Self = Self(2);
 }

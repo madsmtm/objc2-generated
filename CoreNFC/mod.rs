@@ -42,52 +42,76 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCReaderError(pub NSInteger);
 impl NFCReaderError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorunsupportedfeature?language=objc)
     #[doc(alias = "NFCReaderErrorUnsupportedFeature")]
     pub const ReaderErrorUnsupportedFeature: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorsecurityviolation?language=objc)
     #[doc(alias = "NFCReaderErrorSecurityViolation")]
     pub const ReaderErrorSecurityViolation: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorinvalidparameter?language=objc)
     #[doc(alias = "NFCReaderErrorInvalidParameter")]
     pub const ReaderErrorInvalidParameter: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorinvalidparameterlength?language=objc)
     #[doc(alias = "NFCReaderErrorInvalidParameterLength")]
     pub const ReaderErrorInvalidParameterLength: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorparameteroutofbound?language=objc)
     #[doc(alias = "NFCReaderErrorParameterOutOfBound")]
     pub const ReaderErrorParameterOutOfBound: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorradiodisabled?language=objc)
     #[doc(alias = "NFCReaderErrorRadioDisabled")]
     pub const ReaderErrorRadioDisabled: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorineligible?language=objc)
     #[doc(alias = "NFCReaderErrorIneligible")]
     pub const ReaderErrorIneligible: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererroraccessnotaccepted?language=objc)
     #[doc(alias = "NFCReaderErrorAccessNotAccepted")]
     pub const ReaderErrorAccessNotAccepted: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrortagconnectionlost?language=objc)
     #[doc(alias = "NFCReaderTransceiveErrorTagConnectionLost")]
     pub const ReaderTransceiveErrorTagConnectionLost: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrorretryexceeded?language=objc)
     #[doc(alias = "NFCReaderTransceiveErrorRetryExceeded")]
     pub const ReaderTransceiveErrorRetryExceeded: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrortagresponseerror?language=objc)
     #[doc(alias = "NFCReaderTransceiveErrorTagResponseError")]
     pub const ReaderTransceiveErrorTagResponseError: Self = Self(102);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrorsessioninvalidated?language=objc)
     #[doc(alias = "NFCReaderTransceiveErrorSessionInvalidated")]
     pub const ReaderTransceiveErrorSessionInvalidated: Self = Self(103);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrortagnotconnected?language=objc)
     #[doc(alias = "NFCReaderTransceiveErrorTagNotConnected")]
     pub const ReaderTransceiveErrorTagNotConnected: Self = Self(104);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrorpackettoolong?language=objc)
     #[doc(alias = "NFCReaderTransceiveErrorPacketTooLong")]
     pub const ReaderTransceiveErrorPacketTooLong: Self = Self(105);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readersessioninvalidationerrorusercanceled?language=objc)
     #[doc(alias = "NFCReaderSessionInvalidationErrorUserCanceled")]
     pub const ReaderSessionInvalidationErrorUserCanceled: Self = Self(200);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readersessioninvalidationerrorsessiontimeout?language=objc)
     #[doc(alias = "NFCReaderSessionInvalidationErrorSessionTimeout")]
     pub const ReaderSessionInvalidationErrorSessionTimeout: Self = Self(201);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readersessioninvalidationerrorsessionterminatedunexpectedly?language=objc)
     #[doc(alias = "NFCReaderSessionInvalidationErrorSessionTerminatedUnexpectedly")]
     pub const ReaderSessionInvalidationErrorSessionTerminatedUnexpectedly: Self = Self(202);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readersessioninvalidationerrorsystemisbusy?language=objc)
     #[doc(alias = "NFCReaderSessionInvalidationErrorSystemIsBusy")]
     pub const ReaderSessionInvalidationErrorSystemIsBusy: Self = Self(203);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readersessioninvalidationerrorfirstndeftagread?language=objc)
     #[doc(alias = "NFCReaderSessionInvalidationErrorFirstNDEFTagRead")]
     pub const ReaderSessionInvalidationErrorFirstNDEFTagRead: Self = Self(204);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/tagcommandconfigurationerrorinvalidparameters?language=objc)
     #[doc(alias = "NFCTagCommandConfigurationErrorInvalidParameters")]
     pub const TagCommandConfigurationErrorInvalidParameters: Self = Self(300);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/ndefreadersessionerrortagnotwritable?language=objc)
     #[doc(alias = "NFCNdefReaderSessionErrorTagNotWritable")]
     pub const NdefReaderSessionErrorTagNotWritable: Self = Self(400);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/ndefreadersessionerrortagupdatefailure?language=objc)
     #[doc(alias = "NFCNdefReaderSessionErrorTagUpdateFailure")]
     pub const NdefReaderSessionErrorTagUpdateFailure: Self = Self(401);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/ndefreadersessionerrortagsizetoosmall?language=objc)
     #[doc(alias = "NFCNdefReaderSessionErrorTagSizeTooSmall")]
     pub const NdefReaderSessionErrorTagSizeTooSmall: Self = Self(402);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/ndefreadersessionerrorzerolengthmessage?language=objc)
     #[doc(alias = "NFCNdefReaderSessionErrorZeroLengthMessage")]
     pub const NdefReaderSessionErrorZeroLengthMessage: Self = Self(403);
 }
@@ -300,12 +324,16 @@ impl NFCReaderSession {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCTagType(pub NSUInteger);
 impl NFCTagType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagtype/nfctagtypeiso15693?language=objc)
     #[doc(alias = "NFCTagTypeISO15693")]
     pub const ISO15693: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagtype/nfctagtypefelica?language=objc)
     #[doc(alias = "NFCTagTypeFeliCa")]
     pub const FeliCa: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagtype/nfctagtypeiso7816compatible?language=objc)
     #[doc(alias = "NFCTagTypeISO7816Compatible")]
     pub const ISO7816Compatible: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagtype/nfctagtypemifare?language=objc)
     #[doc(alias = "NFCTagTypeMiFare")]
     pub const MiFare: Self = Self(4);
 }
@@ -498,12 +526,16 @@ extern_protocol!(
 pub struct NFCPollingOption(pub NSInteger);
 bitflags::bitflags! {
     impl NFCPollingOption: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession/pollingoption/iso14443?language=objc)
         #[doc(alias = "NFCPollingISO14443")]
         const ISO14443 = 0x1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession/pollingoption/iso15693?language=objc)
         #[doc(alias = "NFCPollingISO15693")]
         const ISO15693 = 0x2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession/pollingoption/iso18092?language=objc)
         #[doc(alias = "NFCPollingISO18092")]
         const ISO18092 = 0x4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession/pollingoption/pace?language=objc)
         #[doc(alias = "NFCPollingPACE")]
         const PACE = 0x8;
     }
@@ -882,30 +914,43 @@ unsafe impl NSUserActivityCoreNFC for NSUserActivity {}
 pub struct NFCISO15693RequestFlag(pub u8);
 bitflags::bitflags! {
     impl NFCISO15693RequestFlag: u8 {
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/dualsubcarriers?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagDualSubCarriers")]
         const DualSubCarriers = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/highdatarate?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagHighDataRate")]
         const HighDataRate = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/protocolextension?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagProtocolExtension")]
         const ProtocolExtension = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/select?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagSelect")]
         const Select = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/address?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagAddress")]
         const Address = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/option?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagOption")]
         const Option = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/commandspecificbit8?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagCommandSpecificBit8")]
         const CommandSpecificBit8 = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflagdualsubcarriers?language=objc)
 #[deprecated]
         const RequestFlagDualSubCarriers = NFCISO15693RequestFlag::DualSubCarriers.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflaghighdatarate?language=objc)
 #[deprecated]
         const RequestFlagHighDataRate = NFCISO15693RequestFlag::HighDataRate.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflagprotocolextension?language=objc)
 #[deprecated]
         const RequestFlagProtocolExtension = NFCISO15693RequestFlag::ProtocolExtension.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflagselect?language=objc)
 #[deprecated]
         const RequestFlagSelect = NFCISO15693RequestFlag::Select.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflagaddress?language=objc)
 #[deprecated]
         const RequestFlagAddress = NFCISO15693RequestFlag::Address.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflagoption?language=objc)
 #[deprecated]
         const RequestFlagOption = NFCISO15693RequestFlag::Option.0;
     }
@@ -929,18 +974,25 @@ pub type RequestFlag = NFCISO15693RequestFlag;
 pub struct NFCISO15693ResponseFlag(pub u8);
 bitflags::bitflags! {
     impl NFCISO15693ResponseFlag: u8 {
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/error?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagError")]
         const Error = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/responsebuffervalid?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagResponseBufferValid")]
         const ResponseBufferValid = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/finalresponse?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagFinalResponse")]
         const FinalResponse = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/protocolextension?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagProtocolExtension")]
         const ProtocolExtension = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/blocksecuritystatusbit5?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagBlockSecurityStatusBit5")]
         const BlockSecurityStatusBit5 = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/blocksecuritystatusbit6?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagBlockSecurityStatusBit6")]
         const BlockSecurityStatusBit6 = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/waittimeextension?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagWaitTimeExtension")]
         const WaitTimeExtension = 1<<6;
     }
@@ -2134,10 +2186,13 @@ impl NFCISO15693ReaderSession {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCNDEFStatus(pub NSUInteger);
 impl NFCNDEFStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefstatus/notsupported?language=objc)
     #[doc(alias = "NFCNDEFStatusNotSupported")]
     pub const NotSupported: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefstatus/readwrite?language=objc)
     #[doc(alias = "NFCNDEFStatusReadWrite")]
     pub const ReadWrite: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefstatus/readonly?language=objc)
     #[doc(alias = "NFCNDEFStatusReadOnly")]
     pub const ReadOnly: Self = Self(3);
 }
@@ -2235,16 +2290,22 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCFeliCaPollingRequestCode(pub NSInteger);
 impl NFCFeliCaPollingRequestCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/norequest?language=objc)
     #[doc(alias = "NFCFeliCaPollingRequestCodeNoRequest")]
     pub const NoRequest: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/systemcode?language=objc)
     #[doc(alias = "NFCFeliCaPollingRequestCodeSystemCode")]
     pub const SystemCode: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/communicationperformance?language=objc)
     #[doc(alias = "NFCFeliCaPollingRequestCodeCommunicationPerformance")]
     pub const CommunicationPerformance: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/pollingrequestcodenorequest?language=objc)
     #[deprecated]
     pub const PollingRequestCodeNoRequest: Self = Self(NFCFeliCaPollingRequestCode::NoRequest.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/pollingrequestcodesystemcode?language=objc)
     #[deprecated]
     pub const PollingRequestCodeSystemCode: Self = Self(NFCFeliCaPollingRequestCode::SystemCode.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/pollingrequestcodecommunicationperformance?language=objc)
     #[deprecated]
     pub const PollingRequestCodeCommunicationPerformance: Self =
         Self(NFCFeliCaPollingRequestCode::CommunicationPerformance.0);
@@ -2270,24 +2331,34 @@ pub type PollingRequestCode = NFCFeliCaPollingRequestCode;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCFeliCaPollingTimeSlot(pub NSInteger);
 impl NFCFeliCaPollingTimeSlot {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/max1?language=objc)
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax1")]
     pub const Max1: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/max2?language=objc)
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax2")]
     pub const Max2: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/max4?language=objc)
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax4")]
     pub const Max4: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/max8?language=objc)
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax8")]
     pub const Max8: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/max16?language=objc)
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax16")]
     pub const Max16: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/pollingtimeslotmax1?language=objc)
     #[deprecated]
     pub const PollingTimeSlotMax1: Self = Self(NFCFeliCaPollingTimeSlot::Max1.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/pollingtimeslotmax2?language=objc)
     #[deprecated]
     pub const PollingTimeSlotMax2: Self = Self(NFCFeliCaPollingTimeSlot::Max2.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/pollingtimeslotmax4?language=objc)
     #[deprecated]
     pub const PollingTimeSlotMax4: Self = Self(NFCFeliCaPollingTimeSlot::Max4.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/pollingtimeslotmax8?language=objc)
     #[deprecated]
     pub const PollingTimeSlotMax8: Self = Self(NFCFeliCaPollingTimeSlot::Max8.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/pollingtimeslotmax16?language=objc)
     #[deprecated]
     pub const PollingTimeSlotMax16: Self = Self(NFCFeliCaPollingTimeSlot::Max16.0);
 }
@@ -2312,12 +2383,16 @@ pub type PollingTimeSlot = NFCFeliCaPollingTimeSlot;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCFeliCaEncryptionId(pub NSInteger);
 impl NFCFeliCaEncryptionId {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicaencryptionid/aes-swift.enum.case?language=objc)
     #[doc(alias = "NFCFeliCaEncryptionIdAES")]
     pub const AES: Self = Self(0x4F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicaencryptionid/aes_des-swift.enum.case?language=objc)
     #[doc(alias = "NFCFeliCaEncryptionIdAES_DES")]
     pub const AES_DES: Self = Self(0x41);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicaencryptionid/aes-swift.type.property?language=objc)
     #[deprecated]
     pub const EncryptionIdAES: Self = Self(NFCFeliCaEncryptionId::AES.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicaencryptionid/aes_des-swift.type.property?language=objc)
     #[deprecated]
     pub const EncryptionIdAES_DES: Self = Self(NFCFeliCaEncryptionId::AES_DES.0);
 }
@@ -2775,12 +2850,16 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCMiFareFamily(pub NSUInteger);
 impl NFCMiFareFamily {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifarefamily/unknown?language=objc)
     #[doc(alias = "NFCMiFareUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifarefamily/ultralight?language=objc)
     #[doc(alias = "NFCMiFareUltralight")]
     pub const Ultralight: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifarefamily/plus?language=objc)
     #[doc(alias = "NFCMiFarePlus")]
     pub const Plus: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifarefamily/desfire?language=objc)
     #[doc(alias = "NFCMiFareDESFire")]
     pub const DESFire: Self = Self(4);
 }
@@ -2879,18 +2958,25 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCTypeNameFormat(pub u8);
 impl NFCTypeNameFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/empty?language=objc)
     #[doc(alias = "NFCTypeNameFormatEmpty")]
     pub const Empty: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/nfcwellknown?language=objc)
     #[doc(alias = "NFCTypeNameFormatNFCWellKnown")]
     pub const NFCWellKnown: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/media?language=objc)
     #[doc(alias = "NFCTypeNameFormatMedia")]
     pub const Media: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/absoluteuri?language=objc)
     #[doc(alias = "NFCTypeNameFormatAbsoluteURI")]
     pub const AbsoluteURI: Self = Self(0x03);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/nfcexternal?language=objc)
     #[doc(alias = "NFCTypeNameFormatNFCExternal")]
     pub const NFCExternal: Self = Self(0x04);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/unknown?language=objc)
     #[doc(alias = "NFCTypeNameFormatUnknown")]
     pub const Unknown: Self = Self(0x05);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/unchanged?language=objc)
     #[doc(alias = "NFCTypeNameFormatUnchanged")]
     pub const Unchanged: Self = Self(0x06);
 }
@@ -3153,12 +3239,16 @@ impl NFCNDEFMessage {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCVASMode(pub NSInteger);
 impl NFCVASMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration/mode-swift.enum/urlonly?language=objc)
     #[doc(alias = "NFCVASModeURLOnly")]
     pub const URLOnly: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration/mode-swift.enum/normal?language=objc)
     #[doc(alias = "NFCVASModeNormal")]
     pub const Normal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration/mode-swift.enum/vasmodeurlonly?language=objc)
     #[deprecated]
     pub const VASModeURLOnly: Self = Self(NFCVASMode::URLOnly.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration/mode-swift.enum/vasmodenormal?language=objc)
     #[deprecated]
     pub const VASModeNormal: Self = Self(NFCVASMode::Normal.0);
 }
@@ -3271,36 +3361,52 @@ impl NFCVASCommandConfiguration {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCVASErrorCode(pub NSInteger);
 impl NFCVASErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/success?language=objc)
     #[doc(alias = "NFCVASErrorCodeSuccess")]
     pub const Success: Self = Self(0x9000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/datanotfound?language=objc)
     #[doc(alias = "NFCVASErrorCodeDataNotFound")]
     pub const DataNotFound: Self = Self(0x6A83);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/datanotactivated?language=objc)
     #[doc(alias = "NFCVASErrorCodeDataNotActivated")]
     pub const DataNotActivated: Self = Self(0x6287);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/wrongparameters?language=objc)
     #[doc(alias = "NFCVASErrorCodeWrongParameters")]
     pub const WrongParameters: Self = Self(0x6B00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/wronglcfield?language=objc)
     #[doc(alias = "NFCVASErrorCodeWrongLCField")]
     pub const WrongLCField: Self = Self(0x6700);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/userintervention?language=objc)
     #[doc(alias = "NFCVASErrorCodeUserIntervention")]
     pub const UserIntervention: Self = Self(0x6984);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/incorrectdata?language=objc)
     #[doc(alias = "NFCVASErrorCodeIncorrectData")]
     pub const IncorrectData: Self = Self(0x6A80);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/unsupportedapplicationversion?language=objc)
     #[doc(alias = "NFCVASErrorCodeUnsupportedApplicationVersion")]
     pub const UnsupportedApplicationVersion: Self = Self(0x6340);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodesuccess?language=objc)
     #[deprecated]
     pub const VASErrorCodeSuccess: Self = Self(NFCVASErrorCode::Success.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodedatanotfound?language=objc)
     #[deprecated]
     pub const VASErrorCodeDataNotFound: Self = Self(NFCVASErrorCode::DataNotFound.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodedatanotactivated?language=objc)
     #[deprecated]
     pub const VASErrorCodeDataNotActivated: Self = Self(NFCVASErrorCode::DataNotActivated.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodewrongparameters?language=objc)
     #[deprecated]
     pub const VASErrorCodeWrongParameters: Self = Self(NFCVASErrorCode::WrongParameters.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodewronglcfield?language=objc)
     #[deprecated]
     pub const VASErrorCodeWrongLCField: Self = Self(NFCVASErrorCode::WrongLCField.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodeuserintervention?language=objc)
     #[deprecated]
     pub const VASErrorCodeUserIntervention: Self = Self(NFCVASErrorCode::UserIntervention.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodeincorrectdata?language=objc)
     #[deprecated]
     pub const VASErrorCodeIncorrectData: Self = Self(NFCVASErrorCode::IncorrectData.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodeunsupportedapplicationversion?language=objc)
     #[deprecated]
     pub const VASErrorCodeUnsupportedApplicationVersion: Self =
         Self(NFCVASErrorCode::UnsupportedApplicationVersion.0);

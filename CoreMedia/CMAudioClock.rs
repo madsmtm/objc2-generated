@@ -23,6 +23,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `clock_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioclockcreate(allocator:clockout:)?language=objc)
     #[cfg(feature = "CMSync")]
     pub fn CMAudioClockCreate(
         allocator: Option<&CFAllocator>,

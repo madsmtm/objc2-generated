@@ -82,6 +82,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFHTTPMessage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagegettypeid()?language=objc)
     #[doc(alias = "CFHTTPMessageGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -93,6 +94,7 @@ unsafe impl ConcreteType for CFHTTPMessage {
 }
 
 impl CFHTTPMessage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecreaterequest(_:_:_:_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCreateRequest")]
     #[inline]
     pub unsafe fn new_request(
@@ -115,6 +117,7 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecreateresponse(_:_:_:_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCreateResponse")]
     #[inline]
     pub unsafe fn new_response(
@@ -139,6 +142,7 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecreateempty(_:_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCreateEmpty")]
     #[inline]
     pub unsafe fn new_empty(
@@ -157,6 +161,7 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -175,6 +180,7 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageisrequest(_:)?language=objc)
     #[doc(alias = "CFHTTPMessageIsRequest")]
     #[inline]
     pub unsafe fn is_request(&self) -> bool {
@@ -185,6 +191,7 @@ impl CFHTTPMessage {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyversion(_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCopyVersion")]
     #[inline]
     pub unsafe fn version(&self) -> CFRetained<CFString> {
@@ -197,6 +204,7 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopybody(_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCopyBody")]
     #[inline]
     pub unsafe fn body(&self) -> Option<CFRetained<CFData>> {
@@ -207,6 +215,7 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagesetbody(_:_:)?language=objc)
     #[doc(alias = "CFHTTPMessageSetBody")]
     #[inline]
     pub unsafe fn set_body(&self, body_data: &CFData) {
@@ -216,6 +225,7 @@ impl CFHTTPMessage {
         unsafe { CFHTTPMessageSetBody(self, body_data) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyheaderfieldvalue(_:_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCopyHeaderFieldValue")]
     #[inline]
     pub unsafe fn header_field_value(
@@ -232,6 +242,7 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyallheaderfields(_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCopyAllHeaderFields")]
     #[inline]
     pub unsafe fn all_header_fields(&self) -> Option<CFRetained<CFDictionary>> {
@@ -244,6 +255,7 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagesetheaderfieldvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFHTTPMessageSetHeaderFieldValue")]
     #[inline]
     pub unsafe fn set_header_field_value(&self, header_field: &CFString, value: Option<&CFString>) {
@@ -257,6 +269,8 @@ impl CFHTTPMessage {
         unsafe { CFHTTPMessageSetHeaderFieldValue(self, header_field, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageappendbytes(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `new_bytes` must be a valid pointer.
@@ -274,6 +288,7 @@ impl CFHTTPMessage {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageisheadercomplete(_:)?language=objc)
     #[doc(alias = "CFHTTPMessageIsHeaderComplete")]
     #[inline]
     pub unsafe fn is_header_complete(&self) -> bool {
@@ -284,6 +299,7 @@ impl CFHTTPMessage {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyserializedmessage(_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCopySerializedMessage")]
     #[inline]
     pub unsafe fn serialized_message(&self) -> Option<CFRetained<CFData>> {
@@ -297,6 +313,8 @@ impl CFHTTPMessage {
     }
 
     /// ******************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyrequesturl(_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCopyRequestURL")]
     #[inline]
     pub unsafe fn request_url(&self) -> Option<CFRetained<CFURL>> {
@@ -307,6 +325,7 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyrequestmethod(_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCopyRequestMethod")]
     #[inline]
     pub unsafe fn request_method(&self) -> Option<CFRetained<CFString>> {
@@ -318,6 +337,7 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageaddauthentication(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFHTTPMessageAddAuthentication")]
     #[inline]
     pub unsafe fn add_authentication(
@@ -352,6 +372,8 @@ impl CFHTTPMessage {
     }
 
     /// *******************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagegetresponsestatuscode(_:)?language=objc)
     #[doc(alias = "CFHTTPMessageGetResponseStatusCode")]
     #[inline]
     pub unsafe fn response_status_code(&self) -> CFIndex {
@@ -361,6 +383,7 @@ impl CFHTTPMessage {
         unsafe { CFHTTPMessageGetResponseStatusCode(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyresponsestatusline(_:)?language=objc)
     #[doc(alias = "CFHTTPMessageCopyResponseStatusLine")]
     #[inline]
     pub unsafe fn response_status_line(&self) -> Option<CFRetained<CFString>> {

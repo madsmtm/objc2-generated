@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDynamicItemCollisionBoundsType(pub NSUInteger);
 impl UIDynamicItemCollisionBoundsType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitemcollisionboundstype/rectangle?language=objc)
     #[doc(alias = "UIDynamicItemCollisionBoundsTypeRectangle")]
     pub const Rectangle: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitemcollisionboundstype/ellipse?language=objc)
     #[doc(alias = "UIDynamicItemCollisionBoundsTypeEllipse")]
     pub const Ellipse: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitemcollisionboundstype/path?language=objc)
     #[doc(alias = "UIDynamicItemCollisionBoundsTypePath")]
     pub const Path: Self = Self(2);
 }

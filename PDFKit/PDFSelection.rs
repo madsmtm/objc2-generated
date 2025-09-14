@@ -16,10 +16,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFSelectionGranularity(pub NSUInteger);
 impl PDFSelectionGranularity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfselectiongranularity/character?language=objc)
     #[doc(alias = "PDFSelectionGranularityCharacter")]
     pub const Character: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfselectiongranularity/word?language=objc)
     #[doc(alias = "PDFSelectionGranularityWord")]
     pub const Word: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfselectiongranularity/line?language=objc)
     #[doc(alias = "PDFSelectionGranularityLine")]
     pub const Line: Self = Self(2);
 }

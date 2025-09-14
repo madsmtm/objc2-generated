@@ -18,8 +18,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGuidedAccessErrorCode(pub NSInteger);
 impl UIGuidedAccessErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccesserror/code/permissiondenied?language=objc)
     #[doc(alias = "UIGuidedAccessErrorPermissionDenied")]
     pub const PermissionDenied: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccesserror/code/failed?language=objc)
     #[doc(alias = "UIGuidedAccessErrorFailed")]
     pub const Failed: Self = Self(NSIntegerMax as _);
 }
@@ -38,8 +40,10 @@ unsafe impl RefEncode for UIGuidedAccessErrorCode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGuidedAccessRestrictionState(pub NSInteger);
 impl UIGuidedAccessRestrictionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate/allow?language=objc)
     #[doc(alias = "UIGuidedAccessRestrictionStateAllow")]
     pub const Allow: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate/deny?language=objc)
     #[doc(alias = "UIGuidedAccessRestrictionStateDeny")]
     pub const Deny: Self = Self(1);
 }
@@ -87,6 +91,7 @@ extern_protocol!(
 );
 
 impl UIGuidedAccessRestrictionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate(foridentifier:)?language=objc)
     #[doc(alias = "UIGuidedAccessRestrictionStateForIdentifier")]
     #[inline]
     pub fn for_identifier(restriction_identifier: &NSString) -> UIGuidedAccessRestrictionState {
@@ -106,14 +111,19 @@ impl UIGuidedAccessRestrictionState {
 pub struct UIGuidedAccessAccessibilityFeature(pub NSUInteger);
 bitflags::bitflags! {
     impl UIGuidedAccessAccessibilityFeature: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature/voiceover?language=objc)
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureVoiceOver")]
         const VoiceOver = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature/zoom?language=objc)
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureZoom")]
         const Zoom = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature/assistivetouch?language=objc)
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureAssistiveTouch")]
         const AssistiveTouch = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature/invertcolors?language=objc)
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureInvertColors")]
         const InvertColors = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature/grayscaledisplay?language=objc)
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureGrayscaleDisplay")]
         const GrayscaleDisplay = 1<<4;
     }
@@ -127,6 +137,7 @@ unsafe impl RefEncode for UIGuidedAccessAccessibilityFeature {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/configureforguidedaccess(features:enabled:completionhandler:)?language=objc)
 #[cfg(feature = "block2")]
 #[inline]
 pub extern "C-unwind" fn UIGuidedAccessConfigureAccessibilityFeatures(

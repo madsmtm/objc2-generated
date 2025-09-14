@@ -13,10 +13,13 @@ use crate::*;
 pub struct CFPropertyListMutabilityOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFPropertyListMutabilityOptions: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistmutabilityoptions/kcfpropertylistimmutable?language=objc)
         #[doc(alias = "kCFPropertyListImmutable")]
         const Immutable = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistmutabilityoptions/mutablecontainers?language=objc)
         #[doc(alias = "kCFPropertyListMutableContainers")]
         const MutableContainers = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistmutabilityoptions/mutablecontainersandleaves?language=objc)
         #[doc(alias = "kCFPropertyListMutableContainersAndLeaves")]
         const MutableContainersAndLeaves = 1<<1;
     }
@@ -32,6 +35,8 @@ unsafe impl RefEncode for CFPropertyListMutabilityOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatefromxmldata(_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -60,6 +65,8 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatexmldata(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -82,6 +89,8 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatedeepcopy(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -110,10 +119,13 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateDeepCopy(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFPropertyListFormat(pub CFIndex);
 impl CFPropertyListFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat/openstepformat?language=objc)
     #[doc(alias = "kCFPropertyListOpenStepFormat")]
     pub const OpenStepFormat: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat/xmlformat_v1_0?language=objc)
     #[doc(alias = "kCFPropertyListXMLFormat_v1_0")]
     pub const XMLFormat_v1_0: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat/binaryformat_v1_0?language=objc)
     #[doc(alias = "kCFPropertyListBinaryFormat_v1_0")]
     pub const BinaryFormat_v1_0: Self = Self(200);
 }
@@ -128,6 +140,8 @@ unsafe impl RefEncode for CFPropertyListFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistisvalid(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// `plist` should be of the correct type.
@@ -144,6 +158,8 @@ pub unsafe extern "C-unwind" fn CFPropertyListIsValid(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistwritetostream(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `property_list` should be of the correct type.
@@ -159,6 +175,8 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatefromstream(_:_:_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -208,6 +226,8 @@ pub const kCFPropertyListReadStreamError: CFIndex = 3842;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistwritestreamerror?language=objc)
 pub const kCFPropertyListWriteStreamError: CFIndex = 3851;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatewithdata(_:_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -236,6 +256,8 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatewithstream(_:_:_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -269,6 +291,8 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistwrite(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `property_list` should be of the correct type.
@@ -284,6 +308,8 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatedata(_:_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.

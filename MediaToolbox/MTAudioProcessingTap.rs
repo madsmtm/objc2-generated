@@ -31,6 +31,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for MTAudioProcessingTap {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapgettypeid()?language=objc)
     #[doc(alias = "MTAudioProcessingTapGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -360,6 +361,8 @@ impl MTAudioProcessingTap {
     ///
     /// - `callbacks` must be a valid pointer.
     /// - `tap_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "MTAudioProcessingTapCreate")]
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
     #[inline]
@@ -387,6 +390,8 @@ impl MTAudioProcessingTap {
     ///
     ///
     /// Returns: The tapStorage returned by the init callback.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapgetstorage(_:)?language=objc)
     #[doc(alias = "MTAudioProcessingTapGetStorage")]
     #[inline]
     pub unsafe fn storage(&self) -> NonNull<c_void> {
@@ -432,6 +437,8 @@ impl MTAudioProcessingTap {
     /// - `flags_out` must be a valid pointer or null.
     /// - `time_range_out` must be a valid pointer or null.
     /// - `number_frames_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapgetsourceaudio(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "MTAudioProcessingTapGetSourceAudio")]
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
     #[inline]

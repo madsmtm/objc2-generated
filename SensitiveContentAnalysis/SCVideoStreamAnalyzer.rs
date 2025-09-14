@@ -26,11 +26,15 @@ impl SCVideoStreamAnalyzerStreamDirection {
     /// An option that refers to a video stream sent to another device.
     ///
     /// This option refers to the stream that originates from the device's camera.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/streamdirection/outgoing?language=objc)
     #[doc(alias = "SCVideoStreamAnalyzerStreamDirectionOutgoing")]
     pub const Outgoing: Self = Self(1);
     /// An option that indicates a video stream from another device.
     ///
     /// This option refers to a video stream that the device receives over the network from another device's camera.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/streamdirection/incoming?language=objc)
     #[doc(alias = "SCVideoStreamAnalyzerStreamDirectionIncoming")]
     pub const Incoming: Self = Self(2);
 }

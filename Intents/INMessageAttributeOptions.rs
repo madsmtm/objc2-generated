@@ -11,14 +11,19 @@ use crate::*;
 pub struct INMessageAttributeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INMessageAttributeOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions/read?language=objc)
         #[doc(alias = "INMessageAttributeOptionRead")]
         const Read = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions/unread?language=objc)
         #[doc(alias = "INMessageAttributeOptionUnread")]
         const Unread = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions/flagged?language=objc)
         #[doc(alias = "INMessageAttributeOptionFlagged")]
         const Flagged = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions/unflagged?language=objc)
         #[doc(alias = "INMessageAttributeOptionUnflagged")]
         const Unflagged = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions/played?language=objc)
         #[doc(alias = "INMessageAttributeOptionPlayed")]
         const Played = 1<<4;
     }

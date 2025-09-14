@@ -15,9 +15,13 @@ use crate::*;
 pub struct TVTopShelfCarouselContentStyle(pub NSInteger);
 impl TVTopShelfCarouselContentStyle {
     /// Carousel content that shows action buttons.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontent/style-swift.enum/actions?language=objc)
     #[doc(alias = "TVTopShelfCarouselContentStyleActions")]
     pub const Actions: Self = Self(0);
     /// Carousel content that shows action buttons and details about the item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontent/style-swift.enum/details?language=objc)
     #[doc(alias = "TVTopShelfCarouselContentStyleDetails")]
     pub const Details: Self = Self(1);
 }

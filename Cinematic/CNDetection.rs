@@ -34,28 +34,40 @@ pub type CNDetectionGroupID = i64;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNDetectionType(pub NSInteger);
 impl CNDetectionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/unknown?language=objc)
     #[doc(alias = "CNDetectionTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/humanface?language=objc)
     #[doc(alias = "CNDetectionTypeHumanFace")]
     pub const HumanFace: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/humanhead?language=objc)
     #[doc(alias = "CNDetectionTypeHumanHead")]
     pub const HumanHead: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/humantorso?language=objc)
     #[doc(alias = "CNDetectionTypeHumanTorso")]
     pub const HumanTorso: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/catbody?language=objc)
     #[doc(alias = "CNDetectionTypeCatBody")]
     pub const CatBody: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/dogbody?language=objc)
     #[doc(alias = "CNDetectionTypeDogBody")]
     pub const DogBody: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/cathead?language=objc)
     #[doc(alias = "CNDetectionTypeCatHead")]
     pub const CatHead: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/doghead?language=objc)
     #[doc(alias = "CNDetectionTypeDogHead")]
     pub const DogHead: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/sportsball?language=objc)
     #[doc(alias = "CNDetectionTypeSportsBall")]
     pub const SportsBall: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/autofocus?language=objc)
     #[doc(alias = "CNDetectionTypeAutoFocus")]
     pub const AutoFocus: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/fixedfocus?language=objc)
     #[doc(alias = "CNDetectionTypeFixedFocus")]
     pub const FixedFocus: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/custom?language=objc)
     #[doc(alias = "CNDetectionTypeCustom")]
     pub const Custom: Self = Self(102);
 }

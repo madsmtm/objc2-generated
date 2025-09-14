@@ -70,6 +70,7 @@ pub type HIShapeEnumerateProcPtr = Option<
 >;
 
 unsafe impl ConcreteType for HIShape {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463371-hishapegettypeid?language=objc)
     #[doc(alias = "HIShapeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -81,6 +82,7 @@ unsafe impl ConcreteType for HIShape {
 }
 
 impl HIShape {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462651-hishapecreateempty?language=objc)
     #[doc(alias = "HIShapeCreateEmpty")]
     #[inline]
     pub unsafe fn new_empty() -> Option<CFRetained<HIShape>> {
@@ -91,6 +93,8 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460650-hishapecreatewithrect?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_rect` must be a valid pointer.
@@ -104,6 +108,7 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463131-hishapecreatecopy?language=objc)
     #[doc(alias = "HIShapeCreateCopy")]
     #[inline]
     pub unsafe fn copy(&self) -> Option<CFRetained<HIShape>> {
@@ -114,6 +119,8 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464400-hishapecreateintersection?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_shape2` might not allow `None`.
@@ -130,6 +137,8 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460901-hishapecreatedifference?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_shape2` might not allow `None`.
@@ -149,6 +158,8 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460112-hishapecreateunion?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_shape2` might not allow `None`.
@@ -165,6 +176,8 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459148-hishapecreatexor?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_shape2` might not allow `None`.
@@ -181,6 +194,7 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461878-hishapeisempty?language=objc)
     #[doc(alias = "HIShapeIsEmpty")]
     #[inline]
     pub unsafe fn is_empty(&self) -> bool {
@@ -191,6 +205,7 @@ impl HIShape {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461292-hishapeisrectangular?language=objc)
     #[doc(alias = "HIShapeIsRectangular")]
     #[inline]
     pub unsafe fn is_rectangular(&self) -> bool {
@@ -201,6 +216,8 @@ impl HIShape {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464704-hishapecontainspoint?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_point` must be a valid pointer.
@@ -214,6 +231,8 @@ impl HIShape {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459614-hishapeintersectsrect?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_rect` must be a valid pointer.
@@ -227,6 +246,8 @@ impl HIShape {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460255-hishapegetbounds?language=objc)
+    ///
     /// # Safety
     ///
     /// `out_rect` must be a valid pointer.
@@ -239,6 +260,8 @@ impl HIShape {
         unsafe { HIShapeGetBounds(self, out_rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460747-hishapereplacepathincgcontext?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_context` might not allow `None`.
@@ -255,6 +278,8 @@ impl HIShape {
         unsafe { HIShapeReplacePathInCGContext(self, in_context) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459161-hishapeenumerate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_proc` must be implemented correctly.
@@ -280,6 +305,7 @@ impl HIShape {
 }
 
 impl HIMutableShape {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459565-hishapecreatemutable?language=objc)
     #[doc(alias = "HIShapeCreateMutable")]
     #[inline]
     pub unsafe fn new() -> Option<CFRetained<HIMutableShape>> {
@@ -290,6 +316,7 @@ impl HIMutableShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463298-hishapecreatemutablecopy?language=objc)
     #[doc(alias = "HIShapeCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(in_orig: &HIShape) -> Option<CFRetained<HIMutableShape>> {
@@ -300,6 +327,8 @@ impl HIMutableShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459532-hishapecreatemutablewithrect?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_rect` must be a valid pointer.
@@ -315,6 +344,8 @@ impl HIMutableShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461259-hishapesetempty?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_shape` might not allow `None`.
@@ -327,6 +358,8 @@ impl HIMutableShape {
         unsafe { HIShapeSetEmpty(in_shape) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462473-hishapesetwithshape?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_dest_shape` might not allow `None`.
@@ -348,6 +381,8 @@ impl HIMutableShape {
 }
 
 impl HIShape {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462645-hishapeintersect?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_shape2` might not allow `None`.
@@ -369,6 +404,8 @@ impl HIShape {
         unsafe { HIShapeIntersect(self, in_shape2, out_result) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458876-hishapedifference?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_shape2` might not allow `None`.
@@ -390,6 +427,8 @@ impl HIShape {
         unsafe { HIShapeDifference(self, in_shape2, out_result) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459542-hishapeunion?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_shape2` might not allow `None`.
@@ -411,6 +450,8 @@ impl HIShape {
         unsafe { HIShapeUnion(self, in_shape2, out_result) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461294-hishapexor?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_shape2` might not allow `None`.
@@ -434,6 +475,8 @@ impl HIShape {
 }
 
 impl HIMutableShape {
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461775-hishapeoffset?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_shape` might not allow `None`.
@@ -454,6 +497,8 @@ impl HIMutableShape {
         unsafe { HIShapeOffset(in_shape, in_dx, in_dy) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463337-hishapeinset?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_shape` might not allow `None`.
@@ -474,6 +519,8 @@ impl HIMutableShape {
         unsafe { HIShapeInset(in_shape, in_dx, in_dy) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462757-hishapeunionwithrect?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_shape` might not allow `None`.

@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKSendDataMode(pub c_int);
 impl GKSendDataMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksenddatamode/reliable?language=objc)
     #[doc(alias = "GKSendDataReliable")]
     #[deprecated = "No longer supported"]
     pub const Reliable: Self = Self(0);
     /// a.s.a.p. but requires fragmentation and reassembly for large messages, may stall if network congestion occurs
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksenddatamode/unreliable?language=objc)
     #[doc(alias = "GKSendDataUnreliable")]
     #[deprecated = "No longer supported"]
     pub const Unreliable: Self = Self(1);
@@ -39,14 +42,19 @@ unsafe impl RefEncode for GKSendDataMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKSessionMode(pub c_int);
 impl GKSessionMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionmode/server?language=objc)
     #[doc(alias = "GKSessionModeServer")]
     #[deprecated = "No longer supported"]
     pub const Server: Self = Self(0);
     /// delegate will get -didReceiveConnectionRequestFromPeer callback when a client wants to connect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionmode/client?language=objc)
     #[doc(alias = "GKSessionModeClient")]
     #[deprecated = "No longer supported"]
     pub const Client: Self = Self(1);
     /// delegate will get -session:peer:didChangeState: callback with GKPeerStateAvailable, or GKPeerStateUnavailable for discovered servers
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionmode/peer?language=objc)
     #[doc(alias = "GKSessionModePeer")]
     #[deprecated = "No longer supported"]
     pub const Peer: Self = Self(2);
@@ -69,26 +77,37 @@ unsafe impl RefEncode for GKSessionMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKPeerConnectionState(pub c_int);
 impl GKPeerConnectionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkpeerconnectionstate/stateavailable?language=objc)
     #[doc(alias = "GKPeerStateAvailable")]
     #[deprecated = "No longer supported"]
     pub const StateAvailable: Self = Self(0);
     /// not connected to session, but available for connectToPeer:withTimeout:
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkpeerconnectionstate/stateunavailable?language=objc)
     #[doc(alias = "GKPeerStateUnavailable")]
     #[deprecated = "No longer supported"]
     pub const StateUnavailable: Self = Self(1);
     /// no longer available
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkpeerconnectionstate/stateconnected?language=objc)
     #[doc(alias = "GKPeerStateConnected")]
     #[deprecated = "No longer supported"]
     pub const StateConnected: Self = Self(2);
     /// connected to the session
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkpeerconnectionstate/statedisconnected?language=objc)
     #[doc(alias = "GKPeerStateDisconnected")]
     #[deprecated = "No longer supported"]
     pub const StateDisconnected: Self = Self(3);
     /// disconnected from the session
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkpeerconnectionstate/stateconnecting?language=objc)
     #[doc(alias = "GKPeerStateConnecting")]
     #[deprecated = "No longer supported"]
     pub const StateConnecting: Self = Self(4);
     /// waiting for accept, or deny response
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkpeerconnectionstate/stateconnectedrelay?language=objc)
     #[doc(alias = "GKPeerStateConnectedRelay")]
     #[deprecated = "No longer supported"]
     pub const StateConnectedRelay: Self = Self(5);
@@ -115,54 +134,71 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKVoiceChatServiceError(pub c_int);
 impl GKVoiceChatServiceError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/internalerror?language=objc)
     #[doc(alias = "GKVoiceChatServiceInternalError")]
     #[deprecated = "No longer supported"]
     pub const InternalError: Self = Self(32000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/noremotepacketserror?language=objc)
     #[doc(alias = "GKVoiceChatServiceNoRemotePacketsError")]
     #[deprecated = "No longer supported"]
     pub const NoRemotePacketsError: Self = Self(32001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/unabletoconnecterror?language=objc)
     #[doc(alias = "GKVoiceChatServiceUnableToConnectError")]
     #[deprecated = "No longer supported"]
     pub const UnableToConnectError: Self = Self(32002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/remoteparticipanthanguperror?language=objc)
     #[doc(alias = "GKVoiceChatServiceRemoteParticipantHangupError")]
     #[deprecated = "No longer supported"]
     pub const RemoteParticipantHangupError: Self = Self(32003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/invalidcalliderror?language=objc)
     #[doc(alias = "GKVoiceChatServiceInvalidCallIDError")]
     #[deprecated = "No longer supported"]
     pub const InvalidCallIDError: Self = Self(32004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/audiounavailableerror?language=objc)
     #[doc(alias = "GKVoiceChatServiceAudioUnavailableError")]
     #[deprecated = "No longer supported"]
     pub const AudioUnavailableError: Self = Self(32005);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/uninitializedclienterror?language=objc)
     #[doc(alias = "GKVoiceChatServiceUninitializedClientError")]
     #[deprecated = "No longer supported"]
     pub const UninitializedClientError: Self = Self(32006);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/clientmissingrequiredmethodserror?language=objc)
     #[doc(alias = "GKVoiceChatServiceClientMissingRequiredMethodsError")]
     #[deprecated = "No longer supported"]
     pub const ClientMissingRequiredMethodsError: Self = Self(32007);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/remoteparticipantbusyerror?language=objc)
     #[doc(alias = "GKVoiceChatServiceRemoteParticipantBusyError")]
     #[deprecated = "No longer supported"]
     pub const RemoteParticipantBusyError: Self = Self(32008);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/remoteparticipantcancellederror?language=objc)
     #[doc(alias = "GKVoiceChatServiceRemoteParticipantCancelledError")]
     #[deprecated = "No longer supported"]
     pub const RemoteParticipantCancelledError: Self = Self(32009);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/remoteparticipantresponseinvaliderror?language=objc)
     #[doc(alias = "GKVoiceChatServiceRemoteParticipantResponseInvalidError")]
     #[deprecated = "No longer supported"]
     pub const RemoteParticipantResponseInvalidError: Self = Self(32010);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/remoteparticipantdeclinedinviteerror?language=objc)
     #[doc(alias = "GKVoiceChatServiceRemoteParticipantDeclinedInviteError")]
     #[deprecated = "No longer supported"]
     pub const RemoteParticipantDeclinedInviteError: Self = Self(32011);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/methodcurrentlyinvaliderror?language=objc)
     #[doc(alias = "GKVoiceChatServiceMethodCurrentlyInvalidError")]
     #[deprecated = "No longer supported"]
     pub const MethodCurrentlyInvalidError: Self = Self(32012);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/networkconfigurationerror?language=objc)
     #[doc(alias = "GKVoiceChatServiceNetworkConfigurationError")]
     #[deprecated = "No longer supported"]
     pub const NetworkConfigurationError: Self = Self(32013);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/unsupportedremoteversionerror?language=objc)
     #[doc(alias = "GKVoiceChatServiceUnsupportedRemoteVersionError")]
     #[deprecated = "No longer supported"]
     pub const UnsupportedRemoteVersionError: Self = Self(32014);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/outofmemoryerror?language=objc)
     #[doc(alias = "GKVoiceChatServiceOutOfMemoryError")]
     #[deprecated = "No longer supported"]
     pub const OutOfMemoryError: Self = Self(32015);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code/invalidparametererror?language=objc)
     #[doc(alias = "GKVoiceChatServiceInvalidParameterError")]
     #[deprecated = "No longer supported"]
     pub const InvalidParameterError: Self = Self(32016);

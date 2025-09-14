@@ -72,16 +72,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCorrectionResponse(pub NSInteger);
 impl NSCorrectionResponse {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/none?language=objc)
     #[doc(alias = "NSCorrectionResponseNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/accepted?language=objc)
     #[doc(alias = "NSCorrectionResponseAccepted")]
     pub const Accepted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/rejected?language=objc)
     #[doc(alias = "NSCorrectionResponseRejected")]
     pub const Rejected: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/ignored?language=objc)
     #[doc(alias = "NSCorrectionResponseIgnored")]
     pub const Ignored: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/edited?language=objc)
     #[doc(alias = "NSCorrectionResponseEdited")]
     pub const Edited: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/reverted?language=objc)
     #[doc(alias = "NSCorrectionResponseReverted")]
     pub const Reverted: Self = Self(5);
 }
@@ -100,10 +106,13 @@ unsafe impl RefEncode for NSCorrectionResponse {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCorrectionIndicatorType(pub NSInteger);
 impl NSCorrectionIndicatorType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionindicatortype/default?language=objc)
     #[doc(alias = "NSCorrectionIndicatorTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionindicatortype/reversion?language=objc)
     #[doc(alias = "NSCorrectionIndicatorTypeReversion")]
     pub const Reversion: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionindicatortype/guesses?language=objc)
     #[doc(alias = "NSCorrectionIndicatorTypeGuesses")]
     pub const Guesses: Self = Self(2);
 }

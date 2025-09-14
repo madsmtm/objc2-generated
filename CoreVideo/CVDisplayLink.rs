@@ -57,6 +57,7 @@ pub type CVDisplayLinkOutputHandler = *mut block2::DynBlock<
 >;
 
 unsafe impl ConcreteType for CVDisplayLink {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgettypeid()?language=objc)
     #[doc(alias = "CVDisplayLinkGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -84,6 +85,8 @@ impl CVDisplayLink {
     ///
     /// - `display_array` must be a valid pointer.
     /// - `display_link_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkcreatewithcgdisplays(_:_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkCreateWithCGDisplays")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -116,6 +119,8 @@ impl CVDisplayLink {
     /// # Safety
     ///
     /// `display_link_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkcreatewithopengldisplaymask(_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkCreateWithOpenGLDisplayMask")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -146,6 +151,8 @@ impl CVDisplayLink {
     /// # Safety
     ///
     /// `display_link_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkcreatewithcgdisplay(_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkCreateWithCGDisplay")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -172,6 +179,8 @@ impl CVDisplayLink {
     /// # Safety
     ///
     /// `display_link_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkcreatewithactivecgdisplays(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkCreateWithActiveCGDisplays")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -197,6 +206,8 @@ impl CVDisplayLink {
     /// Parameter `displayID`: target CGDirectDisplayID
     ///
     /// Returns: CVReturn. kCVReturnSuccess if successfull.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinksetcurrentcgdisplay(_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkSetCurrentCGDisplay")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -225,6 +236,8 @@ impl CVDisplayLink {
     ///
     /// - `cgl_context` must be a valid pointer.
     /// - `cgl_pixel_format` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinksetcurrentcgdisplayfromopenglcontext(_:_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
     #[cfg(target_os = "macos")]
@@ -254,6 +267,8 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: target CVDisplayLinkRef
     ///
     /// Returns: CGDirectDisplayID
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetcurrentcgdisplay(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkGetCurrentCGDisplay")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -281,6 +296,8 @@ impl CVDisplayLink {
     ///
     /// - `callback` must be implemented correctly.
     /// - `user_info` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinksetoutputcallback(_:_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkSetOutputCallback")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -313,6 +330,8 @@ impl CVDisplayLink {
     /// # Safety
     ///
     /// `handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinksetoutputhandler(_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkSetOutputHandler")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn", feature = "block2"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -335,6 +354,8 @@ impl CVDisplayLink {
     ///
     /// Returns: CVReturn. kCVReturnSuccess if successfull.
     /// kCVReturnDisplayLinkCallbacksNotSet The DisplayLink cannot be started until the output callback is set.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkstart(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkStart")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -353,6 +374,8 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: target CVDisplayLinkRef
     ///
     /// Returns: CVReturn. kCVReturnSuccess if successfull.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkstop(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkStop")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -371,6 +394,8 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: The CVDisplayLink to get the refresh period from.
     ///
     /// Returns: A CVTime struct that holds the nominal refresh period.    This value may be indefinite.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetnominaloutputvideorefreshperiod(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkGetNominalOutputVideoRefreshPeriod")]
     #[cfg(feature = "CVBase")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -391,6 +416,8 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: The CVDisplayLink to get the latency period from.
     ///
     /// Returns: A CVTime struct that holds the latency.   This value may be indefinite.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetoutputvideolatency(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkGetOutputVideoLatency")]
     #[cfg(feature = "CVBase")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -409,6 +436,8 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: The CVDisplayLink to get the refresh period from.
     ///
     /// Returns: A double containing the actual refresh period.   This value may be zero if the device is not running, or is otherwise unavailable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetactualoutputvideorefreshperiod(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkGetActualOutputVideoRefreshPeriod")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
@@ -428,6 +457,8 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: The CVDisplayLink to get the running state from.
     ///
     /// Returns: A boolean describing the running state. It returns true if it is running and false if it is not running or the CVDisplayLink is invalid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkisrunning(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkIsRunning")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
@@ -452,6 +483,8 @@ impl CVDisplayLink {
     /// # Safety
     ///
     /// `out_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetcurrenttime(_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkGetCurrentTime")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -483,6 +516,8 @@ impl CVDisplayLink {
     ///
     /// - `in_time` must be a valid pointer.
     /// - `out_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinktranslatetime(_:_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkTranslateTime")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]

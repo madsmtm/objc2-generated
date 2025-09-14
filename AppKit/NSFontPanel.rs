@@ -14,26 +14,37 @@ use crate::*;
 pub struct NSFontPanelModeMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontPanelModeMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/face?language=objc)
         #[doc(alias = "NSFontPanelModeMaskFace")]
         const ModeMaskFace = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/size?language=objc)
         #[doc(alias = "NSFontPanelModeMaskSize")]
         const ModeMaskSize = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/collection?language=objc)
         #[doc(alias = "NSFontPanelModeMaskCollection")]
         const ModeMaskCollection = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/underlineeffect?language=objc)
         #[doc(alias = "NSFontPanelModeMaskUnderlineEffect")]
         const ModeMaskUnderlineEffect = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/strikethrougheffect?language=objc)
         #[doc(alias = "NSFontPanelModeMaskStrikethroughEffect")]
         const ModeMaskStrikethroughEffect = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/textcoloreffect?language=objc)
         #[doc(alias = "NSFontPanelModeMaskTextColorEffect")]
         const ModeMaskTextColorEffect = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/documentcoloreffect?language=objc)
         #[doc(alias = "NSFontPanelModeMaskDocumentColorEffect")]
         const ModeMaskDocumentColorEffect = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/shadoweffect?language=objc)
         #[doc(alias = "NSFontPanelModeMaskShadowEffect")]
         const ModeMaskShadowEffect = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/alleffects?language=objc)
         #[doc(alias = "NSFontPanelModeMaskAllEffects")]
         const ModeMaskAllEffects = 0xFFF00;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/standardmodes?language=objc)
         #[doc(alias = "NSFontPanelModesMaskStandardModes")]
         const ModesMaskStandardModes = 0xFFFF;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/allmodes?language=objc)
         #[doc(alias = "NSFontPanelModesMaskAllModes")]
         const ModesMaskAllModes = 0xFFFFFFFF;
     }

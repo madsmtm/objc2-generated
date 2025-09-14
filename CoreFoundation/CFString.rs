@@ -7,6 +7,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringencodinginvalidid?language=objc)
 pub const kCFStringEncodingInvalidId: c_uint = 0xffffffff;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringencoding?language=objc)
 pub type CFStringEncoding = u32;
@@ -17,32 +18,46 @@ pub type CFStringEncoding = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStringBuiltInEncodings(pub CFStringEncoding);
 impl CFStringBuiltInEncodings {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/macroman?language=objc)
     #[doc(alias = "kCFStringEncodingMacRoman")]
     pub const EncodingMacRoman: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/windowslatin1?language=objc)
     #[doc(alias = "kCFStringEncodingWindowsLatin1")]
     pub const EncodingWindowsLatin1: Self = Self(0x0500);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/isolatin1?language=objc)
     #[doc(alias = "kCFStringEncodingISOLatin1")]
     pub const EncodingISOLatin1: Self = Self(0x0201);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/nextsteplatin?language=objc)
     #[doc(alias = "kCFStringEncodingNextStepLatin")]
     pub const EncodingNextStepLatin: Self = Self(0x0B01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/ascii?language=objc)
     #[doc(alias = "kCFStringEncodingASCII")]
     pub const EncodingASCII: Self = Self(0x0600);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/unicode?language=objc)
     #[doc(alias = "kCFStringEncodingUnicode")]
     pub const EncodingUnicode: Self = Self(0x0100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf8?language=objc)
     #[doc(alias = "kCFStringEncodingUTF8")]
     pub const EncodingUTF8: Self = Self(0x08000100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/nonlossyascii?language=objc)
     #[doc(alias = "kCFStringEncodingNonLossyASCII")]
     pub const EncodingNonLossyASCII: Self = Self(0x0BFF);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf16?language=objc)
     #[doc(alias = "kCFStringEncodingUTF16")]
     pub const EncodingUTF16: Self = Self(0x0100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf16be?language=objc)
     #[doc(alias = "kCFStringEncodingUTF16BE")]
     pub const EncodingUTF16BE: Self = Self(0x10000100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf16le?language=objc)
     #[doc(alias = "kCFStringEncodingUTF16LE")]
     pub const EncodingUTF16LE: Self = Self(0x14000100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf32?language=objc)
     #[doc(alias = "kCFStringEncodingUTF32")]
     pub const EncodingUTF32: Self = Self(0x0c000100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf32be?language=objc)
     #[doc(alias = "kCFStringEncodingUTF32BE")]
     pub const EncodingUTF32BE: Self = Self(0x18000100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf32le?language=objc)
     #[doc(alias = "kCFStringEncodingUTF32LE")]
     pub const EncodingUTF32LE: Self = Self(0x1c000100);
 }
@@ -58,6 +73,7 @@ unsafe impl RefEncode for CFStringBuiltInEncodings {
 }
 
 unsafe impl ConcreteType for CFString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgettypeid()?language=objc)
     #[doc(alias = "CFStringGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -75,6 +91,8 @@ impl CFString {
     ///
     /// - `alloc` might not allow `None`.
     /// - `p_str` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithpascalstring(_:_:_:)?language=objc)
     #[doc(alias = "CFStringCreateWithPascalString")]
     #[inline]
     pub unsafe fn with_pascal_string(
@@ -93,6 +111,8 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithcstring(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -115,6 +135,8 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithbytes(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -149,6 +171,8 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithcharacters(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -171,6 +195,8 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithpascalstringnocopy(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -198,6 +224,8 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithcstringnocopy(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -225,6 +253,8 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithbytesnocopy(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -263,6 +293,8 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithcharactersnocopy(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -290,6 +322,8 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithsubstring(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -312,6 +346,7 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFStringCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -330,6 +365,7 @@ impl CFString {
 }
 
 impl CFMutableString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatemutable(_:_:)?language=objc)
     #[doc(alias = "CFStringCreateMutable")]
     #[inline]
     pub fn new(
@@ -346,6 +382,7 @@ impl CFMutableString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatemutablecopy(_:_:_:)?language=objc)
     #[doc(alias = "CFStringCreateMutableCopy")]
     #[inline]
     pub fn new_copy(
@@ -364,6 +401,8 @@ impl CFMutableString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatemutablewithexternalcharactersnocopy(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -402,6 +441,8 @@ impl CFMutableString {
 
 impl CFString {
     /// * Basic accessors for the contents **
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetlength(_:)?language=objc)
     #[doc(alias = "CFStringGetLength")]
     #[inline]
     pub fn length(&self) -> CFIndex {
@@ -411,6 +452,7 @@ impl CFString {
         unsafe { CFStringGetLength(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetcharacteratindex(_:_:)?language=objc)
     #[doc(alias = "CFStringGetCharacterAtIndex")]
     #[inline]
     pub unsafe fn character_at_index(&self, idx: CFIndex) -> UniChar {
@@ -420,6 +462,8 @@ impl CFString {
         unsafe { CFStringGetCharacterAtIndex(self, idx) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetcharacters(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
@@ -432,6 +476,8 @@ impl CFString {
         unsafe { CFStringGetCharacters(self, range, buffer) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetpascalstring(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
@@ -455,6 +501,8 @@ impl CFString {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetcstring(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
@@ -478,6 +526,7 @@ impl CFString {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetpascalstringptr(_:_:)?language=objc)
     #[doc(alias = "CFStringGetPascalStringPtr")]
     #[inline]
     pub fn pascal_string_ptr(&self, encoding: CFStringEncoding) -> ConstStringPtr {
@@ -490,6 +539,7 @@ impl CFString {
         unsafe { CFStringGetPascalStringPtr(self, encoding) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetcstringptr(_:_:)?language=objc)
     #[doc(alias = "CFStringGetCStringPtr")]
     #[inline]
     pub fn c_string_ptr(&self, encoding: CFStringEncoding) -> *const c_char {
@@ -502,6 +552,7 @@ impl CFString {
         unsafe { CFStringGetCStringPtr(self, encoding) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetcharactersptr(_:)?language=objc)
     #[doc(alias = "CFStringGetCharactersPtr")]
     #[inline]
     pub fn characters_ptr(&self) -> *const UniChar {
@@ -511,6 +562,8 @@ impl CFString {
         unsafe { CFStringGetCharactersPtr(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetbytes(_:_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `buffer` must be a valid pointer.
@@ -553,6 +606,7 @@ impl CFString {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatefromexternalrepresentation(_:_:_:)?language=objc)
     #[doc(alias = "CFStringCreateFromExternalRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -572,6 +626,7 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreateexternalrepresentation(_:_:_:_:)?language=objc)
     #[doc(alias = "CFStringCreateExternalRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -594,6 +649,7 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetsmallestencoding(_:)?language=objc)
     #[doc(alias = "CFStringGetSmallestEncoding")]
     #[inline]
     pub fn smallest_encoding(&self) -> CFStringEncoding {
@@ -603,6 +659,7 @@ impl CFString {
         unsafe { CFStringGetSmallestEncoding(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetfastestencoding(_:)?language=objc)
     #[doc(alias = "CFStringGetFastestEncoding")]
     #[inline]
     pub fn fastest_encoding(&self) -> CFStringEncoding {
@@ -612,6 +669,7 @@ impl CFString {
         unsafe { CFStringGetFastestEncoding(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetsystemencoding()?language=objc)
     #[doc(alias = "CFStringGetSystemEncoding")]
     #[inline]
     pub fn system_encoding() -> CFStringEncoding {
@@ -621,6 +679,7 @@ impl CFString {
         unsafe { CFStringGetSystemEncoding() }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetmaximumsizeforencoding(_:_:)?language=objc)
     #[doc(alias = "CFStringGetMaximumSizeForEncoding")]
     #[inline]
     pub fn maximum_size_for_encoding(length: CFIndex, encoding: CFStringEncoding) -> CFIndex {
@@ -638,6 +697,8 @@ impl CFString {
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetfilesystemrepresentation(_:_:_:)?language=objc)
     #[doc(alias = "CFStringGetFileSystemRepresentation")]
     #[inline]
     pub unsafe fn file_system_representation(
@@ -656,6 +717,7 @@ impl CFString {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetmaximumsizeoffilesystemrepresentation(_:)?language=objc)
     #[doc(alias = "CFStringGetMaximumSizeOfFileSystemRepresentation")]
     #[inline]
     pub fn maximum_size_of_file_system_representation(&self) -> CFIndex {
@@ -665,6 +727,8 @@ impl CFString {
         unsafe { CFStringGetMaximumSizeOfFileSystemRepresentation(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithfilesystemrepresentation(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -693,22 +757,31 @@ impl CFString {
 pub struct CFStringCompareFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFStringCompareFlags: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparecaseinsensitive?language=objc)
         #[doc(alias = "kCFCompareCaseInsensitive")]
         const CompareCaseInsensitive = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparebackwards?language=objc)
         #[doc(alias = "kCFCompareBackwards")]
         const CompareBackwards = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/compareanchored?language=objc)
         #[doc(alias = "kCFCompareAnchored")]
         const CompareAnchored = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparenonliteral?language=objc)
         #[doc(alias = "kCFCompareNonliteral")]
         const CompareNonliteral = 16;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparelocalized?language=objc)
         #[doc(alias = "kCFCompareLocalized")]
         const CompareLocalized = 32;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparenumerically?language=objc)
         #[doc(alias = "kCFCompareNumerically")]
         const CompareNumerically = 64;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparediacriticinsensitive?language=objc)
         #[doc(alias = "kCFCompareDiacriticInsensitive")]
         const CompareDiacriticInsensitive = 128;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparewidthinsensitive?language=objc)
         #[doc(alias = "kCFCompareWidthInsensitive")]
         const CompareWidthInsensitive = 256;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/compareforcedordering?language=objc)
         #[doc(alias = "kCFCompareForcedOrdering")]
         const CompareForcedOrdering = 512;
     }
@@ -725,6 +798,8 @@ unsafe impl RefEncode for CFStringCompareFlags {
 }
 
 impl CFString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcomparewithoptionsandlocale(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_string2` might not allow `None`.
@@ -759,6 +834,8 @@ impl CFString {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcomparewithoptions(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_string2` might not allow `None`.
@@ -781,6 +858,7 @@ impl CFString {
         unsafe { CFStringCompareWithOptions(self, the_string2, range_to_compare, compare_options) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompare(_:_:_:)?language=objc)
     #[doc(alias = "CFStringCompare")]
     #[inline]
     pub fn compare(
@@ -798,6 +876,8 @@ impl CFString {
         unsafe { CFStringCompare(self, the_string2, compare_options) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfindwithoptionsandlocale(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `string_to_find` might not allow `None`.
@@ -837,6 +917,8 @@ impl CFString {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfindwithoptions(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `string_to_find` might not allow `None`.
@@ -871,6 +953,8 @@ impl CFString {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatearraywithfindresults(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -907,6 +991,7 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfind(_:_:_:)?language=objc)
     #[doc(alias = "CFStringFind")]
     #[inline]
     pub fn find(
@@ -924,6 +1009,7 @@ impl CFString {
         unsafe { CFStringFind(self, string_to_find, compare_options) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringhasprefix(_:_:)?language=objc)
     #[doc(alias = "CFStringHasPrefix")]
     #[inline]
     pub fn has_prefix(&self, prefix: Option<&CFString>) -> bool {
@@ -934,6 +1020,7 @@ impl CFString {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringhassuffix(_:_:)?language=objc)
     #[doc(alias = "CFStringHasSuffix")]
     #[inline]
     pub fn has_suffix(&self, suffix: Option<&CFString>) -> bool {
@@ -957,6 +1044,8 @@ impl CFString {
     /// undefined.
     ///
     /// Returns: The range of the composed character sequence.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetrangeofcomposedcharactersatindex(_:_:)?language=objc)
     #[doc(alias = "CFStringGetRangeOfComposedCharactersAtIndex")]
     #[inline]
     pub unsafe fn range_of_composed_characters_at_index(&self, the_index: CFIndex) -> CFRange {
@@ -1006,6 +1095,8 @@ impl CFString {
     ///
     /// - `the_set` might not allow `None`.
     /// - `result` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfindcharacterfromset(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFStringFindCharacterFromSet")]
     #[cfg(feature = "CFCharacterSet")]
     #[inline]
@@ -1031,6 +1122,8 @@ impl CFString {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetlinebounds(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `line_begin_index` must be a valid pointer.
@@ -1065,6 +1158,8 @@ impl CFString {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetparagraphbounds(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `par_begin_index` must be a valid pointer.
@@ -1133,6 +1228,8 @@ impl CFString {
     ///
     /// - `locale` might not allow `None`.
     /// - `character` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgethyphenationlocationbeforeindex(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFStringGetHyphenationLocationBeforeIndex")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1166,6 +1263,7 @@ impl CFString {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringishyphenationavailableforlocale(_:)?language=objc)
     #[doc(alias = "CFStringIsHyphenationAvailableForLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1185,6 +1283,8 @@ impl CFString {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `separator_string` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatebycombiningstrings(_:_:_:)?language=objc)
     #[doc(alias = "CFStringCreateByCombiningStrings")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -1204,6 +1304,7 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatearraybyseparatingstrings(_:_:_:)?language=objc)
     #[doc(alias = "CFStringCreateArrayBySeparatingStrings")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -1225,6 +1326,8 @@ impl CFString {
     }
 
     /// * Parsing non-localized numbers from strings **
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetintvalue(_:)?language=objc)
     #[doc(alias = "CFStringGetIntValue")]
     #[inline]
     pub fn int_value(&self) -> i32 {
@@ -1234,6 +1337,7 @@ impl CFString {
         unsafe { CFStringGetIntValue(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetdoublevalue(_:)?language=objc)
     #[doc(alias = "CFStringGetDoubleValue")]
     #[inline]
     pub fn double_value(&self) -> c_double {
@@ -1246,6 +1350,8 @@ impl CFString {
 
 impl CFMutableString {
     /// * MutableString functions **
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringappend(_:_:)?language=objc)
     #[doc(alias = "CFStringAppend")]
     #[inline]
     pub fn append(the_string: Option<&CFMutableString>, appended_string: Option<&CFString>) {
@@ -1258,6 +1364,8 @@ impl CFMutableString {
         unsafe { CFStringAppend(the_string, appended_string) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringappendcharacters(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_string` might not allow `None`.
@@ -1279,6 +1387,8 @@ impl CFMutableString {
         unsafe { CFStringAppendCharacters(the_string, chars, num_chars) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringappendpascalstring(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_string` might not allow `None`.
@@ -1300,6 +1410,8 @@ impl CFMutableString {
         unsafe { CFStringAppendPascalString(the_string, p_str, encoding) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringappendcstring(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_string` might not allow `None`.
@@ -1321,6 +1433,8 @@ impl CFMutableString {
         unsafe { CFStringAppendCString(the_string, c_str, encoding) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringinsert(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `str` might not allow `None`.
@@ -1342,6 +1456,8 @@ impl CFMutableString {
         unsafe { CFStringInsert(str, idx, inserted_str) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringdelete(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_string` might not allow `None`.
@@ -1354,6 +1470,8 @@ impl CFMutableString {
         unsafe { CFStringDelete(the_string, range) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringreplace(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_string` might not allow `None`.
@@ -1375,6 +1493,7 @@ impl CFMutableString {
         unsafe { CFStringReplace(the_string, range, replacement) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringreplaceall(_:_:)?language=objc)
     #[doc(alias = "CFStringReplaceAll")]
     #[inline]
     pub fn replace_all(the_string: Option<&CFMutableString>, replacement: Option<&CFString>) {
@@ -1387,6 +1506,8 @@ impl CFMutableString {
         unsafe { CFStringReplaceAll(the_string, replacement) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfindandreplace(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_string` might not allow `None`.
@@ -1421,6 +1542,8 @@ impl CFMutableString {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringsetexternalcharactersnocopy(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_string` might not allow `None`.
@@ -1444,6 +1567,8 @@ impl CFMutableString {
         unsafe { CFStringSetExternalCharactersNoCopy(the_string, chars, length, capacity) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringpad(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_string` might not allow `None`.
@@ -1467,6 +1592,7 @@ impl CFMutableString {
         unsafe { CFStringPad(the_string, pad_string, length, index_into_pad) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtrim(_:_:)?language=objc)
     #[doc(alias = "CFStringTrim")]
     #[inline]
     pub fn trim(the_string: Option<&CFMutableString>, trim_string: Option<&CFString>) {
@@ -1476,6 +1602,7 @@ impl CFMutableString {
         unsafe { CFStringTrim(the_string, trim_string) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtrimwhitespace(_:)?language=objc)
     #[doc(alias = "CFStringTrimWhitespace")]
     #[inline]
     pub fn trim_whitespace(the_string: Option<&CFMutableString>) {
@@ -1485,6 +1612,7 @@ impl CFMutableString {
         unsafe { CFStringTrimWhitespace(the_string) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringlowercase(_:_:)?language=objc)
     #[doc(alias = "CFStringLowercase")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1495,6 +1623,7 @@ impl CFMutableString {
         unsafe { CFStringLowercase(the_string, locale) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringuppercase(_:_:)?language=objc)
     #[doc(alias = "CFStringUppercase")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1505,6 +1634,7 @@ impl CFMutableString {
         unsafe { CFStringUppercase(the_string, locale) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcapitalize(_:_:)?language=objc)
     #[doc(alias = "CFStringCapitalize")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1526,12 +1656,16 @@ impl CFMutableString {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStringNormalizationForm(pub CFIndex);
 impl CFStringNormalizationForm {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform/d?language=objc)
     #[doc(alias = "kCFStringNormalizationFormD")]
     pub const D: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform/kd?language=objc)
     #[doc(alias = "kCFStringNormalizationFormKD")]
     pub const KD: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform/c?language=objc)
     #[doc(alias = "kCFStringNormalizationFormC")]
     pub const C: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform/kc?language=objc)
     #[doc(alias = "kCFStringNormalizationFormKC")]
     pub const KC: Self = Self(3);
 }
@@ -1561,6 +1695,8 @@ impl CFMutableString {
     /// # Safety
     ///
     /// `the_string` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalize(_:_:)?language=objc)
     #[doc(alias = "CFStringNormalize")]
     #[inline]
     pub unsafe fn normalize(
@@ -1599,6 +1735,8 @@ impl CFMutableString {
     /// Parameter `theLocale`: The locale tailoring the character folding behavior. If NULL,
     /// it's considered to be the system locale returned from CFLocaleGetSystem().
     /// If non-NULL and not a valid CFLocale object, the behavior is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfold(_:_:_:)?language=objc)
     #[doc(alias = "CFStringFold")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1617,6 +1755,8 @@ impl CFMutableString {
         unsafe { CFStringFold(the_string, the_flags, the_locale) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtransform(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `string` might not allow `None`.
@@ -1725,6 +1865,8 @@ extern "C" {
 
 impl CFString {
     /// * General encoding related functionality **
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringisencodingavailable(_:)?language=objc)
     #[doc(alias = "CFStringIsEncodingAvailable")]
     #[inline]
     pub fn is_encoding_available(encoding: CFStringEncoding) -> bool {
@@ -1735,6 +1877,7 @@ impl CFString {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetlistofavailableencodings()?language=objc)
     #[doc(alias = "CFStringGetListOfAvailableEncodings")]
     #[inline]
     pub fn list_of_available_encodings() -> *const CFStringEncoding {
@@ -1744,6 +1887,7 @@ impl CFString {
         unsafe { CFStringGetListOfAvailableEncodings() }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetnameofencoding(_:)?language=objc)
     #[doc(alias = "CFStringGetNameOfEncoding")]
     #[inline]
     pub fn name_of_encoding(encoding: CFStringEncoding) -> Option<CFRetained<CFString>> {
@@ -1754,6 +1898,7 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertencodingtonsstringencoding(_:)?language=objc)
     #[doc(alias = "CFStringConvertEncodingToNSStringEncoding")]
     #[inline]
     pub fn convert_encoding_to_ns_string_encoding(encoding: CFStringEncoding) -> c_ulong {
@@ -1763,6 +1908,7 @@ impl CFString {
         unsafe { CFStringConvertEncodingToNSStringEncoding(encoding) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertnsstringencodingtoencoding(_:)?language=objc)
     #[doc(alias = "CFStringConvertNSStringEncodingToEncoding")]
     #[inline]
     pub fn convert_ns_string_encoding_to_encoding(encoding: c_ulong) -> CFStringEncoding {
@@ -1772,6 +1918,7 @@ impl CFString {
         unsafe { CFStringConvertNSStringEncodingToEncoding(encoding) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertencodingtowindowscodepage(_:)?language=objc)
     #[doc(alias = "CFStringConvertEncodingToWindowsCodepage")]
     #[inline]
     pub fn convert_encoding_to_windows_codepage(encoding: CFStringEncoding) -> u32 {
@@ -1781,6 +1928,7 @@ impl CFString {
         unsafe { CFStringConvertEncodingToWindowsCodepage(encoding) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertwindowscodepagetoencoding(_:)?language=objc)
     #[doc(alias = "CFStringConvertWindowsCodepageToEncoding")]
     #[inline]
     pub fn convert_windows_codepage_to_encoding(codepage: u32) -> CFStringEncoding {
@@ -1790,6 +1938,7 @@ impl CFString {
         unsafe { CFStringConvertWindowsCodepageToEncoding(codepage) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertianacharsetnametoencoding(_:)?language=objc)
     #[doc(alias = "CFStringConvertIANACharSetNameToEncoding")]
     #[inline]
     pub fn convert_iana_char_set_name_to_encoding(&self) -> CFStringEncoding {
@@ -1799,6 +1948,7 @@ impl CFString {
         unsafe { CFStringConvertIANACharSetNameToEncoding(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertencodingtoianacharsetname(_:)?language=objc)
     #[doc(alias = "CFStringConvertEncodingToIANACharSetName")]
     #[inline]
     pub fn convert_encoding_to_iana_char_set_name(
@@ -1813,6 +1963,7 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetmostcompatiblemacstringencoding(_:)?language=objc)
     #[doc(alias = "CFStringGetMostCompatibleMacStringEncoding")]
     #[inline]
     pub fn most_compatible_mac_string_encoding(encoding: CFStringEncoding) -> CFStringEncoding {
@@ -1873,6 +2024,7 @@ impl CFString {
     // TODO: pub fn CFStringGetSurrogatePairForLongCharacter(character: UTF32Char,surrogates: *mut UniChar,) -> Boolean;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfshow(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFShow(obj: Option<&CFType>) {
     extern "C-unwind" {
@@ -1881,6 +2033,7 @@ pub extern "C-unwind" fn CFShow(obj: Option<&CFType>) {
     unsafe { CFShow(obj) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfshowstr(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFShowStr(str: Option<&CFString>) {
     extern "C-unwind" {

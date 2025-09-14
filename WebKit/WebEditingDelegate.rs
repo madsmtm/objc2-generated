@@ -16,12 +16,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebViewInsertAction(pub NSInteger);
 impl WebViewInsertAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewinsertaction/typed?language=objc)
     #[doc(alias = "WebViewInsertActionTyped")]
     #[deprecated]
     pub const Typed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewinsertaction/pasted?language=objc)
     #[doc(alias = "WebViewInsertActionPasted")]
     #[deprecated]
     pub const Pasted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewinsertaction/dropped?language=objc)
     #[doc(alias = "WebViewInsertActionDropped")]
     #[deprecated]
     pub const Dropped: Self = Self(2);

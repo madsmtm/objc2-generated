@@ -29,6 +29,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for CTFramesetter {
     /// Returns the CFType of the framesetter object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettergettypeid()?language=objc)
     #[doc(alias = "CTFramesetterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -56,6 +58,8 @@ impl CTFramesetter {
     ///
     ///
     /// See also: CTTypesetterCreateWithAttributedStringAndOptions
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettercreatewithtypesetter(_:)?language=objc)
     #[doc(alias = "CTFramesetterCreateWithTypesetter")]
     #[cfg(feature = "CTTypesetter")]
     #[inline]
@@ -83,6 +87,8 @@ impl CTFramesetter {
     ///
     ///
     /// Returns: This function will return a reference to a CTFramesetter object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettercreatewithattributedstring(_:)?language=objc)
     #[doc(alias = "CTFramesetterCreateWithAttributedString")]
     #[inline]
     pub fn with_attributed_string(attr_string: &CFAttributedString) -> CFRetained<CTFramesetter> {
@@ -131,6 +137,8 @@ impl CTFramesetter {
     ///
     /// - `frame_attributes` generic must be of the correct type.
     /// - `frame_attributes` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettercreateframe(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFramesetterCreateFrame")]
     #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
     #[inline]
@@ -169,6 +177,8 @@ impl CTFramesetter {
     ///
     /// Returns: This function will return a reference to a CTTypesetter
     /// object, which should not be released by the caller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettergettypesetter(_:)?language=objc)
     #[doc(alias = "CTFramesetterGetTypesetter")]
     #[cfg(feature = "CTTypesetter")]
     #[inline]
@@ -221,6 +231,8 @@ impl CTFramesetter {
     /// - `frame_attributes` generic must be of the correct type.
     /// - `frame_attributes` generic must be of the correct type.
     /// - `fit_range` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettersuggestframesizewithconstraints(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTFramesetterSuggestFrameSizeWithConstraints")]
     #[inline]
     pub unsafe fn suggest_frame_size_with_constraints(

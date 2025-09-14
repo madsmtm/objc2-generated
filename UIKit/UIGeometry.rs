@@ -112,14 +112,19 @@ unsafe impl Sync for UIOffset {}
 pub struct UIRectCorner(pub NSUInteger);
 bitflags::bitflags! {
     impl UIRectCorner: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner/topleft?language=objc)
         #[doc(alias = "UIRectCornerTopLeft")]
         const TopLeft = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner/topright?language=objc)
         #[doc(alias = "UIRectCornerTopRight")]
         const TopRight = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner/bottomleft?language=objc)
         #[doc(alias = "UIRectCornerBottomLeft")]
         const BottomLeft = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner/bottomright?language=objc)
         #[doc(alias = "UIRectCornerBottomRight")]
         const BottomRight = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner/allcorners?language=objc)
         #[doc(alias = "UIRectCornerAllCorners")]
         const AllCorners = !0;
     }
@@ -140,16 +145,22 @@ unsafe impl RefEncode for UIRectCorner {
 pub struct NSDirectionalRectEdge(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDirectionalRectEdge: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/nsdirectionalrectedgenone?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/top?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeTop")]
         const Top = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/leading?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeLeading")]
         const Leading = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/bottom?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeBottom")]
         const Bottom = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/trailing?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeTrailing")]
         const Trailing = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/all?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeAll")]
         const All = NSDirectionalRectEdge::Top.0|NSDirectionalRectEdge::Leading.0|NSDirectionalRectEdge::Bottom.0|NSDirectionalRectEdge::Trailing.0;
     }
@@ -171,21 +182,27 @@ unsafe impl RefEncode for NSDirectionalRectEdge {
 pub struct UIDirectionalRectEdge(pub NSUInteger);
 bitflags::bitflags! {
     impl UIDirectionalRectEdge: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/uidirectionalrectedgenone?language=objc)
         #[doc(alias = "UIDirectionalRectEdgeNone")]
 #[deprecated]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/top?language=objc)
         #[doc(alias = "UIDirectionalRectEdgeTop")]
 #[deprecated]
         const Top = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/leading?language=objc)
         #[doc(alias = "UIDirectionalRectEdgeLeading")]
 #[deprecated]
         const Leading = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/bottom?language=objc)
         #[doc(alias = "UIDirectionalRectEdgeBottom")]
 #[deprecated]
         const Bottom = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/trailing?language=objc)
         #[doc(alias = "UIDirectionalRectEdgeTrailing")]
 #[deprecated]
         const Trailing = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/all?language=objc)
         #[doc(alias = "UIDirectionalRectEdgeAll")]
 #[deprecated]
         const All = UIDirectionalRectEdge::Top.0|UIDirectionalRectEdge::Leading.0|UIDirectionalRectEdge::Bottom.0|UIDirectionalRectEdge::Trailing.0;
@@ -206,22 +223,31 @@ unsafe impl RefEncode for UIDirectionalRectEdge {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRectAlignment(pub NSInteger);
 impl NSRectAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/none?language=objc)
     #[doc(alias = "NSRectAlignmentNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/top?language=objc)
     #[doc(alias = "NSRectAlignmentTop")]
     pub const Top: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/topleading?language=objc)
     #[doc(alias = "NSRectAlignmentTopLeading")]
     pub const TopLeading: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/leading?language=objc)
     #[doc(alias = "NSRectAlignmentLeading")]
     pub const Leading: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/bottomleading?language=objc)
     #[doc(alias = "NSRectAlignmentBottomLeading")]
     pub const BottomLeading: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/bottom?language=objc)
     #[doc(alias = "NSRectAlignmentBottom")]
     pub const Bottom: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/bottomtrailing?language=objc)
     #[doc(alias = "NSRectAlignmentBottomTrailing")]
     pub const BottomTrailing: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/trailing?language=objc)
     #[doc(alias = "NSRectAlignmentTrailing")]
     pub const Trailing: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/toptrailing?language=objc)
     #[doc(alias = "NSRectAlignmentTopTrailing")]
     pub const TopTrailing: Self = Self(8);
 }
@@ -287,6 +313,7 @@ extern "C" {
     pub static UIOffsetZero: UIOffset;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromcgpoint?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromCGPoint(point: CGPoint) -> Retained<NSString> {
@@ -298,6 +325,7 @@ pub extern "C-unwind" fn NSStringFromCGPoint(point: CGPoint) -> Retained<NSStrin
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromcgvector?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromCGVector(vector: CGVector) -> Retained<NSString> {
@@ -309,6 +337,7 @@ pub extern "C-unwind" fn NSStringFromCGVector(vector: CGVector) -> Retained<NSSt
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromcgsize?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromCGSize(size: CGSize) -> Retained<NSString> {
@@ -320,6 +349,7 @@ pub extern "C-unwind" fn NSStringFromCGSize(size: CGSize) -> Retained<NSString> 
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromcgrect?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromCGRect(rect: CGRect) -> Retained<NSString> {
@@ -331,6 +361,7 @@ pub extern "C-unwind" fn NSStringFromCGRect(rect: CGRect) -> Retained<NSString> 
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromcgaffinetransform?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromCGAffineTransform(
@@ -344,6 +375,7 @@ pub extern "C-unwind" fn NSStringFromCGAffineTransform(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromuiedgeinsets?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> Retained<NSString> {
@@ -355,6 +387,7 @@ pub extern "C-unwind" fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> Retai
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromdirectionaledgeinsets?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromDirectionalEdgeInsets(
@@ -368,6 +401,7 @@ pub extern "C-unwind" fn NSStringFromDirectionalEdgeInsets(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromuioffset?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromUIOffset(offset: UIOffset) -> Retained<NSString> {
@@ -379,6 +413,7 @@ pub extern "C-unwind" fn NSStringFromUIOffset(offset: UIOffset) -> Retained<NSSt
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/cgpointfromstring?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CGPointFromString(string: &NSString) -> CGPoint {
@@ -388,6 +423,7 @@ pub extern "C-unwind" fn CGPointFromString(string: &NSString) -> CGPoint {
     unsafe { CGPointFromString(string) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/cgvectorfromstring?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CGVectorFromString(string: &NSString) -> CGVector {
@@ -397,6 +433,7 @@ pub extern "C-unwind" fn CGVectorFromString(string: &NSString) -> CGVector {
     unsafe { CGVectorFromString(string) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/cgsizefromstring?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CGSizeFromString(string: &NSString) -> CGSize {
@@ -406,6 +443,7 @@ pub extern "C-unwind" fn CGSizeFromString(string: &NSString) -> CGSize {
     unsafe { CGSizeFromString(string) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/cgrectfromstring?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CGRectFromString(string: &NSString) -> CGRect {
@@ -415,6 +453,7 @@ pub extern "C-unwind" fn CGRectFromString(string: &NSString) -> CGRect {
     unsafe { CGRectFromString(string) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/cgaffinetransformfromstring?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformFromString(string: &NSString) -> CGAffineTransform {
@@ -426,6 +465,7 @@ pub extern "C-unwind" fn CGAffineTransformFromString(string: &NSString) -> CGAff
 
 #[cfg(feature = "objc2-core-foundation")]
 impl UIEdgeInsets {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiedgeinsetsfromstring?language=objc)
     #[doc(alias = "UIEdgeInsetsFromString")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -439,6 +479,7 @@ impl UIEdgeInsets {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl NSDirectionalEdgeInsets {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsetsfromstring?language=objc)
     #[doc(alias = "NSDirectionalEdgeInsetsFromString")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -452,6 +493,7 @@ impl NSDirectionalEdgeInsets {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl UIOffset {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uioffsetfromstring?language=objc)
     #[doc(alias = "UIOffsetFromString")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

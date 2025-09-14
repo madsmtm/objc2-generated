@@ -16,10 +16,14 @@ use crate::*;
 pub struct MPSPolygonType(pub NSUInteger);
 impl MPSPolygonType {
     /// Triangles with three vertices
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspolygontype/triangle?language=objc)
     #[doc(alias = "MPSPolygonTypeTriangle")]
     #[deprecated]
     pub const Triangle: Self = Self(0);
     /// Quadrilaterals with four vertices
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspolygontype/quadrilateral?language=objc)
     #[doc(alias = "MPSPolygonTypeQuadrilateral")]
     #[deprecated]
     pub const Quadrilateral: Self = Self(1);

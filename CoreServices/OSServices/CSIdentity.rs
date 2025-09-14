@@ -66,6 +66,7 @@ pub const kCSIdentityFlagHidden: c_uint = 1;
 pub type CSIdentityFlags = CFOptionFlags;
 
 unsafe impl ConcreteType for CSIdentity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444732-csidentitygettypeid?language=objc)
     #[doc(alias = "CSIdentityGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -77,6 +78,8 @@ unsafe impl ConcreteType for CSIdentity {
 }
 
 impl CSIdentity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447616-csidentitycreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -117,6 +120,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443553-csidentitycreatecopy?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -137,6 +142,7 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447194-csidentitygetclass?language=objc)
     #[doc(alias = "CSIdentityGetClass")]
     #[inline]
     pub unsafe fn class(&self) -> CSIdentityClass {
@@ -146,6 +152,7 @@ impl CSIdentity {
         unsafe { CSIdentityGetClass(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446828-csidentitygetauthority?language=objc)
     #[doc(alias = "CSIdentityGetAuthority")]
     #[cfg(feature = "CSIdentityAuthority")]
     #[inline]
@@ -159,6 +166,7 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447987-csidentitygetuuid?language=objc)
     #[doc(alias = "CSIdentityGetUUID")]
     #[inline]
     pub unsafe fn uuid(&self) -> Option<CFRetained<CFUUID>> {
@@ -169,6 +177,7 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447315-csidentitygetfullname?language=objc)
     #[doc(alias = "CSIdentityGetFullName")]
     #[inline]
     pub unsafe fn full_name(&self) -> Option<CFRetained<CFString>> {
@@ -179,6 +188,7 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443230-csidentitygetposixid?language=objc)
     #[doc(alias = "CSIdentityGetPosixID")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -189,6 +199,7 @@ impl CSIdentity {
         unsafe { CSIdentityGetPosixID(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447210-csidentitygetposixname?language=objc)
     #[doc(alias = "CSIdentityGetPosixName")]
     #[inline]
     pub unsafe fn posix_name(&self) -> Option<CFRetained<CFString>> {
@@ -199,6 +210,7 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446211-csidentitygetemailaddress?language=objc)
     #[doc(alias = "CSIdentityGetEmailAddress")]
     #[inline]
     pub unsafe fn email_address(&self) -> Option<CFRetained<CFString>> {
@@ -209,6 +221,7 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446099-csidentitygetimageurl?language=objc)
     #[doc(alias = "CSIdentityGetImageURL")]
     #[inline]
     pub unsafe fn image_url(&self) -> Option<CFRetained<CFURL>> {
@@ -219,6 +232,7 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444544-csidentitygetimagedata?language=objc)
     #[doc(alias = "CSIdentityGetImageData")]
     #[inline]
     pub unsafe fn image_data(&self) -> Option<CFRetained<CFData>> {
@@ -229,6 +243,7 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447478-csidentitygetimagedatatype?language=objc)
     #[doc(alias = "CSIdentityGetImageDataType")]
     #[inline]
     pub unsafe fn image_data_type(&self) -> Option<CFRetained<CFString>> {
@@ -239,6 +254,7 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446455-csidentitygetaliases?language=objc)
     #[doc(alias = "CSIdentityGetAliases")]
     #[inline]
     pub unsafe fn aliases(&self) -> Option<CFRetained<CFArray>> {
@@ -249,6 +265,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449237-csidentityismemberofgroup?language=objc)
+    ///
     /// # Safety
     ///
     /// `group` might not allow `None`.
@@ -265,6 +283,7 @@ impl CSIdentity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449476-csidentityishidden?language=objc)
     #[doc(alias = "CSIdentityIsHidden")]
     #[inline]
     pub unsafe fn is_hidden(&self) -> bool {
@@ -275,6 +294,8 @@ impl CSIdentity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444037-csidentitycreatepersistentrefere?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -295,6 +316,7 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443379-csidentityisenabled?language=objc)
     #[doc(alias = "CSIdentityIsEnabled")]
     #[inline]
     pub unsafe fn is_enabled(&self) -> bool {
@@ -305,6 +327,8 @@ impl CSIdentity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449855-csidentityauthenticateusingpassw?language=objc)
+    ///
     /// # Safety
     ///
     /// `password` might not allow `None`.
@@ -321,6 +345,7 @@ impl CSIdentity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448582-csidentitygetcertificate?language=objc)
     #[doc(alias = "CSIdentityGetCertificate")]
     #[cfg(feature = "objc2-security")]
     #[inline]
@@ -332,6 +357,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448605-csidentitycreategroupmembershipq?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -352,6 +379,8 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446623-csidentitysetfullname?language=objc)
+    ///
     /// # Safety
     ///
     /// `full_name` might not allow `None`.
@@ -364,6 +393,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetFullName(self, full_name) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443235-csidentitysetemailaddress?language=objc)
+    ///
     /// # Safety
     ///
     /// `email_address` might not allow `None`.
@@ -376,6 +407,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetEmailAddress(self, email_address) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446717-csidentitysetimageurl?language=objc)
+    ///
     /// # Safety
     ///
     /// `url` might not allow `None`.
@@ -388,6 +421,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetImageURL(self, url) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441866-csidentitysetimagedata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `image_data` might not allow `None`.
@@ -409,6 +444,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetImageData(self, image_data, image_data_type) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443062-csidentityaddalias?language=objc)
+    ///
     /// # Safety
     ///
     /// `alias` might not allow `None`.
@@ -421,6 +458,8 @@ impl CSIdentity {
         unsafe { CSIdentityAddAlias(self, alias) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442114-csidentityremovealias?language=objc)
+    ///
     /// # Safety
     ///
     /// `alias` might not allow `None`.
@@ -433,6 +472,8 @@ impl CSIdentity {
         unsafe { CSIdentityRemoveAlias(self, alias) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447513-csidentityaddmember?language=objc)
+    ///
     /// # Safety
     ///
     /// `member` might not allow `None`.
@@ -445,6 +486,8 @@ impl CSIdentity {
         unsafe { CSIdentityAddMember(self, member) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448796-csidentityremovemember?language=objc)
+    ///
     /// # Safety
     ///
     /// `member` might not allow `None`.
@@ -457,6 +500,7 @@ impl CSIdentity {
         unsafe { CSIdentityRemoveMember(self, member) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443028-csidentitysetisenabled?language=objc)
     #[doc(alias = "CSIdentitySetIsEnabled")]
     #[inline]
     pub unsafe fn set_is_enabled(&self, is_enabled: bool) {
@@ -466,6 +510,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetIsEnabled(self, is_enabled as _) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443568-csidentitysetpassword?language=objc)
+    ///
     /// # Safety
     ///
     /// `password` might not allow `None`.
@@ -478,6 +524,8 @@ impl CSIdentity {
         unsafe { CSIdentitySetPassword(self, password) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447691-csidentitysetcertificate?language=objc)
+    ///
     /// # Safety
     ///
     /// `certificate` might not allow `None`.
@@ -491,6 +539,7 @@ impl CSIdentity {
         unsafe { CSIdentitySetCertificate(self, certificate) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442616-csidentitydelete?language=objc)
     #[doc(alias = "CSIdentityDelete")]
     #[inline]
     pub unsafe fn delete(&self) {
@@ -500,6 +549,8 @@ impl CSIdentity {
         unsafe { CSIdentityDelete(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449575-csidentitycommit?language=objc)
+    ///
     /// # Safety
     ///
     /// - `authorization` must be a valid pointer.
@@ -561,6 +612,8 @@ unsafe impl RefEncode for CSIdentityClientContext {
 }
 
 impl CSIdentity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447936-csidentitycommitasynchronously?language=objc)
+    ///
     /// # Safety
     ///
     /// - `client_context` must be a valid pointer.
@@ -599,6 +652,7 @@ impl CSIdentity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449734-csidentityiscommitting?language=objc)
     #[doc(alias = "CSIdentityIsCommitting")]
     #[inline]
     pub unsafe fn is_committing(&self) -> bool {
@@ -609,6 +663,7 @@ impl CSIdentity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448933-csidentityremoveclient?language=objc)
     #[doc(alias = "CSIdentityRemoveClient")]
     #[inline]
     pub unsafe fn remove_client(&self) {

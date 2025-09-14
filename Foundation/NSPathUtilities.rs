@@ -114,6 +114,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusername()?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSUserName() -> Retained<NSString> {
@@ -125,6 +126,7 @@ pub extern "C-unwind" fn NSUserName() -> Retained<NSString> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfullusername()?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSFullUserName() -> Retained<NSString> {
@@ -136,6 +138,7 @@ pub extern "C-unwind" fn NSFullUserName() -> Retained<NSString> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshomedirectory()?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSHomeDirectory() -> Retained<NSString> {
@@ -147,6 +150,7 @@ pub extern "C-unwind" fn NSHomeDirectory() -> Retained<NSString> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshomedirectoryforuser(_:)?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSHomeDirectoryForUser(
@@ -159,6 +163,7 @@ pub extern "C-unwind" fn NSHomeDirectoryForUser(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstemporarydirectory()?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSTemporaryDirectory() -> Retained<NSString> {
@@ -170,6 +175,7 @@ pub extern "C-unwind" fn NSTemporaryDirectory() -> Retained<NSString> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsopensteprootdirectory()?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSOpenStepRootDirectory() -> Retained<NSString> {
@@ -187,58 +193,85 @@ pub extern "C-unwind" fn NSOpenStepRootDirectory() -> Retained<NSString> {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSearchPathDirectory(pub NSUInteger);
 impl NSSearchPathDirectory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/applicationdirectory?language=objc)
     #[doc(alias = "NSApplicationDirectory")]
     pub const ApplicationDirectory: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/demoapplicationdirectory?language=objc)
     #[doc(alias = "NSDemoApplicationDirectory")]
     pub const DemoApplicationDirectory: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/developerapplicationdirectory?language=objc)
     #[doc(alias = "NSDeveloperApplicationDirectory")]
     pub const DeveloperApplicationDirectory: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/adminapplicationdirectory?language=objc)
     #[doc(alias = "NSAdminApplicationDirectory")]
     pub const AdminApplicationDirectory: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/librarydirectory?language=objc)
     #[doc(alias = "NSLibraryDirectory")]
     pub const LibraryDirectory: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/developerdirectory?language=objc)
     #[doc(alias = "NSDeveloperDirectory")]
     pub const DeveloperDirectory: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/userdirectory?language=objc)
     #[doc(alias = "NSUserDirectory")]
     pub const UserDirectory: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/documentationdirectory?language=objc)
     #[doc(alias = "NSDocumentationDirectory")]
     pub const DocumentationDirectory: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/documentdirectory?language=objc)
     #[doc(alias = "NSDocumentDirectory")]
     pub const DocumentDirectory: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/coreservicedirectory?language=objc)
     #[doc(alias = "NSCoreServiceDirectory")]
     pub const CoreServiceDirectory: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/autosavedinformationdirectory?language=objc)
     #[doc(alias = "NSAutosavedInformationDirectory")]
     pub const AutosavedInformationDirectory: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/desktopdirectory?language=objc)
     #[doc(alias = "NSDesktopDirectory")]
     pub const DesktopDirectory: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/cachesdirectory?language=objc)
     #[doc(alias = "NSCachesDirectory")]
     pub const CachesDirectory: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/applicationsupportdirectory?language=objc)
     #[doc(alias = "NSApplicationSupportDirectory")]
     pub const ApplicationSupportDirectory: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/downloadsdirectory?language=objc)
     #[doc(alias = "NSDownloadsDirectory")]
     pub const DownloadsDirectory: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/inputmethodsdirectory?language=objc)
     #[doc(alias = "NSInputMethodsDirectory")]
     pub const InputMethodsDirectory: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/moviesdirectory?language=objc)
     #[doc(alias = "NSMoviesDirectory")]
     pub const MoviesDirectory: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/musicdirectory?language=objc)
     #[doc(alias = "NSMusicDirectory")]
     pub const MusicDirectory: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/picturesdirectory?language=objc)
     #[doc(alias = "NSPicturesDirectory")]
     pub const PicturesDirectory: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/printerdescriptiondirectory?language=objc)
     #[doc(alias = "NSPrinterDescriptionDirectory")]
     pub const PrinterDescriptionDirectory: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/sharedpublicdirectory?language=objc)
     #[doc(alias = "NSSharedPublicDirectory")]
     pub const SharedPublicDirectory: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/preferencepanesdirectory?language=objc)
     #[doc(alias = "NSPreferencePanesDirectory")]
     pub const PreferencePanesDirectory: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/applicationscriptsdirectory?language=objc)
     #[doc(alias = "NSApplicationScriptsDirectory")]
     pub const ApplicationScriptsDirectory: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/itemreplacementdirectory?language=objc)
     #[doc(alias = "NSItemReplacementDirectory")]
     pub const ItemReplacementDirectory: Self = Self(99);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/allapplicationsdirectory?language=objc)
     #[doc(alias = "NSAllApplicationsDirectory")]
     pub const AllApplicationsDirectory: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/alllibrariesdirectory?language=objc)
     #[doc(alias = "NSAllLibrariesDirectory")]
     pub const AllLibrariesDirectory: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/trashdirectory?language=objc)
     #[doc(alias = "NSTrashDirectory")]
     pub const TrashDirectory: Self = Self(102);
 }
@@ -258,14 +291,19 @@ unsafe impl RefEncode for NSSearchPathDirectory {
 pub struct NSSearchPathDomainMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSearchPathDomainMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/userdomainmask?language=objc)
         #[doc(alias = "NSUserDomainMask")]
         const UserDomainMask = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/localdomainmask?language=objc)
         #[doc(alias = "NSLocalDomainMask")]
         const LocalDomainMask = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/networkdomainmask?language=objc)
         #[doc(alias = "NSNetworkDomainMask")]
         const NetworkDomainMask = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/systemdomainmask?language=objc)
         #[doc(alias = "NSSystemDomainMask")]
         const SystemDomainMask = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/alldomainsmask?language=objc)
         #[doc(alias = "NSAllDomainsMask")]
         const AllDomainsMask = 0x0ffff;
     }
@@ -279,6 +317,7 @@ unsafe impl RefEncode for NSSearchPathDomainMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssearchpathfordirectoriesindomains(_:_:_:)?language=objc)
 #[cfg(all(feature = "NSArray", feature = "NSString"))]
 #[inline]
 pub extern "C-unwind" fn NSSearchPathForDirectoriesInDomains(

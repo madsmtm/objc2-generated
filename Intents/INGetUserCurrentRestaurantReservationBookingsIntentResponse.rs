@@ -13,14 +13,18 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetUserCurrentRestaurantReservationBookingsIntentResponseCode(pub NSInteger);
 impl INGetUserCurrentRestaurantReservationBookingsIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponsecode/success?language=objc)
     #[doc(alias = "INGetUserCurrentRestaurantReservationBookingsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponsecode/failure?language=objc)
     #[doc(alias = "INGetUserCurrentRestaurantReservationBookingsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponsecode/failurerequestunsatisfiable?language=objc)
     #[doc(
         alias = "INGetUserCurrentRestaurantReservationBookingsIntentResponseCodeFailureRequestUnsatisfiable"
     )]
     pub const FailureRequestUnsatisfiable: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INGetUserCurrentRestaurantReservationBookingsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(3);
 }

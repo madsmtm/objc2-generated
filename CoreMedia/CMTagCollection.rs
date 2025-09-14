@@ -18,24 +18,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTagCollectionError(pub OSStatus);
 impl CMTagCollectionError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_paramerr?language=objc)
     #[doc(alias = "kCMTagCollectionError_ParamErr")]
     pub const ParamErr: Self = Self(-15740);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_allocationfailed?language=objc)
     #[doc(alias = "kCMTagCollectionError_AllocationFailed")]
     pub const AllocationFailed: Self = Self(-15741);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_internalerror?language=objc)
     #[doc(alias = "kCMTagCollectionError_InternalError")]
     pub const InternalError: Self = Self(-15742);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_invalidtag?language=objc)
     #[doc(alias = "kCMTagCollectionError_InvalidTag")]
     pub const InvalidTag: Self = Self(-15743);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_invalidtagcollectiondictionary?language=objc)
     #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionDictionary")]
     pub const InvalidTagCollectionDictionary: Self = Self(-15744);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_invalidtagcollectiondata?language=objc)
     #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionData")]
     pub const InvalidTagCollectionData: Self = Self(-15745);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_tagnotfound?language=objc)
     #[doc(alias = "kCMTagCollectionError_TagNotFound")]
     pub const TagNotFound: Self = Self(-15746);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_invalidtagcollectiondataversion?language=objc)
     #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionDataVersion")]
     pub const InvalidTagCollectionDataVersion: Self = Self(-15747);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_exhaustedbuffersize?language=objc)
     #[doc(alias = "kCMTagCollectionError_ExhaustedBufferSize")]
     pub const ExhaustedBufferSize: Self = Self(-15748);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_notyetimplemented?language=objc)
     #[doc(alias = "kCMTagCollectionError_NotYetImplemented")]
     pub const NotYetImplemented: Self = Self(-15749);
 }
@@ -90,6 +100,8 @@ unsafe impl ConcreteType for CMTagCollection {
     /// Obtains the CoreFoundation type ID for the CMTagCollection type.
     ///
     /// Returns: Returns the CFTypeID corresponding to CMTagCollection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongettypeid?language=objc)
     #[doc(alias = "CMTagCollectionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -142,6 +154,8 @@ impl CMTagCollection {
     ///
     /// - `tags` must be a valid pointer or null.
     /// - `new_collection_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreate?language=objc)
     #[doc(alias = "CMTagCollectionCreate")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -178,6 +192,8 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `new_mutable_collection_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatemutable?language=objc)
     #[doc(alias = "CMTagCollectionCreateMutable")]
     #[inline]
     pub unsafe fn create_mutable(
@@ -210,6 +226,8 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `new_collection_copy_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatecopy?language=objc)
     #[doc(alias = "CMTagCollectionCreateCopy")]
     #[inline]
     pub unsafe fn create_copy(
@@ -242,6 +260,8 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `new_mutable_collection_copy_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatemutablecopy?language=objc)
     #[doc(alias = "CMTagCollectionCreateMutableCopy")]
     #[inline]
     pub unsafe fn create_mutable_copy(
@@ -270,6 +290,8 @@ impl CMTagCollection {
     /// Parameter `tagCollection`: CMTagCollectionRef to describe.
     ///
     /// Returns: The created CFString description.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopydescription?language=objc)
     #[doc(alias = "CMTagCollectionCopyDescription")]
     #[inline]
     pub unsafe fn description(
@@ -291,6 +313,8 @@ impl CMTagCollection {
     /// Parameter `tagCollection`: CMTagCollectionRef to evaluate for the tag count.
     ///
     /// Returns: CMItemCount holding the count.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongetcount?language=objc)
     #[doc(alias = "CMTagCollectionGetCount")]
     #[cfg(feature = "CMBase")]
     #[inline]
@@ -308,6 +332,8 @@ impl CMTagCollection {
     /// Parameter `tag`: CMTag to find.
     ///
     /// Returns: Returns true if the indicated CMTag is contained within the CMTagCollection, false otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncontainstag?language=objc)
     #[doc(alias = "CMTagCollectionContainsTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -328,6 +354,8 @@ impl CMTagCollection {
     /// Parameter `containedTagCollection`: CMTagCollectionRef whose contents should be checked for containment in tagCollection.
     ///
     /// Returns: Returns true if all CMTags in a collection are contained within the specified CMTagCollection, false otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncontainstagsofcollection?language=objc)
     #[doc(alias = "CMTagCollectionContainsTagsOfCollection")]
     #[inline]
     pub unsafe fn contains_tags_of_collection(
@@ -360,6 +388,8 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `contained_tags` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncontainsspecifiedtags?language=objc)
     #[doc(alias = "CMTagCollectionContainsSpecifiedTags")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -388,6 +418,8 @@ impl CMTagCollection {
     /// Parameter `category`: CMTagCategory whose value should be checked for containment in tagCollection.
     ///
     /// Returns: Returns true if tagCollection contains at least one CMTag with the specified category, false otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncontainscategory?language=objc)
     #[doc(alias = "CMTagCollectionContainsCategory")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -411,6 +443,8 @@ impl CMTagCollection {
     /// Parameter `category`: CMTagCategory to check for.
     ///
     /// Returns: Returns the count of tags having the specified category.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongetcountofcategory?language=objc)
     #[doc(alias = "CMTagCollectionGetCountOfCategory")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -442,6 +476,8 @@ impl CMTagCollection {
     ///
     /// - `tag_buffer` must be a valid pointer.
     /// - `number_of_tags_copied` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongettags?language=objc)
     #[doc(alias = "CMTagCollectionGetTags")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -482,6 +518,8 @@ impl CMTagCollection {
     ///
     /// - `tag_buffer` must be a valid pointer.
     /// - `number_of_tags_copied` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongettagswithcategory?language=objc)
     #[doc(alias = "CMTagCollectionGetTagsWithCategory")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -528,6 +566,8 @@ impl CMTagCollection {
     ///
     /// - `filter_applier` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncounttagswithfilterfunction?language=objc)
     #[doc(alias = "CMTagCollectionCountTagsWithFilterFunction")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -570,6 +610,8 @@ impl CMTagCollection {
     /// - `number_of_tags_copied` must be a valid pointer or null.
     /// - `filter` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongettagswithfilterfunction?language=objc)
     #[doc(alias = "CMTagCollectionGetTagsWithFilterFunction")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -623,6 +665,8 @@ impl CMTagCollection {
     ///
     /// - `categories` must be a valid pointer.
     /// - `collection_with_tags_of_categories` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopytagsofcategories?language=objc)
     #[doc(alias = "CMTagCollectionCopyTagsOfCategories")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -667,6 +711,8 @@ impl CMTagCollection {
     ///
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionapply?language=objc)
     #[doc(alias = "CMTagCollectionApply")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -697,6 +743,8 @@ impl CMTagCollection {
     ///
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionapplyuntil?language=objc)
     #[doc(alias = "CMTagCollectionApplyUntil")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -722,6 +770,8 @@ impl CMTagCollection {
     /// Parameter `tagCollection`: CMTagCollectionRef to iterate.
     ///
     /// Returns: True if there are no tags, false otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionisempty?language=objc)
     #[doc(alias = "CMTagCollectionIsEmpty")]
     #[inline]
     pub unsafe fn is_empty(&self) -> bool {
@@ -747,6 +797,8 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `tag_collection_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreateintersection?language=objc)
     #[doc(alias = "CMTagCollectionCreateIntersection")]
     #[inline]
     pub unsafe fn create_intersection(
@@ -781,6 +833,8 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `tag_collection_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreateunion?language=objc)
     #[doc(alias = "CMTagCollectionCreateUnion")]
     #[inline]
     pub unsafe fn create_union(
@@ -813,6 +867,8 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `tag_collection_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatedifference?language=objc)
     #[doc(alias = "CMTagCollectionCreateDifference")]
     #[inline]
     pub unsafe fn create_difference(
@@ -851,6 +907,8 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `tag_collection_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreateexclusiveor?language=objc)
     #[doc(alias = "CMTagCollectionCreateExclusiveOr")]
     #[inline]
     pub unsafe fn create_exclusive_or(
@@ -881,6 +939,8 @@ impl CMMutableTagCollection {
     /// Parameter `tagToAdd`: A CMTag to add to the tag collection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.  Returns noErr if the tag was already in the collection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionaddtag?language=objc)
     #[doc(alias = "CMTagCollectionAddTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -903,6 +963,8 @@ impl CMMutableTagCollection {
     /// Parameter `tagToRemove`: A CMTag to match to the tag collection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionremovetag?language=objc)
     #[doc(alias = "CMTagCollectionRemoveTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -923,6 +985,8 @@ impl CMMutableTagCollection {
     /// Parameter `tagCollection`: CMMutableTagCollectionRef from which to remove all tags.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionremovealltags?language=objc)
     #[doc(alias = "CMTagCollectionRemoveAllTags")]
     #[inline]
     pub unsafe fn remove_all_tags(&self) -> OSStatus {
@@ -941,6 +1005,8 @@ impl CMMutableTagCollection {
     /// Parameter `category`: CMTagCategory to match.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionremovealltagsofcategory?language=objc)
     #[doc(alias = "CMTagCollectionRemoveAllTagsOfCategory")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -961,6 +1027,8 @@ impl CMMutableTagCollection {
     /// Parameter `collectionWithTagsToAdd`: CMTagCollectionRef from which to copy all tags.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionaddtagsfromcollection?language=objc)
     #[doc(alias = "CMTagCollectionAddTagsFromCollection")]
     #[inline]
     pub unsafe fn add_tags_from_collection(
@@ -989,6 +1057,8 @@ impl CMMutableTagCollection {
     /// # Safety
     ///
     /// `tags` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionaddtagsfromarray?language=objc)
     #[doc(alias = "CMTagCollectionAddTagsFromArray")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -1018,6 +1088,8 @@ impl CMTagCollection {
     /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDictionaryRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFDictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopyasdictionary?language=objc)
     #[doc(alias = "CMTagCollectionCopyAsDictionary")]
     #[inline]
     pub unsafe fn as_dictionary(
@@ -1051,6 +1123,8 @@ impl CMTagCollection {
     /// - `dict` generic must be of the correct type.
     /// - `dict` generic must be of the correct type.
     /// - `new_collection_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatefromdictionary?language=objc)
     #[doc(alias = "CMTagCollectionCreateFromDictionary")]
     #[inline]
     pub unsafe fn create_from_dictionary(
@@ -1077,6 +1151,8 @@ impl CMTagCollection {
     /// Parameter `allocator`: CFAllocator with which to create a CFData. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDataRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFData.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopyasdata?language=objc)
     #[doc(alias = "CMTagCollectionCopyAsData")]
     #[inline]
     pub unsafe fn as_data(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFData>> {
@@ -1106,6 +1182,8 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `new_collection_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatefromdata?language=objc)
     #[doc(alias = "CMTagCollectionCreateFromData")]
     #[inline]
     pub unsafe fn create_from_data(

@@ -47,8 +47,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTestErrorCode(pub NSInteger);
 impl XCTestErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesterror/code/timeoutwhilewaiting?language=objc)
     #[doc(alias = "XCTestErrorCodeTimeoutWhileWaiting")]
     pub const TimeoutWhileWaiting: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesterror/code/failurewhilewaiting?language=objc)
     #[doc(alias = "XCTestErrorCodeFailureWhileWaiting")]
     pub const FailureWhileWaiting: Self = Self(1);
 }
@@ -1511,6 +1513,7 @@ impl DefaultRetained for XCTestObservationCenter {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctselftestmain()?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn XCTSelfTestMain() -> c_int {
@@ -1818,8 +1821,10 @@ impl XCTestSuiteRun {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTAttachmentLifetime(pub NSInteger);
 impl XCTAttachmentLifetime {
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/lifetime-swift.enum/keepalways?language=objc)
     #[doc(alias = "XCTAttachmentLifetimeKeepAlways")]
     pub const KeepAlways: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/lifetime-swift.enum/deleteonsuccess?language=objc)
     #[doc(alias = "XCTAttachmentLifetimeDeleteOnSuccess")]
     pub const DeleteOnSuccess: Self = Self(1);
 }
@@ -1990,10 +1995,13 @@ impl XCTAttachment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTImageQuality(pub NSInteger);
 impl XCTImageQuality {
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/imagequality/original?language=objc)
     #[doc(alias = "XCTImageQualityOriginal")]
     pub const Original: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/imagequality/medium?language=objc)
     #[doc(alias = "XCTImageQualityMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/imagequality/low?language=objc)
     #[doc(alias = "XCTImageQualityLow")]
     pub const Low: Self = Self(2);
 }
@@ -2193,6 +2201,8 @@ impl DefaultRetained for XCTContext {
 ///
 /// Parameter `failureReason`: Explanation of the issue being suppressed. If it contains
 /// a URL, that URL can be extracted and presented as a link in reporting UI (Xcode and CI).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectfailure?language=objc)
 #[inline]
 pub extern "C-unwind" fn XCTExpectFailure(failure_reason: Option<&NSString>) {
     extern "C-unwind" {
@@ -2207,6 +2217,8 @@ pub extern "C-unwind" fn XCTExpectFailure(failure_reason: Option<&NSString>) {
 /// Parameter `options`: The options can include a custom issue matching block as well as the ability to
 /// disable "strict" behavior, which relaxes the requirement that a call to XCTExpectFailure must be matched
 /// against at least one recorded issue.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectfailurewithoptions?language=objc)
 #[inline]
 pub extern "C-unwind" fn XCTExpectFailureWithOptions(
     failure_reason: Option<&NSString>,
@@ -2227,6 +2239,8 @@ pub extern "C-unwind" fn XCTExpectFailureWithOptions(
 /// Parameter `failingBlock`: The scope of code in which the failure is expected. Note that this will only
 /// match against failures in that scope on the same thread; failures in dispatch callouts or other code
 /// running on a different thread will not be matched.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectfailureinblock?language=objc)
 #[cfg(feature = "block2")]
 #[inline]
 pub extern "C-unwind" fn XCTExpectFailureInBlock(
@@ -2244,6 +2258,8 @@ pub extern "C-unwind" fn XCTExpectFailureInBlock(
 
 /// Like XCTExpectFailure, but takes an options object that can be used to customize the behavior and
 /// limits the scope in which issues are matched.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectfailurewithoptionsinblock?language=objc)
 #[cfg(feature = "block2")]
 #[inline]
 pub extern "C-unwind" fn XCTExpectFailureWithOptionsInBlock(
@@ -2429,21 +2445,33 @@ impl DefaultRetained for XCTExpectedFailure {
 pub struct XCTIssueType(pub NSInteger);
 impl XCTIssueType {
     /// Issue raised by a failed XCTAssert or related API.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/assertionfailure?language=objc)
     #[doc(alias = "XCTIssueTypeAssertionFailure")]
     pub const AssertionFailure: Self = Self(0);
     /// Issue raised by the test throwing an error in Swift. This could also occur if an Objective C test is implemented in the form `- (BOOL)testFoo:(NSError **)outError` and returns NO with a non-nil out error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/thrownerror?language=objc)
     #[doc(alias = "XCTIssueTypeThrownError")]
     pub const ThrownError: Self = Self(1);
     /// Code in the test throws and does not catch an exception, Objective C, C++, or other.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/uncaughtexception?language=objc)
     #[doc(alias = "XCTIssueTypeUncaughtException")]
     pub const UncaughtException: Self = Self(2);
     /// One of the XCTestCase(measure:) family of APIs detected a performance regression.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/performanceregression?language=objc)
     #[doc(alias = "XCTIssueTypePerformanceRegression")]
     pub const PerformanceRegression: Self = Self(3);
     /// One of the framework APIs failed internally. For example, XCUIApplication was unable to launch or terminate an app or XCUIElementQuery was unable to complete a query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/system?language=objc)
     #[doc(alias = "XCTIssueTypeSystem")]
     pub const System: Self = Self(4);
     /// Issue raised when XCTExpectFailure is used but no matching issue is recorded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/unmatchedexpectedfailure?language=objc)
     #[doc(alias = "XCTIssueTypeUnmatchedExpectedFailure")]
     pub const UnmatchedExpectedFailure: Self = Self(5);
 }
@@ -2474,12 +2502,16 @@ impl XCTIssueSeverity {
     ///
     /// An issue with warning severity does not cause the test it's associated
     /// with to be marked as a failure, but is noted in the results.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/severity-swift.enum/warning?language=objc)
     #[doc(alias = "XCTIssueSeverityWarning")]
     pub const Warning: Self = Self(4);
     /// The severity level for an issue which represents an error in a test.
     ///
     /// An issue with error severity causes the test it's associated with to be
     /// marked as a failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/severity-swift.enum/error?language=objc)
     #[doc(alias = "XCTIssueSeverityError")]
     pub const Error: Self = Self(8);
 }
@@ -2810,10 +2842,13 @@ impl XCTMutableIssue {
 pub struct XCTMeasurementInvocationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl XCTMeasurementInvocationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasurementinvocationoptions/xctmeasurementinvocationnone?language=objc)
         #[doc(alias = "XCTMeasurementInvocationNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasureoptions/invocationoptions-swift.struct/manuallystart?language=objc)
         #[doc(alias = "XCTMeasurementInvocationManuallyStart")]
         const ManuallyStart = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasureoptions/invocationoptions-swift.struct/manuallystop?language=objc)
         #[doc(alias = "XCTMeasurementInvocationManuallyStop")]
         const ManuallyStop = 1<<1;
     }
@@ -2901,12 +2936,18 @@ impl DefaultRetained for XCTMeasureOptions {
 pub struct XCTPerformanceMeasurementPolarity(pub NSInteger);
 impl XCTPerformanceMeasurementPolarity {
     /// Represents measurements where smaller values are considered "better".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurement/polarity-swift.enum/preferssmaller?language=objc)
     #[doc(alias = "XCTPerformanceMeasurementPolarityPrefersSmaller")]
     pub const PrefersSmaller: Self = Self(-1);
     /// Represents measurements which do not have a meaningful polarity. Suitable for situations where neither smaller nor larger values are considered "better".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurement/polarity-swift.enum/unspecified?language=objc)
     #[doc(alias = "XCTPerformanceMeasurementPolarityUnspecified")]
     pub const Unspecified: Self = Self(0);
     /// Represents measurements where larger values are considered "better".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurement/polarity-swift.enum/preferslarger?language=objc)
     #[doc(alias = "XCTPerformanceMeasurementPolarityPrefersLarger")]
     pub const PrefersLarger: Self = Self(1);
 }
@@ -3877,14 +3918,19 @@ impl DefaultRetained for XCTSourceCodeContext {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct XCTWaiterResult(pub NSInteger);
 impl XCTWaiterResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result/completed?language=objc)
     #[doc(alias = "XCTWaiterResultCompleted")]
     pub const Completed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result/timedout?language=objc)
     #[doc(alias = "XCTWaiterResultTimedOut")]
     pub const TimedOut: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result/incorrectorder?language=objc)
     #[doc(alias = "XCTWaiterResultIncorrectOrder")]
     pub const IncorrectOrder: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result/invertedfulfillment?language=objc)
     #[doc(alias = "XCTWaiterResultInvertedFulfillment")]
     pub const InvertedFulfillment: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result/interrupted?language=objc)
     #[doc(alias = "XCTWaiterResultInterrupted")]
     pub const Interrupted: Self = Self(5);
 }

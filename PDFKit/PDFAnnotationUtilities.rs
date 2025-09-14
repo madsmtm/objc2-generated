@@ -16,16 +16,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFLineStyle(pub NSInteger);
 impl PDFLineStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/none?language=objc)
     #[doc(alias = "kPDFLineStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/square?language=objc)
     #[doc(alias = "kPDFLineStyleSquare")]
     pub const Square: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/circle?language=objc)
     #[doc(alias = "kPDFLineStyleCircle")]
     pub const Circle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/diamond?language=objc)
     #[doc(alias = "kPDFLineStyleDiamond")]
     pub const Diamond: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/openarrow?language=objc)
     #[doc(alias = "kPDFLineStyleOpenArrow")]
     pub const OpenArrow: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/closedarrow?language=objc)
     #[doc(alias = "kPDFLineStyleClosedArrow")]
     pub const ClosedArrow: Self = Self(5);
 }
@@ -44,18 +50,25 @@ unsafe impl RefEncode for PDFLineStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFTextAnnotationIconType(pub NSInteger);
 impl PDFTextAnnotationIconType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/comment?language=objc)
     #[doc(alias = "kPDFTextAnnotationIconComment")]
     pub const Comment: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/key?language=objc)
     #[doc(alias = "kPDFTextAnnotationIconKey")]
     pub const Key: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/note?language=objc)
     #[doc(alias = "kPDFTextAnnotationIconNote")]
     pub const Note: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/help?language=objc)
     #[doc(alias = "kPDFTextAnnotationIconHelp")]
     pub const Help: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/newparagraph?language=objc)
     #[doc(alias = "kPDFTextAnnotationIconNewParagraph")]
     pub const NewParagraph: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/paragraph?language=objc)
     #[doc(alias = "kPDFTextAnnotationIconParagraph")]
     pub const Paragraph: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/insert?language=objc)
     #[doc(alias = "kPDFTextAnnotationIconInsert")]
     pub const Insert: Self = Self(6);
 }
@@ -74,12 +87,16 @@ unsafe impl RefEncode for PDFTextAnnotationIconType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFMarkupType(pub NSInteger);
 impl PDFMarkupType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfmarkuptype/highlight?language=objc)
     #[doc(alias = "kPDFMarkupTypeHighlight")]
     pub const Highlight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfmarkuptype/strikeout?language=objc)
     #[doc(alias = "kPDFMarkupTypeStrikeOut")]
     pub const StrikeOut: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfmarkuptype/underline?language=objc)
     #[doc(alias = "kPDFMarkupTypeUnderline")]
     pub const Underline: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfmarkuptype/redact?language=objc)
     #[doc(alias = "kPDFMarkupTypeRedact")]
     pub const Redact: Self = Self(3);
 }
@@ -98,12 +115,16 @@ unsafe impl RefEncode for PDFMarkupType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFWidgetControlType(pub NSInteger);
 impl PDFWidgetControlType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcontroltype/unknowncontrol?language=objc)
     #[doc(alias = "kPDFWidgetUnknownControl")]
     pub const UnknownControl: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcontroltype/pushbuttoncontrol?language=objc)
     #[doc(alias = "kPDFWidgetPushButtonControl")]
     pub const PushButtonControl: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcontroltype/radiobuttoncontrol?language=objc)
     #[doc(alias = "kPDFWidgetRadioButtonControl")]
     pub const RadioButtonControl: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcontroltype/checkboxcontrol?language=objc)
     #[doc(alias = "kPDFWidgetCheckBoxControl")]
     pub const CheckBoxControl: Self = Self(2);
 }
@@ -122,10 +143,13 @@ unsafe impl RefEncode for PDFWidgetControlType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFWidgetCellState(pub NSInteger);
 impl PDFWidgetCellState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcellstate/mixedstate?language=objc)
     #[doc(alias = "kPDFWidgetMixedState")]
     pub const MixedState: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcellstate/offstate?language=objc)
     #[doc(alias = "kPDFWidgetOffState")]
     pub const OffState: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcellstate/onstate?language=objc)
     #[doc(alias = "kPDFWidgetOnState")]
     pub const OnState: Self = Self(1);
 }

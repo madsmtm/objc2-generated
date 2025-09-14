@@ -48,14 +48,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageInterpolation(pub NSUInteger);
 impl NSImageInterpolation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation/default?language=objc)
     #[doc(alias = "NSImageInterpolationDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation/none?language=objc)
     #[doc(alias = "NSImageInterpolationNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation/low?language=objc)
     #[doc(alias = "NSImageInterpolationLow")]
     pub const Low: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation/medium?language=objc)
     #[doc(alias = "NSImageInterpolationMedium")]
     pub const Medium: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation/high?language=objc)
     #[doc(alias = "NSImageInterpolationHigh")]
     pub const High: Self = Self(3);
 }

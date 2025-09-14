@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKAppleECGAlgorithmVersion(pub NSInteger);
 impl HKAppleECGAlgorithmVersion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkappleecgalgorithmversion/version1?language=objc)
     #[doc(alias = "HKAppleECGAlgorithmVersion1")]
     pub const Version1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkappleecgalgorithmversion/version2?language=objc)
     #[doc(alias = "HKAppleECGAlgorithmVersion2")]
     pub const Version2: Self = Self(2);
 }
@@ -34,8 +36,10 @@ unsafe impl RefEncode for HKAppleECGAlgorithmVersion {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKBloodGlucoseMealTime(pub NSInteger);
 impl HKBloodGlucoseMealTime {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodglucosemealtime/preprandial?language=objc)
     #[doc(alias = "HKBloodGlucoseMealTimePreprandial")]
     pub const Preprandial: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodglucosemealtime/postprandial?language=objc)
     #[doc(alias = "HKBloodGlucoseMealTimePostprandial")]
     pub const Postprandial: Self = Self(2);
 }
@@ -54,28 +58,40 @@ unsafe impl RefEncode for HKBloodGlucoseMealTime {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKBodyTemperatureSensorLocation(pub NSInteger);
 impl HKBodyTemperatureSensorLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/other?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationOther")]
     pub const Other: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/armpit?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationArmpit")]
     pub const Armpit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/body?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationBody")]
     pub const Body: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/ear?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationEar")]
     pub const Ear: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/finger?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationFinger")]
     pub const Finger: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/gastrointestinal?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationGastroIntestinal")]
     pub const GastroIntestinal: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/mouth?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationMouth")]
     pub const Mouth: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/rectum?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationRectum")]
     pub const Rectum: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/toe?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationToe")]
     pub const Toe: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/eardrum?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationEarDrum")]
     pub const EarDrum: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/temporalartery?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationTemporalArtery")]
     pub const TemporalArtery: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/forehead?language=objc)
     #[doc(alias = "HKBodyTemperatureSensorLocationForehead")]
     pub const Forehead: Self = Self(11);
 }
@@ -109,12 +125,16 @@ unsafe impl RefEncode for HKBodyTemperatureSensorLocation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCyclingFunctionalThresholdPowerTestType(pub NSInteger);
 impl HKCyclingFunctionalThresholdPowerTestType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype/maxexercise60minute?language=objc)
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise60Minute")]
     pub const MaxExercise60Minute: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype/maxexercise20minute?language=objc)
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise20Minute")]
     pub const MaxExercise20Minute: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype/ramptest?language=objc)
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeRampTest")]
     pub const RampTest: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype/predictionexercise?language=objc)
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypePredictionExercise")]
     pub const PredictionExercise: Self = Self(4);
 }
@@ -135,12 +155,16 @@ unsafe impl RefEncode for HKCyclingFunctionalThresholdPowerTestType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKDevicePlacementSide(pub NSInteger);
 impl HKDevicePlacementSide {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside/unknown?language=objc)
     #[doc(alias = "HKDevicePlacementSideUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside/left?language=objc)
     #[doc(alias = "HKDevicePlacementSideLeft")]
     pub const Left: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside/right?language=objc)
     #[doc(alias = "HKDevicePlacementSideRight")]
     pub const Right: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside/central?language=objc)
     #[doc(alias = "HKDevicePlacementSideCentral")]
     pub const Central: Self = Self(3);
 }
@@ -159,10 +183,13 @@ unsafe impl RefEncode for HKDevicePlacementSide {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKHeartRateMotionContext(pub NSInteger);
 impl HKHeartRateMotionContext {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext/notset?language=objc)
     #[doc(alias = "HKHeartRateMotionContextNotSet")]
     pub const NotSet: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext/sedentary?language=objc)
     #[doc(alias = "HKHeartRateMotionContextSedentary")]
     pub const Sedentary: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext/active?language=objc)
     #[doc(alias = "HKHeartRateMotionContextActive")]
     pub const Active: Self = Self(2);
 }
@@ -191,10 +218,13 @@ unsafe impl RefEncode for HKHeartRateMotionContext {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKHeartRateRecoveryTestType(pub NSInteger);
 impl HKHeartRateRecoveryTestType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype/maxexercise?language=objc)
     #[doc(alias = "HKHeartRateRecoveryTestTypeMaxExercise")]
     pub const MaxExercise: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype/predictionsubmaxexercise?language=objc)
     #[doc(alias = "HKHeartRateRecoveryTestTypePredictionSubMaxExercise")]
     pub const PredictionSubMaxExercise: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype/predictionnonexercise?language=objc)
     #[doc(alias = "HKHeartRateRecoveryTestTypePredictionNonExercise")]
     pub const PredictionNonExercise: Self = Self(3);
 }
@@ -213,18 +243,25 @@ unsafe impl RefEncode for HKHeartRateRecoveryTestType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKHeartRateSensorLocation(pub NSInteger);
 impl HKHeartRateSensorLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/other?language=objc)
     #[doc(alias = "HKHeartRateSensorLocationOther")]
     pub const Other: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/chest?language=objc)
     #[doc(alias = "HKHeartRateSensorLocationChest")]
     pub const Chest: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/wrist?language=objc)
     #[doc(alias = "HKHeartRateSensorLocationWrist")]
     pub const Wrist: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/finger?language=objc)
     #[doc(alias = "HKHeartRateSensorLocationFinger")]
     pub const Finger: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/hand?language=objc)
     #[doc(alias = "HKHeartRateSensorLocationHand")]
     pub const Hand: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/earlobe?language=objc)
     #[doc(alias = "HKHeartRateSensorLocationEarLobe")]
     pub const EarLobe: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/foot?language=objc)
     #[doc(alias = "HKHeartRateSensorLocationFoot")]
     pub const Foot: Self = Self(6);
 }
@@ -251,8 +288,10 @@ unsafe impl RefEncode for HKHeartRateSensorLocation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKInsulinDeliveryReason(pub NSInteger);
 impl HKInsulinDeliveryReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkinsulindeliveryreason/basal?language=objc)
     #[doc(alias = "HKInsulinDeliveryReasonBasal")]
     pub const Basal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkinsulindeliveryreason/bolus?language=objc)
     #[doc(alias = "HKInsulinDeliveryReasonBolus")]
     pub const Bolus: Self = Self(2);
 }
@@ -278,8 +317,10 @@ unsafe impl RefEncode for HKInsulinDeliveryReason {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKPhysicalEffortEstimationType(pub NSInteger);
 impl HKPhysicalEffortEstimationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphysicaleffortestimationtype/activitylookup?language=objc)
     #[doc(alias = "HKPhysicalEffortEstimationTypeActivityLookup")]
     pub const ActivityLookup: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphysicaleffortestimationtype/devicesensed?language=objc)
     #[doc(alias = "HKPhysicalEffortEstimationTypeDeviceSensed")]
     pub const DeviceSensed: Self = Self(2);
 }
@@ -300,18 +341,25 @@ unsafe impl RefEncode for HKPhysicalEffortEstimationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKSwimmingStrokeStyle(pub NSInteger);
 impl HKSwimmingStrokeStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/unknown?language=objc)
     #[doc(alias = "HKSwimmingStrokeStyleUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/mixed?language=objc)
     #[doc(alias = "HKSwimmingStrokeStyleMixed")]
     pub const Mixed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/freestyle?language=objc)
     #[doc(alias = "HKSwimmingStrokeStyleFreestyle")]
     pub const Freestyle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/backstroke?language=objc)
     #[doc(alias = "HKSwimmingStrokeStyleBackstroke")]
     pub const Backstroke: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/breaststroke?language=objc)
     #[doc(alias = "HKSwimmingStrokeStyleBreaststroke")]
     pub const Breaststroke: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/butterfly?language=objc)
     #[doc(alias = "HKSwimmingStrokeStyleButterfly")]
     pub const Butterfly: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/kickboard?language=objc)
     #[doc(alias = "HKSwimmingStrokeStyleKickboard")]
     pub const Kickboard: Self = Self(6);
 }
@@ -330,10 +378,13 @@ unsafe impl RefEncode for HKSwimmingStrokeStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKUserMotionContext(pub NSInteger);
 impl HKUserMotionContext {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkusermotioncontext/notset?language=objc)
     #[doc(alias = "HKUserMotionContextNotSet")]
     pub const NotSet: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkusermotioncontext/stationary?language=objc)
     #[doc(alias = "HKUserMotionContextStationary")]
     pub const Stationary: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkusermotioncontext/active?language=objc)
     #[doc(alias = "HKUserMotionContextActive")]
     pub const Active: Self = Self(2);
 }
@@ -363,12 +414,16 @@ unsafe impl RefEncode for HKUserMotionContext {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKVO2MaxTestType(pub NSInteger);
 impl HKVO2MaxTestType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype/maxexercise?language=objc)
     #[doc(alias = "HKVO2MaxTestTypeMaxExercise")]
     pub const MaxExercise: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype/predictionsubmaxexercise?language=objc)
     #[doc(alias = "HKVO2MaxTestTypePredictionSubMaxExercise")]
     pub const PredictionSubMaxExercise: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype/predictionnonexercise?language=objc)
     #[doc(alias = "HKVO2MaxTestTypePredictionNonExercise")]
     pub const PredictionNonExercise: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype/predictionsteptest?language=objc)
     #[doc(alias = "HKVO2MaxTestTypePredictionStepTest")]
     pub const PredictionStepTest: Self = Self(4);
 }
@@ -391,8 +446,10 @@ unsafe impl RefEncode for HKVO2MaxTestType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKWaterSalinity(pub NSInteger);
 impl HKWaterSalinity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwatersalinity/freshwater?language=objc)
     #[doc(alias = "HKWaterSalinityFreshWater")]
     pub const FreshWater: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwatersalinity/saltwater?language=objc)
     #[doc(alias = "HKWaterSalinitySaltWater")]
     pub const SaltWater: Self = Self(2);
 }
@@ -411,60 +468,88 @@ unsafe impl RefEncode for HKWaterSalinity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWeatherCondition(pub NSInteger);
 impl HKWeatherCondition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/none?language=objc)
     #[doc(alias = "HKWeatherConditionNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/clear?language=objc)
     #[doc(alias = "HKWeatherConditionClear")]
     pub const Clear: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/fair?language=objc)
     #[doc(alias = "HKWeatherConditionFair")]
     pub const Fair: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/partlycloudy?language=objc)
     #[doc(alias = "HKWeatherConditionPartlyCloudy")]
     pub const PartlyCloudy: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/mostlycloudy?language=objc)
     #[doc(alias = "HKWeatherConditionMostlyCloudy")]
     pub const MostlyCloudy: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/cloudy?language=objc)
     #[doc(alias = "HKWeatherConditionCloudy")]
     pub const Cloudy: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/foggy?language=objc)
     #[doc(alias = "HKWeatherConditionFoggy")]
     pub const Foggy: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/haze?language=objc)
     #[doc(alias = "HKWeatherConditionHaze")]
     pub const Haze: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/windy?language=objc)
     #[doc(alias = "HKWeatherConditionWindy")]
     pub const Windy: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/blustery?language=objc)
     #[doc(alias = "HKWeatherConditionBlustery")]
     pub const Blustery: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/smoky?language=objc)
     #[doc(alias = "HKWeatherConditionSmoky")]
     pub const Smoky: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/dust?language=objc)
     #[doc(alias = "HKWeatherConditionDust")]
     pub const Dust: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/snow?language=objc)
     #[doc(alias = "HKWeatherConditionSnow")]
     pub const Snow: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/hail?language=objc)
     #[doc(alias = "HKWeatherConditionHail")]
     pub const Hail: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/sleet?language=objc)
     #[doc(alias = "HKWeatherConditionSleet")]
     pub const Sleet: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/freezingdrizzle?language=objc)
     #[doc(alias = "HKWeatherConditionFreezingDrizzle")]
     pub const FreezingDrizzle: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/freezingrain?language=objc)
     #[doc(alias = "HKWeatherConditionFreezingRain")]
     pub const FreezingRain: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/mixedrainandhail?language=objc)
     #[doc(alias = "HKWeatherConditionMixedRainAndHail")]
     pub const MixedRainAndHail: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/mixedrainandsnow?language=objc)
     #[doc(alias = "HKWeatherConditionMixedRainAndSnow")]
     pub const MixedRainAndSnow: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/mixedrainandsleet?language=objc)
     #[doc(alias = "HKWeatherConditionMixedRainAndSleet")]
     pub const MixedRainAndSleet: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/mixedsnowandsleet?language=objc)
     #[doc(alias = "HKWeatherConditionMixedSnowAndSleet")]
     pub const MixedSnowAndSleet: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/drizzle?language=objc)
     #[doc(alias = "HKWeatherConditionDrizzle")]
     pub const Drizzle: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/scatteredshowers?language=objc)
     #[doc(alias = "HKWeatherConditionScatteredShowers")]
     pub const ScatteredShowers: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/showers?language=objc)
     #[doc(alias = "HKWeatherConditionShowers")]
     pub const Showers: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/thunderstorms?language=objc)
     #[doc(alias = "HKWeatherConditionThunderstorms")]
     pub const Thunderstorms: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/tropicalstorm?language=objc)
     #[doc(alias = "HKWeatherConditionTropicalStorm")]
     pub const TropicalStorm: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/hurricane?language=objc)
     #[doc(alias = "HKWeatherConditionHurricane")]
     pub const Hurricane: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/tornado?language=objc)
     #[doc(alias = "HKWeatherConditionTornado")]
     pub const Tornado: Self = Self(27);
 }
@@ -487,10 +572,13 @@ unsafe impl RefEncode for HKWeatherCondition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWorkoutSwimmingLocationType(pub NSInteger);
 impl HKWorkoutSwimmingLocationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype/unknown?language=objc)
     #[doc(alias = "HKWorkoutSwimmingLocationTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype/pool?language=objc)
     #[doc(alias = "HKWorkoutSwimmingLocationTypePool")]
     pub const Pool: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype/openwater?language=objc)
     #[doc(alias = "HKWorkoutSwimmingLocationTypeOpenWater")]
     pub const OpenWater: Self = Self(2);
 }

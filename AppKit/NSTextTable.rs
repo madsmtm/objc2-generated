@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockValueType(pub NSUInteger);
 impl NSTextBlockValueType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/valuetype/absolutevaluetype?language=objc)
     #[doc(alias = "NSTextBlockAbsoluteValueType")]
     pub const AbsoluteValueType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/valuetype/percentagevaluetype?language=objc)
     #[doc(alias = "NSTextBlockPercentageValueType")]
     pub const PercentageValueType: Self = Self(1);
 }
@@ -35,16 +37,22 @@ unsafe impl RefEncode for NSTextBlockValueType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockDimension(pub NSUInteger);
 impl NSTextBlockDimension {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/width?language=objc)
     #[doc(alias = "NSTextBlockWidth")]
     pub const Width: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/minimumwidth?language=objc)
     #[doc(alias = "NSTextBlockMinimumWidth")]
     pub const MinimumWidth: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/maximumwidth?language=objc)
     #[doc(alias = "NSTextBlockMaximumWidth")]
     pub const MaximumWidth: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/height?language=objc)
     #[doc(alias = "NSTextBlockHeight")]
     pub const Height: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/minimumheight?language=objc)
     #[doc(alias = "NSTextBlockMinimumHeight")]
     pub const MinimumHeight: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/maximumheight?language=objc)
     #[doc(alias = "NSTextBlockMaximumHeight")]
     pub const MaximumHeight: Self = Self(6);
 }
@@ -63,10 +71,13 @@ unsafe impl RefEncode for NSTextBlockDimension {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockLayer(pub NSInteger);
 impl NSTextBlockLayer {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/layer/padding?language=objc)
     #[doc(alias = "NSTextBlockPadding")]
     pub const Padding: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/layer/border?language=objc)
     #[doc(alias = "NSTextBlockBorder")]
     pub const Border: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/layer/margin?language=objc)
     #[doc(alias = "NSTextBlockMargin")]
     pub const Margin: Self = Self(1);
 }
@@ -85,12 +96,16 @@ unsafe impl RefEncode for NSTextBlockLayer {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockVerticalAlignment(pub NSUInteger);
 impl NSTextBlockVerticalAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.enum/topalignment?language=objc)
     #[doc(alias = "NSTextBlockTopAlignment")]
     pub const TopAlignment: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.enum/middlealignment?language=objc)
     #[doc(alias = "NSTextBlockMiddleAlignment")]
     pub const MiddleAlignment: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.enum/bottomalignment?language=objc)
     #[doc(alias = "NSTextBlockBottomAlignment")]
     pub const BottomAlignment: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.enum/baselinealignment?language=objc)
     #[doc(alias = "NSTextBlockBaselineAlignment")]
     pub const BaselineAlignment: Self = Self(3);
 }
@@ -109,8 +124,10 @@ unsafe impl RefEncode for NSTextBlockVerticalAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextTableLayoutAlgorithm(pub NSUInteger);
 impl NSTextTableLayoutAlgorithm {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.enum/automaticlayoutalgorithm?language=objc)
     #[doc(alias = "NSTextTableAutomaticLayoutAlgorithm")]
     pub const AutomaticLayoutAlgorithm: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.enum/fixedlayoutalgorithm?language=objc)
     #[doc(alias = "NSTextTableFixedLayoutAlgorithm")]
     pub const FixedLayoutAlgorithm: Self = Self(1);
 }

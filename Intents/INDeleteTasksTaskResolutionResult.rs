@@ -13,9 +13,11 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INDeleteTasksTaskUnsupportedReason(pub NSInteger);
 impl INDeleteTasksTaskUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetaskstaskunsupportedreason/notasksfound?language=objc)
     #[doc(alias = "INDeleteTasksTaskUnsupportedReasonNoTasksFound")]
     #[deprecated = "INDeleteTasksTaskUnsupportedReason is deprecated. There is no replacement."]
     pub const NoTasksFound: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetaskstaskunsupportedreason/notasksinapp?language=objc)
     #[doc(alias = "INDeleteTasksTaskUnsupportedReasonNoTasksInApp")]
     #[deprecated = "INDeleteTasksTaskUnsupportedReason is deprecated. There is no replacement."]
     pub const NoTasksInApp: Self = Self(2);

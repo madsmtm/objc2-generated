@@ -26,6 +26,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CSIdentityAuthority {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449199-csidentityauthoritygettypeid?language=objc)
     #[doc(alias = "CSIdentityAuthorityGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -36,6 +37,7 @@ unsafe impl ConcreteType for CSIdentityAuthority {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448826-csgetdefaultidentityauthority?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CSGetDefaultIdentityAuthority(
 ) -> Option<CFRetained<CSIdentityAuthority>> {
@@ -46,6 +48,7 @@ pub unsafe extern "C-unwind" fn CSGetDefaultIdentityAuthority(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444814-csgetlocalidentityauthority?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CSGetLocalIdentityAuthority(
 ) -> Option<CFRetained<CSIdentityAuthority>> {
@@ -56,6 +59,7 @@ pub unsafe extern "C-unwind" fn CSGetLocalIdentityAuthority(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446750-csgetmanagedidentityauthority?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CSGetManagedIdentityAuthority(
 ) -> Option<CFRetained<CSIdentityAuthority>> {
@@ -67,6 +71,7 @@ pub unsafe extern "C-unwind" fn CSGetManagedIdentityAuthority(
 }
 
 impl CSIdentityAuthority {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448990-csidentityauthoritycopylocalized?language=objc)
     #[doc(alias = "CSIdentityAuthorityCopyLocalizedName")]
     #[inline]
     pub unsafe fn localized_name(&self) -> Option<CFRetained<CFString>> {

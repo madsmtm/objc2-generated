@@ -18,16 +18,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKAuthorizationStatus(pub NSInteger);
 impl EKAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "EKAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/restricted?language=objc)
     #[doc(alias = "EKAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/denied?language=objc)
     #[doc(alias = "EKAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/fullaccess?language=objc)
     #[doc(alias = "EKAuthorizationStatusFullAccess")]
     pub const FullAccess: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/writeonly?language=objc)
     #[doc(alias = "EKAuthorizationStatusWriteOnly")]
     pub const WriteOnly: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekauthorizationstatus/authorized?language=objc)
     #[doc(alias = "EKAuthorizationStatusAuthorized")]
     #[deprecated = "Check for full access or write only access"]
     pub const Authorized: Self = Self(EKAuthorizationStatus::FullAccess.0);
@@ -46,32 +52,46 @@ unsafe impl RefEncode for EKAuthorizationStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct EKWeekday(pub NSInteger);
 impl EKWeekday {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/sunday?language=objc)
     #[doc(alias = "EKWeekdaySunday")]
     pub const Sunday: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/monday?language=objc)
     #[doc(alias = "EKWeekdayMonday")]
     pub const Monday: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/tuesday?language=objc)
     #[doc(alias = "EKWeekdayTuesday")]
     pub const Tuesday: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/wednesday?language=objc)
     #[doc(alias = "EKWeekdayWednesday")]
     pub const Wednesday: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/thursday?language=objc)
     #[doc(alias = "EKWeekdayThursday")]
     pub const Thursday: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/friday?language=objc)
     #[doc(alias = "EKWeekdayFriday")]
     pub const Friday: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/saturday?language=objc)
     #[doc(alias = "EKWeekdaySaturday")]
     pub const Saturday: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/eksunday?language=objc)
     #[deprecated = "Use EKWeekdaySunday instead"]
     pub const EKSunday: Self = Self(EKWeekday::Sunday.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/ekmonday?language=objc)
     #[deprecated = "Use EKWeekdayMonday instead"]
     pub const EKMonday: Self = Self(EKWeekday::Monday.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/ektuesday?language=objc)
     #[deprecated = "Use EKWeekdayTuesday instead"]
     pub const EKTuesday: Self = Self(EKWeekday::Tuesday.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/ekwednesday?language=objc)
     #[deprecated = "Use EKWeekdayWednesday instead"]
     pub const EKWednesday: Self = Self(EKWeekday::Wednesday.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/ekthursday?language=objc)
     #[deprecated = "Use EKWeekdayThursday instead"]
     pub const EKThursday: Self = Self(EKWeekday::Thursday.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/ekfriday?language=objc)
     #[deprecated = "Use EKWeekdayFriday instead"]
     pub const EKFriday: Self = Self(EKWeekday::Friday.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekweekday/eksaturday?language=objc)
     #[deprecated = "Use EKWeekdaySaturday instead"]
     pub const EKSaturday: Self = Self(EKWeekday::Saturday.0);
 }
@@ -96,12 +116,16 @@ unsafe impl RefEncode for EKWeekday {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKRecurrenceFrequency(pub NSInteger);
 impl EKRecurrenceFrequency {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencefrequency/daily?language=objc)
     #[doc(alias = "EKRecurrenceFrequencyDaily")]
     pub const Daily: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencefrequency/weekly?language=objc)
     #[doc(alias = "EKRecurrenceFrequencyWeekly")]
     pub const Weekly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencefrequency/monthly?language=objc)
     #[doc(alias = "EKRecurrenceFrequencyMonthly")]
     pub const Monthly: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencefrequency/yearly?language=objc)
     #[doc(alias = "EKRecurrenceFrequencyYearly")]
     pub const Yearly: Self = Self(3);
 }
@@ -122,14 +146,19 @@ unsafe impl RefEncode for EKRecurrenceFrequency {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKParticipantType(pub NSInteger);
 impl EKParticipantType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipanttype/unknown?language=objc)
     #[doc(alias = "EKParticipantTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipanttype/person?language=objc)
     #[doc(alias = "EKParticipantTypePerson")]
     pub const Person: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipanttype/room?language=objc)
     #[doc(alias = "EKParticipantTypeRoom")]
     pub const Room: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipanttype/resource?language=objc)
     #[doc(alias = "EKParticipantTypeResource")]
     pub const Resource: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipanttype/group?language=objc)
     #[doc(alias = "EKParticipantTypeGroup")]
     pub const Group: Self = Self(4);
 }
@@ -150,14 +179,19 @@ unsafe impl RefEncode for EKParticipantType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKParticipantRole(pub NSInteger);
 impl EKParticipantRole {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantrole/unknown?language=objc)
     #[doc(alias = "EKParticipantRoleUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantrole/required?language=objc)
     #[doc(alias = "EKParticipantRoleRequired")]
     pub const Required: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantrole/optional?language=objc)
     #[doc(alias = "EKParticipantRoleOptional")]
     pub const Optional: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantrole/chair?language=objc)
     #[doc(alias = "EKParticipantRoleChair")]
     pub const Chair: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantrole/nonparticipant?language=objc)
     #[doc(alias = "EKParticipantRoleNonParticipant")]
     pub const NonParticipant: Self = Self(4);
 }
@@ -200,22 +234,31 @@ unsafe impl RefEncode for EKParticipantRole {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKParticipantScheduleStatus(pub NSInteger);
 impl EKParticipantScheduleStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus/none?language=objc)
     #[doc(alias = "EKParticipantScheduleStatusNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus/pending?language=objc)
     #[doc(alias = "EKParticipantScheduleStatusPending")]
     pub const Pending: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus/sent?language=objc)
     #[doc(alias = "EKParticipantScheduleStatusSent")]
     pub const Sent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus/delivered?language=objc)
     #[doc(alias = "EKParticipantScheduleStatusDelivered")]
     pub const Delivered: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus/recipientnotrecognized?language=objc)
     #[doc(alias = "EKParticipantScheduleStatusRecipientNotRecognized")]
     pub const RecipientNotRecognized: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus/noprivileges?language=objc)
     #[doc(alias = "EKParticipantScheduleStatusNoPrivileges")]
     pub const NoPrivileges: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus/deliveryfailed?language=objc)
     #[doc(alias = "EKParticipantScheduleStatusDeliveryFailed")]
     pub const DeliveryFailed: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus/cannotdeliver?language=objc)
     #[doc(alias = "EKParticipantScheduleStatusCannotDeliver")]
     pub const CannotDeliver: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus/recipientnotallowed?language=objc)
     #[doc(alias = "EKParticipantScheduleStatusRecipientNotAllowed")]
     pub const RecipientNotAllowed: Self = Self(8);
 }
@@ -236,20 +279,28 @@ unsafe impl RefEncode for EKParticipantScheduleStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKParticipantStatus(pub NSInteger);
 impl EKParticipantStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus/unknown?language=objc)
     #[doc(alias = "EKParticipantStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus/pending?language=objc)
     #[doc(alias = "EKParticipantStatusPending")]
     pub const Pending: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus/accepted?language=objc)
     #[doc(alias = "EKParticipantStatusAccepted")]
     pub const Accepted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus/declined?language=objc)
     #[doc(alias = "EKParticipantStatusDeclined")]
     pub const Declined: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus/tentative?language=objc)
     #[doc(alias = "EKParticipantStatusTentative")]
     pub const Tentative: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus/delegated?language=objc)
     #[doc(alias = "EKParticipantStatusDelegated")]
     pub const Delegated: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus/completed?language=objc)
     #[doc(alias = "EKParticipantStatusCompleted")]
     pub const Completed: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus/inprocess?language=objc)
     #[doc(alias = "EKParticipantStatusInProcess")]
     pub const InProcess: Self = Self(7);
 }
@@ -270,14 +321,19 @@ unsafe impl RefEncode for EKParticipantStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKCalendarType(pub NSInteger);
 impl EKCalendarType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendartype/local?language=objc)
     #[doc(alias = "EKCalendarTypeLocal")]
     pub const Local: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendartype/caldav?language=objc)
     #[doc(alias = "EKCalendarTypeCalDAV")]
     pub const CalDAV: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendartype/exchange?language=objc)
     #[doc(alias = "EKCalendarTypeExchange")]
     pub const Exchange: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendartype/subscription?language=objc)
     #[doc(alias = "EKCalendarTypeSubscription")]
     pub const Subscription: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendartype/birthday?language=objc)
     #[doc(alias = "EKCalendarTypeBirthday")]
     pub const Birthday: Self = Self(4);
 }
@@ -297,14 +353,19 @@ unsafe impl RefEncode for EKCalendarType {
 pub struct EKCalendarEventAvailabilityMask(pub NSUInteger);
 bitflags::bitflags! {
     impl EKCalendarEventAvailabilityMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendareventavailabilitymask/ekcalendareventavailabilitynone?language=objc)
         #[doc(alias = "EKCalendarEventAvailabilityNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendareventavailabilitymask/busy?language=objc)
         #[doc(alias = "EKCalendarEventAvailabilityBusy")]
         const Busy = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendareventavailabilitymask/free?language=objc)
         #[doc(alias = "EKCalendarEventAvailabilityFree")]
         const Free = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendareventavailabilitymask/tentative?language=objc)
         #[doc(alias = "EKCalendarEventAvailabilityTentative")]
         const Tentative = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendareventavailabilitymask/unavailable?language=objc)
         #[doc(alias = "EKCalendarEventAvailabilityUnavailable")]
         const Unavailable = 1<<3;
     }
@@ -324,16 +385,22 @@ unsafe impl RefEncode for EKCalendarEventAvailabilityMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKSourceType(pub NSInteger);
 impl EKSourceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/eksourcetype/local?language=objc)
     #[doc(alias = "EKSourceTypeLocal")]
     pub const Local: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/eksourcetype/exchange?language=objc)
     #[doc(alias = "EKSourceTypeExchange")]
     pub const Exchange: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/eksourcetype/caldav?language=objc)
     #[doc(alias = "EKSourceTypeCalDAV")]
     pub const CalDAV: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/eksourcetype/mobileme?language=objc)
     #[doc(alias = "EKSourceTypeMobileMe")]
     pub const MobileMe: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/eksourcetype/subscribed?language=objc)
     #[doc(alias = "EKSourceTypeSubscribed")]
     pub const Subscribed: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/eksourcetype/birthdays?language=objc)
     #[doc(alias = "EKSourceTypeBirthdays")]
     pub const Birthdays: Self = Self(5);
 }
@@ -354,8 +421,10 @@ unsafe impl RefEncode for EKSourceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEntityType(pub NSUInteger);
 impl EKEntityType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekentitytype/event?language=objc)
     #[doc(alias = "EKEntityTypeEvent")]
     pub const Event: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekentitytype/reminder?language=objc)
     #[doc(alias = "EKEntityTypeReminder")]
     pub const Reminder: Self = Self(1);
 }
@@ -377,8 +446,10 @@ unsafe impl RefEncode for EKEntityType {
 pub struct EKEntityMask(pub NSUInteger);
 bitflags::bitflags! {
     impl EKEntityMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekentitymask/event?language=objc)
         #[doc(alias = "EKEntityMaskEvent")]
         const Event = 1<<EKEntityType::Event.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekentitymask/reminder?language=objc)
         #[doc(alias = "EKEntityMaskReminder")]
         const Reminder = 1<<EKEntityType::Reminder.0;
     }
@@ -400,10 +471,13 @@ unsafe impl RefEncode for EKEntityMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKAlarmProximity(pub NSInteger);
 impl EKAlarmProximity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmproximity/none?language=objc)
     #[doc(alias = "EKAlarmProximityNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmproximity/enter?language=objc)
     #[doc(alias = "EKAlarmProximityEnter")]
     pub const Enter: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmproximity/leave?language=objc)
     #[doc(alias = "EKAlarmProximityLeave")]
     pub const Leave: Self = Self(2);
 }
@@ -424,12 +498,16 @@ unsafe impl RefEncode for EKAlarmProximity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKAlarmType(pub NSInteger);
 impl EKAlarmType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmtype/display?language=objc)
     #[doc(alias = "EKAlarmTypeDisplay")]
     pub const Display: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmtype/audio?language=objc)
     #[doc(alias = "EKAlarmTypeAudio")]
     pub const Audio: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmtype/procedure?language=objc)
     #[doc(alias = "EKAlarmTypeProcedure")]
     pub const Procedure: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmtype/email?language=objc)
     #[doc(alias = "EKAlarmTypeEmail")]
     pub const Email: Self = Self(3);
 }
@@ -455,12 +533,16 @@ unsafe impl RefEncode for EKAlarmType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKReminderPriority(pub NSUInteger);
 impl EKReminderPriority {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekreminderpriority/none?language=objc)
     #[doc(alias = "EKReminderPriorityNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekreminderpriority/high?language=objc)
     #[doc(alias = "EKReminderPriorityHigh")]
     pub const High: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekreminderpriority/medium?language=objc)
     #[doc(alias = "EKReminderPriorityMedium")]
     pub const Medium: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekreminderpriority/low?language=objc)
     #[doc(alias = "EKReminderPriorityLow")]
     pub const Low: Self = Self(9);
 }

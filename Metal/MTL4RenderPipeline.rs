@@ -18,12 +18,16 @@ impl MTL4LogicalToPhysicalColorAttachmentMappingState {
     /// Treats the logical color attachment descriptor array for render and tile render pipelines to match the physical one.
     ///
     /// This is the default behavior, which produces an identity mapping.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4logicaltophysicalcolorattachmentmappingstate/identity?language=objc)
     #[doc(alias = "MTL4LogicalToPhysicalColorAttachmentMappingStateIdentity")]
     pub const Identity: Self = Self(0);
     /// Deduces the color attachment mapping by inheriting it from the color attachment map of the current encoder.
     ///
     /// Use this setting to indicate Metal should inherit the mapping from the ``colorAttachmentMap`` property of the current
     /// ``MTL4RenderCommandEncoder`` or ``MTLRenderCommandEncoder`` in use at draw time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4logicaltophysicalcolorattachmentmappingstate/inherited?language=objc)
     #[doc(alias = "MTL4LogicalToPhysicalColorAttachmentMappingStateInherited")]
     pub const Inherited: Self = Self(1);
 }

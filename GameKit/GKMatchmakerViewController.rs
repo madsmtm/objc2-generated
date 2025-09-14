@@ -16,12 +16,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKMatchmakingMode(pub NSInteger);
 impl GKMatchmakingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakingmode/default?language=objc)
     #[doc(alias = "GKMatchmakingModeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakingmode/nearbyonly?language=objc)
     #[doc(alias = "GKMatchmakingModeNearbyOnly")]
     pub const NearbyOnly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakingmode/automatchonly?language=objc)
     #[doc(alias = "GKMatchmakingModeAutomatchOnly")]
     pub const AutomatchOnly: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakingmode/inviteonly?language=objc)
     #[doc(alias = "GKMatchmakingModeInviteOnly")]
     pub const InviteOnly: Self = Self(3);
 }

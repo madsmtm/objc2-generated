@@ -13,20 +13,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct JSType(pub c_uint);
 impl JSType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypeundefined?language=objc)
     #[doc(alias = "kJSTypeUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypenull?language=objc)
     #[doc(alias = "kJSTypeNull")]
     pub const Null: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypeboolean?language=objc)
     #[doc(alias = "kJSTypeBoolean")]
     pub const Boolean: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypenumber?language=objc)
     #[doc(alias = "kJSTypeNumber")]
     pub const Number: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypestring?language=objc)
     #[doc(alias = "kJSTypeString")]
     pub const String: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypeobject?language=objc)
     #[doc(alias = "kJSTypeObject")]
     pub const Object: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypesymbol?language=objc)
     #[doc(alias = "kJSTypeSymbol")]
     pub const Symbol: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypebigint?language=objc)
     #[doc(alias = "kJSTypeBigInt")]
     pub const BigInt: Self = Self(7);
 }
@@ -48,30 +56,43 @@ unsafe impl RefEncode for JSType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct JSTypedArrayType(pub c_uint);
 impl JSTypedArrayType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeint8array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeInt8Array")]
     pub const Int8Array: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeint16array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeInt16Array")]
     pub const Int16Array: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeint32array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeInt32Array")]
     pub const Int32Array: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeuint8array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeUint8Array")]
     pub const Uint8Array: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeuint8clampedarray?language=objc)
     #[doc(alias = "kJSTypedArrayTypeUint8ClampedArray")]
     pub const Uint8ClampedArray: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeuint16array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeUint16Array")]
     pub const Uint16Array: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeuint32array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeUint32Array")]
     pub const Uint32Array: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypefloat32array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeFloat32Array")]
     pub const Float32Array: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypefloat64array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeFloat64Array")]
     pub const Float64Array: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypearraybuffer?language=objc)
     #[doc(alias = "kJSTypedArrayTypeArrayBuffer")]
     pub const ArrayBuffer: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypenone?language=objc)
     #[doc(alias = "kJSTypedArrayTypeNone")]
     pub const None: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypebigint64array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeBigInt64Array")]
     pub const BigInt64Array: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypebiguint64array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeBigUint64Array")]
     pub const BigUint64Array: Self = Self(12);
 }
@@ -95,15 +116,23 @@ unsafe impl RefEncode for JSTypedArrayType {
 pub struct JSRelationCondition(pub u32);
 impl JSRelationCondition {
     /// A constant identifying the type of JavaScript relation condition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsrelationcondition/undefined?language=objc)
     #[doc(alias = "kJSRelationConditionUndefined")]
     pub const Undefined: Self = Self(0);
     /// A constant identifying the type of JavaScript relation condition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsrelationcondition/equal?language=objc)
     #[doc(alias = "kJSRelationConditionEqual")]
     pub const Equal: Self = Self(1);
     /// A constant identifying the type of JavaScript relation condition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsrelationcondition/greaterthan?language=objc)
     #[doc(alias = "kJSRelationConditionGreaterThan")]
     pub const GreaterThan: Self = Self(2);
     /// A constant identifying the type of JavaScript relation condition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsrelationcondition/lessthan?language=objc)
     #[doc(alias = "kJSRelationConditionLessThan")]
     pub const LessThan: Self = Self(3);
 }
@@ -132,6 +161,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluegettype(_:_:)?language=objc)
     #[doc(alias = "JSValueGetType")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -154,6 +185,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisundefined(_:_:)?language=objc)
     #[doc(alias = "JSValueIsUndefined")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -176,6 +209,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisnull(_:_:)?language=objc)
     #[doc(alias = "JSValueIsNull")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -198,6 +233,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisboolean(_:_:)?language=objc)
     #[doc(alias = "JSValueIsBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -220,6 +257,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisnumber(_:_:)?language=objc)
     #[doc(alias = "JSValueIsNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -242,6 +281,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisstring(_:_:)?language=objc)
     #[doc(alias = "JSValueIsString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -264,6 +305,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueissymbol(_:_:)?language=objc)
     #[doc(alias = "JSValueIsSymbol")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -286,6 +329,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisbigint(_:_:)?language=objc)
     #[doc(alias = "JSValueIsBigInt")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -308,6 +353,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisobject(_:_:)?language=objc)
     #[doc(alias = "JSValueIsObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -333,6 +380,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `js_class` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisobjectofclass(_:_:_:)?language=objc)
     #[doc(alias = "JSValueIsObjectOfClass")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -363,6 +412,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisarray(_:_:)?language=objc)
     #[doc(alias = "JSValueIsArray")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -385,6 +436,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisdate(_:_:)?language=objc)
     #[doc(alias = "JSValueIsDate")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -410,6 +463,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluegettypedarraytype(_:_:_:)?language=objc)
     #[doc(alias = "JSValueGetTypedArrayType")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -446,6 +501,8 @@ impl JSValue {
     /// - `a` must be a valid pointer.
     /// - `b` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisequal(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueIsEqual")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -481,6 +538,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `a` must be a valid pointer.
     /// - `b` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisstrictequal(_:_:_:)?language=objc)
     #[doc(alias = "JSValueIsStrictEqual")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -509,6 +568,8 @@ impl JSValue {
     /// - `value` must be a valid pointer.
     /// - `constructor` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisinstanceofconstructor(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueIsInstanceOfConstructor")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -551,6 +612,8 @@ impl JSValue {
     /// - `left` must be a valid pointer.
     /// - `right` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluecompare(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueCompare")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -590,6 +653,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `left` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluecompareint64(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueCompareInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -629,6 +694,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `left` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluecompareuint64(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueCompareUInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -668,6 +735,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `left` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluecomparedouble(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueCompareDouble")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -697,6 +766,8 @@ impl JSValue {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakeundefined(_:)?language=objc)
     #[doc(alias = "JSValueMakeUndefined")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -716,6 +787,8 @@ impl JSValue {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakenull(_:)?language=objc)
     #[doc(alias = "JSValueMakeNull")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -737,6 +810,8 @@ impl JSValue {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakeboolean(_:_:)?language=objc)
     #[doc(alias = "JSValueMakeBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -758,6 +833,8 @@ impl JSValue {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakenumber(_:_:)?language=objc)
     #[doc(alias = "JSValueMakeNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -781,6 +858,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `string` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakestring(_:_:)?language=objc)
     #[doc(alias = "JSValueMakeString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -803,6 +882,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `description` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakesymbol(_:_:)?language=objc)
     #[doc(alias = "JSValueMakeSymbol")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -831,6 +912,8 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsbigintcreatewithdouble(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithDouble(
         ctx: JSContextRef,
@@ -854,6 +937,8 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsbigintcreatewithint64(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithInt64(
         ctx: JSContextRef,
@@ -877,6 +962,8 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsbigintcreatewithuint64(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithUInt64(
         ctx: JSContextRef,
@@ -903,6 +990,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `string` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsbigintcreatewithstring(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithString(
         ctx: JSContextRef,
@@ -925,6 +1014,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `string` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakefromjsonstring(_:_:)?language=objc)
     #[doc(alias = "JSValueMakeFromJSONString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -952,6 +1043,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluecreatejsonstring(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueCreateJSONString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -984,6 +1077,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetoboolean(_:_:)?language=objc)
     #[doc(alias = "JSValueToBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1011,6 +1106,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetonumber(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1046,6 +1143,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetoint32(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToInt32")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1081,6 +1180,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetouint32(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToUInt32")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1116,6 +1217,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetoint64(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1151,6 +1254,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetouint64(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToUInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1184,6 +1289,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetostringcopy(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToStringCopy")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1217,6 +1324,8 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetoobject(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1249,6 +1358,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueprotect(_:_:)?language=objc)
     #[doc(alias = "JSValueProtect")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1272,6 +1383,8 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueunprotect(_:_:)?language=objc)
     #[doc(alias = "JSValueUnprotect")]
     #[cfg(feature = "JSBase")]
     #[inline]

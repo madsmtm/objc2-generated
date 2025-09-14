@@ -57,50 +57,73 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibDistinguishedPlaylistKind(pub NSUInteger);
 impl ITLibDistinguishedPlaylistKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindnone?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindNone")]
     pub const KindNone: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindmovies?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindMovies")]
     pub const KindMovies: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindtvshows?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindTVShows")]
     pub const KindTVShows: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindmusic?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindMusic")]
     pub const KindMusic: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindaudiobooks?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindAudiobooks")]
     pub const KindAudiobooks: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindbooks?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindBooks")]
     pub const KindBooks: Self = Self(ITLibDistinguishedPlaylistKind::KindAudiobooks.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindringtones?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindRingtones")]
     pub const KindRingtones: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindpodcasts?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindPodcasts")]
     pub const KindPodcasts: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindvoicememos?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindVoiceMemos")]
     pub const KindVoiceMemos: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindpurchases?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindPurchases")]
     pub const KindPurchases: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kinditunesu?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindiTunesU")]
     pub const KindiTunesU: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kind90smusic?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKind90sMusic")]
     pub const Kind90sMusic: Self = Self(42);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindmytoprated?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindMyTopRated")]
     pub const KindMyTopRated: Self = Self(43);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindtop25mostplayed?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindTop25MostPlayed")]
     pub const KindTop25MostPlayed: Self = Self(44);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindrecentlyplayed?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindRecentlyPlayed")]
     pub const KindRecentlyPlayed: Self = Self(45);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindrecentlyadded?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindRecentlyAdded")]
     pub const KindRecentlyAdded: Self = Self(46);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindmusicvideos?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindMusicVideos")]
     pub const KindMusicVideos: Self = Self(47);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindclassicalmusic?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindClassicalMusic")]
     pub const KindClassicalMusic: Self = Self(48);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindlibrarymusicvideos?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindLibraryMusicVideos")]
     pub const KindLibraryMusicVideos: Self = Self(49);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindhomevideos?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindHomeVideos")]
     pub const KindHomeVideos: Self = Self(50);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindapplications?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindApplications")]
     pub const KindApplications: Self = Self(51);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindlovedsongs?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindLovedSongs")]
     pub const KindLovedSongs: Self = Self(52);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind/kindmusicshowsandmovies?language=objc)
     #[doc(alias = "ITLibDistinguishedPlaylistKindMusicShowsAndMovies")]
     pub const KindMusicShowsAndMovies: Self = Self(53);
 }
@@ -132,14 +155,19 @@ unsafe impl RefEncode for ITLibDistinguishedPlaylistKind {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibPlaylistKind(pub NSUInteger);
 impl ITLibPlaylistKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistkind/regular?language=objc)
     #[doc(alias = "ITLibPlaylistKindRegular")]
     pub const Regular: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistkind/smart?language=objc)
     #[doc(alias = "ITLibPlaylistKindSmart")]
     pub const Smart: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistkind/genius?language=objc)
     #[doc(alias = "ITLibPlaylistKindGenius")]
     pub const Genius: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistkind/folder?language=objc)
     #[doc(alias = "ITLibPlaylistKindFolder")]
     pub const Folder: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistkind/geniusmix?language=objc)
     #[doc(alias = "ITLibPlaylistKindGeniusMix")]
     pub const GeniusMix: Self = Self(4);
 }

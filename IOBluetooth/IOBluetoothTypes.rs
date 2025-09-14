@@ -4,7 +4,11 @@ use core::ffi::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothdevicereseterror?language=objc)
 pub const kIOBluetoothDeviceResetError: c_uint = iokit_bluetooth_err!(1);
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothconnectionalreadyexists?language=objc)
 pub const kIOBluetoothConnectionAlreadyExists: c_uint = iokit_bluetooth_err!(2);
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothnohcicontroller?language=objc)
 pub const kIOBluetoothNoHCIController: c_uint = iokit_bluetooth_err!(3);
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothhcipowerstatesnotsupported?language=objc)
 pub const kIOBluetoothHCIPowerStatesNotSupported: c_uint = iokit_bluetooth_err!(4);

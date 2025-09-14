@@ -135,9 +135,13 @@ pub struct ARGeometryPrimitiveType(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARGeometryPrimitiveType {
     /// The geometry element is a sequence of line segments, where each line segment is described by two new vertices.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeometryprimitivetype/line?language=objc)
     #[doc(alias = "ARGeometryPrimitiveTypeLine")]
     pub const Line: Self = Self(0);
     /// The geometry element is a sequence of triangles, where each triangle is described by three new vertices.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeometryprimitivetype/triangle?language=objc)
     #[doc(alias = "ARGeometryPrimitiveTypeTriangle")]
     pub const Triangle: Self = Self(1);
 }
@@ -268,20 +272,28 @@ impl ARGeometryElement {
 pub struct ARMeshClassification(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARMeshClassification {
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/none?language=objc)
     #[doc(alias = "ARMeshClassificationNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/wall?language=objc)
     #[doc(alias = "ARMeshClassificationWall")]
     pub const Wall: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/floor?language=objc)
     #[doc(alias = "ARMeshClassificationFloor")]
     pub const Floor: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/ceiling?language=objc)
     #[doc(alias = "ARMeshClassificationCeiling")]
     pub const Ceiling: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/table?language=objc)
     #[doc(alias = "ARMeshClassificationTable")]
     pub const Table: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/seat?language=objc)
     #[doc(alias = "ARMeshClassificationSeat")]
     pub const Seat: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/window?language=objc)
     #[doc(alias = "ARMeshClassificationWindow")]
     pub const Window: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/door?language=objc)
     #[doc(alias = "ARMeshClassificationDoor")]
     pub const Door: Self = Self(7);
 }

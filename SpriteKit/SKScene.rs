@@ -20,12 +20,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKSceneScaleMode(pub NSInteger);
 impl SKSceneScaleMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscenescalemode/fill?language=objc)
     #[doc(alias = "SKSceneScaleModeFill")]
     pub const Fill: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscenescalemode/aspectfill?language=objc)
     #[doc(alias = "SKSceneScaleModeAspectFill")]
     pub const AspectFill: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscenescalemode/aspectfit?language=objc)
     #[doc(alias = "SKSceneScaleModeAspectFit")]
     pub const AspectFit: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscenescalemode/resizefill?language=objc)
     #[doc(alias = "SKSceneScaleModeResizeFill")]
     pub const ResizeFill: Self = Self(3);
 }

@@ -11,12 +11,18 @@ use crate::*;
 pub struct LACompanionType(pub NSInteger);
 impl LACompanionType {
     /// Paired Apple Watch
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacompaniontype/watch?language=objc)
     #[doc(alias = "LACompanionTypeWatch")]
     pub const Watch: Self = Self(1);
     /// Paired Mac
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacompaniontype/mac?language=objc)
     #[doc(alias = "LACompanionTypeMac")]
     pub const Mac: Self = Self(2);
     /// Paired Vision Pro
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacompaniontype/vision?language=objc)
     #[doc(alias = "LACompanionTypeVision")]
     pub const Vision: Self = Self(4);
 }

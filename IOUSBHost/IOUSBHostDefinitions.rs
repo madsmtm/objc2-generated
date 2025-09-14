@@ -80,6 +80,7 @@ unsafe impl RefEncode for IOUSBHostIsochronousFrame {
 pub struct IOUSBHostIsochronousTransferOptions(pub u32);
 bitflags::bitflags! {
     impl IOUSBHostIsochronousTransferOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransferoptions/iousbhostisochronoustransferoptionsnone?language=objc)
         #[doc(alias = "IOUSBHostIsochronousTransferOptionsNone")]
         const None = 0;
     }
@@ -109,8 +110,10 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransferOptions {
 pub struct IOUSBHostIsochronousTransactionOptions(pub u32);
 bitflags::bitflags! {
     impl IOUSBHostIsochronousTransactionOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransactionoptions/iousbhostisochronoustransactionoptionsnone?language=objc)
         #[doc(alias = "IOUSBHostIsochronousTransactionOptionsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransactionoptions/wrap?language=objc)
         #[doc(alias = "IOUSBHostIsochronousTransactionOptionsWrap")]
         const Wrap = 1<<0;
     }
@@ -230,8 +233,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostAbortOption(pub NSUInteger);
 impl IOUSBHostAbortOption {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostabortoption/asynchronous?language=objc)
     #[doc(alias = "IOUSBHostAbortOptionAsynchronous")]
     pub const Asynchronous: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostabortoption/synchronous?language=objc)
     #[doc(alias = "IOUSBHostAbortOptionSynchronous")]
     pub const Synchronous: Self = Self(1);
 }
@@ -274,10 +279,13 @@ unsafe impl RefEncode for IOUSBHostAbortOption {
 pub struct IOUSBHostObjectInitOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl IOUSBHostObjectInitOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectinitoptions/iousbhostobjectinitoptionsnone?language=objc)
         #[doc(alias = "IOUSBHostObjectInitOptionsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectinitoptions/devicecapture?language=objc)
         #[doc(alias = "IOUSBHostObjectInitOptionsDeviceCapture")]
         const DeviceCapture = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectinitoptions/deviceseize?language=objc)
         #[doc(alias = "IOUSBHostObjectInitOptionsDeviceSeize")]
         const DeviceSeize = 1<<1;
     }
@@ -316,8 +324,10 @@ unsafe impl RefEncode for IOUSBHostObjectInitOptions {
 pub struct IOUSBHostObjectDestroyOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl IOUSBHostObjectDestroyOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectdestroyoptions/iousbhostobjectdestroyoptionsnone?language=objc)
         #[doc(alias = "IOUSBHostObjectDestroyOptionsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectdestroyoptions/devicesurrender?language=objc)
         #[doc(alias = "IOUSBHostObjectDestroyOptionsDeviceSurrender")]
         const DeviceSurrender = 1<<0;
     }

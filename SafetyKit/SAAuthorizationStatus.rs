@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SAAuthorizationStatus(pub NSInteger);
 impl SAAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "SAAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saauthorizationstatus/denied?language=objc)
     #[doc(alias = "SAAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saauthorizationstatus/authorized?language=objc)
     #[doc(alias = "SAAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(2);
 }

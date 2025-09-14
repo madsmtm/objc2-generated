@@ -13,21 +13,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSaveProfileInCarIntentResponseCode(pub NSInteger);
 impl INSaveProfileInCarIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeUnspecified")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/ready?language=objc)
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeReady")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeInProgress")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/success?language=objc)
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeSuccess")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/failure?language=objc)
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeFailure")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);

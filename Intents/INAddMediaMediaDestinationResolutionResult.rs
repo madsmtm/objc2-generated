@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INAddMediaMediaDestinationUnsupportedReason(pub NSInteger);
 impl INAddMediaMediaDestinationUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediamediadestinationunsupportedreason/playlistnamenotfound?language=objc)
     #[doc(alias = "INAddMediaMediaDestinationUnsupportedReasonPlaylistNameNotFound")]
     pub const PlaylistNameNotFound: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediamediadestinationunsupportedreason/playlistnoteditable?language=objc)
     #[doc(alias = "INAddMediaMediaDestinationUnsupportedReasonPlaylistNotEditable")]
     pub const PlaylistNotEditable: Self = Self(2);
 }

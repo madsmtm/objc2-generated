@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityCustomRotorDirection(pub NSInteger);
 impl UIAccessibilityCustomRotorDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/direction/previous?language=objc)
     #[doc(alias = "UIAccessibilityCustomRotorDirectionPrevious")]
     pub const Previous: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/direction/next?language=objc)
     #[doc(alias = "UIAccessibilityCustomRotorDirectionNext")]
     pub const Next: Self = Self(1);
 }
@@ -33,42 +35,61 @@ unsafe impl RefEncode for UIAccessibilityCustomRotorDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityCustomSystemRotorType(pub NSInteger);
 impl UIAccessibilityCustomSystemRotorType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/none?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/link?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeLink")]
     pub const Link: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/visitedlink?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeVisitedLink")]
     pub const VisitedLink: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/heading?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeading")]
     pub const Heading: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel1?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel1")]
     pub const HeadingLevel1: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel2?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel2")]
     pub const HeadingLevel2: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel3?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel3")]
     pub const HeadingLevel3: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel4?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel4")]
     pub const HeadingLevel4: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel5?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel5")]
     pub const HeadingLevel5: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel6?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel6")]
     pub const HeadingLevel6: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/boldtext?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeBoldText")]
     pub const BoldText: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/italictext?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeItalicText")]
     pub const ItalicText: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/underlinetext?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeUnderlineText")]
     pub const UnderlineText: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/misspelledword?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeMisspelledWord")]
     pub const MisspelledWord: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/image?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeImage")]
     pub const Image: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/textfield?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeTextField")]
     pub const TextField: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/table?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeTable")]
     pub const Table: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/list?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeList")]
     pub const List: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/landmark?language=objc)
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeLandmark")]
     pub const Landmark: Self = Self(18);
 }

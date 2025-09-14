@@ -173,10 +173,13 @@ impl AVCaptureInputPort {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureMultichannelAudioMode(pub NSInteger);
 impl AVCaptureMultichannelAudioMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemultichannelaudiomode/none?language=objc)
     #[doc(alias = "AVCaptureMultichannelAudioModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemultichannelaudiomode/stereo?language=objc)
     #[doc(alias = "AVCaptureMultichannelAudioModeStereo")]
     pub const Stereo: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemultichannelaudiomode/firstorderambisonics?language=objc)
     #[doc(alias = "AVCaptureMultichannelAudioModeFirstOrderAmbisonics")]
     pub const FirstOrderAmbisonics: Self = Self(2);
 }

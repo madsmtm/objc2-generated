@@ -49,6 +49,7 @@ pub type CFPlugInFactoryFunction =
 
 #[cfg(feature = "CFBundle")]
 unsafe impl ConcreteType for CFPlugIn {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugingettypeid()?language=objc)
     #[doc(alias = "CFPlugInGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -61,6 +62,7 @@ unsafe impl ConcreteType for CFPlugIn {
 
 #[cfg(feature = "CFBundle")]
 impl CFPlugIn {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugincreate(_:_:)?language=objc)
     #[doc(alias = "CFPlugInCreate")]
     #[cfg(all(feature = "CFBundle", feature = "CFURL"))]
     #[inline]
@@ -78,6 +80,7 @@ impl CFPlugIn {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugingetbundle(_:)?language=objc)
     #[doc(alias = "CFPlugInGetBundle")]
     #[cfg(feature = "CFBundle")]
     #[inline]
@@ -89,6 +92,7 @@ impl CFPlugIn {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginsetloadondemand(_:_:)?language=objc)
     #[doc(alias = "CFPlugInSetLoadOnDemand")]
     #[cfg(feature = "CFBundle")]
     #[inline]
@@ -99,6 +103,7 @@ impl CFPlugIn {
         unsafe { CFPlugInSetLoadOnDemand(self, flag as _) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginisloadondemand(_:)?language=objc)
     #[doc(alias = "CFPlugInIsLoadOnDemand")]
     #[cfg(feature = "CFBundle")]
     #[inline]
@@ -110,6 +115,7 @@ impl CFPlugIn {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginfindfactoriesforplugintype(_:)?language=objc)
     #[doc(alias = "CFPlugInFindFactoriesForPlugInType")]
     #[cfg(all(feature = "CFArray", feature = "CFUUID"))]
     #[inline]
@@ -125,6 +131,7 @@ impl CFPlugIn {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginfindfactoriesforplugintypeinplugin(_:_:)?language=objc)
     #[doc(alias = "CFPlugInFindFactoriesForPlugInTypeInPlugIn")]
     #[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFUUID"))]
     #[inline]
@@ -144,6 +151,7 @@ impl CFPlugIn {
 }
 
 impl CFPlugInInstance {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancecreate(_:_:_:)?language=objc)
     #[doc(alias = "CFPlugInInstanceCreate")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -165,6 +173,7 @@ impl CFPlugInInstance {
 
 #[cfg(feature = "CFBundle")]
 impl CFPlugIn {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginregisterfactoryfunction(_:_:)?language=objc)
     #[doc(alias = "CFPlugInRegisterFactoryFunction")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -182,6 +191,7 @@ impl CFPlugIn {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginregisterfactoryfunctionbyname(_:_:_:)?language=objc)
     #[doc(alias = "CFPlugInRegisterFactoryFunctionByName")]
     #[cfg(all(feature = "CFBundle", feature = "CFUUID"))]
     #[inline]
@@ -202,6 +212,7 @@ impl CFPlugIn {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginunregisterfactory(_:)?language=objc)
     #[doc(alias = "CFPlugInUnregisterFactory")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -213,6 +224,7 @@ impl CFPlugIn {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginregisterplugintype(_:_:)?language=objc)
     #[doc(alias = "CFPlugInRegisterPlugInType")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -230,6 +242,7 @@ impl CFPlugIn {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginunregisterplugintype(_:_:)?language=objc)
     #[doc(alias = "CFPlugInUnregisterPlugInType")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -247,6 +260,7 @@ impl CFPlugIn {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginaddinstanceforfactory(_:)?language=objc)
     #[doc(alias = "CFPlugInAddInstanceForFactory")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -257,6 +271,7 @@ impl CFPlugIn {
         unsafe { CFPlugInAddInstanceForFactory(factory_id) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginremoveinstanceforfactory(_:)?language=objc)
     #[doc(alias = "CFPlugInRemoveInstanceForFactory")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -298,6 +313,8 @@ pub type CFPlugInInstanceDeallocateInstanceDataFunction =
     Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
 impl CFPlugInInstance {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetinterfacefunctiontable(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `interface_name` might not allow `None`.
@@ -320,6 +337,7 @@ impl CFPlugInInstance {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetfactoryname(_:)?language=objc)
     #[doc(alias = "CFPlugInInstanceGetFactoryName")]
     #[inline]
     pub fn factory_name(&self) -> Option<CFRetained<CFString>> {
@@ -332,6 +350,7 @@ impl CFPlugInInstance {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetinstancedata(_:)?language=objc)
     #[doc(alias = "CFPlugInInstanceGetInstanceData")]
     #[inline]
     pub fn instance_data(&self) -> *mut c_void {
@@ -343,6 +362,7 @@ impl CFPlugInInstance {
 }
 
 unsafe impl ConcreteType for CFPlugInInstance {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegettypeid()?language=objc)
     #[doc(alias = "CFPlugInInstanceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -354,6 +374,8 @@ unsafe impl ConcreteType for CFPlugInInstance {
 }
 
 impl CFPlugInInstance {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancecreatewithinstancedatasize(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.

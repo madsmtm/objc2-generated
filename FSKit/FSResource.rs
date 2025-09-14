@@ -18,19 +18,27 @@ impl FSMatchResult {
     /// The probe doesn't recognize the resource.
     ///
     /// This match result is appropriate when the file system module determines that the resource uses a completely different format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmatchresult/notrecognized?language=objc)
     #[doc(alias = "FSMatchResultNotRecognized")]
     pub const NotRecognized: Self = Self(0);
     /// The probe recognizes the resource but can't use it.
     ///
     /// This match result is appropriate when the file system module identifies the resource's format but can't use it. For example, if the resource uses a newer version than the module supports, the module can name the resource but can't safely do anything with it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmatchresult/recognized?language=objc)
     #[doc(alias = "FSMatchResultRecognized")]
     pub const Recognized: Self = Self(1);
     /// The probe recognizes the resource and is ready to use it, but only in a limited capacity.
     ///
     /// This match result is appropriate when the file system module identifies the resource's format but also identifies incompatibilities. For example, if the module determines the resource uses new features that the module doesn't support, the module may only offer read-only access.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmatchresult/usablebutlimited?language=objc)
     #[doc(alias = "FSMatchResultUsableButLimited")]
     pub const UsableButLimited: Self = Self(2);
     /// The probe recognizes the resource and is ready to use it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmatchresult/usable?language=objc)
     #[doc(alias = "FSMatchResultUsable")]
     pub const Usable: Self = Self(3);
 }

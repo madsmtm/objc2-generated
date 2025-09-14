@@ -24,6 +24,8 @@ impl CFStringTokenizer {
     ///
     /// The result is not guaranteed to be accurate. Typically 200-400
     /// characters are required to reliably guess the language of a string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizercopybeststringlanguage(_:_:)?language=objc)
     #[doc(alias = "CFStringTokenizerCopyBestStringLanguage")]
     #[inline]
     pub fn best_string_language(string: &CFString, range: CFRange) -> Option<CFRetained<CFString>> {
@@ -112,32 +114,44 @@ pub const kCFStringTokenizerAttributeLanguage: CFOptionFlags = 1 << 17;
 pub struct CFStringTokenizerTokenType(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFStringTokenizerTokenType: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizertokentype/kcfstringtokenizertokennone?language=objc)
         #[doc(alias = "kCFStringTokenizerTokenNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizertokentype/normal?language=objc)
         #[doc(alias = "kCFStringTokenizerTokenNormal")]
         const Normal = 1<<0;
 /// Compound token which may contain subtokens but with no derived subtokens.
 /// Its subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizertokentype/hassubtokensmask?language=objc)
         #[doc(alias = "kCFStringTokenizerTokenHasSubTokensMask")]
         const HasSubTokensMask = 1<<1;
 /// Compound token which may contain derived subtokens.
 /// Its subtokens and derived subtokens can be obtained by calling
 /// CFStringTokenizerGetCurrentSubTokens.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizertokentype/hasderivedsubtokensmask?language=objc)
         #[doc(alias = "kCFStringTokenizerTokenHasDerivedSubTokensMask")]
         const HasDerivedSubTokensMask = 1<<2;
 /// Compound token which may contain derived subtokens.
 /// Its subtokens and derived subtokens can be obtained by calling
 /// CFStringTokenizerGetCurrentSubTokens.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizertokentype/hashasnumbersmask?language=objc)
         #[doc(alias = "kCFStringTokenizerTokenHasHasNumbersMask")]
         const HasHasNumbersMask = 1<<3;
 /// Compound token which may contain derived subtokens.
 /// Its subtokens and derived subtokens can be obtained by calling
 /// CFStringTokenizerGetCurrentSubTokens.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizertokentype/hasnonlettersmask?language=objc)
         #[doc(alias = "kCFStringTokenizerTokenHasNonLettersMask")]
         const HasNonLettersMask = 1<<4;
 /// Compound token which may contain derived subtokens.
 /// Its subtokens and derived subtokens can be obtained by calling
 /// CFStringTokenizerGetCurrentSubTokens.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizertokentype/iscjwordmask?language=objc)
         #[doc(alias = "kCFStringTokenizerTokenIsCJWordMask")]
         const IsCJWordMask = 1<<5;
     }
@@ -157,6 +171,8 @@ unsafe impl ConcreteType for CFStringTokenizer {
     /// Get the type identifier.
     ///
     /// Returns: the type identifier of all CFStringTokenizer instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizergettypeid()?language=objc)
     #[doc(alias = "CFStringTokenizerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -194,6 +210,8 @@ impl CFStringTokenizer {
     /// - `alloc` might not allow `None`.
     /// - `string` might not allow `None`.
     /// - `locale` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizercreate(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFStringTokenizerCreate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -230,6 +248,8 @@ impl CFStringTokenizer {
     /// # Safety
     ///
     /// `string` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizersetstring(_:_:_:)?language=objc)
     #[doc(alias = "CFStringTokenizerSetString")]
     #[inline]
     pub unsafe fn set_string(&self, string: Option<&CFString>, range: CFRange) {
@@ -259,6 +279,8 @@ impl CFStringTokenizer {
     /// If the token is a compound (with type kCFStringTokenizerTokenHasSubTokensMask or
     /// kCFStringTokenizerTokenHasDerivedSubTokensMask), its subtokens and
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizergototokenatindex(_:_:)?language=objc)
     #[doc(alias = "CFStringTokenizerGoToTokenAtIndex")]
     #[inline]
     pub fn go_to_token_at_index(&self, index: CFIndex) -> CFStringTokenizerTokenType {
@@ -292,6 +314,8 @@ impl CFStringTokenizer {
     /// (with type kCFStringTokenizerTokenHasSubTokensMask or
     /// kCFStringTokenizerTokenHasDerivedSubTokensMask), its subtokens and
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizeradvancetonexttoken(_:)?language=objc)
     #[doc(alias = "CFStringTokenizerAdvanceToNextToken")]
     #[inline]
     pub fn advance_to_next_token(&self) -> CFStringTokenizerTokenType {
@@ -309,6 +333,8 @@ impl CFStringTokenizer {
     /// CFStringTokenizerCreate.
     ///
     /// Returns: Range of current token, or {kCFNotFound,0} if there is no current token.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizergetcurrenttokenrange(_:)?language=objc)
     #[doc(alias = "CFStringTokenizerGetCurrentTokenRange")]
     #[inline]
     pub fn current_token_range(&self) -> CFRange {
@@ -329,6 +355,8 @@ impl CFStringTokenizer {
     ///
     /// Returns: Token attribute, or NULL if current token does not have the specified
     /// attribute or if there is no current token.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizercopycurrenttokenattribute(_:_:)?language=objc)
     #[doc(alias = "CFStringTokenizerCopyCurrentTokenAttribute")]
     #[inline]
     pub fn current_token_attribute(&self, attribute: CFOptionFlags) -> Option<CFRetained<CFType>> {
@@ -375,6 +403,8 @@ impl CFStringTokenizer {
     /// - `ranges` must be a valid pointer.
     /// - `derived_sub_tokens` generic must be of the correct type.
     /// - `derived_sub_tokens` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizergetcurrentsubtokens(_:_:_:_:)?language=objc)
     #[doc(alias = "CFStringTokenizerGetCurrentSubTokens")]
     #[cfg(feature = "CFArray")]
     #[inline]

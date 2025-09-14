@@ -33,8 +33,10 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextStorageDirection(pub NSInteger);
 impl UITextStorageDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextstoragedirection/forward?language=objc)
     #[doc(alias = "UITextStorageDirectionForward")]
     pub const Forward: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextstoragedirection/backward?language=objc)
     #[doc(alias = "UITextStorageDirectionBackward")]
     pub const Backward: Self = Self(1);
 }
@@ -53,12 +55,16 @@ unsafe impl RefEncode for UITextStorageDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITextLayoutDirection(pub NSInteger);
 impl UITextLayoutDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextlayoutdirection/right?language=objc)
     #[doc(alias = "UITextLayoutDirectionRight")]
     pub const Right: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextlayoutdirection/left?language=objc)
     #[doc(alias = "UITextLayoutDirectionLeft")]
     pub const Left: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextlayoutdirection/up?language=objc)
     #[doc(alias = "UITextLayoutDirectionUp")]
     pub const Up: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextlayoutdirection/down?language=objc)
     #[doc(alias = "UITextLayoutDirectionDown")]
     pub const Down: Self = Self(5);
 }
@@ -81,16 +87,22 @@ pub type UITextDirection = NSInteger;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextGranularity(pub NSInteger);
 impl UITextGranularity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/character?language=objc)
     #[doc(alias = "UITextGranularityCharacter")]
     pub const Character: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/word?language=objc)
     #[doc(alias = "UITextGranularityWord")]
     pub const Word: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/sentence?language=objc)
     #[doc(alias = "UITextGranularitySentence")]
     pub const Sentence: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/paragraph?language=objc)
     #[doc(alias = "UITextGranularityParagraph")]
     pub const Paragraph: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/line?language=objc)
     #[doc(alias = "UITextGranularityLine")]
     pub const Line: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/document?language=objc)
     #[doc(alias = "UITextGranularityDocument")]
     pub const Document: Self = Self(5);
 }
@@ -267,8 +279,10 @@ impl UITextPlaceholder {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAlternativeStyle(pub NSInteger);
 impl UITextAlternativeStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalternativestyle/none?language=objc)
     #[doc(alias = "UITextAlternativeStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalternativestyle/lowconfidence?language=objc)
     #[doc(alias = "UITextAlternativeStyleLowConfidence")]
     pub const LowConfidence: Self = Self(1);
 }

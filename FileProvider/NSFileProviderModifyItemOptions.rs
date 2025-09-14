@@ -17,6 +17,8 @@ bitflags::bitflags! {
 ///
 /// This option applies when moving the item to a location where it may refer to an item that already exists.
 /// This situation may occur when merging two directories together.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermodifyitemoptions/mayalreadyexist?language=objc)
         #[doc(alias = "NSFileProviderModifyItemMayAlreadyExist")]
         const MayAlreadyExist = 1<<0;
 /// An option to fail an upload in the event of a version conflict.
@@ -41,11 +43,15 @@ bitflags::bitflags! {
 /// </dict
 /// >
 /// ```
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermodifyitemoptions/failonconflict?language=objc)
         #[doc(alias = "NSFileProviderModifyItemFailOnConflict")]
         const FailOnConflict = 1<<1;
 /// An option to require the upload to complete before calling the completion handler.
 ///
 /// This option allows the calling application to know when the uploaded version of the file is on the server.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermodifyitemoptions/isimmediateuploadrequestbypresentingapplication?language=objc)
         #[doc(alias = "NSFileProviderModifyItemIsImmediateUploadRequestByPresentingApplication")]
         const IsImmediateUploadRequestByPresentingApplication = 1<<2;
     }

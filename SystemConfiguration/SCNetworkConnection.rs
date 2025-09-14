@@ -99,14 +99,19 @@ unsafe impl RefEncode for SCNetworkConnectionContext {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNetworkConnectionStatus(pub i32);
 impl SCNetworkConnectionStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus/invalid?language=objc)
     #[doc(alias = "kSCNetworkConnectionInvalid")]
     pub const Invalid: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus/disconnected?language=objc)
     #[doc(alias = "kSCNetworkConnectionDisconnected")]
     pub const Disconnected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus/connecting?language=objc)
     #[doc(alias = "kSCNetworkConnectionConnecting")]
     pub const Connecting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus/connected?language=objc)
     #[doc(alias = "kSCNetworkConnectionConnected")]
     pub const Connected: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus/disconnecting?language=objc)
     #[doc(alias = "kSCNetworkConnectionDisconnecting")]
     pub const Disconnecting: Self = Self(3);
 }
@@ -169,32 +174,46 @@ unsafe impl RefEncode for SCNetworkConnectionStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNetworkConnectionPPPStatus(pub i32);
 impl SCNetworkConnectionPPPStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/disconnected?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPDisconnected")]
     pub const Disconnected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/initializing?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPInitializing")]
     pub const Initializing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/connectinglink?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPConnectingLink")]
     pub const ConnectingLink: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/dialontraffic?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPDialOnTraffic")]
     pub const DialOnTraffic: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/negotiatinglink?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPNegotiatingLink")]
     pub const NegotiatingLink: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/authenticating?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPAuthenticating")]
     pub const Authenticating: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/waitingforcallback?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPWaitingForCallBack")]
     pub const WaitingForCallBack: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/negotiatingnetwork?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPNegotiatingNetwork")]
     pub const NegotiatingNetwork: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/connected?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPConnected")]
     pub const Connected: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/terminating?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPTerminating")]
     pub const Terminating: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/disconnectinglink?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPDisconnectingLink")]
     pub const DisconnectingLink: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/holdinglinkoff?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPHoldingLinkOff")]
     pub const HoldingLinkOff: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/suspended?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPSuspended")]
     pub const Suspended: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/waitingforredial?language=objc)
     #[doc(alias = "kSCNetworkConnectionPPPWaitingForRedial")]
     pub const WaitingForRedial: Self = Self(13);
 }
@@ -230,6 +249,8 @@ pub type SCNetworkConnectionCallBack = Option<
 unsafe impl ConcreteType for SCNetworkConnection {
     /// Returns the type identifier of all SCNetworkConnection
     /// instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectiongettypeid()?language=objc)
     #[doc(alias = "SCNetworkConnectionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -264,6 +285,8 @@ impl SCNetworkConnection {
     /// - `selection_options` generic must be of the correct type.
     /// - `service_id` must be a valid pointer.
     /// - `user_options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncopyuserpreferences(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCopyUserPreferences")]
     #[inline]
     pub unsafe fn user_preferences(
@@ -312,6 +335,8 @@ impl SCNetworkConnection {
     ///
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncreatewithserviceid(_:_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCreateWithServiceID")]
     #[inline]
     pub unsafe fn with_service_id(
@@ -339,6 +364,8 @@ impl SCNetworkConnection {
     /// Parameter `connection`: The SCNetworkConnection to obtain status from.
     ///
     /// Returns: Returns the service ID associated with the SCNetworkConnection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncopyserviceid(_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCopyServiceID")]
     #[inline]
     pub fn service_id(&self) -> Option<CFRetained<CFString>> {
@@ -369,6 +396,8 @@ impl SCNetworkConnection {
     /// Parameter `connection`: The SCNetworkConnection to obtain status from.
     ///
     /// Returns: Returns the status value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectiongetstatus(_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionGetStatus")]
     #[inline]
     pub fn status(&self) -> SCNetworkConnectionStatus {
@@ -423,6 +452,8 @@ impl SCNetworkConnection {
     ///
     /// Returns: Returns the status dictionary.
     /// If NULL is returned, the error can be retrieved using the SCError function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncopyextendedstatus(_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCopyExtendedStatus")]
     #[inline]
     pub fn extended_status(&self) -> Option<CFRetained<CFDictionary>> {
@@ -472,6 +503,8 @@ impl SCNetworkConnection {
     ///
     /// Returns: Returns the statistics dictionary.
     /// If NULL is returned, the error can be retrieved using the SCError function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncopystatistics(_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCopyStatistics")]
     #[inline]
     pub fn statistics(&self) -> Option<CFRetained<CFDictionary>> {
@@ -534,6 +567,8 @@ impl SCNetworkConnection {
     ///
     /// - `user_options` generic must be of the correct type.
     /// - `user_options` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstart(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionStart")]
     #[inline]
     pub unsafe fn start(&self, user_options: Option<&CFDictionary>, linger: bool) -> bool {
@@ -566,6 +601,8 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the disconnection request succeeded;
     /// FALSE if the disconnection request failed.
     /// The error must be retrieved from the SCError function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstop(_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionStop")]
     #[inline]
     pub fn stop(&self, force_disconnect: bool) -> bool {
@@ -588,6 +625,8 @@ impl SCNetworkConnection {
     /// Returns: Returns the service dictionary containing the connection options.
     /// The dictionary can be empty if no user options were used.
     /// If NULL is returned, the error can be retrieved using the SCError function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncopyuseroptions(_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCopyUserOptions")]
     #[inline]
     pub fn user_options(&self) -> Option<CFRetained<CFDictionary>> {
@@ -611,6 +650,8 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the connection is scheduled successfully;
     /// FALSE if the scheduling failed.
     /// The error can be retrieved using the SCError function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionScheduleWithRunLoop")]
     #[inline]
     pub fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
@@ -636,6 +677,8 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the connection is unscheduled successfully;
     /// FALSE if the unscheduling failed.
     /// The error can be retrieved using the SCError function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionUnscheduleFromRunLoop")]
     #[inline]
     pub fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
@@ -665,6 +708,8 @@ impl SCNetworkConnection {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionsetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

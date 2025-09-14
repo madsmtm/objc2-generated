@@ -17,8 +17,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionWindowType(pub NSInteger);
 impl WKWebExtensionWindowType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowtype/normal?language=objc)
     #[doc(alias = "WKWebExtensionWindowTypeNormal")]
     pub const Normal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowtype/popup?language=objc)
     #[doc(alias = "WKWebExtensionWindowTypePopup")]
     pub const Popup: Self = Self(1);
 }
@@ -39,12 +41,16 @@ unsafe impl RefEncode for WKWebExtensionWindowType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionWindowState(pub NSInteger);
 impl WKWebExtensionWindowState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowstate/normal?language=objc)
     #[doc(alias = "WKWebExtensionWindowStateNormal")]
     pub const Normal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowstate/minimized?language=objc)
     #[doc(alias = "WKWebExtensionWindowStateMinimized")]
     pub const Minimized: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowstate/maximized?language=objc)
     #[doc(alias = "WKWebExtensionWindowStateMaximized")]
     pub const Maximized: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowstate/fullscreen?language=objc)
     #[doc(alias = "WKWebExtensionWindowStateFullscreen")]
     pub const Fullscreen: Self = Self(3);
 }

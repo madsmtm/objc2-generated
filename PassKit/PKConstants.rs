@@ -246,23 +246,31 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentAuthorizationStatus(pub NSInteger);
 impl PKPaymentAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/success?language=objc)
     #[doc(alias = "PKPaymentAuthorizationStatusSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/failure?language=objc)
     #[doc(alias = "PKPaymentAuthorizationStatusFailure")]
     pub const Failure: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/invalidbillingpostaladdress?language=objc)
     #[doc(alias = "PKPaymentAuthorizationStatusInvalidBillingPostalAddress")]
     #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentBillingAddressInvalidErrorWithKey:localizedDescription: in the errors array."]
     pub const InvalidBillingPostalAddress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/invalidshippingpostaladdress?language=objc)
     #[doc(alias = "PKPaymentAuthorizationStatusInvalidShippingPostalAddress")]
     #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentShippingAddressInvalidErrorWithKey:localizedDescription: in the errors array."]
     pub const InvalidShippingPostalAddress: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/invalidshippingcontact?language=objc)
     #[doc(alias = "PKPaymentAuthorizationStatusInvalidShippingContact")]
     #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentContactInvalidErrorWithContactField:localizedDescription: in the errors array."]
     pub const InvalidShippingContact: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/pinrequired?language=objc)
     #[doc(alias = "PKPaymentAuthorizationStatusPINRequired")]
     pub const PINRequired: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/pinincorrect?language=objc)
     #[doc(alias = "PKPaymentAuthorizationStatusPINIncorrect")]
     pub const PINIncorrect: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/pinlockout?language=objc)
     #[doc(alias = "PKPaymentAuthorizationStatusPINLockout")]
     pub const PINLockout: Self = Self(7);
 }
@@ -281,12 +289,16 @@ unsafe impl RefEncode for PKPaymentAuthorizationStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentButtonStyle(pub NSInteger);
 impl PKPaymentButtonStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle/white?language=objc)
     #[doc(alias = "PKPaymentButtonStyleWhite")]
     pub const White: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle/whiteoutline?language=objc)
     #[doc(alias = "PKPaymentButtonStyleWhiteOutline")]
     pub const WhiteOutline: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle/black?language=objc)
     #[doc(alias = "PKPaymentButtonStyleBlack")]
     pub const Black: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle/automatic?language=objc)
     #[doc(alias = "PKPaymentButtonStyleAutomatic")]
     pub const Automatic: Self = Self(3);
 }
@@ -305,38 +317,55 @@ unsafe impl RefEncode for PKPaymentButtonStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentButtonType(pub NSInteger);
 impl PKPaymentButtonType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/plain?language=objc)
     #[doc(alias = "PKPaymentButtonTypePlain")]
     pub const Plain: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/buy?language=objc)
     #[doc(alias = "PKPaymentButtonTypeBuy")]
     pub const Buy: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/setup?language=objc)
     #[doc(alias = "PKPaymentButtonTypeSetUp")]
     pub const SetUp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/instore?language=objc)
     #[doc(alias = "PKPaymentButtonTypeInStore")]
     pub const InStore: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/donate?language=objc)
     #[doc(alias = "PKPaymentButtonTypeDonate")]
     pub const Donate: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/checkout?language=objc)
     #[doc(alias = "PKPaymentButtonTypeCheckout")]
     pub const Checkout: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/book?language=objc)
     #[doc(alias = "PKPaymentButtonTypeBook")]
     pub const Book: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/subscribe?language=objc)
     #[doc(alias = "PKPaymentButtonTypeSubscribe")]
     pub const Subscribe: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/reload?language=objc)
     #[doc(alias = "PKPaymentButtonTypeReload")]
     pub const Reload: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/addmoney?language=objc)
     #[doc(alias = "PKPaymentButtonTypeAddMoney")]
     pub const AddMoney: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/topup?language=objc)
     #[doc(alias = "PKPaymentButtonTypeTopUp")]
     pub const TopUp: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/order?language=objc)
     #[doc(alias = "PKPaymentButtonTypeOrder")]
     pub const Order: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/rent?language=objc)
     #[doc(alias = "PKPaymentButtonTypeRent")]
     pub const Rent: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/support?language=objc)
     #[doc(alias = "PKPaymentButtonTypeSupport")]
     pub const Support: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/contribute?language=objc)
     #[doc(alias = "PKPaymentButtonTypeContribute")]
     pub const Contribute: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/tip?language=objc)
     #[doc(alias = "PKPaymentButtonTypeTip")]
     pub const Tip: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/continue?language=objc)
     #[doc(alias = "PKPaymentButtonTypeContinue")]
     pub const Continue: Self = Self(16);
 }
@@ -356,10 +385,13 @@ unsafe impl RefEncode for PKPaymentButtonType {
 pub struct PKRadioTechnology(pub NSUInteger);
 bitflags::bitflags! {
     impl PKRadioTechnology: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkradiotechnology/pkradiotechnologynone?language=objc)
         #[doc(alias = "PKRadioTechnologyNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkradiotechnology/nfc?language=objc)
         #[doc(alias = "PKRadioTechnologyNFC")]
         const NFC = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkradiotechnology/bluetooth?language=objc)
         #[doc(alias = "PKRadioTechnologyBluetooth")]
         const Bluetooth = 1<<1;
     }

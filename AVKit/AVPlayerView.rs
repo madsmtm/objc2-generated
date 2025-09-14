@@ -30,14 +30,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerViewControlsStyle(pub NSInteger);
 impl AVPlayerViewControlsStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/none?language=objc)
     #[doc(alias = "AVPlayerViewControlsStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/inline?language=objc)
     #[doc(alias = "AVPlayerViewControlsStyleInline")]
     pub const Inline: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/floating?language=objc)
     #[doc(alias = "AVPlayerViewControlsStyleFloating")]
     pub const Floating: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/minimal?language=objc)
     #[doc(alias = "AVPlayerViewControlsStyleMinimal")]
     pub const Minimal: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/default?language=objc)
     #[doc(alias = "AVPlayerViewControlsStyleDefault")]
     pub const Default: Self = Self(AVPlayerViewControlsStyle::Inline.0);
 }
@@ -428,8 +433,10 @@ impl AVPlayerView {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerViewTrimResult(pub NSInteger);
 impl AVPlayerViewTrimResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewtrimresult/okbutton?language=objc)
     #[doc(alias = "AVPlayerViewTrimOKButton")]
     pub const OKButton: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewtrimresult/cancelbutton?language=objc)
     #[doc(alias = "AVPlayerViewTrimCancelButton")]
     pub const CancelButton: Self = Self(1);
 }

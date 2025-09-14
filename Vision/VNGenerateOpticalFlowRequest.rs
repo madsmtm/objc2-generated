@@ -25,12 +25,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNGenerateOpticalFlowRequestComputationAccuracy(pub NSUInteger);
 impl VNGenerateOpticalFlowRequestComputationAccuracy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.enum/low?language=objc)
     #[doc(alias = "VNGenerateOpticalFlowRequestComputationAccuracyLow")]
     pub const Low: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.enum/medium?language=objc)
     #[doc(alias = "VNGenerateOpticalFlowRequestComputationAccuracyMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.enum/high?language=objc)
     #[doc(alias = "VNGenerateOpticalFlowRequestComputationAccuracyHigh")]
     pub const High: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.enum/veryhigh?language=objc)
     #[doc(alias = "VNGenerateOpticalFlowRequestComputationAccuracyVeryHigh")]
     pub const VeryHigh: Self = Self(3);
 }

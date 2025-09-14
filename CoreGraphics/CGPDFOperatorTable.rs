@@ -28,6 +28,7 @@ pub type CGPDFOperatorTableRef = *mut CGPDFOperatorTable;
 pub type CGPDFOperatorCallback = Option<unsafe extern "C-unwind" fn(CGPDFScannerRef, *mut c_void)>;
 
 impl CGPDFOperatorTable {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortablecreate()?language=objc)
     #[doc(alias = "CGPDFOperatorTableCreate")]
     #[inline]
     pub fn create() -> CGPDFOperatorTableRef {
@@ -37,6 +38,8 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableCreate() }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortableretain(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` must be a valid pointer or null.
@@ -49,6 +52,8 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableRetain(table) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortablerelease(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `table` must be a valid pointer or null.
@@ -61,6 +66,8 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableRelease(table) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortablesetcallback(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `table` must be a valid pointer or null.

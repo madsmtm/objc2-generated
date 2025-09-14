@@ -21,20 +21,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTIFFCompression(pub NSUInteger);
 impl NSTIFFCompression {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/none?language=objc)
     #[doc(alias = "NSTIFFCompressionNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/ccittfax3?language=objc)
     #[doc(alias = "NSTIFFCompressionCCITTFAX3")]
     pub const CCITTFAX3: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/ccittfax4?language=objc)
     #[doc(alias = "NSTIFFCompressionCCITTFAX4")]
     pub const CCITTFAX4: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/lzw?language=objc)
     #[doc(alias = "NSTIFFCompressionLZW")]
     pub const LZW: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/jpeg?language=objc)
     #[doc(alias = "NSTIFFCompressionJPEG")]
     pub const JPEG: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/next?language=objc)
     #[doc(alias = "NSTIFFCompressionNEXT")]
     pub const NEXT: Self = Self(32766);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/packbits?language=objc)
     #[doc(alias = "NSTIFFCompressionPackBits")]
     pub const PackBits: Self = Self(32773);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/oldjpeg?language=objc)
     #[doc(alias = "NSTIFFCompressionOldJPEG")]
     pub const OldJPEG: Self = Self(32865);
 }
@@ -53,16 +61,22 @@ unsafe impl RefEncode for NSTIFFCompression {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBitmapImageFileType(pub NSUInteger);
 impl NSBitmapImageFileType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/tiff?language=objc)
     #[doc(alias = "NSBitmapImageFileTypeTIFF")]
     pub const TIFF: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/bmp?language=objc)
     #[doc(alias = "NSBitmapImageFileTypeBMP")]
     pub const BMP: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/gif?language=objc)
     #[doc(alias = "NSBitmapImageFileTypeGIF")]
     pub const GIF: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/jpeg?language=objc)
     #[doc(alias = "NSBitmapImageFileTypeJPEG")]
     pub const JPEG: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/png?language=objc)
     #[doc(alias = "NSBitmapImageFileTypePNG")]
     pub const PNG: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/jpeg2000?language=objc)
     #[doc(alias = "NSBitmapImageFileTypeJPEG2000")]
     pub const JPEG2000: Self = Self(5);
 }
@@ -81,16 +95,22 @@ unsafe impl RefEncode for NSBitmapImageFileType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSImageRepLoadStatus(pub NSInteger);
 impl NSImageRepLoadStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/unknowntype?language=objc)
     #[doc(alias = "NSImageRepLoadStatusUnknownType")]
     pub const UnknownType: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/readingheader?language=objc)
     #[doc(alias = "NSImageRepLoadStatusReadingHeader")]
     pub const ReadingHeader: Self = Self(-2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/willneedalldata?language=objc)
     #[doc(alias = "NSImageRepLoadStatusWillNeedAllData")]
     pub const WillNeedAllData: Self = Self(-3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/invaliddata?language=objc)
     #[doc(alias = "NSImageRepLoadStatusInvalidData")]
     pub const InvalidData: Self = Self(-4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/unexpectedeof?language=objc)
     #[doc(alias = "NSImageRepLoadStatusUnexpectedEOF")]
     pub const UnexpectedEOF: Self = Self(-5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/completed?language=objc)
     #[doc(alias = "NSImageRepLoadStatusCompleted")]
     pub const Completed: Self = Self(-6);
 }
@@ -110,18 +130,25 @@ unsafe impl RefEncode for NSImageRepLoadStatus {
 pub struct NSBitmapFormat(pub NSUInteger);
 bitflags::bitflags! {
     impl NSBitmapFormat: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/alphafirst?language=objc)
         #[doc(alias = "NSBitmapFormatAlphaFirst")]
         const AlphaFirst = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/alphanonpremultiplied?language=objc)
         #[doc(alias = "NSBitmapFormatAlphaNonpremultiplied")]
         const AlphaNonpremultiplied = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/floatingpointsamples?language=objc)
         #[doc(alias = "NSBitmapFormatFloatingPointSamples")]
         const FloatingPointSamples = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/sixteenbitlittleendian?language=objc)
         #[doc(alias = "NSBitmapFormatSixteenBitLittleEndian")]
         const SixteenBitLittleEndian = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/thirtytwobitlittleendian?language=objc)
         #[doc(alias = "NSBitmapFormatThirtyTwoBitLittleEndian")]
         const ThirtyTwoBitLittleEndian = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/sixteenbitbigendian?language=objc)
         #[doc(alias = "NSBitmapFormatSixteenBitBigEndian")]
         const SixteenBitBigEndian = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/thirtytwobitbigendian?language=objc)
         #[doc(alias = "NSBitmapFormatThirtyTwoBitBigEndian")]
         const ThirtyTwoBitBigEndian = 1<<11;
     }

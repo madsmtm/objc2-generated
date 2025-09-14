@@ -11,6 +11,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsgetcurrentcontext()?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsGetCurrentContext() -> Option<CFRetained<CGContext>> {
@@ -22,14 +23,17 @@ pub extern "C-unwind" fn UIGraphicsGetCurrentContext() -> Option<CFRetained<CGCo
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspushcontext(_:)?language=objc)
     #[cfg(feature = "objc2-core-graphics")]
     pub fn UIGraphicsPushContext(context: &CGContext);
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspopcontext()?language=objc)
     pub fn UIGraphicsPopContext();
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectfillusingblendmode(_:_:)?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
 #[inline]
 pub extern "C-unwind" fn UIRectFillUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode) {
@@ -39,6 +43,7 @@ pub extern "C-unwind" fn UIRectFillUsingBlendMode(rect: CGRect, blend_mode: CGBl
     unsafe { UIRectFillUsingBlendMode(rect, blend_mode) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectfill(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIRectFill(rect: CGRect) {
@@ -48,6 +53,7 @@ pub extern "C-unwind" fn UIRectFill(rect: CGRect) {
     unsafe { UIRectFill(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectframeusingblendmode(_:_:)?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
 #[inline]
 pub extern "C-unwind" fn UIRectFrameUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode) {
@@ -57,6 +63,7 @@ pub extern "C-unwind" fn UIRectFrameUsingBlendMode(rect: CGRect, blend_mode: CGB
     unsafe { UIRectFrameUsingBlendMode(rect, blend_mode) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectframe(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIRectFrame(rect: CGRect) {
@@ -66,6 +73,7 @@ pub extern "C-unwind" fn UIRectFrame(rect: CGRect) {
     unsafe { UIRectFrame(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectclip(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIRectClip(rect: CGRect) {
@@ -75,6 +83,7 @@ pub extern "C-unwind" fn UIRectClip(rect: CGRect) {
     unsafe { UIRectClip(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginimagecontext(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Replace usage of UIGraphicsBeginImageContext with UIGraphicsImageRenderer."]
 #[inline]
@@ -85,6 +94,7 @@ pub extern "C-unwind" fn UIGraphicsBeginImageContext(size: CGSize) {
     unsafe { UIGraphicsBeginImageContext(size) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginimagecontextwithoptions(_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Replace usage of UIGraphicsBeginImageContextWithOptions with UIGraphicsImageRenderer."]
 #[inline]
@@ -99,6 +109,7 @@ pub extern "C-unwind" fn UIGraphicsBeginImageContextWithOptions(
     unsafe { UIGraphicsBeginImageContextWithOptions(size, Bool::new(opaque), scale) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsgetimagefromcurrentimagecontext()?language=objc)
 #[cfg(feature = "UIImage")]
 #[deprecated = "Replace usage of UIGraphicsGetImageFromCurrentImageContext with UIGraphicsImageRendererContext.currentImage."]
 #[inline]
@@ -110,6 +121,7 @@ pub extern "C-unwind" fn UIGraphicsGetImageFromCurrentImageContext() -> Option<R
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsendimagecontext()?language=objc)
 #[deprecated = "UIGraphicsEndImageContext should only be used alongside UIGraphicsBeginImageContext[WithOptions]."]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsEndImageContext() {
@@ -119,6 +131,8 @@ pub extern "C-unwind" fn UIGraphicsEndImageContext() {
     unsafe { UIGraphicsEndImageContext() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfcontexttofile(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// `document_info` generic should be of the correct type.
@@ -140,6 +154,8 @@ pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToFile(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfcontexttodata(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `document_info` generic should be of the correct type.
@@ -151,6 +167,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsendpdfcontext()?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIGraphicsEndPDFContext() {
     extern "C-unwind" {
@@ -159,6 +176,7 @@ pub extern "C-unwind" fn UIGraphicsEndPDFContext() {
     unsafe { UIGraphicsEndPDFContext() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfpage()?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIGraphicsBeginPDFPage() {
     extern "C-unwind" {
@@ -168,6 +186,8 @@ pub extern "C-unwind" fn UIGraphicsBeginPDFPage() {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfpagewithinfo(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `page_info` generic should be of the correct type.
@@ -175,6 +195,7 @@ extern "C-unwind" {
     pub fn UIGraphicsBeginPDFPageWithInfo(bounds: CGRect, page_info: Option<&NSDictionary>);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsgetpdfcontextbounds()?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsGetPDFContextBounds() -> CGRect {
@@ -184,6 +205,7 @@ pub extern "C-unwind" fn UIGraphicsGetPDFContextBounds() -> CGRect {
     unsafe { UIGraphicsGetPDFContextBounds() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicssetpdfcontexturlforrect(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsSetPDFContextURLForRect(url: &NSURL, rect: CGRect) {
@@ -193,6 +215,7 @@ pub extern "C-unwind" fn UIGraphicsSetPDFContextURLForRect(url: &NSURL, rect: CG
     unsafe { UIGraphicsSetPDFContextURLForRect(url, rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsaddpdfcontextdestinationatpoint(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsAddPDFContextDestinationAtPoint(
@@ -205,6 +228,7 @@ pub extern "C-unwind" fn UIGraphicsAddPDFContextDestinationAtPoint(
     unsafe { UIGraphicsAddPDFContextDestinationAtPoint(name, point) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicssetpdfcontextdestinationforrect(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsSetPDFContextDestinationForRect(name: &NSString, rect: CGRect) {

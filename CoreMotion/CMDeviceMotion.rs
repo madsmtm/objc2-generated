@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMDeviceMotionSensorLocation(pub NSInteger);
 impl CMDeviceMotionSensorLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotion/sensorlocation-swift.enum/default?language=objc)
     #[doc(alias = "CMDeviceMotionSensorLocationDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotion/sensorlocation-swift.enum/headphoneleft?language=objc)
     #[doc(alias = "CMDeviceMotionSensorLocationHeadphoneLeft")]
     pub const HeadphoneLeft: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotion/sensorlocation-swift.enum/headphoneright?language=objc)
     #[doc(alias = "CMDeviceMotionSensorLocationHeadphoneRight")]
     pub const HeadphoneRight: Self = Self(2);
 }
@@ -35,12 +38,16 @@ unsafe impl RefEncode for CMDeviceMotionSensorLocation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMMagneticFieldCalibrationAccuracy(pub c_int);
 impl CMMagneticFieldCalibrationAccuracy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfieldcalibrationaccuracy/uncalibrated?language=objc)
     #[doc(alias = "CMMagneticFieldCalibrationAccuracyUncalibrated")]
     pub const Uncalibrated: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfieldcalibrationaccuracy/low?language=objc)
     #[doc(alias = "CMMagneticFieldCalibrationAccuracyLow")]
     pub const Low: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfieldcalibrationaccuracy/medium?language=objc)
     #[doc(alias = "CMMagneticFieldCalibrationAccuracyMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfieldcalibrationaccuracy/high?language=objc)
     #[doc(alias = "CMMagneticFieldCalibrationAccuracyHigh")]
     pub const High: Self = Self(2);
 }

@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNAuthorizationStatus(pub NSInteger);
 impl UNAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "UNAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus/denied?language=objc)
     #[doc(alias = "UNAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus/authorized?language=objc)
     #[doc(alias = "UNAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus/provisional?language=objc)
     #[doc(alias = "UNAuthorizationStatusProvisional")]
     pub const Provisional: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus/ephemeral?language=objc)
     #[doc(alias = "UNAuthorizationStatusEphemeral")]
     pub const Ephemeral: Self = Self(4);
 }
@@ -38,10 +43,13 @@ unsafe impl RefEncode for UNAuthorizationStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNShowPreviewsSetting(pub NSInteger);
 impl UNShowPreviewsSetting {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unshowpreviewssetting/always?language=objc)
     #[doc(alias = "UNShowPreviewsSettingAlways")]
     pub const Always: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unshowpreviewssetting/whenauthenticated?language=objc)
     #[doc(alias = "UNShowPreviewsSettingWhenAuthenticated")]
     pub const WhenAuthenticated: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unshowpreviewssetting/never?language=objc)
     #[doc(alias = "UNShowPreviewsSettingNever")]
     pub const Never: Self = Self(2);
 }
@@ -60,10 +68,13 @@ unsafe impl RefEncode for UNShowPreviewsSetting {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNNotificationSetting(pub NSInteger);
 impl UNNotificationSetting {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsetting/notsupported?language=objc)
     #[doc(alias = "UNNotificationSettingNotSupported")]
     pub const NotSupported: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsetting/disabled?language=objc)
     #[doc(alias = "UNNotificationSettingDisabled")]
     pub const Disabled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsetting/enabled?language=objc)
     #[doc(alias = "UNNotificationSettingEnabled")]
     pub const Enabled: Self = Self(2);
 }
@@ -82,10 +93,13 @@ unsafe impl RefEncode for UNNotificationSetting {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNAlertStyle(pub NSInteger);
 impl UNAlertStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unalertstyle/none?language=objc)
     #[doc(alias = "UNAlertStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unalertstyle/banner?language=objc)
     #[doc(alias = "UNAlertStyleBanner")]
     pub const Banner: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unalertstyle/alert?language=objc)
     #[doc(alias = "UNAlertStyleAlert")]
     pub const Alert: Self = Self(2);
 }

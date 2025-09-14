@@ -505,6 +505,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `definition` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclasscreate(_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSClassCreate(definition: *const JSClassDefinition) -> JSClassRef;
 }
@@ -519,6 +521,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `js_class` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassretain(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSClassRetain(js_class: JSClassRef) -> JSClassRef;
 }
@@ -531,6 +535,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `js_class` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassrelease(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSClassRelease(js_class: JSClassRef);
 }
@@ -555,6 +561,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `js_class` must be a valid pointer.
     /// - `data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmake(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMake(ctx: JSContextRef, js_class: JSClassRef, data: *mut c_void) -> JSObjectRef;
 }
@@ -575,6 +583,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `name` must be a valid pointer.
     /// - `call_as_function` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakefunctionwithcallback(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeFunctionWithCallback(
         ctx: JSContextRef,
@@ -601,6 +611,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `js_class` must be a valid pointer.
     /// - `call_as_constructor` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakeconstructor(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeConstructor(
         ctx: JSContextRef,
@@ -630,6 +642,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakearray(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeArray(
         ctx: JSContextRef,
@@ -657,6 +671,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakedate(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeDate(
         ctx: JSContextRef,
@@ -684,6 +700,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakeerror(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeError(
         ctx: JSContextRef,
@@ -711,6 +729,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakeregexp(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeRegExp(
         ctx: JSContextRef,
@@ -739,6 +759,8 @@ extern "C-unwind" {
     /// - `resolve` must be a valid pointer.
     /// - `reject` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakedeferredpromise(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeDeferredPromise(
         ctx: JSContextRef,
@@ -779,6 +801,8 @@ extern "C-unwind" {
     /// - `body` must be a valid pointer.
     /// - `source_url` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakefunction(_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeFunction(
         ctx: JSContextRef,
@@ -805,6 +829,8 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetprototype(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPrototype(ctx: JSContextRef, object: JSObjectRef) -> JSValueRef;
 }
@@ -823,6 +849,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetprototype(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPrototype(ctx: JSContextRef, object: JSObjectRef, value: JSValueRef);
 }
@@ -841,6 +869,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `property_name` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjecthasproperty(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectHasProperty(
         ctx: JSContextRef,
@@ -868,6 +898,8 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `property_name` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetproperty(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetProperty(
         ctx: JSContextRef,
@@ -899,6 +931,8 @@ extern "C-unwind" {
     /// - `property_name` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetproperty(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetProperty(
         ctx: JSContextRef,
@@ -929,6 +963,8 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `property_name` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectdeleteproperty(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectDeleteProperty(
         ctx: JSContextRef,
@@ -957,6 +993,8 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `property_key` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjecthaspropertyforkey(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectHasPropertyForKey(
         ctx: JSContextRef,
@@ -987,6 +1025,8 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `property_key` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetpropertyforkey(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPropertyForKey(
         ctx: JSContextRef,
@@ -1020,6 +1060,8 @@ extern "C-unwind" {
     /// - `property_key` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetpropertyforkey(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPropertyForKey(
         ctx: JSContextRef,
@@ -1052,6 +1094,8 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `property_key` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectdeletepropertyforkey(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectDeletePropertyForKey(
         ctx: JSContextRef,
@@ -1081,6 +1125,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetpropertyatindex(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPropertyAtIndex(
         ctx: JSContextRef,
@@ -1111,6 +1157,8 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetpropertyatindex(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPropertyAtIndex(
         ctx: JSContextRef,
@@ -1131,6 +1179,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `object` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetprivate(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPrivate(object: JSObjectRef) -> *mut c_void;
 }
@@ -1150,6 +1200,8 @@ extern "C-unwind" {
     ///
     /// - `object` must be a valid pointer.
     /// - `data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetprivate(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPrivate(object: JSObjectRef, data: *mut c_void) -> bool;
 }
@@ -1167,6 +1219,8 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectisfunction(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectIsFunction(ctx: JSContextRef, object: JSObjectRef) -> bool;
 }
@@ -1195,6 +1249,8 @@ extern "C-unwind" {
     /// - `this_object` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectcallasfunction(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectCallAsFunction(
         ctx: JSContextRef,
@@ -1219,6 +1275,8 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectisconstructor(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectIsConstructor(ctx: JSContextRef, object: JSObjectRef) -> bool;
 }
@@ -1244,6 +1302,8 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectcallasconstructor(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectCallAsConstructor(
         ctx: JSContextRef,
@@ -1267,6 +1327,8 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectcopypropertynames(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectCopyPropertyNames(
         ctx: JSContextRef,
@@ -1284,6 +1346,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `array` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayretain(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayRetain(array: JSPropertyNameArrayRef) -> JSPropertyNameArrayRef;
 }
@@ -1296,6 +1360,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `array` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayrelease(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayRelease(array: JSPropertyNameArrayRef);
 }
@@ -1310,6 +1376,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `array` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearraygetcount(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayGetCount(array: JSPropertyNameArrayRef) -> usize;
 }
@@ -1326,6 +1394,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `array` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearraygetnameatindex(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayGetNameAtIndex(
         array: JSPropertyNameArrayRef,
@@ -1344,6 +1414,8 @@ extern "C-unwind" {
     ///
     /// - `accumulator` must be a valid pointer.
     /// - `property_name` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynameaccumulatoraddname(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameAccumulatorAddName(
         accumulator: JSPropertyNameAccumulatorRef,

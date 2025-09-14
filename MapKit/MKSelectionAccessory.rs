@@ -43,10 +43,13 @@ impl MKSelectionAccessory {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKMapItemDetailSelectionAccessoryCalloutStyle(pub NSInteger);
 impl MKMapItemDetailSelectionAccessoryCalloutStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle/calloutstyle/automatic?language=objc)
     #[doc(alias = "MKMapItemDetailSelectionAccessoryCalloutStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle/calloutstyle/full?language=objc)
     #[doc(alias = "MKMapItemDetailSelectionAccessoryCalloutStyleFull")]
     pub const Full: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle/calloutstyle/compact?language=objc)
     #[doc(alias = "MKMapItemDetailSelectionAccessoryCalloutStyleCompact")]
     pub const Compact: Self = Self(2);
 }

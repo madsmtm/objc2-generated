@@ -37,12 +37,18 @@ extern "C" {
 pub struct CPMessageLeadingItem(pub NSInteger);
 impl CPMessageLeadingItem {
     /// The list item will render without a leading glyph.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessageleadingitem/none?language=objc)
     #[doc(alias = "CPMessageLeadingItemNone")]
     pub const None: Self = Self(0);
     /// The list item will render with a pin glyph on the leading side.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessageleadingitem/pin?language=objc)
     #[doc(alias = "CPMessageLeadingItemPin")]
     pub const Pin: Self = Self(1);
     /// The list item will render with a star glyph on the leading side.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessageleadingitem/star?language=objc)
     #[doc(alias = "CPMessageLeadingItemStar")]
     pub const Star: Self = Self(2);
 }
@@ -64,9 +70,13 @@ unsafe impl RefEncode for CPMessageLeadingItem {
 pub struct CPMessageTrailingItem(pub NSInteger);
 impl CPMessageTrailingItem {
     /// The list item will render without a trailing glyph.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagetrailingitem/none?language=objc)
     #[doc(alias = "CPMessageTrailingItemNone")]
     pub const None: Self = Self(0);
     /// The list item will render with a mute glyph on the trailing side.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagetrailingitem/mute?language=objc)
     #[doc(alias = "CPMessageTrailingItemMute")]
     pub const Mute: Self = Self(1);
 }

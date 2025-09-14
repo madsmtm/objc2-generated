@@ -16,10 +16,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNHitTestSearchMode(pub NSInteger);
 impl SCNHitTestSearchMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestsearchmode/closest?language=objc)
     #[doc(alias = "SCNHitTestSearchModeClosest")]
     pub const Closest: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestsearchmode/all?language=objc)
     #[doc(alias = "SCNHitTestSearchModeAll")]
     pub const All: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestsearchmode/any?language=objc)
     #[doc(alias = "SCNHitTestSearchModeAny")]
     pub const Any: Self = Self(2);
 }

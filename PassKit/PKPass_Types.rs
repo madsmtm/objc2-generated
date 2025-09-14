@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassType(pub NSUInteger);
 impl PKPassType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasstype/barcode?language=objc)
     #[doc(alias = "PKPassTypeBarcode")]
     pub const Barcode: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasstype/secureelement?language=objc)
     #[doc(alias = "PKPassTypeSecureElement")]
     pub const SecureElement: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasstype/payment?language=objc)
     #[doc(alias = "PKPassTypePayment")]
     #[deprecated = "Use PKPassTypeSecureElement instead"]
     pub const Payment: Self = Self(PKPassType::SecureElement.0);

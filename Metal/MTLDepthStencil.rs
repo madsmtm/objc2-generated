@@ -13,20 +13,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCompareFunction(pub NSUInteger);
 impl MTLCompareFunction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/never?language=objc)
     #[doc(alias = "MTLCompareFunctionNever")]
     pub const Never: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/less?language=objc)
     #[doc(alias = "MTLCompareFunctionLess")]
     pub const Less: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/equal?language=objc)
     #[doc(alias = "MTLCompareFunctionEqual")]
     pub const Equal: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/lessequal?language=objc)
     #[doc(alias = "MTLCompareFunctionLessEqual")]
     pub const LessEqual: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/greater?language=objc)
     #[doc(alias = "MTLCompareFunctionGreater")]
     pub const Greater: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/notequal?language=objc)
     #[doc(alias = "MTLCompareFunctionNotEqual")]
     pub const NotEqual: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/greaterequal?language=objc)
     #[doc(alias = "MTLCompareFunctionGreaterEqual")]
     pub const GreaterEqual: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/always?language=objc)
     #[doc(alias = "MTLCompareFunctionAlways")]
     pub const Always: Self = Self(7);
 }
@@ -45,20 +53,28 @@ unsafe impl RefEncode for MTLCompareFunction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStencilOperation(pub NSUInteger);
 impl MTLStencilOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/keep?language=objc)
     #[doc(alias = "MTLStencilOperationKeep")]
     pub const Keep: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/zero?language=objc)
     #[doc(alias = "MTLStencilOperationZero")]
     pub const Zero: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/replace?language=objc)
     #[doc(alias = "MTLStencilOperationReplace")]
     pub const Replace: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/incrementclamp?language=objc)
     #[doc(alias = "MTLStencilOperationIncrementClamp")]
     pub const IncrementClamp: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/decrementclamp?language=objc)
     #[doc(alias = "MTLStencilOperationDecrementClamp")]
     pub const DecrementClamp: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/invert?language=objc)
     #[doc(alias = "MTLStencilOperationInvert")]
     pub const Invert: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/incrementwrap?language=objc)
     #[doc(alias = "MTLStencilOperationIncrementWrap")]
     pub const IncrementWrap: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/decrementwrap?language=objc)
     #[doc(alias = "MTLStencilOperationDecrementWrap")]
     pub const DecrementWrap: Self = Self(7);
 }

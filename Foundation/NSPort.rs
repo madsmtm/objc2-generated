@@ -192,10 +192,13 @@ extern_protocol!(
 pub struct NSMachPortOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMachPortOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportoptions/nsmachportdeallocatenone?language=objc)
         #[doc(alias = "NSMachPortDeallocateNone")]
         const DeallocateNone = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachport/options/deallocatesendright?language=objc)
         #[doc(alias = "NSMachPortDeallocateSendRight")]
         const DeallocateSendRight = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachport/options/deallocatereceiveright?language=objc)
         #[doc(alias = "NSMachPortDeallocateReceiveRight")]
         const DeallocateReceiveRight = 1<<1;
     }

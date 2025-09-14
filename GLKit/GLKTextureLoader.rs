@@ -69,44 +69,64 @@ pub struct GLKTextureLoaderError(pub GLuint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKTextureLoaderError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/fileorurlnotfound?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorFileOrURLNotFound")]
     pub const FileOrURLNotFound: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/invalidnsdata?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorInvalidNSData")]
     pub const InvalidNSData: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/invalidcgimage?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorInvalidCGImage")]
     pub const InvalidCGImage: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unknownpathtype?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorUnknownPathType")]
     pub const UnknownPathType: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unknownfiletype?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorUnknownFileType")]
     pub const UnknownFileType: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/pvratlasunsupported?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorPVRAtlasUnsupported")]
     pub const PVRAtlasUnsupported: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/cubemapinvalidnumfiles?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorCubeMapInvalidNumFiles")]
     pub const CubeMapInvalidNumFiles: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/compressedtextureupload?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorCompressedTextureUpload")]
     pub const CompressedTextureUpload: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/uncompressedtextureupload?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorUncompressedTextureUpload")]
     pub const UncompressedTextureUpload: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unsupportedcubemapdimensions?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorUnsupportedCubeMapDimensions")]
     pub const UnsupportedCubeMapDimensions: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unsupportedbitdepth?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorUnsupportedBitDepth")]
     pub const UnsupportedBitDepth: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unsupportedpvrformat?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorUnsupportedPVRFormat")]
     pub const UnsupportedPVRFormat: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/datapreprocessingfailure?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorDataPreprocessingFailure")]
     pub const DataPreprocessingFailure: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/mipmapunsupported?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorMipmapUnsupported")]
     pub const MipmapUnsupported: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unsupportedorientation?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorUnsupportedOrientation")]
     pub const UnsupportedOrientation: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/reorientationfailure?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorReorientationFailure")]
     pub const ReorientationFailure: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/alphapremultiplicationfailure?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorAlphaPremultiplicationFailure")]
     pub const AlphaPremultiplicationFailure: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/invalideaglcontext?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorInvalidEAGLContext")]
     pub const InvalidEAGLContext: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/incompatibleformatsrgb?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorIncompatibleFormatSRGB")]
     pub const IncompatibleFormatSRGB: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unsupportedtexturetarget?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorUnsupportedTextureTarget")]
     pub const UnsupportedTextureTarget: Self = Self(19);
 }
@@ -133,10 +153,13 @@ pub struct GLKTextureInfoAlphaState(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKTextureInfoAlphaState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoalphastate/none?language=objc)
     #[doc(alias = "GLKTextureInfoAlphaStateNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoalphastate/nonpremultiplied?language=objc)
     #[doc(alias = "GLKTextureInfoAlphaStateNonPremultiplied")]
     pub const NonPremultiplied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoalphastate/premultiplied?language=objc)
     #[doc(alias = "GLKTextureInfoAlphaStatePremultiplied")]
     pub const Premultiplied: Self = Self(2);
 }
@@ -163,10 +186,13 @@ pub struct GLKTextureInfoOrigin(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKTextureInfoOrigin {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoorigin/unknown?language=objc)
     #[doc(alias = "GLKTextureInfoOriginUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoorigin/topleft?language=objc)
     #[doc(alias = "GLKTextureInfoOriginTopLeft")]
     pub const TopLeft: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoorigin/bottomleft?language=objc)
     #[doc(alias = "GLKTextureInfoOriginBottomLeft")]
     pub const BottomLeft: Self = Self(2);
 }

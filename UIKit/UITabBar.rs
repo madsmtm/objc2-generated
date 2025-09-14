@@ -18,10 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabBarItemPositioning(pub NSInteger);
 impl UITabBarItemPositioning {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbar/itempositioning-swift.enum/automatic?language=objc)
     #[doc(alias = "UITabBarItemPositioningAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbar/itempositioning-swift.enum/fill?language=objc)
     #[doc(alias = "UITabBarItemPositioningFill")]
     pub const Fill: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbar/itempositioning-swift.enum/centered?language=objc)
     #[doc(alias = "UITabBarItemPositioningCentered")]
     pub const Centered: Self = Self(2);
 }

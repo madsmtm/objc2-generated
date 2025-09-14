@@ -14,10 +14,13 @@ use crate::*;
 pub struct NSPDFPanelOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSPDFPanelOptions: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.struct/showspapersize?language=objc)
         #[doc(alias = "NSPDFPanelShowsPaperSize")]
         const ShowsPaperSize = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.struct/showsorientation?language=objc)
         #[doc(alias = "NSPDFPanelShowsOrientation")]
         const ShowsOrientation = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.struct/requestsparentdirectory?language=objc)
         #[doc(alias = "NSPDFPanelRequestsParentDirectory")]
         const RequestsParentDirectory = 1<<24;
     }

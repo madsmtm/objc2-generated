@@ -13,8 +13,10 @@ use crate::*;
 pub struct CPLimitableUserInterface(pub NSUInteger);
 bitflags::bitflags! {
     impl CPLimitableUserInterface: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplimitableuserinterface/keyboard?language=objc)
         #[doc(alias = "CPLimitableUserInterfaceKeyboard")]
         const Keyboard = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplimitableuserinterface/lists?language=objc)
         #[doc(alias = "CPLimitableUserInterfaceLists")]
         const Lists = 1<<1;
     }
@@ -35,8 +37,10 @@ unsafe impl RefEncode for CPLimitableUserInterface {
 pub struct CPContentStyle(pub NSUInteger);
 bitflags::bitflags! {
     impl CPContentStyle: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontentstyle/light?language=objc)
         #[doc(alias = "CPContentStyleLight")]
         const Light = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontentstyle/dark?language=objc)
         #[doc(alias = "CPContentStyleDark")]
         const Dark = 1<<1;
     }

@@ -68,12 +68,16 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGDisplayStreamUpdateRectType(pub i32);
 impl CGDisplayStreamUpdateRectType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype/refreshedrects?language=objc)
     #[doc(alias = "kCGDisplayStreamUpdateRefreshedRects")]
     pub const RefreshedRects: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype/movedrects?language=objc)
     #[doc(alias = "kCGDisplayStreamUpdateMovedRects")]
     pub const MovedRects: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype/dirtyrects?language=objc)
     #[doc(alias = "kCGDisplayStreamUpdateDirtyRects")]
     pub const DirtyRects: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype/reduceddirtyrects?language=objc)
     #[doc(alias = "kCGDisplayStreamUpdateReducedDirtyRects")]
     pub const ReducedDirtyRects: Self = Self(3);
 }
@@ -96,12 +100,16 @@ unsafe impl RefEncode for CGDisplayStreamUpdateRectType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGDisplayStreamFrameStatus(pub i32);
 impl CGDisplayStreamFrameStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus/framecomplete?language=objc)
     #[doc(alias = "kCGDisplayStreamFrameStatusFrameComplete")]
     pub const FrameComplete: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus/frameidle?language=objc)
     #[doc(alias = "kCGDisplayStreamFrameStatusFrameIdle")]
     pub const FrameIdle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus/frameblank?language=objc)
     #[doc(alias = "kCGDisplayStreamFrameStatusFrameBlank")]
     pub const FrameBlank: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus/stopped?language=objc)
     #[doc(alias = "kCGDisplayStreamFrameStatusStopped")]
     pub const Stopped: Self = Self(3);
 }
@@ -127,6 +135,8 @@ unsafe impl ConcreteType for CGDisplayStreamUpdate {
     /// Returns the CF "class" ID for CGDisplayStreamUpdate
     ///
     /// Returns: The CFTypeID of the CGDisplayStreamUpdate class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate/typeid?language=objc)
     #[doc(alias = "CGDisplayStreamUpdateGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -150,6 +160,8 @@ impl CGDisplayStreamUpdate {
     /// # Safety
     ///
     /// `rect_count` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate/getrects(_:rectcount:)?language=objc)
     #[doc(alias = "CGDisplayStreamUpdateGetRects")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
@@ -181,6 +193,8 @@ impl CGDisplayStreamUpdate {
     /// Parameter `secondUpdate`: The second update (in a temporal sense)
     ///
     /// Returns: The new CGDisplayStreamUpdateRef
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate/init(mergedupdatefirstupdate:secondupdate:)?language=objc)
     #[doc(alias = "CGDisplayStreamUpdateCreateMergedUpdate")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
@@ -212,6 +226,8 @@ impl CGDisplayStreamUpdate {
     ///
     /// - `dx` must be a valid pointer.
     /// - `dy` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate/getmovedrectsdelta(dx:dy:)?language=objc)
     #[doc(alias = "CGDisplayStreamUpdateGetMovedRectsDelta")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
@@ -238,6 +254,8 @@ impl CGDisplayStreamUpdate {
     ///
     /// This call is primarily useful for performance measurement to determine if the client is keeping up with
     /// all WindowServer updates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate/dropcount?language=objc)
     #[doc(alias = "CGDisplayStreamUpdateGetDropCount")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
@@ -344,6 +362,8 @@ unsafe impl ConcreteType for CGDisplayStream {
     /// Returns the CF "class" ID for CGDisplayStream
     ///
     /// Returns: The CFTypeID of the CGDisplayStream class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/typeid?language=objc)
     #[doc(alias = "CGDisplayStreamGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -386,6 +406,8 @@ impl CGDisplayStream {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `handler` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/init(display:outputwidth:outputheight:pixelformat:properties:handler:)?language=objc)
     #[doc(alias = "CGDisplayStreamCreate")]
     #[cfg(all(
         feature = "CGDirectDisplay",
@@ -453,6 +475,8 @@ impl CGDisplayStream {
     /// - `properties` generic must be of the correct type.
     /// - `queue` possibly has additional threading requirements.
     /// - `handler` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/init(dispatchqueuedisplay:outputwidth:outputheight:pixelformat:properties:queue:handler:)?language=objc)
     #[doc(alias = "CGDisplayStreamCreateWithDispatchQueue")]
     #[cfg(all(
         feature = "CGDirectDisplay",
@@ -502,6 +526,8 @@ impl CGDisplayStream {
     /// Parameter `displayStream`: to be started
     ///
     /// Returns: kCGErrorSuccess If the display stream was started, otherwise an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/start()?language=objc)
     #[doc(alias = "CGDisplayStreamStart")]
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
@@ -522,6 +548,8 @@ impl CGDisplayStream {
     /// After this call returns, the CGDisplayStream callback function will eventually be called with a
     /// status of kCGDisplayStreamFrameStatusStopped.  After that point it is safe to release the CGDisplayStream.
     /// It is safe to call this function from within the handler block, but the previous caveat still applies.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/stop()?language=objc)
     #[doc(alias = "CGDisplayStreamStop")]
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
@@ -539,6 +567,8 @@ impl CGDisplayStream {
     ///
     /// Returns: The CFRunLoopSource for this displayStream.  Note: This function will return NULL if the
     /// display stream was created via  CGDisplayStreamCreateWithDispatchQueue().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/runloopsource?language=objc)
     #[doc(alias = "CGDisplayStreamGetRunLoopSource")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]

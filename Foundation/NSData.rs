@@ -17,17 +17,23 @@ use crate::*;
 pub struct NSDataReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataReadingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/mappedifsafe?language=objc)
         #[doc(alias = "NSDataReadingMappedIfSafe")]
         const MappedIfSafe = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/uncached?language=objc)
         #[doc(alias = "NSDataReadingUncached")]
         const Uncached = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/alwaysmapped?language=objc)
         #[doc(alias = "NSDataReadingMappedAlways")]
         const MappedAlways = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/datareadingmapped?language=objc)
         #[doc(alias = "NSDataReadingMapped")]
 #[deprecated]
         const Mapped = NSDataReadingOptions::MappedIfSafe.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/mappedread?language=objc)
 #[deprecated]
         const NSMappedRead = NSDataReadingOptions::Mapped.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/uncachedread?language=objc)
 #[deprecated]
         const NSUncachedRead = NSDataReadingOptions::Uncached.0;
     }
@@ -48,22 +54,31 @@ unsafe impl RefEncode for NSDataReadingOptions {
 pub struct NSDataWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataWritingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/atomic?language=objc)
         #[doc(alias = "NSDataWritingAtomic")]
         const Atomic = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/withoutoverwriting?language=objc)
         #[doc(alias = "NSDataWritingWithoutOverwriting")]
         const WithoutOverwriting = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/nofileprotection?language=objc)
         #[doc(alias = "NSDataWritingFileProtectionNone")]
         const FileProtectionNone = 0x10000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/completefileprotection?language=objc)
         #[doc(alias = "NSDataWritingFileProtectionComplete")]
         const FileProtectionComplete = 0x20000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/completefileprotectionunlessopen?language=objc)
         #[doc(alias = "NSDataWritingFileProtectionCompleteUnlessOpen")]
         const FileProtectionCompleteUnlessOpen = 0x30000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/completefileprotectionuntilfirstuserauthentication?language=objc)
         #[doc(alias = "NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication")]
         const FileProtectionCompleteUntilFirstUserAuthentication = 0x40000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/completefileprotectionwhenuserinactive?language=objc)
         #[doc(alias = "NSDataWritingFileProtectionCompleteWhenUserInactive")]
         const FileProtectionCompleteWhenUserInactive = 0x50000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/fileprotectionmask?language=objc)
         #[doc(alias = "NSDataWritingFileProtectionMask")]
         const FileProtectionMask = 0xf0000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/atomicwrite?language=objc)
 #[deprecated]
         const NSAtomicWrite = NSDataWritingOptions::Atomic.0;
     }
@@ -86,8 +101,10 @@ unsafe impl RefEncode for NSDataWritingOptions {
 pub struct NSDataSearchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataSearchOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/searchoptions/backwards?language=objc)
         #[doc(alias = "NSDataSearchBackwards")]
         const Backwards = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/searchoptions/anchored?language=objc)
         #[doc(alias = "NSDataSearchAnchored")]
         const Anchored = 1<<1;
     }
@@ -110,12 +127,16 @@ unsafe impl RefEncode for NSDataSearchOptions {
 pub struct NSDataBase64EncodingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataBase64EncodingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64encodingoptions/linelength64characters?language=objc)
         #[doc(alias = "NSDataBase64Encoding64CharacterLineLength")]
         const Encoding64CharacterLineLength = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64encodingoptions/linelength76characters?language=objc)
         #[doc(alias = "NSDataBase64Encoding76CharacterLineLength")]
         const Encoding76CharacterLineLength = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64encodingoptions/endlinewithcarriagereturn?language=objc)
         #[doc(alias = "NSDataBase64EncodingEndLineWithCarriageReturn")]
         const EncodingEndLineWithCarriageReturn = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64encodingoptions/endlinewithlinefeed?language=objc)
         #[doc(alias = "NSDataBase64EncodingEndLineWithLineFeed")]
         const EncodingEndLineWithLineFeed = 1<<5;
     }
@@ -136,6 +157,7 @@ unsafe impl RefEncode for NSDataBase64EncodingOptions {
 pub struct NSDataBase64DecodingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataBase64DecodingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64decodingoptions/ignoreunknowncharacters?language=objc)
         #[doc(alias = "NSDataBase64DecodingIgnoreUnknownCharacters")]
         const IgnoreUnknownCharacters = 1<<0;
     }
@@ -689,12 +711,16 @@ impl NSMutableData {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDataCompressionAlgorithm(pub NSInteger);
 impl NSDataCompressionAlgorithm {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lzfse?language=objc)
     #[doc(alias = "NSDataCompressionAlgorithmLZFSE")]
     pub const LZFSE: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lz4?language=objc)
     #[doc(alias = "NSDataCompressionAlgorithmLZ4")]
     pub const LZ4: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lzma?language=objc)
     #[doc(alias = "NSDataCompressionAlgorithmLZMA")]
     pub const LZMA: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/zlib?language=objc)
     #[doc(alias = "NSDataCompressionAlgorithmZlib")]
     pub const Zlib: Self = Self(3);
 }

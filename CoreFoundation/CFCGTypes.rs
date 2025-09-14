@@ -29,13 +29,17 @@ unsafe impl RefEncode for CGVector {
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum CGRectEdge {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgrectedge/minxedge?language=objc)
     #[doc(alias = "CGRectMinXEdge")]
     #[default]
     MinXEdge = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgrectedge/minyedge?language=objc)
     #[doc(alias = "CGRectMinYEdge")]
     MinYEdge = 1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgrectedge/maxxedge?language=objc)
     #[doc(alias = "CGRectMaxXEdge")]
     MaxXEdge = 2,
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgrectedge/maxyedge?language=objc)
     #[doc(alias = "CGRectMaxYEdge")]
     MaxYEdge = 3,
 }

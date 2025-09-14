@@ -13,18 +13,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentPassActivationState(pub NSUInteger);
 impl PKPaymentPassActivationState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate/activated?language=objc)
     #[doc(alias = "PKPaymentPassActivationStateActivated")]
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Activated: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate/requiresactivation?language=objc)
     #[doc(alias = "PKPaymentPassActivationStateRequiresActivation")]
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const RequiresActivation: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate/activating?language=objc)
     #[doc(alias = "PKPaymentPassActivationStateActivating")]
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Activating: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate/suspended?language=objc)
     #[doc(alias = "PKPaymentPassActivationStateSuspended")]
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Suspended: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate/deactivated?language=objc)
     #[doc(alias = "PKPaymentPassActivationStateDeactivated")]
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Deactivated: Self = Self(4);

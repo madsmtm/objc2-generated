@@ -15,10 +15,14 @@ use crate::*;
 pub struct NSPopoverAppearance(pub NSInteger);
 impl NSPopoverAppearance {
     /// The popover will use the default, light content appearance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.enum/minimal?language=objc)
     #[doc(alias = "NSPopoverAppearanceMinimal")]
     #[deprecated]
     pub const Minimal: Self = Self(0);
     /// The popover will draw with a HUD appearance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.enum/hud?language=objc)
     #[doc(alias = "NSPopoverAppearanceHUD")]
     #[deprecated]
     pub const HUD: Self = Self(1);
@@ -38,10 +42,13 @@ unsafe impl RefEncode for NSPopoverAppearance {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPopoverBehavior(pub NSInteger);
 impl NSPopoverBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/behavior-swift.enum/applicationdefined?language=objc)
     #[doc(alias = "NSPopoverBehaviorApplicationDefined")]
     pub const ApplicationDefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/behavior-swift.enum/transient?language=objc)
     #[doc(alias = "NSPopoverBehaviorTransient")]
     pub const Transient: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/behavior-swift.enum/semitransient?language=objc)
     #[doc(alias = "NSPopoverBehaviorSemitransient")]
     pub const Semitransient: Self = Self(2);
 }

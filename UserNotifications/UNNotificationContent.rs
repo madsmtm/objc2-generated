@@ -18,12 +18,16 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNNotificationInterruptionLevel(pub NSUInteger);
 impl UNNotificationInterruptionLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel/passive?language=objc)
     #[doc(alias = "UNNotificationInterruptionLevelPassive")]
     pub const Passive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel/active?language=objc)
     #[doc(alias = "UNNotificationInterruptionLevelActive")]
     pub const Active: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel/timesensitive?language=objc)
     #[doc(alias = "UNNotificationInterruptionLevelTimeSensitive")]
     pub const TimeSensitive: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel/critical?language=objc)
     #[doc(alias = "UNNotificationInterruptionLevelCritical")]
     pub const Critical: Self = Self(3);
 }

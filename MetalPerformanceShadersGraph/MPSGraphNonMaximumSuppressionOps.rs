@@ -29,12 +29,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphNonMaximumSuppressionCoordinateMode(pub NSUInteger);
 impl MPSGraphNonMaximumSuppressionCoordinateMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode/explicit?language=objc)
     #[doc(alias = "MPSGraphNonMaximumSuppressionCoordinateModeCornersHeightFirst")]
     pub const CornersHeightFirst: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode/cornerswidthfirst?language=objc)
     #[doc(alias = "MPSGraphNonMaximumSuppressionCoordinateModeCornersWidthFirst")]
     pub const CornersWidthFirst: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode/centersheightfirst?language=objc)
     #[doc(alias = "MPSGraphNonMaximumSuppressionCoordinateModeCentersHeightFirst")]
     pub const CentersHeightFirst: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode/centerswidthfirst?language=objc)
     #[doc(alias = "MPSGraphNonMaximumSuppressionCoordinateModeCentersWidthFirst")]
     pub const CentersWidthFirst: Self = Self(3);
 }

@@ -134,10 +134,13 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionFederationType(pub NSInteger);
 impl ASAuthorizationProviderExtensionFederationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.enum/none?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.enum/wstrust?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeWSTrust")]
     pub const WSTrust: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.enum/dynamicwstrust?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust")]
     pub const DynamicWSTrust: Self = Self(2);
 }
@@ -157,14 +160,19 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionFederationType {
 pub struct ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionusersecureenclavekeybiometricpolicy/asauthorizationproviderextensionusersecureenclavekeybiometricpolicynone?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/usersecureenclavekeybiometricpolicy-swift.struct/touchidorwatchcurrentset?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchCurrentSet")]
         const TouchIDOrWatchCurrentSet = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/usersecureenclavekeybiometricpolicy-swift.struct/touchidorwatchany?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchAny")]
         const TouchIDOrWatchAny = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/usersecureenclavekeybiometricpolicy-swift.struct/reuseduringunlock?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyReuseDuringUnlock")]
         const ReuseDuringUnlock = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/usersecureenclavekeybiometricpolicy-swift.struct/passwordfallback?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyPasswordFallback")]
         const PasswordFallback = 1<<3;
     }

@@ -21,6 +21,8 @@ extern "C-unwind" {
     /// height ratio, or aspect, you wish to maintain.
     ///
     /// Parameter `boundingRect`: The bounding CGRect you wish to fit into.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmakerect(aspectratio:insiderect:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AVMakeRectWithAspectRatioInsideRect(
         aspect_ratio: CGSize,

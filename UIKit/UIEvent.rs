@@ -12,18 +12,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEventType(pub NSInteger);
 impl UIEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/touches?language=objc)
     #[doc(alias = "UIEventTypeTouches")]
     pub const Touches: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/motion?language=objc)
     #[doc(alias = "UIEventTypeMotion")]
     pub const Motion: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol?language=objc)
     #[doc(alias = "UIEventTypeRemoteControl")]
     pub const RemoteControl: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/presses?language=objc)
     #[doc(alias = "UIEventTypePresses")]
     pub const Presses: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/scroll?language=objc)
     #[doc(alias = "UIEventTypeScroll")]
     pub const Scroll: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/hover?language=objc)
     #[doc(alias = "UIEventTypeHover")]
     pub const Hover: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/transform?language=objc)
     #[doc(alias = "UIEventTypeTransform")]
     pub const Transform: Self = Self(14);
 }
@@ -42,28 +49,40 @@ unsafe impl RefEncode for UIEventType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEventSubtype(pub NSInteger);
 impl UIEventSubtype {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/none?language=objc)
     #[doc(alias = "UIEventSubtypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/motionshake?language=objc)
     #[doc(alias = "UIEventSubtypeMotionShake")]
     pub const MotionShake: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolplay?language=objc)
     #[doc(alias = "UIEventSubtypeRemoteControlPlay")]
     pub const RemoteControlPlay: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolpause?language=objc)
     #[doc(alias = "UIEventSubtypeRemoteControlPause")]
     pub const RemoteControlPause: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolstop?language=objc)
     #[doc(alias = "UIEventSubtypeRemoteControlStop")]
     pub const RemoteControlStop: Self = Self(102);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontroltoggleplaypause?language=objc)
     #[doc(alias = "UIEventSubtypeRemoteControlTogglePlayPause")]
     pub const RemoteControlTogglePlayPause: Self = Self(103);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolnexttrack?language=objc)
     #[doc(alias = "UIEventSubtypeRemoteControlNextTrack")]
     pub const RemoteControlNextTrack: Self = Self(104);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolprevioustrack?language=objc)
     #[doc(alias = "UIEventSubtypeRemoteControlPreviousTrack")]
     pub const RemoteControlPreviousTrack: Self = Self(105);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolbeginseekingbackward?language=objc)
     #[doc(alias = "UIEventSubtypeRemoteControlBeginSeekingBackward")]
     pub const RemoteControlBeginSeekingBackward: Self = Self(106);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolendseekingbackward?language=objc)
     #[doc(alias = "UIEventSubtypeRemoteControlEndSeekingBackward")]
     pub const RemoteControlEndSeekingBackward: Self = Self(107);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolbeginseekingforward?language=objc)
     #[doc(alias = "UIEventSubtypeRemoteControlBeginSeekingForward")]
     pub const RemoteControlBeginSeekingForward: Self = Self(108);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolendseekingforward?language=objc)
     #[doc(alias = "UIEventSubtypeRemoteControlEndSeekingForward")]
     pub const RemoteControlEndSeekingForward: Self = Self(109);
 }
@@ -93,8 +112,10 @@ unsafe impl RefEncode for UIEventSubtype {
 pub struct UIEventButtonMask(pub NSInteger);
 bitflags::bitflags! {
     impl UIEventButtonMask: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/buttonmask-swift.struct/primary?language=objc)
         #[doc(alias = "UIEventButtonMaskPrimary")]
         const Primary = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/buttonmask-swift.struct/secondary?language=objc)
         #[doc(alias = "UIEventButtonMaskSecondary")]
         const Secondary = 1<<1;
     }
@@ -112,6 +133,8 @@ impl UIEventButtonMask {
     /// Convenience initializer for a button mask where `buttonNumber` is a one-based index of the button on the input device
     /// .button(1) == .primary
     /// .button(2) == .secondary
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/buttonmask-swift.struct/button(_:)?language=objc)
     #[doc(alias = "UIEventButtonMaskForButtonNumber")]
     #[inline]
     pub fn for_button_number(button_number: NSInteger) -> UIEventButtonMask {

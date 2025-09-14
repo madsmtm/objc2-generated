@@ -8,10 +8,14 @@ extern "C-unwind" {
     /// Allows the client to use video decoders appropriate for professional video workflows.
     ///
     /// By calling this function, a client indicates to VideoToolbox that it wishes to support Media Extension video decoders. Any associated Video RAW Processors will also be supported as well. Note that this functionality is intended for applications supporting professional video workflows. It is not recommended for network-facing applications such as web browsers, messaging clients, mail clients, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtregisterprofessionalvideoworkflowvideodecoders()?language=objc)
     pub fn VTRegisterProfessionalVideoWorkflowVideoDecoders();
 }
 
 extern "C-unwind" {
     /// Allows the client to use encoders appropriate for professional video workflows.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtregisterprofessionalvideoworkflowvideoencoders()?language=objc)
     pub fn VTRegisterProfessionalVideoWorkflowVideoEncoders();
 }

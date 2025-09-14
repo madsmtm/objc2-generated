@@ -14,6 +14,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAudiogramConductionType(pub NSInteger);
 impl HKAudiogramConductionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramconductiontype/air?language=objc)
     #[doc(alias = "HKAudiogramConductionTypeAir")]
     pub const Air: Self = Self(0);
 }
@@ -34,8 +35,10 @@ unsafe impl RefEncode for HKAudiogramConductionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAudiogramSensitivityTestSide(pub NSInteger);
 impl HKAudiogramSensitivityTestSide {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytestside/left?language=objc)
     #[doc(alias = "HKAudiogramSensitivityTestSideLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytestside/right?language=objc)
     #[doc(alias = "HKAudiogramSensitivityTestSideRight")]
     pub const Right: Self = Self(1);
 }

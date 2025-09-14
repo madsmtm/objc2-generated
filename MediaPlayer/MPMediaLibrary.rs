@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMediaLibraryAuthorizationStatus(pub NSInteger);
 impl MPMediaLibraryAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "MPMediaLibraryAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus/denied?language=objc)
     #[doc(alias = "MPMediaLibraryAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus/restricted?language=objc)
     #[doc(alias = "MPMediaLibraryAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus/authorized?language=objc)
     #[doc(alias = "MPMediaLibraryAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }

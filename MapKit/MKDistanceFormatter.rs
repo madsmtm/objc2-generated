@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKDistanceFormatterUnits(pub NSUInteger);
 impl MKDistanceFormatterUnits {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/units-swift.enum/default?language=objc)
     #[doc(alias = "MKDistanceFormatterUnitsDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/units-swift.enum/metric?language=objc)
     #[doc(alias = "MKDistanceFormatterUnitsMetric")]
     pub const Metric: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/units-swift.enum/imperial?language=objc)
     #[doc(alias = "MKDistanceFormatterUnitsImperial")]
     pub const Imperial: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/units-swift.enum/imperialwithyards?language=objc)
     #[doc(alias = "MKDistanceFormatterUnitsImperialWithYards")]
     pub const ImperialWithYards: Self = Self(3);
 }
@@ -39,10 +43,13 @@ unsafe impl RefEncode for MKDistanceFormatterUnits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKDistanceFormatterUnitStyle(pub NSUInteger);
 impl MKDistanceFormatterUnitStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/distanceunitstyle/default?language=objc)
     #[doc(alias = "MKDistanceFormatterUnitStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/distanceunitstyle/abbreviated?language=objc)
     #[doc(alias = "MKDistanceFormatterUnitStyleAbbreviated")]
     pub const Abbreviated: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/distanceunitstyle/full?language=objc)
     #[doc(alias = "MKDistanceFormatterUnitStyleFull")]
     pub const Full: Self = Self(2);
 }

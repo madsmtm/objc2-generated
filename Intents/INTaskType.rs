@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTaskType(pub NSInteger);
 impl INTaskType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intasktype/unknown?language=objc)
     #[doc(alias = "INTaskTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intasktype/notcompletable?language=objc)
     #[doc(alias = "INTaskTypeNotCompletable")]
     pub const NotCompletable: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intasktype/completable?language=objc)
     #[doc(alias = "INTaskTypeCompletable")]
     pub const Completable: Self = Self(2);
 }

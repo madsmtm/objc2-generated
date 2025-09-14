@@ -61,6 +61,7 @@ extern "C" {
     pub static kUTTagClassOSType: &'static CFString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448939-uttypecreatepreferredidentifierf?language=objc)
 #[deprecated = "Use the UTType class instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCreatePreferredIdentifierForTag(
@@ -81,6 +82,7 @@ pub unsafe extern "C-unwind" fn UTTypeCreatePreferredIdentifierForTag(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447261-uttypecreateallidentifiersfortag?language=objc)
 #[deprecated = "Use the UTType class instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCreateAllIdentifiersForTag(
@@ -100,6 +102,7 @@ pub unsafe extern "C-unwind" fn UTTypeCreateAllIdentifiersForTag(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442744-uttypecopypreferredtagwithclass?language=objc)
 #[deprecated = "Use the UTType class instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCopyPreferredTagWithClass(
@@ -116,6 +119,7 @@ pub unsafe extern "C-unwind" fn UTTypeCopyPreferredTagWithClass(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448473-uttypecopyalltagswithclass?language=objc)
 #[deprecated = "Use the UTType class instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCopyAllTagsWithClass(
@@ -132,6 +136,7 @@ pub unsafe extern "C-unwind" fn UTTypeCopyAllTagsWithClass(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447783-uttypeequal?language=objc)
 #[deprecated = "Use -[UTType isEqual:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeEqual(in_uti1: &CFString, in_uti2: &CFString) -> bool {
@@ -142,6 +147,7 @@ pub unsafe extern "C-unwind" fn UTTypeEqual(in_uti1: &CFString, in_uti2: &CFStri
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444079-uttypeconformsto?language=objc)
 #[deprecated = "Use -[UTType conformsToType:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeConformsTo(
@@ -155,6 +161,7 @@ pub unsafe extern "C-unwind" fn UTTypeConformsTo(
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448514-uttypecopydescription?language=objc)
 #[deprecated = "Use UTType.localizedDescription instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCopyDescription(
@@ -167,6 +174,7 @@ pub unsafe extern "C-unwind" fn UTTypeCopyDescription(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450352-uttypeisdeclared?language=objc)
 #[deprecated = "Use UTType.declared instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeIsDeclared(in_uti: &CFString) -> bool {
@@ -177,6 +185,7 @@ pub unsafe extern "C-unwind" fn UTTypeIsDeclared(in_uti: &CFString) -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442980-uttypeisdynamic?language=objc)
 #[deprecated = "Use UTType.dynamic instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeIsDynamic(in_uti: &CFString) -> bool {
@@ -187,6 +196,7 @@ pub unsafe extern "C-unwind" fn UTTypeIsDynamic(in_uti: &CFString) -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442505-uttypecopydeclaration?language=objc)
 #[deprecated = "Use the UTType class instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCopyDeclaration(
@@ -199,6 +209,7 @@ pub unsafe extern "C-unwind" fn UTTypeCopyDeclaration(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447781-uttypecopydeclaringbundleurl?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCopyDeclaringBundleURL(
@@ -211,6 +222,7 @@ pub unsafe extern "C-unwind" fn UTTypeCopyDeclaringBundleURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442804-utcreatestringforostype?language=objc)
 #[deprecated = "HFS type codes are obsolete."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTCreateStringForOSType(
@@ -225,6 +237,7 @@ pub unsafe extern "C-unwind" fn UTCreateStringForOSType(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450472-utgetostypefromstring?language=objc)
     #[deprecated = "HFS type codes are obsolete."]
     pub fn UTGetOSTypeFromString(in_string: &CFString) -> OSType;
 }

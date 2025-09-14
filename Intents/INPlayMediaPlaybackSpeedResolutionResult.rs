@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INPlayMediaPlaybackSpeedUnsupportedReason(pub NSInteger);
 impl INPlayMediaPlaybackSpeedUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaplaybackspeedunsupportedreason/belowminimum?language=objc)
     #[doc(alias = "INPlayMediaPlaybackSpeedUnsupportedReasonBelowMinimum")]
     pub const BelowMinimum: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaplaybackspeedunsupportedreason/abovemaximum?language=objc)
     #[doc(alias = "INPlayMediaPlaybackSpeedUnsupportedReasonAboveMaximum")]
     pub const AboveMaximum: Self = Self(2);
 }

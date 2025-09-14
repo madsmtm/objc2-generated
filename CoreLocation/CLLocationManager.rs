@@ -13,18 +13,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLDeviceOrientation(pub c_int);
 impl CLDeviceOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/unknown?language=objc)
     #[doc(alias = "CLDeviceOrientationUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/portrait?language=objc)
     #[doc(alias = "CLDeviceOrientationPortrait")]
     pub const Portrait: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/portraitupsidedown?language=objc)
     #[doc(alias = "CLDeviceOrientationPortraitUpsideDown")]
     pub const PortraitUpsideDown: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/landscapeleft?language=objc)
     #[doc(alias = "CLDeviceOrientationLandscapeLeft")]
     pub const LandscapeLeft: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/landscaperight?language=objc)
     #[doc(alias = "CLDeviceOrientationLandscapeRight")]
     pub const LandscapeRight: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/faceup?language=objc)
     #[doc(alias = "CLDeviceOrientationFaceUp")]
     pub const FaceUp: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/facedown?language=objc)
     #[doc(alias = "CLDeviceOrientationFaceDown")]
     pub const FaceDown: Self = Self(6);
 }
@@ -43,16 +50,22 @@ unsafe impl RefEncode for CLDeviceOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLAuthorizationStatus(pub c_int);
 impl CLAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "kCLAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/restricted?language=objc)
     #[doc(alias = "kCLAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/denied?language=objc)
     #[doc(alias = "kCLAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/authorizedalways?language=objc)
     #[doc(alias = "kCLAuthorizationStatusAuthorizedAlways")]
     pub const AuthorizedAlways: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/authorizedwheninuse?language=objc)
     #[doc(alias = "kCLAuthorizationStatusAuthorizedWhenInUse")]
     pub const AuthorizedWhenInUse: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/authorized?language=objc)
     #[doc(alias = "kCLAuthorizationStatusAuthorized")]
     #[deprecated = "Use kCLAuthorizationStatusAuthorizedAlways"]
     pub const Authorized: Self = Self(CLAuthorizationStatus::AuthorizedAlways.0);
@@ -72,8 +85,10 @@ unsafe impl RefEncode for CLAuthorizationStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLAccuracyAuthorization(pub NSInteger);
 impl CLAccuracyAuthorization {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/claccuracyauthorization/fullaccuracy?language=objc)
     #[doc(alias = "CLAccuracyAuthorizationFullAccuracy")]
     pub const FullAccuracy: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/claccuracyauthorization/reducedaccuracy?language=objc)
     #[doc(alias = "CLAccuracyAuthorizationReducedAccuracy")]
     pub const ReducedAccuracy: Self = Self(1);
 }
@@ -92,14 +107,19 @@ unsafe impl RefEncode for CLAccuracyAuthorization {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLActivityType(pub NSInteger);
 impl CLActivityType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype/other?language=objc)
     #[doc(alias = "CLActivityTypeOther")]
     pub const Other: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype/automotivenavigation?language=objc)
     #[doc(alias = "CLActivityTypeAutomotiveNavigation")]
     pub const AutomotiveNavigation: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype/fitness?language=objc)
     #[doc(alias = "CLActivityTypeFitness")]
     pub const Fitness: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype/othernavigation?language=objc)
     #[doc(alias = "CLActivityTypeOtherNavigation")]
     pub const OtherNavigation: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype/airborne?language=objc)
     #[doc(alias = "CLActivityTypeAirborne")]
     pub const Airborne: Self = Self(5);
 }

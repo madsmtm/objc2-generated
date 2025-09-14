@@ -51,6 +51,8 @@ impl VTPixelTransferSession {
     /// # Safety
     ///
     /// `pixel_transfer_session_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersessioncreate(allocator:pixeltransfersessionout:)?language=objc)
     #[doc(alias = "VTPixelTransferSessionCreate")]
     #[inline]
     pub unsafe fn create(
@@ -73,6 +75,8 @@ impl VTPixelTransferSession {
     /// When a pixel transfer session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTPixelTransferSessionInvalidate ensures a deterministic, orderly teardown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersessioninvalidate(_:)?language=objc)
     #[doc(alias = "VTPixelTransferSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -85,6 +89,8 @@ impl VTPixelTransferSession {
 
 unsafe impl ConcreteType for VTPixelTransferSession {
     /// Returns the CFTypeID for pixel transfer sessions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersessiongettypeid()?language=objc)
     #[doc(alias = "VTPixelTransferSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -112,6 +118,8 @@ impl VTPixelTransferSession {
     /// Parameter `destinationBuffer`: The destination buffer.
     ///
     /// Returns: If the transfer was successful, noErr; otherwise an error code, such as kVTPixelTransferNotSupportedErr.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersessiontransferimage(_:from:to:)?language=objc)
     #[doc(alias = "VTPixelTransferSessionTransferImage")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]

@@ -14,6 +14,8 @@ use crate::*;
 /// NULL if no proxy settings have been defined or if an error
 /// was encountered.
 /// The caller is responsible for releasing the returned dictionary.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkcopysystemproxysettings()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetworkCopySystemProxySettings(
 ) -> Option<CFRetained<CFDictionary>> {
@@ -24,6 +26,8 @@ pub unsafe extern "C-unwind" fn CFNetworkCopySystemProxySettings(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkcopyproxiesforurl(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `proxy_settings` generic must be of the correct type.
@@ -48,6 +52,8 @@ pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForURL(
 pub type CFProxyAutoConfigurationResultCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFArray>, *mut CFError)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkcopyproxiesforautoconfigurationscript(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
@@ -74,6 +80,8 @@ pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForAutoConfigurationScript(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkexecuteproxyautoconfigurationscript(_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `cb` must be implemented correctly.
@@ -105,6 +113,8 @@ pub unsafe extern "C-unwind" fn CFNetworkExecuteProxyAutoConfigurationScript(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkexecuteproxyautoconfigurationurl(_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `cb` must be implemented correctly.

@@ -15,20 +15,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGridCellPlacement(pub NSInteger);
 impl NSGridCellPlacement {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/inherited?language=objc)
     #[doc(alias = "NSGridCellPlacementInherited")]
     pub const Inherited: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/none?language=objc)
     #[doc(alias = "NSGridCellPlacementNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/leading?language=objc)
     #[doc(alias = "NSGridCellPlacementLeading")]
     pub const Leading: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/top?language=objc)
     #[doc(alias = "NSGridCellPlacementTop")]
     pub const Top: Self = Self(NSGridCellPlacement::Leading.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/trailing?language=objc)
     #[doc(alias = "NSGridCellPlacementTrailing")]
     pub const Trailing: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/bottom?language=objc)
     #[doc(alias = "NSGridCellPlacementBottom")]
     pub const Bottom: Self = Self(NSGridCellPlacement::Trailing.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/center?language=objc)
     #[doc(alias = "NSGridCellPlacementCenter")]
     pub const Center: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/fill?language=objc)
     #[doc(alias = "NSGridCellPlacementFill")]
     pub const Fill: Self = Self(5);
 }
@@ -47,12 +55,16 @@ unsafe impl RefEncode for NSGridCellPlacement {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGridRowAlignment(pub NSInteger);
 impl NSGridRowAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow/alignment/inherited?language=objc)
     #[doc(alias = "NSGridRowAlignmentInherited")]
     pub const Inherited: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow/alignment/none?language=objc)
     #[doc(alias = "NSGridRowAlignmentNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow/alignment/firstbaseline?language=objc)
     #[doc(alias = "NSGridRowAlignmentFirstBaseline")]
     pub const FirstBaseline: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow/alignment/lastbaseline?language=objc)
     #[doc(alias = "NSGridRowAlignmentLastBaseline")]
     pub const LastBaseline: Self = Self(3);
 }

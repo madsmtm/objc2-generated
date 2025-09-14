@@ -16,10 +16,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SFErrorCode(pub NSInteger);
 impl SFErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sferrorcode/noextensionfound?language=objc)
     #[doc(alias = "SFErrorNoExtensionFound")]
     pub const NoExtensionFound: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sferrorcode/noattachmentfound?language=objc)
     #[doc(alias = "SFErrorNoAttachmentFound")]
     pub const NoAttachmentFound: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sferrorcode/loadinginterrupted?language=objc)
     #[doc(alias = "SFErrorLoadingInterrupted")]
     pub const LoadingInterrupted: Self = Self(3);
 }

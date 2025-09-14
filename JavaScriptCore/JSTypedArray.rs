@@ -21,6 +21,8 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmaketypedarray(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArray(
         ctx: JSContextRef,
@@ -58,6 +60,8 @@ extern "C-unwind" {
     /// - `bytes_deallocator` must be implemented correctly.
     /// - `deallocator_context` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmaketypedarraywithbytesnocopy(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArrayWithBytesNoCopy(
         ctx: JSContextRef,
@@ -88,6 +92,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `buffer` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmaketypedarraywitharraybuffer(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArrayWithArrayBuffer(
         ctx: JSContextRef,
@@ -119,6 +125,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `buffer` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmaketypedarraywitharraybufferandoffset(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
         ctx: JSContextRef,
@@ -148,6 +156,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgettypedarraybytesptr(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayBytesPtr(
         ctx: JSContextRef,
@@ -172,6 +182,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgettypedarraylength(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayLength(
         ctx: JSContextRef,
@@ -196,6 +208,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgettypedarraybytelength(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayByteLength(
         ctx: JSContextRef,
@@ -220,6 +234,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgettypedarraybyteoffset(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayByteOffset(
         ctx: JSContextRef,
@@ -244,6 +260,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgettypedarraybuffer(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayBuffer(
         ctx: JSContextRef,
@@ -278,6 +296,8 @@ extern "C-unwind" {
     /// - `bytes_deallocator` must be implemented correctly.
     /// - `deallocator_context` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakearraybufferwithbytesnocopy(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeArrayBufferWithBytesNoCopy(
         ctx: JSContextRef,
@@ -305,6 +325,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetarraybufferbytesptr(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetArrayBufferBytesPtr(
         ctx: JSContextRef,
@@ -329,6 +351,8 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetarraybufferbytelength(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetArrayBufferByteLength(
         ctx: JSContextRef,

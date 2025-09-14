@@ -39,6 +39,8 @@ extern "C-unwind" {
     /// or (kCFNotFound, 0) is returned if any term is not found in active dictionaries.
     /// The result range can be used as an input parameter of DCSCopyTextDefinition()
     /// and HIDictionaryWindowShow() in Carbon framework.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450556-dcsgettermrangeinstring?language=objc)
     pub fn DCSGetTermRangeInString(
         dictionary: Option<&DCSDictionary>,
         text_string: &CFString,
@@ -55,6 +57,8 @@ extern "C-unwind" {
 /// Parameter `range`: Range of the target word or phrase in textString
 ///
 /// Returns: Returns a definition of the specified term in range in plain text
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446842-dcscopytextdefinition?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn DCSCopyTextDefinition(
     dictionary: Option<&DCSDictionary>,

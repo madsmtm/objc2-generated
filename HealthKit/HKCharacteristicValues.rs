@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKActivityMoveMode(pub NSInteger);
 impl HKActivityMoveMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitymovemode/activeenergy?language=objc)
     #[doc(alias = "HKActivityMoveModeActiveEnergy")]
     pub const ActiveEnergy: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitymovemode/applemovetime?language=objc)
     #[doc(alias = "HKActivityMoveModeAppleMoveTime")]
     pub const AppleMoveTime: Self = Self(2);
 }
@@ -34,12 +36,16 @@ unsafe impl RefEncode for HKActivityMoveMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKBiologicalSex(pub NSInteger);
 impl HKBiologicalSex {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsex/notset?language=objc)
     #[doc(alias = "HKBiologicalSexNotSet")]
     pub const NotSet: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsex/female?language=objc)
     #[doc(alias = "HKBiologicalSexFemale")]
     pub const Female: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsex/male?language=objc)
     #[doc(alias = "HKBiologicalSexMale")]
     pub const Male: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsex/other?language=objc)
     #[doc(alias = "HKBiologicalSexOther")]
     pub const Other: Self = Self(3);
 }
@@ -60,22 +66,31 @@ unsafe impl RefEncode for HKBiologicalSex {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKBloodType(pub NSInteger);
 impl HKBloodType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/notset?language=objc)
     #[doc(alias = "HKBloodTypeNotSet")]
     pub const NotSet: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/apositive?language=objc)
     #[doc(alias = "HKBloodTypeAPositive")]
     pub const APositive: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/anegative?language=objc)
     #[doc(alias = "HKBloodTypeANegative")]
     pub const ANegative: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/bpositive?language=objc)
     #[doc(alias = "HKBloodTypeBPositive")]
     pub const BPositive: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/bnegative?language=objc)
     #[doc(alias = "HKBloodTypeBNegative")]
     pub const BNegative: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/abpositive?language=objc)
     #[doc(alias = "HKBloodTypeABPositive")]
     pub const ABPositive: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/abnegative?language=objc)
     #[doc(alias = "HKBloodTypeABNegative")]
     pub const ABNegative: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/opositive?language=objc)
     #[doc(alias = "HKBloodTypeOPositive")]
     pub const OPositive: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/onegative?language=objc)
     #[doc(alias = "HKBloodTypeONegative")]
     pub const ONegative: Self = Self(8);
 }
@@ -99,18 +114,25 @@ unsafe impl RefEncode for HKBloodType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKFitzpatrickSkinType(pub NSInteger);
 impl HKFitzpatrickSkinType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/notset?language=objc)
     #[doc(alias = "HKFitzpatrickSkinTypeNotSet")]
     pub const NotSet: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/i?language=objc)
     #[doc(alias = "HKFitzpatrickSkinTypeI")]
     pub const I: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/ii?language=objc)
     #[doc(alias = "HKFitzpatrickSkinTypeII")]
     pub const II: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/iii?language=objc)
     #[doc(alias = "HKFitzpatrickSkinTypeIII")]
     pub const III: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/iv?language=objc)
     #[doc(alias = "HKFitzpatrickSkinTypeIV")]
     pub const IV: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/v?language=objc)
     #[doc(alias = "HKFitzpatrickSkinTypeV")]
     pub const V: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/vi?language=objc)
     #[doc(alias = "HKFitzpatrickSkinTypeVI")]
     pub const VI: Self = Self(6);
 }
@@ -131,10 +153,13 @@ unsafe impl RefEncode for HKFitzpatrickSkinType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWheelchairUse(pub NSInteger);
 impl HKWheelchairUse {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuse/notset?language=objc)
     #[doc(alias = "HKWheelchairUseNotSet")]
     pub const NotSet: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuse/no?language=objc)
     #[doc(alias = "HKWheelchairUseNo")]
     pub const No: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuse/yes?language=objc)
     #[doc(alias = "HKWheelchairUseYes")]
     pub const Yes: Self = Self(2);
 }

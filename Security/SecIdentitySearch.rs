@@ -33,6 +33,8 @@ unsafe impl ConcreteType for SecIdentitySearch {
     /// Returns: The CFTypeID of SecIdentitySearch instances.
     ///
     /// This API is deprecated in 10.7. The SecIdentitySearchRef type is no longer used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysearchgettypeid?language=objc)
     #[doc(alias = "SecIdentitySearchGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -61,6 +63,8 @@ impl SecIdentitySearch {
     ///
     /// - `keychain_or_array` should be of the correct type.
     /// - `search_ref` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysearchcreate?language=objc)
     #[doc(alias = "SecIdentitySearchCreate")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -93,6 +97,8 @@ impl SecIdentitySearch {
     /// # Safety
     ///
     /// `identity` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysearchcopynext?language=objc)
     #[doc(alias = "SecIdentitySearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated]

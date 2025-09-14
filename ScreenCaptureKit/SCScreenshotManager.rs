@@ -21,8 +21,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCScreenshotDisplayIntent(pub NSInteger);
 impl SCScreenshotDisplayIntent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/displayintent-swift.enum/canonical?language=objc)
     #[doc(alias = "SCScreenshotDisplayIntentCanonical")]
     pub const Canonical: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/displayintent-swift.enum/local?language=objc)
     #[doc(alias = "SCScreenshotDisplayIntentLocal")]
     pub const Local: Self = Self(1);
 }
@@ -41,10 +43,13 @@ unsafe impl RefEncode for SCScreenshotDisplayIntent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCScreenshotDynamicRange(pub NSInteger);
 impl SCScreenshotDynamicRange {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/dynamicrange-swift.enum/sdr?language=objc)
     #[doc(alias = "SCScreenshotDynamicRangeSDR")]
     pub const SDR: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/dynamicrange-swift.enum/hdr?language=objc)
     #[doc(alias = "SCScreenshotDynamicRangeHDR")]
     pub const HDR: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/dynamicrange-swift.enum/bothsdrandhdr?language=objc)
     #[doc(alias = "SCScreenshotDynamicRangeSDRAndHDR")]
     pub const SDRAndHDR: Self = Self(2);
 }

@@ -8,6 +8,7 @@ use crate::*;
 
 #[cfg(feature = "CGEventTypes")]
 unsafe impl ConcreteType for CGEventSource {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/typeid?language=objc)
     #[doc(alias = "CGEventSourceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -20,6 +21,7 @@ unsafe impl ConcreteType for CGEventSource {
 
 #[cfg(feature = "CGEventTypes")]
 impl CGEventSource {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/init(stateid:)?language=objc)
     #[doc(alias = "CGEventSourceCreate")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -33,6 +35,7 @@ impl CGEventSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/keyboardtype?language=objc)
     #[doc(alias = "CGEventSourceGetKeyboardType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -45,6 +48,7 @@ impl CGEventSource {
         unsafe { CGEventSourceGetKeyboardType(source) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetkeyboardtype?language=objc)
     #[doc(alias = "CGEventSourceSetKeyboardType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -61,6 +65,7 @@ impl CGEventSource {
         unsafe { CGEventSourceSetKeyboardType(source, keyboard_type) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/pixelsperline?language=objc)
     #[doc(alias = "CGEventSourceGetPixelsPerLine")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -71,6 +76,7 @@ impl CGEventSource {
         unsafe { CGEventSourceGetPixelsPerLine(source) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetpixelsperline?language=objc)
     #[doc(alias = "CGEventSourceSetPixelsPerLine")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -84,6 +90,7 @@ impl CGEventSource {
         unsafe { CGEventSourceSetPixelsPerLine(source, pixels_per_line) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/sourcestateid?language=objc)
     #[doc(alias = "CGEventSourceGetSourceStateID")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -96,6 +103,7 @@ impl CGEventSource {
         unsafe { CGEventSourceGetSourceStateID(source) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/buttonstate(_:button:)?language=objc)
     #[doc(alias = "CGEventSourceButtonState")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -109,6 +117,7 @@ impl CGEventSource {
         unsafe { CGEventSourceButtonState(state_id, button) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/keystate(_:key:)?language=objc)
     #[doc(alias = "CGEventSourceKeyState")]
     #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
     #[inline]
@@ -119,6 +128,7 @@ impl CGEventSource {
         unsafe { CGEventSourceKeyState(state_id, key) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/flagsstate(_:)?language=objc)
     #[doc(alias = "CGEventSourceFlagsState")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -129,6 +139,7 @@ impl CGEventSource {
         unsafe { CGEventSourceFlagsState(state_id) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/secondssincelasteventtype(_:eventtype:)?language=objc)
     #[doc(alias = "CGEventSourceSecondsSinceLastEventType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -145,6 +156,7 @@ impl CGEventSource {
         unsafe { CGEventSourceSecondsSinceLastEventType(state_id, event_type) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/counterforeventtype(_:eventtype:)?language=objc)
     #[doc(alias = "CGEventSourceCounterForEventType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -158,6 +170,7 @@ impl CGEventSource {
         unsafe { CGEventSourceCounterForEventType(state_id, event_type) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetuserdata?language=objc)
     #[doc(alias = "CGEventSourceSetUserData")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -168,6 +181,7 @@ impl CGEventSource {
         unsafe { CGEventSourceSetUserData(source, user_data) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/userdata?language=objc)
     #[doc(alias = "CGEventSourceGetUserData")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -178,6 +192,7 @@ impl CGEventSource {
         unsafe { CGEventSourceGetUserData(source) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/setlocaleventsfilterduringsuppressionstate(_:state:)?language=objc)
     #[doc(alias = "CGEventSourceSetLocalEventsFilterDuringSuppressionState")]
     #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
     #[inline]
@@ -196,6 +211,7 @@ impl CGEventSource {
         unsafe { CGEventSourceSetLocalEventsFilterDuringSuppressionState(source, filter, state) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/getlocaleventsfilterduringsuppressionstate(_:)?language=objc)
     #[doc(alias = "CGEventSourceGetLocalEventsFilterDuringSuppressionState")]
     #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
     #[inline]
@@ -212,6 +228,7 @@ impl CGEventSource {
         unsafe { CGEventSourceGetLocalEventsFilterDuringSuppressionState(source, state) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetlocaleventssuppressioninterval?language=objc)
     #[doc(alias = "CGEventSourceSetLocalEventsSuppressionInterval")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -228,6 +245,7 @@ impl CGEventSource {
         unsafe { CGEventSourceSetLocalEventsSuppressionInterval(source, seconds) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/localeventssuppressioninterval?language=objc)
     #[doc(alias = "CGEventSourceGetLocalEventsSuppressionInterval")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]

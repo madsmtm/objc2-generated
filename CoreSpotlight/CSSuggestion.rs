@@ -17,10 +17,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CSSuggestionKind(pub NSInteger);
 impl CSSuggestionKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestion/suggestionkind-swift.enum/none?language=objc)
     #[doc(alias = "CSSuggestionKindNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestion/suggestionkind-swift.enum/custom?language=objc)
     #[doc(alias = "CSSuggestionKindCustom")]
     pub const Custom: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestion/suggestionkind-swift.enum/default?language=objc)
     #[doc(alias = "CSSuggestionKindDefault")]
     pub const Default: Self = Self(2);
 }

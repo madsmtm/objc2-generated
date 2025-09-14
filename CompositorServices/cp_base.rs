@@ -18,6 +18,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `obj` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_retain?language=objc)
     pub fn cp_retain(obj: *mut c_void) -> *mut c_void;
 }
 
@@ -34,5 +36,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `obj` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_release?language=objc)
     pub fn cp_release(obj: *mut c_void);
 }

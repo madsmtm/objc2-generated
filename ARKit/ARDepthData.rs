@@ -18,10 +18,13 @@ use crate::*;
 pub struct ARConfidenceLevel(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARConfidenceLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfidencelevel/low?language=objc)
     #[doc(alias = "ARConfidenceLevelLow")]
     pub const Low: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfidencelevel/medium?language=objc)
     #[doc(alias = "ARConfidenceLevelMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfidencelevel/high?language=objc)
     #[doc(alias = "ARConfidenceLevelHigh")]
     pub const High: Self = Self(2);
 }

@@ -12,6 +12,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSnoozeTasksTaskUnsupportedReason(pub NSInteger);
 impl INSnoozeTasksTaskUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetaskstaskunsupportedreason/notasksfound?language=objc)
     #[doc(alias = "INSnoozeTasksTaskUnsupportedReasonNoTasksFound")]
     pub const NoTasksFound: Self = Self(1);
 }

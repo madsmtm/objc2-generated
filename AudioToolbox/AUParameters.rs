@@ -41,10 +41,13 @@ pub type AUParameterAddress = u64;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUParameterAutomationEventType(pub u32);
 impl AUParameterAutomationEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationeventtype/value?language=objc)
     #[doc(alias = "AUParameterAutomationEventTypeValue")]
     pub const Value: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationeventtype/touch?language=objc)
     #[doc(alias = "AUParameterAutomationEventTypeTouch")]
     pub const Touch: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationeventtype/release?language=objc)
     #[doc(alias = "AUParameterAutomationEventTypeRelease")]
     pub const Release: Self = Self(2);
 }

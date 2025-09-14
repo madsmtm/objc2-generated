@@ -151,17 +151,23 @@ unsafe impl NSAttributedStringNSStringDrawing for NSAttributedString {}
 pub struct NSStringDrawingOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSStringDrawingOptions: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringdrawingoptions/useslinefragmentorigin?language=objc)
         #[doc(alias = "NSStringDrawingUsesLineFragmentOrigin")]
         const UsesLineFragmentOrigin = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringdrawingoptions/usesfontleading?language=objc)
         #[doc(alias = "NSStringDrawingUsesFontLeading")]
         const UsesFontLeading = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringdrawingoptions/usesdevicemetrics?language=objc)
         #[doc(alias = "NSStringDrawingUsesDeviceMetrics")]
         const UsesDeviceMetrics = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringdrawingoptions/truncateslastvisibleline?language=objc)
         #[doc(alias = "NSStringDrawingTruncatesLastVisibleLine")]
         const TruncatesLastVisibleLine = 1<<5;
 /// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
 ///
 /// When set, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringdrawingoptions/optionsresolvesnaturalalignmentwithbasewritingdirection?language=objc)
         #[doc(alias = "NSStringDrawingOptionsResolvesNaturalAlignmentWithBaseWritingDirection")]
         const OptionsResolvesNaturalAlignmentWithBaseWritingDirection = 1<<9;
     }

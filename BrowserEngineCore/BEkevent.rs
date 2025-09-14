@@ -5,6 +5,8 @@ use core::ffi::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginecore/be_kevent(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `changelist` must be a valid pointer.
@@ -21,6 +23,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginecore/be_kevent64(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `changelist` must be a valid pointer.

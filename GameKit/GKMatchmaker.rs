@@ -15,29 +15,41 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKInviteRecipientResponse(pub NSInteger);
 impl GKInviteRecipientResponse {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/accepted?language=objc)
     #[doc(alias = "GKInviteRecipientResponseAccepted")]
     pub const Accepted: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/declined?language=objc)
     #[doc(alias = "GKInviteRecipientResponseDeclined")]
     pub const Declined: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/failed?language=objc)
     #[doc(alias = "GKInviteRecipientResponseFailed")]
     pub const Failed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/incompatible?language=objc)
     #[doc(alias = "GKInviteRecipientResponseIncompatible")]
     pub const Incompatible: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/unabletoconnect?language=objc)
     #[doc(alias = "GKInviteRecipientResponseUnableToConnect")]
     pub const UnableToConnect: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/noanswer?language=objc)
     #[doc(alias = "GKInviteRecipientResponseNoAnswer")]
     pub const NoAnswer: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponseaccepted?language=objc)
     #[deprecated]
     pub const GKInviteeResponseAccepted: Self = Self(GKInviteRecipientResponse::Accepted.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponsedeclined?language=objc)
     #[deprecated]
     pub const GKInviteeResponseDeclined: Self = Self(GKInviteRecipientResponse::Declined.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponsefailed?language=objc)
     #[deprecated]
     pub const GKInviteeResponseFailed: Self = Self(GKInviteRecipientResponse::Failed.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponseincompatible?language=objc)
     #[deprecated]
     pub const GKInviteeResponseIncompatible: Self = Self(GKInviteRecipientResponse::Incompatible.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponseunabletoconnect?language=objc)
     #[deprecated]
     pub const GKInviteeResponseUnableToConnect: Self =
         Self(GKInviteRecipientResponse::UnableToConnect.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponsenoanswer?language=objc)
     #[deprecated]
     pub const GKInviteeResponseNoAnswer: Self = Self(GKInviteRecipientResponse::NoAnswer.0);
 }
@@ -60,10 +72,13 @@ pub type GKInviteeResponse = GKInviteRecipientResponse;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKMatchType(pub NSUInteger);
 impl GKMatchType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchtype/peertopeer?language=objc)
     #[doc(alias = "GKMatchTypePeerToPeer")]
     pub const PeerToPeer: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchtype/hosted?language=objc)
     #[doc(alias = "GKMatchTypeHosted")]
     pub const Hosted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchtype/turnbased?language=objc)
     #[doc(alias = "GKMatchTypeTurnBased")]
     pub const TurnBased: Self = Self(2);
 }

@@ -164,14 +164,20 @@ impl NSFileProviderExtension {
 pub struct NSFileProviderDomainRemovalMode(pub NSInteger);
 impl NSFileProviderDomainRemovalMode {
     /// Don't keep any files that are current in the domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/domainremovalmode/removeall?language=objc)
     #[doc(alias = "NSFileProviderDomainRemovalModeRemoveAll")]
     pub const RemoveAll: Self = Self(0);
     /// Delete the domain from the system but keeps the at least all the
     /// dirty corresponding user data around.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/domainremovalmode/preservedirtyuserdata?language=objc)
     #[doc(alias = "NSFileProviderDomainRemovalModePreserveDirtyUserData")]
     pub const PreserveDirtyUserData: Self = Self(1);
     /// Delete the domain from the system but keeps all the downloaded
     /// corresponding user data around.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/domainremovalmode/preservedownloadeduserdata?language=objc)
     #[doc(alias = "NSFileProviderDomainRemovalModePreserveDownloadedUserData")]
     pub const PreserveDownloadedUserData: Self = Self(2);
 }
@@ -814,6 +820,7 @@ impl NSFileProviderManager {
 pub struct NSFileProviderManagerDisconnectionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderManagerDisconnectionOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/disconnectionoptions/temporary?language=objc)
         #[doc(alias = "NSFileProviderManagerDisconnectionOptionsTemporary")]
         const Temporary = 1<<0;
     }
@@ -917,18 +924,25 @@ impl NSFileProviderManager {
 pub struct NSFileProviderVolumeUnsupportedReason(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderVolumeUnsupportedReason: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/nsfileprovidervolumeunsupportedreasonnone?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/unknown?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonUnknown")]
         const Unknown = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/nonapfs?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNonAPFS")]
         const NonAPFS = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/nonencrypted?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNonEncrypted")]
         const NonEncrypted = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/readonly?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonReadOnly")]
         const ReadOnly = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/network?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNetwork")]
         const Network = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/quarantined?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonQuarantined")]
         const Quarantined = 1<<5;
     }

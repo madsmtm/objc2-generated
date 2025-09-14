@@ -17,12 +17,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTileDefinitionRotation(pub NSUInteger);
 impl SKTileDefinitionRotation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktiledefinitionrotation/rotation0?language=objc)
     #[doc(alias = "SKTileDefinitionRotation0")]
     pub const Rotation0: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktiledefinitionrotation/rotation90?language=objc)
     #[doc(alias = "SKTileDefinitionRotation90")]
     pub const Rotation90: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktiledefinitionrotation/rotation180?language=objc)
     #[doc(alias = "SKTileDefinitionRotation180")]
     pub const Rotation180: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktiledefinitionrotation/rotation270?language=objc)
     #[doc(alias = "SKTileDefinitionRotation270")]
     pub const Rotation270: Self = Self(3);
 }

@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INConditionalOperator(pub NSInteger);
 impl INConditionalOperator {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inconditionaloperator/all?language=objc)
     #[doc(alias = "INConditionalOperatorAll")]
     pub const All: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inconditionaloperator/any?language=objc)
     #[doc(alias = "INConditionalOperatorAny")]
     pub const Any: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inconditionaloperator/none?language=objc)
     #[doc(alias = "INConditionalOperatorNone")]
     pub const None: Self = Self(2);
 }

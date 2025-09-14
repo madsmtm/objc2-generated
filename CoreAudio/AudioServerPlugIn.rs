@@ -170,24 +170,34 @@ pub const kAudioServerPlugInCustomPropertyDataTypeCFPropertyList:
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioServerPlugInIOOperation(pub u32);
 impl AudioServerPlugInIOOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationthread?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationThread")]
     pub const Thread: Self = Self(0x74687264);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationcycle?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationCycle")]
     pub const Cycle: Self = Self(0x6379636c);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationreadinput?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationReadInput")]
     pub const ReadInput: Self = Self(0x72656164);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationconvertinput?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationConvertInput")]
     pub const ConvertInput: Self = Self(0x63696e70);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationprocessinput?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationProcessInput")]
     pub const ProcessInput: Self = Self(0x70696e70);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationprocessoutput?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationProcessOutput")]
     pub const ProcessOutput: Self = Self(0x706f7574);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationmixoutput?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationMixOutput")]
     pub const MixOutput: Self = Self(0x6d69786f);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationprocessmix?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationProcessMix")]
     pub const ProcessMix: Self = Self(0x706d6978);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationconvertmix?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationConvertMix")]
     pub const ConvertMix: Self = Self(0x636d6978);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationwritemix?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationWriteMix")]
     pub const WriteMix: Self = Self(0x72697465);
 }
@@ -229,10 +239,13 @@ pub const kAudioPlugInPropertyResourceBundle: AudioObjectPropertySelector = 0x72
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioDeviceClockAlgorithmSelector(pub u32);
 impl AudioDeviceClockAlgorithmSelector {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceclockalgorithmselector/kaudiodeviceclockalgorithmraw?language=objc)
     #[doc(alias = "kAudioDeviceClockAlgorithmRaw")]
     pub const AlgorithmRaw: Self = Self(0x72617777);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceclockalgorithmselector/kaudiodeviceclockalgorithmsimpleiir?language=objc)
     #[doc(alias = "kAudioDeviceClockAlgorithmSimpleIIR")]
     pub const AlgorithmSimpleIIR: Self = Self(0x69697266);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceclockalgorithmselector/kaudiodeviceclockalgorithm12ptmovingwindowaverage?language=objc)
     #[doc(alias = "kAudioDeviceClockAlgorithm12PtMovingWindowAverage")]
     pub const Algorithm12PtMovingWindowAverage: Self = Self(0x6d617667);
 }

@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionViewDropOperation(pub NSInteger);
 impl NSCollectionViewDropOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/dropoperation/on?language=objc)
     #[doc(alias = "NSCollectionViewDropOn")]
     pub const On: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/dropoperation/before?language=objc)
     #[doc(alias = "NSCollectionViewDropBefore")]
     pub const Before: Self = Self(1);
 }
@@ -33,12 +35,16 @@ unsafe impl RefEncode for NSCollectionViewDropOperation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionViewItemHighlightState(pub NSInteger);
 impl NSCollectionViewItemHighlightState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum/none?language=objc)
     #[doc(alias = "NSCollectionViewItemHighlightNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum/forselection?language=objc)
     #[doc(alias = "NSCollectionViewItemHighlightForSelection")]
     pub const ForSelection: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum/fordeselection?language=objc)
     #[doc(alias = "NSCollectionViewItemHighlightForDeselection")]
     pub const ForDeselection: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum/asdroptarget?language=objc)
     #[doc(alias = "NSCollectionViewItemHighlightAsDropTarget")]
     pub const AsDropTarget: Self = Self(3);
 }
@@ -58,26 +64,37 @@ unsafe impl RefEncode for NSCollectionViewItemHighlightState {
 pub struct NSCollectionViewScrollPosition(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCollectionViewScrollPosition: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewscrollposition/nscollectionviewscrollpositionnone?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/top?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionTop")]
         const Top = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredvertically?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionCenteredVertically")]
         const CenteredVertically = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/bottom?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionBottom")]
         const Bottom = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearesthorizontaledge?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionNearestHorizontalEdge")]
         const NearestHorizontalEdge = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/left?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionLeft")]
         const Left = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredhorizontally?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionCenteredHorizontally")]
         const CenteredHorizontally = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/right?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionRight")]
         const Right = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/leadingedge?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionLeadingEdge")]
         const LeadingEdge = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/trailingedge?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionTrailingEdge")]
         const TrailingEdge = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearestverticaledge?language=objc)
         #[doc(alias = "NSCollectionViewScrollPositionNearestVerticalEdge")]
         const NearestVerticalEdge = 1<<8;
     }

@@ -113,8 +113,10 @@ pub struct MIDIUMPProtocolOptions(pub MIDIUInteger4);
 #[cfg(feature = "MIDIMessages")]
 bitflags::bitflags! {
     impl MIDIUMPProtocolOptions: MIDIUInteger4 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpprotocoloptions/midi1?language=objc)
         #[doc(alias = "kMIDIUMPProtocolOptionsMIDI1")]
         const MIDI1 = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpprotocoloptions/midi2?language=objc)
         #[doc(alias = "kMIDIUMPProtocolOptionsMIDI2")]
         const MIDI2 = 1<<1;
     }

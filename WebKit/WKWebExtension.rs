@@ -27,22 +27,31 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionError(pub NSInteger);
 impl WKWebExtensionError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/unknown?language=objc)
     #[doc(alias = "WKWebExtensionErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/resourcenotfound?language=objc)
     #[doc(alias = "WKWebExtensionErrorResourceNotFound")]
     pub const ResourceNotFound: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invalidresourcecodesignature?language=objc)
     #[doc(alias = "WKWebExtensionErrorInvalidResourceCodeSignature")]
     pub const InvalidResourceCodeSignature: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invalidmanifest?language=objc)
     #[doc(alias = "WKWebExtensionErrorInvalidManifest")]
     pub const InvalidManifest: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/unsupportedmanifestversion?language=objc)
     #[doc(alias = "WKWebExtensionErrorUnsupportedManifestVersion")]
     pub const UnsupportedManifestVersion: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invalidmanifestentry?language=objc)
     #[doc(alias = "WKWebExtensionErrorInvalidManifestEntry")]
     pub const InvalidManifestEntry: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invaliddeclarativenetrequestentry?language=objc)
     #[doc(alias = "WKWebExtensionErrorInvalidDeclarativeNetRequestEntry")]
     pub const InvalidDeclarativeNetRequestEntry: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invalidbackgroundpersistence?language=objc)
     #[doc(alias = "WKWebExtensionErrorInvalidBackgroundPersistence")]
     pub const InvalidBackgroundPersistence: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invalidarchive?language=objc)
     #[doc(alias = "WKWebExtensionErrorInvalidArchive")]
     pub const InvalidArchive: Self = Self(9);
 }

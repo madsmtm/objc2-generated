@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKDatabaseScope(pub NSInteger);
 impl CKDatabaseScope {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabase/scope/public?language=objc)
     #[doc(alias = "CKDatabaseScopePublic")]
     pub const Public: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabase/scope/private?language=objc)
     #[doc(alias = "CKDatabaseScopePrivate")]
     pub const Private: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabase/scope/shared?language=objc)
     #[doc(alias = "CKDatabaseScopeShared")]
     pub const Shared: Self = Self(3);
 }

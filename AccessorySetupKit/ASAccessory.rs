@@ -15,12 +15,18 @@ use crate::*;
 pub struct ASAccessoryState(pub NSInteger);
 impl ASAccessoryState {
     /// The accessory is invalid or unauthorized.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/accessorystate/unauthorized?language=objc)
     #[doc(alias = "ASAccessoryStateUnauthorized")]
     pub const Unauthorized: Self = Self(0);
     /// The accessory is selected, but full authorization is still pending.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/accessorystate/awaitingauthorization?language=objc)
     #[doc(alias = "ASAccessoryStateAwaitingAuthorization")]
     pub const AwaitingAuthorization: Self = Self(10);
     /// The accessory is authorized and available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/accessorystate/authorized?language=objc)
     #[doc(alias = "ASAccessoryStateAuthorized")]
     pub const Authorized: Self = Self(20);
 }
@@ -43,6 +49,8 @@ pub struct ASAccessoryRenameOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAccessoryRenameOptions: NSUInteger {
 /// An option to change an accessory's SSID along with its display name.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/renameoptions/ssid?language=objc)
         #[doc(alias = "ASAccessoryRenameSSID")]
         const SSID = 1<<0;
     }
@@ -66,14 +74,20 @@ pub struct ASAccessorySupportOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAccessorySupportOptions: NSUInteger {
 /// The accessory supports Bluetooth Low Energy pairing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/supportoptions/bluetoothpairingle?language=objc)
         #[doc(alias = "ASAccessorySupportBluetoothPairingLE")]
         const BluetoothPairingLE = 1<<1;
 /// The accessory supports bridging to Bluetooth classic transport.
 ///
 /// This option indicates that when connecting with low energy transport, the accessory supports activating Bluetooth classic transport profiles.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/supportoptions/bluetoothtransportbridging?language=objc)
         #[doc(alias = "ASAccessorySupportBluetoothTransportBridging")]
         const BluetoothTransportBridging = 1<<2;
 /// The accessory supports Bluetooth Low Energy HID service.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/supportoptions/bluetoothhid?language=objc)
         #[doc(alias = "ASAccessorySupportBluetoothHID")]
         const BluetoothHID = 1<<3;
     }

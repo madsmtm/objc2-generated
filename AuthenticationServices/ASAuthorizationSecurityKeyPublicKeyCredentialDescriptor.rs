@@ -38,6 +38,8 @@ extern "C" {
 }
 
 /// Returns a list of all transports the device currently supports for communicating with an authenticator.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport/allsupported?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
 ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>> {

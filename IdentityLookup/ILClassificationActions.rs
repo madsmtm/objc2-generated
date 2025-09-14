@@ -13,15 +13,23 @@ use crate::*;
 pub struct ILClassificationAction(pub NSInteger);
 impl ILClassificationAction {
     /// Indicate that no action is requested.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction/none?language=objc)
     #[doc(alias = "ILClassificationActionNone")]
     pub const None: Self = Self(0);
     /// Report communication(s) as not junk.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction/reportnotjunk?language=objc)
     #[doc(alias = "ILClassificationActionReportNotJunk")]
     pub const ReportNotJunk: Self = Self(1);
     /// Report communication(s) as junk.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction/reportjunk?language=objc)
     #[doc(alias = "ILClassificationActionReportJunk")]
     pub const ReportJunk: Self = Self(2);
     /// Report communication(s) as junk and block the sender.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction/reportjunkandblocksender?language=objc)
     #[doc(alias = "ILClassificationActionReportJunkAndBlockSender")]
     pub const ReportJunkAndBlockSender: Self = Self(3);
 }

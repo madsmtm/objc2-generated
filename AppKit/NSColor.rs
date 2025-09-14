@@ -25,10 +25,13 @@ pub static NSAppKitVersionNumberWithPatternColorLeakFix: NSAppKitVersion = 641.0
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorType(pub NSInteger);
 impl NSColorType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/colortype/componentbased?language=objc)
     #[doc(alias = "NSColorTypeComponentBased")]
     pub const ComponentBased: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/colortype/pattern?language=objc)
     #[doc(alias = "NSColorTypePattern")]
     pub const Pattern: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/colortype/catalog?language=objc)
     #[doc(alias = "NSColorTypeCatalog")]
     pub const Catalog: Self = Self(2);
 }
@@ -47,14 +50,19 @@ unsafe impl RefEncode for NSColorType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorSystemEffect(pub NSInteger);
 impl NSColorSystemEffect {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect/none?language=objc)
     #[doc(alias = "NSColorSystemEffectNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect/pressed?language=objc)
     #[doc(alias = "NSColorSystemEffectPressed")]
     pub const Pressed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect/deeppressed?language=objc)
     #[doc(alias = "NSColorSystemEffectDeepPressed")]
     pub const DeepPressed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect/disabled?language=objc)
     #[doc(alias = "NSColorSystemEffectDisabled")]
     pub const Disabled: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect/rollover?language=objc)
     #[doc(alias = "NSColorSystemEffectRollover")]
     pub const Rollover: Self = Self(4);
 }

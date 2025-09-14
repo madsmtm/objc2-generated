@@ -50,6 +50,8 @@ impl sec_protocol_options {
     ///
     /// - `options_a` must be a valid pointer.
     /// - `options_b` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_are_equal(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_are_equal")]
     #[inline]
     pub unsafe fn are_equal(
@@ -77,6 +79,8 @@ impl sec_protocol_options {
     ///
     /// - `options` must be a valid pointer.
     /// - `identity` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_local_identity(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_local_identity")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -101,6 +105,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_append_tls_ciphersuite(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_append_tls_ciphersuite")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -128,6 +134,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_add_tls_ciphersuite(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_add_tls_ciphersuite")]
     #[cfg(feature = "CipherSuite")]
     #[deprecated = "Use sec_protocol_options_append_tls_ciphersuite"]
@@ -156,6 +164,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_append_tls_ciphersuite_group(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_append_tls_ciphersuite_group")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -183,6 +193,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_add_tls_ciphersuite_group(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_add_tls_ciphersuite_group")]
     #[cfg(feature = "CipherSuite")]
     #[deprecated = "Use sec_protocol_options_append_tls_ciphersuite_group"]
@@ -211,6 +223,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_tls_min_version(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_tls_min_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
@@ -236,6 +250,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_min_tls_protocol_version(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_min_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -256,6 +272,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Returns: The default minimum TLS version.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_get_default_min_tls_protocol_version()?language=objc)
     #[doc(alias = "sec_protocol_options_get_default_min_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -270,6 +288,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Returns: The default minimum DTLS version.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_get_default_min_dtls_protocol_version()?language=objc)
     #[doc(alias = "sec_protocol_options_get_default_min_dtls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -291,6 +311,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_tls_max_version(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_tls_max_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
@@ -316,6 +338,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_max_tls_protocol_version(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_max_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -336,6 +360,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Returns: The default maximum TLS version.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_get_default_max_tls_protocol_version()?language=objc)
     #[doc(alias = "sec_protocol_options_get_default_max_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -350,6 +376,8 @@ impl sec_protocol_options {
     ///
     ///
     /// Returns: The default maximum DTLS version.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_get_default_max_dtls_protocol_version()?language=objc)
     #[doc(alias = "sec_protocol_options_get_default_max_dtls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -368,6 +396,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_get_enable_encrypted_client_hello?language=objc)
     #[doc(alias = "sec_protocol_options_get_enable_encrypted_client_hello")]
     #[inline]
     pub unsafe fn enabled_encrypted_client_hello(options: sec_protocol_options_t) -> bool {
@@ -388,6 +418,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_get_quic_use_legacy_codepoint?language=objc)
     #[doc(alias = "sec_protocol_options_get_quic_use_legacy_codepoint")]
     #[inline]
     pub unsafe fn quic_use_legacy_codepoint(options: sec_protocol_options_t) -> bool {
@@ -411,6 +443,8 @@ impl sec_protocol_options {
     ///
     /// - `options` must be a valid pointer.
     /// - `application_protocol` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_add_tls_application_protocol(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_add_tls_application_protocol")]
     #[inline]
     pub unsafe fn add_tls_application_protocol(
@@ -439,6 +473,8 @@ impl sec_protocol_options {
     ///
     /// - `options` must be a valid pointer.
     /// - `server_name` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_tls_server_name(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_tls_server_name")]
     #[inline]
     pub unsafe fn set_tls_server_name(
@@ -465,6 +501,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_tls_tickets_enabled(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_tls_tickets_enabled")]
     #[inline]
     pub unsafe fn set_tls_tickets_enabled(options: sec_protocol_options_t, tickets_enabled: bool) {
@@ -494,6 +532,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_tls_is_fallback_attempt(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_tls_is_fallback_attempt")]
     #[inline]
     pub unsafe fn set_tls_is_fallback_attempt(
@@ -520,6 +560,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_tls_resumption_enabled(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_tls_resumption_enabled")]
     #[inline]
     pub unsafe fn set_tls_resumption_enabled(
@@ -546,6 +588,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_tls_false_start_enabled(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_tls_false_start_enabled")]
     #[inline]
     pub unsafe fn set_tls_false_start_enabled(
@@ -572,6 +616,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_tls_ocsp_enabled(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_tls_ocsp_enabled")]
     #[inline]
     pub unsafe fn set_tls_ocsp_enabled(options: sec_protocol_options_t, ocsp_enabled: bool) {
@@ -595,6 +641,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_tls_sct_enabled(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_tls_sct_enabled")]
     #[inline]
     pub unsafe fn set_tls_sct_enabled(options: sec_protocol_options_t, sct_enabled: bool) {
@@ -618,6 +666,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_tls_renegotiation_enabled(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_tls_renegotiation_enabled")]
     #[inline]
     pub unsafe fn set_tls_renegotiation_enabled(
@@ -646,6 +696,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_peer_authentication_required(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_options_set_peer_authentication_required")]
     #[inline]
     pub unsafe fn set_peer_authentication_required(
@@ -681,6 +733,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_peer_authentication_optional?language=objc)
     #[doc(alias = "sec_protocol_options_set_peer_authentication_optional")]
     #[inline]
     pub unsafe fn set_peer_authentication_optional(
@@ -713,6 +767,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_enable_encrypted_client_hello?language=objc)
     #[doc(alias = "sec_protocol_options_set_enable_encrypted_client_hello")]
     #[inline]
     pub unsafe fn set_enable_encrypted_client_hello(
@@ -744,6 +800,8 @@ impl sec_protocol_options {
     /// # Safety
     ///
     /// `options` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options_set_quic_use_legacy_codepoint?language=objc)
     #[doc(alias = "sec_protocol_options_set_quic_use_legacy_codepoint")]
     #[inline]
     pub unsafe fn set_quic_use_legacy_codepoint(

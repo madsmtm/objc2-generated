@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForNotebookItemsIntentResponseCode(pub NSInteger);
 impl INSearchForNotebookItemsIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/ready?language=objc)
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/success?language=objc)
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/failure?language=objc)
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }

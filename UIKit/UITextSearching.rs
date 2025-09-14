@@ -17,12 +17,18 @@ pub type UITextSearchDocumentIdentifier = AnyObject;
 pub struct UITextSearchFoundTextStyle(pub NSInteger);
 impl UITextSearchFoundTextStyle {
     /// No style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchfoundtextstyle/normal?language=objc)
     #[doc(alias = "UITextSearchFoundTextStyleNormal")]
     pub const Normal: Self = Self(0);
     /// "Found" style. Used to indicate matches that have been found, but not currently highlighted.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchfoundtextstyle/found?language=objc)
     #[doc(alias = "UITextSearchFoundTextStyleFound")]
     pub const Found: Self = Self(1);
     /// Highlighted style, used to indicate a match that is found and currently highlighted.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchfoundtextstyle/highlighted?language=objc)
     #[doc(alias = "UITextSearchFoundTextStyleHighlighted")]
     pub const Highlighted: Self = Self(2);
 }

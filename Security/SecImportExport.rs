@@ -8,6 +8,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_key_import_export_params_version?language=objc)
 pub const SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat?language=objc)
 // NS_ENUM
@@ -15,34 +16,49 @@ pub const SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION: c_uint = 0;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecExternalFormat(pub u32);
 impl SecExternalFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatunknown?language=objc)
     #[doc(alias = "kSecFormatUnknown")]
     pub const FormatUnknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatopenssl?language=objc)
     #[doc(alias = "kSecFormatOpenSSL")]
     pub const FormatOpenSSL: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatssh?language=objc)
     #[doc(alias = "kSecFormatSSH")]
     pub const FormatSSH: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatbsafe?language=objc)
     #[doc(alias = "kSecFormatBSAFE")]
     pub const FormatBSAFE: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatrawkey?language=objc)
     #[doc(alias = "kSecFormatRawKey")]
     pub const FormatRawKey: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatwrappedpkcs8?language=objc)
     #[doc(alias = "kSecFormatWrappedPKCS8")]
     pub const FormatWrappedPKCS8: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatwrappedopenssl?language=objc)
     #[doc(alias = "kSecFormatWrappedOpenSSL")]
     pub const FormatWrappedOpenSSL: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatwrappedssh?language=objc)
     #[doc(alias = "kSecFormatWrappedSSH")]
     pub const FormatWrappedSSH: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatwrappedlsh?language=objc)
     #[doc(alias = "kSecFormatWrappedLSH")]
     pub const FormatWrappedLSH: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatx509cert?language=objc)
     #[doc(alias = "kSecFormatX509Cert")]
     pub const FormatX509Cert: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatpemsequence?language=objc)
     #[doc(alias = "kSecFormatPEMSequence")]
     pub const FormatPEMSequence: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatpkcs7?language=objc)
     #[doc(alias = "kSecFormatPKCS7")]
     pub const FormatPKCS7: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatpkcs12?language=objc)
     #[doc(alias = "kSecFormatPKCS12")]
     pub const FormatPKCS12: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatnetscapecertsequence?language=objc)
     #[doc(alias = "kSecFormatNetscapeCertSequence")]
     pub const FormatNetscapeCertSequence: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatsshv2?language=objc)
     #[doc(alias = "kSecFormatSSHv2")]
     pub const FormatSSHv2: Self = Self(14);
 }
@@ -63,16 +79,22 @@ unsafe impl RefEncode for SecExternalFormat {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecExternalItemType(pub u32);
 impl SecExternalItemType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypeunknown?language=objc)
     #[doc(alias = "kSecItemTypeUnknown")]
     pub const ItemTypeUnknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypeprivatekey?language=objc)
     #[doc(alias = "kSecItemTypePrivateKey")]
     pub const ItemTypePrivateKey: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypepublickey?language=objc)
     #[doc(alias = "kSecItemTypePublicKey")]
     pub const ItemTypePublicKey: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypesessionkey?language=objc)
     #[doc(alias = "kSecItemTypeSessionKey")]
     pub const ItemTypeSessionKey: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypecertificate?language=objc)
     #[doc(alias = "kSecItemTypeCertificate")]
     pub const ItemTypeCertificate: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypeaggregate?language=objc)
     #[doc(alias = "kSecItemTypeAggregate")]
     pub const ItemTypeAggregate: Self = Self(5);
 }
@@ -94,6 +116,7 @@ unsafe impl RefEncode for SecExternalItemType {
 pub struct SecItemImportExportFlags(pub u32);
 bitflags::bitflags! {
     impl SecItemImportExportFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secitemimportexportflags/pemarmour?language=objc)
         #[doc(alias = "kSecItemPemArmour")]
         const PemArmour = 0x00000001;
     }
@@ -116,10 +139,13 @@ unsafe impl RefEncode for SecItemImportExportFlags {
 pub struct SecKeyImportExportFlags(pub u32);
 bitflags::bitflags! {
     impl SecKeyImportExportFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyimportexportflags/importonlyone?language=objc)
         #[doc(alias = "kSecKeyImportOnlyOne")]
         const ImportOnlyOne = 0x00000001;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyimportexportflags/securepassphrase?language=objc)
         #[doc(alias = "kSecKeySecurePassphrase")]
         const SecurePassphrase = 0x00000002;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyimportexportflags/noaccesscontrol?language=objc)
         #[doc(alias = "kSecKeyNoAccessControl")]
         const NoAccessControl = 0x00000004;
     }
@@ -221,6 +247,8 @@ unsafe impl RefEncode for SecItemImportExportKeyParameters {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychainItem {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemexport?language=objc)
+    ///
     /// # Safety
     ///
     /// - `keychain_item_or_array` should be of the correct type.
@@ -259,6 +287,8 @@ impl SecKeychainItem {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemexport(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `sec_item_or_array` should be of the correct type.
@@ -276,6 +306,8 @@ extern "C-unwind" {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychainItem {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemimport?language=objc)
+    ///
     /// # Safety
     ///
     /// - `input_format` must be a valid pointer or null.
@@ -324,6 +356,8 @@ impl SecKeychainItem {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemimport(_:_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `input_format` must be a valid pointer or null.
@@ -437,6 +471,8 @@ extern "C-unwind" {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `items` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpkcs12import(_:_:_:)?language=objc)
     pub fn SecPKCS12Import(
         pkcs12_data: &CFData,
         options: &CFDictionary,

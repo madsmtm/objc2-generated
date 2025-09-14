@@ -14,22 +14,31 @@ use crate::*;
 pub struct NSViewControllerTransitionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSViewControllerTransitionOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontrollertransitionoptions/nsviewcontrollertransitionnone?language=objc)
         #[doc(alias = "NSViewControllerTransitionNone")]
         const None = 0x0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/crossfade?language=objc)
         #[doc(alias = "NSViewControllerTransitionCrossfade")]
         const Crossfade = 0x1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideup?language=objc)
         #[doc(alias = "NSViewControllerTransitionSlideUp")]
         const SlideUp = 0x10;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slidedown?language=objc)
         #[doc(alias = "NSViewControllerTransitionSlideDown")]
         const SlideDown = 0x20;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideleft?language=objc)
         #[doc(alias = "NSViewControllerTransitionSlideLeft")]
         const SlideLeft = 0x40;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideright?language=objc)
         #[doc(alias = "NSViewControllerTransitionSlideRight")]
         const SlideRight = 0x80;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideforward?language=objc)
         #[doc(alias = "NSViewControllerTransitionSlideForward")]
         const SlideForward = 0x140;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slidebackward?language=objc)
         #[doc(alias = "NSViewControllerTransitionSlideBackward")]
         const SlideBackward = 0x180;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/allowuserinteraction?language=objc)
         #[doc(alias = "NSViewControllerTransitionAllowUserInteraction")]
         const AllowUserInteraction = 0x1000;
     }

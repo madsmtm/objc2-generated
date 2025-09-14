@@ -15,20 +15,30 @@ impl PKContentVersion {
     /// Version for inks introduced in iOS 14.0.
     ///
     /// Inks included are Pen, Pencil, and Marker.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkcontentversion/version1?language=objc)
     #[doc(alias = "PKContentVersion1")]
     pub const Version1: Self = Self(1);
     /// Version for inks introduced in iOS 17.0.
     ///
     /// Inks included are Pen, Pencil, Marker, Monoline, Fountain Pen, Watercolor, and Crayon.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkcontentversion/version2?language=objc)
     #[doc(alias = "PKContentVersion2")]
     pub const Version2: Self = Self(2);
     /// New Fountain Pen
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkcontentversion/version3?language=objc)
     #[doc(alias = "PKContentVersion3")]
     pub const Version3: Self = Self(3);
     /// New Reed Pen
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkcontentversion/version4?language=objc)
     #[doc(alias = "PKContentVersion4")]
     pub const Version4: Self = Self(4);
     /// The latest version including all features.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkcontentversion/latest?language=objc)
     #[doc(alias = "PKContentVersionLatest")]
     pub const VersionLatest: Self = Self(4);
 }

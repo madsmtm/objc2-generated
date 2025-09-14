@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport?language=objc)
 pub const NSFoundationVersionWithFileManagerResourceForkSupport: c_uint = 412;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
@@ -34,8 +35,10 @@ pub type NSFileProviderServiceName = NSString;
 pub struct NSVolumeEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSVolumeEnumerationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/volumeenumerationoptions/skiphiddenvolumes?language=objc)
         #[doc(alias = "NSVolumeEnumerationSkipHiddenVolumes")]
         const SkipHiddenVolumes = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/volumeenumerationoptions/producefilereferenceurls?language=objc)
         #[doc(alias = "NSVolumeEnumerationProduceFileReferenceURLs")]
         const ProduceFileReferenceURLs = 1<<2;
     }
@@ -56,14 +59,19 @@ unsafe impl RefEncode for NSVolumeEnumerationOptions {
 pub struct NSDirectoryEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDirectoryEnumerationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions/skipssubdirectorydescendants?language=objc)
         #[doc(alias = "NSDirectoryEnumerationSkipsSubdirectoryDescendants")]
         const SkipsSubdirectoryDescendants = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions/skipspackagedescendants?language=objc)
         #[doc(alias = "NSDirectoryEnumerationSkipsPackageDescendants")]
         const SkipsPackageDescendants = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions/skipshiddenfiles?language=objc)
         #[doc(alias = "NSDirectoryEnumerationSkipsHiddenFiles")]
         const SkipsHiddenFiles = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions/includesdirectoriespostorder?language=objc)
         #[doc(alias = "NSDirectoryEnumerationIncludesDirectoriesPostOrder")]
         const IncludesDirectoriesPostOrder = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions/producesrelativepathurls?language=objc)
         #[doc(alias = "NSDirectoryEnumerationProducesRelativePathURLs")]
         const ProducesRelativePathURLs = 1<<4;
     }
@@ -84,8 +92,10 @@ unsafe impl RefEncode for NSDirectoryEnumerationOptions {
 pub struct NSFileManagerItemReplacementOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerItemReplacementOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/itemreplacementoptions/usingnewmetadataonly?language=objc)
         #[doc(alias = "NSFileManagerItemReplacementUsingNewMetadataOnly")]
         const UsingNewMetadataOnly = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/itemreplacementoptions/withoutdeletingbackupitem?language=objc)
         #[doc(alias = "NSFileManagerItemReplacementWithoutDeletingBackupItem")]
         const WithoutDeletingBackupItem = 1<<1;
     }
@@ -105,10 +115,13 @@ unsafe impl RefEncode for NSFileManagerItemReplacementOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRelationship(pub NSInteger);
 impl NSURLRelationship {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/urlrelationship/contains?language=objc)
     #[doc(alias = "NSURLRelationshipContains")]
     pub const Contains: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/urlrelationship/same?language=objc)
     #[doc(alias = "NSURLRelationshipSame")]
     pub const Same: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/urlrelationship/other?language=objc)
     #[doc(alias = "NSURLRelationshipOther")]
     pub const Other: Self = Self(2);
 }
@@ -128,8 +141,10 @@ unsafe impl RefEncode for NSURLRelationship {
 pub struct NSFileManagerUnmountOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerUnmountOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/unmountoptions/allpartitionsandejectdisk?language=objc)
         #[doc(alias = "NSFileManagerUnmountAllPartitionsAndEjectDisk")]
         const AllPartitionsAndEjectDisk = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/unmountoptions/withoutui?language=objc)
         #[doc(alias = "NSFileManagerUnmountWithoutUI")]
         const WithoutUI = 1<<1;
     }
@@ -167,9 +182,13 @@ pub struct NSFileManagerSupportedSyncControls(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerSupportedSyncControls: NSUInteger {
 /// The file provider supports pausing the sync on the item.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols/pausesync?language=objc)
         #[doc(alias = "NSFileManagerSupportedSyncControlsPauseSync")]
         const PauseSync = 1<<0;
 /// The file provider supports failing an upload if the local and server versions conflict.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols/failuploadonconflict?language=objc)
         #[doc(alias = "NSFileManagerSupportedSyncControlsFailUploadOnConflict")]
         const FailUploadOnConflict = 1<<1;
     }
@@ -198,6 +217,8 @@ impl NSFileManagerResumeSyncBehavior {
     ///
     /// If the server has a newer version, the server may create a conflict copy of the file, or may automatically pick the winner of the conflict.
     /// Apps can choose to implement conflict handling themselves by passing `NSFileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior/preservelocalchanges?language=objc)
     #[doc(alias = "NSFileManagerResumeSyncBehaviorPreserveLocalChanges")]
     pub const PreserveLocalChanges: Self = Self(0);
     /// Resumes sync by first uploading the local version of the file, failing if the provider detects a conflict.
@@ -210,12 +231,16 @@ impl NSFileManagerResumeSyncBehavior {
     /// In this case, the app needs to call ``FileManager/fetchLatestRemoteVersionOfItem(at:completionHandler:)``, rebase local changes on top of the newly fetched version to resolve the conflict, and try again to resume sync.
     /// This scenario is only available on paused items for which the file provider supports the fail-on-conflict behavior.
     /// To check that the file provider supports the behavior, get the ``NSURLUbiquitousItemSupportedSyncControlsKey`` URL resource and verify that ``NSFileManagerSupportedSyncControls/failUploadOnConflict`` is `true`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior/afteruploadwithfailonconflict?language=objc)
     #[doc(alias = "NSFileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict")]
     pub const AfterUploadWithFailOnConflict: Self = Self(1);
     /// Resumes synchronizing by overwriting any local changes with the remote version of the file.
     ///
     /// If a conflict occurs, the file manager stores the local changes as an alternate version.
     /// Only use this behavior if you provide a separate means of resolving and merging conflicts.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior/droplocalchanges?language=objc)
     #[doc(alias = "NSFileManagerResumeSyncBehaviorDropLocalChanges")]
     pub const DropLocalChanges: Self = Self(2);
 }
@@ -237,6 +262,8 @@ unsafe impl RefEncode for NSFileManagerResumeSyncBehavior {
 pub struct NSFileManagerUploadLocalVersionConflictPolicy(pub NSInteger);
 impl NSFileManagerUploadLocalVersionConflictPolicy {
     /// Resolves the conflict using the policy defined by the file provider.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageruploadlocalversionconflictpolicy/conflictpolicydefault?language=objc)
     #[doc(alias = "NSFileManagerUploadConflictPolicyDefault")]
     pub const ConflictPolicyDefault: Self = Self(0);
     /// Resolves the conflict by causing the upload to fail.
@@ -246,6 +273,8 @@ impl NSFileManagerUploadLocalVersionConflictPolicy {
     ///
     /// This policy is only available on paused items for which the file provider supports the fail-on-conflict behavior.
     /// To check that the file provider supports the behavior, get the ``NSURLUbiquitousItemSupportedSyncControlsKey`` URL resource and verify that ``NSFileManagerSupportedSyncControls/failUploadOnConflict`` is `true`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageruploadlocalversionconflictpolicy/conflictpolicyfailonconflict?language=objc)
     #[doc(alias = "NSFileManagerUploadConflictPolicyFailOnConflict")]
     pub const ConflictPolicyFailOnConflict: Self = Self(1);
 }

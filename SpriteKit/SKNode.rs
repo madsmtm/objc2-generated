@@ -20,20 +20,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKBlendMode(pub NSInteger);
 impl SKBlendMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/alpha?language=objc)
     #[doc(alias = "SKBlendModeAlpha")]
     pub const Alpha: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/add?language=objc)
     #[doc(alias = "SKBlendModeAdd")]
     pub const Add: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/subtract?language=objc)
     #[doc(alias = "SKBlendModeSubtract")]
     pub const Subtract: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/multiply?language=objc)
     #[doc(alias = "SKBlendModeMultiply")]
     pub const Multiply: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/multiplyx2?language=objc)
     #[doc(alias = "SKBlendModeMultiplyX2")]
     pub const MultiplyX2: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/screen?language=objc)
     #[doc(alias = "SKBlendModeScreen")]
     pub const Screen: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/replace?language=objc)
     #[doc(alias = "SKBlendModeReplace")]
     pub const Replace: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/multiplyalpha?language=objc)
     #[doc(alias = "SKBlendModeMultiplyAlpha")]
     pub const MultiplyAlpha: Self = Self(7);
 }
@@ -52,10 +60,13 @@ unsafe impl RefEncode for SKBlendMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKNodeFocusBehavior(pub NSInteger);
 impl SKNodeFocusBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sknodefocusbehavior/none?language=objc)
     #[doc(alias = "SKNodeFocusBehaviorNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sknodefocusbehavior/occluding?language=objc)
     #[doc(alias = "SKNodeFocusBehaviorOccluding")]
     pub const Occluding: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sknodefocusbehavior/focusable?language=objc)
     #[doc(alias = "SKNodeFocusBehaviorFocusable")]
     pub const Focusable: Self = Self(2);
 }

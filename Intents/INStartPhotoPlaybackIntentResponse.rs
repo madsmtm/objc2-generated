@@ -14,21 +14,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartPhotoPlaybackIntentResponseCode(pub NSInteger);
 impl INStartPhotoPlaybackIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeUnspecified")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/ready?language=objc)
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeReady")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeContinueInApp")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/failure?language=objc)
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeFailure")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/failureappconfigurationrequired?language=objc)
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(5);

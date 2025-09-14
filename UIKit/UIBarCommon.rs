@@ -11,17 +11,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarMetrics(pub NSInteger);
 impl UIBarMetrics {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/default?language=objc)
     #[doc(alias = "UIBarMetricsDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/compact?language=objc)
     #[doc(alias = "UIBarMetricsCompact")]
     pub const Compact: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/defaultprompt?language=objc)
     #[doc(alias = "UIBarMetricsDefaultPrompt")]
     pub const DefaultPrompt: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/compactprompt?language=objc)
     #[doc(alias = "UIBarMetricsCompactPrompt")]
     pub const CompactPrompt: Self = Self(102);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/landscapephone?language=objc)
     #[doc(alias = "UIBarMetricsLandscapePhone")]
     #[deprecated]
     pub const LandscapePhone: Self = Self(UIBarMetrics::Compact.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/landscapephoneprompt?language=objc)
     #[doc(alias = "UIBarMetricsLandscapePhonePrompt")]
     #[deprecated]
     pub const LandscapePhonePrompt: Self = Self(UIBarMetrics::CompactPrompt.0);
@@ -41,12 +47,16 @@ unsafe impl RefEncode for UIBarMetrics {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarPosition(pub NSInteger);
 impl UIBarPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition/any?language=objc)
     #[doc(alias = "UIBarPositionAny")]
     pub const Any: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition/bottom?language=objc)
     #[doc(alias = "UIBarPositionBottom")]
     pub const Bottom: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition/top?language=objc)
     #[doc(alias = "UIBarPositionTop")]
     pub const Top: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition/topattached?language=objc)
     #[doc(alias = "UIBarPositionTopAttached")]
     pub const TopAttached: Self = Self(3);
 }

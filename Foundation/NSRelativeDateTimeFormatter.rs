@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRelativeDateTimeFormatterStyle(pub NSInteger);
 impl NSRelativeDateTimeFormatterStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.enum/numeric?language=objc)
     #[doc(alias = "NSRelativeDateTimeFormatterStyleNumeric")]
     pub const Numeric: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.enum/named?language=objc)
     #[doc(alias = "NSRelativeDateTimeFormatterStyleNamed")]
     pub const Named: Self = Self(1);
 }
@@ -32,12 +34,16 @@ unsafe impl RefEncode for NSRelativeDateTimeFormatterStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRelativeDateTimeFormatterUnitsStyle(pub NSInteger);
 impl NSRelativeDateTimeFormatterUnitsStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.enum/full?language=objc)
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleFull")]
     pub const Full: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.enum/spellout?language=objc)
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleSpellOut")]
     pub const SpellOut: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.enum/short?language=objc)
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleShort")]
     pub const Short: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.enum/abbreviated?language=objc)
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleAbbreviated")]
     pub const Abbreviated: Self = Self(3);
 }

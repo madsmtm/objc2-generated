@@ -8,12 +8,19 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_no_filters?language=objc)
 pub const IMAGEIO_PNG_NO_FILTERS: c_uint = 0x00;
+/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_filter_none?language=objc)
 pub const IMAGEIO_PNG_FILTER_NONE: c_uint = 0x08;
+/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_filter_sub?language=objc)
 pub const IMAGEIO_PNG_FILTER_SUB: c_uint = 0x10;
+/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_filter_up?language=objc)
 pub const IMAGEIO_PNG_FILTER_UP: c_uint = 0x20;
+/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_filter_avg?language=objc)
 pub const IMAGEIO_PNG_FILTER_AVG: c_uint = 0x40;
+/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_filter_paeth?language=objc)
 pub const IMAGEIO_PNG_FILTER_PAETH: c_uint = 0x80;
+/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_all_filters?language=objc)
 pub const IMAGEIO_PNG_ALL_FILTERS: c_uint = IMAGEIO_PNG_FILTER_NONE
     | IMAGEIO_PNG_FILTER_SUB
     | IMAGEIO_PNG_FILTER_UP
@@ -3097,20 +3104,28 @@ extern "C" {
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum CGImagePropertyOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/up?language=objc)
     #[doc(alias = "kCGImagePropertyOrientationUp")]
     Up = 1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/upmirrored?language=objc)
     #[doc(alias = "kCGImagePropertyOrientationUpMirrored")]
     UpMirrored = 2,
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/down?language=objc)
     #[doc(alias = "kCGImagePropertyOrientationDown")]
     Down = 3,
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/downmirrored?language=objc)
     #[doc(alias = "kCGImagePropertyOrientationDownMirrored")]
     DownMirrored = 4,
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/leftmirrored?language=objc)
     #[doc(alias = "kCGImagePropertyOrientationLeftMirrored")]
     LeftMirrored = 5,
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/right?language=objc)
     #[doc(alias = "kCGImagePropertyOrientationRight")]
     Right = 6,
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/rightmirrored?language=objc)
     #[doc(alias = "kCGImagePropertyOrientationRightMirrored")]
     RightMirrored = 7,
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/left?language=objc)
     #[doc(alias = "kCGImagePropertyOrientationLeft")]
     Left = 8,
 }
@@ -3135,9 +3150,11 @@ extern "C" {
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum CGImagePropertyTGACompression {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertytgacompression/tgacompressionnone?language=objc)
     #[doc(alias = "kCGImageTGACompressionNone")]
     #[default]
     TGACompressionNone = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertytgacompression/tgacompressionrle?language=objc)
     #[doc(alias = "kCGImageTGACompressionRLE")]
     TGACompressionRLE = 1,
 }

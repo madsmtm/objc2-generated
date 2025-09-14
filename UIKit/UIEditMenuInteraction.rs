@@ -15,14 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEditMenuArrowDirection(pub NSInteger);
 impl UIEditMenuArrowDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection/automatic?language=objc)
     #[doc(alias = "UIEditMenuArrowDirectionAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection/up?language=objc)
     #[doc(alias = "UIEditMenuArrowDirectionUp")]
     pub const Up: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection/down?language=objc)
     #[doc(alias = "UIEditMenuArrowDirectionDown")]
     pub const Down: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection/left?language=objc)
     #[doc(alias = "UIEditMenuArrowDirectionLeft")]
     pub const Left: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection/right?language=objc)
     #[doc(alias = "UIEditMenuArrowDirectionRight")]
     pub const Right: Self = Self(4);
 }

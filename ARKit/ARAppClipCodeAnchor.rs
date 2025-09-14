@@ -20,12 +20,18 @@ pub struct ARAppClipCodeURLDecodingState(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARAppClipCodeURLDecodingState {
     /// App clip code tracking is attempting to decode the URL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/urldecodingstate-swift.enum/decoding?language=objc)
     #[doc(alias = "ARAppClipCodeURLDecodingStateDecoding")]
     pub const Decoding: Self = Self(0);
     /// App clip code tracking failed to decode the URL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/urldecodingstate-swift.enum/failed?language=objc)
     #[doc(alias = "ARAppClipCodeURLDecodingStateFailed")]
     pub const Failed: Self = Self(1);
     /// App clip code tracking decoded the URL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/urldecodingstate-swift.enum/decoded?language=objc)
     #[doc(alias = "ARAppClipCodeURLDecodingStateDecoded")]
     pub const Decoded: Self = Self(2);
 }

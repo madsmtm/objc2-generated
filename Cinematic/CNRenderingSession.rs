@@ -23,12 +23,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNRenderingQuality(pub NSInteger);
 impl CNRenderingQuality {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingquality/thumbnail?language=objc)
     #[doc(alias = "CNRenderingQualityThumbnail")]
     pub const Thumbnail: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingquality/preview?language=objc)
     #[doc(alias = "CNRenderingQualityPreview")]
     pub const Preview: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingquality/export?language=objc)
     #[doc(alias = "CNRenderingQualityExport")]
     pub const Export: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingquality/exporthigh?language=objc)
     #[doc(alias = "CNRenderingQualityExportHigh")]
     pub const ExportHigh: Self = Self(3);
 }

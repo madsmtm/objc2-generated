@@ -32,20 +32,28 @@ cf_objc2_type!(
 pub struct CFXMLParserOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFXMLParserOptions: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/validatedocument?language=objc)
         #[doc(alias = "kCFXMLParserValidateDocument")]
         const ValidateDocument = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/skipmetadata?language=objc)
         #[doc(alias = "kCFXMLParserSkipMetaData")]
         const SkipMetaData = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/replacephysicalentities?language=objc)
         #[doc(alias = "kCFXMLParserReplacePhysicalEntities")]
         const ReplacePhysicalEntities = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/skipwhitespace?language=objc)
         #[doc(alias = "kCFXMLParserSkipWhitespace")]
         const SkipWhitespace = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/resolveexternalentities?language=objc)
         #[doc(alias = "kCFXMLParserResolveExternalEntities")]
         const ResolveExternalEntities = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/addimpliedattributes?language=objc)
         #[doc(alias = "kCFXMLParserAddImpliedAttributes")]
         const AddImpliedAttributes = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/alloptions?language=objc)
         #[doc(alias = "kCFXMLParserAllOptions")]
         const AllOptions = 0x00FFFFFF;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/kcfxmlparsernooptions?language=objc)
         #[doc(alias = "kCFXMLParserNoOptions")]
         const NoOptions = 0;
     }
@@ -68,40 +76,58 @@ unsafe impl RefEncode for CFXMLParserOptions {
 pub struct CFXMLParserStatusCode(pub CFIndex);
 bitflags::bitflags! {
     impl CFXMLParserStatusCode: CFIndex {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/statusparsenotbegun?language=objc)
         #[doc(alias = "kCFXMLStatusParseNotBegun")]
         const StatusParseNotBegun = -2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/statusparseinprogress?language=objc)
         #[doc(alias = "kCFXMLStatusParseInProgress")]
         const StatusParseInProgress = -1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/kcfxmlstatusparsesuccessful?language=objc)
         #[doc(alias = "kCFXMLStatusParseSuccessful")]
         const StatusParseSuccessful = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errorunexpectedeof?language=objc)
         #[doc(alias = "kCFXMLErrorUnexpectedEOF")]
         const ErrorUnexpectedEOF = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errorunknownencoding?language=objc)
         #[doc(alias = "kCFXMLErrorUnknownEncoding")]
         const ErrorUnknownEncoding = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errorencodingconversionfailure?language=objc)
         #[doc(alias = "kCFXMLErrorEncodingConversionFailure")]
         const ErrorEncodingConversionFailure = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedprocessinginstruction?language=objc)
         #[doc(alias = "kCFXMLErrorMalformedProcessingInstruction")]
         const ErrorMalformedProcessingInstruction = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformeddtd?language=objc)
         #[doc(alias = "kCFXMLErrorMalformedDTD")]
         const ErrorMalformedDTD = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedname?language=objc)
         #[doc(alias = "kCFXMLErrorMalformedName")]
         const ErrorMalformedName = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedcdsect?language=objc)
         #[doc(alias = "kCFXMLErrorMalformedCDSect")]
         const ErrorMalformedCDSect = 7;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedclosetag?language=objc)
         #[doc(alias = "kCFXMLErrorMalformedCloseTag")]
         const ErrorMalformedCloseTag = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedstarttag?language=objc)
         #[doc(alias = "kCFXMLErrorMalformedStartTag")]
         const ErrorMalformedStartTag = 9;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformeddocument?language=objc)
         #[doc(alias = "kCFXMLErrorMalformedDocument")]
         const ErrorMalformedDocument = 10;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errorelementlessdocument?language=objc)
         #[doc(alias = "kCFXMLErrorElementlessDocument")]
         const ErrorElementlessDocument = 11;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedcomment?language=objc)
         #[doc(alias = "kCFXMLErrorMalformedComment")]
         const ErrorMalformedComment = 12;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedcharacterreference?language=objc)
         #[doc(alias = "kCFXMLErrorMalformedCharacterReference")]
         const ErrorMalformedCharacterReference = 13;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedparsedcharacterdata?language=objc)
         #[doc(alias = "kCFXMLErrorMalformedParsedCharacterData")]
         const ErrorMalformedParsedCharacterData = 14;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errornodata?language=objc)
         #[doc(alias = "kCFXMLErrorNoData")]
         const ErrorNoData = 15;
     }
@@ -233,6 +259,7 @@ unsafe impl RefEncode for CFXMLParserContext {
 }
 
 unsafe impl ConcreteType for CFXMLParser {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergettypeid?language=objc)
     #[doc(alias = "CFXMLParserGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -244,6 +271,8 @@ unsafe impl ConcreteType for CFXMLParser {
 }
 
 impl CFXMLParser {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -289,6 +318,8 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreatewithdatafromurl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -330,6 +361,8 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetcontext?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -343,6 +376,8 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetContext(self, context) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetcallbacks?language=objc)
+    ///
     /// # Safety
     ///
     /// `call_backs` must be a valid pointer.
@@ -357,6 +392,7 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetCallBacks(self, call_backs) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetsourceurl?language=objc)
     #[doc(alias = "CFXMLParserGetSourceURL")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
@@ -369,6 +405,7 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetlocation?language=objc)
     #[doc(alias = "CFXMLParserGetLocation")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -379,6 +416,7 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetLocation(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetlinenumber?language=objc)
     #[doc(alias = "CFXMLParserGetLineNumber")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -389,6 +427,7 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetLineNumber(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetdocument?language=objc)
     #[doc(alias = "CFXMLParserGetDocument")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -399,6 +438,7 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetDocument(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetstatuscode?language=objc)
     #[doc(alias = "CFXMLParserGetStatusCode")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -409,6 +449,7 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetStatusCode(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercopyerrordescription?language=objc)
     #[doc(alias = "CFXMLParserCopyErrorDescription")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -420,6 +461,8 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserabort?language=objc)
+    ///
     /// # Safety
     ///
     /// `error_description` might not allow `None`.
@@ -441,6 +484,7 @@ impl CFXMLParser {
         unsafe { CFXMLParserAbort(self, error_code, error_description) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserparse?language=objc)
     #[doc(alias = "CFXMLParserParse")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -453,6 +497,8 @@ impl CFXMLParser {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatefromdata?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -494,6 +540,8 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatefromdatawitherror?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -540,6 +588,8 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatewithdatafromurl?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -567,6 +617,8 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatexmldata?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -588,6 +640,8 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlcreatestringbyescapingentities(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.
@@ -614,6 +668,8 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlcreatestringbyunescapingentities(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `allocator` might not allow `None`.

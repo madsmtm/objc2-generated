@@ -10,18 +10,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAmountType(pub NSInteger);
 impl INAmountType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/unknown?language=objc)
     #[doc(alias = "INAmountTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/minimumdue?language=objc)
     #[doc(alias = "INAmountTypeMinimumDue")]
     pub const MinimumDue: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/amountdue?language=objc)
     #[doc(alias = "INAmountTypeAmountDue")]
     pub const AmountDue: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/currentbalance?language=objc)
     #[doc(alias = "INAmountTypeCurrentBalance")]
     pub const CurrentBalance: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/maximumtransferamount?language=objc)
     #[doc(alias = "INAmountTypeMaximumTransferAmount")]
     pub const MaximumTransferAmount: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/minimumtransferamount?language=objc)
     #[doc(alias = "INAmountTypeMinimumTransferAmount")]
     pub const MinimumTransferAmount: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/statementbalance?language=objc)
     #[doc(alias = "INAmountTypeStatementBalance")]
     pub const StatementBalance: Self = Self(6);
 }

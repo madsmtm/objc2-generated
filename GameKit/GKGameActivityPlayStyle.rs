@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKGameActivityPlayStyle(pub NSInteger);
 impl GKGameActivityPlayStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivityplaystyle/unspecified?language=objc)
     #[doc(alias = "GKGameActivityPlayStyleUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivityplaystyle/synchronous?language=objc)
     #[doc(alias = "GKGameActivityPlayStyleSynchronous")]
     pub const Synchronous: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivityplaystyle/asynchronous?language=objc)
     #[doc(alias = "GKGameActivityPlayStyleAsynchronous")]
     pub const Asynchronous: Self = Self(2);
 }

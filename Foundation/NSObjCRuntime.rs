@@ -6,87 +6,169 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_0?language=objc)
 pub const NSFoundationVersionNumber10_0: c_float = 397.40;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_1?language=objc)
 pub const NSFoundationVersionNumber10_1: c_float = 425.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_1_1?language=objc)
 pub const NSFoundationVersionNumber10_1_1: c_float = 425.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_1_2?language=objc)
 pub const NSFoundationVersionNumber10_1_2: c_float = 425.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_1_3?language=objc)
 pub const NSFoundationVersionNumber10_1_3: c_float = 425.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_1_4?language=objc)
 pub const NSFoundationVersionNumber10_1_4: c_float = 425.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2?language=objc)
 pub const NSFoundationVersionNumber10_2: c_float = 462.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_1?language=objc)
 pub const NSFoundationVersionNumber10_2_1: c_float = 462.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_2?language=objc)
 pub const NSFoundationVersionNumber10_2_2: c_float = 462.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_3?language=objc)
 pub const NSFoundationVersionNumber10_2_3: c_float = 462.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_4?language=objc)
 pub const NSFoundationVersionNumber10_2_4: c_float = 462.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_5?language=objc)
 pub const NSFoundationVersionNumber10_2_5: c_float = 462.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_6?language=objc)
 pub const NSFoundationVersionNumber10_2_6: c_float = 462.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_7?language=objc)
 pub const NSFoundationVersionNumber10_2_7: c_float = 462.70;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_8?language=objc)
 pub const NSFoundationVersionNumber10_2_8: c_float = 462.70;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3?language=objc)
 pub const NSFoundationVersionNumber10_3: c_float = 500.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_1?language=objc)
 pub const NSFoundationVersionNumber10_3_1: c_float = 500.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_2?language=objc)
 pub const NSFoundationVersionNumber10_3_2: c_float = 500.30;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_3?language=objc)
 pub const NSFoundationVersionNumber10_3_3: c_float = 500.54;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_4?language=objc)
 pub const NSFoundationVersionNumber10_3_4: c_float = 500.56;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_5?language=objc)
 pub const NSFoundationVersionNumber10_3_5: c_float = 500.56;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_6?language=objc)
 pub const NSFoundationVersionNumber10_3_6: c_float = 500.56;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_7?language=objc)
 pub const NSFoundationVersionNumber10_3_7: c_float = 500.56;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_8?language=objc)
 pub const NSFoundationVersionNumber10_3_8: c_float = 500.56;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_9?language=objc)
 pub const NSFoundationVersionNumber10_3_9: c_float = 500.58;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4?language=objc)
 pub const NSFoundationVersionNumber10_4: c_float = 567.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_1?language=objc)
 pub const NSFoundationVersionNumber10_4_1: c_float = 567.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_2?language=objc)
 pub const NSFoundationVersionNumber10_4_2: c_float = 567.12;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_3?language=objc)
 pub const NSFoundationVersionNumber10_4_3: c_float = 567.21;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_4_intel?language=objc)
 pub const NSFoundationVersionNumber10_4_4_Intel: c_float = 567.23;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_4_powerpc?language=objc)
 pub const NSFoundationVersionNumber10_4_4_PowerPC: c_float = 567.21;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_5?language=objc)
 pub const NSFoundationVersionNumber10_4_5: c_float = 567.25;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_6?language=objc)
 pub const NSFoundationVersionNumber10_4_6: c_float = 567.26;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_7?language=objc)
 pub const NSFoundationVersionNumber10_4_7: c_float = 567.27;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_8?language=objc)
 pub const NSFoundationVersionNumber10_4_8: c_float = 567.28;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_9?language=objc)
 pub const NSFoundationVersionNumber10_4_9: c_float = 567.29;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_10?language=objc)
 pub const NSFoundationVersionNumber10_4_10: c_float = 567.29;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_11?language=objc)
 pub const NSFoundationVersionNumber10_4_11: c_float = 567.36;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5?language=objc)
 pub const NSFoundationVersionNumber10_5: c_float = 677.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_1?language=objc)
 pub const NSFoundationVersionNumber10_5_1: c_float = 677.10;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_2?language=objc)
 pub const NSFoundationVersionNumber10_5_2: c_float = 677.15;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_3?language=objc)
 pub const NSFoundationVersionNumber10_5_3: c_float = 677.19;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_4?language=objc)
 pub const NSFoundationVersionNumber10_5_4: c_float = 677.19;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_5?language=objc)
 pub const NSFoundationVersionNumber10_5_5: c_float = 677.21;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_6?language=objc)
 pub const NSFoundationVersionNumber10_5_6: c_float = 677.22;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_7?language=objc)
 pub const NSFoundationVersionNumber10_5_7: c_float = 677.24;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_8?language=objc)
 pub const NSFoundationVersionNumber10_5_8: c_float = 677.26;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6?language=objc)
 pub const NSFoundationVersionNumber10_6: c_float = 751.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_1?language=objc)
 pub const NSFoundationVersionNumber10_6_1: c_float = 751.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_2?language=objc)
 pub const NSFoundationVersionNumber10_6_2: c_float = 751.14;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_3?language=objc)
 pub const NSFoundationVersionNumber10_6_3: c_float = 751.21;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_4?language=objc)
 pub const NSFoundationVersionNumber10_6_4: c_float = 751.29;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_5?language=objc)
 pub const NSFoundationVersionNumber10_6_5: c_float = 751.42;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_6?language=objc)
 pub const NSFoundationVersionNumber10_6_6: c_float = 751.53;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_7?language=objc)
 pub const NSFoundationVersionNumber10_6_7: c_float = 751.53;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_8?language=objc)
 pub const NSFoundationVersionNumber10_6_8: c_float = 751.62;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_7?language=objc)
 pub const NSFoundationVersionNumber10_7: c_float = 833.10;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_7_1?language=objc)
 pub const NSFoundationVersionNumber10_7_1: c_float = 833.10;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_7_2?language=objc)
 pub const NSFoundationVersionNumber10_7_2: c_float = 833.20;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_7_3?language=objc)
 pub const NSFoundationVersionNumber10_7_3: c_float = 833.24;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_7_4?language=objc)
 pub const NSFoundationVersionNumber10_7_4: c_float = 833.25;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_8?language=objc)
 pub const NSFoundationVersionNumber10_8: c_float = 945.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_8_1?language=objc)
 pub const NSFoundationVersionNumber10_8_1: c_float = 945.00;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_8_2?language=objc)
 pub const NSFoundationVersionNumber10_8_2: c_float = 945.11;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_8_3?language=objc)
 pub const NSFoundationVersionNumber10_8_3: c_float = 945.16;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_8_4?language=objc)
 pub const NSFoundationVersionNumber10_8_4: c_float = 945.18;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_9?language=objc)
 pub const NSFoundationVersionNumber10_9: c_uint = 1056;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_9_1?language=objc)
 pub const NSFoundationVersionNumber10_9_1: c_uint = 1056;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_9_2?language=objc)
 pub const NSFoundationVersionNumber10_9_2: c_float = 1056.13;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10?language=objc)
 pub const NSFoundationVersionNumber10_10: c_float = 1151.16;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_1?language=objc)
 pub const NSFoundationVersionNumber10_10_1: c_float = 1151.16;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_2?language=objc)
 pub const NSFoundationVersionNumber10_10_2: c_float = 1152.14;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_3?language=objc)
 pub const NSFoundationVersionNumber10_10_3: c_float = 1153.20;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_4?language=objc)
 pub const NSFoundationVersionNumber10_10_4: c_float = 1153.20;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_5?language=objc)
 pub const NSFoundationVersionNumber10_10_5: c_uint = 1154;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_max?language=objc)
 pub const NSFoundationVersionNumber10_10_Max: c_uint = 1199;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11?language=objc)
 pub const NSFoundationVersionNumber10_11: c_uint = 1252;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_1?language=objc)
 pub const NSFoundationVersionNumber10_11_1: c_float = 1255.1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_2?language=objc)
 pub const NSFoundationVersionNumber10_11_2: c_float = 1256.1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_3?language=objc)
 pub const NSFoundationVersionNumber10_11_3: c_float = 1256.1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_4?language=objc)
 pub const NSFoundationVersionNumber10_11_4: c_uint = 1258;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_max?language=objc)
 pub const NSFoundationVersionNumber10_11_Max: c_uint = 1299;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber?language=objc)
@@ -105,6 +187,8 @@ pub type NSRunLoopMode = NSString;
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromselector(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `a_selector` must be a valid selector.
@@ -121,6 +205,7 @@ impl NSString {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsselectorfromstring(_:)?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSSelectorFromString(a_selector_name: &NSString) -> Sel {
@@ -132,6 +217,7 @@ pub extern "C-unwind" fn NSSelectorFromString(a_selector_name: &NSString) -> Sel
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromclass(_:)?language=objc)
     #[doc(alias = "NSStringFromClass")]
     #[cfg(feature = "NSString")]
     #[inline]
@@ -145,6 +231,7 @@ impl NSString {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclassfromstring(_:)?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass> {
@@ -156,6 +243,8 @@ pub extern "C-unwind" fn NSClassFromString(a_class_name: &NSString) -> Option<&'
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromprotocol(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `proto` possibly has further requirements.
@@ -172,6 +261,7 @@ impl NSString {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprotocolfromstring(_:)?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSProtocolFromString(namestr: &NSString) -> Option<Retained<AnyProtocol>> {
@@ -182,6 +272,8 @@ pub extern "C-unwind" fn NSProtocolFromString(namestr: &NSString) -> Option<Reta
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgetsizeandalignment(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `type_ptr` must be a valid pointer.
@@ -216,8 +308,10 @@ pub type NSComparator =
 pub struct NSEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEnumerationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions/concurrent?language=objc)
         #[doc(alias = "NSEnumerationConcurrent")]
         const Concurrent = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions/reverse?language=objc)
         #[doc(alias = "NSEnumerationReverse")]
         const Reverse = 1<<1;
     }
@@ -238,8 +332,10 @@ unsafe impl RefEncode for NSEnumerationOptions {
 pub struct NSSortOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSortOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortoptions/concurrent?language=objc)
         #[doc(alias = "NSSortConcurrent")]
         const Concurrent = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortoptions/stable?language=objc)
         #[doc(alias = "NSSortStable")]
         const Stable = 1<<4;
     }
@@ -259,14 +355,19 @@ unsafe impl RefEncode for NSSortOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSQualityOfService(pub NSInteger);
 impl NSQualityOfService {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice/userinteractive?language=objc)
     #[doc(alias = "NSQualityOfServiceUserInteractive")]
     pub const UserInteractive: Self = Self(0x21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice/userinitiated?language=objc)
     #[doc(alias = "NSQualityOfServiceUserInitiated")]
     pub const UserInitiated: Self = Self(0x19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice/utility?language=objc)
     #[doc(alias = "NSQualityOfServiceUtility")]
     pub const Utility: Self = Self(0x11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice/background?language=objc)
     #[doc(alias = "NSQualityOfServiceBackground")]
     pub const Background: Self = Self(0x09);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice/default?language=objc)
     #[doc(alias = "NSQualityOfServiceDefault")]
     pub const Default: Self = Self(-1);
 }

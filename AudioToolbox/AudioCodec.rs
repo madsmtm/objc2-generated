@@ -8,27 +8,39 @@ use objc2_core_audio_types::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_toplevelkey?language=objc)
 pub const kAudioSettings_TopLevelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_version?language=objc)
 pub const kAudioSettings_Version: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"version\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_parameters?language=objc)
 pub const kAudioSettings_Parameters: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"parameters\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_settingkey?language=objc)
 pub const kAudioSettings_SettingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"key\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_settingname?language=objc)
 pub const kAudioSettings_SettingName: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_valuetype?language=objc)
 pub const kAudioSettings_ValueType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"value type\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_availablevalues?language=objc)
 pub const kAudioSettings_AvailableValues: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"available values\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_limitedvalues?language=objc)
 pub const kAudioSettings_LimitedValues: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"limited values\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_currentvalue?language=objc)
 pub const kAudioSettings_CurrentValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"current value\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_summary?language=objc)
 pub const kAudioSettings_Summary: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"summary\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_hint?language=objc)
 pub const kAudioSettings_Hint: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"hint\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_unit?language=objc)
 pub const kAudioSettings_Unit: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"unit\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodec?language=objc)
 #[cfg(feature = "AudioComponent")]
@@ -352,12 +364,16 @@ unsafe impl RefEncode for AudioCodecPrimeInfo {
 pub struct AudioSettingsFlags(pub u32);
 bitflags::bitflags! {
     impl AudioSettingsFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosettingsflags/expertparameter?language=objc)
         #[doc(alias = "kAudioSettingsFlags_ExpertParameter")]
         const ExpertParameter = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosettingsflags/invisibleparameter?language=objc)
         #[doc(alias = "kAudioSettingsFlags_InvisibleParameter")]
         const InvisibleParameter = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosettingsflags/metaparameter?language=objc)
         #[doc(alias = "kAudioSettingsFlags_MetaParameter")]
         const MetaParameter = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosettingsflags/userinterfaceparameter?language=objc)
         #[doc(alias = "kAudioSettingsFlags_UserInterfaceParameter")]
         const UserInterfaceParameter = 1<<3;
     }
@@ -447,6 +463,8 @@ extern "C-unwind" {
     /// - `in_codec` must be a valid pointer.
     /// - `out_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecgetpropertyinfo(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecGetPropertyInfo(
         in_codec: AudioCodec,
@@ -478,6 +496,8 @@ extern "C-unwind" {
     /// - `in_codec` must be a valid pointer.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecgetproperty(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecGetProperty(
         in_codec: AudioCodec,
@@ -506,6 +526,8 @@ extern "C-unwind" {
     ///
     /// - `in_codec` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecsetproperty(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecSetProperty(
         in_codec: AudioCodec,
@@ -541,6 +563,8 @@ extern "C-unwind" {
     /// - `in_input_format` must be a valid pointer or null.
     /// - `in_output_format` must be a valid pointer or null.
     /// - `in_magic_cookie` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecinitialize(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecInitialize(
         in_codec: AudioCodec,
@@ -565,6 +589,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_codec` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecuninitialize(_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecUninitialize(in_codec: AudioCodec) -> OSStatus;
 }
@@ -603,6 +629,8 @@ extern "C-unwind" {
     /// - `io_input_data_byte_size` must be a valid pointer.
     /// - `io_number_packets` must be a valid pointer.
     /// - `in_packet_description` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecappendinputdata(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecAppendInputData(
         in_codec: AudioCodec,
@@ -649,6 +677,8 @@ extern "C-unwind" {
     /// - `io_number_packets` must be a valid pointer.
     /// - `out_packet_description` must be a valid pointer or null.
     /// - `out_status` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecproduceoutputpackets(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecProduceOutputPackets(
         in_codec: AudioCodec,
@@ -661,6 +691,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecappendinputbufferlist(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_codec` must be a valid pointer.
@@ -679,6 +711,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecproduceoutputbufferlist(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_codec` must be a valid pointer.
@@ -710,6 +744,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_codec` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecreset(_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecReset(in_codec: AudioCodec) -> OSStatus;
 }

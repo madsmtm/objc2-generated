@@ -18,18 +18,28 @@ use crate::*;
 pub struct AVExternalSyncDeviceStatus(pub NSInteger);
 impl AVExternalSyncDeviceStatus {
     /// Indicates that external sync signal is not connected, or has transitioned to a state that is not recoverable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus/unavailable?language=objc)
     #[doc(alias = "AVExternalSyncDeviceStatusUnavailable")]
     pub const Unavailable: Self = Self(0);
     /// Indicates that a device supporting external sync is connected, but calibration has not started.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus/ready?language=objc)
     #[doc(alias = "AVExternalSyncDeviceStatusReady")]
     pub const Ready: Self = Self(1);
     /// Indicates that the external sync signal is connected and that the AVExternalSyncDevice object is calibrating to follow.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus/calibrating?language=objc)
     #[doc(alias = "AVExternalSyncDeviceStatusCalibrating")]
     pub const Calibrating: Self = Self(2);
     /// Indicates that the ``AVExternalSyncDevice`` object is running and that the clock property on ``AVExternalSyncDevice`` is calibrated to the external sync signal.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus/activesync?language=objc)
     #[doc(alias = "AVExternalSyncDeviceStatusActiveSync")]
     pub const ActiveSync: Self = Self(3);
     /// Indicates that the AVExternalSyncDevice was calibrated to follow the external sync, but the sync signal has been lost. The camera will continue to match the last signal it received, but sync is not guaranteed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus/freerunsync?language=objc)
     #[doc(alias = "AVExternalSyncDeviceStatusFreeRunSync")]
     pub const FreeRunSync: Self = Self(4);
 }

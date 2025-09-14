@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSegmentSwitchTracking(pub NSUInteger);
 impl NSSegmentSwitchTracking {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking/selectone?language=objc)
     #[doc(alias = "NSSegmentSwitchTrackingSelectOne")]
     pub const SelectOne: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking/selectany?language=objc)
     #[doc(alias = "NSSegmentSwitchTrackingSelectAny")]
     pub const SelectAny: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking/momentary?language=objc)
     #[doc(alias = "NSSegmentSwitchTrackingMomentary")]
     pub const Momentary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking/momentaryaccelerator?language=objc)
     #[doc(alias = "NSSegmentSwitchTrackingMomentaryAccelerator")]
     pub const MomentaryAccelerator: Self = Self(3);
 }
@@ -39,20 +43,28 @@ unsafe impl RefEncode for NSSegmentSwitchTracking {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSegmentStyle(pub NSInteger);
 impl NSSegmentStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/automatic?language=objc)
     #[doc(alias = "NSSegmentStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/rounded?language=objc)
     #[doc(alias = "NSSegmentStyleRounded")]
     pub const Rounded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/roundrect?language=objc)
     #[doc(alias = "NSSegmentStyleRoundRect")]
     pub const RoundRect: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/texturedsquare?language=objc)
     #[doc(alias = "NSSegmentStyleTexturedSquare")]
     pub const TexturedSquare: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/smallsquare?language=objc)
     #[doc(alias = "NSSegmentStyleSmallSquare")]
     pub const SmallSquare: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/separated?language=objc)
     #[doc(alias = "NSSegmentStyleSeparated")]
     pub const Separated: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/texturedrounded?language=objc)
     #[doc(alias = "NSSegmentStyleTexturedRounded")]
     pub const TexturedRounded: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/capsule?language=objc)
     #[doc(alias = "NSSegmentStyleCapsule")]
     pub const Capsule: Self = Self(5);
 }
@@ -72,15 +84,23 @@ unsafe impl RefEncode for NSSegmentStyle {
 pub struct NSSegmentDistribution(pub NSInteger);
 impl NSSegmentDistribution {
     /// Dynamically sized segments will be sized to fit their contents, any remaining space will be left blank. This style is equivalent to the way segments were distributed on older systems.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/distribution/fit?language=objc)
     #[doc(alias = "NSSegmentDistributionFit")]
     pub const Fit: Self = Self(0);
     /// Dynamically sized segments will be sized to fill the available space, with extra space being distributed equally among them. Default value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/distribution/fill?language=objc)
     #[doc(alias = "NSSegmentDistributionFill")]
     pub const Fill: Self = Self(1);
     /// Dynamically sized segments will be sized to fill the available space, and kept the same size as each other.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/distribution/fillequally?language=objc)
     #[doc(alias = "NSSegmentDistributionFillEqually")]
     pub const FillEqually: Self = Self(2);
     /// Dynamically sized segments will be sized to fill the available space, and kept proportional to their fitting size.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/distribution/fillproportionally?language=objc)
     #[doc(alias = "NSSegmentDistributionFillProportionally")]
     pub const FillProportionally: Self = Self(3);
 }

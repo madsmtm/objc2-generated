@@ -15,17 +15,23 @@ pub struct UITabBarControllerSidebarLayout(pub NSInteger);
 impl UITabBarControllerSidebarLayout {
     /// On iOS, this resolves to `overlap`.
     /// On macOS and visionOS, this resolves to `tile`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/layout/automatic?language=objc)
     #[doc(alias = "UITabBarControllerSidebarLayoutAutomatic")]
     pub const Automatic: Self = Self(0);
     /// When the sidebar is displayed, it will overlap the selected view controller,
     /// allowing the selected view controller to render underneath the sidebar. Anchor
     /// the view's content to the `layoutMarginsGuide` or `safeAreaLayoutGuide` to avoid
     /// being occluded by the sidebar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/layout/overlap?language=objc)
     #[doc(alias = "UITabBarControllerSidebarLayoutOverlap")]
     pub const Overlap: Self = Self(1);
     /// When the sidebar is displayed, the selected view controller is resized and shifted
     /// to display alongside the sidebar. The selected view controller is not occluded by
     /// the sidebar, cannot render underneath the sidebar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/layout/tile?language=objc)
     #[doc(alias = "UITabBarControllerSidebarLayoutTile")]
     pub const Tile: Self = Self(2);
 }

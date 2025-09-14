@@ -24,13 +24,19 @@ use crate::*;
 pub struct cp_drawable_state(pub u32);
 impl cp_drawable_state {
     /// A drawable that is not in use and ready for assignment to a frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum/available?language=objc)
     #[doc(alias = "cp_drawable_state_available")]
     pub const available: Self = Self(0);
     /// A drawable that is assigned to a frame and ready to accept
     /// your drawing commands.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum/rendering?language=objc)
     #[doc(alias = "cp_drawable_state_rendering")]
     pub const rendering: Self = Self(1);
     /// A drawable that the compositor is currently displaying onscreen.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum/presenting?language=objc)
     #[doc(alias = "cp_drawable_state_presenting")]
     pub const presenting: Self = Self(2);
 }
@@ -56,11 +62,15 @@ pub struct cp_drawable_target(pub u32);
 impl cp_drawable_target {
     /// A drawable that is targeting the built-in display,
     /// this is what a user will see in the device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.enum/builtin?language=objc)
     #[doc(alias = "cp_drawable_target_built_in")]
     pub const built_in: Self = Self(0);
     /// A drawable that will be used for capture purposes,
     /// this could be used for video or AirPlay streaming and
     /// will be visible to users outside of the device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.enum/capture?language=objc)
     #[doc(alias = "cp_drawable_target_capture")]
     pub const capture: Self = Self(1);
 }
@@ -113,6 +123,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_texture_count?language=objc)
     #[doc(alias = "cp_drawable_get_texture_count")]
     #[inline]
     pub unsafe fn texture_count(drawable: cp_drawable_t) -> usize {
@@ -137,6 +149,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_tracking_areas_texture_count?language=objc)
     #[doc(alias = "cp_drawable_get_tracking_areas_texture_count")]
     #[inline]
     pub unsafe fn tracking_areas_texture_count(drawable: cp_drawable_t) -> usize {
@@ -163,6 +177,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_depth_texture?language=objc)
     #[doc(alias = "cp_drawable_get_depth_texture")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -198,6 +214,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_color_texture?language=objc)
     #[doc(alias = "cp_drawable_get_color_texture")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -233,6 +251,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_tracking_areas_texture?language=objc)
     #[doc(alias = "cp_drawable_get_tracking_areas_texture")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -266,6 +286,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/addtrackingarea(identifier:)?language=objc)
     #[doc(alias = "cp_drawable_add_tracking_area")]
     #[cfg(feature = "tracking_area")]
     #[inline]
@@ -295,6 +317,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_rasterization_rate_map_count?language=objc)
     #[doc(alias = "cp_drawable_get_rasterization_rate_map_count")]
     #[inline]
     pub unsafe fn rasterization_rate_map_count(drawable: cp_drawable_t) -> usize {
@@ -324,6 +348,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_rasterization_rate_map?language=objc)
     #[doc(alias = "cp_drawable_get_rasterization_rate_map")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -369,6 +395,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_flipped_rasterization_rate_map?language=objc)
     #[doc(alias = "cp_drawable_get_flipped_rasterization_rate_map")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -405,6 +433,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_view_count?language=objc)
     #[doc(alias = "cp_drawable_get_view_count")]
     #[inline]
     pub unsafe fn view_count(drawable: cp_drawable_t) -> usize {
@@ -429,6 +459,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_view?language=objc)
     #[doc(alias = "cp_drawable_get_view")]
     #[cfg(feature = "view")]
     #[inline]
@@ -462,6 +494,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/encodepresent(commandbuffer:)?language=objc)
     #[doc(alias = "cp_drawable_encode_present")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -498,6 +532,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/encodepresent()?language=objc)
     #[doc(alias = "cp_drawable_mtl4_encode_present")]
     #[inline]
     pub unsafe fn mtl4_encode_present(drawable: cp_drawable_t) {
@@ -523,6 +559,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.property?language=objc)
     #[doc(alias = "cp_drawable_get_state")]
     #[inline]
     pub unsafe fn state(drawable: cp_drawable_t) -> cp_drawable_state {
@@ -547,6 +585,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.property?language=objc)
     #[doc(alias = "cp_drawable_get_target")]
     #[inline]
     pub unsafe fn target(drawable: cp_drawable_t) -> cp_drawable_target {
@@ -572,6 +612,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/presentationframeindex?language=objc)
     #[doc(alias = "cp_drawable_get_presentation_frame_index")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -597,6 +639,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/frametiming?language=objc)
     #[doc(alias = "cp_drawable_get_frame_timing")]
     #[cfg(feature = "frame_timing")]
     #[inline]
@@ -630,6 +674,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/iscontentcaptureprotected?language=objc)
     #[doc(alias = "cp_drawable_is_content_capture_protected")]
     #[inline]
     pub unsafe fn is_content_capture_protected(drawable: cp_drawable_t) -> bool {
@@ -652,6 +698,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/addrendercontext(commandbuffer:)?language=objc)
     #[doc(alias = "cp_drawable_add_render_context")]
     #[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
     #[inline]
@@ -681,6 +729,8 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/addrendercontext()?language=objc)
     #[doc(alias = "cp_drawable_add_mtl4_render_context")]
     #[cfg(feature = "drawable_render_context")]
     #[inline]
@@ -729,6 +779,8 @@ impl cp_drawable_array {
     /// # Safety
     ///
     /// `drawable_array` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_array_get_drawable?language=objc)
     #[doc(alias = "cp_drawable_array_get_drawable")]
     #[inline]
     pub unsafe fn drawable(drawable_array: cp_drawable_array_t, index: usize) -> cp_drawable_t {
@@ -754,6 +806,8 @@ impl cp_drawable_array {
     /// # Safety
     ///
     /// `drawable_array` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_array_get_count?language=objc)
     #[doc(alias = "cp_drawable_array_get_count")]
     #[inline]
     pub unsafe fn count(drawable_array: cp_drawable_array_t) -> usize {

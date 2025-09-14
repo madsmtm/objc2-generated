@@ -27,6 +27,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for WSProtocolHandler {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423455-wsprotocolhandlergettypeid?language=objc)
     #[doc(alias = "WSProtocolHandlerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,6 +39,8 @@ unsafe impl ConcreteType for WSProtocolHandler {
 }
 
 impl WSProtocolHandler {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423434-wsprotocolhandlercreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -59,6 +62,8 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423451-wsprotocolhandlercopyrequestdict?language=objc)
+    ///
     /// # Safety
     ///
     /// `data` might not allow `None`.
@@ -79,6 +84,8 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423441-wsprotocolhandlercopyreplydictio?language=objc)
+    ///
     /// # Safety
     ///
     /// - `method_name` might not allow `None`.
@@ -102,6 +109,8 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423440-wsprotocolhandlercopyreplydocume?language=objc)
+    ///
     /// # Safety
     ///
     /// - `method_context` generic must be of the correct type.
@@ -128,6 +137,8 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423449-wsprotocolhandlercopyfaultdocume?language=objc)
+    ///
     /// # Safety
     ///
     /// - `method_context` generic must be of the correct type.
@@ -155,6 +166,8 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423437-wsprotocolhandlercopyrequestdocu?language=objc)
+    ///
     /// # Safety
     ///
     /// - `method_name` might not allow `None`.
@@ -197,6 +210,8 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423436-wsprotocolhandlercopyproperty?language=objc)
+    ///
     /// # Safety
     ///
     /// `property_name` might not allow `None`.
@@ -214,6 +229,8 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423442-wsprotocolhandlersetproperty?language=objc)
+    ///
     /// # Safety
     ///
     /// - `property_name` might not allow `None`.
@@ -248,6 +265,8 @@ pub type WSProtocolHandlerSerializationProcPtr = Option<
 >;
 
 impl WSProtocolHandler {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423438-wsprotocolhandlersetserializatio?language=objc)
+    ///
     /// # Safety
     ///
     /// - `serialization_proc` must be implemented correctly.
@@ -287,6 +306,8 @@ pub type WSProtocolHandlerDeserializationProcPtr = Option<
 >;
 
 impl WSProtocolHandler {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423444-wsprotocolhandlersetdeserializat?language=objc)
+    ///
     /// # Safety
     ///
     /// - `type_namespace` might not allow `None`.

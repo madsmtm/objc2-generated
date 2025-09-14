@@ -13,21 +13,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetAudioSourceInCarIntentResponseCode(pub NSInteger);
 impl INSetAudioSourceInCarIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeUnspecified")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/ready?language=objc)
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeReady")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeInProgress")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/success?language=objc)
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeSuccess")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/failure?language=objc)
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeFailure")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);

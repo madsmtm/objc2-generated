@@ -12,30 +12,43 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXMLNodeKind(pub NSUInteger);
 impl NSXMLNodeKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/invalid?language=objc)
     #[doc(alias = "NSXMLInvalidKind")]
     pub const InvalidKind: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/document?language=objc)
     #[doc(alias = "NSXMLDocumentKind")]
     pub const DocumentKind: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/element?language=objc)
     #[doc(alias = "NSXMLElementKind")]
     pub const ElementKind: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/attribute?language=objc)
     #[doc(alias = "NSXMLAttributeKind")]
     pub const AttributeKind: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/namespace?language=objc)
     #[doc(alias = "NSXMLNamespaceKind")]
     pub const NamespaceKind: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/processinginstruction?language=objc)
     #[doc(alias = "NSXMLProcessingInstructionKind")]
     pub const ProcessingInstructionKind: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/comment?language=objc)
     #[doc(alias = "NSXMLCommentKind")]
     pub const CommentKind: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/text?language=objc)
     #[doc(alias = "NSXMLTextKind")]
     pub const TextKind: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/dtdkind?language=objc)
     #[doc(alias = "NSXMLDTDKind")]
     pub const DTDKind: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/entitydeclaration?language=objc)
     #[doc(alias = "NSXMLEntityDeclarationKind")]
     pub const EntityDeclarationKind: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/attributedeclaration?language=objc)
     #[doc(alias = "NSXMLAttributeDeclarationKind")]
     pub const AttributeDeclarationKind: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/elementdeclaration?language=objc)
     #[doc(alias = "NSXMLElementDeclarationKind")]
     pub const ElementDeclarationKind: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/notationdeclaration?language=objc)
     #[doc(alias = "NSXMLNotationDeclarationKind")]
     pub const NotationDeclarationKind: Self = Self(12);
 }

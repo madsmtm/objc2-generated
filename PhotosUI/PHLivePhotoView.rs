@@ -21,10 +21,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoViewPlaybackStyle(pub NSInteger);
 impl PHLivePhotoViewPlaybackStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewplaybackstyle/undefined?language=objc)
     #[doc(alias = "PHLivePhotoViewPlaybackStyleUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewplaybackstyle/full?language=objc)
     #[doc(alias = "PHLivePhotoViewPlaybackStyleFull")]
     pub const Full: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewplaybackstyle/hint?language=objc)
     #[doc(alias = "PHLivePhotoViewPlaybackStyleHint")]
     pub const Hint: Self = Self(2);
 }
@@ -47,8 +50,10 @@ unsafe impl Sync for PHLivePhotoViewPlaybackStyle {}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoViewContentMode(pub NSInteger);
 impl PHLivePhotoViewContentMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewcontentmode/aspectfit?language=objc)
     #[doc(alias = "PHLivePhotoViewContentModeAspectFit")]
     pub const AspectFit: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewcontentmode/aspectfill?language=objc)
     #[doc(alias = "PHLivePhotoViewContentModeAspectFill")]
     pub const AspectFill: Self = Self(1);
 }

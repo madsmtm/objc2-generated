@@ -20,57 +20,93 @@ pub struct FSItemAttribute(pub NSInteger);
 bitflags::bitflags! {
     impl FSItemAttribute: NSInteger {
 /// The type attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/type?language=objc)
         #[doc(alias = "FSItemAttributeType")]
         const Type = 1<<0;
 /// The mode attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/mode?language=objc)
         #[doc(alias = "FSItemAttributeMode")]
         const Mode = 1<<1;
 /// The link count attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/linkcount?language=objc)
         #[doc(alias = "FSItemAttributeLinkCount")]
         const LinkCount = 1<<2;
 /// The user ID (uid) attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/uid?language=objc)
         #[doc(alias = "FSItemAttributeUID")]
         const UID = 1<<3;
 /// The group ID (gid) attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/gid?language=objc)
         #[doc(alias = "FSItemAttributeGID")]
         const GID = 1<<4;
 /// The flags attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/flags?language=objc)
         #[doc(alias = "FSItemAttributeFlags")]
         const Flags = 1<<5;
 /// The size attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/size?language=objc)
         #[doc(alias = "FSItemAttributeSize")]
         const Size = 1<<6;
 /// The allocated size attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/allocsize?language=objc)
         #[doc(alias = "FSItemAttributeAllocSize")]
         const AllocSize = 1<<7;
 /// The file ID attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/fileid?language=objc)
         #[doc(alias = "FSItemAttributeFileID")]
         const FileID = 1<<8;
 /// The parent ID attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/parentid?language=objc)
         #[doc(alias = "FSItemAttributeParentID")]
         const ParentID = 1<<9;
 /// The last-accessed time attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/accesstime?language=objc)
         #[doc(alias = "FSItemAttributeAccessTime")]
         const AccessTime = 1<<10;
 /// The last-modified time attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/modifytime?language=objc)
         #[doc(alias = "FSItemAttributeModifyTime")]
         const ModifyTime = 1<<11;
 /// The last-changed time attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/changetime?language=objc)
         #[doc(alias = "FSItemAttributeChangeTime")]
         const ChangeTime = 1<<12;
 /// The creation time attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/birthtime?language=objc)
         #[doc(alias = "FSItemAttributeBirthTime")]
         const BirthTime = 1<<13;
 /// The backup time attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/backuptime?language=objc)
         #[doc(alias = "FSItemAttributeBackupTime")]
         const BackupTime = 1<<14;
 /// The time added attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/addedtime?language=objc)
         #[doc(alias = "FSItemAttributeAddedTime")]
         const AddedTime = 1<<15;
 /// The supports limited extended attributes attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/supportslimitedxattrs?language=objc)
         #[doc(alias = "FSItemAttributeSupportsLimitedXAttrs")]
         const SupportsLimitedXAttrs = 1<<16;
 /// The inhibit kernel offloaded I/O attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute/inhibitkerneloffloadedio?language=objc)
         #[doc(alias = "FSItemAttributeInhibitKernelOffloadedIO")]
         const InhibitKernelOffloadedIO = 1<<17;
     }
@@ -93,27 +129,43 @@ unsafe impl RefEncode for FSItemAttribute {
 pub struct FSItemType(pub NSInteger);
 impl FSItemType {
     /// The item type of an unknown item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/itemtype/unknown?language=objc)
     #[doc(alias = "FSItemTypeUnknown")]
     pub const Unknown: Self = Self(0);
     /// The item type of a regular file.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/itemtype/file?language=objc)
     #[doc(alias = "FSItemTypeFile")]
     pub const File: Self = Self(1);
     /// The item type of a directory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/itemtype/directory?language=objc)
     #[doc(alias = "FSItemTypeDirectory")]
     pub const Directory: Self = Self(2);
     /// The item type of a symbolic link.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/itemtype/symlink?language=objc)
     #[doc(alias = "FSItemTypeSymlink")]
     pub const Symlink: Self = Self(3);
     /// The item type of a first-in/first-out named pipe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/itemtype/fifo?language=objc)
     #[doc(alias = "FSItemTypeFIFO")]
     pub const FIFO: Self = Self(4);
     /// The item type of a character device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/itemtype/chardevice?language=objc)
     #[doc(alias = "FSItemTypeCharDevice")]
     pub const CharDevice: Self = Self(5);
     /// The item type of a block device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/itemtype/blockdevice?language=objc)
     #[doc(alias = "FSItemTypeBlockDevice")]
     pub const BlockDevice: Self = Self(6);
     /// The item type of a socket.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/itemtype/socket?language=objc)
     #[doc(alias = "FSItemTypeSocket")]
     pub const Socket: Self = Self(7);
 }
@@ -138,12 +190,18 @@ unsafe impl RefEncode for FSItemType {
 pub struct FSItemID(pub u64);
 impl FSItemID {
     /// The identifier for an invalid item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/identifier/invalid?language=objc)
     #[doc(alias = "FSItemIDInvalid")]
     pub const Invalid: Self = Self(0);
     /// The identifier for an item that serves as the parent of the root directory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/identifier/parentofroot?language=objc)
     #[doc(alias = "FSItemIDParentOfRoot")]
     pub const ParentOfRoot: Self = Self(1);
     /// The item identifier for the root directory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/identifier/rootdirectory?language=objc)
     #[doc(alias = "FSItemIDRootDirectory")]
     pub const RootDirectory: Self = Self(2);
 }

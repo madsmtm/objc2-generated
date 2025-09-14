@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BADownloadState(pub NSInteger);
 impl BADownloadState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum/failed?language=objc)
     #[doc(alias = "BADownloadStateFailed")]
     pub const Failed: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum/created?language=objc)
     #[doc(alias = "BADownloadStateCreated")]
     pub const Created: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum/waiting?language=objc)
     #[doc(alias = "BADownloadStateWaiting")]
     pub const Waiting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum/downloading?language=objc)
     #[doc(alias = "BADownloadStateDownloading")]
     pub const Downloading: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum/finished?language=objc)
     #[doc(alias = "BADownloadStateFinished")]
     pub const Finished: Self = Self(3);
 }

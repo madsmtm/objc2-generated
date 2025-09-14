@@ -10,14 +10,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CE_GeneralNameType(pub c_uint);
 impl CE_GeneralNameType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/gnt_othername?language=objc)
     pub const GNT_OtherName: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/gnt_rfc822name?language=objc)
     pub const GNT_RFC822Name: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/gnt_dnsname?language=objc)
     pub const GNT_DNSName: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/gnt_x400address?language=objc)
     pub const GNT_X400Address: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/gnt_directoryname?language=objc)
     pub const GNT_DirectoryName: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/gnt_edipartyname?language=objc)
     pub const GNT_EdiPartyName: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/gnt_uri?language=objc)
     pub const GNT_URI: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/gnt_ipaddress?language=objc)
     pub const GNT_IPAddress: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/gnt_registeredid?language=objc)
     pub const GNT_RegisteredID: Self = Self(8);
 }
 
@@ -315,8 +324,10 @@ pub type CE_CrlDistReasonFlags = uint8;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CE_CrlDistributionPointNameType(pub c_uint);
 impl CE_CrlDistributionPointNameType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_cdnt_fullname?language=objc)
     #[doc(alias = "CE_CDNT_FullName")]
     pub const CDNT_FullName: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_cdnt_namerelativetocrlissuer?language=objc)
     #[doc(alias = "CE_CDNT_NameRelativeToCrlIssuer")]
     pub const CDNT_NameRelativeToCrlIssuer: Self = Self(1);
 }
@@ -911,26 +922,47 @@ pub type CE_InhibitAnyPolicy = uint32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CE_DataType(pub c_uint);
 impl CE_DataType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_authoritykeyid?language=objc)
     pub const DT_AuthorityKeyID: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_subjectkeyid?language=objc)
     pub const DT_SubjectKeyID: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_keyusage?language=objc)
     pub const DT_KeyUsage: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_subjectaltname?language=objc)
     pub const DT_SubjectAltName: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_issueraltname?language=objc)
     pub const DT_IssuerAltName: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_extendedkeyusage?language=objc)
     pub const DT_ExtendedKeyUsage: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_basicconstraints?language=objc)
     pub const DT_BasicConstraints: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_certpolicies?language=objc)
     pub const DT_CertPolicies: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_netscapecerttype?language=objc)
     pub const DT_NetscapeCertType: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_crlnumber?language=objc)
     pub const DT_CrlNumber: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_deltacrl?language=objc)
     pub const DT_DeltaCrl: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_crlreason?language=objc)
     pub const DT_CrlReason: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_crldistributionpoints?language=objc)
     pub const DT_CrlDistributionPoints: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_issuingdistributionpoint?language=objc)
     pub const DT_IssuingDistributionPoint: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_authorityinfoaccess?language=objc)
     pub const DT_AuthorityInfoAccess: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_other?language=objc)
     pub const DT_Other: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_qc_statements?language=objc)
     pub const DT_QC_Statements: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_nameconstraints?language=objc)
     pub const DT_NameConstraints: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_policymappings?language=objc)
     pub const DT_PolicyMappings: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_policyconstraints?language=objc)
     pub const DT_PolicyConstraints: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/dt_inhibitanypolicy?language=objc)
     pub const DT_InhibitAnyPolicy: Self = Self(20);
 }
 

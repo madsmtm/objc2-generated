@@ -83,10 +83,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEComposeSessionErrorCode(pub NSInteger);
 impl MEComposeSessionErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerror/code/invalidrecipients?language=objc)
     #[doc(alias = "MEComposeSessionErrorCodeInvalidRecipients")]
     pub const InvalidRecipients: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerror/code/invalidheaders?language=objc)
     #[doc(alias = "MEComposeSessionErrorCodeInvalidHeaders")]
     pub const InvalidHeaders: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerror/code/invalidbody?language=objc)
     #[doc(alias = "MEComposeSessionErrorCodeInvalidBody")]
     pub const InvalidBody: Self = Self(2);
 }

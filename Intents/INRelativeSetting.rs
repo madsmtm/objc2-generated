@@ -11,18 +11,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRelativeSetting(pub NSInteger);
 impl INRelativeSetting {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting/unknown?language=objc)
     #[doc(alias = "INRelativeSettingUnknown")]
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting/lowest?language=objc)
     #[doc(alias = "INRelativeSettingLowest")]
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Lowest: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting/lower?language=objc)
     #[doc(alias = "INRelativeSettingLower")]
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Lower: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting/higher?language=objc)
     #[doc(alias = "INRelativeSettingHigher")]
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Higher: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting/highest?language=objc)
     #[doc(alias = "INRelativeSettingHighest")]
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Highest: Self = Self(4);

@@ -13,6 +13,8 @@ use crate::*;
 pub struct MPSCNNConvolutionFlags(pub NSUInteger);
 impl MPSCNNConvolutionFlags {
     /// Use default options
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionflags/none?language=objc)
     #[doc(alias = "MPSCNNConvolutionFlagsNone")]
     #[deprecated]
     pub const None: Self = Self(0);
@@ -33,9 +35,13 @@ unsafe impl RefEncode for MPSCNNConvolutionFlags {
 pub struct MPSCNNBinaryConvolutionFlags(pub NSUInteger);
 impl MPSCNNBinaryConvolutionFlags {
     /// Use default in binary convolution options
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags/none?language=objc)
     #[doc(alias = "MPSCNNBinaryConvolutionFlagsNone")]
     pub const None: Self = Self(0);
     /// Scale the binary convolution operation using the beta-image option as detailed in MPSCNNBinaryConvolution
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags/usebetascaling?language=objc)
     #[doc(alias = "MPSCNNBinaryConvolutionFlagsUseBetaScaling")]
     pub const UseBetaScaling: Self = Self(1 << 0);
 }
@@ -55,12 +61,18 @@ unsafe impl RefEncode for MPSCNNBinaryConvolutionFlags {
 pub struct MPSCNNBinaryConvolutionType(pub NSUInteger);
 impl MPSCNNBinaryConvolutionType {
     /// Otherwise a normal convolution operation, except that the weights are binary values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/binaryweights?language=objc)
     #[doc(alias = "MPSCNNBinaryConvolutionTypeBinaryWeights")]
     pub const BinaryWeights: Self = Self(0);
     /// Use input image binarization and the XNOR-operation to perform the actual convolution - See MPSCNNBinaryConvolution for details
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/xnor?language=objc)
     #[doc(alias = "MPSCNNBinaryConvolutionTypeXNOR")]
     pub const XNOR: Self = Self(1);
     /// Use input image binarization and the AND-operation to perform the actual convolution - See MPSCNNBinaryConvolution for details
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/and?language=objc)
     #[doc(alias = "MPSCNNBinaryConvolutionTypeAND")]
     pub const AND: Self = Self(2);
 }
@@ -81,9 +93,13 @@ pub struct MPSNNConvolutionAccumulatorPrecisionOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNConvolutionAccumulatorPrecisionOption: NSUInteger {
 /// Set accumulator type to half precision float.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconvolutionaccumulatorprecisionoption/half?language=objc)
         #[doc(alias = "MPSNNConvolutionAccumulatorPrecisionOptionHalf")]
         const Half = 0;
 /// Set accumulator type to single precision float.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconvolutionaccumulatorprecisionoption/float?language=objc)
         #[doc(alias = "MPSNNConvolutionAccumulatorPrecisionOptionFloat")]
         const Float = 1<<0;
     }
@@ -105,12 +121,18 @@ pub struct MPSNNTrainingStyle(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNTrainingStyle: NSUInteger {
 /// Do not train this node, for example in transfer learning
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle/updatedevicenone?language=objc)
         #[doc(alias = "MPSNNTrainingStyleUpdateDeviceNone")]
         const UpdateDeviceNone = 0;
 /// The weight update pass will be called in a command buffer completion callback, with a nil command buffer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle/updatedevicecpu?language=objc)
         #[doc(alias = "MPSNNTrainingStyleUpdateDeviceCPU")]
         const UpdateDeviceCPU = 1;
 /// The weight update pass will be called immediately after the gradient pass is encoded, with a nonnull command buffer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle/updatedevicegpu?language=objc)
         #[doc(alias = "MPSNNTrainingStyleUpdateDeviceGPU")]
         const UpdateDeviceGPU = 2;
     }
@@ -132,18 +154,28 @@ pub struct MPSCNNBatchNormalizationFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSCNNBatchNormalizationFlags: NSUInteger {
 /// Default Settings
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/default?language=objc)
         #[doc(alias = "MPSCNNBatchNormalizationFlagsDefault")]
         const Default = 0;
 /// Statistics are calculated if another node consumes the gradient node (training). The data source is used otherwise.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/calculatestatisticsautomatic?language=objc)
         #[doc(alias = "MPSCNNBatchNormalizationFlagsCalculateStatisticsAutomatic")]
         const CalculateStatisticsAutomatic = MPSCNNBatchNormalizationFlags::Default.0;
 /// Statistics are calculated always
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/calculatestatisticsalways?language=objc)
         #[doc(alias = "MPSCNNBatchNormalizationFlagsCalculateStatisticsAlways")]
         const CalculateStatisticsAlways = 1;
 /// Statistics are never calculated. Predefined values from the data source are used instead
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/calculatestatisticsnever?language=objc)
         #[doc(alias = "MPSCNNBatchNormalizationFlagsCalculateStatisticsNever")]
         const CalculateStatisticsNever = 2;
 /// Bits used for  MPSCNNBatchNormalizationFlagsCalculateStatistics
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/calculatestatisticsmask?language=objc)
         #[doc(alias = "MPSCNNBatchNormalizationFlagsCalculateStatisticsMask")]
         const CalculateStatisticsMask = 3;
     }
@@ -165,55 +197,86 @@ pub struct MPSNNPaddingMethod(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNPaddingMethod: NSUInteger {
 /// Extra padding pixels are distributed as evenly as possible to all sides
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/centered?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAlignCentered")]
         const AlignCentered = 0;
 /// Extra padding pixels appear on top and left sides
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/aligntopleft?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAlignTopLeft")]
         const AlignTopLeft = 1;
 /// Extra padding pixels appear on the bottom and right sides
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/alignbottomright?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAlignBottomRight")]
         const AlignBottomRight = 2;
 /// Extra padding pixels are not defined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/align_reserved?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAlign_reserved")]
         const Align_reserved = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/alignmask?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAlignMask")]
         const AlignMask = MPSNNPaddingMethod::Align_reserved.0;
 /// Extra padding pixels are accumulated to top and left sides
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/topleft?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAddRemainderToTopLeft")]
         const AddRemainderToTopLeft = 0<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/addremaindertotopright?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAddRemainderToTopRight")]
         const AddRemainderToTopRight = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/addremaindertobottomleft?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAddRemainderToBottomLeft")]
         const AddRemainderToBottomLeft = 2<<2;
 /// Extra padding pixels are accumulated to bottom and right sides
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/addremaindertobottomright?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAddRemainderToBottomRight")]
         const AddRemainderToBottomRight = 3<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/addremaindertomask?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAddRemainderToMask")]
         const AddRemainderToMask = MPSNNPaddingMethod::AddRemainderToBottomRight.0;
 /// The result is the largest image for which *all* source pixels are valid for result pixels
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/validonly?language=objc)
         #[doc(alias = "MPSNNPaddingMethodSizeValidOnly")]
         const SizeValidOnly = 0;
 /// The result is the same size as the input image (before strides)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/sizesame?language=objc)
         #[doc(alias = "MPSNNPaddingMethodSizeSame")]
         const SizeSame = 1<<4;
 /// The result is the largest image for which *any* source pixel is valid for result pixels
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/sizefull?language=objc)
         #[doc(alias = "MPSNNPaddingMethodSizeFull")]
         const SizeFull = 2<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/size_reserved?language=objc)
         #[doc(alias = "MPSNNPaddingMethodSize_reserved")]
         const Size_reserved = 3<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/customwhitelistfornodefusion?language=objc)
         #[doc(alias = "MPSNNPaddingMethodCustomWhitelistForNodeFusion")]
 #[deprecated]
         const CustomWhitelistForNodeFusion = 1<<13;
 /// By itself, MPSNNPaddingMethodCustom will inhibit automatic fusion between nodes producing and consuming the image described by the padding policy. MPSNNPaddingMethodCustomAllowForNodeFusion signals that the custom method is benign and fusion may go ahead.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/customallowfornodefusion?language=objc)
         #[doc(alias = "MPSNNPaddingMethodCustomAllowForNodeFusion")]
         const CustomAllowForNodeFusion = 1<<13;
 /// Use destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor: to calculate padding and offset.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/custom?language=objc)
         #[doc(alias = "MPSNNPaddingMethodCustom")]
         const Custom = 1<<14;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/sizemask?language=objc)
         #[doc(alias = "MPSNNPaddingMethodSizeMask")]
         const SizeMask = 0x7f0;
 /// The caffe framework constrains the average pooling area to the limits of the padding area in cases
 /// where a pixel would read beyond the padding area. Set this bit for Caffe emulation with average pooling.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/excludeedges?language=objc)
         #[doc(alias = "MPSNNPaddingMethodExcludeEdges")]
         const ExcludeEdges = 1<<15;
     }

@@ -20,15 +20,23 @@ use crate::*;
 pub struct CMFallDetectionEventUserResolution(pub NSInteger);
 impl CMFallDetectionEventUserResolution {
     /// the user confirmed the fall alert
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent/userresolution/confirmed?language=objc)
     #[doc(alias = "CMFallDetectionEventUserResolutionConfirmed")]
     pub const Confirmed: Self = Self(0);
     /// the user dismissed the fall alert either immediately or after a sequence of haptics and chimes
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent/userresolution/dismissed?language=objc)
     #[doc(alias = "CMFallDetectionEventUserResolutionDismissed")]
     pub const Dismissed: Self = Self(1);
     /// the user rejected the fall alert, indicating that they didn't fall
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent/userresolution/rejected?language=objc)
     #[doc(alias = "CMFallDetectionEventUserResolutionRejected")]
     pub const Rejected: Self = Self(2);
     /// the user did not respond to the fall alert and no recovery motion was detected
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent/userresolution/unresponsive?language=objc)
     #[doc(alias = "CMFallDetectionEventUserResolutionUnresponsive")]
     pub const Unresponsive: Self = Self(3);
 }

@@ -86,6 +86,7 @@ extern "C" {
     pub static UIContentSizeCategoryNewValueKey: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryisaccessibilitycategory?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIContentSizeCategoryIsAccessibilityCategory(
     category: &UIContentSizeCategory,
@@ -96,6 +97,7 @@ pub extern "C-unwind" fn UIContentSizeCategoryIsAccessibilityCategory(
     unsafe { UIContentSizeCategoryIsAccessibilityCategory(category) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategorycomparetocategory?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIContentSizeCategoryCompareToCategory(
     lhs: &UIContentSizeCategory,

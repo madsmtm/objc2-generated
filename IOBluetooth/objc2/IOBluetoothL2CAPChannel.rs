@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothL2CAPChannelEventType(pub c_uint);
 impl IOBluetoothL2CAPChannelEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypedata?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeData")]
     pub const Data: Self = Self(0x0001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypeopencomplete?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeOpenComplete")]
     pub const OpenComplete: Self = Self(0x0002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypeclosed?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeClosed")]
     pub const Closed: Self = Self(0x0003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypereconfigured?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeReconfigured")]
     pub const Reconfigured: Self = Self(0x0004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypewritecomplete?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeWriteComplete")]
     pub const WriteComplete: Self = Self(0x0005);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypequeuespaceavailable?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeQueueSpaceAvailable")]
     pub const QueueSpaceAvailable: Self = Self(0x0006);
 }

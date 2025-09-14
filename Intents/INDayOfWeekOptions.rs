@@ -11,18 +11,25 @@ use crate::*;
 pub struct INDayOfWeekOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INDayOfWeekOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/monday?language=objc)
         #[doc(alias = "INDayOfWeekOptionMonday")]
         const Monday = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/tuesday?language=objc)
         #[doc(alias = "INDayOfWeekOptionTuesday")]
         const Tuesday = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/wednesday?language=objc)
         #[doc(alias = "INDayOfWeekOptionWednesday")]
         const Wednesday = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/thursday?language=objc)
         #[doc(alias = "INDayOfWeekOptionThursday")]
         const Thursday = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/friday?language=objc)
         #[doc(alias = "INDayOfWeekOptionFriday")]
         const Friday = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/saturday?language=objc)
         #[doc(alias = "INDayOfWeekOptionSaturday")]
         const Saturday = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/sunday?language=objc)
         #[doc(alias = "INDayOfWeekOptionSunday")]
         const Sunday = 1<<6;
     }

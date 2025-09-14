@@ -15,21 +15,29 @@ impl SFSpeechRecognitionTaskHint {
     /// An unspecified type of task.
     ///
     /// Use this hint type when the intended use for captured speech does not match the other task types.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskhint/unspecified?language=objc)
     #[doc(alias = "SFSpeechRecognitionTaskHintUnspecified")]
     pub const Unspecified: Self = Self(0);
     /// A task that uses captured speech for text entry.
     ///
     /// Use this hint type when you are using speech recognition for a task that's similar to the keyboard's built-in dictation function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskhint/dictation?language=objc)
     #[doc(alias = "SFSpeechRecognitionTaskHintDictation")]
     pub const Dictation: Self = Self(1);
     /// A task that uses captured speech to specify search terms.
     ///
     /// Use this hint type when you are using speech recognition to identify search terms.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskhint/search?language=objc)
     #[doc(alias = "SFSpeechRecognitionTaskHintSearch")]
     pub const Search: Self = Self(2);
     /// A task that uses captured speech for short, confirmation-style requests.
     ///
     /// Use this hint type when you are using speech recognition to handle confirmation commands, such as "yes," "no," or "maybe."
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskhint/confirmation?language=objc)
     #[doc(alias = "SFSpeechRecognitionTaskHintConfirmation")]
     pub const Confirmation: Self = Self(3);
 }

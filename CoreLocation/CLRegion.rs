@@ -12,11 +12,14 @@ use crate::*;
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum CLRegionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clregionstate/unknown?language=objc)
     #[doc(alias = "CLRegionStateUnknown")]
     #[default]
     Unknown = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clregionstate/inside?language=objc)
     #[doc(alias = "CLRegionStateInside")]
     Inside = 1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clregionstate/outside?language=objc)
     #[doc(alias = "CLRegionStateOutside")]
     Outside = 2,
 }
@@ -35,12 +38,16 @@ unsafe impl RefEncode for CLRegionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLProximity(pub NSInteger);
 impl CLProximity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clproximity/unknown?language=objc)
     #[doc(alias = "CLProximityUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clproximity/immediate?language=objc)
     #[doc(alias = "CLProximityImmediate")]
     pub const Immediate: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clproximity/near?language=objc)
     #[doc(alias = "CLProximityNear")]
     pub const Near: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clproximity/far?language=objc)
     #[doc(alias = "CLProximityFar")]
     pub const Far: Self = Self(3);
 }

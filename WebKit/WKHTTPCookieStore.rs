@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKCookiePolicy(pub NSInteger);
 impl WKCookiePolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkhttpcookiestore/cookiepolicy/allow?language=objc)
     #[doc(alias = "WKCookiePolicyAllow")]
     pub const Allow: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkhttpcookiestore/cookiepolicy/disallow?language=objc)
     #[doc(alias = "WKCookiePolicyDisallow")]
     pub const Disallow: Self = Self(1);
 }

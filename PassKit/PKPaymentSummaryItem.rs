@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentSummaryItemType(pub NSUInteger);
 impl PKPaymentSummaryItemType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitemtype/final?language=objc)
     #[doc(alias = "PKPaymentSummaryItemTypeFinal")]
     pub const Final: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitemtype/pending?language=objc)
     #[doc(alias = "PKPaymentSummaryItemTypePending")]
     pub const Pending: Self = Self(1);
 }

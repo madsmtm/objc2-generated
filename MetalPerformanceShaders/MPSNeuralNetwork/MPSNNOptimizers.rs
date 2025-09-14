@@ -14,16 +14,21 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSNNRegularizationType(pub NSUInteger);
 impl MPSNNRegularizationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnregularizationtype/none?language=objc)
     #[doc(alias = "MPSNNRegularizationTypeNone")]
     pub const None: Self = Self(0);
     /// Apply L1 regularization. L1 norm of weights, will be considered to be added to the loss to be minimized.
     /// the gradient of the regularization loss turns to be 1 scaled with regularizationScale,
     /// so we add that to the incoming gradient of value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnregularizationtype/l1?language=objc)
     #[doc(alias = "MPSNNRegularizationTypeL1")]
     pub const L1: Self = Self(1);
     /// Apply L2 regularization. L2 norm of weights, will be considered to be added to the loss to be minimized.
     /// the gradient of the regularization loss turns to be the original value scaled with regularizationScale,
     /// so we add that to the incoming gradient of value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnregularizationtype/l2?language=objc)
     #[doc(alias = "MPSNNRegularizationTypeL2")]
     pub const L2: Self = Self(2);
 }

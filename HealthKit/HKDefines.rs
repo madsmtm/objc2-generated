@@ -27,39 +27,56 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKErrorCode(pub NSInteger);
 impl HKErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/unknownerror?language=objc)
     #[doc(alias = "HKUnknownError")]
     pub const UnknownError: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerrorcode/hknoerror?language=objc)
     #[doc(alias = "HKNoError")]
     #[deprecated]
     pub const NoError: Self = Self(HKErrorCode::UnknownError.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorhealthdataunavailable?language=objc)
     #[doc(alias = "HKErrorHealthDataUnavailable")]
     pub const ErrorHealthDataUnavailable: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorhealthdatarestricted?language=objc)
     #[doc(alias = "HKErrorHealthDataRestricted")]
     pub const ErrorHealthDataRestricted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorinvalidargument?language=objc)
     #[doc(alias = "HKErrorInvalidArgument")]
     pub const ErrorInvalidArgument: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorauthorizationdenied?language=objc)
     #[doc(alias = "HKErrorAuthorizationDenied")]
     pub const ErrorAuthorizationDenied: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorauthorizationnotdetermined?language=objc)
     #[doc(alias = "HKErrorAuthorizationNotDetermined")]
     pub const ErrorAuthorizationNotDetermined: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errordatabaseinaccessible?language=objc)
     #[doc(alias = "HKErrorDatabaseInaccessible")]
     pub const ErrorDatabaseInaccessible: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorusercanceled?language=objc)
     #[doc(alias = "HKErrorUserCanceled")]
     pub const ErrorUserCanceled: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/erroranotherworkoutsessionstarted?language=objc)
     #[doc(alias = "HKErrorAnotherWorkoutSessionStarted")]
     pub const ErrorAnotherWorkoutSessionStarted: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/erroruserexitedworkoutsession?language=objc)
     #[doc(alias = "HKErrorUserExitedWorkoutSession")]
     pub const ErrorUserExitedWorkoutSession: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorrequiredauthorizationdenied?language=objc)
     #[doc(alias = "HKErrorRequiredAuthorizationDenied")]
     pub const ErrorRequiredAuthorizationDenied: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errornodata?language=objc)
     #[doc(alias = "HKErrorNoData")]
     pub const ErrorNoData: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorworkoutactivitynotallowed?language=objc)
     #[doc(alias = "HKErrorWorkoutActivityNotAllowed")]
     pub const ErrorWorkoutActivityNotAllowed: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errordatasizeexceeded?language=objc)
     #[doc(alias = "HKErrorDataSizeExceeded")]
     pub const ErrorDataSizeExceeded: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorbackgroundworkoutsessionnotallowed?language=objc)
     #[doc(alias = "HKErrorBackgroundWorkoutSessionNotAllowed")]
     pub const ErrorBackgroundWorkoutSessionNotAllowed: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errornotpermissibleforguestusermode?language=objc)
     #[doc(alias = "HKErrorNotPermissibleForGuestUserMode")]
     pub const ErrorNotPermissibleForGuestUserMode: Self = Self(15);
 }
@@ -78,12 +95,16 @@ unsafe impl RefEncode for HKErrorCode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKUpdateFrequency(pub NSInteger);
 impl HKUpdateFrequency {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkupdatefrequency/immediate?language=objc)
     #[doc(alias = "HKUpdateFrequencyImmediate")]
     pub const Immediate: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkupdatefrequency/hourly?language=objc)
     #[doc(alias = "HKUpdateFrequencyHourly")]
     pub const Hourly: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkupdatefrequency/daily?language=objc)
     #[doc(alias = "HKUpdateFrequencyDaily")]
     pub const Daily: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkupdatefrequency/weekly?language=objc)
     #[doc(alias = "HKUpdateFrequencyWeekly")]
     pub const Weekly: Self = Self(4);
 }
@@ -108,10 +129,13 @@ unsafe impl RefEncode for HKUpdateFrequency {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAuthorizationStatus(pub NSInteger);
 impl HKAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "HKAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus/sharingdenied?language=objc)
     #[doc(alias = "HKAuthorizationStatusSharingDenied")]
     pub const SharingDenied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus/sharingauthorized?language=objc)
     #[doc(alias = "HKAuthorizationStatusSharingAuthorized")]
     pub const SharingAuthorized: Self = Self(2);
 }
@@ -135,10 +159,13 @@ unsafe impl RefEncode for HKAuthorizationStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAuthorizationRequestStatus(pub NSInteger);
 impl HKAuthorizationRequestStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus/unknown?language=objc)
     #[doc(alias = "HKAuthorizationRequestStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus/shouldrequest?language=objc)
     #[doc(alias = "HKAuthorizationRequestStatusShouldRequest")]
     pub const ShouldRequest: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus/unnecessary?language=objc)
     #[doc(alias = "HKAuthorizationRequestStatusUnnecessary")]
     pub const Unnecessary: Self = Self(2);
 }
@@ -152,6 +179,8 @@ unsafe impl RefEncode for HKAuthorizationRequestStatus {
 }
 
 /// Returns the set of `HKCategoryValueSleepAnalysis` values that are considered to be asleep.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysisasleepvalues?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn HKCategoryValueSleepAnalysisAsleepValues(
 ) -> Retained<NSSet<NSNumber>> {

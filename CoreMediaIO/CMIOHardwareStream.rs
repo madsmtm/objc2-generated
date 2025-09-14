@@ -231,6 +231,8 @@ extern "C-unwind" {
     /// - `queue_altered_proc` must be implemented correctly.
     /// - `queue_altered_ref_con` must be a valid pointer.
     /// - `queue` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamcopybufferqueue(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CMIOHardwareObject", feature = "objc2-core-media"))]
     pub fn CMIOStreamCopyBufferQueue(
         stream_id: CMIOStreamID,
@@ -246,6 +248,8 @@ impl CMIOStreamDeck {
     /// Parameter `streamID`: The CMIOStream whose deck controls are being manipulated.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamdeckplay(_:)?language=objc)
     #[doc(alias = "CMIOStreamDeckPlay")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
@@ -261,6 +265,8 @@ impl CMIOStreamDeck {
     /// Parameter `streamID`: The CMIOStream whose deck controls are being manipulated.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamdeckstop(_:)?language=objc)
     #[doc(alias = "CMIOStreamDeckStop")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
@@ -278,6 +284,8 @@ impl CMIOStreamDeck {
     /// Parameter `speed`: One of the CMIO Deck Shuttle Speed constants to specify the speed of movement of the associated deck.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamdeckjog(_:_:)?language=objc)
     #[doc(alias = "CMIOStreamDeckJog")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
@@ -297,6 +305,8 @@ impl CMIOStreamDeck {
     /// Parameter `playOnCue`: An indicator that the deck should start playing when the cue-to point is reached.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamdeckcueto(_:_:_:)?language=objc)
     #[doc(alias = "CMIOStreamDeckCueTo")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
@@ -343,6 +353,8 @@ extern "C-unwind" {
     /// - `clock_name` might not allow `None`.
     /// - `source_identifier` must be a valid pointer.
     /// - `clock` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamclockcreate(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOStreamClockCreate(
         allocator: Option<&CFAllocator>,
@@ -375,6 +387,8 @@ extern "C-unwind" {
 ///
 /// - `clock` should be of the correct type.
 /// - `clock` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamclockposttimingevent(_:_:_:_:)?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CMIOStreamClockPostTimingEvent(
@@ -409,6 +423,8 @@ extern "C-unwind" {
     ///
     /// - `clock` should be of the correct type.
     /// - `clock` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamclockinvalidate(_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMIOStreamClockInvalidate(clock: Option<&CFType>) -> OSStatus;
 }
@@ -426,6 +442,8 @@ extern "C-unwind" {
     ///
     /// - `clock` should be of the correct type.
     /// - `clock` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamclockconverthosttimetodevicetime(_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOStreamClockConvertHostTimeToDeviceTime(
         host_time: u64,

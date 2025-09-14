@@ -19,12 +19,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTransitionDirection(pub NSInteger);
 impl SKTransitionDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransitiondirection/up?language=objc)
     #[doc(alias = "SKTransitionDirectionUp")]
     pub const Up: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransitiondirection/down?language=objc)
     #[doc(alias = "SKTransitionDirectionDown")]
     pub const Down: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransitiondirection/right?language=objc)
     #[doc(alias = "SKTransitionDirectionRight")]
     pub const Right: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransitiondirection/left?language=objc)
     #[doc(alias = "SKTransitionDirectionLeft")]
     pub const Left: Self = Self(3);
 }

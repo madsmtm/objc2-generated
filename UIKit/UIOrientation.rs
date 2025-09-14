@@ -10,18 +10,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDeviceOrientation(pub NSInteger);
 impl UIDeviceOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/unknown?language=objc)
     #[doc(alias = "UIDeviceOrientationUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/portrait?language=objc)
     #[doc(alias = "UIDeviceOrientationPortrait")]
     pub const Portrait: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/portraitupsidedown?language=objc)
     #[doc(alias = "UIDeviceOrientationPortraitUpsideDown")]
     pub const PortraitUpsideDown: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/landscapeleft?language=objc)
     #[doc(alias = "UIDeviceOrientationLandscapeLeft")]
     pub const LandscapeLeft: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/landscaperight?language=objc)
     #[doc(alias = "UIDeviceOrientationLandscapeRight")]
     pub const LandscapeRight: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/faceup?language=objc)
     #[doc(alias = "UIDeviceOrientationFaceUp")]
     pub const FaceUp: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/facedown?language=objc)
     #[doc(alias = "UIDeviceOrientationFaceDown")]
     pub const FaceDown: Self = Self(6);
 }
@@ -50,14 +57,19 @@ impl UIDeviceOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIInterfaceOrientation(pub NSInteger);
 impl UIInterfaceOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/unknown?language=objc)
     #[doc(alias = "UIInterfaceOrientationUnknown")]
     pub const Unknown: Self = Self(UIDeviceOrientation::Unknown.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/portrait?language=objc)
     #[doc(alias = "UIInterfaceOrientationPortrait")]
     pub const Portrait: Self = Self(UIDeviceOrientation::Portrait.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/portraitupsidedown?language=objc)
     #[doc(alias = "UIInterfaceOrientationPortraitUpsideDown")]
     pub const PortraitUpsideDown: Self = Self(UIDeviceOrientation::PortraitUpsideDown.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/landscapeleft?language=objc)
     #[doc(alias = "UIInterfaceOrientationLandscapeLeft")]
     pub const LandscapeLeft: Self = Self(UIDeviceOrientation::LandscapeRight.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/landscaperight?language=objc)
     #[doc(alias = "UIInterfaceOrientationLandscapeRight")]
     pub const LandscapeRight: Self = Self(UIDeviceOrientation::LandscapeLeft.0);
 }
@@ -77,18 +89,25 @@ unsafe impl RefEncode for UIInterfaceOrientation {
 pub struct UIInterfaceOrientationMask(pub NSUInteger);
 bitflags::bitflags! {
     impl UIInterfaceOrientationMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/portrait?language=objc)
         #[doc(alias = "UIInterfaceOrientationMaskPortrait")]
         const Portrait = 1<<UIInterfaceOrientation::Portrait.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/landscapeleft?language=objc)
         #[doc(alias = "UIInterfaceOrientationMaskLandscapeLeft")]
         const LandscapeLeft = 1<<UIInterfaceOrientation::LandscapeLeft.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/landscaperight?language=objc)
         #[doc(alias = "UIInterfaceOrientationMaskLandscapeRight")]
         const LandscapeRight = 1<<UIInterfaceOrientation::LandscapeRight.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/portraitupsidedown?language=objc)
         #[doc(alias = "UIInterfaceOrientationMaskPortraitUpsideDown")]
         const PortraitUpsideDown = 1<<UIInterfaceOrientation::PortraitUpsideDown.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/landscape?language=objc)
         #[doc(alias = "UIInterfaceOrientationMaskLandscape")]
         const Landscape = UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/all?language=objc)
         #[doc(alias = "UIInterfaceOrientationMaskAll")]
         const All = UIInterfaceOrientationMask::Portrait.0|UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0|UIInterfaceOrientationMask::PortraitUpsideDown.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/allbutupsidedown?language=objc)
         #[doc(alias = "UIInterfaceOrientationMaskAllButUpsideDown")]
         const AllButUpsideDown = UIInterfaceOrientationMask::Portrait.0|UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0;
     }

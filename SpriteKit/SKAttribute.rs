@@ -13,22 +13,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKAttributeType(pub NSInteger);
 impl SKAttributeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/none?language=objc)
     #[doc(alias = "SKAttributeTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/float?language=objc)
     #[doc(alias = "SKAttributeTypeFloat")]
     pub const Float: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorfloat2?language=objc)
     #[doc(alias = "SKAttributeTypeVectorFloat2")]
     pub const VectorFloat2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorfloat3?language=objc)
     #[doc(alias = "SKAttributeTypeVectorFloat3")]
     pub const VectorFloat3: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorfloat4?language=objc)
     #[doc(alias = "SKAttributeTypeVectorFloat4")]
     pub const VectorFloat4: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/halffloat?language=objc)
     #[doc(alias = "SKAttributeTypeHalfFloat")]
     pub const HalfFloat: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorhalffloat2?language=objc)
     #[doc(alias = "SKAttributeTypeVectorHalfFloat2")]
     pub const VectorHalfFloat2: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorhalffloat3?language=objc)
     #[doc(alias = "SKAttributeTypeVectorHalfFloat3")]
     pub const VectorHalfFloat3: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorhalffloat4?language=objc)
     #[doc(alias = "SKAttributeTypeVectorHalfFloat4")]
     pub const VectorHalfFloat4: Self = Self(8);
 }

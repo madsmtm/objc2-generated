@@ -89,12 +89,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLHandleStatus(pub NSUInteger);
 impl NSURLHandleStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle/status-swift.enum/notloaded?language=objc)
     #[doc(alias = "NSURLHandleNotLoaded")]
     pub const NotLoaded: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle/status-swift.enum/loadsucceeded?language=objc)
     #[doc(alias = "NSURLHandleLoadSucceeded")]
     pub const LoadSucceeded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle/status-swift.enum/loadinprogress?language=objc)
     #[doc(alias = "NSURLHandleLoadInProgress")]
     pub const LoadInProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle/status-swift.enum/loadfailed?language=objc)
     #[doc(alias = "NSURLHandleLoadFailed")]
     pub const LoadFailed: Self = Self(3);
 }

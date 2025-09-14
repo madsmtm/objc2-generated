@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPopUpArrowPosition(pub NSUInteger);
 impl NSPopUpArrowPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton/arrowposition/noarrow?language=objc)
     #[doc(alias = "NSPopUpNoArrow")]
     pub const NoArrow: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton/arrowposition/arrowatcenter?language=objc)
     #[doc(alias = "NSPopUpArrowAtCenter")]
     pub const ArrowAtCenter: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton/arrowposition/arrowatbottom?language=objc)
     #[doc(alias = "NSPopUpArrowAtBottom")]
     pub const ArrowAtBottom: Self = Self(2);
 }

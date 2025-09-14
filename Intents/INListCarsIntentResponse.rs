@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INListCarsIntentResponseCode(pub NSInteger);
 impl INListCarsIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INListCarsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/ready?language=objc)
     #[doc(alias = "INListCarsIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INListCarsIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/success?language=objc)
     #[doc(alias = "INListCarsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/failure?language=objc)
     #[doc(alias = "INListCarsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INListCarsIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }

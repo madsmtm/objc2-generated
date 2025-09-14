@@ -62,6 +62,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for VTHDRPerFrameMetadataGenerationSession {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vthdrperframemetadatagenerationsessiongettypeid?language=objc)
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -87,6 +88,8 @@ impl VTHDRPerFrameMetadataGenerationSession {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `hdr_per_frame_metadata_generation_session_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vthdrperframemetadatagenerationsessioncreate?language=objc)
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionCreate")]
     #[inline]
     pub unsafe fn create(
@@ -125,6 +128,8 @@ impl VTHDRPerFrameMetadataGenerationSession {
     /// Parameter `pixelBuffer`:
     /// Parameter `sceneChange`: If this frame changes significantly in brightness from the previous frame, for example going from an indoor scene to an outdoor scene or
     /// from a night scene to a daytime scene, set this to true.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vthdrperframemetadatagenerationsessionattachmetadata?language=objc)
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionAttachMetadata")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]

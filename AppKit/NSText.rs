@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingDirection(pub NSInteger);
 impl NSWritingDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirection/natural?language=objc)
     #[doc(alias = "NSWritingDirectionNatural")]
     pub const Natural: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirection/lefttoright?language=objc)
     #[doc(alias = "NSWritingDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirection/righttoleft?language=objc)
     #[doc(alias = "NSWritingDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -35,8 +38,10 @@ unsafe impl RefEncode for NSWritingDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextAlignment(pub NSInteger);
 impl NSTextAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalignment/left?language=objc)
     #[doc(alias = "NSTextAlignmentLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalignment/justified?language=objc)
     #[doc(alias = "NSTextAlignmentJustified")]
     pub const Justified: Self = Self(3);
     /// Resolved to either ``left`` or ``right`` based on the natural alignment resolution type active in the associated component.
@@ -44,6 +49,8 @@ impl NSTextAlignment {
     /// There are two types of natural alignment resolution behavior. The natural alignment is resolved based on either the UI language or the base writing direction.
     /// The behavior is selected by the ``resolvesNaturalAlignmentWithBaseWritingDirection`` property for ``NSTextLayoutManager``.
     /// ``NSStringDrawingOptions.resolvesNaturalAlignmentWithBaseWritingDirection`` specifies the base writing direction based resolution for ``NSStringDrawing``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalignment/natural?language=objc)
     #[doc(alias = "NSTextAlignmentNatural")]
     pub const Natural: Self = Self(4);
 }
@@ -580,22 +587,31 @@ pub const NSParagraphSeparatorCharacter: c_uint = 0x2029;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextMovement(pub NSInteger);
 impl NSTextMovement {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/return?language=objc)
     #[doc(alias = "NSTextMovementReturn")]
     pub const Return: Self = Self(0x10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/tab?language=objc)
     #[doc(alias = "NSTextMovementTab")]
     pub const Tab: Self = Self(0x11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/backtab?language=objc)
     #[doc(alias = "NSTextMovementBacktab")]
     pub const Backtab: Self = Self(0x12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/left?language=objc)
     #[doc(alias = "NSTextMovementLeft")]
     pub const Left: Self = Self(0x13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/right?language=objc)
     #[doc(alias = "NSTextMovementRight")]
     pub const Right: Self = Self(0x14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/up?language=objc)
     #[doc(alias = "NSTextMovementUp")]
     pub const Up: Self = Self(0x15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/down?language=objc)
     #[doc(alias = "NSTextMovementDown")]
     pub const Down: Self = Self(0x16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/cancel?language=objc)
     #[doc(alias = "NSTextMovementCancel")]
     pub const Cancel: Self = Self(0x17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/other?language=objc)
     #[doc(alias = "NSTextMovementOther")]
     pub const Other: Self = Self(0);
 }

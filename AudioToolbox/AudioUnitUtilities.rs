@@ -35,12 +35,16 @@ pub const kAUParameterListener_AnyParameter: AudioUnitParameterID = 0xFFFFFFFF;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioUnitEventType(pub u32);
 impl AudioUnitEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiouniteventtype/parametervaluechange?language=objc)
     #[doc(alias = "kAudioUnitEvent_ParameterValueChange")]
     pub const ParameterValueChange: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiouniteventtype/beginparameterchangegesture?language=objc)
     #[doc(alias = "kAudioUnitEvent_BeginParameterChangeGesture")]
     pub const BeginParameterChangeGesture: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiouniteventtype/endparameterchangegesture?language=objc)
     #[doc(alias = "kAudioUnitEvent_EndParameterChangeGesture")]
     pub const EndParameterChangeGesture: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiouniteventtype/propertychange?language=objc)
     #[doc(alias = "kAudioUnitEvent_PropertyChange")]
     pub const PropertyChange: Self = Self(3);
 }
@@ -141,6 +145,8 @@ extern "C-unwind" {
     /// - `out_listener` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aulistenercreatewithdispatchqueue(_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "AUComponent",
         feature = "AudioComponent",
@@ -187,6 +193,8 @@ extern "C-unwind" {
     /// - `in_user_data` must be a valid pointer.
     /// - `in_run_loop` possibly has additional threading requirements.
     /// - `out_listener` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aulistenercreate(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "AUComponent",
         feature = "AudioComponent",
@@ -210,6 +218,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_listener` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aulistenerdispose(_:)?language=objc)
     pub fn AUListenerDispose(in_listener: AUParameterListenerRef) -> OSStatus;
 }
 
@@ -233,6 +243,8 @@ extern "C-unwind" {
     /// - `in_listener` must be a valid pointer.
     /// - `in_object` must be a valid pointer or null.
     /// - `in_parameter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aulisteneraddparameter(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUListenerAddParameter(
         in_listener: AUParameterListenerRef,
@@ -255,6 +267,8 @@ extern "C-unwind" {
     /// - `in_listener` must be a valid pointer.
     /// - `in_object` must be a valid pointer or null.
     /// - `in_parameter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aulistenerremoveparameter(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUListenerRemoveParameter(
         in_listener: AUParameterListenerRef,
@@ -290,6 +304,8 @@ extern "C-unwind" {
     /// - `in_sending_listener` must be a valid pointer or null.
     /// - `in_sending_object` must be a valid pointer or null.
     /// - `in_parameter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterset(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterSet(
         in_sending_listener: AUParameterListenerRef,
@@ -330,6 +346,8 @@ extern "C-unwind" {
     /// - `in_sending_listener` must be a valid pointer or null.
     /// - `in_sending_object` must be a valid pointer or null.
     /// - `in_parameter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterlistenernotify(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterListenerNotify(
         in_sending_listener: AUParameterListenerRef,
@@ -352,6 +370,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_parameter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametervaluefromlinear(_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterValueFromLinear(
         in_linear_value: f32,
@@ -374,6 +394,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_parameter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametervaluetolinear(_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterValueToLinear(
         in_parameter_value: AudioUnitParameterValue,
@@ -416,6 +438,8 @@ extern "C-unwind" {
 ///
 /// - `in_parameter` must be a valid pointer.
 /// - `in_text_buffer` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterformatvalue(_:_:_:_:)?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
 pub unsafe extern "C-unwind" fn AUParameterFormatValue(

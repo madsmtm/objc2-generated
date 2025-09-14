@@ -14,8 +14,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKVisionPrescriptionType(pub NSUInteger);
 impl HKVisionPrescriptionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescriptiontype/glasses?language=objc)
     #[doc(alias = "HKVisionPrescriptionTypeGlasses")]
     pub const Glasses: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescriptiontype/contacts?language=objc)
     #[doc(alias = "HKVisionPrescriptionTypeContacts")]
     pub const Contacts: Self = Self(2);
 }

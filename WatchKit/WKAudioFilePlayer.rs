@@ -14,12 +14,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAudioFilePlayerStatus(pub NSInteger);
 impl WKAudioFilePlayerStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayerstatus/unknown?language=objc)
     #[doc(alias = "WKAudioFilePlayerStatusUnknown")]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayerstatus/readytoplay?language=objc)
     #[doc(alias = "WKAudioFilePlayerStatusReadyToPlay")]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const ReadyToPlay: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayerstatus/failed?language=objc)
     #[doc(alias = "WKAudioFilePlayerStatusFailed")]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const Failed: Self = Self(2);

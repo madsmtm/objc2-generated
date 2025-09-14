@@ -12,6 +12,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIUserClientVersion(pub c_uint);
 impl IOUSBHostCIUserClientVersion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciuserclientversion100?language=objc)
     #[doc(alias = "IOUSBHostCIUserClientVersion100")]
     pub const Version100: Self = Self(0);
 }
@@ -49,30 +50,43 @@ unsafe impl RefEncode for IOUSBHostCIUserClientVersion {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIExceptionType(pub c_uint);
 impl IOUSBHostCIExceptionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypeunknown?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypecapabilitiesinvalid?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeCapabilitiesInvalid")]
     pub const CapabilitiesInvalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypeterminated?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeTerminated")]
     pub const Terminated: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypecommandreadcollision?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeCommandReadCollision")]
     pub const CommandReadCollision: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypecommandwritefailed?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeCommandWriteFailed")]
     pub const CommandWriteFailed: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypecommandtimeout?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeCommandTimeout")]
     pub const CommandTimeout: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypecommandfailure?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeCommandFailure")]
     pub const CommandFailure: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypeinterruptinvalid?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeInterruptInvalid")]
     pub const InterruptInvalid: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypeinterruptoverflow?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeInterruptOverflow")]
     pub const InterruptOverflow: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypedoorbellreadcollision?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeDoorbellReadCollision")]
     pub const DoorbellReadCollision: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypedoorbelloverflow?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeDoorbellOverflow")]
     pub const DoorbellOverflow: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypeprotocolerror?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeProtocolError")]
     pub const ProtocolError: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypeframeupdateerror?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeFrameUpdateError")]
     pub const FrameUpdateError: Self = Self(12);
 }
@@ -92,78 +106,115 @@ unsafe impl RefEncode for IOUSBHostCIExceptionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIMessageType(pub c_uint);
 impl IOUSBHostCIMessageType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypecontrollercapabilities?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeControllerCapabilities")]
     pub const ControllerCapabilities: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeportcapabilities?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypePortCapabilities")]
     pub const PortCapabilities: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeportevent?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypePortEvent")]
     pub const PortEvent: Self = Self(0x8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeframenumberupdate?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeFrameNumberUpdate")]
     pub const FrameNumberUpdate: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeframetimestampupdate?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeFrameTimestampUpdate")]
     pub const FrameTimestampUpdate: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypecommandmin?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeCommandMin")]
     pub const CommandMin: Self = Self(0x10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypecontrollerpoweron?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeControllerPowerOn")]
     pub const ControllerPowerOn: Self = Self(0x10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypecontrollerpoweroff?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeControllerPowerOff")]
     pub const ControllerPowerOff: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypecontrollerstart?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeControllerStart")]
     pub const ControllerStart: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypecontrollerpause?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeControllerPause")]
     pub const ControllerPause: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypecontrollerframenumber?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeControllerFrameNumber")]
     pub const ControllerFrameNumber: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeportpoweron?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypePortPowerOn")]
     pub const PortPowerOn: Self = Self(0x18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeportpoweroff?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypePortPowerOff")]
     pub const PortPowerOff: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeportresume?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypePortResume")]
     pub const PortResume: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeportsuspend?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypePortSuspend")]
     pub const PortSuspend: Self = Self(27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeportreset?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypePortReset")]
     pub const PortReset: Self = Self(28);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeportdisable?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypePortDisable")]
     pub const PortDisable: Self = Self(29);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeportstatus?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypePortStatus")]
     pub const PortStatus: Self = Self(30);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypedevicecreate?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeDeviceCreate")]
     pub const DeviceCreate: Self = Self(0x20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypedevicedestroy?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeDeviceDestroy")]
     pub const DeviceDestroy: Self = Self(33);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypedevicestart?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeDeviceStart")]
     pub const DeviceStart: Self = Self(34);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypedevicepause?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeDevicePause")]
     pub const DevicePause: Self = Self(35);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypedeviceupdate?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeDeviceUpdate")]
     pub const DeviceUpdate: Self = Self(36);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeendpointcreate?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeEndpointCreate")]
     pub const EndpointCreate: Self = Self(0x28);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeendpointdestroy?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeEndpointDestroy")]
     pub const EndpointDestroy: Self = Self(41);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeendpoint_reserved_?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeEndpoint_reserved_")]
     pub const Endpoint_reserved_: Self = Self(42);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeendpointpause?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeEndpointPause")]
     pub const EndpointPause: Self = Self(43);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeendpointupdate?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeEndpointUpdate")]
     pub const EndpointUpdate: Self = Self(44);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeendpointreset?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeEndpointReset")]
     pub const EndpointReset: Self = Self(45);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeendpointsetnexttransfer?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeEndpointSetNextTransfer")]
     pub const EndpointSetNextTransfer: Self = Self(46);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypecommandmax?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeCommandMax")]
     pub const CommandMax: Self = Self(0x37);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypesetuptransfer?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeSetupTransfer")]
     pub const SetupTransfer: Self = Self(0x38);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypenormaltransfer?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeNormalTransfer")]
     pub const NormalTransfer: Self = Self(57);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypestatustransfer?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeStatusTransfer")]
     pub const StatusTransfer: Self = Self(58);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypeisochronoustransfer?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeIsochronousTransfer")]
     pub const IsochronousTransfer: Self = Self(59);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypelink?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeLink")]
     pub const Link: Self = Self(60);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypetransfercomplete?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeTransferComplete")]
     pub const TransferComplete: Self = Self(61);
 }
@@ -183,32 +234,46 @@ unsafe impl RefEncode for IOUSBHostCIMessageType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIMessageStatus(pub c_uint);
 impl IOUSBHostCIMessageStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusreserved?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusReserved")]
     pub const Reserved: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatussuccess?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusSuccess")]
     pub const Success: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusoffline?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusOffline")]
     pub const Offline: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusnotpermitted?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusNotPermitted")]
     pub const NotPermitted: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusbadargument?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusBadArgument")]
     pub const BadArgument: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatustimeout?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusTimeout")]
     pub const Timeout: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusnoresources?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusNoResources")]
     pub const NoResources: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusendpointstopped?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusEndpointStopped")]
     pub const EndpointStopped: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusprotocolerror?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusProtocolError")]
     pub const ProtocolError: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatustransactionerror?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusTransactionError")]
     pub const TransactionError: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusoverrunerror?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusOverrunError")]
     pub const OverrunError: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusstallerror?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusStallError")]
     pub const StallError: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusmissedserviceerror?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusMissedServiceError")]
     pub const MissedServiceError: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatuserror?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusError")]
     pub const Error: Self = Self(13);
 }
@@ -228,25 +293,32 @@ unsafe impl RefEncode for IOUSBHostCIMessageStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIDeviceSpeed(pub c_uint);
 impl IOUSBHostCIDeviceSpeed {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicespeednone?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceSpeedNone")]
     #[cfg(feature = "objc2-io-kit")]
     pub const None: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedNone.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicespeedfull?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceSpeedFull")]
     #[cfg(feature = "objc2-io-kit")]
     pub const Full: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedFull.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicespeedlow?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceSpeedLow")]
     #[cfg(feature = "objc2-io-kit")]
     pub const Low: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedLow.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicespeedhigh?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceSpeedHigh")]
     #[cfg(feature = "objc2-io-kit")]
     pub const High: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedHigh.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicespeedsuper?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceSpeedSuper")]
     #[cfg(feature = "objc2-io-kit")]
     pub const Super: Self = Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuper.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicespeedsuperplus?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceSpeedSuperPlus")]
     #[cfg(feature = "objc2-io-kit")]
     pub const SuperPlus: Self =
         Self(tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuperPlus.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicespeedsuperplusby2?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceSpeedSuperPlusBy2")]
     #[cfg(feature = "objc2-io-kit")]
     pub const SuperPlusBy2: Self =
@@ -268,30 +340,43 @@ unsafe impl RefEncode for IOUSBHostCIDeviceSpeed {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCILinkState(pub c_uint);
 impl IOUSBHostCILinkState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstateu0?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateU0")]
     pub const U0: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstateu1?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateU1")]
     pub const U1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstateu2?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateU2")]
     pub const U2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstateu3?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateU3")]
     pub const U3: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstatedisabled?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateDisabled")]
     pub const Disabled: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstaterxdetect?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateRxDetect")]
     pub const RxDetect: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstateinactive?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateInactive")]
     pub const Inactive: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstatepolling?language=objc)
     #[doc(alias = "IOUSBHostCILinkStatePolling")]
     pub const Polling: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstaterecovery?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateRecovery")]
     pub const Recovery: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstatereset?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateReset")]
     pub const Reset: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstatecompliance?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateCompliance")]
     pub const Compliance: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstatetest?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateTest")]
     pub const Test: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstateresume?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateResume")]
     pub const Resume: Self = Self(15);
 }
@@ -501,10 +586,13 @@ pub const IOUSBHostCICommandMessageData0StreamIDPhase: c_uint = IOUSBBitRangePha
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIControllerState(pub c_uint);
 impl IOUSBHostCIControllerState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstateoff?language=objc)
     #[doc(alias = "IOUSBHostCIControllerStateOff")]
     pub const Off: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatepaused?language=objc)
     #[doc(alias = "IOUSBHostCIControllerStatePaused")]
     pub const Paused: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstateactive?language=objc)
     #[doc(alias = "IOUSBHostCIControllerStateActive")]
     pub const Active: Self = Self(2);
 }
@@ -529,12 +617,16 @@ unsafe impl RefEncode for IOUSBHostCIControllerState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIPortState(pub c_uint);
 impl IOUSBHostCIPortState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciportstateoff?language=objc)
     #[doc(alias = "IOUSBHostCIPortStateOff")]
     pub const Off: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciportstatepowered?language=objc)
     #[doc(alias = "IOUSBHostCIPortStatePowered")]
     pub const Powered: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciportstatesuspended?language=objc)
     #[doc(alias = "IOUSBHostCIPortStateSuspended")]
     pub const Suspended: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciportstateactive?language=objc)
     #[doc(alias = "IOUSBHostCIPortStateActive")]
     pub const Active: Self = Self(3);
 }
@@ -592,10 +684,13 @@ pub const IOUSBHostCIPortStatusCommandData1ChangeMask: c_uint = IOUSBHostCIPortS
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIDeviceState(pub c_uint);
 impl IOUSBHostCIDeviceState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatedestroyed?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceStateDestroyed")]
     pub const Destroyed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatepaused?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceStatePaused")]
     pub const Paused: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestateactive?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceStateActive")]
     pub const Active: Self = Self(2);
 }
@@ -648,12 +743,16 @@ pub const IOUSBHostCIDeviceUpdateCommandData1DescriptorAddressPhase: c_ulong =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIEndpointState(pub c_uint);
 impl IOUSBHostCIEndpointState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatedestroyed?language=objc)
     #[doc(alias = "IOUSBHostCIEndpointStateDestroyed")]
     pub const Destroyed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatehalted?language=objc)
     #[doc(alias = "IOUSBHostCIEndpointStateHalted")]
     pub const Halted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatepaused?language=objc)
     #[doc(alias = "IOUSBHostCIEndpointStatePaused")]
     pub const Paused: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstateactive?language=objc)
     #[doc(alias = "IOUSBHostCIEndpointStateActive")]
     pub const Active: Self = Self(3);
 }

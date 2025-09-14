@@ -22,6 +22,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: YES if the rect is the identity rect; otherwise, NO.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnnormalizedrectisidentityrect(_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNNormalizedRectIsIdentityRect(normalized_rect: CGRect) -> bool;
 }
@@ -40,6 +42,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: the point in image coordinates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagepointfornormalizedpoint(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNImagePointForNormalizedPoint(
         normalized_point: CGPoint,
@@ -65,6 +69,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: the point in image coordinates from a normalized point that was reported in relation to a region of interest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagepointfornormalizedpointusingregionofinterest(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNImagePointForNormalizedPointUsingRegionOfInterest(
         normalized_point: CGPoint,
@@ -88,6 +94,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: the point in normalized coordinates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnnormalizedpointforimagepoint(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNNormalizedPointForImagePoint(
         image_point: CGPoint,
@@ -113,6 +121,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: the point in normalized coordinates in relation to the region of interest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnnormalizedpointforimagepointusingregionofinterest(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNNormalizedPointForImagePointUsingRegionOfInterest(
         image_point: CGPoint,
@@ -136,6 +146,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: the rectangle in pixel coordinates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagerectfornormalizedrect(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNImageRectForNormalizedRect(
         normalized_rect: CGRect,
@@ -161,6 +173,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: the rectangle in pixel coordinates from a normalized rectangle that was reported in relation to a region of interest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagerectfornormalizedrectusingregionofinterest(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNImageRectForNormalizedRectUsingRegionOfInterest(
         normalized_rect: CGRect,
@@ -184,6 +198,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: the normalized rectangle.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnnormalizedrectforimagerect(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNNormalizedRectForImageRect(
         image_rect: CGRect,
@@ -209,6 +225,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: the normalized rectangle in relation to the region of interest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnnormalizedrectforimagerectusingregionofinterest(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNNormalizedRectForImageRectUsingRegionOfInterest(
         image_rect: CGRect,
@@ -227,6 +245,8 @@ impl VNElementType {
     ///
     ///
     /// Returns: a byte count, or 0 if the element type is unknown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnelementtypesize(_:)?language=objc)
     #[doc(alias = "VNElementTypeSize")]
     #[cfg(feature = "VNTypes")]
     #[inline]

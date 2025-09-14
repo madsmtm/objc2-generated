@@ -26,6 +26,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKSummary {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444796-sksummarygettypeid?language=objc)
     #[doc(alias = "SKSummaryGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -37,6 +38,8 @@ unsafe impl ConcreteType for SKSummary {
 }
 
 impl SKSummary {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446229-sksummarycreatewithstring?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_string` might not allow `None`.
@@ -52,6 +55,7 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450009-sksummarygetsentencecount?language=objc)
     #[doc(alias = "SKSummaryGetSentenceCount")]
     #[inline]
     pub unsafe fn sentence_count(&self) -> CFIndex {
@@ -61,6 +65,7 @@ impl SKSummary {
         unsafe { SKSummaryGetSentenceCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449304-sksummarygetparagraphcount?language=objc)
     #[doc(alias = "SKSummaryGetParagraphCount")]
     #[inline]
     pub unsafe fn paragraph_count(&self) -> CFIndex {
@@ -70,6 +75,7 @@ impl SKSummary {
         unsafe { SKSummaryGetParagraphCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450287-sksummarycopysentenceatindex?language=objc)
     #[doc(alias = "SKSummaryCopySentenceAtIndex")]
     #[inline]
     pub unsafe fn sentence_at_index(&self, i: CFIndex) -> Option<CFRetained<CFString>> {
@@ -83,6 +89,7 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445711-sksummarycopyparagraphatindex?language=objc)
     #[doc(alias = "SKSummaryCopyParagraphAtIndex")]
     #[inline]
     pub unsafe fn paragraph_at_index(&self, i: CFIndex) -> Option<CFRetained<CFString>> {
@@ -96,6 +103,7 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449700-sksummarycopysentencesummarystri?language=objc)
     #[doc(alias = "SKSummaryCopySentenceSummaryString")]
     #[inline]
     pub unsafe fn sentence_summary_string(
@@ -112,6 +120,7 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449746-sksummarycopyparagraphsummarystr?language=objc)
     #[doc(alias = "SKSummaryCopyParagraphSummaryString")]
     #[inline]
     pub unsafe fn paragraph_summary_string(
@@ -128,6 +137,8 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444767-sksummarygetsentencesummaryinfo?language=objc)
+    ///
     /// # Safety
     ///
     /// - `out_rank_order_of_sentences` must be a valid pointer.
@@ -162,6 +173,8 @@ impl SKSummary {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447517-sksummarygetparagraphsummaryinfo?language=objc)
+    ///
     /// # Safety
     ///
     /// - `out_rank_order_of_paragraphs` must be a valid pointer.

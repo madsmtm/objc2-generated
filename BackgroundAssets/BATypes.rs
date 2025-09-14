@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BAContentRequest(pub NSInteger);
 impl BAContentRequest {
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bacontentrequest/install?language=objc)
     #[doc(alias = "BAContentRequestInstall")]
     pub const Install: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bacontentrequest/update?language=objc)
     #[doc(alias = "BAContentRequestUpdate")]
     pub const Update: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bacontentrequest/periodic?language=objc)
     #[doc(alias = "BAContentRequestPeriodic")]
     pub const Periodic: Self = Self(3);
 }

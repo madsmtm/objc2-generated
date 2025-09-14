@@ -9,6 +9,7 @@ use crate::*;
 #[doc(alias = "SKDocumentRef")]
 pub type SKDocument = CFType;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448891-skdocumentgettypeid?language=objc)
 #[inline]
 pub extern "C-unwind" fn SKDocumentGetTypeID() -> CFTypeID {
     extern "C-unwind" {
@@ -17,6 +18,8 @@ pub extern "C-unwind" fn SKDocumentGetTypeID() -> CFTypeID {
     unsafe { SKDocumentGetTypeID() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442564-skdocumentcreatewithurl?language=objc)
+///
 /// # Safety
 ///
 /// `in_url` might not allow `None`.
@@ -31,6 +34,8 @@ pub unsafe extern "C-unwind" fn SKDocumentCreateWithURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449624-skdocumentcopyurl?language=objc)
+///
 /// # Safety
 ///
 /// `in_document` should be of the correct type.
@@ -45,6 +50,8 @@ pub unsafe extern "C-unwind" fn SKDocumentCopyURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443212-skdocumentcreate?language=objc)
+///
 /// # Safety
 ///
 /// - `in_scheme` might not allow `None`.
@@ -68,6 +75,8 @@ pub unsafe extern "C-unwind" fn SKDocumentCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448262-skdocumentgetschemename?language=objc)
+///
 /// # Safety
 ///
 /// `in_document` should be of the correct type.
@@ -82,6 +91,8 @@ pub unsafe extern "C-unwind" fn SKDocumentGetSchemeName(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442657-skdocumentgetname?language=objc)
+///
 /// # Safety
 ///
 /// `in_document` should be of the correct type.
@@ -96,6 +107,8 @@ pub unsafe extern "C-unwind" fn SKDocumentGetName(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444449-skdocumentgetparent?language=objc)
+///
 /// # Safety
 ///
 /// `in_document` should be of the correct type.

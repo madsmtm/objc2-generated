@@ -28,10 +28,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCapturePhotoQualityPrioritization(pub NSInteger);
 impl AVCapturePhotoQualityPrioritization {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/qualityprioritization/speed?language=objc)
     #[doc(alias = "AVCapturePhotoQualityPrioritizationSpeed")]
     pub const Speed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/qualityprioritization/balanced?language=objc)
     #[doc(alias = "AVCapturePhotoQualityPrioritizationBalanced")]
     pub const Balanced: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/qualityprioritization/quality?language=objc)
     #[doc(alias = "AVCapturePhotoQualityPrioritizationQuality")]
     pub const Quality: Self = Self(3);
 }
@@ -63,14 +66,19 @@ unsafe impl RefEncode for AVCapturePhotoQualityPrioritization {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCapturePhotoOutputCaptureReadiness(pub NSInteger);
 impl AVCapturePhotoOutputCaptureReadiness {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum/sessionnotrunning?language=objc)
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessSessionNotRunning")]
     pub const SessionNotRunning: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum/ready?language=objc)
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum/notreadymomentarily?language=objc)
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessNotReadyMomentarily")]
     pub const NotReadyMomentarily: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum/notreadywaitingforcapture?language=objc)
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessNotReadyWaitingForCapture")]
     pub const NotReadyWaitingForCapture: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum/notreadywaitingforprocessing?language=objc)
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessNotReadyWaitingForProcessing")]
     pub const NotReadyWaitingForProcessing: Self = Self(4);
 }
@@ -2823,14 +2831,19 @@ impl AVCapturePhoto {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureLensStabilizationStatus(pub NSInteger);
 impl AVCaptureLensStabilizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus/unsupported?language=objc)
     #[doc(alias = "AVCaptureLensStabilizationStatusUnsupported")]
     pub const Unsupported: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus/off?language=objc)
     #[doc(alias = "AVCaptureLensStabilizationStatusOff")]
     pub const Off: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus/active?language=objc)
     #[doc(alias = "AVCaptureLensStabilizationStatusActive")]
     pub const Active: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus/outofrange?language=objc)
     #[doc(alias = "AVCaptureLensStabilizationStatusOutOfRange")]
     pub const OutOfRange: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus/unavailable?language=objc)
     #[doc(alias = "AVCaptureLensStabilizationStatusUnavailable")]
     pub const Unavailable: Self = Self(4);
 }

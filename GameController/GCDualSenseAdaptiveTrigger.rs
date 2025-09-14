@@ -18,18 +18,28 @@ pub const GCDualSenseAdaptiveTriggerDiscretePositionCount: c_uint = 10;
 pub struct GCDualSenseAdaptiveTriggerMode(pub NSInteger);
 impl GCDualSenseAdaptiveTriggerMode {
     /// The adaptive trigger effect is disabled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.enum/off?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerModeOff")]
     pub const Off: Self = Self(0);
     /// The adaptive trigger effect provides constant feedback from the start position onwards.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.enum/feedback?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerModeFeedback")]
     pub const Feedback: Self = Self(1);
     /// The adaptive trigger effect provides feedback from the start position to the end position, emulating the feeling of pulling the trigger on a weapon.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.enum/weapon?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerModeWeapon")]
     pub const Weapon: Self = Self(2);
     /// The adaptive trigger effect provides a constant vibration effect from the start position onwards.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.enum/vibration?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerModeVibration")]
     pub const Vibration: Self = Self(3);
     /// The adaptive trigger effect provides feedback from the start position to the end position, linearly interpolated between the start and end strengths.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.enum/slopefeedback?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerModeSlopeFeedback")]
     pub const SlopeFeedback: Self = Self(4);
 }
@@ -49,36 +59,58 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerMode {
 pub struct GCDualSenseAdaptiveTriggerStatus(pub NSInteger);
 impl GCDualSenseAdaptiveTriggerStatus {
     /// The adaptive trigger status cannot be determined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/unknown?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusUnknown")]
     pub const Unknown: Self = Self(-1);
     /// The adaptive trigger is in feedback mode, and a resistive load has not been applied yet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/feedbacknoload?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusFeedbackNoLoad")]
     pub const FeedbackNoLoad: Self = Self(0);
     /// The adaptive trigger is in feedback mode, and a resistive load is applied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/feedbackloadapplied?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusFeedbackLoadApplied")]
     pub const FeedbackLoadApplied: Self = Self(1);
     /// The adaptive trigger is in weapon mode, the trigger is ready to fire, and a resistive load has not been applied yet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/weaponready?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponReady")]
     pub const WeaponReady: Self = Self(2);
     /// The adaptive trigger is in weapon mode, the trigger is firing, and a resistive load is currently being applied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/weaponfiring?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponFiring")]
     pub const WeaponFiring: Self = Self(3);
     /// The adaptive trigger is in weapon mode, the trigger has fired, and a resistive load is no longer being applied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/weaponfired?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponFired")]
     pub const WeaponFired: Self = Self(4);
     /// The adaptive trigger is in vibration mode, and the trigger is not vibrating.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/vibrationnotvibrating?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusVibrationNotVibrating")]
     pub const VibrationNotVibrating: Self = Self(5);
     /// The adaptive trigger is in vibration mode, and the trigger is currently vibrating.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/vibrationisvibrating?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusVibrationIsVibrating")]
     pub const VibrationIsVibrating: Self = Self(6);
     /// The adaptive trigger is in slope feedback mode, the trigger is ready to apply a resistive load, but a resistive load has not been applied yet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/slopefeedbackready?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackReady")]
     pub const SlopeFeedbackReady: Self = Self(7);
     /// The adaptive trigger is in slope feedback mode, and a resistive load is currently being applied to the trigger.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/slopefeedbackapplyingload?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackApplyingLoad")]
     pub const SlopeFeedbackApplyingLoad: Self = Self(8);
     /// The adaptive trigger is in slope feedback mode, a resistive load has previously been applied, but is no longer being applied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum/slopefeedbackfinished?language=objc)
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackFinished")]
     pub const SlopeFeedbackFinished: Self = Self(9);
 }

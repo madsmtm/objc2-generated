@@ -18,8 +18,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIProgressViewStyle(pub NSInteger);
 impl UIProgressViewStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprogressview/style/default?language=objc)
     #[doc(alias = "UIProgressViewStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprogressview/style/bar?language=objc)
     #[doc(alias = "UIProgressViewStyleBar")]
     pub const Bar: Self = Self(1);
 }

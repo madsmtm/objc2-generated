@@ -13,20 +13,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSendMessageIntentResponseCode(pub NSInteger);
 impl INSendMessageIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSendMessageIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/ready?language=objc)
     #[doc(alias = "INSendMessageIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSendMessageIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/success?language=objc)
     #[doc(alias = "INSendMessageIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/failure?language=objc)
     #[doc(alias = "INSendMessageIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSendMessageIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/failuremessageservicenotavailable?language=objc)
     #[doc(alias = "INSendMessageIntentResponseCodeFailureMessageServiceNotAvailable")]
     pub const FailureMessageServiceNotAvailable: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/failurerequiringinappauthentication?language=objc)
     #[doc(alias = "INSendMessageIntentResponseCodeFailureRequiringInAppAuthentication")]
     pub const FailureRequiringInAppAuthentication: Self = Self(7);
 }

@@ -16,6 +16,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKElectrocardiogramLead(pub NSInteger);
 impl HKElectrocardiogramLead {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/lead/applewatchsimilartoleadi?language=objc)
     #[doc(alias = "HKElectrocardiogramLeadAppleWatchSimilarToLeadI")]
     pub const AppleWatchSimilarToLeadI: Self = Self(1);
 }
@@ -36,20 +37,28 @@ unsafe impl RefEncode for HKElectrocardiogramLead {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKElectrocardiogramClassification(pub NSInteger);
 impl HKElectrocardiogramClassification {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/notset?language=objc)
     #[doc(alias = "HKElectrocardiogramClassificationNotSet")]
     pub const NotSet: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/sinusrhythm?language=objc)
     #[doc(alias = "HKElectrocardiogramClassificationSinusRhythm")]
     pub const SinusRhythm: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/atrialfibrillation?language=objc)
     #[doc(alias = "HKElectrocardiogramClassificationAtrialFibrillation")]
     pub const AtrialFibrillation: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/inconclusivelowheartrate?language=objc)
     #[doc(alias = "HKElectrocardiogramClassificationInconclusiveLowHeartRate")]
     pub const InconclusiveLowHeartRate: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/inconclusivehighheartrate?language=objc)
     #[doc(alias = "HKElectrocardiogramClassificationInconclusiveHighHeartRate")]
     pub const InconclusiveHighHeartRate: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/inconclusivepoorreading?language=objc)
     #[doc(alias = "HKElectrocardiogramClassificationInconclusivePoorReading")]
     pub const InconclusivePoorReading: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/inconclusiveother?language=objc)
     #[doc(alias = "HKElectrocardiogramClassificationInconclusiveOther")]
     pub const InconclusiveOther: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/unrecognized?language=objc)
     #[doc(alias = "HKElectrocardiogramClassificationUnrecognized")]
     pub const Unrecognized: Self = Self(100);
 }
@@ -76,10 +85,13 @@ unsafe impl RefEncode for HKElectrocardiogramClassification {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKElectrocardiogramSymptomsStatus(pub NSInteger);
 impl HKElectrocardiogramSymptomsStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.enum/notset?language=objc)
     #[doc(alias = "HKElectrocardiogramSymptomsStatusNotSet")]
     pub const NotSet: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.enum/none?language=objc)
     #[doc(alias = "HKElectrocardiogramSymptomsStatusNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.enum/present?language=objc)
     #[doc(alias = "HKElectrocardiogramSymptomsStatusPresent")]
     pub const Present: Self = Self(2);
 }

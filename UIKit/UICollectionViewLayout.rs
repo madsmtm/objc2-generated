@@ -34,8 +34,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewScrollDirection(pub NSInteger);
 impl UICollectionViewScrollDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrolldirection/vertical?language=objc)
     #[doc(alias = "UICollectionViewScrollDirectionVertical")]
     pub const Vertical: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrolldirection/horizontal?language=objc)
     #[doc(alias = "UICollectionViewScrollDirectionHorizontal")]
     pub const Horizontal: Self = Self(1);
 }
@@ -54,10 +56,13 @@ unsafe impl RefEncode for UICollectionViewScrollDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionElementCategory(pub NSUInteger);
 impl UICollectionElementCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementcategory/cell?language=objc)
     #[doc(alias = "UICollectionElementCategoryCell")]
     pub const Cell: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementcategory/supplementaryview?language=objc)
     #[doc(alias = "UICollectionElementCategorySupplementaryView")]
     pub const SupplementaryView: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementcategory/decorationview?language=objc)
     #[doc(alias = "UICollectionElementCategoryDecorationView")]
     pub const DecorationView: Self = Self(2);
 }

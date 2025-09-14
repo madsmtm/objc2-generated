@@ -81,36 +81,47 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTransformMetaAttributeType(pub CFIndex);
 impl SecTransformMetaAttributeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/value?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeValue")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Value: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/name?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeName")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Name: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/ref?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeRef")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Ref: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/required?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeRequired")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Required: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/requiresoutboundconnection?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeRequiresOutboundConnection")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const RequiresOutboundConnection: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/deferred?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeDeferred")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Deferred: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/stream?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeStream")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Stream: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/cancycle?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeCanCycle")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const CanCycle: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/externalize?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeExternalize")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Externalize: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/hasoutboundconnections?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeHasOutboundConnections")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const HasOutboundConnections: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/hasinboundconnection?language=objc)
     #[doc(alias = "kSecTransformMetaAttributeHasInboundConnection")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const HasInboundConnection: Self = Self(10);
@@ -356,6 +367,8 @@ pub type SecTransformImplementationRef = *const OpaqueSecTransformImplementation
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
 /// - `new_action` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformsetattributeaction(_:_:_:_:)?language=objc)
 #[cfg(feature = "block2")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -430,6 +443,8 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttributeAction(
 ///
 /// - `ref` must be a valid pointer.
 /// - `new_action` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformsetdataaction(_:_:_:)?language=objc)
 #[cfg(feature = "block2")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -449,6 +464,8 @@ pub unsafe extern "C-unwind" fn SecTransformSetDataAction(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformsettransformaction(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `ref` must be a valid pointer.
@@ -493,6 +510,8 @@ pub unsafe extern "C-unwind" fn SecTransformSetTransformAction(
 ///
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectranformcustomgetattribute?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTranformCustomGetAttribute(
@@ -532,6 +551,8 @@ pub unsafe extern "C-unwind" fn SecTranformCustomGetAttribute(
 ///
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcustomgetattribute(_:_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCustomGetAttribute(
@@ -582,6 +603,8 @@ pub unsafe extern "C-unwind" fn SecTransformCustomGetAttribute(
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
 /// - `value` should be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcustomsetattribute(_:_:_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCustomSetAttribute(
@@ -626,6 +649,8 @@ pub unsafe extern "C-unwind" fn SecTransformCustomSetAttribute(
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
 /// - `value` should be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformpushbackattribute(_:_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformPushbackAttribute(
@@ -807,6 +832,8 @@ extern "C" {
 ///
 /// - `create_transform_function` must be implemented correctly.
 /// - `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformregister(_:_:_:)?language=objc)
 #[cfg(all(feature = "SecTransform", feature = "block2"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -846,6 +873,8 @@ pub unsafe extern "C-unwind" fn SecTransformRegister(
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreate(_:_:)?language=objc)
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -886,6 +915,8 @@ pub unsafe extern "C-unwind" fn SecTransformCreate(
 /// If a ProcessData block has no data to return, it can return
 /// SecTransformNoData(), which informs the transform system
 /// that there is no data to pass on to the next transform.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformnodata()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformNoData() -> CFRetained<CFType> {

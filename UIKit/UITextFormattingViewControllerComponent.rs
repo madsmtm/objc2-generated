@@ -98,16 +98,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextFormattingViewControllerComponentSize(pub NSInteger);
 impl UITextFormattingViewControllerComponentSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/automatic?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/mini?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeMini")]
     pub const Mini: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/small?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeSmall")]
     pub const Small: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/regular?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeRegular")]
     pub const Regular: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/large?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeLarge")]
     pub const Large: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/extralarge?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeExtraLarge")]
     pub const ExtraLarge: Self = Self(5);
 }

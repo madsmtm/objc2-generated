@@ -10,6 +10,8 @@ use crate::*;
 /// may be used interchangeably.
 ///
 /// Returns: The current host time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvgetcurrenthosttime()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVGetCurrentHostTime() -> u64 {
     extern "C-unwind" {
@@ -24,6 +26,8 @@ pub extern "C-unwind" fn CVGetCurrentHostTime() -> u64 {
 /// may be used interchangeably.
 ///
 /// Returns: The current host frequency.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvgethostclockfrequency()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVGetHostClockFrequency() -> c_double {
     extern "C-unwind" {
@@ -35,6 +39,8 @@ pub extern "C-unwind" fn CVGetHostClockFrequency() -> c_double {
 /// Retrieve the smallest possible increment in the host time base.
 ///
 /// Returns: The smallest valid increment in the host time base.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvgethostclockminimumtimedelta()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVGetHostClockMinimumTimeDelta() -> u32 {
     extern "C-unwind" {

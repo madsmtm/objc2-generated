@@ -14,9 +14,11 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKSearchCompletionFilterType(pub NSInteger);
 impl MKSearchCompletionFilterType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/filtertype-swift.enum/locationsandqueries?language=objc)
     #[doc(alias = "MKSearchCompletionFilterTypeLocationsAndQueries")]
     #[deprecated = "Use MKLocalSearchCompleterResultType"]
     pub const LocationsAndQueries: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/filtertype-swift.enum/locationsonly?language=objc)
     #[doc(alias = "MKSearchCompletionFilterTypeLocationsOnly")]
     #[deprecated = "Use MKLocalSearchCompleterResultType"]
     pub const LocationsOnly: Self = Self(1);
@@ -37,12 +39,16 @@ unsafe impl RefEncode for MKSearchCompletionFilterType {
 pub struct MKLocalSearchCompleterResultType(pub NSUInteger);
 bitflags::bitflags! {
     impl MKLocalSearchCompleterResultType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttype/address?language=objc)
         #[doc(alias = "MKLocalSearchCompleterResultTypeAddress")]
         const Address = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttype/pointofinterest?language=objc)
         #[doc(alias = "MKLocalSearchCompleterResultTypePointOfInterest")]
         const PointOfInterest = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttype/query?language=objc)
         #[doc(alias = "MKLocalSearchCompleterResultTypeQuery")]
         const Query = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttype/physicalfeature?language=objc)
         #[doc(alias = "MKLocalSearchCompleterResultTypePhysicalFeature")]
         const PhysicalFeature = 1<<3;
     }

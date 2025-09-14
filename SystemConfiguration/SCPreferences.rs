@@ -48,8 +48,10 @@ cf_objc2_type!(
 pub struct SCPreferencesNotification(pub u32);
 bitflags::bitflags! {
     impl SCPreferencesNotification: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesnotification/commit?language=objc)
         #[doc(alias = "kSCPreferencesNotificationCommit")]
         const Commit = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesnotification/apply?language=objc)
         #[doc(alias = "kSCPreferencesNotificationApply")]
         const Apply = 1<<1;
     }
@@ -130,6 +132,8 @@ pub type SCPreferencesCallBack = Option<
 
 unsafe impl ConcreteType for SCPreferences {
     /// Returns the type identifier of all SCPreferences instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesgettypeid()?language=objc)
     #[doc(alias = "SCPreferencesGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -159,6 +163,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns a reference to the new SCPreferences.
     /// You must release the returned value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescreate(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesCreate")]
     #[inline]
     pub fn new(
@@ -203,6 +209,8 @@ impl SCPreferences {
     /// # Safety
     ///
     /// `authorization` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescreatewithauthorization(_:_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesCreateWithAuthorization")]
     #[cfg(feature = "objc2-security")]
     #[inline]
@@ -241,6 +249,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the lock was obtained;
     /// FALSE if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferenceslock(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesLock")]
     #[inline]
     pub fn lock(&self, wait: bool) -> bool {
@@ -267,6 +277,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the lock was obtained;
     /// FALSE if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescommitchanges(_:)?language=objc)
     #[doc(alias = "SCPreferencesCommitChanges")]
     #[inline]
     pub fn commit_changes(&self) -> bool {
@@ -284,6 +296,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the lock was obtained;
     /// FALSE if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesapplychanges(_:)?language=objc)
     #[doc(alias = "SCPreferencesApplyChanges")]
     #[inline]
     pub fn apply_changes(&self) -> bool {
@@ -304,6 +318,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the lock was obtained;
     /// FALSE if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesunlock(_:)?language=objc)
     #[doc(alias = "SCPreferencesUnlock")]
     #[inline]
     pub fn unlock(&self) -> bool {
@@ -321,6 +337,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns a CFDataRef that reflects the signature of the configuration
     /// preferences at the time of the call to the SCPreferencesCreate function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesgetsignature(_:)?language=objc)
     #[doc(alias = "SCPreferencesGetSignature")]
     #[inline]
     pub fn signature(&self) -> Option<CFRetained<CFData>> {
@@ -337,6 +355,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns the list of keys.
     /// You must release the returned value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescopykeylist(_:)?language=objc)
     #[doc(alias = "SCPreferencesCopyKeyList")]
     #[inline]
     pub fn key_list(&self) -> Option<CFRetained<CFArray>> {
@@ -361,6 +381,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns the value associated with the specified preference key;
     /// NULL if no value was located.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesgetvalue(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesGetValue")]
     #[inline]
     pub fn value(&self, key: &CFString) -> Option<CFRetained<CFPropertyList>> {
@@ -394,6 +416,8 @@ impl SCPreferences {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesaddvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesAddValue")]
     #[inline]
     pub unsafe fn add_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
@@ -427,6 +451,8 @@ impl SCPreferences {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessetvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesSetValue")]
     #[inline]
     pub unsafe fn set_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
@@ -453,6 +479,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the value was removed;
     /// FALSE if the key did not exist or if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesremovevalue(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesRemoveValue")]
     #[inline]
     pub fn remove_value(&self, key: &CFString) -> bool {
@@ -482,6 +510,8 @@ impl SCPreferences {
     ///
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessetcallback(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesSetCallback")]
     #[inline]
     pub unsafe fn set_callback(
@@ -514,6 +544,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the notifications are successfully scheduled;
     /// FALSE otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesScheduleWithRunLoop")]
     #[inline]
     pub fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
@@ -542,6 +574,8 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the notifications are successfully unscheduled;
     /// FALSE otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesUnscheduleFromRunLoop")]
     #[inline]
     pub fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
@@ -569,6 +603,8 @@ impl SCPreferences {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -592,6 +628,8 @@ impl SCPreferences {
     /// be discarded.
     ///
     /// Parameter `prefs`: The preferences session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessynchronize(_:)?language=objc)
     #[doc(alias = "SCPreferencesSynchronize")]
     #[inline]
     pub fn synchronize(&self) {

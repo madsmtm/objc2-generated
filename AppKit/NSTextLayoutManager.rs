@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutManagerSegmentType(pub NSInteger);
 impl NSTextLayoutManagerSegmentType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutmanager/segmenttype/standard?language=objc)
     #[doc(alias = "NSTextLayoutManagerSegmentTypeStandard")]
     pub const Standard: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutmanager/segmenttype/selection?language=objc)
     #[doc(alias = "NSTextLayoutManagerSegmentTypeSelection")]
     pub const Selection: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutmanager/segmenttype/highlight?language=objc)
     #[doc(alias = "NSTextLayoutManagerSegmentTypeHighlight")]
     pub const Highlight: Self = Self(2);
 }
@@ -38,16 +41,22 @@ unsafe impl RefEncode for NSTextLayoutManagerSegmentType {
 pub struct NSTextLayoutManagerSegmentOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextLayoutManagerSegmentOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutmanagersegmentoptions/nstextlayoutmanagersegmentoptionsnone?language=objc)
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutmanager/segmentoptions/rangenotrequired?language=objc)
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsRangeNotRequired")]
         const RangeNotRequired = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutmanager/segmentoptions/middlefragmentsexcluded?language=objc)
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded")]
         const MiddleFragmentsExcluded = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutmanager/segmentoptions/headsegmentextended?language=objc)
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsHeadSegmentExtended")]
         const HeadSegmentExtended = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutmanager/segmentoptions/tailsegmentextended?language=objc)
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsTailSegmentExtended")]
         const TailSegmentExtended = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutmanager/segmentoptions/upstreamaffinity?language=objc)
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsUpstreamAffinity")]
         const UpstreamAffinity = 1<<4;
     }

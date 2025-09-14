@@ -484,6 +484,8 @@ pub struct AVDelegatingPlaybackCoordinatorRateChangeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVDelegatingPlaybackCoordinatorRateChangeOptions: NSUInteger {
 /// Requests that the coordinator begin playback as soon as possible and ignore other participant's readiness and suspensions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorratechangeoptions/playimmediately?language=objc)
         #[doc(alias = "AVDelegatingPlaybackCoordinatorRateChangeOptionPlayImmediately")]
         const PlayImmediately = 1<<0;
     }
@@ -507,6 +509,8 @@ pub struct AVDelegatingPlaybackCoordinatorSeekOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVDelegatingPlaybackCoordinatorSeekOptions: NSUInteger {
 /// Requests that the coordinator resume playback as soon as possible after the seek is complete and ignore other participant's readiness and suspensions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekoptions/resumeimmediately?language=objc)
         #[doc(alias = "AVDelegatingPlaybackCoordinatorSeekOptionResumeImmediately")]
         const ResumeImmediately = 1<<0;
     }

@@ -23,10 +23,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLHeapType(pub NSInteger);
 impl MTLHeapType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheaptype/automatic?language=objc)
     #[doc(alias = "MTLHeapTypeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheaptype/placement?language=objc)
     #[doc(alias = "MTLHeapTypePlacement")]
     pub const Placement: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheaptype/sparse?language=objc)
     #[doc(alias = "MTLHeapTypeSparse")]
     pub const Sparse: Self = Self(2);
 }

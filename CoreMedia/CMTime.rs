@@ -8,6 +8,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemaxtimescale?language=objc)
 pub const kCMTimeMaxTimescale: c_uint = 0x7fffffff;
 /// Numerator of rational CMTime.
 ///
@@ -46,16 +47,22 @@ pub type CMTimeEpoch = i64;
 pub struct CMTimeFlags(pub u32);
 bitflags::bitflags! {
     impl CMTimeFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeflags/valid?language=objc)
         #[doc(alias = "kCMTimeFlags_Valid")]
         const Valid = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeflags/hasbeenrounded?language=objc)
         #[doc(alias = "kCMTimeFlags_HasBeenRounded")]
         const HasBeenRounded = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeflags/positiveinfinity?language=objc)
         #[doc(alias = "kCMTimeFlags_PositiveInfinity")]
         const PositiveInfinity = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeflags/negativeinfinity?language=objc)
         #[doc(alias = "kCMTimeFlags_NegativeInfinity")]
         const NegativeInfinity = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeflags/indefinite?language=objc)
         #[doc(alias = "kCMTimeFlags_Indefinite")]
         const Indefinite = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeflags/impliedvalueflagsmask?language=objc)
         #[doc(alias = "kCMTimeFlags_ImpliedValueFlagsMask")]
         const ImpliedValueFlagsMask = CMTimeFlags::PositiveInfinity.0|CMTimeFlags::NegativeInfinity.0|CMTimeFlags::Indefinite.0;
     }
@@ -138,6 +145,8 @@ impl CMTime {
     /// Make a valid CMTime with value and timescale.  Epoch is implied to be 0.
     ///
     /// Returns: The resulting CMTime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemake(value:timescale:)?language=objc)
     #[doc(alias = "CMTimeMake")]
     #[inline]
     pub unsafe fn new(value: i64, timescale: i32) -> CMTime {
@@ -150,6 +159,8 @@ impl CMTime {
     /// Make a valid CMTime with value, scale and epoch.
     ///
     /// Returns: The resulting CMTime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemakewithepoch(value:timescale:epoch:)?language=objc)
     #[doc(alias = "CMTimeMakeWithEpoch")]
     #[inline]
     pub unsafe fn with_epoch(value: i64, timescale: i32, epoch: i64) -> CMTime {
@@ -171,6 +182,8 @@ impl CMTime {
     /// seconds, is not exactly equal to the original seconds value.
     ///
     /// Returns: The resulting CMTime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemakewithseconds(_:preferredtimescale:)?language=objc)
     #[doc(alias = "CMTimeMakeWithSeconds")]
     #[inline]
     pub unsafe fn with_seconds(seconds: f64, preferred_timescale: i32) -> CMTime {
@@ -187,6 +200,8 @@ impl CMTime {
     /// returned.  The division is done in Float64, so the fraction is not lost in the returned result.
     ///
     /// Returns: The resulting Float64 number of seconds.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimegetseconds(_:)?language=objc)
     #[doc(alias = "CMTimeGetSeconds")]
     #[inline]
     pub unsafe fn seconds(self) -> f64 {
@@ -218,18 +233,25 @@ impl CMTime {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTimeRoundingMethod(pub u32);
 impl CMTimeRoundingMethod {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeroundingmethod/roundhalfawayfromzero?language=objc)
     #[doc(alias = "kCMTimeRoundingMethod_RoundHalfAwayFromZero")]
     pub const RoundHalfAwayFromZero: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeroundingmethod/roundtowardzero?language=objc)
     #[doc(alias = "kCMTimeRoundingMethod_RoundTowardZero")]
     pub const RoundTowardZero: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeroundingmethod/roundawayfromzero?language=objc)
     #[doc(alias = "kCMTimeRoundingMethod_RoundAwayFromZero")]
     pub const RoundAwayFromZero: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeroundingmethod/quicktime?language=objc)
     #[doc(alias = "kCMTimeRoundingMethod_QuickTime")]
     pub const QuickTime: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeroundingmethod/roundtowardpositiveinfinity?language=objc)
     #[doc(alias = "kCMTimeRoundingMethod_RoundTowardPositiveInfinity")]
     pub const RoundTowardPositiveInfinity: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeroundingmethod/roundtowardnegativeinfinity?language=objc)
     #[doc(alias = "kCMTimeRoundingMethod_RoundTowardNegativeInfinity")]
     pub const RoundTowardNegativeInfinity: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeroundingmethod/default?language=objc)
     #[doc(alias = "kCMTimeRoundingMethod_Default")]
     pub const Default: Self = Self(CMTimeRoundingMethod::RoundHalfAwayFromZero.0);
 }
@@ -252,6 +274,8 @@ impl CMTime {
     /// the source time is non-numeric (ie. infinite, indefinite, invalid), the result will be similarly non-numeric.
     ///
     /// Returns: The converted result CMTime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeconvertscale(_:timescale:method:)?language=objc)
     #[doc(alias = "CMTimeConvertScale")]
     #[inline]
     pub unsafe fn convert_scale(self, new_timescale: i32, method: CMTimeRoundingMethod) -> CMTime {
@@ -307,6 +331,8 @@ impl CMTime {
     /// epochs always occur after numerically lesser epochs.
     ///
     /// Returns: The sum of the two CMTimes (lhs + rhs).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeadd(_:_:)?language=objc)
     #[doc(alias = "CMTimeAdd")]
     #[inline]
     pub unsafe fn add(self, rhs: CMTime) -> CMTime {
@@ -358,6 +384,8 @@ impl CMTime {
     /// epochs always occur after numerically lesser epochs.
     ///
     /// Returns: The difference of the two CMTimes (lhs - rhs).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimesubtract(_:_:)?language=objc)
     #[doc(alias = "CMTimeSubtract")]
     #[inline]
     pub unsafe fn subtract(self, rhs: CMTime) -> CMTime {
@@ -387,6 +415,8 @@ impl CMTime {
     ///
     ///
     /// Returns: The product of the CMTime and the 32-bit integer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemultiply(_:multiplier:)?language=objc)
     #[doc(alias = "CMTimeMultiply")]
     #[inline]
     pub unsafe fn multiply(self, multiplier: i32) -> CMTime {
@@ -418,6 +448,8 @@ impl CMTime {
     ///
     ///
     /// Returns: The product of the CMTime and the 64-bit float.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemultiplybyfloat64(_:multiplier:)?language=objc)
     #[doc(alias = "CMTimeMultiplyByFloat64")]
     #[inline]
     pub unsafe fn multiply_by_float64(self, multiplier: f64) -> CMTime {
@@ -447,6 +479,8 @@ impl CMTime {
     ///
     ///
     /// Returns: (time * multiplier) / divisor
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemultiplybyratio(_:multiplier:divisor:)?language=objc)
     #[doc(alias = "CMTimeMultiplyByRatio")]
     #[inline]
     pub unsafe fn multiply_by_ratio(self, multiplier: i32, divisor: i32) -> CMTime {
@@ -487,6 +521,8 @@ impl CMTime {
     /// are equal. 1 is returned if time1 is greater than time2.
     ///
     /// Returns: The numerical relationship of the two CMTimes (-1 = less than, 1 = greater than, 0 = equal).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecompare(_:_:)?language=objc)
     #[doc(alias = "CMTimeCompare")]
     #[inline]
     pub unsafe fn compare(self, time2: CMTime) -> i32 {
@@ -499,6 +535,8 @@ impl CMTime {
     /// Returns the lesser of two CMTimes (as defined by CMTimeCompare).
     ///
     /// Returns: The lesser of the two CMTimes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeminimum(_:_:)?language=objc)
     #[doc(alias = "CMTimeMinimum")]
     #[inline]
     pub unsafe fn minimum(self, time2: CMTime) -> CMTime {
@@ -511,6 +549,8 @@ impl CMTime {
     /// Returns the greater of two CMTimes (as defined by CMTimeCompare).
     ///
     /// Returns: The greater of the two CMTimes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemaximum(_:_:)?language=objc)
     #[doc(alias = "CMTimeMaximum")]
     #[inline]
     pub unsafe fn maximum(self, time2: CMTime) -> CMTime {
@@ -523,6 +563,8 @@ impl CMTime {
     /// Returns the absolute value of a CMTime.
     ///
     /// Returns: Same as the argument time, with sign inverted if negative.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeabsolutevalue(_:)?language=objc)
     #[doc(alias = "CMTimeAbsoluteValue")]
     #[inline]
     pub unsafe fn absolute_value(self) -> CMTime {
@@ -537,6 +579,8 @@ impl CMTime {
     /// This is useful when putting CMTimes in CF container types.
     ///
     /// Returns: A CFDictionary version of the CMTime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecopyasdictionary(_:allocator:)?language=objc)
     #[doc(alias = "CMTimeCopyAsDictionary")]
     #[inline]
     pub unsafe fn as_dictionary(
@@ -564,6 +608,8 @@ impl CMTime {
     ///
     /// - `dictionary_representation` generic must be of the correct type.
     /// - `dictionary_representation` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemakefromdictionary(_:)?language=objc)
     #[doc(alias = "CMTimeMakeFromDictionary")]
     #[inline]
     pub unsafe fn from_dictionary(dictionary_representation: Option<&CFDictionary>) -> CMTime {
@@ -611,6 +657,8 @@ impl CMTime {
     /// CFString, and is responsible for releasing it.
     ///
     /// Returns: The created CFString description.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecopydescription(allocator:time:)?language=objc)
     #[doc(alias = "CMTimeCopyDescription")]
     #[inline]
     pub unsafe fn description(
@@ -630,6 +678,8 @@ impl CMTime {
     /// Prints a description of the CMTime (just like CFShow).
     ///
     /// This is most useful from within gdb.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeshow(_:)?language=objc)
     #[doc(alias = "CMTimeShow")]
     #[inline]
     pub unsafe fn show(self) {

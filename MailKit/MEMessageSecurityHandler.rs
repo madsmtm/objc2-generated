@@ -20,8 +20,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageSecurityErrorCode(pub NSInteger);
 impl MEMessageSecurityErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityerror/code/encodingerror?language=objc)
     #[doc(alias = "MEMessageSecurityEncodingError")]
     pub const EncodingError: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityerror/code/decodingerror?language=objc)
     #[doc(alias = "MEMessageSecurityDecodingError")]
     pub const DecodingError: Self = Self(1);
 }

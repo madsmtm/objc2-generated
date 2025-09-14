@@ -12,12 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSendPaymentPayeeUnsupportedReason(pub NSInteger);
 impl INSendPaymentPayeeUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentpayeeunsupportedreason/credentialsunverified?language=objc)
     #[doc(alias = "INSendPaymentPayeeUnsupportedReasonCredentialsUnverified")]
     pub const CredentialsUnverified: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentpayeeunsupportedreason/insufficientfunds?language=objc)
     #[doc(alias = "INSendPaymentPayeeUnsupportedReasonInsufficientFunds")]
     pub const InsufficientFunds: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentpayeeunsupportedreason/noaccount?language=objc)
     #[doc(alias = "INSendPaymentPayeeUnsupportedReasonNoAccount")]
     pub const NoAccount: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentpayeeunsupportedreason/novalidhandle?language=objc)
     #[doc(alias = "INSendPaymentPayeeUnsupportedReasonNoValidHandle")]
     pub const NoValidHandle: Self = Self(4);
 }

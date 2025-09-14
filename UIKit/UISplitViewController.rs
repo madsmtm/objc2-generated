@@ -15,26 +15,36 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerDisplayMode(pub NSInteger);
 impl UISplitViewControllerDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/automatic?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeSecondaryOnly")]
     pub const SecondaryOnly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/onebesidesecondary?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeOneBesideSecondary")]
     pub const OneBesideSecondary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/oneoversecondary?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeOneOverSecondary")]
     pub const OneOverSecondary: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twobesidesecondary?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeTwoBesideSecondary")]
     pub const TwoBesideSecondary: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twooversecondary?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeTwoOverSecondary")]
     pub const TwoOverSecondary: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twodisplacesecondary?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeTwoDisplaceSecondary")]
     pub const TwoDisplaceSecondary: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/primaryhidden?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModePrimaryHidden")]
     #[deprecated]
     pub const PrimaryHidden: Self = Self(UISplitViewControllerDisplayMode::SecondaryOnly.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/allvisible?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeAllVisible")]
     #[deprecated]
     pub const AllVisible: Self = Self(UISplitViewControllerDisplayMode::OneBesideSecondary.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/primaryoverlay?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModePrimaryOverlay")]
     #[deprecated]
     pub const PrimaryOverlay: Self = Self(UISplitViewControllerDisplayMode::OneOverSecondary.0);
@@ -54,8 +64,10 @@ unsafe impl RefEncode for UISplitViewControllerDisplayMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerPrimaryEdge(pub NSInteger);
 impl UISplitViewControllerPrimaryEdge {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/primaryedge-swift.enum/leading?language=objc)
     #[doc(alias = "UISplitViewControllerPrimaryEdgeLeading")]
     pub const Leading: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/primaryedge-swift.enum/trailing?language=objc)
     #[doc(alias = "UISplitViewControllerPrimaryEdgeTrailing")]
     pub const Trailing: Self = Self(1);
 }
@@ -74,8 +86,10 @@ unsafe impl RefEncode for UISplitViewControllerPrimaryEdge {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerBackgroundStyle(pub NSInteger);
 impl UISplitViewControllerBackgroundStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/backgroundstyle/none?language=objc)
     #[doc(alias = "UISplitViewControllerBackgroundStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/backgroundstyle/sidebar?language=objc)
     #[doc(alias = "UISplitViewControllerBackgroundStyleSidebar")]
     pub const Sidebar: Self = Self(1);
 }
@@ -94,11 +108,14 @@ unsafe impl RefEncode for UISplitViewControllerBackgroundStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerStyle(pub NSInteger);
 impl UISplitViewControllerStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/unspecified?language=objc)
     #[doc(alias = "UISplitViewControllerStyleUnspecified")]
     #[deprecated]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/doublecolumn?language=objc)
     #[doc(alias = "UISplitViewControllerStyleDoubleColumn")]
     pub const DoubleColumn: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn?language=objc)
     #[doc(alias = "UISplitViewControllerStyleTripleColumn")]
     pub const TripleColumn: Self = Self(2);
 }
@@ -117,14 +134,19 @@ unsafe impl RefEncode for UISplitViewControllerStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerColumn(pub NSInteger);
 impl UISplitViewControllerColumn {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/primary?language=objc)
     #[doc(alias = "UISplitViewControllerColumnPrimary")]
     pub const Primary: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/supplementary?language=objc)
     #[doc(alias = "UISplitViewControllerColumnSupplementary")]
     pub const Supplementary: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/secondary?language=objc)
     #[doc(alias = "UISplitViewControllerColumnSecondary")]
     pub const Secondary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/compact?language=objc)
     #[doc(alias = "UISplitViewControllerColumnCompact")]
     pub const Compact: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/inspector?language=objc)
     #[doc(alias = "UISplitViewControllerColumnInspector")]
     pub const Inspector: Self = Self(4);
 }
@@ -143,12 +165,16 @@ unsafe impl RefEncode for UISplitViewControllerColumn {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerSplitBehavior(pub NSInteger);
 impl UISplitViewControllerSplitBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/automatic?language=objc)
     #[doc(alias = "UISplitViewControllerSplitBehaviorAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/tile?language=objc)
     #[doc(alias = "UISplitViewControllerSplitBehaviorTile")]
     pub const Tile: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/overlay?language=objc)
     #[doc(alias = "UISplitViewControllerSplitBehaviorOverlay")]
     pub const Overlay: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/displace?language=objc)
     #[doc(alias = "UISplitViewControllerSplitBehaviorDisplace")]
     pub const Displace: Self = Self(3);
 }
@@ -167,10 +193,13 @@ unsafe impl RefEncode for UISplitViewControllerSplitBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerDisplayModeButtonVisibility(pub NSInteger);
 impl UISplitViewControllerDisplayModeButtonVisibility {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymodebuttonvisibility-swift.enum/automatic?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeButtonVisibilityAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymodebuttonvisibility-swift.enum/never?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeButtonVisibilityNever")]
     pub const Never: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymodebuttonvisibility-swift.enum/always?language=objc)
     #[doc(alias = "UISplitViewControllerDisplayModeButtonVisibilityAlways")]
     pub const Always: Self = Self(2);
 }

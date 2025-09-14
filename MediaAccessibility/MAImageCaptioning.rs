@@ -19,6 +19,8 @@ use crate::*;
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/maimagecaptioningcopycaption(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MAImageCaptioningCopyCaption(
     url: &CFURL,
@@ -51,6 +53,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/maimagecaptioningsetcaption(_:_:_:)?language=objc)
     pub fn MAImageCaptioningSetCaption(
         url: &CFURL,
         string: Option<&CFString>,
@@ -64,6 +68,8 @@ extern "C-unwind" {
 /// Returns: A string representing the tag path.
 ///
 /// This returns the appropriate metadata tag path to be used.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/maimagecaptioningcopymetadatatagpath()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MAImageCaptioningCopyMetadataTagPath() -> CFRetained<CFString> {
     extern "C-unwind" {

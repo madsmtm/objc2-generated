@@ -155,6 +155,8 @@ impl VTDecompressionSession {
     /// - `destination_image_buffer_attributes` generic must be of the correct type.
     /// - `output_callback` must be a valid pointer or null.
     /// - `decompression_session_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncreate(allocator:formatdescription:decoderspecification:imagebufferattributes:outputcallback:decompressionsessionout:)?language=objc)
     #[doc(alias = "VTDecompressionSessionCreate")]
     #[cfg(all(
         feature = "VTErrors",
@@ -199,6 +201,8 @@ impl VTDecompressionSession {
     /// When a decompression session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTDecompressionSessionInvalidate ensures a deterministic, orderly teardown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioninvalidate(_:)?language=objc)
     #[doc(alias = "VTDecompressionSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -211,6 +215,8 @@ impl VTDecompressionSession {
 
 unsafe impl ConcreteType for VTDecompressionSession {
     /// Returns the CFTypeID for decompression sessions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiongettypeid()?language=objc)
     #[doc(alias = "VTDecompressionSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -254,6 +260,8 @@ impl VTDecompressionSession {
     ///
     /// - `source_frame_ref_con` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:framerefcon:infoflagsout:)?language=objc)
     #[doc(alias = "VTDecompressionSessionDecodeFrame")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -351,6 +359,8 @@ impl VTDecompressionSession {
     ///
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:infoflagsout:outputhandler:)?language=objc)
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -393,6 +403,8 @@ impl VTDecompressionSession {
     /// kVTDecodeFrame_EnableTemporalProcessing.
     /// IMPORTANT NOTE: This function may return before all delayed frames are emitted.
     /// To wait for them, call VTDecompressionSessionWaitForAsynchronousFrames instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessionfinishdelayedframes(_:)?language=objc)
     #[doc(alias = "VTDecompressionSessionFinishDelayedFrames")]
     #[inline]
     pub unsafe fn finish_delayed_frames(&self) -> OSStatus {
@@ -409,6 +421,8 @@ impl VTDecompressionSession {
     /// Some video decoders are able to accommodate minor changes in format without needing to be
     /// completely reset in a new session.  This function can be used to test whether a format change
     /// is sufficiently minor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncanacceptformatdescription(_:formatdescription:)?language=objc)
     #[doc(alias = "VTDecompressionSessionCanAcceptFormatDescription")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -431,6 +445,8 @@ impl VTDecompressionSession {
     ///
     /// This function automatically calls VTDecompressionSessionFinishDelayedFrames,
     /// so clients don't have to call both.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessionwaitforasynchronousframes(_:)?language=objc)
     #[doc(alias = "VTDecompressionSessionWaitForAsynchronousFrames")]
     #[inline]
     pub unsafe fn wait_for_asynchronous_frames(&self) -> OSStatus {
@@ -453,6 +469,8 @@ impl VTDecompressionSession {
     /// # Safety
     ///
     /// `pixel_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncopyblackpixelbuffer(_:pixelbufferout:)?language=objc)
     #[doc(alias = "VTDecompressionSessionCopyBlackPixelBuffer")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
@@ -477,6 +495,8 @@ impl VTDecompressionSession {
 /// favoring alternate encodings when hardware decode is not supported.
 /// This call returning true does not guarantee that hardware decode resources will be
 /// available at all times.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtishardwaredecodesupported(_:)?language=objc)
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe extern "C-unwind" fn VTIsHardwareDecodeSupported(codec_type: CMVideoCodecType) -> bool {
@@ -490,6 +510,8 @@ pub unsafe extern "C-unwind" fn VTIsHardwareDecodeSupported(codec_type: CMVideoC
 /// Indicates whether the current system supports stereo MV-HEVC decode.
 ///
 /// This call returning true does not guarantee that decode resources will be available at all times.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtisstereomvhevcdecodesupported()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn VTIsStereoMVHEVCDecodeSupported() -> bool {
     extern "C-unwind" {
@@ -554,6 +576,8 @@ impl VTDecompressionSession {
     ///
     /// - `output_multi_image_callback` must be implemented correctly.
     /// - `output_multi_image_refcon` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessionsetmultiimagecallback?language=objc)
     #[doc(alias = "VTDecompressionSessionSetMultiImageCallback")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -661,6 +685,8 @@ impl VTDecompressionSession {
     ///
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `multi_image_capable_output_handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframewithmultiimagecapableoutputhandler?language=objc)
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -733,6 +759,8 @@ impl VTDecompressionSession {
     /// - `frame_options` generic must be of the correct type.
     /// - `source_frame_ref_con` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:frameoptions:framerefcon:infoflagsout:)?language=objc)
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptions")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -804,6 +832,8 @@ impl VTDecompressionSession {
     /// - `frame_options` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:frameoptions:infoflagsout:outputhandler:)?language=objc)
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",

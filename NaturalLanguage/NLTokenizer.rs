@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLTokenUnit(pub NSInteger);
 impl NLTokenUnit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenunit/word?language=objc)
     #[doc(alias = "NLTokenUnitWord")]
     pub const Word: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenunit/sentence?language=objc)
     #[doc(alias = "NLTokenUnitSentence")]
     pub const Sentence: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenunit/paragraph?language=objc)
     #[doc(alias = "NLTokenUnitParagraph")]
     pub const Paragraph: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenunit/document?language=objc)
     #[doc(alias = "NLTokenUnitDocument")]
     pub const Document: Self = Self(3);
 }
@@ -38,10 +42,13 @@ unsafe impl RefEncode for NLTokenUnit {
 pub struct NLTokenizerAttributes(pub NSUInteger);
 bitflags::bitflags! {
     impl NLTokenizerAttributes: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenizer/attributes/numeric?language=objc)
         #[doc(alias = "NLTokenizerAttributeNumeric")]
         const Numeric = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenizer/attributes/symbolic?language=objc)
         #[doc(alias = "NLTokenizerAttributeSymbolic")]
         const Symbolic = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenizer/attributes/emoji?language=objc)
         #[doc(alias = "NLTokenizerAttributeEmoji")]
         const Emoji = 1<<2;
     }

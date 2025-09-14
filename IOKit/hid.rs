@@ -12,58 +12,86 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidpointeraccelerationkey?language=objc)
 pub const kIOHIDPointerAccelerationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidtrackpadscrollaccelerationkey?language=objc)
 pub const kIOHIDTrackpadScrollAccelerationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDTrackpadScrollAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidtrackpadaccelerationtype?language=objc)
 pub const kIOHIDTrackpadAccelerationType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDTrackpadAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidpointeraccelerationtypekey?language=objc)
 pub const kIOHIDPointerAccelerationTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerAccelerationType\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidmousescrollaccelerationkey?language=objc)
 pub const kIOHIDMouseScrollAccelerationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDMouseScrollAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidmouseaccelerationtypekey?language=objc)
 pub const kIOHIDMouseAccelerationTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDMouseAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollaccelerationkey?language=objc)
 pub const kIOHIDScrollAccelerationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollaccelerationtypekey?language=objc)
 pub const kIOHIDScrollAccelerationTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAccelerationType\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddigitizertipthresholdkey?language=objc)
 pub const kIOHIDDigitizerTipThresholdKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DigitizerTipThreshold\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidsurfacedimensionskey?language=objc)
 pub const kIOHIDSurfaceDimensionsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SurfaceDimensions\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidwidthkey?language=objc)
 pub const kIOHIDWidthKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Width\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidheightkey?language=objc)
 pub const kIOHIDHeightKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Height\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohideventdriverhandlesreport?language=objc)
 pub const kIOHIDEventDriverHandlesReport: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIDEventDriverHandlesReport\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidserviceaccelerationproperties?language=objc)
 pub const kIOHIDServiceAccelerationProperties: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIDSetAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidpointeraccelerationmultiplierkey?language=objc)
 pub const kIOHIDPointerAccelerationMultiplierKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerAccelerationMultiplier\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidpointerreportratekey?language=objc)
 pub const kHIDPointerReportRateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerReportRate\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollreportratekey?language=objc)
 pub const kIOHIDScrollReportRateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollReportRate\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidaccelparametriccurveskey?language=objc)
 pub const kHIDAccelParametricCurvesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelCurves\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidscrollaccelparametriccurveskey?language=objc)
 pub const kHIDScrollAccelParametricCurvesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAccelCurves\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollresolutionkey?language=objc)
 pub const kIOHIDScrollResolutionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollResolution\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddropaccelpropertyeventskey?language=objc)
 pub const kIOHIDDropAccelPropertyEventsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DropAccelPropertyEvents\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollresolutionxkey?language=objc)
 pub const kIOHIDScrollResolutionXKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollResolutionX\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollresolutionykey?language=objc)
 pub const kIOHIDScrollResolutionYKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollResolutionY\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollresolutionzkey?language=objc)
 pub const kIOHIDScrollResolutionZKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollResolutionZ\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiduselinearscalingmouseaccelerationkey?language=objc)
 pub const kIOHIDUseLinearScalingMouseAccelerationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDUseLinearScalingMouseAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidpointeraccelerationsupportkey?language=objc)
 pub const kIOHIDPointerAccelerationSupportKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDSupportsPointerAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollaccelerationsupportkey?language=objc)
 pub const kIOHIDScrollAccelerationSupportKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDSupportsScrollAcceleration\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohideventservicesensorcontroloptionskey?language=objc)
 pub const kIOHIDEventServiceSensorControlOptionsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDDefaultSensorControlOptions\0") };
 pub const kIOHIDMouseAccelerationType: &CStr =
@@ -88,61 +116,91 @@ pub const kIOHIDIdleTimeMicrosecondsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDIdleTimeMicroseconds\0") };
 pub const kIOHIDServiceCapsLockStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDCapsLockState\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddevicedefaultasyncrequesttimeout?language=objc)
 pub const kIOHIDDeviceDefaultAsyncRequestTimeout: c_uint = 1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddeviceminasyncrequesttimeout?language=objc)
 pub const kIOHIDDeviceMinAsyncRequestTimeout: c_uint = 50;
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddevicemaxasyncrequesttimeout?language=objc)
 pub const kIOHIDDeviceMaxAsyncRequestTimeout: c_uint = 1200000;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidtransportkey?language=objc)
 pub const kIOHIDTransportKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Transport\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidvendoridkey?language=objc)
 pub const kIOHIDVendorIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"VendorID\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidproductidkey?language=objc)
 pub const kIOHIDProductIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ProductID\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidversionnumberkey?language=objc)
 pub const kIOHIDVersionNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"VersionNumber\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmanufacturerkey?language=objc)
 pub const kIOHIDManufacturerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Manufacturer\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidproductkey?language=objc)
 pub const kIOHIDProductKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Product\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidserialnumberkey?language=objc)
 pub const kIOHIDSerialNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SerialNumber\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidcountrycodekey?language=objc)
 pub const kIOHIDCountryCodeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CountryCode\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidlocationidkey?language=objc)
 pub const kIOHIDLocationIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"LocationID\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepairskey?language=objc)
 pub const kIOHIDDeviceUsagePairsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DeviceUsagePairs\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddeviceusagekey?language=objc)
 pub const kIOHIDDeviceUsageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DeviceUsage\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepagekey?language=objc)
 pub const kIOHIDDeviceUsagePageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DeviceUsagePage\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidprimaryusagekey?language=objc)
 pub const kIOHIDPrimaryUsageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PrimaryUsage\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidprimaryusagepagekey?language=objc)
 pub const kIOHIDPrimaryUsagePageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PrimaryUsagePage\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmaxinputreportsizekey?language=objc)
 pub const kIOHIDMaxInputReportSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MaxInputReportSize\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmaxoutputreportsizekey?language=objc)
 pub const kIOHIDMaxOutputReportSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MaxOutputReportSize\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmaxfeaturereportsizekey?language=objc)
 pub const kIOHIDMaxFeatureReportSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MaxFeatureReportSize\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidreportintervalkey?language=objc)
 pub const kIOHIDReportIntervalKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReportInterval\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidbatchintervalkey?language=objc)
 pub const kIOHIDBatchIntervalKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatchInterval\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidrequesttimeoutkey?language=objc)
 pub const kIOHIDRequestTimeoutKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"RequestTimeout\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidreportdescriptorkey?language=objc)
 pub const kIOHIDReportDescriptorKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReportDescriptor\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidbuiltinkey?language=objc)
 pub const kIOHIDBuiltInKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Built-In\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidphysicaldeviceuniqueidkey?language=objc)
 pub const kIOHIDPhysicalDeviceUniqueIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PhysicalDeviceUniqueID\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddeviceaccessentitlementkey?language=objc)
 pub const kIOHIDDeviceAccessEntitlementKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDDeviceAccessEntitlement\0") };
 pub const kIOHIDDeviceKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIDDevice\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidvendoridsourcekey?language=objc)
 pub const kIOHIDVendorIDSourceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"VendorIDSource\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypekey?language=objc)
 pub const kIOHIDStandardTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"StandardType\0") };
 pub const kIOHIDSampleIntervalKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SampleInterval\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidresetkey?language=objc)
 pub const kIOHIDResetKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Reset\0") };
 pub const kIOHIDKeyboardLanguageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"KeyboardLanguage\0") };
@@ -187,75 +245,114 @@ pub const kIOHIDTransportInductiveInBandValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Inductive In-Band\0") };
 pub const kIOHIDCategoryAutomotiveValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Automotive\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementkey?language=objc)
 pub const kIOHIDElementKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Elements\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcookiekey?language=objc)
 pub const kIOHIDElementCookieKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ElementCookie\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementtypekey?language=objc)
 pub const kIOHIDElementTypeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Type\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcollectiontypekey?language=objc)
 pub const kIOHIDElementCollectionTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CollectionType\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementusagekey?language=objc)
 pub const kIOHIDElementUsageKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Usage\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementusagepagekey?language=objc)
 pub const kIOHIDElementUsagePageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsagePage\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementminkey?language=objc)
 pub const kIOHIDElementMinKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Min\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementmaxkey?language=objc)
 pub const kIOHIDElementMaxKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Max\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementscaledminkey?language=objc)
 pub const kIOHIDElementScaledMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ScaledMin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementscaledmaxkey?language=objc)
 pub const kIOHIDElementScaledMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ScaledMax\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementsizekey?language=objc)
 pub const kIOHIDElementSizeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Size\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementreportsizekey?language=objc)
 pub const kIOHIDElementReportSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReportSize\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementreportcountkey?language=objc)
 pub const kIOHIDElementReportCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReportCount\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementreportidkey?language=objc)
 pub const kIOHIDElementReportIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReportID\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementisarraykey?language=objc)
 pub const kIOHIDElementIsArrayKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IsArray\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementisrelativekey?language=objc)
 pub const kIOHIDElementIsRelativeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IsRelative\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementiswrappingkey?language=objc)
 pub const kIOHIDElementIsWrappingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IsWrapping\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementisnonlinearkey?language=objc)
 pub const kIOHIDElementIsNonLinearKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IsNonLinear\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementhaspreferredstatekey?language=objc)
 pub const kIOHIDElementHasPreferredStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HasPreferredState\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementhasnullstatekey?language=objc)
 pub const kIOHIDElementHasNullStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HasNullState\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementflagskey?language=objc)
 pub const kIOHIDElementFlagsKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Flags\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementunitkey?language=objc)
 pub const kIOHIDElementUnitKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Unit\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementunitexponentkey?language=objc)
 pub const kIOHIDElementUnitExponentKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UnitExponent\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementnamekey?language=objc)
 pub const kIOHIDElementNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementvaluelocationkey?language=objc)
 pub const kIOHIDElementValueLocationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ValueLocation\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementduplicateindexkey?language=objc)
 pub const kIOHIDElementDuplicateIndexKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DuplicateIndex\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementparentcollectionkey?language=objc)
 pub const kIOHIDElementParentCollectionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ParentCollection\0") };
 pub const kIOHIDElementVariableSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"VariableSize\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementvendorspecifickey?language=objc)
 pub const kIOHIDElementVendorSpecificKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"VendorSpecific\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcookieminkey?language=objc)
 pub const kIOHIDElementCookieMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ElementCookieMin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcookiemaxkey?language=objc)
 pub const kIOHIDElementCookieMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ElementCookieMax\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementusageminkey?language=objc)
 pub const kIOHIDElementUsageMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsageMin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementusagemaxkey?language=objc)
 pub const kIOHIDElementUsageMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsageMax\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationminkey?language=objc)
 pub const kIOHIDElementCalibrationMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationMin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationmaxkey?language=objc)
 pub const kIOHIDElementCalibrationMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationMax\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationsaturationminkey?language=objc)
 pub const kIOHIDElementCalibrationSaturationMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationSaturationMin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationsaturationmaxkey?language=objc)
 pub const kIOHIDElementCalibrationSaturationMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationSaturationMax\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationdeadzoneminkey?language=objc)
 pub const kIOHIDElementCalibrationDeadZoneMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationDeadZoneMin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationdeadzonemaxkey?language=objc)
 pub const kIOHIDElementCalibrationDeadZoneMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationDeadZoneMax\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationgranularitykey?language=objc)
 pub const kIOHIDElementCalibrationGranularityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationGranularity\0") };
 pub const kIOHIDKeyboardSupportsEscKey: &CStr =
@@ -313,12 +410,16 @@ pub const kIOHIDKeyboardFunctionKeyCountKey: &CStr =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDReportType(pub c_uint);
 impl IOHIDReportType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreporttype/kiohidreporttypeinput?language=objc)
     #[doc(alias = "kIOHIDReportTypeInput")]
     pub const Input: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreporttype/kiohidreporttypeoutput?language=objc)
     #[doc(alias = "kIOHIDReportTypeOutput")]
     pub const Output: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreporttype/kiohidreporttypefeature?language=objc)
     #[doc(alias = "kIOHIDReportTypeFeature")]
     pub const Feature: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreporttype/kiohidreporttypecount?language=objc)
     #[doc(alias = "kIOHIDReportTypeCount")]
     pub const Count: Self = Self(3);
 }
@@ -351,8 +452,10 @@ unsafe impl RefEncode for IOHIDReportType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDElementCommitDirection(pub c_uint);
 impl IOHIDElementCommitDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcommitdirection/kiohidelementcommitdirectionin?language=objc)
     #[doc(alias = "kIOHIDElementCommitDirectionIn")]
     pub const In: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcommitdirection/kiohidelementcommitdirectionout?language=objc)
     #[doc(alias = "kIOHIDElementCommitDirectionOut")]
     pub const Out: Self = Self(1);
 }
@@ -410,20 +513,28 @@ pub type IOHIDElementCookie = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDElementType(pub c_uint);
 impl IOHIDElementType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeinput_misc?language=objc)
     #[doc(alias = "kIOHIDElementTypeInput_Misc")]
     pub const Input_Misc: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeinput_button?language=objc)
     #[doc(alias = "kIOHIDElementTypeInput_Button")]
     pub const Input_Button: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeinput_axis?language=objc)
     #[doc(alias = "kIOHIDElementTypeInput_Axis")]
     pub const Input_Axis: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeinput_scancodes?language=objc)
     #[doc(alias = "kIOHIDElementTypeInput_ScanCodes")]
     pub const Input_ScanCodes: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeinput_null?language=objc)
     #[doc(alias = "kIOHIDElementTypeInput_NULL")]
     pub const Input_NULL: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeoutput?language=objc)
     #[doc(alias = "kIOHIDElementTypeOutput")]
     pub const Output: Self = Self(129);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypefeature?language=objc)
     #[doc(alias = "kIOHIDElementTypeFeature")]
     pub const Feature: Self = Self(257);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypecollection?language=objc)
     #[doc(alias = "kIOHIDElementTypeCollection")]
     pub const Collection: Self = Self(513);
 }
@@ -492,18 +603,25 @@ pub type IOHIDElementFlags = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDElementCollectionType(pub c_uint);
 impl IOHIDElementCollectionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypephysical?language=objc)
     #[doc(alias = "kIOHIDElementCollectionTypePhysical")]
     pub const Physical: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypeapplication?language=objc)
     #[doc(alias = "kIOHIDElementCollectionTypeApplication")]
     pub const Application: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypelogical?language=objc)
     #[doc(alias = "kIOHIDElementCollectionTypeLogical")]
     pub const Logical: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypereport?language=objc)
     #[doc(alias = "kIOHIDElementCollectionTypeReport")]
     pub const Report: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypenamedarray?language=objc)
     #[doc(alias = "kIOHIDElementCollectionTypeNamedArray")]
     pub const NamedArray: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypeusageswitch?language=objc)
     #[doc(alias = "kIOHIDElementCollectionTypeUsageSwitch")]
     pub const UsageSwitch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypeusagemodifier?language=objc)
     #[doc(alias = "kIOHIDElementCollectionTypeUsageModifier")]
     pub const UsageModifier: Self = Self(6);
 }
@@ -603,8 +721,10 @@ pub const kIOHIDReportOptionVariableSize: c_uint = 0x200;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HIDReportCommandType(pub c_uint);
 impl HIDReportCommandType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/hidreportcommandtype/kiohidreportcommandsetreport?language=objc)
     #[doc(alias = "kIOHIDReportCommandSetReport")]
     pub const IOHIDReportCommandSetReport: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/hidreportcommandtype/kiohidreportcommandgetreport?language=objc)
     #[doc(alias = "kIOHIDReportCommandGetReport")]
     pub const IOHIDReportCommandGetReport: Self = Self(1);
 }
@@ -733,8 +853,10 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDTransactionDirectionType(pub u32);
 impl IOHIDTransactionDirectionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidtransactiondirectiontype/kiohidtransactiondirectiontypeinput?language=objc)
     #[doc(alias = "kIOHIDTransactionDirectionTypeInput")]
     pub const Input: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidtransactiondirectiontype/kiohidtransactiondirectiontypeoutput?language=objc)
     #[doc(alias = "kIOHIDTransactionDirectionTypeOutput")]
     pub const Output: Self = Self(1);
 }
@@ -886,6 +1008,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for IOHIDQueue {
     /// Returns the type identifier of all IOHIDQueue instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545836-iohidqueuegettypeid?language=objc)
     #[doc(alias = "IOHIDQueueGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -911,6 +1035,8 @@ impl IOHIDQueue {
     /// Parameter `options`: Reserved for future use.
     ///
     /// Returns: Returns a new IOHIDQueueRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545840-iohidqueuecreate?language=objc)
     #[doc(alias = "IOHIDQueueCreate")]
     #[inline]
     pub fn new(
@@ -936,6 +1062,8 @@ impl IOHIDQueue {
     /// Parameter `queue`: IOHIDQueue to be queried.
     ///
     /// Returns: Returns the a reference to the device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545839-iohidqueuegetdevice?language=objc)
     #[doc(alias = "IOHIDQueueGetDevice")]
     #[inline]
     pub fn device(&self) -> CFRetained<IOHIDDevice> {
@@ -953,6 +1081,8 @@ impl IOHIDQueue {
     /// Parameter `queue`: IOHIDQueue to be queried.
     ///
     /// Returns: Returns the queue depth.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545833-iohidqueuegetdepth?language=objc)
     #[doc(alias = "IOHIDQueueGetDepth")]
     #[inline]
     pub fn depth(&self) -> CFIndex {
@@ -970,6 +1100,8 @@ impl IOHIDQueue {
     /// Parameter `queue`: IOHIDQueue object to be modified.
     ///
     /// Parameter `depth`: The new queue depth.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545846-iohidqueuesetdepth?language=objc)
     #[doc(alias = "IOHIDQueueSetDepth")]
     #[inline]
     pub fn set_depth(&self, depth: CFIndex) {
@@ -984,6 +1116,8 @@ impl IOHIDQueue {
     /// Parameter `queue`: IOHIDQueue object to be modified.
     ///
     /// Parameter `element`: Element to be added to the queue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545835-iohidqueueaddelement?language=objc)
     #[doc(alias = "IOHIDQueueAddElement")]
     #[inline]
     pub fn add_element(&self, element: &IOHIDElement) {
@@ -998,6 +1132,8 @@ impl IOHIDQueue {
     /// Parameter `queue`: IOHIDQueue object to be modified.
     ///
     /// Parameter `element`: Element to be removed from the queue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545838-iohidqueueremoveelement?language=objc)
     #[doc(alias = "IOHIDQueueRemoveElement")]
     #[inline]
     pub fn remove_element(&self, element: &IOHIDElement) {
@@ -1014,6 +1150,8 @@ impl IOHIDQueue {
     /// Parameter `element`: Element to be queried.
     ///
     /// Returns: Returns true or false depending if element is present.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545842-iohidqueuecontainselement?language=objc)
     #[doc(alias = "IOHIDQueueContainsElement")]
     #[inline]
     pub fn contains_element(&self, element: &IOHIDElement) -> bool {
@@ -1032,6 +1170,8 @@ impl IOHIDQueue {
     /// when IOHIDQueueActivate is called.
     ///
     /// Parameter `queue`: IOHIDQueue object to be started.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545843-iohidqueuestart?language=objc)
     #[doc(alias = "IOHIDQueueStart")]
     #[inline]
     pub fn start(&self) {
@@ -1049,6 +1189,8 @@ impl IOHIDQueue {
     /// when IOHIDQueueCancel is called.
     ///
     /// Parameter `queue`: IOHIDQueue object to be stopped.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545830-iohidqueuestop?language=objc)
     #[doc(alias = "IOHIDQueueStop")]
     #[inline]
     pub fn stop(&self) {
@@ -1075,6 +1217,8 @@ impl IOHIDQueue {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545841-iohidqueueschedulewithrunloop?language=objc)
     #[doc(alias = "IOHIDQueueScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1103,6 +1247,8 @@ impl IOHIDQueue {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545834-iohidqueueunschedulefromrunloop?language=objc)
     #[doc(alias = "IOHIDQueueUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1136,6 +1282,8 @@ impl IOHIDQueue {
     /// # Safety
     ///
     /// `dispatch_queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042794-iohidqueuesetdispatchqueue?language=objc)
     #[doc(alias = "IOHIDQueueSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1177,6 +1325,8 @@ impl IOHIDQueue {
     /// # Safety
     ///
     /// `handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042793-iohidqueuesetcancelhandler?language=objc)
     #[doc(alias = "IOHIDQueueSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1205,6 +1355,8 @@ impl IOHIDQueue {
     ///
     ///
     /// Parameter `queue`: Reference to an IOHIDQueue
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042791-iohidqueueactivate?language=objc)
     #[doc(alias = "IOHIDQueueActivate")]
     #[inline]
     pub fn activate(&self) {
@@ -1240,6 +1392,8 @@ impl IOHIDQueue {
     ///
     ///
     /// Parameter `queue`: Reference to an IOHIDQueue
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042792-iohidqueuecancel?language=objc)
     #[doc(alias = "IOHIDQueueCancel")]
     #[inline]
     pub fn cancel(&self) {
@@ -1266,6 +1420,8 @@ impl IOHIDQueue {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545829-iohidqueueregistervalueavailable?language=objc)
     #[doc(alias = "IOHIDQueueRegisterValueAvailableCallback")]
     #[inline]
     pub unsafe fn register_value_available_callback(
@@ -1293,6 +1449,8 @@ impl IOHIDQueue {
     /// Parameter `queue`: IOHIDQueue object to be queried.
     ///
     /// Returns: Returns valid IOHIDValueRef if data is available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545844-iohidqueuecopynextvalue?language=objc)
     #[doc(alias = "IOHIDQueueCopyNextValue")]
     #[inline]
     pub fn next_value(&self) -> Option<CFRetained<IOHIDValue>> {
@@ -1317,6 +1475,8 @@ impl IOHIDQueue {
     /// from the head of a queue.
     ///
     /// Returns: Returns valid IOHIDValueRef if data is available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545832-iohidqueuecopynextvaluewithtimeo?language=objc)
     #[doc(alias = "IOHIDQueueCopyNextValueWithTimeout")]
     #[inline]
     pub fn next_value_with_timeout(
@@ -1336,6 +1496,8 @@ impl IOHIDQueue {
 
 unsafe impl ConcreteType for IOHIDDevice {
     /// Returns the type identifier of all IOHIDDevice instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588664-iohiddevicegettypeid?language=objc)
     #[doc(alias = "IOHIDDeviceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1357,6 +1519,8 @@ impl IOHIDDevice {
     /// Parameter `service`: Reference to service object in the kernel.
     ///
     /// Returns: Returns a new IOHIDDeviceRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588663-iohiddevicecreate?language=objc)
     #[doc(alias = "IOHIDDeviceCreate")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -1383,6 +1547,8 @@ impl IOHIDDevice {
     ///
     /// Returns: Returns the io_service_t if the IOHIDDevice has one, or
     /// MACH_PORT_NULL if it does not.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588646-iohiddevicegetservice?language=objc)
     #[doc(alias = "IOHIDDeviceGetService")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -1406,6 +1572,8 @@ impl IOHIDDevice {
     /// Parameter `options`: Option bits to be sent down to the device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588670-iohiddeviceopen?language=objc)
     #[doc(alias = "IOHIDDeviceOpen")]
     #[inline]
     pub fn open(&self, options: IOOptionBits) -> IOReturn {
@@ -1425,6 +1593,8 @@ impl IOHIDDevice {
     /// Parameter `options`: Option bits to be sent down to the device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588668-iohiddeviceclose?language=objc)
     #[doc(alias = "IOHIDDeviceClose")]
     #[inline]
     pub fn close(&self, options: IOOptionBits) -> IOReturn {
@@ -1459,6 +1629,8 @@ impl IOHIDDevice {
     /// Parameter `usage`: Device usage
     ///
     /// Returns: Returns TRUE if device conforms to provided usage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588665-iohiddeviceconformsto?language=objc)
     #[doc(alias = "IOHIDDeviceConformsTo")]
     #[inline]
     pub fn conforms_to(&self, usage_page: u32, usage: u32) -> bool {
@@ -1481,6 +1653,8 @@ impl IOHIDDevice {
     /// device.
     ///
     /// Returns: Returns CFTypeRef containing the property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588648-iohiddevicegetproperty?language=objc)
     #[doc(alias = "IOHIDDeviceGetProperty")]
     #[inline]
     pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
@@ -1512,6 +1686,8 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `property` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588653-iohiddevicesetproperty?language=objc)
     #[doc(alias = "IOHIDDeviceSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -1546,6 +1722,8 @@ impl IOHIDDevice {
     ///
     /// - `matching` generic must be of the correct type.
     /// - `matching` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588671-iohiddevicecopymatchingelements?language=objc)
     #[doc(alias = "IOHIDDeviceCopyMatchingElements")]
     #[inline]
     pub unsafe fn matching_elements(
@@ -1581,6 +1759,8 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588660-iohiddeviceschedulewithrunloop?language=objc)
     #[doc(alias = "IOHIDDeviceScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1609,6 +1789,8 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588650-iohiddeviceunschedulefromrunloop?language=objc)
     #[doc(alias = "IOHIDDeviceUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1638,6 +1820,8 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042784-iohiddevicesetdispatchqueue?language=objc)
     #[doc(alias = "IOHIDDeviceSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1673,6 +1857,8 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042783-iohiddevicesetcancelhandler?language=objc)
     #[doc(alias = "IOHIDDeviceSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1696,6 +1882,8 @@ impl IOHIDDevice {
     /// Calling IOHIDDeviceActivate on an active IOHIDDevice has no effect.
     ///
     /// Parameter `device`: Reference to an IOHIDDevice
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042781-iohiddeviceactivate?language=objc)
     #[doc(alias = "IOHIDDeviceActivate")]
     #[inline]
     pub fn activate(&self) {
@@ -1725,6 +1913,8 @@ impl IOHIDDevice {
     /// IOHIDDeviceCancel(device);
     ///
     /// Parameter `device`: Reference to an IOHIDDevice
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042782-iohiddevicecancel?language=objc)
     #[doc(alias = "IOHIDDeviceCancel")]
     #[inline]
     pub fn cancel(&self) {
@@ -1749,6 +1939,8 @@ impl IOHIDDevice {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588673-iohiddeviceregisterremovalcallba?language=objc)
     #[doc(alias = "IOHIDDeviceRegisterRemovalCallback")]
     #[inline]
     pub unsafe fn register_removal_callback(&self, callback: IOHIDCallback, context: *mut c_void) {
@@ -1782,6 +1974,8 @@ impl IOHIDDevice {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588672-iohiddeviceregisterinputvaluecal?language=objc)
     #[doc(alias = "IOHIDDeviceRegisterInputValueCallback")]
     #[inline]
     pub unsafe fn register_input_value_callback(
@@ -1823,6 +2017,8 @@ impl IOHIDDevice {
     /// - `report` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588666-iohiddeviceregisterinputreportca?language=objc)
     #[doc(alias = "IOHIDDeviceRegisterInputReportCallback")]
     #[inline]
     pub unsafe fn register_input_report_callback(
@@ -1870,6 +2066,8 @@ impl IOHIDDevice {
     /// - `report` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588649-iohiddeviceregisterinputreportwi?language=objc)
     #[doc(alias = "IOHIDDeviceRegisterInputReportWithTimeStampCallback")]
     #[inline]
     pub unsafe fn register_input_report_with_time_stamp_callback(
@@ -1920,6 +2118,8 @@ impl IOHIDDevice {
     ///
     /// - `matching` generic must be of the correct type.
     /// - `matching` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588654-iohiddevicesetinputvaluematching?language=objc)
     #[doc(alias = "IOHIDDeviceSetInputValueMatching")]
     #[inline]
     pub unsafe fn set_input_value_matching(&self, matching: Option<&CFDictionary>) {
@@ -1949,6 +2149,8 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `multiple` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588645-iohiddevicesetinputvaluematching?language=objc)
     #[doc(alias = "IOHIDDeviceSetInputValueMatchingMultiple")]
     #[inline]
     pub unsafe fn set_input_value_matching_multiple(&self, multiple: Option<&CFArray>) {
@@ -1976,6 +2178,8 @@ impl IOHIDDevice {
     /// Parameter `value`: IOHIDValueRef containing value to be set.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588651-iohiddevicesetvalue?language=objc)
     #[doc(alias = "IOHIDDeviceSetValue")]
     #[inline]
     pub fn set_value(&self, element: &IOHIDElement, value: &IOHIDValue) -> IOReturn {
@@ -2006,6 +2210,8 @@ impl IOHIDDevice {
     ///
     /// - `multiple` generic must be of the correct type.
     /// - `multiple` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588669-iohiddevicesetvaluemultiple?language=objc)
     #[doc(alias = "IOHIDDeviceSetValueMultiple")]
     #[inline]
     pub unsafe fn set_value_multiple(&self, multiple: &CFDictionary) -> IOReturn {
@@ -2044,6 +2250,8 @@ impl IOHIDDevice {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588667-iohiddevicesetvaluewithcallback?language=objc)
     #[doc(alias = "IOHIDDeviceSetValueWithCallback")]
     #[inline]
     pub unsafe fn set_value_with_callback(
@@ -2094,6 +2302,8 @@ impl IOHIDDevice {
     /// - `multiple` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588658-iohiddevicesetvaluemultiplewithc?language=objc)
     #[doc(alias = "IOHIDDeviceSetValueMultipleWithCallback")]
     #[inline]
     pub unsafe fn set_value_multiple_with_callback(
@@ -2136,6 +2346,8 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `p_value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588657-iohiddevicegetvalue?language=objc)
     #[doc(alias = "IOHIDDeviceGetValue")]
     #[inline]
     pub unsafe fn value(
@@ -2160,8 +2372,10 @@ impl IOHIDDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDDeviceGetValueOptions(pub u32);
 impl IOHIDDeviceGetValueOptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicegetvalueoptions/kiohiddevicegetvaluewithupdate?language=objc)
     #[doc(alias = "kIOHIDDeviceGetValueWithUpdate")]
     pub const WithUpdate: Self = Self(0x00020000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicegetvalueoptions/kiohiddevicegetvaluewithoutupdate?language=objc)
     #[doc(alias = "kIOHIDDeviceGetValueWithoutUpdate")]
     pub const WithoutUpdate: Self = Self(0x00040000);
 }
@@ -2198,6 +2412,8 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `p_value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2937933-iohiddevicegetvaluewithoptions?language=objc)
     #[doc(alias = "IOHIDDeviceGetValueWithOptions")]
     #[inline]
     pub unsafe fn value_with_options(
@@ -2238,6 +2454,8 @@ impl IOHIDDevice {
     ///
     /// - `elements` generic must be of the correct type.
     /// - `p_multiple` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588652-iohiddevicecopyvaluemultiple?language=objc)
     #[doc(alias = "IOHIDDeviceCopyValueMultiple")]
     #[inline]
     pub unsafe fn copy_value_multiple(
@@ -2282,6 +2500,8 @@ impl IOHIDDevice {
     /// - `p_value` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588647-iohiddevicegetvaluewithcallback?language=objc)
     #[doc(alias = "IOHIDDeviceGetValueWithCallback")]
     #[inline]
     pub unsafe fn value_with_callback(
@@ -2336,6 +2556,8 @@ impl IOHIDDevice {
     /// - `p_multiple` must be a valid pointer or null.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588655-iohiddevicecopyvaluemultiplewith?language=objc)
     #[doc(alias = "IOHIDDeviceCopyValueMultipleWithCallback")]
     #[inline]
     pub unsafe fn copy_value_multiple_with_callback(
@@ -2386,6 +2608,8 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `report` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588656-iohiddevicesetreport?language=objc)
     #[doc(alias = "IOHIDDeviceSetReport")]
     #[inline]
     pub unsafe fn set_report(
@@ -2438,6 +2662,8 @@ impl IOHIDDevice {
     /// - `report` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588661-iohiddevicesetreportwithcallback?language=objc)
     #[doc(alias = "IOHIDDeviceSetReportWithCallback")]
     #[inline]
     pub unsafe fn set_report_with_callback(
@@ -2503,6 +2729,8 @@ impl IOHIDDevice {
     ///
     /// - `report` must be a valid pointer.
     /// - `p_report_length` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588659-iohiddevicegetreport?language=objc)
     #[doc(alias = "IOHIDDeviceGetReport")]
     #[inline]
     pub unsafe fn report(
@@ -2559,6 +2787,8 @@ impl IOHIDDevice {
     /// - `p_report_length` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588662-iohiddevicegetreportwithcallback?language=objc)
     #[doc(alias = "IOHIDDeviceGetReportWithCallback")]
     #[inline]
     pub unsafe fn report_with_callback(
@@ -2600,6 +2830,8 @@ impl IOHIDDevice {
 
 unsafe impl ConcreteType for IOHIDElement {
     /// Returns the type identifier of all IOHIDElement instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564120-iohidelementgettypeid?language=objc)
     #[doc(alias = "IOHIDElementGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -2625,6 +2857,8 @@ impl IOHIDElement {
     ///
     /// - `dictionary` generic must be of the correct type.
     /// - `dictionary` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564115-iohidelementcreatewithdictionary?language=objc)
     #[doc(alias = "IOHIDElementCreateWithDictionary")]
     #[inline]
     pub unsafe fn with_dictionary(
@@ -2648,6 +2882,8 @@ impl IOHIDElement {
     /// Parameter `element`: IOHIDElement to be queried.
     ///
     /// Returns: Returns the a reference to the device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564139-iohidelementgetdevice?language=objc)
     #[doc(alias = "IOHIDElementGetDevice")]
     #[inline]
     pub fn device(&self) -> CFRetained<IOHIDDevice> {
@@ -2667,6 +2903,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns an IOHIDElementRef referencing the parent element.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564144-iohidelementgetparent?language=objc)
     #[doc(alias = "IOHIDElementGetParent")]
     #[inline]
     pub fn parent(&self) -> Option<CFRetained<IOHIDElement>> {
@@ -2684,6 +2922,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns an CFArrayRef containing element objects of type IOHIDElementRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564119-iohidelementgetchildren?language=objc)
     #[doc(alias = "IOHIDElementGetChildren")]
     #[inline]
     pub fn children(&self) -> Option<CFRetained<CFArray>> {
@@ -2701,6 +2941,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Parameter `toAttach`: The element to be attached. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564146-iohidelementattach?language=objc)
     #[doc(alias = "IOHIDElementAttach")]
     #[inline]
     pub fn attach(&self, to_attach: &IOHIDElement) {
@@ -2717,6 +2959,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Parameter `toDetach`: The element to be detached. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564116-iohidelementdetach?language=objc)
     #[doc(alias = "IOHIDElementDetach")]
     #[inline]
     pub fn detach(&self, to_detach: &IOHIDElement) {
@@ -2733,6 +2977,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns a copy of the current attached elements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564123-iohidelementcopyattached?language=objc)
     #[doc(alias = "IOHIDElementCopyAttached")]
     #[inline]
     pub fn attached(&self) -> Option<CFRetained<CFArray>> {
@@ -2750,6 +2996,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the IOHIDElementCookie for the element.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564124-iohidelementgetcookie?language=objc)
     #[doc(alias = "IOHIDElementGetCookie")]
     #[inline]
     pub fn cookie(&self) -> IOHIDElementCookie {
@@ -2764,6 +3012,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the IOHIDElementType for the element.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564135-iohidelementgettype?language=objc)
     #[doc(alias = "IOHIDElementGetType")]
     #[inline]
     pub fn r#type(&self) -> IOHIDElementType {
@@ -2780,6 +3030,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the IOHIDElementCollectionType for the element.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564132-iohidelementgetcollectiontype?language=objc)
     #[doc(alias = "IOHIDElementGetCollectionType")]
     #[inline]
     pub fn collection_type(&self) -> IOHIDElementCollectionType {
@@ -2794,6 +3046,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the usage page for the element.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564128-iohidelementgetusagepage?language=objc)
     #[doc(alias = "IOHIDElementGetUsagePage")]
     #[inline]
     pub fn usage_page(&self) -> u32 {
@@ -2808,6 +3062,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the usage for the element.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564126-iohidelementgetusage?language=objc)
     #[doc(alias = "IOHIDElementGetUsage")]
     #[inline]
     pub fn usage(&self) -> u32 {
@@ -2824,6 +3080,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the TRUE if virtual or FALSE if not.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564125-iohidelementisvirtual?language=objc)
     #[doc(alias = "IOHIDElementIsVirtual")]
     #[inline]
     pub fn is_virtual(&self) -> bool {
@@ -2842,6 +3100,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if relative or FALSE if absolute.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564129-iohidelementisrelative?language=objc)
     #[doc(alias = "IOHIDElementIsRelative")]
     #[inline]
     pub fn is_relative(&self) -> bool {
@@ -2859,6 +3119,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if wrapping or FALSE if non-wrapping.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564127-iohidelementiswrapping?language=objc)
     #[doc(alias = "IOHIDElementIsWrapping")]
     #[inline]
     pub fn is_wrapping(&self) -> bool {
@@ -2884,6 +3146,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if array or FALSE if variable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564133-iohidelementisarray?language=objc)
     #[doc(alias = "IOHIDElementIsArray")]
     #[inline]
     pub fn is_array(&self) -> bool {
@@ -2902,6 +3166,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if non linear or FALSE if linear.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564131-iohidelementisnonlinear?language=objc)
     #[doc(alias = "IOHIDElementIsNonLinear")]
     #[inline]
     pub fn is_non_linear(&self) -> bool {
@@ -2920,6 +3186,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if preferred state or FALSE if no preferred state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564141-iohidelementhaspreferredstate?language=objc)
     #[doc(alias = "IOHIDElementHasPreferredState")]
     #[inline]
     pub fn has_preferred_state(&self) -> bool {
@@ -2937,6 +3205,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if null state or FALSE if no null state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564145-iohidelementhasnullstate?language=objc)
     #[doc(alias = "IOHIDElementHasNullState")]
     #[inline]
     pub fn has_null_state(&self) -> bool {
@@ -2952,6 +3222,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns CFStringRef containing the element name.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564117-iohidelementgetname?language=objc)
     #[doc(alias = "IOHIDElementGetName")]
     #[inline]
     pub fn name(&self) -> CFRetained<CFString> {
@@ -2971,6 +3243,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the report ID.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564122-iohidelementgetreportid?language=objc)
     #[doc(alias = "IOHIDElementGetReportID")]
     #[inline]
     pub fn report_id(&self) -> u32 {
@@ -2990,6 +3264,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the report size.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564130-iohidelementgetreportsize?language=objc)
     #[doc(alias = "IOHIDElementGetReportSize")]
     #[inline]
     pub fn report_size(&self) -> u32 {
@@ -3009,6 +3285,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the report count.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564142-iohidelementgetreportcount?language=objc)
     #[doc(alias = "IOHIDElementGetReportCount")]
     #[inline]
     pub fn report_count(&self) -> u32 {
@@ -3026,6 +3304,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the unit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564136-iohidelementgetunit?language=objc)
     #[doc(alias = "IOHIDElementGetUnit")]
     #[inline]
     pub fn unit(&self) -> u32 {
@@ -3043,6 +3323,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the unit exponent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564121-iohidelementgetunitexponent?language=objc)
     #[doc(alias = "IOHIDElementGetUnitExponent")]
     #[inline]
     pub fn unit_exponent(&self) -> u32 {
@@ -3059,6 +3341,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the logical minimum.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564137-iohidelementgetlogicalmin?language=objc)
     #[doc(alias = "IOHIDElementGetLogicalMin")]
     #[inline]
     pub fn logical_min(&self) -> CFIndex {
@@ -3075,6 +3359,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the logical maximum.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564143-iohidelementgetlogicalmax?language=objc)
     #[doc(alias = "IOHIDElementGetLogicalMax")]
     #[inline]
     pub fn logical_max(&self) -> CFIndex {
@@ -3091,6 +3377,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the physical minimum.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564140-iohidelementgetphysicalmin?language=objc)
     #[doc(alias = "IOHIDElementGetPhysicalMin")]
     #[inline]
     pub fn physical_min(&self) -> CFIndex {
@@ -3107,6 +3395,8 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the physical maximum.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564134-iohidelementgetphysicalmax?language=objc)
     #[doc(alias = "IOHIDElementGetPhysicalMax")]
     #[inline]
     pub fn physical_max(&self) -> CFIndex {
@@ -3125,6 +3415,8 @@ impl IOHIDElement {
     /// Parameter `key`: The key to be used when querying the element.
     ///
     /// Returns: Returns the property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564118-iohidelementgetproperty?language=objc)
     #[doc(alias = "IOHIDElementGetProperty")]
     #[inline]
     pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
@@ -3151,6 +3443,8 @@ impl IOHIDElement {
     /// # Safety
     ///
     /// `property` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564138-iohidelementsetproperty?language=objc)
     #[doc(alias = "IOHIDElementSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -3868,14 +4162,19 @@ unsafe impl RefEncode for IOHIDOutputTransactionInterface {
 pub struct IOHIDManagerOptions(pub u32);
 bitflags::bitflags! {
     impl IOHIDManagerOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptionnone?language=objc)
         #[doc(alias = "kIOHIDManagerOptionNone")]
         const None = 0x0;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptionusepersistentproperties?language=objc)
         #[doc(alias = "kIOHIDManagerOptionUsePersistentProperties")]
         const UsePersistentProperties = 0x1;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptiondonotloadproperties?language=objc)
         #[doc(alias = "kIOHIDManagerOptionDoNotLoadProperties")]
         const DoNotLoadProperties = 0x2;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptiondonotsaveproperties?language=objc)
         #[doc(alias = "kIOHIDManagerOptionDoNotSaveProperties")]
         const DoNotSaveProperties = 0x4;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptionindependentdevices?language=objc)
         #[doc(alias = "kIOHIDManagerOptionIndependentDevices")]
         const IndependentDevices = 0x8;
     }
@@ -3909,6 +4208,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for IOHIDManager {
     /// Returns the type identifier of all IOHIDManager instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438375-iohidmanagergettypeid?language=objc)
     #[doc(alias = "IOHIDManagerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -3943,6 +4244,8 @@ impl IOHIDManager {
     /// (or 0).
     ///
     /// Returns: Returns a new IOHIDManagerRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438383-iohidmanagercreate?language=objc)
     #[doc(alias = "IOHIDManagerCreate")]
     #[inline]
     pub fn new(allocator: Option<&CFAllocator>, options: IOOptionBits) -> CFRetained<IOHIDManager> {
@@ -3969,6 +4272,8 @@ impl IOHIDManager {
     /// Parameter `options`: Option bits to be sent down to the manager and device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438369-iohidmanageropen?language=objc)
     #[doc(alias = "IOHIDManagerOpen")]
     #[inline]
     pub fn open(&self, options: IOOptionBits) -> IOReturn {
@@ -3987,6 +4292,8 @@ impl IOHIDManager {
     /// Parameter `options`: Option bits to be sent down to the manager and device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438405-iohidmanagerclose?language=objc)
     #[doc(alias = "IOHIDManagerClose")]
     #[inline]
     pub fn close(&self, options: IOOptionBits) -> IOReturn {
@@ -4008,6 +4315,8 @@ impl IOHIDManager {
     /// manager.
     ///
     /// Returns: Returns CFTypeRef containing the property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438403-iohidmanagergetproperty?language=objc)
     #[doc(alias = "IOHIDManagerGetProperty")]
     #[inline]
     pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
@@ -4042,6 +4351,8 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438401-iohidmanagersetproperty?language=objc)
     #[doc(alias = "IOHIDManagerSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, value: &CFType) -> bool {
@@ -4074,6 +4385,8 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438409-iohidmanagerschedulewithrunloop?language=objc)
     #[doc(alias = "IOHIDManagerScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -4103,6 +4416,8 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438378-iohidmanagerunschedulefromrunloo?language=objc)
     #[doc(alias = "IOHIDManagerUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -4136,6 +4451,8 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042790-iohidmanagersetdispatchqueue?language=objc)
     #[doc(alias = "IOHIDManagerSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -4177,6 +4494,8 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042789-iohidmanagersetcancelhandler?language=objc)
     #[doc(alias = "IOHIDManagerSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -4205,6 +4524,8 @@ impl IOHIDManager {
     ///
     ///
     /// Parameter `manager`: Reference to an IOHIDManager
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042786-iohidmanageractivate?language=objc)
     #[doc(alias = "IOHIDManagerActivate")]
     #[inline]
     pub fn activate(&self) {
@@ -4240,6 +4561,8 @@ impl IOHIDManager {
     ///
     ///
     /// Parameter `manager`: Reference to an IOHIDManager
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042787-iohidmanagercancel?language=objc)
     #[doc(alias = "IOHIDManagerCancel")]
     #[inline]
     pub fn cancel(&self) {
@@ -4269,6 +4592,8 @@ impl IOHIDManager {
     ///
     /// - `matching` generic must be of the correct type.
     /// - `matching` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438371-iohidmanagersetdevicematching?language=objc)
     #[doc(alias = "IOHIDManagerSetDeviceMatching")]
     #[inline]
     pub unsafe fn set_device_matching(&self, matching: Option<&CFDictionary>) {
@@ -4297,6 +4622,8 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `multiple` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438387-iohidmanagersetdevicematchingmul?language=objc)
     #[doc(alias = "IOHIDManagerSetDeviceMatchingMultiple")]
     #[inline]
     pub unsafe fn set_device_matching_multiple(&self, multiple: Option<&CFArray>) {
@@ -4314,6 +4641,8 @@ impl IOHIDManager {
     /// Parameter `manager`: Reference to an IOHIDManager.
     ///
     /// Returns: CFSetRef containing IOHIDDeviceRefs.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438391-iohidmanagercopydevices?language=objc)
     #[doc(alias = "IOHIDManagerCopyDevices")]
     #[inline]
     pub fn devices(&self) -> Option<CFRetained<CFSet>> {
@@ -4343,6 +4672,8 @@ impl IOHIDManager {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438399-iohidmanagerregisterdevicematchi?language=objc)
     #[doc(alias = "IOHIDManagerRegisterDeviceMatchingCallback")]
     #[inline]
     pub unsafe fn register_device_matching_callback(
@@ -4377,6 +4708,8 @@ impl IOHIDManager {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438376-iohidmanagerregisterdeviceremova?language=objc)
     #[doc(alias = "IOHIDManagerRegisterDeviceRemovalCallback")]
     #[inline]
     pub unsafe fn register_device_removal_callback(
@@ -4410,6 +4743,8 @@ impl IOHIDManager {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438397-iohidmanagerregisterinputreportc?language=objc)
     #[doc(alias = "IOHIDManagerRegisterInputReportCallback")]
     #[inline]
     pub unsafe fn register_input_report_callback(
@@ -4444,6 +4779,8 @@ impl IOHIDManager {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042788-iohidmanagerregisterinputreportw?language=objc)
     #[doc(alias = "IOHIDManagerRegisterInputReportWithTimeStampCallback")]
     #[inline]
     pub unsafe fn register_input_report_with_time_stamp_callback(
@@ -4479,6 +4816,8 @@ impl IOHIDManager {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438367-iohidmanagerregisterinputvalueca?language=objc)
     #[doc(alias = "IOHIDManagerRegisterInputValueCallback")]
     #[inline]
     pub unsafe fn register_input_value_callback(
@@ -4517,6 +4856,8 @@ impl IOHIDManager {
     ///
     /// - `matching` generic must be of the correct type.
     /// - `matching` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438389-iohidmanagersetinputvaluematchin?language=objc)
     #[doc(alias = "IOHIDManagerSetInputValueMatching")]
     #[inline]
     pub unsafe fn set_input_value_matching(&self, matching: Option<&CFDictionary>) {
@@ -4546,6 +4887,8 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `multiple` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438379-iohidmanagersetinputvaluematchin?language=objc)
     #[doc(alias = "IOHIDManagerSetInputValueMatchingMultiple")]
     #[inline]
     pub unsafe fn set_input_value_matching_multiple(&self, multiple: Option<&CFArray>) {
@@ -4573,6 +4916,8 @@ impl IOHIDManager {
     /// Parameter `hostName`: Reference to a CFPreferences hostName.
     ///
     /// Parameter `options`: Reserved for future use.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438395-iohidmanagersavetopropertydomain?language=objc)
     #[doc(alias = "IOHIDManagerSaveToPropertyDomain")]
     #[inline]
     pub fn save_to_property_domain(
@@ -9368,6 +9713,8 @@ pub const kHIDUsage_FIDO_OutputData: c_uint = 0x21;
 
 unsafe impl ConcreteType for IOHIDValue {
     /// Returns the type identifier of all IOHIDValue instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433293-iohidvaluegettypeid?language=objc)
     #[doc(alias = "IOHIDValueGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -9397,6 +9744,8 @@ impl IOHIDValue {
     /// Parameter `value`: Integer value to be copied to this object.
     ///
     /// Returns: Returns a reference to a new IOHIDValueRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433294-iohidvaluecreatewithintegervalue?language=objc)
     #[doc(alias = "IOHIDValueCreateWithIntegerValue")]
     #[inline]
     pub fn with_integer_value(
@@ -9444,6 +9793,8 @@ impl IOHIDValue {
     /// # Safety
     ///
     /// `bytes` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433290-iohidvaluecreatewithbytes?language=objc)
     #[doc(alias = "IOHIDValueCreateWithBytes")]
     #[inline]
     pub unsafe fn with_bytes(
@@ -9491,6 +9842,8 @@ impl IOHIDValue {
     /// # Safety
     ///
     /// `bytes` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433287-iohidvaluecreatewithbytesnocopy?language=objc)
     #[doc(alias = "IOHIDValueCreateWithBytesNoCopy")]
     #[inline]
     pub unsafe fn with_bytes_no_copy(
@@ -9520,6 +9873,8 @@ impl IOHIDValue {
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns a IOHIDElementRef referenced by this value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433285-iohidvaluegetelement?language=objc)
     #[doc(alias = "IOHIDValueGetElement")]
     #[inline]
     pub fn element(&self) -> CFRetained<IOHIDElement> {
@@ -9539,6 +9894,8 @@ impl IOHIDValue {
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns a uint64_t representing the timestamp of this value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433286-iohidvaluegettimestamp?language=objc)
     #[doc(alias = "IOHIDValueGetTimeStamp")]
     #[inline]
     pub fn time_stamp(&self) -> u64 {
@@ -9553,6 +9910,8 @@ impl IOHIDValue {
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns length of the value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433291-iohidvaluegetlength?language=objc)
     #[doc(alias = "IOHIDValueGetLength")]
     #[inline]
     pub fn length(&self) -> CFIndex {
@@ -9567,6 +9926,8 @@ impl IOHIDValue {
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns a pointer to the value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433292-iohidvaluegetbyteptr?language=objc)
     #[doc(alias = "IOHIDValueGetBytePtr")]
     #[inline]
     pub fn byte_ptr(&self) -> NonNull<u8> {
@@ -9584,6 +9945,8 @@ impl IOHIDValue {
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns an integer representation of the value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433289-iohidvaluegetintegervalue?language=objc)
     #[doc(alias = "IOHIDValueGetIntegerValue")]
     #[inline]
     pub fn integer_value(&self) -> CFIndex {
@@ -9638,6 +10001,8 @@ impl IOHIDValue {
     /// Parameter `type`: The type of scaling to be performed.
     ///
     /// Returns: Returns an scaled floating point representation of the value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433288-iohidvaluegetscaledvalue?language=objc)
     #[doc(alias = "IOHIDValueGetScaledValue")]
     #[inline]
     pub fn scaled_value(&self, r#type: IOHIDValueScaleType) -> c_double {
@@ -9663,8 +10028,10 @@ impl IOHIDValue {
 pub struct IOHIDTransactionOptions(pub u32);
 bitflags::bitflags! {
     impl IOHIDTransactionOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3365998-anonymous/kiohidtransactionoptionsnone?language=objc)
         #[doc(alias = "kIOHIDTransactionOptionsNone")]
         const None = 0x0;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3365998-anonymous/kiohidtransactionoptionsweakdevice?language=objc)
         #[doc(alias = "kIOHIDTransactionOptionsWeakDevice")]
         const WeakDevice = 0x1;
     }
@@ -9698,6 +10065,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for IOHIDTransaction {
     /// Returns the type identifier of all IOHIDTransaction instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561678-iohidtransactiongettypeid?language=objc)
     #[doc(alias = "IOHIDTransactionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -9724,6 +10093,8 @@ impl IOHIDTransaction {
     /// Parameter `options`: Reserved for future use.
     ///
     /// Returns: Returns a new IOHIDTransactionRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561689-iohidtransactioncreate?language=objc)
     #[doc(alias = "IOHIDTransactionCreate")]
     #[inline]
     pub fn new(
@@ -9749,6 +10120,8 @@ impl IOHIDTransaction {
     /// Parameter `transaction`: IOHIDTransaction to be queried.
     ///
     /// Returns: Returns the a reference to the device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561685-iohidtransactiongetdevice?language=objc)
     #[doc(alias = "IOHIDTransactionGetDevice")]
     #[inline]
     pub fn device(&self) -> CFRetained<IOHIDDevice> {
@@ -9768,6 +10141,8 @@ impl IOHIDTransaction {
     /// Parameter `transaction`: IOHIDTransaction to be queried.
     ///
     /// Returns: Returns the transaction direction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561674-iohidtransactiongetdirection?language=objc)
     #[doc(alias = "IOHIDTransactionGetDirection")]
     #[inline]
     pub fn direction(&self) -> IOHIDTransactionDirectionType {
@@ -9788,6 +10163,8 @@ impl IOHIDTransaction {
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Parameter `direction`: The new transaction direction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561688-iohidtransactionsetdirection?language=objc)
     #[doc(alias = "IOHIDTransactionSetDirection")]
     #[inline]
     pub fn set_direction(&self, direction: IOHIDTransactionDirectionType) {
@@ -9808,6 +10185,8 @@ impl IOHIDTransaction {
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Parameter `element`: Element to be added to the transaction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561679-iohidtransactionaddelement?language=objc)
     #[doc(alias = "IOHIDTransactionAddElement")]
     #[inline]
     pub fn add_element(&self, element: &IOHIDElement) {
@@ -9822,6 +10201,8 @@ impl IOHIDTransaction {
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Parameter `element`: Element to be removed to the transaction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561686-iohidtransactionremoveelement?language=objc)
     #[doc(alias = "IOHIDTransactionRemoveElement")]
     #[inline]
     pub fn remove_element(&self, element: &IOHIDElement) {
@@ -9841,6 +10222,8 @@ impl IOHIDTransaction {
     /// Parameter `element`: Element to be queried.
     ///
     /// Returns: Returns true or false depending if element is present.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561680-iohidtransactioncontainselement?language=objc)
     #[doc(alias = "IOHIDTransactionContainsElement")]
     #[inline]
     pub fn contains_element(&self, element: &IOHIDElement) -> bool {
@@ -9871,6 +10254,8 @@ impl IOHIDTransaction {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561675-iohidtransactionschedulewithrunl?language=objc)
     #[doc(alias = "IOHIDTransactionScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -9899,6 +10284,8 @@ impl IOHIDTransaction {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561682-iohidtransactionunschedulefromru?language=objc)
     #[doc(alias = "IOHIDTransactionUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -9927,6 +10314,8 @@ impl IOHIDTransaction {
     /// Parameter `value`: Value to be set for the given element.
     ///
     /// Parameter `options`: See IOHIDTransactionOption.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561676-iohidtransactionsetvalue?language=objc)
     #[doc(alias = "IOHIDTransactionSetValue")]
     #[inline]
     pub fn set_value(&self, element: &IOHIDElement, value: &IOHIDValue, options: IOOptionBits) {
@@ -9959,6 +10348,8 @@ impl IOHIDTransaction {
     /// Parameter `options`: See IOHIDTransactionOption.
     ///
     /// Returns: Returns IOHIDValueRef for the given element.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561683-iohidtransactiongetvalue?language=objc)
     #[doc(alias = "IOHIDTransactionGetValue")]
     #[inline]
     pub fn value(
@@ -9983,6 +10374,8 @@ impl IOHIDTransaction {
     ///
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if
     /// unsuccessful.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561681-iohidtransactioncommit?language=objc)
     #[doc(alias = "IOHIDTransactionCommit")]
     #[inline]
     pub fn commit(&self) -> IOReturn {
@@ -10016,6 +10409,8 @@ impl IOHIDTransaction {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561677-iohidtransactioncommitwithcallba?language=objc)
     #[doc(alias = "IOHIDTransactionCommitWithCallback")]
     #[inline]
     pub unsafe fn commit_with_callback(
@@ -10041,6 +10436,8 @@ impl IOHIDTransaction {
     /// default element values will be preserved.
     ///
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561687-iohidtransactionclear?language=objc)
     #[doc(alias = "IOHIDTransactionClear")]
     #[inline]
     pub fn clear(&self) {
@@ -10708,6 +11105,7 @@ unsafe impl RefEncode for IOHIDDeviceTransactionInterface {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDKeyboardEventOptions(pub c_uint);
 impl IOHIDKeyboardEventOptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidkeyboardeventoptions/kiohidkeyboardeventoptionsnokeyrepeat?language=objc)
     #[doc(alias = "kIOHIDKeyboardEventOptionsNoKeyRepeat")]
     pub const NoKeyRepeat: Self = Self(1 << 8);
 }
@@ -10734,6 +11132,7 @@ unsafe impl RefEncode for IOHIDKeyboardEventOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDPointerEventOptions(pub c_uint);
 impl IOHIDPointerEventOptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidpointereventoptions/kiohidpointereventoptionsnoacceleration?language=objc)
     #[doc(alias = "kIOHIDPointerEventOptionsNoAcceleration")]
     pub const NoAcceleration: Self = Self(1 << 8);
 }
@@ -10760,6 +11159,7 @@ unsafe impl RefEncode for IOHIDPointerEventOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDScrollEventOptions(pub c_uint);
 impl IOHIDScrollEventOptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidscrolleventoptions/kiohidscrolleventoptionsnoacceleration?language=objc)
     #[doc(alias = "kIOHIDScrollEventOptionsNoAcceleration")]
     pub const NoAcceleration: Self = Self(1 << 8);
 }
@@ -10785,10 +11185,13 @@ unsafe impl RefEncode for IOHIDScrollEventOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDServiceSensorControlOptions(pub u32);
 impl IOHIDServiceSensorControlOptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/iohidservicesensorcontroloptions/kiohidservicesensorcontroldecimation?language=objc)
     #[doc(alias = "kIOHIDServiceSensorControlDecimation")]
     pub const Decimation: Self = Self(0x1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/iohidservicesensorcontroloptions/kiohidservicesensorcontrolaggregation?language=objc)
     #[doc(alias = "kIOHIDServiceSensorControlAggregation")]
     pub const Aggregation: Self = Self(0x1 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/iohidservicesensorcontroloptions/kiohidservicesensorcontroldispatchcontrol?language=objc)
     #[doc(alias = "kIOHIDServiceSensorControlDispatchControl")]
     pub const DispatchControl: Self = Self(0x1 << 2);
 }

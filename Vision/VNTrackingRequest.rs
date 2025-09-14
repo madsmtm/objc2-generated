@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNRequestTrackingLevel(pub NSUInteger);
 impl VNRequestTrackingLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttrackinglevel/accurate?language=objc)
     #[doc(alias = "VNRequestTrackingLevelAccurate")]
     pub const Accurate: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttrackinglevel/fast?language=objc)
     #[doc(alias = "VNRequestTrackingLevelFast")]
     pub const Fast: Self = Self(1);
 }

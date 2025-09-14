@@ -45,10 +45,13 @@ extern "C" {
 pub struct PHASESpatialPipelineFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASESpatialPipelineFlags: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.struct/directpathtransmission?language=objc)
         #[doc(alias = "PHASESpatialPipelineFlagDirectPathTransmission")]
         const DirectPathTransmission = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.struct/earlyreflections?language=objc)
         #[doc(alias = "PHASESpatialPipelineFlagEarlyReflections")]
         const EarlyReflections = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.struct/latereverb?language=objc)
         #[doc(alias = "PHASESpatialPipelineFlagLateReverb")]
         const LateReverb = 1<<2;
     }

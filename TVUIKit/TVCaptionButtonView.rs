@@ -23,15 +23,23 @@ use crate::*;
 pub struct TVCaptionButtonViewMotionDirection(pub NSInteger);
 impl TVCaptionButtonViewMotionDirection {
     /// The floating view will not have any motion. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonviewmotiondirection/none?language=objc)
     #[doc(alias = "TVCaptionButtonViewMotionDirectionNone")]
     pub const None: Self = Self(0);
     /// The floating view will slide horizontally. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonviewmotiondirection/horizontal?language=objc)
     #[doc(alias = "TVCaptionButtonViewMotionDirectionHorizontal")]
     pub const Horizontal: Self = Self(1);
     /// The floating view will slide vertically. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonviewmotiondirection/vertical?language=objc)
     #[doc(alias = "TVCaptionButtonViewMotionDirectionVertical")]
     pub const Vertical: Self = Self(2);
     /// The floating view will slide in both axes. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonviewmotiondirection/all?language=objc)
     #[doc(alias = "TVCaptionButtonViewMotionDirectionAll")]
     pub const All: Self = Self(3);
 }

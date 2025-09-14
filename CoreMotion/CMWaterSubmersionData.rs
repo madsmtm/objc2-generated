@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMWaterSubmersionState(pub NSInteger);
 impl CMWaterSubmersionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionevent/state-swift.enum/unknown?language=objc)
     #[doc(alias = "CMWaterSubmersionStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionevent/state-swift.enum/notsubmerged?language=objc)
     #[doc(alias = "CMWaterSubmersionStateNotSubmerged")]
     pub const NotSubmerged: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionevent/state-swift.enum/submerged?language=objc)
     #[doc(alias = "CMWaterSubmersionStateSubmerged")]
     pub const Submerged: Self = Self(2);
 }
@@ -34,18 +37,25 @@ unsafe impl RefEncode for CMWaterSubmersionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMWaterSubmersionDepthState(pub NSInteger);
 impl CMWaterSubmersionDepthState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/unknown?language=objc)
     #[doc(alias = "CMWaterSubmersionDepthStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/notsubmerged?language=objc)
     #[doc(alias = "CMWaterSubmersionDepthStateNotSubmerged")]
     pub const NotSubmerged: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/submergedshallow?language=objc)
     #[doc(alias = "CMWaterSubmersionDepthStateSubmergedShallow")]
     pub const SubmergedShallow: Self = Self(200);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/submergeddeep?language=objc)
     #[doc(alias = "CMWaterSubmersionDepthStateSubmergedDeep")]
     pub const SubmergedDeep: Self = Self(300);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/approachingmaxdepth?language=objc)
     #[doc(alias = "CMWaterSubmersionDepthStateApproachingMaxDepth")]
     pub const ApproachingMaxDepth: Self = Self(400);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/pastmaxdepth?language=objc)
     #[doc(alias = "CMWaterSubmersionDepthStatePastMaxDepth")]
     pub const PastMaxDepth: Self = Self(500);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/sensordeptherror?language=objc)
     #[doc(alias = "CMWaterSubmersionDepthStateSensorDepthError")]
     pub const SensorDepthError: Self = Self(600);
 }

@@ -147,6 +147,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncregisterdevice(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `device_info` generic must be of the correct type.
@@ -159,10 +161,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncunregisterdevice(_:_:)?language=objc)
     pub fn ColorSyncUnregisterDevice(device_class: &CFString, device_id: &CFUUID) -> bool;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdevicesetcustomprofiles(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `profile_info` generic must be of the correct type.
@@ -174,6 +179,7 @@ extern "C-unwind" {
     ) -> bool;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdevicecopydeviceinfo(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn ColorSyncDeviceCopyDeviceInfo(
     device_class: &CFString,
@@ -194,6 +200,8 @@ pub type ColorSyncDeviceProfileIterateCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<CFDictionary>, *mut c_void) -> bool>;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynciteratedeviceprofiles(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `call_back` must be implemented correctly.
@@ -204,6 +212,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cgdisplaycreateuuidfromdisplayid(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayCreateUUIDFromDisplayID(
     display_id: u32,
@@ -217,5 +226,6 @@ pub unsafe extern "C-unwind" fn CGDisplayCreateUUIDFromDisplayID(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cgdisplaygetdisplayidfromuuid(_:)?language=objc)
     pub fn CGDisplayGetDisplayIDFromUUID(uuid: &CFUUID) -> u32;
 }

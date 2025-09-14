@@ -18,10 +18,13 @@ use crate::*;
 pub struct EAWiFiUnconfiguredAccessoryProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl EAWiFiUnconfiguredAccessoryProperties: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryproperties/propertysupportsairplay?language=objc)
         #[doc(alias = "EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay")]
         const SupportsAirPlay = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryproperties/propertysupportsairprint?language=objc)
         #[doc(alias = "EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint")]
         const SupportsAirPrint = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryproperties/propertysupportshomekit?language=objc)
         #[doc(alias = "EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit")]
         const SupportsHomeKit = 1<<2;
     }

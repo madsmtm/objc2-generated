@@ -17,47 +17,75 @@ impl ASAccessoryEventType {
     /// An unknown event occurred.
     ///
     /// This is a placeholder value used when initializing event type instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/unknown?language=objc)
     #[doc(alias = "ASAccessoryEventTypeUnknown")]
     pub const Unknown: Self = Self(0);
     /// The discovery session activated.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/activated?language=objc)
     #[doc(alias = "ASAccessoryEventTypeActivated")]
     pub const Activated: Self = Self(10);
     /// The discovery session invalidated.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/invalidated?language=objc)
     #[doc(alias = "ASAccessoryEventTypeInvalidated")]
     pub const Invalidated: Self = Self(11);
     /// The migration of an accessory completed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/migrationcomplete?language=objc)
     #[doc(alias = "ASAccessoryEventTypeMigrationComplete")]
     pub const MigrationComplete: Self = Self(20);
     /// The session added an accessory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/accessoryadded?language=objc)
     #[doc(alias = "ASAccessoryEventTypeAccessoryAdded")]
     pub const AccessoryAdded: Self = Self(30);
     /// The session removed an accessory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/accessoryremoved?language=objc)
     #[doc(alias = "ASAccessoryEventTypeAccessoryRemoved")]
     pub const AccessoryRemoved: Self = Self(31);
     /// The properties of an accessory changed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/accessorychanged?language=objc)
     #[doc(alias = "ASAccessoryEventTypeAccessoryChanged")]
     pub const AccessoryChanged: Self = Self(32);
     /// The session discovered an accessory.
     ///
     /// Your app only receives this event if your picker uses the ``ASPickerDisplaySettings/Options/filterDiscoveryResults`` option.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/accessorydiscovered?language=objc)
     #[doc(alias = "ASAccessoryEventTypeAccessoryDiscovered")]
     pub const AccessoryDiscovered: Self = Self(33);
     /// The discovery session picker appeared.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/pickerdidpresent?language=objc)
     #[doc(alias = "ASAccessoryEventTypePickerDidPresent")]
     pub const PickerDidPresent: Self = Self(40);
     /// The discovery session picker dismissed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/pickerdiddismiss?language=objc)
     #[doc(alias = "ASAccessoryEventTypePickerDidDismiss")]
     pub const PickerDidDismiss: Self = Self(50);
     /// The discovery session picker started bridging with an accessory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/pickersetupbridging?language=objc)
     #[doc(alias = "ASAccessoryEventTypePickerSetupBridging")]
     pub const PickerSetupBridging: Self = Self(60);
     /// The discovery session picker setup failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/pickersetupfailed?language=objc)
     #[doc(alias = "ASAccessoryEventTypePickerSetupFailed")]
     pub const PickerSetupFailed: Self = Self(70);
     /// The discovery session picker started pairing with a Bluetooth accessory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/pickersetuppairing?language=objc)
     #[doc(alias = "ASAccessoryEventTypePickerSetupPairing")]
     pub const PickerSetupPairing: Self = Self(80);
     /// The discovery session picker started renaming an accessory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/pickersetuprename?language=objc)
     #[doc(alias = "ASAccessoryEventTypePickerSetupRename")]
     pub const PickerSetupRename: Self = Self(90);
 }

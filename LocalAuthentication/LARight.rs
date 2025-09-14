@@ -20,22 +20,30 @@ impl LARightState {
     /// This is the initial state of
     /// `LARight`and changes when
     /// `authorize`method is called.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright/state-swift.enum/unknown?language=objc)
     #[doc(alias = "LARightStateUnknown")]
     pub const Unknown: Self = Self(0);
     /// Requirements are currently being evaluated.
     ///
     /// This happens after calling
     /// `authorize`method but before the user has granted the right.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright/state-swift.enum/authorizing?language=objc)
     #[doc(alias = "LARightStateAuthorizing")]
     pub const Authorizing: Self = Self(1);
     /// Authorization was granted
     ///
     /// This can be achieved by succesful authorization.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright/state-swift.enum/authorized?language=objc)
     #[doc(alias = "LARightStateAuthorized")]
     pub const Authorized: Self = Self(2);
     /// Authorization was rejected.
     ///
     /// This can be caused by several reasons. For example requirements were not satisified or user rejects to authorize.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright/state-swift.enum/notauthorized?language=objc)
     #[doc(alias = "LARightStateNotAuthorized")]
     pub const NotAuthorized: Self = Self(3);
 }

@@ -35,6 +35,7 @@ impl GCPoint2 {
     // TODO: pub fn GCPoint2Equal(point1: GCPoint2,point2: GCPoint2,) -> bool;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/nsstringfromgcpoint2(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGCPoint2(point: GCPoint2) -> Retained<NSString> {
     extern "C-unwind" {

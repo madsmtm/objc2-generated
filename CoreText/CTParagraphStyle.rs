@@ -28,6 +28,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for CTParagraphStyle {
     /// Returns the CFType of the paragraph style object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylegettypeid()?language=objc)
     #[doc(alias = "CTParagraphStyleGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -62,24 +64,34 @@ unsafe impl ConcreteType for CTParagraphStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTTextAlignment(pub u8);
 impl CTTextAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/left?language=objc)
     #[doc(alias = "kCTTextAlignmentLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/right?language=objc)
     #[doc(alias = "kCTTextAlignmentRight")]
     pub const Right: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/center?language=objc)
     #[doc(alias = "kCTTextAlignmentCenter")]
     pub const Center: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/justified?language=objc)
     #[doc(alias = "kCTTextAlignmentJustified")]
     pub const Justified: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/natural?language=objc)
     #[doc(alias = "kCTTextAlignmentNatural")]
     pub const Natural: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/kctlefttextalignment?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTLeftTextAlignment: Self = Self(CTTextAlignment::Left.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/kctrighttextalignment?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTRightTextAlignment: Self = Self(CTTextAlignment::Right.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/kctcentertextalignment?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTCenterTextAlignment: Self = Self(CTTextAlignment::Center.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/kctjustifiedtextalignment?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTJustifiedTextAlignment: Self = Self(CTTextAlignment::Justified.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/kctnaturaltextalignment?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTNaturalTextAlignment: Self = Self(CTTextAlignment::Natural.0);
 }
@@ -127,16 +139,22 @@ unsafe impl RefEncode for CTTextAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTLineBreakMode(pub u8);
 impl CTLineBreakMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bywordwrapping?language=objc)
     #[doc(alias = "kCTLineBreakByWordWrapping")]
     pub const ByWordWrapping: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bycharwrapping?language=objc)
     #[doc(alias = "kCTLineBreakByCharWrapping")]
     pub const ByCharWrapping: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/byclipping?language=objc)
     #[doc(alias = "kCTLineBreakByClipping")]
     pub const ByClipping: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bytruncatinghead?language=objc)
     #[doc(alias = "kCTLineBreakByTruncatingHead")]
     pub const ByTruncatingHead: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bytruncatingtail?language=objc)
     #[doc(alias = "kCTLineBreakByTruncatingTail")]
     pub const ByTruncatingTail: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bytruncatingmiddle?language=objc)
     #[doc(alias = "kCTLineBreakByTruncatingMiddle")]
     pub const ByTruncatingMiddle: Self = Self(5);
 }
@@ -169,10 +187,13 @@ unsafe impl RefEncode for CTLineBreakMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTWritingDirection(pub i8);
 impl CTWritingDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctwritingdirection/natural?language=objc)
     #[doc(alias = "kCTWritingDirectionNatural")]
     pub const Natural: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctwritingdirection/lefttoright?language=objc)
     #[doc(alias = "kCTWritingDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctwritingdirection/righttoleft?language=objc)
     #[doc(alias = "kCTWritingDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -360,43 +381,62 @@ unsafe impl RefEncode for CTWritingDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTParagraphStyleSpecifier(pub u32);
 impl CTParagraphStyleSpecifier {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/alignment?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierAlignment")]
     pub const Alignment: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/firstlineheadindent?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierFirstLineHeadIndent")]
     pub const FirstLineHeadIndent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/headindent?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierHeadIndent")]
     pub const HeadIndent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/tailindent?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierTailIndent")]
     pub const TailIndent: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/tabstops?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierTabStops")]
     pub const TabStops: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/defaulttabinterval?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierDefaultTabInterval")]
     pub const DefaultTabInterval: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/linebreakmode?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierLineBreakMode")]
     pub const LineBreakMode: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/lineheightmultiple?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierLineHeightMultiple")]
     pub const LineHeightMultiple: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/maximumlineheight?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierMaximumLineHeight")]
     pub const MaximumLineHeight: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/minimumlineheight?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierMinimumLineHeight")]
     pub const MinimumLineHeight: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/linespacing?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierLineSpacing")]
     #[deprecated = "See documentation for replacements"]
     pub const LineSpacing: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/paragraphspacing?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierParagraphSpacing")]
     pub const ParagraphSpacing: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/paragraphspacingbefore?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierParagraphSpacingBefore")]
     pub const ParagraphSpacingBefore: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/basewritingdirection?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierBaseWritingDirection")]
     pub const BaseWritingDirection: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/maximumlinespacing?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierMaximumLineSpacing")]
     pub const MaximumLineSpacing: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/minimumlinespacing?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierMinimumLineSpacing")]
     pub const MinimumLineSpacing: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/linespacingadjustment?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierLineSpacingAdjustment")]
     pub const LineSpacingAdjustment: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/lineboundsoptions?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierLineBoundsOptions")]
     pub const LineBoundsOptions: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/count?language=objc)
     #[doc(alias = "kCTParagraphStyleSpecifierCount")]
     pub const Count: Self = Self(18);
 }
@@ -484,6 +524,8 @@ impl CTParagraphStyle {
     /// # Safety
     ///
     /// `settings` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylecreate(_:_:)?language=objc)
     #[doc(alias = "CTParagraphStyleCreate")]
     #[inline]
     pub unsafe fn new(
@@ -512,6 +554,8 @@ impl CTParagraphStyle {
     /// function will return valid reference to an immutable
     /// CTParagraphStyle object that is a copy of the one passed into
     /// "paragraphStyle".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylecreatecopy(_:)?language=objc)
     #[doc(alias = "CTParagraphStyleCreateCopy")]
     #[inline]
     pub fn copy(&self) -> CFRetained<CTParagraphStyle> {
@@ -563,6 +607,8 @@ impl CTParagraphStyle {
     /// # Safety
     ///
     /// `value_buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylegetvalueforspecifier(_:_:_:_:)?language=objc)
     #[doc(alias = "CTParagraphStyleGetValueForSpecifier")]
     #[inline]
     pub unsafe fn value_for_specifier(

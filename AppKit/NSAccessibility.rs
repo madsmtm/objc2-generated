@@ -191,6 +191,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/screenrect(fromview:rect:)?language=objc)
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 #[inline]
 pub extern "C-unwind" fn NSAccessibilityFrameInView(parent_view: &NSView, frame: NSRect) -> NSRect {
@@ -200,6 +201,7 @@ pub extern "C-unwind" fn NSAccessibilityFrameInView(parent_view: &NSView, frame:
     unsafe { NSAccessibilityFrameInView(parent_view, frame) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/screenpoint(fromview:point:)?language=objc)
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 #[inline]
 pub extern "C-unwind" fn NSAccessibilityPointInView(
@@ -212,6 +214,7 @@ pub extern "C-unwind" fn NSAccessibilityPointInView(
     unsafe { NSAccessibilityPointInView(parent_view, point) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/setmaycontainprotectedcontent(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSAccessibilitySetMayContainProtectedContent(flag: bool) -> bool {
     extern "C-unwind" {
@@ -220,6 +223,7 @@ pub extern "C-unwind" fn NSAccessibilitySetMayContainProtectedContent(flag: bool
     unsafe { NSAccessibilitySetMayContainProtectedContent(Bool::new(flag)) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/description(with:)?language=objc)
 #[cfg(feature = "NSAccessibilityConstants")]
 #[inline]
 pub extern "C-unwind" fn NSAccessibilityRoleDescription(
@@ -236,6 +240,8 @@ pub extern "C-unwind" fn NSAccessibilityRoleDescription(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/description(for:)?language=objc)
+///
 /// # Safety
 ///
 /// `element` should be of the correct type.
@@ -250,6 +256,7 @@ pub unsafe extern "C-unwind" fn NSAccessibilityRoleDescriptionForUIElement(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/description?language=objc)
 #[cfg(feature = "NSAccessibilityConstants")]
 #[inline]
 pub extern "C-unwind" fn NSAccessibilityActionDescription(
@@ -263,6 +270,8 @@ pub extern "C-unwind" fn NSAccessibilityActionDescription(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/raisebadargumentexception(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `element` should be of the correct type.
@@ -284,6 +293,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `element` should be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/unignoredancestor(of:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredAncestor(
     element: &AnyObject,
@@ -295,6 +306,8 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredAncestor(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/unignoreddescendant(of:)?language=objc)
+///
 /// # Safety
 ///
 /// `element` should be of the correct type.
@@ -309,6 +322,8 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredDescendant(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/unignoredchildren(from:)?language=objc)
+///
 /// # Safety
 ///
 /// `original_children` generic should be of the correct type.
@@ -324,6 +339,8 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildren(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/unignoredchildrenforonlychild(from:)?language=objc)
+///
 /// # Safety
 ///
 /// `original_child` should be of the correct type.
@@ -346,6 +363,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `element` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)?language=objc)
     #[cfg(feature = "NSAccessibilityConstants")]
     pub fn NSAccessibilityPostNotification(
         element: &AnyObject,

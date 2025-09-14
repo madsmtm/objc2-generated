@@ -294,10 +294,13 @@ pub const kIODisplayParametersFlushKey: &CStr =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAcceleratorClientTypes(pub c_uint);
 impl eIOAcceleratorClientTypes {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioacceleratorclienttypes/kioaccelsurfaceclienttype?language=objc)
     #[doc(alias = "kIOAccelSurfaceClientType")]
     pub const IOAccelSurfaceClientType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioacceleratorclienttypes/kioaccelnumclienttypes?language=objc)
     #[doc(alias = "kIOAccelNumClientTypes")]
     pub const IOAccelNumClientTypes: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioacceleratorclienttypes/kioaccelsurface2clienttype?language=objc)
     #[doc(alias = "kIOAccelSurface2ClientType")]
     pub const IOAccelSurface2ClientType: Self = Self(0x20);
 }
@@ -493,6 +496,7 @@ unsafe impl RefEncode for IOAccelDeviceRegion {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceMemoryTypes(pub c_uint);
 impl eIOAccelSurfaceMemoryTypes {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacememorytypes/kioaccelnumsurfacememorytypes?language=objc)
     #[doc(alias = "kIOAccelNumSurfaceMemoryTypes")]
     pub const IOAccelNumSurfaceMemoryTypes: Self = Self(0);
 }
@@ -511,42 +515,61 @@ unsafe impl RefEncode for eIOAccelSurfaceMemoryTypes {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceMethods(pub c_uint);
 impl eIOAccelSurfaceMethods {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacereadlockoptions?language=objc)
     #[doc(alias = "kIOAccelSurfaceReadLockOptions")]
     pub const IOAccelSurfaceReadLockOptions: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacereadunlockoptions?language=objc)
     #[doc(alias = "kIOAccelSurfaceReadUnlockOptions")]
     pub const IOAccelSurfaceReadUnlockOptions: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacegetstate?language=objc)
     #[doc(alias = "kIOAccelSurfaceGetState")]
     pub const IOAccelSurfaceGetState: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacewritelockoptions?language=objc)
     #[doc(alias = "kIOAccelSurfaceWriteLockOptions")]
     pub const IOAccelSurfaceWriteLockOptions: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacewriteunlockoptions?language=objc)
     #[doc(alias = "kIOAccelSurfaceWriteUnlockOptions")]
     pub const IOAccelSurfaceWriteUnlockOptions: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfaceread?language=objc)
     #[doc(alias = "kIOAccelSurfaceRead")]
     pub const IOAccelSurfaceRead: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacesetshapebacking?language=objc)
     #[doc(alias = "kIOAccelSurfaceSetShapeBacking")]
     pub const IOAccelSurfaceSetShapeBacking: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacesetidmode?language=objc)
     #[doc(alias = "kIOAccelSurfaceSetIDMode")]
     pub const IOAccelSurfaceSetIDMode: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacesetscale?language=objc)
     #[doc(alias = "kIOAccelSurfaceSetScale")]
     pub const IOAccelSurfaceSetScale: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacesetshape?language=objc)
     #[doc(alias = "kIOAccelSurfaceSetShape")]
     pub const IOAccelSurfaceSetShape: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfaceflush?language=objc)
     #[doc(alias = "kIOAccelSurfaceFlush")]
     pub const IOAccelSurfaceFlush: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacequerylock?language=objc)
     #[doc(alias = "kIOAccelSurfaceQueryLock")]
     pub const IOAccelSurfaceQueryLock: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacereadlock?language=objc)
     #[doc(alias = "kIOAccelSurfaceReadLock")]
     pub const IOAccelSurfaceReadLock: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacereadunlock?language=objc)
     #[doc(alias = "kIOAccelSurfaceReadUnlock")]
     pub const IOAccelSurfaceReadUnlock: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacewritelock?language=objc)
     #[doc(alias = "kIOAccelSurfaceWriteLock")]
     pub const IOAccelSurfaceWriteLock: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacewriteunlock?language=objc)
     #[doc(alias = "kIOAccelSurfaceWriteUnlock")]
     pub const IOAccelSurfaceWriteUnlock: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacecontrol?language=objc)
     #[doc(alias = "kIOAccelSurfaceControl")]
     pub const IOAccelSurfaceControl: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelsurfacesetshapebackingandlength?language=objc)
     #[doc(alias = "kIOAccelSurfaceSetShapeBackingAndLength")]
     pub const IOAccelSurfaceSetShapeBackingAndLength: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods/kioaccelnumsurfacemethods?language=objc)
     #[doc(alias = "kIOAccelNumSurfaceMethods")]
     pub const IOAccelNumSurfaceMethods: Self = Self(18);
 }
@@ -566,30 +589,43 @@ unsafe impl RefEncode for eIOAccelSurfaceMethods {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct eIOAccelSurfaceModeBits(pub c_uint);
 impl eIOAccelSurfaceModeBits {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodecolordepth1555?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeColorDepth1555")]
     pub const IOAccelSurfaceModeColorDepth1555: Self = Self(0x00000003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodecolordepth8888?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeColorDepth8888")]
     pub const IOAccelSurfaceModeColorDepth8888: Self = Self(0x00000004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodecolordepthyuv?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeColorDepthYUV")]
     pub const IOAccelSurfaceModeColorDepthYUV: Self = Self(0x00000006);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodecolordepthyuv9?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeColorDepthYUV9")]
     pub const IOAccelSurfaceModeColorDepthYUV9: Self = Self(0x00000007);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodecolordepthyuv12?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeColorDepthYUV12")]
     pub const IOAccelSurfaceModeColorDepthYUV12: Self = Self(0x00000008);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodecolordepthyuv2?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeColorDepthYUV2")]
     pub const IOAccelSurfaceModeColorDepthYUV2: Self = Self(0x00000009);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodecolordepthbgra32?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeColorDepthBGRA32")]
     pub const IOAccelSurfaceModeColorDepthBGRA32: Self = Self(0x0000000A);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodecolordepth2101010?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeColorDepth2101010")]
     pub const IOAccelSurfaceModeColorDepth2101010: Self = Self(0x0000000F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodecolordepthbits?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeColorDepthBits")]
     pub const IOAccelSurfaceModeColorDepthBits: Self = Self(0x0000000F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodestereobit?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeStereoBit")]
     pub const IOAccelSurfaceModeStereoBit: Self = Self(0x00000010);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodewindowedbit?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeWindowedBit")]
     pub const IOAccelSurfaceModeWindowedBit: Self = Self(0x00000020);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodesurface2?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeSurface2")]
     pub const IOAccelSurfaceModeSurface2: Self = Self(0x00004000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemodebits/kioaccelsurfacemodebeamsync?language=objc)
     #[doc(alias = "kIOAccelSurfaceModeBeamSync")]
     pub const IOAccelSurfaceModeBeamSync: Self = Self(0x00008000);
 }
@@ -609,24 +645,34 @@ unsafe impl RefEncode for eIOAccelSurfaceModeBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceShapeBits(pub c_uint);
 impl eIOAccelSurfaceShapeBits {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits/kioaccelsurfaceshapenone?language=objc)
     #[doc(alias = "kIOAccelSurfaceShapeNone")]
     pub const IOAccelSurfaceShapeNone: Self = Self(0x00000000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits/kioaccelsurfaceshapenonblockingbit?language=objc)
     #[doc(alias = "kIOAccelSurfaceShapeNonBlockingBit")]
     pub const IOAccelSurfaceShapeNonBlockingBit: Self = Self(0x00000001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits/kioaccelsurfaceshapenonsimplebit?language=objc)
     #[doc(alias = "kIOAccelSurfaceShapeNonSimpleBit")]
     pub const IOAccelSurfaceShapeNonSimpleBit: Self = Self(0x00000002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits/kioaccelsurfaceshapeidentityscalebit?language=objc)
     #[doc(alias = "kIOAccelSurfaceShapeIdentityScaleBit")]
     pub const IOAccelSurfaceShapeIdentityScaleBit: Self = Self(0x00000004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits/kioaccelsurfaceshapeframesyncbit?language=objc)
     #[doc(alias = "kIOAccelSurfaceShapeFrameSyncBit")]
     pub const IOAccelSurfaceShapeFrameSyncBit: Self = Self(0x00000008);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits/kioaccelsurfaceshapebeamsyncbit?language=objc)
     #[doc(alias = "kIOAccelSurfaceShapeBeamSyncBit")]
     pub const IOAccelSurfaceShapeBeamSyncBit: Self = Self(0x00000010);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits/kioaccelsurfaceshapestalebackingbit?language=objc)
     #[doc(alias = "kIOAccelSurfaceShapeStaleBackingBit")]
     pub const IOAccelSurfaceShapeStaleBackingBit: Self = Self(0x00000020);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits/kioaccelsurfaceshapeassemblybit?language=objc)
     #[doc(alias = "kIOAccelSurfaceShapeAssemblyBit")]
     pub const IOAccelSurfaceShapeAssemblyBit: Self = Self(0x00000040);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits/kioaccelsurfaceshapewaitenabledbit?language=objc)
     #[doc(alias = "kIOAccelSurfaceShapeWaitEnabledBit")]
     pub const IOAccelSurfaceShapeWaitEnabledBit: Self = Self(0x00000080);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits/kioaccelsurfaceshapeblockingbit?language=objc)
     #[doc(alias = "kIOAccelSurfaceShapeBlockingBit")]
     pub const IOAccelSurfaceShapeBlockingBit: Self =
         Self(eIOAccelSurfaceShapeBits::IOAccelSurfaceShapeNonBlockingBit.0);
@@ -647,8 +693,10 @@ unsafe impl RefEncode for eIOAccelSurfaceShapeBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceStateBits(pub c_uint);
 impl eIOAccelSurfaceStateBits {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacestatebits/kioaccelsurfacestatenone?language=objc)
     #[doc(alias = "kIOAccelSurfaceStateNone")]
     pub const IOAccelSurfaceStateNone: Self = Self(0x00000000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacestatebits/kioaccelsurfacestateidlebit?language=objc)
     #[doc(alias = "kIOAccelSurfaceStateIdleBit")]
     pub const IOAccelSurfaceStateIdleBit: Self = Self(0x00000001);
 }
@@ -668,16 +716,22 @@ unsafe impl RefEncode for eIOAccelSurfaceStateBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceScaleBits(pub c_uint);
 impl eIOAccelSurfaceScaleBits {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacescalebits/kioaccelsurfacebeamsyncswaps?language=objc)
     #[doc(alias = "kIOAccelSurfaceBeamSyncSwaps")]
     pub const IOAccelSurfaceBeamSyncSwaps: Self = Self(0x00000001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacescalebits/kioaccelsurfacefixedsource?language=objc)
     #[doc(alias = "kIOAccelSurfaceFixedSource")]
     pub const IOAccelSurfaceFixedSource: Self = Self(0x00000002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacescalebits/kioaccelsurfacefiltering?language=objc)
     #[doc(alias = "kIOAccelSurfaceFiltering")]
     pub const IOAccelSurfaceFiltering: Self = Self(0x000000f0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacescalebits/kioaccelsurfacefilterdefault?language=objc)
     #[doc(alias = "kIOAccelSurfaceFilterDefault")]
     pub const IOAccelSurfaceFilterDefault: Self = Self(0x00000000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacescalebits/kioaccelsurfacefilternone?language=objc)
     #[doc(alias = "kIOAccelSurfaceFilterNone")]
     pub const IOAccelSurfaceFilterNone: Self = Self(0x00000010);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacescalebits/kioaccelsurfacefilterlinear?language=objc)
     #[doc(alias = "kIOAccelSurfaceFilterLinear")]
     pub const IOAccelSurfaceFilterLinear: Self = Self(0x00000020);
 }
@@ -697,12 +751,16 @@ unsafe impl RefEncode for eIOAccelSurfaceScaleBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceLockBits(pub c_uint);
 impl eIOAccelSurfaceLockBits {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacelockbits/kioaccelsurfacelockinbacking?language=objc)
     #[doc(alias = "kIOAccelSurfaceLockInBacking")]
     pub const IOAccelSurfaceLockInBacking: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacelockbits/kioaccelsurfacelockinaccel?language=objc)
     #[doc(alias = "kIOAccelSurfaceLockInAccel")]
     pub const IOAccelSurfaceLockInAccel: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacelockbits/kioaccelsurfacelockindontcare?language=objc)
     #[doc(alias = "kIOAccelSurfaceLockInDontCare")]
     pub const IOAccelSurfaceLockInDontCare: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacelockbits/kioaccelsurfacelockinmask?language=objc)
     #[doc(alias = "kIOAccelSurfaceLockInMask")]
     pub const IOAccelSurfaceLockInMask: Self = Self(0x00000003);
 }
@@ -1447,6 +1505,8 @@ unsafe impl RefEncode for IOGraphicsAcceleratorInterfaceStruct {
 pub type IOGraphicsAcceleratorInterface = IOGraphicsAcceleratorInterfaceStruct;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1502405-ioaccelfindaccelerator?language=objc)
+    ///
     /// # Safety
     ///
     /// - `p_accelerator` must be a valid pointer.
@@ -3842,6 +3902,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `connect` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1574872-ioframebufferopen?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOFramebufferOpen(
         service: io_service_t,
@@ -3867,6 +3929,8 @@ pub const kIODisplayNoProductName: c_uint = 0x00000400;
 /// Parameter `options`: Use IODisplayDictionaryOptions to specify which keys to include.
 ///
 /// Returns: The returned CFDictionary that should be released by the caller with CFRelease().
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1574917-iodisplaycreateinfodictionary?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IODisplayCreateInfoDictionary(
@@ -3904,6 +3968,8 @@ extern "C-unwind" {
     /// - `matching2` generic must be of the correct type.
     /// - `matching2` generic must be of the correct type.
     /// - `matching2` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1574879-iodisplaymatchdictionaries?language=objc)
     pub fn IODisplayMatchDictionaries(
         matching1: Option<&CFDictionary>,
         matching2: Option<&CFDictionary>,
@@ -3911,6 +3977,7 @@ extern "C-unwind" {
     ) -> i32;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574899-iodisplayforframebuffer?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IODisplayForFramebuffer(
@@ -3927,6 +3994,8 @@ pub extern "C-unwind" fn IODisplayForFramebuffer(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574878-iodisplaysetparameters?language=objc)
+    ///
     /// # Safety
     ///
     /// - `params` generic must be of the correct type.
@@ -3941,6 +4010,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574926-iodisplaysetfloatparameter?language=objc)
+    ///
     /// # Safety
     ///
     /// `parameter_name` might not allow `None`.
@@ -3954,6 +4025,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574915-iodisplaysetintegerparameter?language=objc)
+    ///
     /// # Safety
     ///
     /// `parameter_name` might not allow `None`.
@@ -3967,6 +4040,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574865-iodisplaycopyparameters?language=objc)
+    ///
     /// # Safety
     ///
     /// `params` must be a valid pointer.
@@ -3979,6 +4054,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574891-iodisplaycopyfloatparameters?language=objc)
+    ///
     /// # Safety
     ///
     /// `params` must be a valid pointer.
@@ -3991,6 +4068,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574900-iodisplaygetfloatparameter?language=objc)
+    ///
     /// # Safety
     ///
     /// - `parameter_name` might not allow `None`.
@@ -4005,6 +4084,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574908-iodisplaygetintegerrangeparamete?language=objc)
+    ///
     /// # Safety
     ///
     /// - `parameter_name` might not allow `None`.
@@ -4022,6 +4103,7 @@ extern "C-unwind" {
     ) -> IOReturn;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574906-iodisplaycommitparameters?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IODisplayCommitParameters(

@@ -14,14 +14,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageSymbolScale(pub NSInteger);
 impl UIImageSymbolScale {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale/default?language=objc)
     #[doc(alias = "UIImageSymbolScaleDefault")]
     pub const Default: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale/unspecified?language=objc)
     #[doc(alias = "UIImageSymbolScaleUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale/small?language=objc)
     #[doc(alias = "UIImageSymbolScaleSmall")]
     pub const Small: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale/medium?language=objc)
     #[doc(alias = "UIImageSymbolScaleMedium")]
     pub const Medium: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale/large?language=objc)
     #[doc(alias = "UIImageSymbolScaleLarge")]
     pub const Large: Self = Self(3);
 }
@@ -40,24 +45,34 @@ unsafe impl RefEncode for UIImageSymbolScale {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageSymbolWeight(pub NSInteger);
 impl UIImageSymbolWeight {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/unspecified?language=objc)
     #[doc(alias = "UIImageSymbolWeightUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/ultralight?language=objc)
     #[doc(alias = "UIImageSymbolWeightUltraLight")]
     pub const UltraLight: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/thin?language=objc)
     #[doc(alias = "UIImageSymbolWeightThin")]
     pub const Thin: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/light?language=objc)
     #[doc(alias = "UIImageSymbolWeightLight")]
     pub const Light: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/regular?language=objc)
     #[doc(alias = "UIImageSymbolWeightRegular")]
     pub const Regular: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/medium?language=objc)
     #[doc(alias = "UIImageSymbolWeightMedium")]
     pub const Medium: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/semibold?language=objc)
     #[doc(alias = "UIImageSymbolWeightSemibold")]
     pub const Semibold: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/bold?language=objc)
     #[doc(alias = "UIImageSymbolWeightBold")]
     pub const Bold: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/heavy?language=objc)
     #[doc(alias = "UIImageSymbolWeightHeavy")]
     pub const Heavy: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/black?language=objc)
     #[doc(alias = "UIImageSymbolWeightBlack")]
     pub const Black: Self = Self(9);
 }
@@ -77,14 +92,20 @@ unsafe impl RefEncode for UIImageSymbolWeight {
 pub struct UIImageSymbolVariableValueMode(pub NSInteger);
 impl UIImageSymbolVariableValueMode {
     /// Automatically selects an appropriate variable value mode for the symbol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolvariablevaluemode/automatic?language=objc)
     #[doc(alias = "UIImageSymbolVariableValueModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The "color" variable value mode. Sets the opacity of each variable layer to
     /// either on or off depending on how its threshold compared to the current value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolvariablevaluemode/color?language=objc)
     #[doc(alias = "UIImageSymbolVariableValueModeColor")]
     pub const Color: Self = Self(1);
     /// The "draw" variable value mode. Changes the drawn length of each variable layer
     /// to either based on how its range relates to the current value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolvariablevaluemode/draw?language=objc)
     #[doc(alias = "UIImageSymbolVariableValueModeDraw")]
     pub const Draw: Self = Self(2);
 }
@@ -108,12 +129,18 @@ unsafe impl Sync for UIImageSymbolVariableValueMode {}
 pub struct UIImageSymbolColorRenderingMode(pub NSInteger);
 impl UIImageSymbolColorRenderingMode {
     /// Automatically uses an appropriate color rendering mode for the symbol’s color layers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolcolorrenderingmode/automatic?language=objc)
     #[doc(alias = "UIImageSymbolColorRenderingModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Renders the symbol’s color layers using flat colors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolcolorrenderingmode/flat?language=objc)
     #[doc(alias = "UIImageSymbolColorRenderingModeFlat")]
     pub const Flat: Self = Self(1);
     /// Renders the symbol’s color layers using gradients.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolcolorrenderingmode/gradient?language=objc)
     #[doc(alias = "UIImageSymbolColorRenderingModeGradient")]
     pub const Gradient: Self = Self(2);
 }
@@ -130,6 +157,7 @@ unsafe impl Send for UIImageSymbolColorRenderingMode {}
 
 unsafe impl Sync for UIImageSymbolColorRenderingMode {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/fontweight()?language=objc)
 #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 #[inline]
 pub extern "C-unwind" fn UIFontWeightForImageSymbolWeight(
@@ -142,6 +170,7 @@ pub extern "C-unwind" fn UIFontWeightForImageSymbolWeight(
 }
 
 impl UIImageSymbolWeight {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/symbolweight()?language=objc)
     #[doc(alias = "UIImageSymbolWeightForFontWeight")]
     #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
     #[inline]

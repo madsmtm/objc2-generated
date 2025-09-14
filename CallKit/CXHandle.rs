@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXHandleType(pub NSInteger);
 impl CXHandleType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxhandle/handletype/generic?language=objc)
     #[doc(alias = "CXHandleTypeGeneric")]
     pub const Generic: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxhandle/handletype/phonenumber?language=objc)
     #[doc(alias = "CXHandleTypePhoneNumber")]
     pub const PhoneNumber: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxhandle/handletype/emailaddress?language=objc)
     #[doc(alias = "CXHandleTypeEmailAddress")]
     pub const EmailAddress: Self = Self(3);
 }

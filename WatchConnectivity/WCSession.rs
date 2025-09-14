@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WCSessionActivationState(pub NSInteger);
 impl WCSessionActivationState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcsessionactivationstate/notactivated?language=objc)
     #[doc(alias = "WCSessionActivationStateNotActivated")]
     pub const NotActivated: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcsessionactivationstate/inactive?language=objc)
     #[doc(alias = "WCSessionActivationStateInactive")]
     pub const Inactive: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcsessionactivationstate/activated?language=objc)
     #[doc(alias = "WCSessionActivationStateActivated")]
     pub const Activated: Self = Self(2);
 }

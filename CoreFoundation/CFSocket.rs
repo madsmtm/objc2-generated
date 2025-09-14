@@ -31,10 +31,13 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFSocketError(pub CFIndex);
 impl CFSocketError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror/success?language=objc)
     #[doc(alias = "kCFSocketSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror/error?language=objc)
     #[doc(alias = "kCFSocketError")]
     pub const Error: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror/timeout?language=objc)
     #[doc(alias = "kCFSocketTimeout")]
     pub const Timeout: Self = Self(-2);
 }
@@ -85,16 +88,22 @@ unsafe impl RefEncode for CFSocketSignature {
 pub struct CFSocketCallBackType(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFSocketCallBackType: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/kcfsocketnocallback?language=objc)
         #[doc(alias = "kCFSocketNoCallBack")]
         const NoCallBack = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/readcallback?language=objc)
         #[doc(alias = "kCFSocketReadCallBack")]
         const ReadCallBack = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/acceptcallback?language=objc)
         #[doc(alias = "kCFSocketAcceptCallBack")]
         const AcceptCallBack = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/datacallback?language=objc)
         #[doc(alias = "kCFSocketDataCallBack")]
         const DataCallBack = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/connectcallback?language=objc)
         #[doc(alias = "kCFSocketConnectCallBack")]
         const ConnectCallBack = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/writecallback?language=objc)
         #[doc(alias = "kCFSocketWriteCallBack")]
         const WriteCallBack = 8;
     }
@@ -170,6 +179,7 @@ unsafe impl RefEncode for CFSocketContext {
 pub type CFSocketNativeHandle = c_int;
 
 unsafe impl ConcreteType for CFSocket {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketgettypeid()?language=objc)
     #[doc(alias = "CFSocketGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -181,6 +191,8 @@ unsafe impl ConcreteType for CFSocket {
 }
 
 impl CFSocket {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcreate(_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -223,6 +235,8 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithnative(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -252,6 +266,8 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithsocketsignature(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -289,6 +305,8 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcreateconnectedtosocketsignature(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -329,6 +347,7 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketsetaddress(_:_:)?language=objc)
     #[doc(alias = "CFSocketSetAddress")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -339,6 +358,7 @@ impl CFSocket {
         unsafe { CFSocketSetAddress(self, address) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketconnecttoaddress(_:_:_:)?language=objc)
     #[doc(alias = "CFSocketConnectToAddress")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -357,6 +377,7 @@ impl CFSocket {
         unsafe { CFSocketConnectToAddress(self, address, timeout) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketinvalidate(_:)?language=objc)
     #[doc(alias = "CFSocketInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -366,6 +387,7 @@ impl CFSocket {
         unsafe { CFSocketInvalidate(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketisvalid(_:)?language=objc)
     #[doc(alias = "CFSocketIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -376,6 +398,7 @@ impl CFSocket {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcopyaddress(_:)?language=objc)
     #[doc(alias = "CFSocketCopyAddress")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -387,6 +410,7 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcopypeeraddress(_:)?language=objc)
     #[doc(alias = "CFSocketCopyPeerAddress")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -398,6 +422,8 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketgetcontext(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -410,6 +436,7 @@ impl CFSocket {
         unsafe { CFSocketGetContext(self, context) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketgetnative(_:)?language=objc)
     #[doc(alias = "CFSocketGetNative")]
     #[inline]
     pub fn native(&self) -> CFSocketNativeHandle {
@@ -419,6 +446,7 @@ impl CFSocket {
         unsafe { CFSocketGetNative(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcreaterunloopsource(_:_:_:)?language=objc)
     #[doc(alias = "CFSocketCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -438,6 +466,7 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketgetsocketflags(_:)?language=objc)
     #[doc(alias = "CFSocketGetSocketFlags")]
     #[inline]
     pub fn socket_flags(&self) -> CFOptionFlags {
@@ -447,6 +476,7 @@ impl CFSocket {
         unsafe { CFSocketGetSocketFlags(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketsetsocketflags(_:_:)?language=objc)
     #[doc(alias = "CFSocketSetSocketFlags")]
     #[inline]
     pub fn set_socket_flags(&self, flags: CFOptionFlags) {
@@ -456,6 +486,7 @@ impl CFSocket {
         unsafe { CFSocketSetSocketFlags(self, flags) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketdisablecallbacks(_:_:)?language=objc)
     #[doc(alias = "CFSocketDisableCallBacks")]
     #[inline]
     pub fn disable_call_backs(&self, call_back_types: CFOptionFlags) {
@@ -465,6 +496,7 @@ impl CFSocket {
         unsafe { CFSocketDisableCallBacks(self, call_back_types) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketenablecallbacks(_:_:)?language=objc)
     #[doc(alias = "CFSocketEnableCallBacks")]
     #[inline]
     pub fn enable_call_backs(&self, call_back_types: CFOptionFlags) {
@@ -474,6 +506,7 @@ impl CFSocket {
         unsafe { CFSocketEnableCallBacks(self, call_back_types) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketsenddata(_:_:_:_:)?language=objc)
     #[doc(alias = "CFSocketSendData")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -494,6 +527,8 @@ impl CFSocket {
         unsafe { CFSocketSendData(self, address, data, timeout) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketregistervalue(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `name_server_signature` must be a valid pointer.
@@ -520,6 +555,8 @@ impl CFSocket {
         unsafe { CFSocketRegisterValue(name_server_signature, timeout, name, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcopyregisteredvalue(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `name_server_signature` must be a valid pointer.
@@ -556,6 +593,8 @@ impl CFSocket {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketregistersocketsignature(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `name_server_signature` must be a valid pointer.
@@ -581,6 +620,8 @@ impl CFSocket {
         unsafe { CFSocketRegisterSocketSignature(name_server_signature, timeout, name, signature) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcopyregisteredsocketsignature(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `name_server_signature` must be a valid pointer.
@@ -617,6 +658,8 @@ impl CFSocket {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketunregister(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `name_server_signature` must be a valid pointer.
@@ -639,6 +682,7 @@ impl CFSocket {
         unsafe { CFSocketUnregister(name_server_signature, timeout, name) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketsetdefaultnameregistryportnumber(_:)?language=objc)
     #[doc(alias = "CFSocketSetDefaultNameRegistryPortNumber")]
     #[inline]
     pub fn set_default_name_registry_port_number(port: u16) {
@@ -648,6 +692,7 @@ impl CFSocket {
         unsafe { CFSocketSetDefaultNameRegistryPortNumber(port) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketgetdefaultnameregistryportnumber()?language=objc)
     #[doc(alias = "CFSocketGetDefaultNameRegistryPortNumber")]
     #[inline]
     pub fn default_name_registry_port_number() -> u16 {

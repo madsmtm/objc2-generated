@@ -20,20 +20,28 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CSIndexErrorCode(pub NSInteger);
 impl CSIndexErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/unknownerror?language=objc)
     #[doc(alias = "CSIndexErrorCodeUnknownError")]
     pub const UnknownError: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/indexunavailableerror?language=objc)
     #[doc(alias = "CSIndexErrorCodeIndexUnavailableError")]
     pub const IndexUnavailableError: Self = Self(-1000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/invaliditemerror?language=objc)
     #[doc(alias = "CSIndexErrorCodeInvalidItemError")]
     pub const InvalidItemError: Self = Self(-1001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/invalidclientstateerror?language=objc)
     #[doc(alias = "CSIndexErrorCodeInvalidClientStateError")]
     pub const InvalidClientStateError: Self = Self(-1002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/remoteconnectionerror?language=objc)
     #[doc(alias = "CSIndexErrorCodeRemoteConnectionError")]
     pub const RemoteConnectionError: Self = Self(-1003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/quotaexceeded?language=objc)
     #[doc(alias = "CSIndexErrorCodeQuotaExceeded")]
     pub const QuotaExceeded: Self = Self(-1004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/indexingunsupported?language=objc)
     #[doc(alias = "CSIndexErrorCodeIndexingUnsupported")]
     pub const IndexingUnsupported: Self = Self(-1005);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/mismatchedclientstate?language=objc)
     #[doc(alias = "CSIndexErrorCodeMismatchedClientState")]
     pub const MismatchedClientState: Self = Self(-1006);
 }

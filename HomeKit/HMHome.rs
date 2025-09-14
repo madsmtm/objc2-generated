@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMHomeHubState(pub NSUInteger);
 impl HMHomeHubState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomehubstate/notavailable?language=objc)
     #[doc(alias = "HMHomeHubStateNotAvailable")]
     pub const NotAvailable: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomehubstate/connected?language=objc)
     #[doc(alias = "HMHomeHubStateConnected")]
     pub const Connected: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomehubstate/disconnected?language=objc)
     #[doc(alias = "HMHomeHubStateDisconnected")]
     pub const Disconnected: Self = Self(2);
 }

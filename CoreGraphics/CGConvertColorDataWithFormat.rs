@@ -43,6 +43,8 @@ unsafe impl RefEncode for CGColorDataFormat {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconvertcolordatawithformat(_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dst_data` must be a valid pointer.

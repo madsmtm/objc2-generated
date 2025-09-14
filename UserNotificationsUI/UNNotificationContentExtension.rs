@@ -26,6 +26,8 @@ impl UNNotificationContentExtensionMediaPlayPauseButtonType {
     ///
     /// Specify this option when you don't want a media button. This is the
     /// default option.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionmediaplaypausebuttontype/none?language=objc)
     #[doc(alias = "UNNotificationContentExtensionMediaPlayPauseButtonTypeNone")]
     pub const None: Self = Self(0);
     /// A standard play/pause button.
@@ -33,6 +35,8 @@ impl UNNotificationContentExtensionMediaPlayPauseButtonType {
     /// This button is always visible. When tapped, its appearance changes
     /// between the play and pause icons and triggers the appropriate play and
     /// pause actions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionmediaplaypausebuttontype/default?language=objc)
     #[doc(alias = "UNNotificationContentExtensionMediaPlayPauseButtonTypeDefault")]
     pub const Default: Self = Self(1);
     /// A partially transparent play/pause button that is layered on top of your
@@ -41,6 +45,8 @@ impl UNNotificationContentExtensionMediaPlayPauseButtonType {
     /// This button draws a play icon over the content initially. When playback
     /// begins, the button disappears. Tapping the content again pauses playback and
     /// displays the play button again.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionmediaplaypausebuttontype/overlay?language=objc)
     #[doc(alias = "UNNotificationContentExtensionMediaPlayPauseButtonTypeOverlay")]
     pub const Overlay: Self = Self(2);
 }
@@ -64,17 +70,23 @@ impl UNNotificationContentExtensionResponseOption {
     /// Don't dismiss the notification interface.
     ///
     /// The content extension handles the selected action.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionresponseoption/donotdismiss?language=objc)
     #[doc(alias = "UNNotificationContentExtensionResponseOptionDoNotDismiss")]
     pub const DoNotDismiss: Self = Self(0);
     /// Dismiss the notification interface.
     ///
     /// The content extension handles the selected action.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionresponseoption/dismiss?language=objc)
     #[doc(alias = "UNNotificationContentExtensionResponseOptionDismiss")]
     pub const Dismiss: Self = Self(1);
     /// Dismiss the notification interface and forward the notification to the app.
     ///
     /// Choose this option when you want the app to respond to the action or handle
     /// it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionresponseoption/dismissandforwardaction?language=objc)
     #[doc(alias = "UNNotificationContentExtensionResponseOptionDismissAndForwardAction")]
     pub const DismissAndForwardAction: Self = Self(2);
 }

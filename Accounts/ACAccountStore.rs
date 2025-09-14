@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ACAccountCredentialRenewResult(pub NSInteger);
 impl ACAccountCredentialRenewResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountcredentialrenewresult/renewed?language=objc)
     #[doc(alias = "ACAccountCredentialRenewResultRenewed")]
     pub const Renewed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountcredentialrenewresult/rejected?language=objc)
     #[doc(alias = "ACAccountCredentialRenewResultRejected")]
     pub const Rejected: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountcredentialrenewresult/failed?language=objc)
     #[doc(alias = "ACAccountCredentialRenewResultFailed")]
     pub const Failed: Self = Self(2);
 }

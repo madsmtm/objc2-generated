@@ -18,30 +18,48 @@ use crate::*;
 pub struct MPSGraphPoolingReturnIndicesMode(pub NSUInteger);
 impl MPSGraphPoolingReturnIndicesMode {
     /// No indices returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/none?language=objc)
     #[doc(alias = "MPSGraphPoolingReturnIndicesNone")]
     pub const None: Self = Self(0);
     /// Returns indices flattened in inner most (last) dimension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/globalflatten1d?language=objc)
     #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten1D")]
     pub const GlobalFlatten1D: Self = Self(1);
     /// Returns indices flattened in 2 innermost dimensions. eg: HW in NCHW.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/globalflatten2d?language=objc)
     #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten2D")]
     pub const GlobalFlatten2D: Self = Self(2);
     /// Returns indices flattened in 3 innernost dimensions. eg: HWC in NHWC.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/globalflatten3d?language=objc)
     #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten3D")]
     pub const GlobalFlatten3D: Self = Self(3);
     /// Returns indices flattened in 4 innermost dimensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/globalflatten4d?language=objc)
     #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten4D")]
     pub const GlobalFlatten4D: Self = Self(4);
     /// Returns indices within pooling window, flattened in inner most dimension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/localflatten1d?language=objc)
     #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten1D")]
     pub const LocalFlatten1D: Self = Self(5);
     /// Returns indices within pooling window, flattened in 2 innermost dimensions. eg: HW in NCHW.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/localflatten2d?language=objc)
     #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten2D")]
     pub const LocalFlatten2D: Self = Self(6);
     /// Returns indices within pooling window, flattened in 3 innernost dimensions. eg: HWC in NHWC.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/localflatten3d?language=objc)
     #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten3D")]
     pub const LocalFlatten3D: Self = Self(7);
     /// Returns indices within pooling window, flattened in 4 innermost dimensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/localflatten4d?language=objc)
     #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten4D")]
     pub const LocalFlatten4D: Self = Self(8);
 }

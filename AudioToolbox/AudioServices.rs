@@ -76,6 +76,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_system_sound_id` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicescreatesystemsoundid(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioServicesCreateSystemSoundID(
         in_file_url: &CFURL,
@@ -91,6 +93,8 @@ extern "C-unwind" {
     /// associated audio file are no longer required.
     ///
     /// Parameter `inSystemSoundID`: A SystemSoundID that the application no longer needs to use.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesdisposesystemsoundid(_:)?language=objc)
     pub fn AudioServicesDisposeSystemSoundID(in_system_sound_id: SystemSoundID) -> OSStatus;
 }
 
@@ -106,6 +110,8 @@ extern "C-unwind" {
     /// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
     /// of success or failure. The callbacks are issued on a serial queue and the client is
     /// responsible for handling thread safety.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplayalertsoundwithcompletion(_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn AudioServicesPlayAlertSoundWithCompletion(
         in_system_sound_id: SystemSoundID,
@@ -123,6 +129,8 @@ extern "C-unwind" {
     /// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
     /// of success or failure. The callbacks are issued on a serial queue and the client is
     /// responsible for handling thread safety.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplaysystemsoundwithcompletion(_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn AudioServicesPlaySystemSoundWithCompletion(
         in_system_sound_id: SystemSoundID,
@@ -153,6 +161,8 @@ extern "C-unwind" {
     /// - `in_specifier` must be a valid pointer or null.
     /// - `out_property_data_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesgetpropertyinfo(_:_:_:_:_:)?language=objc)
     pub fn AudioServicesGetPropertyInfo(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
@@ -186,6 +196,8 @@ extern "C-unwind" {
     /// - `in_specifier` must be a valid pointer or null.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesgetproperty(_:_:_:_:_:)?language=objc)
     pub fn AudioServicesGetProperty(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
@@ -215,6 +227,8 @@ extern "C-unwind" {
     ///
     /// - `in_specifier` must be a valid pointer or null.
     /// - `in_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicessetproperty(_:_:_:_:_:)?language=objc)
     pub fn AudioServicesSetProperty(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
@@ -236,6 +250,8 @@ extern "C-unwind" {
     /// Parameter `inSystemSoundID`: A SystemSoundID for the System Sound server to play. On the desktop you
     /// can pass the kSystemSoundID_UserPreferredAlert constant to playback the alert sound
     /// selected by the user in System Preferences. On iOS there is no preferred user alert sound.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplayalertsound(_:)?language=objc)
     pub fn AudioServicesPlayAlertSound(in_system_sound_id: SystemSoundID);
 }
 
@@ -249,6 +265,8 @@ extern "C-unwind" {
     /// A SystemSoundID indicating the desired System Sound to be played.
     ///
     /// Parameter `inSystemSoundID`: A SystemSoundID for the System Sound server to play.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplaysystemsound(_:)?language=objc)
     pub fn AudioServicesPlaySystemSound(in_system_sound_id: SystemSoundID);
 }
 
@@ -283,6 +301,8 @@ extern "C-unwind" {
     /// - `in_run_loop` possibly has additional threading requirements.
     /// - `in_completion_routine` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesaddsystemsoundcompletion(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioServicesAddSystemSoundCompletion(
         in_system_sound_id: SystemSoundID,
@@ -306,6 +326,8 @@ extern "C-unwind" {
     ///
     /// Parameter `inSystemSoundID`: The SystemSoundID for which completion routines should be
     /// removed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesremovesystemsoundcompletion(_:)?language=objc)
     pub fn AudioServicesRemoveSystemSoundCompletion(in_system_sound_id: SystemSoundID);
 }
 
@@ -336,6 +358,8 @@ extern "C-unwind" {
     ///
     /// - `in_details` generic must be of the correct type.
     /// - `in_details` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplaysystemsoundwithdetails?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioServicesPlaySystemSoundWithDetails(
         in_system_sound_id: SystemSoundID,
@@ -359,6 +383,8 @@ extern "C-unwind" {
     ///
     /// - `in_details` generic must be of the correct type.
     /// - `in_details` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplayalertsoundwithdetails?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioServicesPlayAlertSoundWithDetails(
         in_system_sound_id: SystemSoundID,

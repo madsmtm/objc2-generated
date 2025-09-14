@@ -18,16 +18,21 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIActivityIndicatorViewStyle(pub NSInteger);
 impl UIActivityIndicatorViewStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum/medium?language=objc)
     #[doc(alias = "UIActivityIndicatorViewStyleMedium")]
     pub const Medium: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum/large?language=objc)
     #[doc(alias = "UIActivityIndicatorViewStyleLarge")]
     pub const Large: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum/whitelarge?language=objc)
     #[doc(alias = "UIActivityIndicatorViewStyleWhiteLarge")]
     #[deprecated]
     pub const WhiteLarge: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum/white?language=objc)
     #[doc(alias = "UIActivityIndicatorViewStyleWhite")]
     #[deprecated]
     pub const White: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum/gray?language=objc)
     #[doc(alias = "UIActivityIndicatorViewStyleGray")]
     #[deprecated]
     pub const Gray: Self = Self(2);

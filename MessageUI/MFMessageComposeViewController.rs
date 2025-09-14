@@ -40,10 +40,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MessageComposeResult(pub NSInteger);
 impl MessageComposeResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/messagecomposeresult/cancelled?language=objc)
     #[doc(alias = "MessageComposeResultCancelled")]
     pub const Cancelled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/messagecomposeresult/sent?language=objc)
     #[doc(alias = "MessageComposeResultSent")]
     pub const Sent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/messagecomposeresult/failed?language=objc)
     #[doc(alias = "MessageComposeResultFailed")]
     pub const Failed: Self = Self(2);
 }

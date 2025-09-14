@@ -35,6 +35,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for CFError {
     /// Returns the type identifier of all CFError instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorgettypeid()?language=objc)
     #[doc(alias = "CFErrorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -127,6 +129,8 @@ impl CFError {
     /// - `user_info` generic must be of the correct type.
     /// - `user_info` generic must be of the correct type.
     /// - `user_info` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CFErrorCreate")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -171,6 +175,8 @@ impl CFError {
     /// - `domain` might not allow `None`.
     /// - `user_info_keys` must be a valid pointer.
     /// - `user_info_values` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcreatewithuserinfokeysandvalues(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFErrorCreateWithUserInfoKeysAndValues")]
     #[inline]
     pub unsafe fn with_user_info_keys_and_values(
@@ -209,6 +215,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose error domain is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: The error domain of the CFError. Since this is a "Get" function, the caller shouldn't CFRelease the return value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorgetdomain(_:)?language=objc)
     #[doc(alias = "CFErrorGetDomain")]
     #[inline]
     pub fn domain(&self) -> Option<CFRetained<CFErrorDomain>> {
@@ -224,6 +232,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose error code is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: The error code of the CFError (not an error return for the current call).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorgetcode(_:)?language=objc)
     #[doc(alias = "CFErrorGetCode")]
     #[inline]
     pub fn code(&self) -> CFIndex {
@@ -240,6 +250,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose error user info is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: The user info of the CFError.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcopyuserinfo(_:)?language=objc)
     #[doc(alias = "CFErrorCopyUserInfo")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -263,6 +275,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose description is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: A CFString with human-presentable description of the CFError. Never NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcopydescription(_:)?language=objc)
     #[doc(alias = "CFErrorCopyDescription")]
     #[inline]
     pub fn description(&self) -> Option<CFRetained<CFString>> {
@@ -282,6 +296,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose failure reason is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: A CFString with the localized, end-user presentable failure reason of the CFError, or NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcopyfailurereason(_:)?language=objc)
     #[doc(alias = "CFErrorCopyFailureReason")]
     #[inline]
     pub fn failure_reason(&self) -> Option<CFRetained<CFString>> {
@@ -301,6 +317,8 @@ impl CFError {
     /// Parameter `err`: The CFError whose recovery suggestion is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: A CFString with the localized, end-user presentable recovery suggestion of the CFError, or NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcopyrecoverysuggestion(_:)?language=objc)
     #[doc(alias = "CFErrorCopyRecoverySuggestion")]
     #[inline]
     pub fn recovery_suggestion(&self) -> Option<CFRetained<CFString>> {

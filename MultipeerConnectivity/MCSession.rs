@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCSessionSendDataMode(pub NSInteger);
 impl MCSessionSendDataMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionsenddatamode/reliable?language=objc)
     #[doc(alias = "MCSessionSendDataReliable")]
     pub const Reliable: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionsenddatamode/unreliable?language=objc)
     #[doc(alias = "MCSessionSendDataUnreliable")]
     pub const Unreliable: Self = Self(1);
 }
@@ -33,10 +35,13 @@ unsafe impl RefEncode for MCSessionSendDataMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCSessionState(pub NSInteger);
 impl MCSessionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionstate/notconnected?language=objc)
     #[doc(alias = "MCSessionStateNotConnected")]
     pub const NotConnected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionstate/connecting?language=objc)
     #[doc(alias = "MCSessionStateConnecting")]
     pub const Connecting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionstate/connected?language=objc)
     #[doc(alias = "MCSessionStateConnected")]
     pub const Connected: Self = Self(2);
 }
@@ -55,10 +60,13 @@ unsafe impl RefEncode for MCSessionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCEncryptionPreference(pub NSInteger);
 impl MCEncryptionPreference {
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference/optional?language=objc)
     #[doc(alias = "MCEncryptionOptional")]
     pub const Optional: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference/required?language=objc)
     #[doc(alias = "MCEncryptionRequired")]
     pub const Required: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference/none?language=objc)
     #[doc(alias = "MCEncryptionNone")]
     pub const None: Self = Self(2);
 }

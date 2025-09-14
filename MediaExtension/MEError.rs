@@ -44,28 +44,40 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MEError(pub NSInteger);
 impl MEError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/unsupportedfeature?language=objc)
     #[doc(alias = "MEErrorUnsupportedFeature")]
     pub const UnsupportedFeature: Self = Self(-19320);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/allocationfailure?language=objc)
     #[doc(alias = "MEErrorAllocationFailure")]
     pub const AllocationFailure: Self = Self(-19321);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/invalidparameter?language=objc)
     #[doc(alias = "MEErrorInvalidParameter")]
     pub const InvalidParameter: Self = Self(-19322);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/parsingfailure?language=objc)
     #[doc(alias = "MEErrorParsingFailure")]
     pub const ParsingFailure: Self = Self(-19323);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/internalfailure?language=objc)
     #[doc(alias = "MEErrorInternalFailure")]
     pub const InternalFailure: Self = Self(-19324);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/propertynotsupported?language=objc)
     #[doc(alias = "MEErrorPropertyNotSupported")]
     pub const PropertyNotSupported: Self = Self(-19325);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/nosuchedit?language=objc)
     #[doc(alias = "MEErrorNoSuchEdit")]
     pub const NoSuchEdit: Self = Self(-19326);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/nosamples?language=objc)
     #[doc(alias = "MEErrorNoSamples")]
     pub const NoSamples: Self = Self(-19327);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/locationnotavailable?language=objc)
     #[doc(alias = "MEErrorLocationNotAvailable")]
     pub const LocationNotAvailable: Self = Self(-19328);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/endofstream?language=objc)
     #[doc(alias = "MEErrorEndOfStream")]
     pub const EndOfStream: Self = Self(-19329);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/permissiondenied?language=objc)
     #[doc(alias = "MEErrorPermissionDenied")]
     pub const PermissionDenied: Self = Self(-19330);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/referencemissing?language=objc)
     #[doc(alias = "MEErrorReferenceMissing")]
     pub const ReferenceMissing: Self = Self(-19331);
 }

@@ -13,13 +13,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarStyle(pub NSInteger);
 impl UIBarStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarstyle/default?language=objc)
     #[doc(alias = "UIBarStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarstyle/black?language=objc)
     #[doc(alias = "UIBarStyleBlack")]
     pub const Black: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarstyle/blackopaque?language=objc)
     #[doc(alias = "UIBarStyleBlackOpaque")]
     #[deprecated = "Use UIBarStyleBlack instead."]
     pub const BlackOpaque: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarstyle/blacktranslucent?language=objc)
     #[doc(alias = "UIBarStyleBlackTranslucent")]
     #[deprecated = "Use UIBarStyleBlack and set the translucent property to YES instead."]
     pub const BlackTranslucent: Self = Self(2);
@@ -39,10 +43,13 @@ unsafe impl RefEncode for UIBarStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceSizeClass(pub NSInteger);
 impl UIUserInterfaceSizeClass {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacesizeclass/unspecified?language=objc)
     #[doc(alias = "UIUserInterfaceSizeClassUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacesizeclass/compact?language=objc)
     #[doc(alias = "UIUserInterfaceSizeClassCompact")]
     pub const Compact: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacesizeclass/regular?language=objc)
     #[doc(alias = "UIUserInterfaceSizeClassRegular")]
     pub const Regular: Self = Self(2);
 }
@@ -61,10 +68,13 @@ unsafe impl RefEncode for UIUserInterfaceSizeClass {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceStyle(pub NSInteger);
 impl UIUserInterfaceStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacestyle/unspecified?language=objc)
     #[doc(alias = "UIUserInterfaceStyleUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacestyle/light?language=objc)
     #[doc(alias = "UIUserInterfaceStyleLight")]
     pub const Light: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacestyle/dark?language=objc)
     #[doc(alias = "UIUserInterfaceStyleDark")]
     pub const Dark: Self = Self(2);
 }
@@ -83,8 +93,10 @@ unsafe impl RefEncode for UIUserInterfaceStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceLayoutDirection(pub NSInteger);
 impl UIUserInterfaceLayoutDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelayoutdirection/lefttoright?language=objc)
     #[doc(alias = "UIUserInterfaceLayoutDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelayoutdirection/righttoleft?language=objc)
     #[doc(alias = "UIUserInterfaceLayoutDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -103,10 +115,13 @@ unsafe impl RefEncode for UIUserInterfaceLayoutDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITraitEnvironmentLayoutDirection(pub NSInteger);
 impl UITraitEnvironmentLayoutDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironmentlayoutdirection/unspecified?language=objc)
     #[doc(alias = "UITraitEnvironmentLayoutDirectionUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironmentlayoutdirection/lefttoright?language=objc)
     #[doc(alias = "UITraitEnvironmentLayoutDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(UIUserInterfaceLayoutDirection::LeftToRight.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironmentlayoutdirection/righttoleft?language=objc)
     #[doc(alias = "UITraitEnvironmentLayoutDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(UIUserInterfaceLayoutDirection::RightToLeft.0);
 }
@@ -125,10 +140,13 @@ unsafe impl RefEncode for UITraitEnvironmentLayoutDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDisplayGamut(pub NSInteger);
 impl UIDisplayGamut {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidisplaygamut/unspecified?language=objc)
     #[doc(alias = "UIDisplayGamutUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidisplaygamut/srgb?language=objc)
     #[doc(alias = "UIDisplayGamutSRGB")]
     pub const SRGB: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidisplaygamut/p3?language=objc)
     #[doc(alias = "UIDisplayGamutP3")]
     pub const P3: Self = Self(1);
 }
@@ -147,10 +165,13 @@ unsafe impl RefEncode for UIDisplayGamut {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityContrast(pub NSInteger);
 impl UIAccessibilityContrast {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontrast/unspecified?language=objc)
     #[doc(alias = "UIAccessibilityContrastUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontrast/normal?language=objc)
     #[doc(alias = "UIAccessibilityContrastNormal")]
     pub const Normal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontrast/high?language=objc)
     #[doc(alias = "UIAccessibilityContrastHigh")]
     pub const High: Self = Self(1);
 }
@@ -169,10 +190,13 @@ unsafe impl RefEncode for UIAccessibilityContrast {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILegibilityWeight(pub NSInteger);
 impl UILegibilityWeight {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilegibilityweight/unspecified?language=objc)
     #[doc(alias = "UILegibilityWeightUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilegibilityweight/regular?language=objc)
     #[doc(alias = "UILegibilityWeightRegular")]
     pub const Regular: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilegibilityweight/bold?language=objc)
     #[doc(alias = "UILegibilityWeightBold")]
     pub const Bold: Self = Self(1);
 }
@@ -191,10 +215,13 @@ unsafe impl RefEncode for UILegibilityWeight {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceLevel(pub NSInteger);
 impl UIUserInterfaceLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelevel/unspecified?language=objc)
     #[doc(alias = "UIUserInterfaceLevelUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelevel/base?language=objc)
     #[doc(alias = "UIUserInterfaceLevelBase")]
     pub const Base: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelevel/elevated?language=objc)
     #[doc(alias = "UIUserInterfaceLevelElevated")]
     pub const Elevated: Self = Self(1);
 }
@@ -213,10 +240,13 @@ unsafe impl RefEncode for UIUserInterfaceLevel {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceActiveAppearance(pub NSInteger);
 impl UIUserInterfaceActiveAppearance {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceactiveappearance/unspecified?language=objc)
     #[doc(alias = "UIUserInterfaceActiveAppearanceUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceactiveappearance/inactive?language=objc)
     #[doc(alias = "UIUserInterfaceActiveAppearanceInactive")]
     pub const Inactive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceactiveappearance/active?language=objc)
     #[doc(alias = "UIUserInterfaceActiveAppearanceActive")]
     pub const Active: Self = Self(1);
 }
@@ -235,12 +265,16 @@ unsafe impl RefEncode for UIUserInterfaceActiveAppearance {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINSToolbarItemPresentationSize(pub NSInteger);
 impl UINSToolbarItemPresentationSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinstoolbaritempresentationsize/unspecified?language=objc)
     #[doc(alias = "UINSToolbarItemPresentationSizeUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinstoolbaritempresentationsize/regular?language=objc)
     #[doc(alias = "UINSToolbarItemPresentationSizeRegular")]
     pub const Regular: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinstoolbaritempresentationsize/small?language=objc)
     #[doc(alias = "UINSToolbarItemPresentationSizeSmall")]
     pub const Small: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinstoolbaritempresentationsize/large?language=objc)
     #[doc(alias = "UINSToolbarItemPresentationSizeLarge")]
     pub const Large: Self = Self(3);
 }
@@ -260,15 +294,23 @@ unsafe impl RefEncode for UINSToolbarItemPresentationSize {
 pub struct UIImageDynamicRange(pub NSInteger);
 impl UIImageDynamicRange {
     /// Do not specify a preferred dynamic range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/dynamicrange/unspecified?language=objc)
     #[doc(alias = "UIImageDynamicRangeUnspecified")]
     pub const Unspecified: Self = Self(-1);
     /// Restrict the image content dynamic range to the standard range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/dynamicrange/standard?language=objc)
     #[doc(alias = "UIImageDynamicRangeStandard")]
     pub const Standard: Self = Self(0);
     /// Allow image content to use some extended range. This is appropriate for mixing content with standard and high dynamic ranges.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/dynamicrange/constrainedhigh?language=objc)
     #[doc(alias = "UIImageDynamicRangeConstrainedHigh")]
     pub const ConstrainedHigh: Self = Self(1);
     /// Allow image content to use unrestricted extended range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/dynamicrange/high?language=objc)
     #[doc(alias = "UIImageDynamicRangeHigh")]
     pub const High: Self = Self(2);
 }
@@ -288,12 +330,18 @@ unsafe impl RefEncode for UIImageDynamicRange {
 pub struct UIHDRHeadroomUsageLimit(pub NSInteger);
 impl UIHDRHeadroomUsageLimit {
     /// Headroom usage limits are not defined
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihdrheadroomusagelimit/unspecified?language=objc)
     #[doc(alias = "UIHDRHeadroomUsageLimitUnspecified")]
     pub const Unspecified: Self = Self(-1);
     /// Headroom usage limits are in effect, HDR headroom usage should be restricted
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihdrheadroomusagelimit/active?language=objc)
     #[doc(alias = "UIHDRHeadroomUsageLimitActive")]
     pub const Active: Self = Self(0);
     /// Headroom usage limits are disabled, HDR headroom usage is unrestricted.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihdrheadroomusagelimit/inactive?language=objc)
     #[doc(alias = "UIHDRHeadroomUsageLimitInactive")]
     pub const Inactive: Self = Self(1);
 }

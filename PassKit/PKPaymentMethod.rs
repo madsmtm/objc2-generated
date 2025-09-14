@@ -14,16 +14,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentMethodType(pub NSUInteger);
 impl PKPaymentMethodType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/unknown?language=objc)
     #[doc(alias = "PKPaymentMethodTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/debit?language=objc)
     #[doc(alias = "PKPaymentMethodTypeDebit")]
     pub const Debit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/credit?language=objc)
     #[doc(alias = "PKPaymentMethodTypeCredit")]
     pub const Credit: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/prepaid?language=objc)
     #[doc(alias = "PKPaymentMethodTypePrepaid")]
     pub const Prepaid: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/store?language=objc)
     #[doc(alias = "PKPaymentMethodTypeStore")]
     pub const Store: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/emoney?language=objc)
     #[doc(alias = "PKPaymentMethodTypeEMoney")]
     pub const EMoney: Self = Self(5);
 }

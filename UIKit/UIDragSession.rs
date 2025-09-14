@@ -72,8 +72,10 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDropSessionProgressIndicatorStyle(pub NSUInteger);
 impl UIDropSessionProgressIndicatorStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropsessionprogressindicatorstyle/none?language=objc)
     #[doc(alias = "UIDropSessionProgressIndicatorStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropsessionprogressindicatorstyle/default?language=objc)
     #[doc(alias = "UIDropSessionProgressIndicatorStyleDefault")]
     pub const Default: Self = Self(1);
 }

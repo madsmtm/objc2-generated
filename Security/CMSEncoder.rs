@@ -27,6 +27,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CMSEncoder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodergettypeid()?language=objc)
     #[doc(alias = "CMSEncoderGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,6 +39,8 @@ unsafe impl ConcreteType for CMSEncoder {
 }
 
 impl CMSEncoder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercreate(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `cms_encoder_out` must be a valid pointer.
@@ -62,6 +65,7 @@ extern "C" {
 }
 
 impl CMSEncoder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodersetsigneralgorithm(_:_:)?language=objc)
     #[doc(alias = "CMSEncoderSetSignerAlgorithm")]
     #[inline]
     pub unsafe fn set_signer_algorithm(&self, digest_algorithm: &CFString) -> OSStatus {
@@ -74,6 +78,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetSignerAlgorithm(self, digest_algorithm) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoderaddsigners(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `signer_or_array` should be of the correct type.
@@ -87,6 +93,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddSigners(self, signer_or_array) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopysigners(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `signers_out` must be a valid pointer.
@@ -102,6 +110,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopySigners(self, signers_out) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoderaddrecipients(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `recipient_or_array` should be of the correct type.
@@ -117,6 +127,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddRecipients(self, recipient_or_array) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopyrecipients(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `recipients_out` must be a valid pointer.
@@ -132,6 +144,7 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopyRecipients(self, recipients_out) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodersethasdetachedcontent(_:_:)?language=objc)
     #[doc(alias = "CMSEncoderSetHasDetachedContent")]
     #[inline]
     pub unsafe fn set_has_detached_content(&self, detached_content: bool) -> OSStatus {
@@ -144,6 +157,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetHasDetachedContent(self, detached_content as _) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodergethasdetachedcontent(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `detached_content_out` must be a valid pointer.
@@ -159,6 +174,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderGetHasDetachedContent(self, detached_content_out) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodersetencapsulatedcontenttype?language=objc)
+    ///
     /// # Safety
     ///
     /// `e_content_type` must be a valid pointer.
@@ -179,6 +196,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetEncapsulatedContentType(self, e_content_type) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodersetencapsulatedcontenttypeoid(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `e_content_type_oid` should be of the correct type.
@@ -197,6 +216,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetEncapsulatedContentTypeOID(self, e_content_type_oid) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopyencapsulatedcontenttype(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `e_content_type_out` must be a valid pointer.
@@ -215,6 +236,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopyEncapsulatedContentType(self, e_content_type_out) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoderaddsupportingcerts(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `cert_or_array` should be of the correct type.
@@ -230,6 +253,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddSupportingCerts(self, cert_or_array) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopysupportingcerts(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `certs_out` must be a valid pointer.
@@ -253,20 +278,28 @@ impl CMSEncoder {
 pub struct CMSSignedAttributes(pub u32);
 bitflags::bitflags! {
     impl CMSSignedAttributes: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/kcmsattrnone?language=objc)
         #[doc(alias = "kCMSAttrNone")]
         const AttrNone = 0x0000;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrsmimecapabilities?language=objc)
         #[doc(alias = "kCMSAttrSmimeCapabilities")]
         const AttrSmimeCapabilities = 0x0001;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrsmimeencryptionkeyprefs?language=objc)
         #[doc(alias = "kCMSAttrSmimeEncryptionKeyPrefs")]
         const AttrSmimeEncryptionKeyPrefs = 0x0002;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrsmimemsencryptionkeyprefs?language=objc)
         #[doc(alias = "kCMSAttrSmimeMSEncryptionKeyPrefs")]
         const AttrSmimeMSEncryptionKeyPrefs = 0x0004;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrsigningtime?language=objc)
         #[doc(alias = "kCMSAttrSigningTime")]
         const AttrSigningTime = 0x0008;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrapplecodesigninghashagility?language=objc)
         #[doc(alias = "kCMSAttrAppleCodesigningHashAgility")]
         const AttrAppleCodesigningHashAgility = 0x0010;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrapplecodesigninghashagilityv2?language=objc)
         #[doc(alias = "kCMSAttrAppleCodesigningHashAgilityV2")]
         const AttrAppleCodesigningHashAgilityV2 = 0x0020;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrappleexpirationtime?language=objc)
         #[doc(alias = "kCMSAttrAppleExpirationTime")]
         const AttrAppleExpirationTime = 0x0040;
     }
@@ -283,6 +316,7 @@ unsafe impl RefEncode for CMSSignedAttributes {
 }
 
 impl CMSEncoder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoderaddsignedattributes(_:_:)?language=objc)
     #[doc(alias = "CMSEncoderAddSignedAttributes")]
     #[inline]
     pub unsafe fn add_signed_attributes(&self, signed_attributes: CMSSignedAttributes) -> OSStatus {
@@ -302,14 +336,19 @@ impl CMSEncoder {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMSCertificateChainMode(pub u32);
 impl CMSCertificateChainMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode/none?language=objc)
     #[doc(alias = "kCMSCertificateNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode/signeronly?language=objc)
     #[doc(alias = "kCMSCertificateSignerOnly")]
     pub const SignerOnly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode/chain?language=objc)
     #[doc(alias = "kCMSCertificateChain")]
     pub const Chain: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode/chainwithroot?language=objc)
     #[doc(alias = "kCMSCertificateChainWithRoot")]
     pub const ChainWithRoot: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode/chainwithrootorfail?language=objc)
     #[doc(alias = "kCMSCertificateChainWithRootOrFail")]
     pub const ChainWithRootOrFail: Self = Self(4);
 }
@@ -325,6 +364,7 @@ unsafe impl RefEncode for CMSCertificateChainMode {
 }
 
 impl CMSEncoder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodersetcertificatechainmode(_:_:)?language=objc)
     #[doc(alias = "CMSEncoderSetCertificateChainMode")]
     #[inline]
     pub unsafe fn set_certificate_chain_mode(
@@ -340,6 +380,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetCertificateChainMode(self, chain_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodergetcertificatechainmode(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `chain_mode_out` must be a valid pointer.
@@ -358,6 +400,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderGetCertificateChainMode(self, chain_mode_out) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoderupdatecontent(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `content` must be a valid pointer.
@@ -374,6 +418,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderUpdateContent(self, content, content_len) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopyencodedcontent(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `encoded_content_out` must be a valid pointer.
@@ -393,6 +439,8 @@ impl CMSEncoder {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencode?language=objc)
+///
 /// # Safety
 ///
 /// - `signers` should be of the correct type.
@@ -439,6 +487,8 @@ pub unsafe extern "C-unwind" fn CMSEncode(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodecontent(_:_:_:_:_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `signers` should be of the correct type.
@@ -484,6 +534,8 @@ pub unsafe extern "C-unwind" fn CMSEncodeContent(
 }
 
 impl CMSEncoder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopysignertimestamp(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `timestamp` must be a valid pointer.
@@ -504,6 +556,8 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopySignerTimestamp(self, signer_index, timestamp) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopysignertimestampwithpolicy(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `time_stamp_policy` should be of the correct type.

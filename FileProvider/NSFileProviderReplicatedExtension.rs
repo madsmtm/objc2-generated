@@ -46,12 +46,16 @@ bitflags::bitflags! {
 ///
 /// When all the items pending reimport have been processed, the system
 /// will call -[NSFileProviderExtension importDidFinishWithCompletionHandler:].
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercreateitemoptions/mayalreadyexist?language=objc)
         #[doc(alias = "NSFileProviderCreateItemMayAlreadyExist")]
         const MayAlreadyExist = 1<<0;
 /// This item is recreated after the system failed to apply a deletion requested
 /// by the extension because the item was found to be edited locally.
 /// This happens only if the edit wasn't yet known by the system at the time the
 /// deletion was requested.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercreateitemoptions/deletionconflicted?language=objc)
         #[doc(alias = "NSFileProviderCreateItemDeletionConflicted")]
         const DeletionConflicted = 1<<1;
     }
@@ -75,6 +79,8 @@ pub struct NSFileProviderDeleteItemOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderDeleteItemOptions: NSUInteger {
 /// The deletion of the item is recursive.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdeleteitemoptions/recursive?language=objc)
         #[doc(alias = "NSFileProviderDeleteItemRecursive")]
         const Recursive = 1<<0;
     }
@@ -104,6 +110,8 @@ bitflags::bitflags! {
 /// and all the remaining parts have been filled in.
 /// This flag is ignored if the provided range doesn't cover the entire file (ie. [0, EOF]).
 /// This flag is not functional prior to macOS 13.3.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermaterializationflags/knownsparseranges?language=objc)
         #[doc(alias = "NSFileProviderMaterializationFlagsKnownSparseRanges")]
         const KnownSparseRanges = 1<<0;
     }
@@ -129,6 +137,8 @@ bitflags::bitflags! {
 /// Set by the system to inform the provider that any other content version than the requested one
 /// will be discarded.
 /// If the provider cannot supply this version, it should fail with NSFileProviderErrorVersionNoLongerAvailable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfetchcontentsoptions/strictversioning?language=objc)
         #[doc(alias = "NSFileProviderFetchContentsOptionsStrictVersioning")]
         const StrictVersioning = 1<<0;
     }

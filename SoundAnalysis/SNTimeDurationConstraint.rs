@@ -19,11 +19,15 @@ impl SNTimeDurationConstraintType {
     /// An 'enumerated' constraint type.
     ///
     /// In order for a duration to satisfy a constraint of this type, it must be a member of a particular set of discrete permissible values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstrainttype/sntimedurationconstrainttypeenumerated?language=objc)
     #[doc(alias = "SNTimeDurationConstraintTypeEnumerated")]
     pub const Enumerated: Self = Self(1);
     /// A 'range' constraint type.
     ///
     /// In order for a duration to satisfy a constraint of this type, it must be a member of a particular continuous range of permissible values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstrainttype/sntimedurationconstrainttyperange?language=objc)
     #[doc(alias = "SNTimeDurationConstraintTypeRange")]
     pub const Range: Self = Self(2);
 }

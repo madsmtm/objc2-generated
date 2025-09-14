@@ -16,19 +16,26 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKGameCenterViewControllerState(pub NSInteger);
 impl GKGameCenterViewControllerState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/default?language=objc)
     #[doc(alias = "GKGameCenterViewControllerStateDefault")]
     pub const Default: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/leaderboards?language=objc)
     #[doc(alias = "GKGameCenterViewControllerStateLeaderboards")]
     pub const Leaderboards: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/achievements?language=objc)
     #[doc(alias = "GKGameCenterViewControllerStateAchievements")]
     pub const Achievements: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/challenges?language=objc)
     #[doc(alias = "GKGameCenterViewControllerStateChallenges")]
     #[deprecated]
     pub const Challenges: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/localplayerprofile?language=objc)
     #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerProfile")]
     pub const LocalPlayerProfile: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/dashboard?language=objc)
     #[doc(alias = "GKGameCenterViewControllerStateDashboard")]
     pub const Dashboard: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/localplayerfriendslist?language=objc)
     #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerFriendsList")]
     pub const LocalPlayerFriendsList: Self = Self(5);
 }

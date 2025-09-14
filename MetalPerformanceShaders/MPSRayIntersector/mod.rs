@@ -133,10 +133,14 @@ impl MPSIntersectionType {
     /// Find the closest intersection to the ray's origin along the ray direction. This is
     /// potentially slower than MPSIntersectionTypeAny but is well suited to primary visibility
     /// rays.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiontype/nearest?language=objc)
     #[doc(alias = "MPSIntersectionTypeNearest")]
     pub const Nearest: Self = Self(0);
     /// Find any intersection along the ray direction. This is potentially faster than
     /// MPSIntersectionTypeNearest and is well suited to shadow and occlusion rays.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiontype/any?language=objc)
     #[doc(alias = "MPSIntersectionTypeAny")]
     pub const Any: Self = Self(1);
 }
@@ -159,12 +163,16 @@ unsafe impl RefEncode for MPSIntersectionType {
 pub struct MPSTriangleIntersectionTestType(pub NSUInteger);
 impl MPSTriangleIntersectionTestType {
     /// Use the default ray/triangle intersection test
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstriangleintersectiontesttype/default?language=objc)
     #[doc(alias = "MPSTriangleIntersectionTestTypeDefault")]
     #[deprecated]
     pub const Default: Self = Self(0);
     /// Use a watertight ray/triangle intersection test which avoids gaps along shared
     /// triangle edges. Shared vertices may still have gaps. This intersection test may be slower
     /// than MPSTriangleIntersectionTestTypeDefault.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstriangleintersectiontesttype/watertight?language=objc)
     #[doc(alias = "MPSTriangleIntersectionTestTypeWatertight")]
     #[deprecated]
     pub const Watertight: Self = Self(1);
@@ -195,6 +203,8 @@ impl MPSBoundingBoxIntersectionTestType {
     /// rays correctly by default. The old behavior can be restored by explicitly setting the
     /// intersection test type to MPSBoundingBoxIntersectionTestTypeFast on macOS 10.15/iOS 13.0
     /// and above.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsboundingboxintersectiontesttype/default?language=objc)
     #[doc(alias = "MPSBoundingBoxIntersectionTestTypeDefault")]
     #[deprecated]
     pub const Default: Self = Self(0);
@@ -205,6 +215,8 @@ impl MPSBoundingBoxIntersectionTestType {
     /// randomized ray distributions. However, synthetic ray distributions or orthographic
     /// projections can generate these rays. It may be faster to slightly perturb the ray
     /// direction and use the fast intersection test type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsboundingboxintersectiontesttype/axisaligned?language=objc)
     #[doc(alias = "MPSBoundingBoxIntersectionTestTypeAxisAligned")]
     #[deprecated]
     pub const AxisAligned: Self = Self(1);
@@ -214,6 +226,8 @@ impl MPSBoundingBoxIntersectionTestType {
     /// zero). These rays often do not come up in practice due to perspective projections and
     /// randomized ray distributions. However, synthetic ray distributions or orthographic
     /// projections can generate these rays.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsboundingboxintersectiontesttype/fast?language=objc)
     #[doc(alias = "MPSBoundingBoxIntersectionTestTypeFast")]
     #[deprecated]
     pub const Fast: Self = Self(2);
@@ -238,14 +252,20 @@ pub struct MPSRayMaskOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSRayMaskOptions: NSUInteger {
 /// Disable primitive and instance masks
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoptions/mpsraymaskoptionnone?language=objc)
         #[doc(alias = "MPSRayMaskOptionNone")]
 #[deprecated]
         const None = 0;
 /// Enable primitive masks
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoptions/primitive?language=objc)
         #[doc(alias = "MPSRayMaskOptionPrimitive")]
 #[deprecated]
         const Primitive = 1;
 /// Enable instance masks
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoptions/instance?language=objc)
         #[doc(alias = "MPSRayMaskOptionInstance")]
 #[deprecated]
         const Instance = 2;
@@ -269,15 +289,23 @@ unsafe impl RefEncode for MPSRayMaskOptions {
 pub struct MPSRayDataType(pub NSUInteger);
 impl MPSRayDataType {
     /// Use the MPSRayOriginDirection struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraydatatype/origindirection?language=objc)
     #[doc(alias = "MPSRayDataTypeOriginDirection")]
     pub const OriginDirection: Self = Self(0);
     /// Use the MPSRayOriginMinDistanceDirectionMaxDistance struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraydatatype/originmindistancedirectionmaxdistance?language=objc)
     #[doc(alias = "MPSRayDataTypeOriginMinDistanceDirectionMaxDistance")]
     pub const OriginMinDistanceDirectionMaxDistance: Self = Self(1);
     /// Use the MPSRayOriginMaxDistanceDirectionMask struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraydatatype/originmaskdirectionmaxdistance?language=objc)
     #[doc(alias = "MPSRayDataTypeOriginMaskDirectionMaxDistance")]
     pub const OriginMaskDirectionMaxDistance: Self = Self(2);
     /// Use the MPSPackedRayOriginDirection struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraydatatype/packedorigindirection?language=objc)
     #[doc(alias = "MPSRayDataTypePackedOriginDirection")]
     pub const PackedOriginDirection: Self = Self(3);
 }
@@ -299,30 +327,48 @@ unsafe impl RefEncode for MPSRayDataType {
 pub struct MPSIntersectionDataType(pub NSUInteger);
 impl MPSIntersectionDataType {
     /// Use the MPSIntersectionDistance struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype/distance?language=objc)
     #[doc(alias = "MPSIntersectionDataTypeDistance")]
     pub const Distance: Self = Self(0);
     /// Use the MPSIntersectionDistancePrimitiveIndex struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype/distanceprimitiveindex?language=objc)
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndex")]
     pub const DistancePrimitiveIndex: Self = Self(1);
     /// Use the MPSIntersectionDistancePrimitiveIndexCoordinates struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype/distanceprimitiveindexcoordinates?language=objc)
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexCoordinates")]
     pub const DistancePrimitiveIndexCoordinates: Self = Self(2);
     /// Use the DistancePrimitiveIndexInstanceIndex struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype/distanceprimitiveindexinstanceindex?language=objc)
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexInstanceIndex")]
     pub const DistancePrimitiveIndexInstanceIndex: Self = Self(3);
     /// Use the DistancePrimitiveIndexInstanceIndexCoordinates struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype/distanceprimitiveindexinstanceindexcoordinates?language=objc)
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexInstanceIndexCoordinates")]
     pub const DistancePrimitiveIndexInstanceIndexCoordinates: Self = Self(4);
     /// Use the MPSIntersectionDistancePrimitiveIndexBufferIndex struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype/distanceprimitiveindexbufferindex?language=objc)
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexBufferIndex")]
     pub const DistancePrimitiveIndexBufferIndex: Self = Self(5);
     /// Use the MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype/distanceprimitiveindexbufferindexcoordinates?language=objc)
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexBufferIndexCoordinates")]
     pub const DistancePrimitiveIndexBufferIndexCoordinates: Self = Self(6);
     /// Use the DistancePrimitiveIndexBufferIndexInstanceIndex struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype/distanceprimitiveindexbufferindexinstanceindex?language=objc)
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexBufferIndexInstanceIndex")]
     pub const DistancePrimitiveIndexBufferIndexInstanceIndex: Self = Self(7);
     /// Use the DistancePrimitiveIndexBufferIndexInstanceIndexCoordinates struct type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype/distanceprimitiveindexbufferindexinstanceindexcoordinates?language=objc)
     #[doc(
         alias = "MPSIntersectionDataTypeDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates"
     )]
@@ -349,56 +395,80 @@ impl MPSRayMaskOperator {
     /// Accept the intersection if (primitive mask
     /// &
     /// ray mask) != 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/and?language=objc)
     #[doc(alias = "MPSRayMaskOperatorAnd")]
     #[deprecated]
     pub const And: Self = Self(0);
     /// Accept the intersection if ~(primitive mask
     /// &
     /// ray mask) != 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/notand?language=objc)
     #[doc(alias = "MPSRayMaskOperatorNotAnd")]
     #[deprecated]
     pub const NotAnd: Self = Self(1);
     /// Accept the intersection if (primitive mask | ray mask) != 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/or?language=objc)
     #[doc(alias = "MPSRayMaskOperatorOr")]
     #[deprecated]
     pub const Or: Self = Self(2);
     /// Accept the intersection if ~(primitive mask | ray mask) != 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/notor?language=objc)
     #[doc(alias = "MPSRayMaskOperatorNotOr")]
     #[deprecated]
     pub const NotOr: Self = Self(3);
     /// Accept the intersection if (primitive mask ^ ray mask) != 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/xor?language=objc)
     #[doc(alias = "MPSRayMaskOperatorXor")]
     #[deprecated]
     pub const Xor: Self = Self(4);
     /// Accept the intersection if ~(primitive mask ^ ray mask) != 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/notxor?language=objc)
     #[doc(alias = "MPSRayMaskOperatorNotXor")]
     #[deprecated]
     pub const NotXor: Self = Self(5);
     /// Accept the intersection if primitive mask
     /// <
     /// ray mask.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/lessthan?language=objc)
     #[doc(alias = "MPSRayMaskOperatorLessThan")]
     #[deprecated]
     pub const LessThan: Self = Self(6);
     /// Accept the intersection if primitive mask
     /// <
     /// = ray mask.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/lessthanorequalto?language=objc)
     #[doc(alias = "MPSRayMaskOperatorLessThanOrEqualTo")]
     #[deprecated]
     pub const LessThanOrEqualTo: Self = Self(7);
     /// Accept the intersection if primitive mask > ray mask.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/greaterthan?language=objc)
     #[doc(alias = "MPSRayMaskOperatorGreaterThan")]
     #[deprecated]
     pub const GreaterThan: Self = Self(8);
     /// Accept the intersection if primitive mask >= ray mask.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/greaterthanorequalto?language=objc)
     #[doc(alias = "MPSRayMaskOperatorGreaterThanOrEqualTo")]
     #[deprecated]
     pub const GreaterThanOrEqualTo: Self = Self(9);
     /// Accept the intersection if primitive mask == ray mask.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/equal?language=objc)
     #[doc(alias = "MPSRayMaskOperatorEqual")]
     #[deprecated]
     pub const Equal: Self = Self(10);
     /// Accept the intersection if primitive mask != ray mask.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator/notequal?language=objc)
     #[doc(alias = "MPSRayMaskOperatorNotEqual")]
     #[deprecated]
     pub const NotEqual: Self = Self(11);

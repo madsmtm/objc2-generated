@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCallAudioRoute(pub NSInteger);
 impl INCallAudioRoute {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallaudioroute/unknown?language=objc)
     #[doc(alias = "INCallAudioRouteUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallaudioroute/speakerphoneaudioroute?language=objc)
     #[doc(alias = "INCallAudioRouteSpeakerphoneAudioRoute")]
     pub const SpeakerphoneAudioRoute: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallaudioroute/bluetoothaudioroute?language=objc)
     #[doc(alias = "INCallAudioRouteBluetoothAudioRoute")]
     pub const BluetoothAudioRoute: Self = Self(2);
 }

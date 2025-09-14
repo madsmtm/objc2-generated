@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEAccessibilityPressedState(pub NSInteger);
 impl BEAccessibilityPressedState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitypressedstate/undefined?language=objc)
     #[doc(alias = "BEAccessibilityPressedStateUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitypressedstate/false?language=objc)
     #[doc(alias = "BEAccessibilityPressedStateFalse")]
     pub const False: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitypressedstate/true?language=objc)
     #[doc(alias = "BEAccessibilityPressedStateTrue")]
     pub const True: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitypressedstate/mixed?language=objc)
     #[doc(alias = "BEAccessibilityPressedStateMixed")]
     pub const Mixed: Self = Self(3);
 }
@@ -38,30 +42,43 @@ unsafe impl RefEncode for BEAccessibilityPressedState {
 pub struct BEAccessibilityContainerType(pub NSUInteger);
 bitflags::bitflags! {
     impl BEAccessibilityContainerType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/beaccessibilitycontainertypenone?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/landmark?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeLandmark")]
         const Landmark = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/table?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeTable")]
         const Table = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/list?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeList")]
         const List = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/fieldset?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeFieldset")]
         const Fieldset = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/dialog?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeDialog")]
         const Dialog = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/tree?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeTree")]
         const Tree = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/frame?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeFrame")]
         const Frame = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/article?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeArticle")]
         const Article = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/semanticgroup?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeSemanticGroup")]
         const SemanticGroup = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/scrollarea?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeScrollArea")]
         const ScrollArea = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/alert?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeAlert")]
         const Alert = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/descriptionlist?language=objc)
         #[doc(alias = "BEAccessibilityContainerTypeDescriptionList")]
         const DescriptionList = 1<<11;
     }

@@ -446,12 +446,16 @@ pub const NSNullGlyph: c_uint = 0x0;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontRenderingMode(pub NSUInteger);
 impl NSFontRenderingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode/defaultrenderingmode?language=objc)
     #[doc(alias = "NSFontDefaultRenderingMode")]
     pub const DefaultRenderingMode: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode/antialiasedrenderingmode?language=objc)
     #[doc(alias = "NSFontAntialiasedRenderingMode")]
     pub const AntialiasedRenderingMode: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode/integeradvancementsrenderingmode?language=objc)
     #[doc(alias = "NSFontIntegerAdvancementsRenderingMode")]
     pub const IntegerAdvancementsRenderingMode: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode/antialiasedintegeradvancementsrenderingmode?language=objc)
     #[doc(alias = "NSFontAntialiasedIntegerAdvancementsRenderingMode")]
     pub const AntialiasedIntegerAdvancementsRenderingMode: Self = Self(3);
 }
@@ -471,6 +475,7 @@ unsafe impl RefEncode for NSFontRenderingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMultibyteGlyphPacking(pub NSUInteger);
 impl NSMultibyteGlyphPacking {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultibyteglyphpacking/nativeshortglyphpacking?language=objc)
     #[doc(alias = "NSNativeShortGlyphPacking")]
     #[deprecated]
     pub const NativeShortGlyphPacking: Self = Self(5);
@@ -485,6 +490,8 @@ unsafe impl RefEncode for NSMultibyteGlyphPacking {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsconvertglyphstopackedglyphs(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `gl_buf` must be a valid pointer.

@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSpatialEvent(pub NSInteger);
 impl INSpatialEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inspatialevent/unknown?language=objc)
     #[doc(alias = "INSpatialEventUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inspatialevent/arrive?language=objc)
     #[doc(alias = "INSpatialEventArrive")]
     pub const Arrive: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inspatialevent/depart?language=objc)
     #[doc(alias = "INSpatialEventDepart")]
     pub const Depart: Self = Self(2);
 }

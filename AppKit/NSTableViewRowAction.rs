@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewRowActionStyle(pub NSInteger);
 impl NSTableViewRowActionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.enum/regular?language=objc)
     #[doc(alias = "NSTableViewRowActionStyleRegular")]
     pub const Regular: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.enum/destructive?language=objc)
     #[doc(alias = "NSTableViewRowActionStyleDestructive")]
     pub const Destructive: Self = Self(1);
 }

@@ -26,19 +26,26 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecItemClass(pub FourCharCode);
 impl SecItemClass {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/internetpassworditemclass?language=objc)
     #[doc(alias = "kSecInternetPasswordItemClass")]
     pub const InternetPasswordItemClass: Self = Self(0x696e6574);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/genericpassworditemclass?language=objc)
     #[doc(alias = "kSecGenericPasswordItemClass")]
     pub const GenericPasswordItemClass: Self = Self(0x67656e70);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/ksecapplesharepassworditemclass?language=objc)
     #[doc(alias = "kSecAppleSharePasswordItemClass")]
     #[deprecated]
     pub const AppleSharePasswordItemClass: Self = Self(0x61736870);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/certificateitemclass?language=objc)
     #[doc(alias = "kSecCertificateItemClass")]
     pub const CertificateItemClass: Self = Self(0x80001000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/publickeyitemclass?language=objc)
     #[doc(alias = "kSecPublicKeyItemClass")]
     pub const PublicKeyItemClass: Self = Self(0x0000000F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/privatekeyitemclass?language=objc)
     #[doc(alias = "kSecPrivateKeyItemClass")]
     pub const PrivateKeyItemClass: Self = Self(0x00000010);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/symmetrickeyitemclass?language=objc)
     #[doc(alias = "kSecSymmetricKeyItemClass")]
     pub const SymmetricKeyItemClass: Self = Self(0x00000011);
 }
@@ -91,60 +98,88 @@ unsafe impl RefEncode for SecItemClass {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecItemAttr(pub FourCharCode);
 impl SecItemAttr {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/creationdateitemattr?language=objc)
     #[doc(alias = "kSecCreationDateItemAttr")]
     pub const CreationDateItemAttr: Self = Self(0x63646174);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/moddateitemattr?language=objc)
     #[doc(alias = "kSecModDateItemAttr")]
     pub const ModDateItemAttr: Self = Self(0x6d646174);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/descriptionitemattr?language=objc)
     #[doc(alias = "kSecDescriptionItemAttr")]
     pub const DescriptionItemAttr: Self = Self(0x64657363);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/commentitemattr?language=objc)
     #[doc(alias = "kSecCommentItemAttr")]
     pub const CommentItemAttr: Self = Self(0x69636d74);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/creatoritemattr?language=objc)
     #[doc(alias = "kSecCreatorItemAttr")]
     pub const CreatorItemAttr: Self = Self(0x63727472);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/typeitemattr?language=objc)
     #[doc(alias = "kSecTypeItemAttr")]
     pub const TypeItemAttr: Self = Self(0x74797065);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/scriptcodeitemattr?language=objc)
     #[doc(alias = "kSecScriptCodeItemAttr")]
     pub const ScriptCodeItemAttr: Self = Self(0x73637270);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/labelitemattr?language=objc)
     #[doc(alias = "kSecLabelItemAttr")]
     pub const LabelItemAttr: Self = Self(0x6c61626c);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/invisibleitemattr?language=objc)
     #[doc(alias = "kSecInvisibleItemAttr")]
     pub const InvisibleItemAttr: Self = Self(0x696e7669);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/negativeitemattr?language=objc)
     #[doc(alias = "kSecNegativeItemAttr")]
     pub const NegativeItemAttr: Self = Self(0x6e656761);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/customiconitemattr?language=objc)
     #[doc(alias = "kSecCustomIconItemAttr")]
     pub const CustomIconItemAttr: Self = Self(0x63757369);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/accountitemattr?language=objc)
     #[doc(alias = "kSecAccountItemAttr")]
     pub const AccountItemAttr: Self = Self(0x61636374);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/serviceitemattr?language=objc)
     #[doc(alias = "kSecServiceItemAttr")]
     pub const ServiceItemAttr: Self = Self(0x73766365);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/genericitemattr?language=objc)
     #[doc(alias = "kSecGenericItemAttr")]
     pub const GenericItemAttr: Self = Self(0x67656e61);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/securitydomainitemattr?language=objc)
     #[doc(alias = "kSecSecurityDomainItemAttr")]
     pub const SecurityDomainItemAttr: Self = Self(0x73646d6e);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/serveritemattr?language=objc)
     #[doc(alias = "kSecServerItemAttr")]
     pub const ServerItemAttr: Self = Self(0x73727672);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/authenticationtypeitemattr?language=objc)
     #[doc(alias = "kSecAuthenticationTypeItemAttr")]
     pub const AuthenticationTypeItemAttr: Self = Self(0x61747970);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/portitemattr?language=objc)
     #[doc(alias = "kSecPortItemAttr")]
     pub const PortItemAttr: Self = Self(0x706f7274);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/pathitemattr?language=objc)
     #[doc(alias = "kSecPathItemAttr")]
     pub const PathItemAttr: Self = Self(0x70617468);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/volumeitemattr?language=objc)
     #[doc(alias = "kSecVolumeItemAttr")]
     pub const VolumeItemAttr: Self = Self(0x766c6d65);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/addressitemattr?language=objc)
     #[doc(alias = "kSecAddressItemAttr")]
     pub const AddressItemAttr: Self = Self(0x61646472);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/signatureitemattr?language=objc)
     #[doc(alias = "kSecSignatureItemAttr")]
     pub const SignatureItemAttr: Self = Self(0x73736967);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/protocolitemattr?language=objc)
     #[doc(alias = "kSecProtocolItemAttr")]
     pub const ProtocolItemAttr: Self = Self(0x7074636c);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/certificatetype?language=objc)
     #[doc(alias = "kSecCertificateType")]
     pub const CertificateType: Self = Self(0x63747970);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/certificateencoding?language=objc)
     #[doc(alias = "kSecCertificateEncoding")]
     pub const CertificateEncoding: Self = Self(0x63656e63);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/crltype?language=objc)
     #[doc(alias = "kSecCrlType")]
     pub const CrlType: Self = Self(0x63727470);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/crlencoding?language=objc)
     #[doc(alias = "kSecCrlEncoding")]
     pub const CrlEncoding: Self = Self(0x63726e63);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/alias?language=objc)
     #[doc(alias = "kSecAlias")]
     pub const Alias: Self = Self(0x616c6973);
 }
@@ -174,6 +209,8 @@ unsafe impl ConcreteType for SecKeychainItem {
     /// Returns the type identifier of SecKeychainItem instances.
     ///
     /// Returns: The CFTypeID of SecKeychainItem instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemgettypeid()?language=objc)
     #[doc(alias = "SecKeychainItemGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -204,6 +241,8 @@ impl SecKeychainItem {
     ///
     /// - `attr_list` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemmodifyattributesanddata(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemModifyAttributesAndData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -248,6 +287,8 @@ impl SecKeychainItem {
     /// - `attr_list` must be a valid pointer.
     /// - `data` must be a valid pointer or null.
     /// - `item_ref` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcreatefromcontent(_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCreateFromContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -301,6 +342,8 @@ impl SecKeychainItem {
     ///
     /// - `attr_list` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemmodifycontent(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemModifyContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -342,6 +385,8 @@ impl SecKeychainItem {
     /// - `attr_list` must be a valid pointer or null.
     /// - `length` must be a valid pointer or null.
     /// - `out_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcopycontent(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCopyContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -375,6 +420,8 @@ impl SecKeychainItem {
     ///
     /// - `attr_list` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemfreecontent(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemFreeContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -415,6 +462,8 @@ impl SecKeychainItem {
     /// - `attr_list` must be a valid pointer or null.
     /// - `length` must be a valid pointer or null.
     /// - `out_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcopyattributesanddata(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCopyAttributesAndData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -456,6 +505,8 @@ impl SecKeychainItem {
     ///
     /// - `attr_list` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemfreeattributesanddata(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemFreeAttributesAndData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -480,6 +531,8 @@ impl SecKeychainItem {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// If itemRef has not previously been added to the keychain, SecKeychainItemDelete does nothing and returns errSecSuccess. IMPORTANT: SecKeychainItemDelete does not dispose the memory occupied by the item reference itself; use the CFRelease function when you are completely finished with an item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemdelete(_:)?language=objc)
     #[doc(alias = "SecKeychainItemDelete")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -502,6 +555,8 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `keychain_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcopykeychain(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCopyKeychain")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -531,6 +586,8 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `item_copy` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcreatecopy(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCreateCopy")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -563,6 +620,8 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `persistent_item_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcreatepersistentreference(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCreatePersistentReference")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -591,6 +650,8 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `item_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcopyfrompersistentreference(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCopyFromPersistentReference")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -621,6 +682,8 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `dldb_handle` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemgetdldbhandle?language=objc)
     #[doc(alias = "SecKeychainItemGetDLDBHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -648,6 +711,8 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `unique_record_id` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemgetuniquerecordid?language=objc)
     #[doc(alias = "SecKeychainItemGetUniqueRecordID")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -681,6 +746,8 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `access` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcopyaccess(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCopyAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -702,6 +769,8 @@ impl SecKeychainItem {
     /// Parameter `access`: A reference to an access to replace the keychain item's current access.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemsetaccess(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemSetAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

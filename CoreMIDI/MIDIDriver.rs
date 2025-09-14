@@ -219,6 +219,8 @@ extern "C-unwind" {
     ///
     /// - `owner` must be a valid pointer or null.
     /// - `out_device` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicecreate(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIDeviceCreate(
         owner: MIDIDriverRef,
@@ -243,6 +245,8 @@ extern "C-unwind" {
     /// Parameter `device`: The device to be disposed.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicedispose(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceDispose(device: MIDIDeviceRef) -> OSStatus;
 }
@@ -254,6 +258,8 @@ extern "C-unwind" {
     /// Parameter `devList`: The device list.
     ///
     /// Returns: The number of devices in the list, or 0 if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicelistgetnumberofdevices(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceListGetNumberOfDevices(dev_list: MIDIDeviceListRef) -> ItemCount;
 }
@@ -268,6 +274,8 @@ extern "C-unwind" {
     /// to return.
     ///
     /// Returns: A reference to a device, or NULL if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicelistgetdevice(_:_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceListGetDevice(dev_list: MIDIDeviceListRef, index0: ItemCount)
         -> MIDIDeviceRef;
@@ -282,6 +290,8 @@ extern "C-unwind" {
     /// Parameter `dev`: The device to add to the list.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicelistadddevice(_:_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceListAddDevice(dev_list: MIDIDeviceListRef, dev: MIDIDeviceRef) -> OSStatus;
 }
@@ -293,6 +303,8 @@ extern "C-unwind" {
     /// Parameter `devList`: The device list to be disposed.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicelistdispose(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceListDispose(dev_list: MIDIDeviceListRef) -> OSStatus;
 }
@@ -325,6 +337,8 @@ extern "C-unwind" {
     ///
     /// - `ref1` must be a valid pointer or null.
     /// - `ref2` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiendpointsetrefcons(_:_:_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIEndpointSetRefCons(
         endpt: MIDIEndpointRef,
@@ -349,6 +363,8 @@ extern "C-unwind" {
     ///
     /// - `ref1` must be a valid pointer or null.
     /// - `ref2` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiendpointgetrefcons(_:_:_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIEndpointGetRefCons(
         endpt: MIDIEndpointRef,
@@ -373,6 +389,8 @@ extern "C-unwind" {
 ///
 ///
 /// Returns: The CFRunLoopRef of the server's driver I/O thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetdriveriorunloop()?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIGetDriverIORunLoop() -> CFRetained<CFRunLoop> {
@@ -400,6 +418,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `driver` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetdriverdevicelist(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIGetDriverDeviceList(driver: MIDIDriverRef) -> MIDIDeviceListRef;
 }
@@ -419,6 +439,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `driver` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididriverenablemonitoring(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIDriverEnableMonitoring(
     driver: MIDIDriverRef,

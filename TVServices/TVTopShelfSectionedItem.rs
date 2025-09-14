@@ -16,12 +16,18 @@ use crate::*;
 pub struct TVTopShelfSectionedItemImageShape(pub NSInteger);
 impl TVTopShelfSectionedItemImageShape {
     /// A 1:1 image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem/imageshape-swift.enum/square?language=objc)
     #[doc(alias = "TVTopShelfSectionedItemImageShapeSquare")]
     pub const Square: Self = Self(0);
     /// A 2:3 poster image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem/imageshape-swift.enum/poster?language=objc)
     #[doc(alias = "TVTopShelfSectionedItemImageShapePoster")]
     pub const Poster: Self = Self(1);
     /// A 16:9 image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem/imageshape-swift.enum/hdtv?language=objc)
     #[doc(alias = "TVTopShelfSectionedItemImageShapeHDTV")]
     pub const HDTV: Self = Self(2);
 }

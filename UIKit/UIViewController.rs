@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIModalTransitionStyle(pub NSInteger);
 impl UIModalTransitionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle/coververtical?language=objc)
     #[doc(alias = "UIModalTransitionStyleCoverVertical")]
     pub const CoverVertical: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle/fliphorizontal?language=objc)
     #[doc(alias = "UIModalTransitionStyleFlipHorizontal")]
     pub const FlipHorizontal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle/crossdissolve?language=objc)
     #[doc(alias = "UIModalTransitionStyleCrossDissolve")]
     pub const CrossDissolve: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle/partialcurl?language=objc)
     #[doc(alias = "UIModalTransitionStylePartialCurl")]
     pub const PartialCurl: Self = Self(3);
 }
@@ -39,26 +43,37 @@ unsafe impl RefEncode for UIModalTransitionStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIModalPresentationStyle(pub NSInteger);
 impl UIModalPresentationStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/fullscreen?language=objc)
     #[doc(alias = "UIModalPresentationFullScreen")]
     pub const FullScreen: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/pagesheet?language=objc)
     #[doc(alias = "UIModalPresentationPageSheet")]
     pub const PageSheet: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/formsheet?language=objc)
     #[doc(alias = "UIModalPresentationFormSheet")]
     pub const FormSheet: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/currentcontext?language=objc)
     #[doc(alias = "UIModalPresentationCurrentContext")]
     pub const CurrentContext: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/custom?language=objc)
     #[doc(alias = "UIModalPresentationCustom")]
     pub const Custom: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/overfullscreen?language=objc)
     #[doc(alias = "UIModalPresentationOverFullScreen")]
     pub const OverFullScreen: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/overcurrentcontext?language=objc)
     #[doc(alias = "UIModalPresentationOverCurrentContext")]
     pub const OverCurrentContext: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/popover?language=objc)
     #[doc(alias = "UIModalPresentationPopover")]
     pub const Popover: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/bluroverfullscreen?language=objc)
     #[doc(alias = "UIModalPresentationBlurOverFullScreen")]
     pub const BlurOverFullScreen: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/none?language=objc)
     #[doc(alias = "UIModalPresentationNone")]
     pub const None: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/automatic?language=objc)
     #[doc(alias = "UIModalPresentationAutomatic")]
     pub const Automatic: Self = Self(-2);
 }
@@ -1594,10 +1609,13 @@ extern_conformance!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContainerBackgroundStyle(pub NSInteger);
 impl UIContainerBackgroundStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontainerbackgroundstyle/automatic?language=objc)
     #[doc(alias = "UIContainerBackgroundStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontainerbackgroundstyle/glass?language=objc)
     #[doc(alias = "UIContainerBackgroundStyleGlass")]
     pub const Glass: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontainerbackgroundstyle/hidden?language=objc)
     #[doc(alias = "UIContainerBackgroundStyleHidden")]
     pub const Hidden: Self = Self(2);
 }
@@ -1645,12 +1663,15 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPreviewActionStyle(pub NSInteger);
 impl UIPreviewActionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewaction/style/default?language=objc)
     #[doc(alias = "UIPreviewActionStyleDefault")]
     #[deprecated = "Please use UIContextMenuInteraction."]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewaction/style/selected?language=objc)
     #[doc(alias = "UIPreviewActionStyleSelected")]
     #[deprecated = "Please use UIContextMenuInteraction."]
     pub const Selected: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewaction/style/destructive?language=objc)
     #[doc(alias = "UIPreviewActionStyleDestructive")]
     #[deprecated = "Please use UIContextMenuInteraction."]
     pub const Destructive: Self = Self(2);

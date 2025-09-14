@@ -17,10 +17,14 @@ pub struct MTL4BinaryFunctionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTL4BinaryFunctionOptions: NSUInteger {
 /// Represents the default value: no options.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4binaryfunctionoptions/mtl4binaryfunctionoptionnone?language=objc)
         #[doc(alias = "MTL4BinaryFunctionOptionNone")]
         const None = 0;
 /// Compiles the function to have its function handles return a constant MTLResourceID across
 /// all pipeline states. The function needs to be linked to the pipeline that will use this function.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4binaryfunctionoptions/pipelineindependent?language=objc)
         #[doc(alias = "MTL4BinaryFunctionOptionPipelineIndependent")]
         const PipelineIndependent = 1<<1;
     }

@@ -109,8 +109,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationPublicKeyCredentialAttachment(pub NSInteger);
 impl ASAuthorizationPublicKeyCredentialAttachment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattachment/platform?language=objc)
     #[doc(alias = "ASAuthorizationPublicKeyCredentialAttachmentPlatform")]
     pub const Platform: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattachment/crossplatform?language=objc)
     #[doc(alias = "ASAuthorizationPublicKeyCredentialAttachmentCrossPlatform")]
     pub const CrossPlatform: Self = Self(1);
 }

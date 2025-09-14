@@ -22,12 +22,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISpringLoadedInteractionEffectState(pub NSInteger);
 impl UISpringLoadedInteractionEffectState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioneffectstate/inactive?language=objc)
     #[doc(alias = "UISpringLoadedInteractionEffectStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioneffectstate/possible?language=objc)
     #[doc(alias = "UISpringLoadedInteractionEffectStatePossible")]
     pub const Possible: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioneffectstate/activating?language=objc)
     #[doc(alias = "UISpringLoadedInteractionEffectStateActivating")]
     pub const Activating: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioneffectstate/activated?language=objc)
     #[doc(alias = "UISpringLoadedInteractionEffectStateActivated")]
     pub const Activated: Self = Self(3);
 }

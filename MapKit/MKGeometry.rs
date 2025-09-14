@@ -67,6 +67,7 @@ impl MKCoordinateSpan {
 impl MKCoordinateRegion {
     // TODO: pub fn MKCoordinateRegionMake(center_coordinate: CLLocationCoordinate2D,span: MKCoordinateSpan,) -> MKCoordinateRegion;
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcoordinateregion/init(center:latitudinalmeters:longitudinalmeters:)?language=objc)
     #[doc(alias = "MKCoordinateRegionMakeWithDistance")]
     #[cfg(feature = "objc2-core-location")]
     #[inline]
@@ -156,6 +157,7 @@ extern "C" {
 }
 
 impl MKMapPoint {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappoint/init(_:)?language=objc)
     #[doc(alias = "MKMapPointForCoordinate")]
     #[cfg(feature = "objc2-core-location")]
     #[inline]
@@ -168,21 +170,25 @@ impl MKMapPoint {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappoint/coordinate?language=objc)
     #[cfg(feature = "objc2-core-location")]
     pub fn MKCoordinateForMapPoint(map_point: MKMapPoint) -> CLLocationCoordinate2D;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmeterspermappointatlatitude(_:)?language=objc)
     #[cfg(feature = "objc2-core-location")]
     pub fn MKMetersPerMapPointAtLatitude(latitude: CLLocationDegrees) -> CLLocationDistance;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappointspermeteratlatitude(_:)?language=objc)
     #[cfg(feature = "objc2-core-location")]
     pub fn MKMapPointsPerMeterAtLatitude(latitude: CLLocationDegrees) -> c_double;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappoint/distance(to:)?language=objc)
     #[cfg(feature = "objc2-core-location")]
     pub fn MKMetersBetweenMapPoints(a: MKMapPoint, b: MKMapPoint) -> CLLocationDistance;
 }
@@ -243,6 +249,7 @@ impl MKMapRect {
 // TODO: pub fn MKStringFromMapRect(rect: MKMapRect,)-> *mut NSString;
 
 impl MKMapRect {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/union(_:)?language=objc)
     #[doc(alias = "MKMapRectUnion")]
     #[inline]
     pub unsafe fn union(self, rect2: MKMapRect) -> MKMapRect {
@@ -252,6 +259,7 @@ impl MKMapRect {
         unsafe { MKMapRectUnion(self, rect2) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/intersection(_:)?language=objc)
     #[doc(alias = "MKMapRectIntersection")]
     #[inline]
     pub unsafe fn intersection(self, rect2: MKMapRect) -> MKMapRect {
@@ -261,6 +269,7 @@ impl MKMapRect {
         unsafe { MKMapRectIntersection(self, rect2) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/insetby(dx:dy:)?language=objc)
     #[doc(alias = "MKMapRectInset")]
     #[inline]
     pub unsafe fn inset(self, dx: c_double, dy: c_double) -> MKMapRect {
@@ -270,6 +279,7 @@ impl MKMapRect {
         unsafe { MKMapRectInset(self, dx, dy) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/offsetby(dx:dy:)?language=objc)
     #[doc(alias = "MKMapRectOffset")]
     #[inline]
     pub unsafe fn offset(self, dx: c_double, dy: c_double) -> MKMapRect {
@@ -279,6 +289,8 @@ impl MKMapRect {
         unsafe { MKMapRectOffset(self, dx, dy) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprectdivide(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `slice` must be a valid pointer.
@@ -305,6 +317,7 @@ impl MKMapRect {
         unsafe { MKMapRectDivide(self, slice, remainder, amount, edge) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/contains(_:)-79tjt?language=objc)
     #[doc(alias = "MKMapRectContainsPoint")]
     #[inline]
     pub unsafe fn contains_point(self, point: MKMapPoint) -> bool {
@@ -314,6 +327,7 @@ impl MKMapRect {
         unsafe { MKMapRectContainsPoint(self, point) }.as_bool()
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/contains(_:)-1z5oa?language=objc)
     #[doc(alias = "MKMapRectContainsRect")]
     #[inline]
     pub unsafe fn contains_rect(self, rect2: MKMapRect) -> bool {
@@ -323,6 +337,7 @@ impl MKMapRect {
         unsafe { MKMapRectContainsRect(self, rect2) }.as_bool()
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/intersects(_:)?language=objc)
     #[doc(alias = "MKMapRectIntersectsRect")]
     #[inline]
     pub unsafe fn intersects_rect(self, rect2: MKMapRect) -> bool {
@@ -335,6 +350,7 @@ impl MKMapRect {
 
 #[cfg(feature = "objc2-core-location")]
 impl MKCoordinateRegion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcoordinateregion/init(_:)?language=objc)
     #[doc(alias = "MKCoordinateRegionForMapRect")]
     #[cfg(feature = "objc2-core-location")]
     #[inline]
@@ -347,6 +363,7 @@ impl MKCoordinateRegion {
 }
 
 impl MKMapRect {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/spans180thmeridian?language=objc)
     #[doc(alias = "MKMapRectSpans180thMeridian")]
     #[inline]
     pub unsafe fn spans180th_meridian(self) -> bool {
@@ -356,6 +373,7 @@ impl MKMapRect {
         unsafe { MKMapRectSpans180thMeridian(self) }.as_bool()
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/remainder?language=objc)
     #[doc(alias = "MKMapRectRemainder")]
     #[inline]
     pub unsafe fn remainder(self) -> MKMapRect {

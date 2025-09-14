@@ -20,12 +20,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMediaPlaybackState(pub NSInteger);
 impl WKMediaPlaybackState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediaplaybackstate/none?language=objc)
     #[doc(alias = "WKMediaPlaybackStateNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediaplaybackstate/playing?language=objc)
     #[doc(alias = "WKMediaPlaybackStatePlaying")]
     pub const Playing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediaplaybackstate/paused?language=objc)
     #[doc(alias = "WKMediaPlaybackStatePaused")]
     pub const Paused: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediaplaybackstate/suspended?language=objc)
     #[doc(alias = "WKMediaPlaybackStateSuspended")]
     pub const Suspended: Self = Self(3);
 }
@@ -44,10 +48,13 @@ unsafe impl RefEncode for WKMediaPlaybackState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMediaCaptureState(pub NSInteger);
 impl WKMediaCaptureState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturestate/none?language=objc)
     #[doc(alias = "WKMediaCaptureStateNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturestate/active?language=objc)
     #[doc(alias = "WKMediaCaptureStateActive")]
     pub const Active: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturestate/muted?language=objc)
     #[doc(alias = "WKMediaCaptureStateMuted")]
     pub const Muted: Self = Self(2);
 }
@@ -66,12 +73,16 @@ unsafe impl RefEncode for WKMediaCaptureState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKFullscreenState(pub NSInteger);
 impl WKFullscreenState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview/fullscreenstate-swift.enum/notinfullscreen?language=objc)
     #[doc(alias = "WKFullscreenStateNotInFullscreen")]
     pub const NotInFullscreen: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview/fullscreenstate-swift.enum/enteringfullscreen?language=objc)
     #[doc(alias = "WKFullscreenStateEnteringFullscreen")]
     pub const EnteringFullscreen: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview/fullscreenstate-swift.enum/infullscreen?language=objc)
     #[doc(alias = "WKFullscreenStateInFullscreen")]
     pub const InFullscreen: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview/fullscreenstate-swift.enum/exitingfullscreen?language=objc)
     #[doc(alias = "WKFullscreenStateExitingFullscreen")]
     pub const ExitingFullscreen: Self = Self(3);
 }
@@ -91,6 +102,7 @@ unsafe impl RefEncode for WKFullscreenState {
 pub struct WKWebViewDataType(pub NSUInteger);
 bitflags::bitflags! {
     impl WKWebViewDataType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebviewdatatype/sessionstorage?language=objc)
         #[doc(alias = "WKWebViewDataTypeSessionStorage")]
         const SessionStorage = 1<<0;
     }

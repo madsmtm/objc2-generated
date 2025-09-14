@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersonNameComponentsFormatterStyle(pub NSInteger);
 impl NSPersonNameComponentsFormatterStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/default?language=objc)
     #[doc(alias = "NSPersonNameComponentsFormatterStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/short?language=objc)
     #[doc(alias = "NSPersonNameComponentsFormatterStyleShort")]
     pub const Short: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/medium?language=objc)
     #[doc(alias = "NSPersonNameComponentsFormatterStyleMedium")]
     pub const Medium: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/long?language=objc)
     #[doc(alias = "NSPersonNameComponentsFormatterStyleLong")]
     pub const Long: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/abbreviated?language=objc)
     #[doc(alias = "NSPersonNameComponentsFormatterStyleAbbreviated")]
     pub const Abbreviated: Self = Self(4);
 }
@@ -39,6 +44,7 @@ unsafe impl RefEncode for NSPersonNameComponentsFormatterStyle {
 pub struct NSPersonNameComponentsFormatterOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPersonNameComponentsFormatterOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/options/phonetic?language=objc)
         #[doc(alias = "NSPersonNameComponentsFormatterPhonetic")]
         const Phonetic = 1<<1;
     }

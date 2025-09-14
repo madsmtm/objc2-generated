@@ -218,12 +218,16 @@ impl SCNLookAtConstraint {
 pub struct SCNBillboardAxis(pub NSUInteger);
 bitflags::bitflags! {
     impl SCNBillboardAxis: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardaxis/x?language=objc)
         #[doc(alias = "SCNBillboardAxisX")]
         const X = 0x1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardaxis/y?language=objc)
         #[doc(alias = "SCNBillboardAxisY")]
         const Y = 0x1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardaxis/z?language=objc)
         #[doc(alias = "SCNBillboardAxisZ")]
         const Z = 0x1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardaxis/all?language=objc)
         #[doc(alias = "SCNBillboardAxisAll")]
         const All = SCNBillboardAxis::X.0|SCNBillboardAxis::Y.0|SCNBillboardAxis::Z.0;
     }

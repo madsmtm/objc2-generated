@@ -10,12 +10,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMAuthorizationStatus(pub NSInteger);
 impl CMAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "CMAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmauthorizationstatus/restricted?language=objc)
     #[doc(alias = "CMAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmauthorizationstatus/denied?language=objc)
     #[doc(alias = "CMAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmauthorizationstatus/authorized?language=objc)
     #[doc(alias = "CMAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }

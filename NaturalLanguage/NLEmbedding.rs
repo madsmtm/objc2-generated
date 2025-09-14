@@ -13,6 +13,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLDistanceType(pub NSInteger);
 impl NLDistanceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nldistancetype/cosine?language=objc)
     #[doc(alias = "NLDistanceTypeCosine")]
     pub const Cosine: Self = Self(0);
 }

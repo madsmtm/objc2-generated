@@ -12,18 +12,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAddMediaIntentResponseCode(pub NSInteger);
 impl INAddMediaIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INAddMediaIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/ready?language=objc)
     #[doc(alias = "INAddMediaIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INAddMediaIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/success?language=objc)
     #[doc(alias = "INAddMediaIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/handleinapp?language=objc)
     #[doc(alias = "INAddMediaIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/failure?language=objc)
     #[doc(alias = "INAddMediaIntentResponseCodeFailure")]
     pub const Failure: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INAddMediaIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(6);
 }

@@ -173,6 +173,8 @@ unsafe impl ConcreteType for SecPolicy {
     /// Returns the type identifier of SecPolicy instances.
     ///
     /// Returns: The CFTypeID of SecPolicy instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicygettypeid()?language=objc)
     #[doc(alias = "SecPolicyGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -197,6 +199,8 @@ impl SecPolicy {
     ///
     /// This function returns the properties for a policy, as set by the
     /// policy's construction function or by a prior call to SecPolicySetProperties.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycopyproperties(_:)?language=objc)
     #[doc(alias = "SecPolicyCopyProperties")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -212,6 +216,8 @@ impl SecPolicy {
     ///
     /// Returns: A policy object. The caller is responsible for calling CFRelease
     /// on this when it is no longer needed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycreatebasicx509()?language=objc)
     #[doc(alias = "SecPolicyCreateBasicX509")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -235,6 +241,8 @@ impl SecPolicy {
     ///
     /// Returns: A policy object. The caller is responsible for calling CFRelease
     /// on this when it is no longer needed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycreatessl(_:_:)?language=objc)
     #[doc(alias = "SecPolicyCreateSSL")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -280,6 +288,8 @@ impl SecPolicy {
     /// create a revocation policy yourself unless you wish to override default
     /// system behavior (e.g. to force a particular method, or to disable
     /// revocation checking entirely.)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycreaterevocation(_:)?language=objc)
     #[doc(alias = "SecPolicyCreateRevocation")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -310,6 +320,8 @@ impl SecPolicy {
     /// - `policy_identifier` should be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycreatewithproperties(_:_:)?language=objc)
     #[doc(alias = "SecPolicyCreateWithProperties")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -444,6 +456,8 @@ impl SecPolicy {
     /// # Safety
     ///
     /// `policy_oid` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycreatewithoid?language=objc)
     #[doc(alias = "SecPolicyCreateWithOID")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -470,6 +484,8 @@ impl SecPolicy {
     /// # Safety
     ///
     /// `oid` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicygetoid?language=objc)
     #[doc(alias = "SecPolicyGetOID")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -495,6 +511,8 @@ impl SecPolicy {
     /// # Safety
     ///
     /// `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicygetvalue?language=objc)
     #[doc(alias = "SecPolicyGetValue")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -523,6 +541,8 @@ impl SecPolicy {
     /// # Safety
     ///
     /// `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysetvalue?language=objc)
     #[doc(alias = "SecPolicySetValue")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -554,6 +574,8 @@ impl SecPolicy {
     ///
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysetproperties?language=objc)
     #[doc(alias = "SecPolicySetProperties")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -581,6 +603,8 @@ impl SecPolicy {
     /// # Safety
     ///
     /// `tp_handle` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicygettphandle?language=objc)
     #[doc(alias = "SecPolicyGetTPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]

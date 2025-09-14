@@ -54,12 +54,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRuleEditorNestingMode(pub NSUInteger);
 impl NSRuleEditorNestingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.enum/single?language=objc)
     #[doc(alias = "NSRuleEditorNestingModeSingle")]
     pub const Single: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.enum/list?language=objc)
     #[doc(alias = "NSRuleEditorNestingModeList")]
     pub const List: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.enum/compound?language=objc)
     #[doc(alias = "NSRuleEditorNestingModeCompound")]
     pub const Compound: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.enum/simple?language=objc)
     #[doc(alias = "NSRuleEditorNestingModeSimple")]
     pub const Simple: Self = Self(3);
 }
@@ -78,8 +82,10 @@ unsafe impl RefEncode for NSRuleEditorNestingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRuleEditorRowType(pub NSUInteger);
 impl NSRuleEditorRowType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/rowtype/simple?language=objc)
     #[doc(alias = "NSRuleEditorRowTypeSimple")]
     pub const Simple: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/rowtype/compound?language=objc)
     #[doc(alias = "NSRuleEditorRowTypeCompound")]
     pub const Compound: Self = Self(1);
 }

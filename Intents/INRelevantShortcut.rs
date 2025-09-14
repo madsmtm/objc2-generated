@@ -18,9 +18,13 @@ use crate::*;
 pub struct INRelevantShortcutRole(pub NSInteger);
 impl INRelevantShortcutRole {
     /// The relevant shortcut represents an action that the user may want to perform using your app.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrelevantshortcutrole/action?language=objc)
     #[doc(alias = "INRelevantShortcutRoleAction")]
     pub const Action: Self = Self(0);
     /// The relevant shortcut represents information that the user may want to glance at.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrelevantshortcutrole/information?language=objc)
     #[doc(alias = "INRelevantShortcutRoleInformation")]
     pub const Information: Self = Self(1);
 }

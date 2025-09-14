@@ -13,30 +13,43 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRequestPaymentIntentResponseCode(pub NSInteger);
 impl INRequestPaymentIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/ready?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/success?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failure?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurecredentialsunverified?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailureCredentialsUnverified")]
     pub const FailureCredentialsUnverified: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurepaymentsamountbelowminimum?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailurePaymentsAmountBelowMinimum")]
     pub const FailurePaymentsAmountBelowMinimum: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurepaymentsamountabovemaximum?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailurePaymentsAmountAboveMaximum")]
     pub const FailurePaymentsAmountAboveMaximum: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurepaymentscurrencyunsupported?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailurePaymentsCurrencyUnsupported")]
     pub const FailurePaymentsCurrencyUnsupported: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurenobankaccount?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailureNoBankAccount")]
     pub const FailureNoBankAccount: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurenoteligible?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailureNotEligible")]
     pub const FailureNotEligible: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failuretermsandconditionsacceptancerequired?language=objc)
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailureTermsAndConditionsAcceptanceRequired")]
     pub const FailureTermsAndConditionsAcceptanceRequired: Self = Self(12);
 }

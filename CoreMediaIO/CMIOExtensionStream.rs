@@ -21,8 +21,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMIOExtensionStreamDirection(pub NSInteger);
 impl CMIOExtensionStreamDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/direction-swift.enum/source?language=objc)
     #[doc(alias = "CMIOExtensionStreamDirectionSource")]
     pub const Source: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/direction-swift.enum/sink?language=objc)
     #[doc(alias = "CMIOExtensionStreamDirectionSink")]
     pub const Sink: Self = Self(1);
 }
@@ -49,10 +51,13 @@ unsafe impl RefEncode for CMIOExtensionStreamDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMIOExtensionStreamClockType(pub NSInteger);
 impl CMIOExtensionStreamClockType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/clocktype-swift.enum/hosttime?language=objc)
     #[doc(alias = "CMIOExtensionStreamClockTypeHostTime")]
     pub const HostTime: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/clocktype-swift.enum/linkedcoreaudiodeviceuid?language=objc)
     #[doc(alias = "CMIOExtensionStreamClockTypeLinkedCoreAudioDeviceUID")]
     pub const LinkedCoreAudioDeviceUID: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/clocktype-swift.enum/custom?language=objc)
     #[doc(alias = "CMIOExtensionStreamClockTypeCustom")]
     pub const Custom: Self = Self(2);
 }
@@ -82,12 +87,16 @@ unsafe impl RefEncode for CMIOExtensionStreamClockType {
 pub struct CMIOExtensionStreamDiscontinuityFlags(pub u32);
 bitflags::bitflags! {
     impl CMIOExtensionStreamDiscontinuityFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamdiscontinuityflags/cmioextensionstreamdiscontinuityflagnone?language=objc)
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/discontinuityflags/unknown?language=objc)
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagUnknown")]
         const Unknown = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/discontinuityflags/time?language=objc)
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagTime")]
         const Time = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/discontinuityflags/sampledropped?language=objc)
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagSampleDropped")]
         const SampleDropped = 1<<6;
     }

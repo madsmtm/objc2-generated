@@ -17,18 +17,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLMultiArrayDataType(pub NSInteger);
 impl MLMultiArrayDataType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/double?language=objc)
     #[doc(alias = "MLMultiArrayDataTypeDouble")]
     pub const Double: Self = Self(0x10000 | 64);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float64?language=objc)
     #[doc(alias = "MLMultiArrayDataTypeFloat64")]
     pub const Float64: Self = Self(0x10000 | 64);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float32?language=objc)
     #[doc(alias = "MLMultiArrayDataTypeFloat32")]
     pub const Float32: Self = Self(0x10000 | 32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float16?language=objc)
     #[doc(alias = "MLMultiArrayDataTypeFloat16")]
     pub const Float16: Self = Self(0x10000 | 16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float?language=objc)
     #[doc(alias = "MLMultiArrayDataTypeFloat")]
     pub const Float: Self = Self(0x10000 | 32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/int32?language=objc)
     #[doc(alias = "MLMultiArrayDataTypeInt32")]
     pub const Int32: Self = Self(0x20000 | 32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/int8?language=objc)
     #[doc(alias = "MLMultiArrayDataTypeInt8")]
     pub const Int8: Self = Self(0x20000 | 8);
 }

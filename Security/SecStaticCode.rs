@@ -8,6 +8,8 @@ use crate::*;
 #[cfg(feature = "CSCommon")]
 unsafe impl ConcreteType for SecStaticCode {
     /// Returns the type identifier of all SecStaticCode instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcodegettypeid()?language=objc)
     #[doc(alias = "SecStaticCodeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -48,6 +50,8 @@ impl SecStaticCode {
     /// # Safety
     ///
     /// `static_code` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcodecreatewithpath(_:_:_:)?language=objc)
     #[doc(alias = "SecStaticCodeCreateWithPath")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -134,6 +138,8 @@ impl SecStaticCode {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `static_code` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcodecreatewithpathandattributes(_:_:_:_:)?language=objc)
     #[doc(alias = "SecStaticCodeCreateWithPathAndAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -190,6 +196,7 @@ pub const kSecCSFastExecutableValidation: u32 = 131072;
 
 #[cfg(feature = "CSCommon")]
 impl SecStaticCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcodecheckvalidity(_:_:_:)?language=objc)
     #[doc(alias = "SecStaticCodeCheckValidity")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -208,6 +215,8 @@ impl SecStaticCode {
         unsafe { SecStaticCodeCheckValidity(self, flags, requirement) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcodecheckvaliditywitherrors(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `errors` must be a valid pointer or null.

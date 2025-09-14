@@ -11,8 +11,10 @@ use crate::*;
 pub struct INCallCapabilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INCallCapabilityOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapabilityoptions/audiocall?language=objc)
         #[doc(alias = "INCallCapabilityOptionAudioCall")]
         const AudioCall = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapabilityoptions/videocall?language=objc)
         #[doc(alias = "INCallCapabilityOptionVideoCall")]
         const VideoCall = 1<<1;
     }

@@ -26,11 +26,15 @@ bitflags::bitflags! {
 /// Set this mask to use ``MTL4PipelineDataSetSerializer.serializeAsPipelinesScriptWithError``.
 ///
 /// This for the default behavior.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializerconfiguration/capturedescriptors?language=objc)
         #[doc(alias = "MTL4PipelineDataSetSerializerConfigurationCaptureDescriptors")]
         const CaptureDescriptors = 1<<0;
 /// Enables serializing pipeline binary functions.
 ///
 /// Set this mask to use ``MTL4PipelineDataSetSerializer.serializeAsArchiveAndFlush(toURL:error:)``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializerconfiguration/capturebinaries?language=objc)
         #[doc(alias = "MTL4PipelineDataSetSerializerConfigurationCaptureBinaries")]
         const CaptureBinaries = 1<<1;
     }

@@ -12,47 +12,69 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_album?language=objc)
 pub const kAFInfoDictionary_Album: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"album\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_approximatedurationinseconds?language=objc)
 pub const kAFInfoDictionary_ApproximateDurationInSeconds: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"approximate duration in seconds\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_artist?language=objc)
 pub const kAFInfoDictionary_Artist: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"artist\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_channellayout?language=objc)
 pub const kAFInfoDictionary_ChannelLayout: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channel layout\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_comments?language=objc)
 pub const kAFInfoDictionary_Comments: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"comments\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_composer?language=objc)
 pub const kAFInfoDictionary_Composer: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"composer\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_copyright?language=objc)
 pub const kAFInfoDictionary_Copyright: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"copyright\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_encodingapplication?language=objc)
 pub const kAFInfoDictionary_EncodingApplication: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"encoding application\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_genre?language=objc)
 pub const kAFInfoDictionary_Genre: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"genre\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_isrc?language=objc)
 pub const kAFInfoDictionary_ISRC: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"ISRC\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_keysignature?language=objc)
 pub const kAFInfoDictionary_KeySignature: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"key signature\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_lyricist?language=objc)
 pub const kAFInfoDictionary_Lyricist: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"lyricist\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_nominalbitrate?language=objc)
 pub const kAFInfoDictionary_NominalBitRate: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"nominal bit rate\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_recordeddate?language=objc)
 pub const kAFInfoDictionary_RecordedDate: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"recorded date\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_sourcebitdepth?language=objc)
 pub const kAFInfoDictionary_SourceBitDepth: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"source bit depth\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_sourceencoder?language=objc)
 pub const kAFInfoDictionary_SourceEncoder: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"source encoder\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_subtitle?language=objc)
 pub const kAFInfoDictionary_SubTitle: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"subtitle\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_tempo?language=objc)
 pub const kAFInfoDictionary_Tempo: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"tempo\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_timesignature?language=objc)
 pub const kAFInfoDictionary_TimeSignature: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"time signature\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_title?language=objc)
 pub const kAFInfoDictionary_Title: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"title\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_tracknumber?language=objc)
 pub const kAFInfoDictionary_TrackNumber: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"track number\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_year?language=objc)
 pub const kAFInfoDictionary_Year: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"year\0") };
 /// Identifier for an audio file type.
 ///
@@ -155,8 +177,10 @@ pub const kAudioFileFileNotFoundError: OSStatus = -43;
 pub struct AudioFileFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileflags/erasefile?language=objc)
         #[doc(alias = "kAudioFileFlags_EraseFile")]
         const EraseFile = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileflags/dontpagealignaudiodata?language=objc)
         #[doc(alias = "kAudioFileFlags_DontPageAlignAudioData")]
         const DontPageAlignAudioData = 2;
     }
@@ -176,10 +200,13 @@ unsafe impl RefEncode for AudioFileFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioFilePermissions(pub i8);
 impl AudioFilePermissions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepermissions/readpermission?language=objc)
     #[doc(alias = "kAudioFileReadPermission")]
     pub const ReadPermission: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepermissions/writepermission?language=objc)
     #[doc(alias = "kAudioFileWritePermission")]
     pub const WritePermission: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepermissions/readwritepermission?language=objc)
     #[doc(alias = "kAudioFileReadWritePermission")]
     pub const ReadWritePermission: Self = Self(0x03);
 }
@@ -352,10 +379,13 @@ unsafe impl RefEncode for AudioFileMarkerList {
 pub struct AudioFileRegionFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileRegionFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionflags/loopenable?language=objc)
         #[doc(alias = "kAudioFileRegionFlag_LoopEnable")]
         const LoopEnable = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionflags/playforward?language=objc)
         #[doc(alias = "kAudioFileRegionFlag_PlayForward")]
         const PlayForward = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionflags/playbackward?language=objc)
         #[doc(alias = "kAudioFileRegionFlag_PlayBackward")]
         const PlayBackward = 4;
     }
@@ -493,6 +523,7 @@ unsafe impl RefEncode for AudioFramePacketTranslation {
 pub struct AudioBytePacketTranslationFlags(pub u32);
 bitflags::bitflags! {
     impl AudioBytePacketTranslationFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobytepackettranslationflags/bytepackettranslationflag_isestimate?language=objc)
         #[doc(alias = "kBytePacketTranslationFlag_IsEstimate")]
         const BytePacketTranslationFlag_IsEstimate = 1;
     }
@@ -686,6 +717,8 @@ extern "C-unwind" {
     ///
     /// - `in_format` must be a valid pointer.
     /// - `out_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecreatewithurl(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioFileCreateWithURL(
         in_file_ref: &CFURL,
@@ -718,6 +751,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileopenurl(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioFileOpenURL(
         in_file_ref: &CFURL,
@@ -842,6 +877,8 @@ extern "C-unwind" {
     /// - `in_set_size_func` must be implemented correctly.
     /// - `in_format` must be a valid pointer.
     /// - `out_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioFileInitializeWithCallbacks(
         in_client_data: NonNull<c_void>,
@@ -889,6 +926,8 @@ extern "C-unwind" {
     /// - `in_get_size_func` must be implemented correctly.
     /// - `in_set_size_func` must be implemented correctly.
     /// - `out_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)?language=objc)
     pub fn AudioFileOpenWithCallbacks(
         in_client_data: NonNull<c_void>,
         in_read_func: AudioFile_ReadProc,
@@ -910,6 +949,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileclose(_:)?language=objc)
     pub fn AudioFileClose(in_audio_file: AudioFileID) -> OSStatus;
 }
 
@@ -931,6 +972,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileoptimize(_:)?language=objc)
     pub fn AudioFileOptimize(in_audio_file: AudioFileID) -> OSStatus;
 }
 
@@ -957,6 +1000,8 @@ extern "C-unwind" {
 /// - `in_audio_file` must be a valid pointer.
 /// - `io_num_bytes` must be a valid pointer.
 /// - `out_buffer` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilereadbytes(_:_:_:_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileReadBytes(
     in_audio_file: AudioFileID,
@@ -1005,6 +1050,8 @@ pub unsafe extern "C-unwind" fn AudioFileReadBytes(
 /// - `in_audio_file` must be a valid pointer.
 /// - `io_num_bytes` must be a valid pointer.
 /// - `in_buffer` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilewritebytes(_:_:_:_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileWriteBytes(
     in_audio_file: AudioFileID,
@@ -1075,6 +1122,8 @@ pub unsafe extern "C-unwind" fn AudioFileWriteBytes(
 /// - `out_packet_descriptions` must be a valid pointer or null.
 /// - `io_num_packets` must be a valid pointer.
 /// - `out_buffer` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilereadpacketdata(_:_:_:_:_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileReadPacketData(
@@ -1148,6 +1197,8 @@ pub unsafe extern "C-unwind" fn AudioFileReadPacketData(
 /// - `out_packet_descriptions` must be a valid pointer or null.
 /// - `io_num_packets` must be a valid pointer.
 /// - `out_buffer` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilereadpackets(_:_:_:_:_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[deprecated = "no longer supported"]
 #[inline]
@@ -1213,6 +1264,8 @@ pub unsafe extern "C-unwind" fn AudioFileReadPackets(
 /// - `in_packet_descriptions` must be a valid pointer or null.
 /// - `io_num_packets` must be a valid pointer.
 /// - `in_buffer` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilewritepackets(_:_:_:_:_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileWritePackets(
@@ -1283,6 +1336,8 @@ pub unsafe extern "C-unwind" fn AudioFileWritePackets(
 /// - `in_packet_dependencies` must be a valid pointer.
 /// - `io_num_packets` must be a valid pointer.
 /// - `in_buffer` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilewritepacketswithdependencies(_:_:_:_:_:_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileWritePacketsWithDependencies(
@@ -1340,6 +1395,8 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file` must be a valid pointer.
     /// - `out_number_items` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecountuserdata(_:_:_:)?language=objc)
     pub fn AudioFileCountUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1364,6 +1421,8 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file` must be a valid pointer.
     /// - `out_user_data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetuserdatasize(_:_:_:_:)?language=objc)
     pub fn AudioFileGetUserDataSize(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1389,6 +1448,8 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file` must be a valid pointer.
     /// - `out_user_data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetuserdatasize64(_:_:_:_:)?language=objc)
     pub fn AudioFileGetUserDataSize64(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1417,6 +1478,8 @@ extern "C-unwind" {
     /// - `in_audio_file` must be a valid pointer.
     /// - `io_user_data_size` must be a valid pointer.
     /// - `out_user_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetuserdata(_:_:_:_:_:)?language=objc)
     pub fn AudioFileGetUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1448,6 +1511,8 @@ extern "C-unwind" {
     /// - `in_audio_file` must be a valid pointer.
     /// - `io_user_data_size` must be a valid pointer.
     /// - `out_user_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetuserdataatoffset(_:_:_:_:_:_:)?language=objc)
     pub fn AudioFileGetUserDataAtOffset(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1478,6 +1543,8 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file` must be a valid pointer.
     /// - `in_user_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilesetuserdata(_:_:_:_:_:)?language=objc)
     pub fn AudioFileSetUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1501,6 +1568,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileremoveuserdata(_:_:_:)?language=objc)
     pub fn AudioFileRemoveUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1602,6 +1671,8 @@ extern "C-unwind" {
     /// - `in_audio_file` must be a valid pointer.
     /// - `out_data_size` must be a valid pointer or null.
     /// - `is_writable` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetpropertyinfo(_:_:_:_:)?language=objc)
     pub fn AudioFileGetPropertyInfo(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1628,6 +1699,8 @@ extern "C-unwind" {
     /// - `in_audio_file` must be a valid pointer.
     /// - `io_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetproperty(_:_:_:_:)?language=objc)
     pub fn AudioFileGetProperty(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1653,6 +1726,8 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilesetproperty(_:_:_:_:)?language=objc)
     pub fn AudioFileSetProperty(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1743,6 +1818,8 @@ extern "C-unwind" {
     ///
     /// - `in_specifier` must be a valid pointer or null.
     /// - `out_data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetglobalinfosize(_:_:_:_:)?language=objc)
     pub fn AudioFileGetGlobalInfoSize(
         in_property_id: AudioFilePropertyID,
         in_specifier_size: u32,
@@ -1771,6 +1848,8 @@ extern "C-unwind" {
     /// - `in_specifier` must be a valid pointer or null.
     /// - `io_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetglobalinfo(_:_:_:_:_:)?language=objc)
     pub fn AudioFileGetGlobalInfo(
         in_property_id: AudioFilePropertyID,
         in_specifier_size: u32,

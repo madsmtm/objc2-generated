@@ -23,12 +23,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSNotificationSuspensionBehavior(pub NSUInteger);
 impl NSNotificationSuspensionBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspensionbehavior/drop?language=objc)
     #[doc(alias = "NSNotificationSuspensionBehaviorDrop")]
     pub const Drop: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspensionbehavior/coalesce?language=objc)
     #[doc(alias = "NSNotificationSuspensionBehaviorCoalesce")]
     pub const Coalesce: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspensionbehavior/hold?language=objc)
     #[doc(alias = "NSNotificationSuspensionBehaviorHold")]
     pub const Hold: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspensionbehavior/deliverimmediately?language=objc)
     #[doc(alias = "NSNotificationSuspensionBehaviorDeliverImmediately")]
     pub const DeliverImmediately: Self = Self(4);
 }
@@ -48,8 +52,10 @@ unsafe impl RefEncode for NSNotificationSuspensionBehavior {
 pub struct NSDistributedNotificationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDistributedNotificationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/options/deliverimmediately?language=objc)
         #[doc(alias = "NSDistributedNotificationDeliverImmediately")]
         const DeliverImmediately = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/options/posttoallsessions?language=objc)
         #[doc(alias = "NSDistributedNotificationPostToAllSessions")]
         const PostToAllSessions = 1<<1;
     }

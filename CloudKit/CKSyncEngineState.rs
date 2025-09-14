@@ -192,8 +192,10 @@ impl CKSyncEngineStateSerialization {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEnginePendingRecordZoneChangeType(pub NSInteger);
 impl CKSyncEnginePendingRecordZoneChangeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechangetype/saverecord?language=objc)
     #[doc(alias = "CKSyncEnginePendingRecordZoneChangeTypeSaveRecord")]
     pub const SaveRecord: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechangetype/deleterecord?language=objc)
     #[doc(alias = "CKSyncEnginePendingRecordZoneChangeTypeDeleteRecord")]
     pub const DeleteRecord: Self = Self(1);
 }
@@ -269,8 +271,10 @@ impl CKSyncEnginePendingRecordZoneChange {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEnginePendingDatabaseChangeType(pub NSInteger);
 impl CKSyncEnginePendingDatabaseChangeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechangetype/savezone?language=objc)
     #[doc(alias = "CKSyncEnginePendingDatabaseChangeTypeSaveZone")]
     pub const SaveZone: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechangetype/deletezone?language=objc)
     #[doc(alias = "CKSyncEnginePendingDatabaseChangeTypeDeleteZone")]
     pub const DeleteZone: Self = Self(1);
 }

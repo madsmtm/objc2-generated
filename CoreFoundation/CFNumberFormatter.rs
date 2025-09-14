@@ -30,6 +30,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFNumberFormatter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergettypeid()?language=objc)
     #[doc(alias = "CFNumberFormatterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -46,24 +47,34 @@ unsafe impl ConcreteType for CFNumberFormatter {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterStyle(pub CFIndex);
 impl CFNumberFormatterStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/nostyle?language=objc)
     #[doc(alias = "kCFNumberFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/decimalstyle?language=objc)
     #[doc(alias = "kCFNumberFormatterDecimalStyle")]
     pub const DecimalStyle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/currencystyle?language=objc)
     #[doc(alias = "kCFNumberFormatterCurrencyStyle")]
     pub const CurrencyStyle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/percentstyle?language=objc)
     #[doc(alias = "kCFNumberFormatterPercentStyle")]
     pub const PercentStyle: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/scientificstyle?language=objc)
     #[doc(alias = "kCFNumberFormatterScientificStyle")]
     pub const ScientificStyle: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/spelloutstyle?language=objc)
     #[doc(alias = "kCFNumberFormatterSpellOutStyle")]
     pub const SpellOutStyle: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/ordinalstyle?language=objc)
     #[doc(alias = "kCFNumberFormatterOrdinalStyle")]
     pub const OrdinalStyle: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/currencyisocodestyle?language=objc)
     #[doc(alias = "kCFNumberFormatterCurrencyISOCodeStyle")]
     pub const CurrencyISOCodeStyle: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/currencypluralstyle?language=objc)
     #[doc(alias = "kCFNumberFormatterCurrencyPluralStyle")]
     pub const CurrencyPluralStyle: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/currencyaccountingstyle?language=objc)
     #[doc(alias = "kCFNumberFormatterCurrencyAccountingStyle")]
     pub const CurrencyAccountingStyle: Self = Self(10);
 }
@@ -79,6 +90,8 @@ unsafe impl RefEncode for CFNumberFormatterStyle {
 }
 
 impl CFNumberFormatter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattercreate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -102,6 +115,7 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergetlocale(_:)?language=objc)
     #[doc(alias = "CFNumberFormatterGetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -115,6 +129,7 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergetstyle(_:)?language=objc)
     #[doc(alias = "CFNumberFormatterGetStyle")]
     #[inline]
     pub fn style(&self) -> CFNumberFormatterStyle {
@@ -124,6 +139,7 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterGetStyle(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergetformat(_:)?language=objc)
     #[doc(alias = "CFNumberFormatterGetFormat")]
     #[inline]
     pub fn format(&self) -> Option<CFRetained<CFString>> {
@@ -136,6 +152,8 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattersetformat(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `format_string` might not allow `None`.
@@ -151,6 +169,8 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterSetFormat(self, format_string) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattercreatestringwithnumber(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -175,6 +195,8 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattercreatestringwithvalue(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -211,6 +233,7 @@ impl CFNumberFormatter {
 pub struct CFNumberFormatterOptionFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNumberFormatterOptionFlags: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatteroptionflags/parseintegersonly?language=objc)
         #[doc(alias = "kCFNumberFormatterParseIntegersOnly")]
         const ParseIntegersOnly = 1;
     }
@@ -227,6 +250,8 @@ unsafe impl RefEncode for CFNumberFormatterOptionFlags {
 }
 
 impl CFNumberFormatter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattercreatenumberfromstring(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -258,6 +283,8 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergetvaluefromstring(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `string` might not allow `None`.
@@ -288,6 +315,8 @@ impl CFNumberFormatter {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattersetproperty(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` might not allow `None`.
@@ -306,6 +335,8 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterSetProperty(self, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattercopyproperty(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `key` might not allow `None`.
@@ -527,18 +558,25 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterRoundingMode(pub CFIndex);
 impl CFNumberFormatterRoundingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundceiling?language=objc)
     #[doc(alias = "kCFNumberFormatterRoundCeiling")]
     pub const RoundCeiling: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundfloor?language=objc)
     #[doc(alias = "kCFNumberFormatterRoundFloor")]
     pub const RoundFloor: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/rounddown?language=objc)
     #[doc(alias = "kCFNumberFormatterRoundDown")]
     pub const RoundDown: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundup?language=objc)
     #[doc(alias = "kCFNumberFormatterRoundUp")]
     pub const RoundUp: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundhalfeven?language=objc)
     #[doc(alias = "kCFNumberFormatterRoundHalfEven")]
     pub const RoundHalfEven: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundhalfdown?language=objc)
     #[doc(alias = "kCFNumberFormatterRoundHalfDown")]
     pub const RoundHalfDown: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundhalfup?language=objc)
     #[doc(alias = "kCFNumberFormatterRoundHalfUp")]
     pub const RoundHalfUp: Self = Self(6);
 }
@@ -559,12 +597,16 @@ unsafe impl RefEncode for CFNumberFormatterRoundingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterPadPosition(pub CFIndex);
 impl CFNumberFormatterPadPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition/beforeprefix?language=objc)
     #[doc(alias = "kCFNumberFormatterPadBeforePrefix")]
     pub const BeforePrefix: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition/afterprefix?language=objc)
     #[doc(alias = "kCFNumberFormatterPadAfterPrefix")]
     pub const AfterPrefix: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition/beforesuffix?language=objc)
     #[doc(alias = "kCFNumberFormatterPadBeforeSuffix")]
     pub const BeforeSuffix: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition/aftersuffix?language=objc)
     #[doc(alias = "kCFNumberFormatterPadAfterSuffix")]
     pub const AfterSuffix: Self = Self(3);
 }
@@ -580,6 +622,8 @@ unsafe impl RefEncode for CFNumberFormatterPadPosition {
 }
 
 impl CFNumberFormatter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergetdecimalinfoforcurrencycode(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `currency_code` might not allow `None`.

@@ -16,14 +16,19 @@ use crate::*;
 pub struct UICloudSharingPermissionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UICloudSharingPermissionOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingpermissionoptions/uicloudsharingpermissionstandard?language=objc)
         #[doc(alias = "UICloudSharingPermissionStandard")]
         const Standard = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowpublic?language=objc)
         #[doc(alias = "UICloudSharingPermissionAllowPublic")]
         const AllowPublic = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowprivate?language=objc)
         #[doc(alias = "UICloudSharingPermissionAllowPrivate")]
         const AllowPrivate = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowreadonly?language=objc)
         #[doc(alias = "UICloudSharingPermissionAllowReadOnly")]
         const AllowReadOnly = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowreadwrite?language=objc)
         #[doc(alias = "UICloudSharingPermissionAllowReadWrite")]
         const AllowReadWrite = 1<<3;
     }

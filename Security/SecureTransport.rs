@@ -35,33 +35,43 @@ pub type SSLConnectionRef = *const c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLSessionOption(pub c_int);
 impl SSLSessionOption {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/breakonserverauth?language=objc)
     #[doc(alias = "kSSLSessionOptionBreakOnServerAuth")]
     #[deprecated]
     pub const BreakOnServerAuth: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/breakoncertrequested?language=objc)
     #[doc(alias = "kSSLSessionOptionBreakOnCertRequested")]
     #[deprecated]
     pub const BreakOnCertRequested: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/breakonclientauth?language=objc)
     #[doc(alias = "kSSLSessionOptionBreakOnClientAuth")]
     #[deprecated]
     pub const BreakOnClientAuth: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/falsestart?language=objc)
     #[doc(alias = "kSSLSessionOptionFalseStart")]
     #[deprecated]
     pub const FalseStart: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/sendonebyterecord?language=objc)
     #[doc(alias = "kSSLSessionOptionSendOneByteRecord")]
     #[deprecated]
     pub const SendOneByteRecord: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/allowserveridentitychange?language=objc)
     #[doc(alias = "kSSLSessionOptionAllowServerIdentityChange")]
     #[deprecated]
     pub const AllowServerIdentityChange: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/fallback?language=objc)
     #[doc(alias = "kSSLSessionOptionFallback")]
     #[deprecated]
     pub const Fallback: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/breakonclienthello?language=objc)
     #[doc(alias = "kSSLSessionOptionBreakOnClientHello")]
     #[deprecated]
     pub const BreakOnClientHello: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/allowrenegotiation?language=objc)
     #[doc(alias = "kSSLSessionOptionAllowRenegotiation")]
     #[deprecated]
     pub const AllowRenegotiation: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/enablesessiontickets?language=objc)
     #[doc(alias = "kSSLSessionOptionEnableSessionTickets")]
     #[deprecated]
     pub const EnableSessionTickets: Self = Self(9);
@@ -82,19 +92,24 @@ unsafe impl RefEncode for SSLSessionOption {
 #[repr(i32)] // c_int
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SSLSessionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate/idle?language=objc)
     #[doc(alias = "kSSLIdle")]
     #[deprecated]
     #[default]
     Idle = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate/handshake?language=objc)
     #[doc(alias = "kSSLHandshake")]
     #[deprecated]
     Handshake = 1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate/connected?language=objc)
     #[doc(alias = "kSSLConnected")]
     #[deprecated]
     Connected = 2,
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate/closed?language=objc)
     #[doc(alias = "kSSLClosed")]
     #[deprecated]
     Closed = 3,
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate/aborted?language=objc)
     #[doc(alias = "kSSLAborted")]
     #[deprecated]
     Aborted = 4,
@@ -116,15 +131,19 @@ unsafe impl RefEncode for SSLSessionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLClientCertificateState(pub c_int);
 impl SSLClientCertificateState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclientcertificatestate/certnone?language=objc)
     #[doc(alias = "kSSLClientCertNone")]
     #[deprecated]
     pub const CertNone: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclientcertificatestate/certrequested?language=objc)
     #[doc(alias = "kSSLClientCertRequested")]
     #[deprecated]
     pub const CertRequested: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclientcertificatestate/certsent?language=objc)
     #[doc(alias = "kSSLClientCertSent")]
     #[deprecated]
     pub const CertSent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclientcertificatestate/certrejected?language=objc)
     #[doc(alias = "kSSLClientCertRejected")]
     #[deprecated]
     pub const CertRejected: Self = Self(3);
@@ -155,10 +174,12 @@ pub type SSLWriteFunc = Option<
 #[repr(i32)] // c_int
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SSLProtocolSide {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocolside/serverside?language=objc)
     #[doc(alias = "kSSLServerSide")]
     #[deprecated]
     #[default]
     ServerSide = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocolside/clientside?language=objc)
     #[doc(alias = "kSSLClientSide")]
     #[deprecated]
     ClientSide = 1,
@@ -180,9 +201,11 @@ unsafe impl RefEncode for SSLProtocolSide {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLConnectionType(pub c_int);
 impl SSLConnectionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslconnectiontype/streamtype?language=objc)
     #[doc(alias = "kSSLStreamType")]
     #[deprecated]
     pub const StreamType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslconnectiontype/datagramtype?language=objc)
     #[doc(alias = "kSSLDatagramType")]
     #[deprecated]
     pub const DatagramType: Self = Self(1);
@@ -271,6 +294,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for SSLContext {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcontextgettypeid()?language=objc)
     #[doc(alias = "SSLContextGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -281,6 +305,7 @@ unsafe impl ConcreteType for SSLContext {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslcreatecontext(_:_:_:)?language=objc)
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLCreateContext(
@@ -299,6 +324,8 @@ pub unsafe extern "C-unwind" fn SSLCreateContext(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslnewcontext?language=objc)
+///
 /// # Safety
 ///
 /// `context_ptr` must be a valid pointer.
@@ -315,11 +342,14 @@ pub unsafe extern "C-unwind" fn SSLNewContext(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ssldisposecontext?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLDisposeContext(context: &SSLContext) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetsessionstate(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `state` must be a valid pointer.
@@ -327,6 +357,7 @@ extern "C-unwind" {
     pub fn SSLGetSessionState(context: &SSLContext, state: NonNull<SSLSessionState>) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetsessionoption(_:_:_:)?language=objc)
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetSessionOption(
@@ -345,6 +376,8 @@ pub unsafe extern "C-unwind" fn SSLSetSessionOption(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetsessionoption(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `value` must be a valid pointer.
@@ -357,6 +390,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetiofuncs(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `read_func` must be implemented correctly.
@@ -370,17 +405,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetsessionconfig(_:_:)?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetSessionConfig(context: &SSLContext, config: &CFString) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetprotocolversionmin(_:_:)?language=objc)
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetProtocolVersionMin(context: &SSLContext, min_version: SSLProtocol) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetprotocolversionmin(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `min_version` must be a valid pointer.
@@ -393,12 +432,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetprotocolversionmax(_:_:)?language=objc)
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetProtocolVersionMax(context: &SSLContext, max_version: SSLProtocol) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetprotocolversionmax(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `max_version` must be a valid pointer.
@@ -410,6 +452,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetprotocolversionenabled?language=objc)
 #[cfg(feature = "SecProtocolTypes")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
@@ -429,6 +472,8 @@ pub unsafe extern "C-unwind" fn SSLSetProtocolVersionEnabled(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetprotocolversionenabled?language=objc)
+    ///
     /// # Safety
     ///
     /// `enable` must be a valid pointer.
@@ -442,12 +487,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetprotocolversion?language=objc)
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetProtocolVersion(context: &SSLContext, version: SSLProtocol) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetprotocolversion?language=objc)
+    ///
     /// # Safety
     ///
     /// `protocol` must be a valid pointer.
@@ -457,6 +505,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetcertificate(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `cert_refs` generic must be of the correct type.
@@ -465,6 +515,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetconnection(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `connection` must be a valid pointer or null.
@@ -473,6 +525,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetconnection(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `connection` must be a valid pointer.
@@ -484,6 +538,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetpeerdomainname(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `peer_name` must be a valid pointer or null.
@@ -496,6 +552,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetpeerdomainnamelength(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `peer_name_len` must be a valid pointer.
@@ -507,6 +565,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetpeerdomainname(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `peer_name` must be a valid pointer.
@@ -520,6 +580,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopyrequestedpeernamelength(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `peer_name_len` must be a valid pointer.
@@ -531,6 +593,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopyrequestedpeername(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `peer_name` must be a valid pointer.
@@ -544,6 +608,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetdatagramhellocookie(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `cookie` must be a valid pointer or null.
@@ -556,11 +622,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetmaxdatagramrecordsize(_:_:)?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetMaxDatagramRecordSize(dtls_context: &SSLContext, max_size: usize) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetmaxdatagramrecordsize(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `max_size` must be a valid pointer.
@@ -572,6 +641,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetnegotiatedprotocolversion(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `protocol` must be a valid pointer.
@@ -584,6 +655,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetnumbersupportedciphers(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `num_ciphers` must be a valid pointer.
@@ -595,6 +668,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetsupportedciphers(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ciphers` must be a valid pointer.
@@ -609,6 +684,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetnumberenabledciphers(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `num_ciphers` must be a valid pointer.
@@ -620,6 +697,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetenabledciphers(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `ciphers` must be a valid pointer.
@@ -633,6 +712,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetenabledciphers(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ciphers` must be a valid pointer.
@@ -646,6 +727,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetsessionticketsenabled(_:_:)?language=objc)
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetSessionTicketsEnabled(
@@ -658,6 +740,7 @@ pub unsafe extern "C-unwind" fn SSLSetSessionTicketsEnabled(
     unsafe { SSLSetSessionTicketsEnabled(context, enabled as _) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetenablecertverify?language=objc)
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetEnableCertVerify(
@@ -671,6 +754,8 @@ pub unsafe extern "C-unwind" fn SSLSetEnableCertVerify(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetenablecertverify?language=objc)
+    ///
     /// # Safety
     ///
     /// `enable_verify` must be a valid pointer.
@@ -681,6 +766,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetallowsexpiredcerts?language=objc)
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetAllowsExpiredCerts(
@@ -694,6 +780,8 @@ pub unsafe extern "C-unwind" fn SSLSetAllowsExpiredCerts(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetallowsexpiredcerts?language=objc)
+    ///
     /// # Safety
     ///
     /// `allows_expired` must be a valid pointer.
@@ -704,6 +792,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetallowsexpiredroots?language=objc)
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetAllowsExpiredRoots(
@@ -717,6 +806,8 @@ pub unsafe extern "C-unwind" fn SSLSetAllowsExpiredRoots(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetallowsexpiredroots?language=objc)
+    ///
     /// # Safety
     ///
     /// `allows_expired` must be a valid pointer.
@@ -727,6 +818,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetallowsanyroot?language=objc)
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetAllowsAnyRoot(
@@ -740,6 +832,8 @@ pub unsafe extern "C-unwind" fn SSLSetAllowsAnyRoot(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetallowsanyroot?language=objc)
+    ///
     /// # Safety
     ///
     /// `any_root` must be a valid pointer.
@@ -747,6 +841,8 @@ extern "C-unwind" {
     pub fn SSLGetAllowsAnyRoot(context: &SSLContext, any_root: NonNull<Boolean>) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsettrustedroots?language=objc)
+///
 /// # Safety
 ///
 /// `trusted_roots` generic must be of the correct type.
@@ -768,6 +864,8 @@ pub unsafe extern "C-unwind" fn SSLSetTrustedRoots(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopytrustedroots?language=objc)
+    ///
     /// # Safety
     ///
     /// `trusted_roots` must be a valid pointer.
@@ -779,6 +877,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopypeercertificates?language=objc)
+    ///
     /// # Safety
     ///
     /// `certs` must be a valid pointer.
@@ -790,6 +890,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopypeertrust(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `trust` must be a valid pointer.
@@ -799,6 +901,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetpeerid(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `peer_id` must be a valid pointer or null.
@@ -811,6 +915,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetpeerid(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `peer_id` must be a valid pointer.
@@ -824,6 +930,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetnegotiatedcipher(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `cipher_suite` must be a valid pointer.
@@ -836,6 +944,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetalpnprotocols(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `protocols` generic must be of the correct type.
@@ -844,6 +954,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopyalpnprotocols(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `protocols` must be a valid pointer.
@@ -855,11 +967,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetocspresponse(_:_:)?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetOCSPResponse(context: &SSLContext, response: &CFData) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetencryptioncertificate(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `cert_refs` generic must be of the correct type.
@@ -873,10 +988,13 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLAuthenticate(pub c_int);
 impl SSLAuthenticate {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslauthenticate/neverauthenticate?language=objc)
     #[doc(alias = "kNeverAuthenticate")]
     pub const NeverAuthenticate: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslauthenticate/alwaysauthenticate?language=objc)
     #[doc(alias = "kAlwaysAuthenticate")]
     pub const AlwaysAuthenticate: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslauthenticate/tryauthenticate?language=objc)
     #[doc(alias = "kTryAuthenticate")]
     pub const TryAuthenticate: Self = Self(2);
 }
@@ -892,11 +1010,14 @@ unsafe impl RefEncode for SSLAuthenticate {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetclientsideauthenticate(_:_:)?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetClientSideAuthenticate(context: &SSLContext, auth: SSLAuthenticate) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/ssladddistinguishedname(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `der_dn` must be a valid pointer or null.
@@ -908,6 +1029,8 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetcertificateauthorities(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// `certificate_or_array` should be of the correct type.
@@ -929,6 +1052,8 @@ pub unsafe extern "C-unwind" fn SSLSetCertificateAuthorities(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopycertificateauthorities(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `certificates` must be a valid pointer.
@@ -940,6 +1065,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopydistinguishednames(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `names` must be a valid pointer.
@@ -951,6 +1078,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetclientcertificatestate(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `client_state` must be a valid pointer.
@@ -962,6 +1091,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetdiffiehellmanparams(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `dh_params` must be a valid pointer or null.
@@ -974,6 +1105,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetdiffiehellmanparams(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dh_params` must be a valid pointer.
@@ -986,6 +1119,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetrsablinding?language=objc)
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetRsaBlinding(
@@ -999,6 +1133,8 @@ pub unsafe extern "C-unwind" fn SSLSetRsaBlinding(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetrsablinding?language=objc)
+    ///
     /// # Safety
     ///
     /// `blinding` must be a valid pointer.
@@ -1007,16 +1143,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslhandshake(_:)?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLHandshake(context: &SSLContext) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslrehandshake(_:)?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLReHandshake(context: &SSLContext) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslwrite(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data` must be a valid pointer or null.
@@ -1031,6 +1171,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslread(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data` must be a valid pointer.
@@ -1045,6 +1187,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetbufferedreadsize(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `buffer_size` must be a valid pointer.
@@ -1053,6 +1197,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetdatagramwritesize(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `buf_size` must be a valid pointer.
@@ -1062,11 +1208,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclose(_:)?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLClose(context: &SSLContext) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslseterror(_:_:)?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetError(context: &SSLContext, status: OSStatus) -> OSStatus;
 }

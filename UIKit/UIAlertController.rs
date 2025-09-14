@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertActionStyle(pub NSInteger);
 impl UIAlertActionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertaction/style-swift.enum/default?language=objc)
     #[doc(alias = "UIAlertActionStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertaction/style-swift.enum/cancel?language=objc)
     #[doc(alias = "UIAlertActionStyleCancel")]
     pub const Cancel: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertaction/style-swift.enum/destructive?language=objc)
     #[doc(alias = "UIAlertActionStyleDestructive")]
     pub const Destructive: Self = Self(2);
 }
@@ -35,8 +38,10 @@ unsafe impl RefEncode for UIAlertActionStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertControllerStyle(pub NSInteger);
 impl UIAlertControllerStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontroller/style/actionsheet?language=objc)
     #[doc(alias = "UIAlertControllerStyleActionSheet")]
     pub const ActionSheet: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontroller/style/alert?language=objc)
     #[doc(alias = "UIAlertControllerStyleAlert")]
     pub const Alert: Self = Self(1);
 }
@@ -55,8 +60,10 @@ unsafe impl RefEncode for UIAlertControllerStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertControllerSeverity(pub NSInteger);
 impl UIAlertControllerSeverity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontrollerseverity/default?language=objc)
     #[doc(alias = "UIAlertControllerSeverityDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontrollerseverity/critical?language=objc)
     #[doc(alias = "UIAlertControllerSeverityCritical")]
     pub const Critical: Self = Self(1);
 }

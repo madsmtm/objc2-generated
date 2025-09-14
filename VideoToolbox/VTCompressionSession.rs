@@ -127,6 +127,8 @@ impl VTCompressionSession {
     /// - `output_callback` must be implemented correctly.
     /// - `output_callback_ref_con` must be a valid pointer or null.
     /// - `compression_session_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioncreate(allocator:width:height:codectype:encoderspecification:imagebufferattributes:compresseddataallocator:outputcallback:refcon:compressionsessionout:)?language=objc)
     #[doc(alias = "VTCompressionSessionCreate")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -179,6 +181,8 @@ impl VTCompressionSession {
     /// When a compression session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTCompressionSessionInvalidate ensures a deterministic, orderly teardown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioninvalidate(_:)?language=objc)
     #[doc(alias = "VTCompressionSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -191,6 +195,8 @@ impl VTCompressionSession {
 
 unsafe impl ConcreteType for VTCompressionSession {
     /// Returns the CFTypeID for compression sessions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessiongettypeid()?language=objc)
     #[doc(alias = "VTCompressionSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -218,6 +224,8 @@ impl VTCompressionSession {
     /// to call it once per frame.  If a change of session properties causes
     /// the compressor's pixel buffer attributes to change, it's possible that
     /// VTCompressionSessionGetPixelBufferPool might return a different pool.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessiongetpixelbufferpool(_:)?language=objc)
     #[doc(alias = "VTCompressionSessionGetPixelBufferPool")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
@@ -240,6 +248,8 @@ impl VTCompressionSession {
     /// Extra calls to this function will have no effect.
     ///
     /// Parameter `session`: The compression session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionpreparetoencodeframes(_:)?language=objc)
     #[doc(alias = "VTCompressionSessionPrepareToEncodeFrames")]
     #[inline]
     pub unsafe fn prepare_to_encode_frames(&self) -> OSStatus {
@@ -286,6 +296,8 @@ impl VTCompressionSession {
     /// - `frame_properties` generic must be of the correct type.
     /// - `source_frame_refcon` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)?language=objc)
     #[doc(alias = "VTCompressionSessionEncodeFrame")]
     #[cfg(all(
         feature = "VTErrors",
@@ -385,6 +397,8 @@ impl VTCompressionSession {
     /// - `frame_properties` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:infoflagsout:outputhandler:)?language=objc)
     #[doc(alias = "VTCompressionSessionEncodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -432,6 +446,8 @@ impl VTCompressionSession {
     /// up to and including this timestamp will be emitted before the function returns.
     /// If completeUntilPresentationTimeStamp is non-numeric, all pending frames
     /// will be emitted before the function returns.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioncompleteframes(_:untilpresentationtimestamp:)?language=objc)
     #[doc(alias = "VTCompressionSessionCompleteFrames")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -452,6 +468,8 @@ impl VTCompressionSession {
 /// Indicates whether the current system supports stereo MV-HEVC encode.
 ///
 /// This call returning true does not guarantee that encode resources will be available at all times.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtisstereomvhevcencodesupported()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn VTIsStereoMVHEVCEncodeSupported() -> bool {
     extern "C-unwind" {
@@ -496,6 +514,8 @@ impl VTCompressionSession {
     /// - `frame_properties` generic must be of the correct type.
     /// - `source_frame_refcon` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodemultiimageframe?language=objc)
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrame")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -568,6 +588,8 @@ impl VTCompressionSession {
     /// - `frame_properties` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodemultiimageframewithoutputhandler?language=objc)
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler")]
     #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
     #[inline]
@@ -612,6 +634,7 @@ impl VTCompressionSession {
 pub struct VTCompressionSessionOptionFlags(pub u32);
 bitflags::bitflags! {
     impl VTCompressionSessionOptionFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionoptionflags/beginfinalpass?language=objc)
         #[doc(alias = "kVTCompressionSessionBeginFinalPass")]
         const BeginFinalPass = 1<<0;
     }
@@ -638,6 +661,8 @@ impl VTCompressionSession {
     /// # Safety
     ///
     /// `reserved` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionbeginpass(_:flags:_:)?language=objc)
     #[doc(alias = "VTCompressionSessionBeginPass")]
     #[inline]
     pub unsafe fn begin_pass(
@@ -668,6 +693,8 @@ impl VTCompressionSession {
     ///
     /// - `further_passes_requested_out` must be a valid pointer or null.
     /// - `reserved` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionendpass(_:furtherpassesrequestedout:_:)?language=objc)
     #[doc(alias = "VTCompressionSessionEndPass")]
     #[inline]
     pub unsafe fn end_pass(
@@ -701,6 +728,8 @@ impl VTCompressionSession {
     ///
     /// - `time_range_count_out` must be a valid pointer.
     /// - `time_range_array_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessiongettimerangesfornextpass(_:timerangecountout:timerangearrayout:)?language=objc)
     #[doc(alias = "VTCompressionSessionGetTimeRangesForNextPass")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]

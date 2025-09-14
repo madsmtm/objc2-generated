@@ -85,12 +85,16 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFRunLoopRunResult(pub i32);
 impl CFRunLoopRunResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprunresult/finished?language=objc)
     #[doc(alias = "kCFRunLoopRunFinished")]
     pub const Finished: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprunresult/stopped?language=objc)
     #[doc(alias = "kCFRunLoopRunStopped")]
     pub const Stopped: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprunresult/timedout?language=objc)
     #[doc(alias = "kCFRunLoopRunTimedOut")]
     pub const TimedOut: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprunresult/handledsource?language=objc)
     #[doc(alias = "kCFRunLoopRunHandledSource")]
     pub const HandledSource: Self = Self(4);
 }
@@ -112,18 +116,25 @@ unsafe impl RefEncode for CFRunLoopRunResult {
 pub struct CFRunLoopActivity(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFRunLoopActivity: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/entry?language=objc)
         #[doc(alias = "kCFRunLoopEntry")]
         const Entry = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/beforetimers?language=objc)
         #[doc(alias = "kCFRunLoopBeforeTimers")]
         const BeforeTimers = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/beforesources?language=objc)
         #[doc(alias = "kCFRunLoopBeforeSources")]
         const BeforeSources = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/beforewaiting?language=objc)
         #[doc(alias = "kCFRunLoopBeforeWaiting")]
         const BeforeWaiting = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/afterwaiting?language=objc)
         #[doc(alias = "kCFRunLoopAfterWaiting")]
         const AfterWaiting = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/exit?language=objc)
         #[doc(alias = "kCFRunLoopExit")]
         const Exit = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/allactivities?language=objc)
         #[doc(alias = "kCFRunLoopAllActivities")]
         const AllActivities = 0x0FFFFFFF;
     }
@@ -150,6 +161,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for CFRunLoop {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopgettypeid()?language=objc)
     #[doc(alias = "CFRunLoopGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -161,6 +173,7 @@ unsafe impl ConcreteType for CFRunLoop {
 }
 
 impl CFRunLoop {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopgetcurrent()?language=objc)
     #[doc(alias = "CFRunLoopGetCurrent")]
     #[inline]
     pub fn current() -> Option<CFRetained<CFRunLoop>> {
@@ -171,6 +184,7 @@ impl CFRunLoop {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopgetmain()?language=objc)
     #[doc(alias = "CFRunLoopGetMain")]
     #[inline]
     pub fn main() -> Option<CFRetained<CFRunLoop>> {
@@ -181,6 +195,7 @@ impl CFRunLoop {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopcopycurrentmode(_:)?language=objc)
     #[doc(alias = "CFRunLoopCopyCurrentMode")]
     #[inline]
     pub fn current_mode(&self) -> Option<CFRetained<CFRunLoopMode>> {
@@ -191,6 +206,7 @@ impl CFRunLoop {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopcopyallmodes(_:)?language=objc)
     #[doc(alias = "CFRunLoopCopyAllModes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -202,6 +218,7 @@ impl CFRunLoop {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopaddcommonmode(_:_:)?language=objc)
     #[doc(alias = "CFRunLoopAddCommonMode")]
     #[inline]
     pub fn add_common_mode(&self, mode: Option<&CFRunLoopMode>) {
@@ -211,6 +228,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopAddCommonMode(self, mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopgetnexttimerfiredate(_:_:)?language=objc)
     #[doc(alias = "CFRunLoopGetNextTimerFireDate")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -224,6 +242,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopGetNextTimerFireDate(self, mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprun()?language=objc)
     #[doc(alias = "CFRunLoopRun")]
     #[inline]
     pub fn run() {
@@ -233,6 +252,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopRun() }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopruninmode(_:_:_:)?language=objc)
     #[doc(alias = "CFRunLoopRunInMode")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -251,6 +271,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopRunInMode(mode, seconds, return_after_source_handled as _) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopiswaiting(_:)?language=objc)
     #[doc(alias = "CFRunLoopIsWaiting")]
     #[inline]
     pub fn is_waiting(&self) -> bool {
@@ -261,6 +282,7 @@ impl CFRunLoop {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopwakeup(_:)?language=objc)
     #[doc(alias = "CFRunLoopWakeUp")]
     #[inline]
     pub fn wake_up(&self) {
@@ -270,6 +292,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopWakeUp(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopstop(_:)?language=objc)
     #[doc(alias = "CFRunLoopStop")]
     #[inline]
     pub fn stop(&self) {
@@ -279,6 +302,8 @@ impl CFRunLoop {
         unsafe { CFRunLoopStop(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopperformblock(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `rl` possibly has additional threading requirements.
@@ -303,6 +328,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopPerformBlock(self, mode, block) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopcontainssource(_:_:_:)?language=objc)
     #[doc(alias = "CFRunLoopContainsSource")]
     #[inline]
     pub fn contains_source(
@@ -321,6 +347,7 @@ impl CFRunLoop {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)?language=objc)
     #[doc(alias = "CFRunLoopAddSource")]
     #[inline]
     pub fn add_source(&self, source: Option<&CFRunLoopSource>, mode: Option<&CFRunLoopMode>) {
@@ -334,6 +361,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopAddSource(self, source, mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopremovesource(_:_:_:)?language=objc)
     #[doc(alias = "CFRunLoopRemoveSource")]
     #[inline]
     pub fn remove_source(&self, source: Option<&CFRunLoopSource>, mode: Option<&CFRunLoopMode>) {
@@ -347,6 +375,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopRemoveSource(self, source, mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopcontainsobserver(_:_:_:)?language=objc)
     #[doc(alias = "CFRunLoopContainsObserver")]
     #[inline]
     pub fn contains_observer(
@@ -365,6 +394,7 @@ impl CFRunLoop {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopaddobserver(_:_:_:)?language=objc)
     #[doc(alias = "CFRunLoopAddObserver")]
     #[inline]
     pub fn add_observer(&self, observer: Option<&CFRunLoopObserver>, mode: Option<&CFRunLoopMode>) {
@@ -378,6 +408,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopAddObserver(self, observer, mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopremoveobserver(_:_:_:)?language=objc)
     #[doc(alias = "CFRunLoopRemoveObserver")]
     #[inline]
     pub fn remove_observer(
@@ -395,6 +426,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopRemoveObserver(self, observer, mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopcontainstimer(_:_:_:)?language=objc)
     #[doc(alias = "CFRunLoopContainsTimer")]
     #[inline]
     pub fn contains_timer(
@@ -413,6 +445,7 @@ impl CFRunLoop {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopaddtimer(_:_:_:)?language=objc)
     #[doc(alias = "CFRunLoopAddTimer")]
     #[inline]
     pub fn add_timer(&self, timer: Option<&CFRunLoopTimer>, mode: Option<&CFRunLoopMode>) {
@@ -426,6 +459,7 @@ impl CFRunLoop {
         unsafe { CFRunLoopAddTimer(self, timer, mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopremovetimer(_:_:_:)?language=objc)
     #[doc(alias = "CFRunLoopRemoveTimer")]
     #[inline]
     pub fn remove_timer(&self, timer: Option<&CFRunLoopTimer>, mode: Option<&CFRunLoopMode>) {
@@ -525,6 +559,7 @@ unsafe impl RefEncode for CFRunLoopSourceContext1 {
 }
 
 unsafe impl ConcreteType for CFRunLoopSource {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcegettypeid()?language=objc)
     #[doc(alias = "CFRunLoopSourceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -536,6 +571,8 @@ unsafe impl ConcreteType for CFRunLoopSource {
 }
 
 impl CFRunLoopSource {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecreate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -558,6 +595,7 @@ impl CFRunLoopSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcegetorder(_:)?language=objc)
     #[doc(alias = "CFRunLoopSourceGetOrder")]
     #[inline]
     pub fn order(&self) -> CFIndex {
@@ -567,6 +605,7 @@ impl CFRunLoopSource {
         unsafe { CFRunLoopSourceGetOrder(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourceinvalidate(_:)?language=objc)
     #[doc(alias = "CFRunLoopSourceInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -576,6 +615,7 @@ impl CFRunLoopSource {
         unsafe { CFRunLoopSourceInvalidate(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourceisvalid(_:)?language=objc)
     #[doc(alias = "CFRunLoopSourceIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -586,6 +626,8 @@ impl CFRunLoopSource {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcegetcontext(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -601,6 +643,7 @@ impl CFRunLoopSource {
         unsafe { CFRunLoopSourceGetContext(self, context) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcesignal(_:)?language=objc)
     #[doc(alias = "CFRunLoopSourceSignal")]
     #[inline]
     pub fn signal(&self) {
@@ -647,6 +690,7 @@ pub type CFRunLoopObserverCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFRunLoopObserver, CFRunLoopActivity, *mut c_void)>;
 
 unsafe impl ConcreteType for CFRunLoopObserver {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservergettypeid()?language=objc)
     #[doc(alias = "CFRunLoopObserverGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -658,6 +702,8 @@ unsafe impl ConcreteType for CFRunLoopObserver {
 }
 
 impl CFRunLoopObserver {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercreate(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -689,6 +735,8 @@ impl CFRunLoopObserver {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercreatewithhandler(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -718,6 +766,7 @@ impl CFRunLoopObserver {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservergetactivities(_:)?language=objc)
     #[doc(alias = "CFRunLoopObserverGetActivities")]
     #[inline]
     pub fn activities(&self) -> CFOptionFlags {
@@ -727,6 +776,7 @@ impl CFRunLoopObserver {
         unsafe { CFRunLoopObserverGetActivities(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobserverdoesrepeat(_:)?language=objc)
     #[doc(alias = "CFRunLoopObserverDoesRepeat")]
     #[inline]
     pub fn does_repeat(&self) -> bool {
@@ -737,6 +787,7 @@ impl CFRunLoopObserver {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservergetorder(_:)?language=objc)
     #[doc(alias = "CFRunLoopObserverGetOrder")]
     #[inline]
     pub fn order(&self) -> CFIndex {
@@ -746,6 +797,7 @@ impl CFRunLoopObserver {
         unsafe { CFRunLoopObserverGetOrder(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobserverinvalidate(_:)?language=objc)
     #[doc(alias = "CFRunLoopObserverInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -755,6 +807,7 @@ impl CFRunLoopObserver {
         unsafe { CFRunLoopObserverInvalidate(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobserverisvalid(_:)?language=objc)
     #[doc(alias = "CFRunLoopObserverIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -765,6 +818,8 @@ impl CFRunLoopObserver {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservergetcontext(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -817,6 +872,7 @@ pub type CFRunLoopTimerCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFRunLoopTimer, *mut c_void)>;
 
 unsafe impl ConcreteType for CFRunLoopTimer {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergettypeid()?language=objc)
     #[doc(alias = "CFRunLoopTimerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -828,6 +884,8 @@ unsafe impl ConcreteType for CFRunLoopTimer {
 }
 
 impl CFRunLoopTimer {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercreate(_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -864,6 +922,8 @@ impl CFRunLoopTimer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercreatewithhandler(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -895,6 +955,7 @@ impl CFRunLoopTimer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergetnextfiredate(_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerGetNextFireDate")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -905,6 +966,7 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerGetNextFireDate(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimersetnextfiredate(_:_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerSetNextFireDate")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -915,6 +977,7 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerSetNextFireDate(self, fire_date) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergetinterval(_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerGetInterval")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -925,6 +988,7 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerGetInterval(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimerdoesrepeat(_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerDoesRepeat")]
     #[inline]
     pub fn does_repeat(&self) -> bool {
@@ -935,6 +999,7 @@ impl CFRunLoopTimer {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergetorder(_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerGetOrder")]
     #[inline]
     pub fn order(&self) -> CFIndex {
@@ -944,6 +1009,7 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerGetOrder(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimerinvalidate(_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -953,6 +1019,7 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerInvalidate(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimerisvalid(_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -963,6 +1030,8 @@ impl CFRunLoopTimer {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergetcontext(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -978,6 +1047,7 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerGetContext(self, context) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergettolerance(_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerGetTolerance")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -988,6 +1058,7 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerGetTolerance(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimersettolerance(_:_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerSetTolerance")]
     #[cfg(feature = "CFDate")]
     #[inline]

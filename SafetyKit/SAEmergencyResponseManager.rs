@@ -17,16 +17,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SAEmergencyResponseManagerVoiceCallStatus(pub NSInteger);
 impl SAEmergencyResponseManagerVoiceCallStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager/voicecallstatus/dialing?language=objc)
     #[doc(alias = "SAEmergencyResponseManagerVoiceCallStatusDialing")]
     pub const Dialing: Self = Self(0);
     /// <
     /// the system is dialing the voice call
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager/voicecallstatus/active?language=objc)
     #[doc(alias = "SAEmergencyResponseManagerVoiceCallStatusActive")]
     pub const Active: Self = Self(1);
     /// the system dialed voice call is disconnected after being active
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager/voicecallstatus/disconnected?language=objc)
     #[doc(alias = "SAEmergencyResponseManagerVoiceCallStatusDisconnected")]
     pub const Disconnected: Self = Self(2);
     /// the system dialed voice call failed to connect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager/voicecallstatus/failed?language=objc)
     #[doc(alias = "SAEmergencyResponseManagerVoiceCallStatusFailed")]
     pub const Failed: Self = Self(3);
 }

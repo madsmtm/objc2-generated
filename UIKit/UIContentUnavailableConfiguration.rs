@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContentUnavailableAlignment(pub NSInteger);
 impl UIContentUnavailableAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentunavailablealignment/uicontentunavailablealignmentcenter?language=objc)
     #[doc(alias = "UIContentUnavailableAlignmentCenter")]
     pub const Center: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentunavailablealignment/uicontentunavailablealignmentnatural?language=objc)
     #[doc(alias = "UIContentUnavailableAlignmentNatural")]
     pub const Natural: Self = Self(1);
 }

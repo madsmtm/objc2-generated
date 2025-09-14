@@ -14,26 +14,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchCallHistoryIntentResponseCode(pub NSInteger);
 impl INSearchCallHistoryIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeUnspecified")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/ready?language=objc)
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeReady")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeContinueInApp")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/failure?language=objc)
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeFailure")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/failureappconfigurationrequired?language=objc)
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/success?language=objc)
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeSuccess")]
     pub const Success: Self = Self(7);
 }

@@ -15,6 +15,7 @@ pub type CFTimeInterval = c_double;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetime?language=objc)
 pub type CFAbsoluteTime = CFTimeInterval;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetcurrent()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFAbsoluteTimeGetCurrent() -> CFAbsoluteTime {
     extern "C-unwind" {
@@ -52,6 +53,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFDate {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdategettypeid()?language=objc)
     #[doc(alias = "CFDateGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -63,6 +65,7 @@ unsafe impl ConcreteType for CFDate {
 }
 
 impl CFDate {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatecreate(_:_:)?language=objc)
     #[doc(alias = "CFDateCreate")]
     #[inline]
     pub fn new(allocator: Option<&CFAllocator>, at: CFAbsoluteTime) -> Option<CFRetained<CFDate>> {
@@ -76,6 +79,7 @@ impl CFDate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdategetabsolutetime(_:)?language=objc)
     #[doc(alias = "CFDateGetAbsoluteTime")]
     #[inline]
     pub fn absolute_time(&self) -> CFAbsoluteTime {
@@ -85,6 +89,7 @@ impl CFDate {
         unsafe { CFDateGetAbsoluteTime(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdategettimeintervalsincedate(_:_:)?language=objc)
     #[doc(alias = "CFDateGetTimeIntervalSinceDate")]
     #[inline]
     pub fn time_interval_since_date(&self, other_date: Option<&CFDate>) -> CFTimeInterval {
@@ -97,6 +102,8 @@ impl CFDate {
         unsafe { CFDateGetTimeIntervalSinceDate(self, other_date) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatecompare(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `other_date` might not allow `None`.
@@ -208,24 +215,31 @@ unsafe impl RefEncode for CFGregorianUnits {
 pub struct CFGregorianUnitFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFGregorianUnitFlags: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitsyears?language=objc)
         #[doc(alias = "kCFGregorianUnitsYears")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsYears = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitsmonths?language=objc)
         #[doc(alias = "kCFGregorianUnitsMonths")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsMonths = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitsdays?language=objc)
         #[doc(alias = "kCFGregorianUnitsDays")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsDays = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitshours?language=objc)
         #[doc(alias = "kCFGregorianUnitsHours")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsHours = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitsminutes?language=objc)
         #[doc(alias = "kCFGregorianUnitsMinutes")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsMinutes = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitsseconds?language=objc)
         #[doc(alias = "kCFGregorianUnitsSeconds")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsSeconds = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/allunits?language=objc)
         #[doc(alias = "kCFGregorianAllUnits")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const AllUnits = 0x00FFFFFF;
@@ -243,6 +257,7 @@ unsafe impl RefEncode for CFGregorianUnitFlags {
 }
 
 impl CFGregorianDate {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregoriandateisvalid(_:_:)?language=objc)
     #[doc(alias = "CFGregorianDateIsValid")]
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     #[inline]
@@ -255,6 +270,8 @@ impl CFGregorianDate {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregoriandategetabsolutetime(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `tz` might not allow `None`.
@@ -273,6 +290,8 @@ impl CFGregorianDate {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetgregoriandate(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `tz` might not allow `None`.
@@ -284,6 +303,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimeaddgregorianunits(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `tz` might not allow `None`.
@@ -296,6 +317,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetdifferenceasgregorianunits(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `tz` might not allow `None`.
@@ -309,6 +332,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetdayofweek(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `tz` might not allow `None`.
@@ -317,6 +342,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetdayofyear(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `tz` might not allow `None`.
@@ -325,6 +352,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetweekofyear(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `tz` might not allow `None`.

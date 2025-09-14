@@ -23,12 +23,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSAccountAccessStatus(pub NSInteger);
 impl VSAccountAccessStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountaccessstatus/notdetermined?language=objc)
     #[doc(alias = "VSAccountAccessStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountaccessstatus/restricted?language=objc)
     #[doc(alias = "VSAccountAccessStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountaccessstatus/denied?language=objc)
     #[doc(alias = "VSAccountAccessStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountaccessstatus/granted?language=objc)
     #[doc(alias = "VSAccountAccessStatusGranted")]
     pub const Granted: Self = Self(3);
 }

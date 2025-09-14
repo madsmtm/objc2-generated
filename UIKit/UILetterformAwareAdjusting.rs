@@ -22,9 +22,13 @@ use crate::*;
 pub struct UILetterformAwareSizingRule(pub NSInteger);
 impl UILetterformAwareSizingRule {
     /// `UILetterformAwareSizingRuleTypographic`: `-sizeThatFits:` and `-intrinsicContentSize` results will work well for typographic alignment of edges and centers of the view frames, but extreme ascenders or descenders in tall scripts may not be accounted for
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiletterformawaresizingrule/typographic?language=objc)
     #[doc(alias = "UILetterformAwareSizingRuleTypographic")]
     pub const Typographic: Self = Self(0);
     /// `UILetterformAwareSizingRuleOversize`: `-sizeThatFits:` and `-intrinsicContentSize` results will account for extreme ascenders or descenders in tall scripts, but in such cases might not work well for typographic alignment of top and bottom edges and vertical centers of the view frames
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiletterformawaresizingrule/oversize?language=objc)
     #[doc(alias = "UILetterformAwareSizingRuleOversize")]
     pub const Oversize: Self = Self(1);
 }

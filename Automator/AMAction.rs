@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AMLogLevel(pub NSUInteger);
 impl AMLogLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amloglevel/debug?language=objc)
     #[doc(alias = "AMLogLevelDebug")]
     pub const Debug: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amloglevel/info?language=objc)
     #[doc(alias = "AMLogLevelInfo")]
     pub const Info: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amloglevel/warn?language=objc)
     #[doc(alias = "AMLogLevelWarn")]
     pub const Warn: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amloglevel/error?language=objc)
     #[doc(alias = "AMLogLevelError")]
     pub const Error: Self = Self(3);
 }

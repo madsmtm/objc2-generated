@@ -263,6 +263,8 @@ extern_protocol!(
 /// Create a new PGDevice implementation object based on the provided descriptor.
 ///
 /// Parameter `descriptor`: The device descriptor for the new device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgnewdevicewithdescriptor(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn PGNewDeviceWithDescriptor(
     descriptor: &PGDeviceDescriptor,
@@ -279,6 +281,8 @@ pub unsafe extern "C-unwind" fn PGNewDeviceWithDescriptor(
 /// Create a new PGDevice implementation object based on the provided descriptor.
 ///
 /// Parameter `descriptor`: The device descriptor for the new device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgcreatedevicewithdescriptor(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn PGCreateDeviceWithDescriptor(
     descriptor: &PGDeviceDescriptor,
@@ -296,6 +300,8 @@ extern "C-unwind" {
     /// Returns the maximum number of PGDisplay ports that a PGDevice can be configured with.
     ///
     /// Note: See PGDeviceDescriptor's displayPortCount property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgmaxdisplayportcount()?language=objc)
     pub fn PGMaxDisplayPortCount() -> u32;
 }
 
@@ -312,16 +318,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PGResumeErrorCode(pub NSUInteger);
 impl PGResumeErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/internalfault?language=objc)
     #[doc(alias = "PGResumeErrorCodeInternalFault")]
     pub const InternalFault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/invalidsuspendstateversion?language=objc)
     #[doc(alias = "PGResumeErrorCodeInvalidSuspendStateVersion")]
     pub const InvalidSuspendStateVersion: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/invalidcontent?language=objc)
     #[doc(alias = "PGResumeErrorCodeInvalidContent")]
     pub const InvalidContent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/invalidguestversion?language=objc)
     #[doc(alias = "PGResumeErrorCodeInvalidGuestVersion")]
     pub const InvalidGuestVersion: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/incompatibledevice?language=objc)
     #[doc(alias = "PGResumeErrorCodeIncompatibleDevice")]
     pub const IncompatibleDevice: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/invaliddisplayportcount?language=objc)
     #[doc(alias = "PGResumeErrorCodeInvalidDisplayPortCount")]
     pub const InvalidDisplayPortCount: Self = Self(5);
 }
@@ -339,6 +351,8 @@ unsafe impl RefEncode for PGResumeErrorCode {
 /// the device.
 ///
 /// Returns: The URL.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgcopyoptionromurl()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn PGCopyOptionROMURL() -> Retained<NSURL> {
     extern "C-unwind" {

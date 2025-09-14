@@ -44,6 +44,8 @@ unsafe impl ConcreteType for CMSimpleQueue {
     /// with CMSimpleQueueGetTypeID().
     ///
     /// Returns: CFTypeID of CMSimpleQueue objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeuegettypeid()?language=objc)
     #[doc(alias = "CMSimpleQueueGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -65,6 +67,8 @@ impl CMSimpleQueue {
     /// # Safety
     ///
     /// `queue_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeuecreate(allocator:capacity:queueout:)?language=objc)
     #[doc(alias = "CMSimpleQueueCreate")]
     #[inline]
     pub unsafe fn create(
@@ -91,6 +95,8 @@ impl CMSimpleQueue {
     /// # Safety
     ///
     /// `element` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeueenqueue(_:element:)?language=objc)
     #[doc(alias = "CMSimpleQueueEnqueue")]
     #[inline]
     pub unsafe fn enqueue(&self, element: NonNull<c_void>) -> OSStatus {
@@ -105,6 +111,8 @@ impl CMSimpleQueue {
     /// If the queue is empty, NULL will be returned.
     ///
     /// Returns: The dequeued element.  NULL if the queue was empty, or if there was some other error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeuedequeue(_:)?language=objc)
     #[doc(alias = "CMSimpleQueueDequeue")]
     #[inline]
     pub unsafe fn dequeue(&self) -> *const c_void {
@@ -119,6 +127,8 @@ impl CMSimpleQueue {
     /// If the queue is empty, NULL will be returned.
     ///
     /// Returns: The head element.  NULL if the queue was empty, or if there was some other error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeuegethead(_:)?language=objc)
     #[doc(alias = "CMSimpleQueueGetHead")]
     #[inline]
     pub unsafe fn head(&self) -> *const c_void {
@@ -136,6 +146,8 @@ impl CMSimpleQueue {
     /// must be held off by the client during this operation.
     ///
     /// Returns: Returns noErr if the call succeeds.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeuereset(_:)?language=objc)
     #[doc(alias = "CMSimpleQueueReset")]
     #[inline]
     pub unsafe fn reset(&self) -> OSStatus {
@@ -149,6 +161,8 @@ impl CMSimpleQueue {
     ///
     /// Returns: The number of elements that can be held in the queue.  Returns
     /// 0 if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeuegetcapacity(_:)?language=objc)
     #[doc(alias = "CMSimpleQueueGetCapacity")]
     #[inline]
     pub unsafe fn capacity(&self) -> i32 {
@@ -161,6 +175,8 @@ impl CMSimpleQueue {
     /// Returns the number of elements currently on the queue.
     ///
     /// Returns: The number of elements currently in the queue. Returns 0 if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeuegetcount(_:)?language=objc)
     #[doc(alias = "CMSimpleQueueGetCount")]
     #[inline]
     pub unsafe fn count(&self) -> i32 {

@@ -138,6 +138,8 @@ unsafe impl ConcreteType for SecAccess {
     /// Returns the type identifier of SecAccess instances.
     ///
     /// Returns: The CFTypeID of SecAccess instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccessgettypeid()?language=objc)
     #[doc(alias = "SecAccessGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -169,6 +171,8 @@ impl SecAccess {
     ///
     /// - `trustedlist` generic must be of the correct type.
     /// - `access_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscreate(_:_:_:)?language=objc)
     #[doc(alias = "SecAccessCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -207,6 +211,8 @@ impl SecAccess {
     /// - `owner` must be a valid pointer.
     /// - `acls` must be a valid pointer.
     /// - `access_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscreatefromownerandacl?language=objc)
     #[doc(alias = "SecAccessCreateFromOwnerAndACL")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -251,6 +257,8 @@ impl SecAccess {
     ///
     /// - `acls` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscreatewithownerandacl(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecAccessCreateWithOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -295,6 +303,8 @@ impl SecAccess {
     /// - `owner` must be a valid pointer.
     /// - `acl_count` must be a valid pointer.
     /// - `acls` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccessgetownerandacl?language=objc)
     #[doc(alias = "SecAccessGetOwnerAndACL")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -341,6 +351,8 @@ impl SecAccess {
     /// - `group_id` must be a valid pointer or null.
     /// - `owner_type` must be a valid pointer or null.
     /// - `acl_list` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscopyownerandacl(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecAccessCopyOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -375,6 +387,8 @@ impl SecAccess {
     /// # Safety
     ///
     /// `acl_list` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscopyacllist(_:_:)?language=objc)
     #[doc(alias = "SecAccessCopyACLList")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -404,6 +418,8 @@ impl SecAccess {
     /// # Safety
     ///
     /// `acl_list` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscopyselectedacllist?language=objc)
     #[doc(alias = "SecAccessCopySelectedACLList")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -434,6 +450,8 @@ impl SecAccess {
     /// # Safety
     ///
     /// `authorization_tag` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscopymatchingacllist(_:_:)?language=objc)
     #[doc(alias = "SecAccessCopyMatchingACLList")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

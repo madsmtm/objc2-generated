@@ -14,12 +14,18 @@ use crate::*;
 pub struct UIFindSessionSearchResultDisplayStyle(pub NSInteger);
 impl UIFindSessionSearchResultDisplayStyle {
     /// Displays the total number of reported results, and which result index is currently highlighted (i.e., "1 of 5").
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsession/searchresultdisplaystyle-swift.enum/currentandtotal?language=objc)
     #[doc(alias = "UIFindSessionSearchResultDisplayStyleCurrentAndTotal")]
     pub const CurrentAndTotal: Self = Self(0);
     /// Displays only the total number of reported results (i.e., "5 results").
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsession/searchresultdisplaystyle-swift.enum/total?language=objc)
     #[doc(alias = "UIFindSessionSearchResultDisplayStyleTotal")]
     pub const Total: Self = Self(1);
     /// Do not display number of reported results.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsession/searchresultdisplaystyle-swift.enum/none?language=objc)
     #[doc(alias = "UIFindSessionSearchResultDisplayStyleNone")]
     pub const None: Self = Self(2);
 }
@@ -39,12 +45,18 @@ unsafe impl RefEncode for UIFindSessionSearchResultDisplayStyle {
 pub struct UITextSearchMatchMethod(pub NSInteger);
 impl UITextSearchMatchMethod {
     /// Word contains search string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchoptions/wordmatchmethod-swift.enum/contains?language=objc)
     #[doc(alias = "UITextSearchMatchMethodContains")]
     pub const Contains: Self = Self(0);
     /// Word contains the search string as a prefix.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchoptions/wordmatchmethod-swift.enum/startswith?language=objc)
     #[doc(alias = "UITextSearchMatchMethodStartsWith")]
     pub const StartsWith: Self = Self(1);
     /// Word is an exact match for the search string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchoptions/wordmatchmethod-swift.enum/fullword?language=objc)
     #[doc(alias = "UITextSearchMatchMethodFullWord")]
     pub const FullWord: Self = Self(2);
 }

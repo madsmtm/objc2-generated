@@ -14,25 +14,45 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSXMLDTDNodeKind(pub NSUInteger);
 impl NSXMLDTDNodeKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/general?language=objc)
     pub const NSXMLEntityGeneralKind: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/parsed?language=objc)
     pub const NSXMLEntityParsedKind: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/unparsed?language=objc)
     pub const NSXMLEntityUnparsedKind: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/parameter?language=objc)
     pub const NSXMLEntityParameterKind: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/predefined?language=objc)
     pub const NSXMLEntityPredefined: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/cdataattribute?language=objc)
     pub const NSXMLAttributeCDATAKind: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/idattribute?language=objc)
     pub const NSXMLAttributeIDKind: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/idrefattribute?language=objc)
     pub const NSXMLAttributeIDRefKind: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/idrefsattribute?language=objc)
     pub const NSXMLAttributeIDRefsKind: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/entityattribute?language=objc)
     pub const NSXMLAttributeEntityKind: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/entitiesattribute?language=objc)
     pub const NSXMLAttributeEntitiesKind: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/nmtokenattribute?language=objc)
     pub const NSXMLAttributeNMTokenKind: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/nmtokensattribute?language=objc)
     pub const NSXMLAttributeNMTokensKind: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/enumerationattribute?language=objc)
     pub const NSXMLAttributeEnumerationKind: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/notationattribute?language=objc)
     pub const NSXMLAttributeNotationKind: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/undefineddeclaration?language=objc)
     pub const NSXMLElementDeclarationUndefinedKind: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/emptydeclaration?language=objc)
     pub const NSXMLElementDeclarationEmptyKind: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/anydeclaration?language=objc)
     pub const NSXMLElementDeclarationAnyKind: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/mixeddeclaration?language=objc)
     pub const NSXMLElementDeclarationMixedKind: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/elementdeclaration?language=objc)
     pub const NSXMLElementDeclarationElementKind: Self = Self(20);
 }
 

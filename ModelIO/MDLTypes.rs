@@ -43,18 +43,25 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLIndexBitDepth(pub NSUInteger);
 impl MDLIndexBitDepth {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/invalid?language=objc)
     #[doc(alias = "MDLIndexBitDepthInvalid")]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint8-swift.enum.case?language=objc)
     #[doc(alias = "MDLIndexBitDepthUInt8")]
     pub const UInt8: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint8-swift.type.property?language=objc)
     #[doc(alias = "MDLIndexBitDepthUint8")]
     pub const Uint8: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint16-swift.enum.case?language=objc)
     #[doc(alias = "MDLIndexBitDepthUInt16")]
     pub const UInt16: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint16-swift.type.property?language=objc)
     #[doc(alias = "MDLIndexBitDepthUint16")]
     pub const Uint16: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint32-swift.enum.case?language=objc)
     #[doc(alias = "MDLIndexBitDepthUInt32")]
     pub const UInt32: Self = Self(32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint32-swift.type.property?language=objc)
     #[doc(alias = "MDLIndexBitDepthUint32")]
     pub const Uint32: Self = Self(32);
 }
@@ -73,16 +80,22 @@ unsafe impl RefEncode for MDLIndexBitDepth {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLGeometryType(pub NSInteger);
 impl MDLGeometryType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/points?language=objc)
     #[doc(alias = "MDLGeometryTypePoints")]
     pub const Points: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/lines?language=objc)
     #[doc(alias = "MDLGeometryTypeLines")]
     pub const Lines: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/triangles?language=objc)
     #[doc(alias = "MDLGeometryTypeTriangles")]
     pub const Triangles: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/trianglestrips?language=objc)
     #[doc(alias = "MDLGeometryTypeTriangleStrips")]
     pub const TriangleStrips: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/quads?language=objc)
     #[doc(alias = "MDLGeometryTypeQuads")]
     pub const Quads: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/variabletopology?language=objc)
     #[doc(alias = "MDLGeometryTypeVariableTopology")]
     pub const VariableTopology: Self = Self(5);
 }
@@ -101,8 +114,10 @@ unsafe impl RefEncode for MDLGeometryType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLProbePlacement(pub NSInteger);
 impl MDLProbePlacement {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlprobeplacement/uniformgrid?language=objc)
     #[doc(alias = "MDLProbePlacementUniformGrid")]
     pub const UniformGrid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlprobeplacement/irradiancedistribution?language=objc)
     #[doc(alias = "MDLProbePlacementIrradianceDistribution")]
     pub const IrradianceDistribution: Self = Self(1);
 }
@@ -121,10 +136,13 @@ unsafe impl RefEncode for MDLProbePlacement {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLDataPrecision(pub NSUInteger);
 impl MDLDataPrecision {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdldataprecision/undefined?language=objc)
     #[doc(alias = "MDLDataPrecisionUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdldataprecision/float?language=objc)
     #[doc(alias = "MDLDataPrecisionFloat")]
     pub const Float: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdldataprecision/double?language=objc)
     #[doc(alias = "MDLDataPrecisionDouble")]
     pub const Double: Self = Self(2);
 }

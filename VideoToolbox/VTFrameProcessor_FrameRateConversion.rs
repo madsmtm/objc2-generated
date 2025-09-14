@@ -18,8 +18,10 @@ use crate::*;
 pub struct VTFrameRateConversionConfigurationQualityPrioritization(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTFrameRateConversionConfigurationQualityPrioritization {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration/qualityprioritization-swift.enum/normal?language=objc)
     #[doc(alias = "VTFrameRateConversionConfigurationQualityPrioritizationNormal")]
     pub const Normal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration/qualityprioritization-swift.enum/quality?language=objc)
     #[doc(alias = "VTFrameRateConversionConfigurationQualityPrioritizationQuality")]
     pub const Quality: Self = Self(2);
 }
@@ -47,6 +49,7 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationQualityPrioritizatio
 pub struct VTFrameRateConversionConfigurationRevision(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTFrameRateConversionConfigurationRevision {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration/revision-swift.enum/revision1?language=objc)
     #[doc(alias = "VTFrameRateConversionConfigurationRevision1")]
     pub const Revision1: Self = Self(1);
 }
@@ -86,14 +89,20 @@ pub struct VTFrameRateConversionParametersSubmissionMode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTFrameRateConversionParametersSubmissionMode {
     /// You are submitting frames in non-sequential order.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameters/submissionmode-swift.enum/random?language=objc)
     #[doc(alias = "VTFrameRateConversionParametersSubmissionModeRandom")]
     pub const Random: Self = Self(1);
     /// You are submitting frames sequentially following presentation time order.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameters/submissionmode-swift.enum/sequential?language=objc)
     #[doc(alias = "VTFrameRateConversionParametersSubmissionModeSequential")]
     pub const Sequential: Self = Self(2);
     /// You are submitting frames sequentially.
     ///
     /// This processing request uses the same source and next reference frames as the previous submission.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameters/submissionmode-swift.enum/sequentialreferencesunchanged?language=objc)
     #[doc(alias = "VTFrameRateConversionParametersSubmissionModeSequentialReferencesUnchanged")]
     pub const SequentialReferencesUnchanged: Self = Self(3);
 }

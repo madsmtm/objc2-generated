@@ -12,6 +12,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INStartCallCallRecordToCallBackUnsupportedReason(pub NSInteger);
 impl INStartCallCallRecordToCallBackUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallrecordtocallbackunsupportedreason/nomatchingcall?language=objc)
     #[doc(alias = "INStartCallCallRecordToCallBackUnsupportedReasonNoMatchingCall")]
     pub const NoMatchingCall: Self = Self(1);
 }

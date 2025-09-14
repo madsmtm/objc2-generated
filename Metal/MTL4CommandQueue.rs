@@ -18,24 +18,38 @@ use crate::*;
 pub struct MTL4CommandQueueError(pub NSInteger);
 impl MTL4CommandQueueError {
     /// Indicates the absence of any problems.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/none?language=objc)
     #[doc(alias = "MTL4CommandQueueErrorNone")]
     pub const None: Self = Self(0);
     /// Indicates the workload takes longer to execute than the system allows.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/timeout?language=objc)
     #[doc(alias = "MTL4CommandQueueErrorTimeout")]
     pub const Timeout: Self = Self(1);
     /// Indicates a process doesn’t have access to a GPU device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/notpermitted?language=objc)
     #[doc(alias = "MTL4CommandQueueErrorNotPermitted")]
     pub const NotPermitted: Self = Self(2);
     /// Indicates the GPU doesn’t have sufficient memory to execute a command buffer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/outofmemory?language=objc)
     #[doc(alias = "MTL4CommandQueueErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(3);
     /// Indicates the physical removal of the GPU before the command buffer completed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/deviceremoved?language=objc)
     #[doc(alias = "MTL4CommandQueueErrorDeviceRemoved")]
     pub const DeviceRemoved: Self = Self(4);
     /// Indicates that the system revokes GPU access because it’s responsible for too many timeouts or hangs.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/accessrevoked?language=objc)
     #[doc(alias = "MTL4CommandQueueErrorAccessRevoked")]
     pub const AccessRevoked: Self = Self(5);
     /// Indicates an internal problem in the Metal framework.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/internal?language=objc)
     #[doc(alias = "MTL4CommandQueueErrorInternal")]
     pub const Internal: Self = Self(6);
 }

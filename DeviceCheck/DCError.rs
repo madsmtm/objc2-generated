@@ -22,13 +22,19 @@ extern "C" {
 pub struct DCError(pub NSInteger);
 impl DCError {
     /// A failure has occurred, such as the failure to generate a token.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcerror-swift.struct/code/unknownsystemfailure?language=objc)
     #[doc(alias = "DCErrorUnknownSystemFailure")]
     pub const UnknownSystemFailure: Self = Self(0);
     /// DeviceCheck is unavailable on this device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcerror-swift.struct/code/featureunsupported?language=objc)
     #[doc(alias = "DCErrorFeatureUnsupported")]
     pub const FeatureUnsupported: Self = Self(1);
     /// An error code that indicates when your app provides data that isn’t
     /// formatted correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcerror-swift.struct/code/invalidinput?language=objc)
     #[doc(alias = "DCErrorInvalidInput")]
     pub const InvalidInput: Self = Self(2);
     /// An error caused by a failed attempt to use the App Attest key.
@@ -43,6 +49,8 @@ impl DCError {
     /// ``DeviceCheck/DCAppAttestService/generateAssertion:clientDataHash:completionHandler:``
     /// with an unattested key.
     /// - The App Attest service rejects the key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcerror-swift.struct/code/invalidkey?language=objc)
     #[doc(alias = "DCErrorInvalidKey")]
     pub const InvalidKey: Self = Self(3);
     /// An error that indicates a failed attempt to contact the App Attest service
@@ -54,6 +62,8 @@ impl DCError {
     /// this error, try the attestation again later using the same key and the same
     /// value for the `clientDataHash` parameter. Retrying with the same inputs
     /// helps to preserve the risk metric for a given device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcerror-swift.struct/code/serverunavailable?language=objc)
     #[doc(alias = "DCErrorServerUnavailable")]
     pub const ServerUnavailable: Self = Self(4);
 }

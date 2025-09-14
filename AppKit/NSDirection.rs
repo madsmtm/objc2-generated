@@ -14,12 +14,18 @@ pub struct NSHorizontalDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSHorizontalDirections: NSUInteger {
 /// The left direction.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nshorizontaldirections/nshorizontaldirectionsleft?language=objc)
         #[doc(alias = "NSHorizontalDirectionsLeft")]
         const Left = 1<<0;
 /// The right direction.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nshorizontaldirections/nshorizontaldirectionsright?language=objc)
         #[doc(alias = "NSHorizontalDirectionsRight")]
         const Right = 1<<1;
 /// All horizontal directions (left and right).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nshorizontaldirections/nshorizontaldirectionsall?language=objc)
         #[doc(alias = "NSHorizontalDirectionsAll")]
         const All = NSHorizontalDirections::Left.0|NSHorizontalDirections::Right.0;
     }
@@ -43,12 +49,18 @@ pub struct NSVerticalDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSVerticalDirections: NSUInteger {
 /// The upwards direction.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticaldirections/nsverticaldirectionsup?language=objc)
         #[doc(alias = "NSVerticalDirectionsUp")]
         const Up = 1<<0;
 /// The downward direction.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticaldirections/nsverticaldirectionsdown?language=objc)
         #[doc(alias = "NSVerticalDirectionsDown")]
         const Down = 1<<1;
 /// All vertical directions (up and down).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticaldirections/nsverticaldirectionsall?language=objc)
         #[doc(alias = "NSVerticalDirectionsAll")]
         const All = NSVerticalDirections::Up.0|NSVerticalDirections::Down.0;
     }

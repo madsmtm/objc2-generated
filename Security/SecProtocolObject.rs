@@ -9,6 +9,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sec_retain(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `obj` must be a valid pointer.
@@ -16,6 +18,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sec_release(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `obj` must be a valid pointer.

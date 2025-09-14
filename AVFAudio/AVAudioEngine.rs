@@ -35,10 +35,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioEngineManualRenderingError(pub OSStatus);
 impl AVAudioEngineManualRenderingError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingerror/invalidmode?language=objc)
     #[doc(alias = "AVAudioEngineManualRenderingErrorInvalidMode")]
     pub const InvalidMode: Self = Self(-80800);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingerror/initialized?language=objc)
     #[doc(alias = "AVAudioEngineManualRenderingErrorInitialized")]
     pub const Initialized: Self = Self(-80801);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingerror/notrunning?language=objc)
     #[doc(alias = "AVAudioEngineManualRenderingErrorNotRunning")]
     pub const NotRunning: Self = Self(-80802);
 }
@@ -79,12 +82,16 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioEngineManualRenderingStatus(pub NSInteger);
 impl AVAudioEngineManualRenderingStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus/error?language=objc)
     #[doc(alias = "AVAudioEngineManualRenderingStatusError")]
     pub const Error: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus/success?language=objc)
     #[doc(alias = "AVAudioEngineManualRenderingStatusSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus/insufficientdatafrominputnode?language=objc)
     #[doc(alias = "AVAudioEngineManualRenderingStatusInsufficientDataFromInputNode")]
     pub const InsufficientDataFromInputNode: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus/cannotdoincurrentcontext?language=objc)
     #[doc(alias = "AVAudioEngineManualRenderingStatusCannotDoInCurrentContext")]
     pub const CannotDoInCurrentContext: Self = Self(2);
 }
@@ -116,8 +123,10 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioEngineManualRenderingMode(pub NSInteger);
 impl AVAudioEngineManualRenderingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingmode/offline?language=objc)
     #[doc(alias = "AVAudioEngineManualRenderingModeOffline")]
     pub const Offline: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingmode/realtime?language=objc)
     #[doc(alias = "AVAudioEngineManualRenderingModeRealtime")]
     pub const Realtime: Self = Self(1);
 }

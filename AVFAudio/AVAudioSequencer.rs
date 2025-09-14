@@ -29,8 +29,10 @@ use crate::*;
 pub struct AVMusicSequenceLoadOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVMusicSequenceLoadOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicsequenceloadoptions/avmusicsequenceloadsmf_preservetracks?language=objc)
         #[doc(alias = "AVMusicSequenceLoadSMF_PreserveTracks")]
         const SMF_PreserveTracks = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicsequenceloadoptions/smf_channelstotracks?language=objc)
         #[doc(alias = "AVMusicSequenceLoadSMF_ChannelsToTracks")]
         const SMF_ChannelsToTracks = 1<<0;
     }
@@ -472,6 +474,7 @@ impl AVAudioSequencer {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVMusicTrackLoopCount(pub NSInteger);
 impl AVMusicTrackLoopCount {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusictrackloopcount/forever?language=objc)
     #[doc(alias = "AVMusicTrackLoopCountForever")]
     pub const Forever: Self = Self(-1);
 }

@@ -24,6 +24,8 @@ unsafe impl RefEncode for CGPDFScanner {
 pub type CGPDFScannerRef = *mut CGPDFScanner;
 
 impl CGPDFScanner {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannercreate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cs` must be a valid pointer.
@@ -47,6 +49,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerCreate(cs, table, info) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerretain(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `scanner` must be a valid pointer or null.
@@ -59,6 +63,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerRetain(scanner) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerrelease(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `scanner` must be a valid pointer or null.
@@ -71,6 +77,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerRelease(scanner) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerscan(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `scanner` must be a valid pointer or null.
@@ -83,6 +91,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerScan(scanner) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannergetcontentstream(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `scanner` must be a valid pointer.
@@ -96,6 +106,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerGetContentStream(scanner) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopobject(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `scanner` must be a valid pointer.
@@ -110,6 +122,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopObject(scanner, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopboolean(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `scanner` must be a valid pointer.
@@ -124,6 +138,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopBoolean(scanner, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopinteger(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `scanner` must be a valid pointer.
@@ -138,6 +154,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopInteger(scanner, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopnumber(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `scanner` must be a valid pointer.
@@ -152,6 +170,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopNumber(scanner, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopname(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `scanner` must be a valid pointer.
@@ -165,6 +185,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopName(scanner, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopstring(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `scanner` must be a valid pointer.
@@ -179,6 +201,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopString(scanner, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpoparray(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `scanner` must be a valid pointer.
@@ -193,6 +217,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopArray(scanner, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopdictionary(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `scanner` must be a valid pointer.
@@ -210,6 +236,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopDictionary(scanner, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopstream(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `scanner` must be a valid pointer.
@@ -224,6 +252,8 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopStream(scanner, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerstop(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `s` must be a valid pointer.

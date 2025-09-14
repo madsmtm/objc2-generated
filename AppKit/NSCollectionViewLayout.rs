@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionElementCategory(pub NSInteger);
 impl NSCollectionElementCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementcategory/item?language=objc)
     #[doc(alias = "NSCollectionElementCategoryItem")]
     pub const Item: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementcategory/supplementaryview?language=objc)
     #[doc(alias = "NSCollectionElementCategorySupplementaryView")]
     pub const SupplementaryView: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementcategory/decorationview?language=objc)
     #[doc(alias = "NSCollectionElementCategoryDecorationView")]
     pub const DecorationView: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementcategory/interitemgap?language=objc)
     #[doc(alias = "NSCollectionElementCategoryInterItemGap")]
     pub const InterItemGap: Self = Self(3);
 }
@@ -181,14 +185,19 @@ impl NSCollectionViewLayoutAttributes {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionUpdateAction(pub NSInteger);
 impl NSCollectionUpdateAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction/insert?language=objc)
     #[doc(alias = "NSCollectionUpdateActionInsert")]
     pub const Insert: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction/delete?language=objc)
     #[doc(alias = "NSCollectionUpdateActionDelete")]
     pub const Delete: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction/reload?language=objc)
     #[doc(alias = "NSCollectionUpdateActionReload")]
     pub const Reload: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction/move?language=objc)
     #[doc(alias = "NSCollectionUpdateActionMove")]
     pub const Move: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction/none?language=objc)
     #[doc(alias = "NSCollectionUpdateActionNone")]
     pub const None: Self = Self(4);
 }

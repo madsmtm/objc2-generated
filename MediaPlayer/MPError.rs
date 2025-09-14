@@ -17,20 +17,28 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPErrorCode(pub NSInteger);
 impl MPErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/unknown?language=objc)
     #[doc(alias = "MPErrorUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/permissiondenied?language=objc)
     #[doc(alias = "MPErrorPermissionDenied")]
     pub const PermissionDenied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/cloudservicecapabilitymissing?language=objc)
     #[doc(alias = "MPErrorCloudServiceCapabilityMissing")]
     pub const CloudServiceCapabilityMissing: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/networkconnectionfailed?language=objc)
     #[doc(alias = "MPErrorNetworkConnectionFailed")]
     pub const NetworkConnectionFailed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/notfound?language=objc)
     #[doc(alias = "MPErrorNotFound")]
     pub const NotFound: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/notsupported?language=objc)
     #[doc(alias = "MPErrorNotSupported")]
     pub const NotSupported: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/cancelled?language=objc)
     #[doc(alias = "MPErrorCancelled")]
     pub const Cancelled: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/requesttimedout?language=objc)
     #[doc(alias = "MPErrorRequestTimedOut")]
     pub const RequestTimedOut: Self = Self(7);
 }

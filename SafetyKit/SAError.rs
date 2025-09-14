@@ -17,12 +17,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SAErrorCode(pub NSInteger);
 impl SAErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerror/code/notauthorized?language=objc)
     #[doc(alias = "SAErrorNotAuthorized")]
     pub const NotAuthorized: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerror/code/notallowed?language=objc)
     #[doc(alias = "SAErrorNotAllowed")]
     pub const NotAllowed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerror/code/invalidargument?language=objc)
     #[doc(alias = "SAErrorInvalidArgument")]
     pub const InvalidArgument: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerror/code/operationfailed?language=objc)
     #[doc(alias = "SAErrorOperationFailed")]
     pub const OperationFailed: Self = Self(4);
 }

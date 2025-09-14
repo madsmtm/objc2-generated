@@ -209,6 +209,8 @@ impl MPSImage {
     /// Parameter `amount`: The value to add to the read count for each unique image in the batch
     ///
     /// Returns: The number of different images in the batch
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebatchincrementreadcount(_:_:)?language=objc)
     #[doc(alias = "MPSImageBatchIncrementReadCount")]
     #[inline]
     pub unsafe fn batch_increment_read_count(
@@ -225,6 +227,8 @@ impl MPSImage {
     }
 
     /// Call [MTLBlitEncoder synchronizeResource:] on unique resources
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebatchsynchronize(_:_:)?language=objc)
     #[doc(alias = "MPSImageBatchSynchronize")]
     #[inline]
     pub unsafe fn batch_synchronize(
@@ -241,6 +245,8 @@ impl MPSImage {
     }
 
     /// Call [MTLBlitEncoder resourceSize] on unique resources and return sum
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebatchresourcesize(_:)?language=objc)
     #[doc(alias = "MPSImageBatchResourceSize")]
     #[inline]
     pub unsafe fn batch_resource_size(batch: &MPSImageBatch) -> NSUInteger {
@@ -264,6 +270,8 @@ impl MPSImage {
     /// Behavior is undefined if MPSImageBatchIterate is called recursively on the same images.
     ///
     /// Returns: The value returned by the iterator block for the last image on which it ran
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebatchiterate(_:_:)?language=objc)
     #[doc(alias = "MPSImageBatchIterate")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -419,14 +427,19 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSPurgeableState(pub NSUInteger);
 impl MPSPurgeableState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate/allocationdeferred?language=objc)
     #[doc(alias = "MPSPurgeableStateAllocationDeferred")]
     pub const AllocationDeferred: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate/keepcurrent?language=objc)
     #[doc(alias = "MPSPurgeableStateKeepCurrent")]
     pub const KeepCurrent: Self = Self(MTLPurgeableState::KeepCurrent.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate/nonvolatile?language=objc)
     #[doc(alias = "MPSPurgeableStateNonVolatile")]
     pub const NonVolatile: Self = Self(MTLPurgeableState::NonVolatile.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate/volatile?language=objc)
     #[doc(alias = "MPSPurgeableStateVolatile")]
     pub const Volatile: Self = Self(MTLPurgeableState::Volatile.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate/empty?language=objc)
     #[doc(alias = "MPSPurgeableStateEmpty")]
     pub const Empty: Self = Self(MTLPurgeableState::Empty.0);
 }
@@ -445,8 +458,10 @@ unsafe impl RefEncode for MPSPurgeableState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSDataLayout(pub NSUInteger);
 impl MPSDataLayout {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatalayout/heightxwidthxfeaturechannels?language=objc)
     #[doc(alias = "MPSDataLayoutHeightxWidthxFeatureChannels")]
     pub const HeightxWidthxFeatureChannels: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatalayout/featurechannelsxheightxwidth?language=objc)
     #[doc(alias = "MPSDataLayoutFeatureChannelsxHeightxWidth")]
     pub const FeatureChannelsxHeightxWidth: Self = Self(1);
 }

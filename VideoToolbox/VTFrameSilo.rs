@@ -40,6 +40,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for VTFrameSilo {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilogettypeid()?language=objc)
     #[doc(alias = "VTFrameSiloGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -70,6 +71,8 @@ impl VTFrameSilo {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `frame_silo_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilocreate(allocator:fileurl:timerange:options:framesiloout:)?language=objc)
     #[doc(alias = "VTFrameSiloCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -101,6 +104,8 @@ impl VTFrameSilo {
     /// Note that CMTimeRanges are considered to contain their start times but not their end times.
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeStampErr if an attempt is made to add a sample buffer with an inappropriate decode timestamp.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesiloaddsamplebuffer(_:samplebuffer:)?language=objc)
     #[doc(alias = "VTFrameSiloAddSampleBuffer")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -124,6 +129,8 @@ impl VTFrameSilo {
     /// # Safety
     ///
     /// `time_range_array` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilosettimerangesfornextpass(_:timerangecount:timerangearray:)?language=objc)
     #[doc(alias = "VTFrameSiloSetTimeRangesForNextPass")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -151,6 +158,8 @@ impl VTFrameSilo {
     /// # Safety
     ///
     /// `progress_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilogetprogressofcurrentpass(_:progressout:)?language=objc)
     #[doc(alias = "VTFrameSiloGetProgressOfCurrentPass")]
     #[inline]
     pub unsafe fn progress_of_current_pass(&self, progress_out: NonNull<f32>) -> OSStatus {
@@ -182,6 +191,8 @@ impl VTFrameSilo {
     ///
     /// - `refcon` must be a valid pointer or null.
     /// - `callback` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilocallfunctionforeachsamplebuffer(_:in:refcon:callback:)?language=objc)
     #[doc(alias = "VTFrameSiloCallFunctionForEachSampleBuffer")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -219,6 +230,8 @@ impl VTFrameSilo {
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
     /// Returns any nonzero status returned by the handler block.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilocallblockforeachsamplebuffer(_:in:handler:)?language=objc)
     #[doc(alias = "VTFrameSiloCallBlockForEachSampleBuffer")]
     #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
     #[inline]

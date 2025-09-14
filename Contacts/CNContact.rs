@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContactType(pub NSInteger);
 impl CNContactType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontacttype/person?language=objc)
     #[doc(alias = "CNContactTypePerson")]
     pub const Person: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontacttype/organization?language=objc)
     #[doc(alias = "CNContactTypeOrganization")]
     pub const Organization: Self = Self(1);
 }
@@ -37,12 +39,16 @@ unsafe impl RefEncode for CNContactType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContactSortOrder(pub NSInteger);
 impl CNContactSortOrder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder/none?language=objc)
     #[doc(alias = "CNContactSortOrderNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder/userdefault?language=objc)
     #[doc(alias = "CNContactSortOrderUserDefault")]
     pub const UserDefault: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder/givenname?language=objc)
     #[doc(alias = "CNContactSortOrderGivenName")]
     pub const GivenName: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder/familyname?language=objc)
     #[doc(alias = "CNContactSortOrderFamilyName")]
     pub const FamilyName: Self = Self(3);
 }

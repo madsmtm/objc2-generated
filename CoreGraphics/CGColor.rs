@@ -27,6 +27,8 @@ cf_objc2_type!(
 );
 
 impl CGColor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(colorspace:components:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `components` must be a valid pointer or null.
@@ -47,6 +49,7 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(gray:alpha:)?language=objc)
     #[doc(alias = "CGColorCreateGenericGray")]
     #[inline]
     pub fn new_generic_gray(gray: CGFloat, alpha: CGFloat) -> CFRetained<CGColor> {
@@ -59,6 +62,7 @@ impl CGColor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(red:green:blue:alpha:)?language=objc)
     #[doc(alias = "CGColorCreateGenericRGB")]
     #[inline]
     pub fn new_generic_rgb(
@@ -81,6 +85,7 @@ impl CGColor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(genericcmykcyan:magenta:yellow:black:alpha:)?language=objc)
     #[doc(alias = "CGColorCreateGenericCMYK")]
     #[inline]
     pub fn new_generic_cmyk(
@@ -105,6 +110,7 @@ impl CGColor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(genericgraygamma2_2gray:alpha:)?language=objc)
     #[doc(alias = "CGColorCreateGenericGrayGamma2_2")]
     #[inline]
     pub fn new_generic_gray_gamma2_2(gray: CGFloat, alpha: CGFloat) -> CFRetained<CGColor> {
@@ -120,6 +126,7 @@ impl CGColor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(srgbred:green:blue:alpha:)?language=objc)
     #[doc(alias = "CGColorCreateSRGB")]
     #[inline]
     pub fn new_srgb(
@@ -142,6 +149,7 @@ impl CGColor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(headroom:colorspace:red:green:blue:alpha:)?language=objc)
     #[doc(alias = "CGColorCreateWithContentHeadroom")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -168,6 +176,7 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/contentheadroom?language=objc)
     #[doc(alias = "CGColorGetContentHeadroom")]
     #[inline]
     pub fn content_headroom(color: Option<&CGColor>) -> c_float {
@@ -177,6 +186,7 @@ impl CGColor {
         unsafe { CGColorGetContentHeadroom(color) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorgetconstantcolor?language=objc)
     #[doc(alias = "CGColorGetConstantColor")]
     #[inline]
     pub fn constant_color(color_name: Option<&CFString>) -> Option<CFRetained<CGColor>> {
@@ -187,6 +197,8 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(patternspace:pattern:components:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `components` must be a valid pointer or null.
@@ -209,6 +221,7 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/copy()?language=objc)
     #[doc(alias = "CGColorCreateCopy")]
     #[inline]
     pub fn new_copy(color: Option<&CGColor>) -> Option<CFRetained<CGColor>> {
@@ -219,6 +232,7 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/copy(alpha:)?language=objc)
     #[doc(alias = "CGColorCreateCopyWithAlpha")]
     #[inline]
     pub fn new_copy_with_alpha(
@@ -235,6 +249,8 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/converted(to:intent:options:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -261,6 +277,7 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorequaltocolor?language=objc)
     #[doc(alias = "CGColorEqualToColor")]
     #[inline]
     pub fn equal_to_color(color1: Option<&CGColor>, color2: Option<&CGColor>) -> bool {
@@ -270,6 +287,7 @@ impl CGColor {
         unsafe { CGColorEqualToColor(color1, color2) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/numberofcomponents?language=objc)
     #[doc(alias = "CGColorGetNumberOfComponents")]
     #[inline]
     pub fn number_of_components(color: Option<&CGColor>) -> usize {
@@ -279,6 +297,7 @@ impl CGColor {
         unsafe { CGColorGetNumberOfComponents(color) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorgetcomponents?language=objc)
     #[doc(alias = "CGColorGetComponents")]
     #[inline]
     pub fn components(color: Option<&CGColor>) -> *const CGFloat {
@@ -288,6 +307,7 @@ impl CGColor {
         unsafe { CGColorGetComponents(color) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/alpha?language=objc)
     #[doc(alias = "CGColorGetAlpha")]
     #[inline]
     pub fn alpha(color: Option<&CGColor>) -> CGFloat {
@@ -297,6 +317,7 @@ impl CGColor {
         unsafe { CGColorGetAlpha(color) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/colorspace?language=objc)
     #[doc(alias = "CGColorGetColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -308,6 +329,7 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/pattern?language=objc)
     #[doc(alias = "CGColorGetPattern")]
     #[cfg(feature = "CGPattern")]
     #[inline]
@@ -321,6 +343,7 @@ impl CGColor {
 }
 
 unsafe impl ConcreteType for CGColor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/typeid?language=objc)
     #[doc(alias = "CGColorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {

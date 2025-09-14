@@ -290,11 +290,15 @@ pub struct BGContinuedProcessingTaskRequestSubmissionStrategy(pub NSInteger);
 impl BGContinuedProcessingTaskRequestSubmissionStrategy {
     /// Fail the submission if there is no room for the task request, or if the system is under substantial load and is
     /// unable immediately run the task.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/submissionstrategy/fail?language=objc)
     #[doc(alias = "BGContinuedProcessingTaskRequestSubmissionStrategyFail")]
     pub const Fail: Self = Self(0);
     /// Add the request to the back of a queue if there is no room for the submitted task or if the system is under
     /// substantial load and is unable to immediately run the task. Queued ``BGContinuedProcessingTaskRequest``s will be
     /// cancelled when the user removes your app from the app switcher.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/submissionstrategy/queue?language=objc)
     #[doc(alias = "BGContinuedProcessingTaskRequestSubmissionStrategyQueue")]
     pub const Queue: Self = Self(1);
 }
@@ -318,6 +322,8 @@ bitflags::bitflags! {
 ///
 /// Unless informed otherwise, the scheduler assumes the default resources, allowing background CPU and network
 /// access.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequestresources/bgcontinuedprocessingtaskrequestresourcesdefault?language=objc)
         #[doc(alias = "BGContinuedProcessingTaskRequestResourcesDefault")]
         const Default = 0;
 /// Indicate to the scheduler that the workload will require background GPU utilization.
@@ -327,6 +333,8 @@ bitflags::bitflags! {
 /// backgrounded workloads are not guaranteed runtime.
 ///
 /// - Important: Applications must have the `com.apple.developer.background-tasks.continued-processing.gpu`  entitlement to submit a task request with this resource.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/resources/gpu?language=objc)
         #[doc(alias = "BGContinuedProcessingTaskRequestResourcesGPU")]
         const GPU = 1<<0;
     }

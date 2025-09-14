@@ -16,18 +16,25 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCErrorCode(pub NSInteger);
 impl MCErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/unknown?language=objc)
     #[doc(alias = "MCErrorUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/notconnected?language=objc)
     #[doc(alias = "MCErrorNotConnected")]
     pub const NotConnected: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/invalidparameter?language=objc)
     #[doc(alias = "MCErrorInvalidParameter")]
     pub const InvalidParameter: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/unsupported?language=objc)
     #[doc(alias = "MCErrorUnsupported")]
     pub const Unsupported: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/timedout?language=objc)
     #[doc(alias = "MCErrorTimedOut")]
     pub const TimedOut: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/cancelled?language=objc)
     #[doc(alias = "MCErrorCancelled")]
     pub const Cancelled: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/unavailable?language=objc)
     #[doc(alias = "MCErrorUnavailable")]
     pub const Unavailable: Self = Self(6);
 }

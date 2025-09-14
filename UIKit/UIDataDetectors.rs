@@ -11,26 +11,37 @@ use crate::*;
 pub struct UIDataDetectorTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl UIDataDetectorTypes: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/phonenumber?language=objc)
         #[doc(alias = "UIDataDetectorTypePhoneNumber")]
         const PhoneNumber = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/link?language=objc)
         #[doc(alias = "UIDataDetectorTypeLink")]
         const Link = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/address?language=objc)
         #[doc(alias = "UIDataDetectorTypeAddress")]
         const Address = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/calendarevent?language=objc)
         #[doc(alias = "UIDataDetectorTypeCalendarEvent")]
         const CalendarEvent = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/shipmenttrackingnumber?language=objc)
         #[doc(alias = "UIDataDetectorTypeShipmentTrackingNumber")]
         const ShipmentTrackingNumber = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/flightnumber?language=objc)
         #[doc(alias = "UIDataDetectorTypeFlightNumber")]
         const FlightNumber = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/lookupsuggestion?language=objc)
         #[doc(alias = "UIDataDetectorTypeLookupSuggestion")]
         const LookupSuggestion = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/money?language=objc)
         #[doc(alias = "UIDataDetectorTypeMoney")]
         const Money = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/physicalvalue?language=objc)
         #[doc(alias = "UIDataDetectorTypePhysicalValue")]
         const PhysicalValue = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/uidatadetectortypenone?language=objc)
         #[doc(alias = "UIDataDetectorTypeNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/all?language=objc)
         #[doc(alias = "UIDataDetectorTypeAll")]
         const All = NSUIntegerMax as _;
     }

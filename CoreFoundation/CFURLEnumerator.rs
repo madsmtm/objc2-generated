@@ -26,6 +26,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFURLEnumerator {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgettypeid()?language=objc)
     #[doc(alias = "CFURLEnumeratorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -43,20 +44,28 @@ unsafe impl ConcreteType for CFURLEnumerator {
 pub struct CFURLEnumeratorOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFURLEnumeratorOptions: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/kcfurlenumeratordefaultbehavior?language=objc)
         #[doc(alias = "kCFURLEnumeratorDefaultBehavior")]
         const DefaultBehavior = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/descendrecursively?language=objc)
         #[doc(alias = "kCFURLEnumeratorDescendRecursively")]
         const DescendRecursively = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/skipinvisibles?language=objc)
         #[doc(alias = "kCFURLEnumeratorSkipInvisibles")]
         const SkipInvisibles = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/generatefilereferenceurls?language=objc)
         #[doc(alias = "kCFURLEnumeratorGenerateFileReferenceURLs")]
         const GenerateFileReferenceURLs = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/skippackagecontents?language=objc)
         #[doc(alias = "kCFURLEnumeratorSkipPackageContents")]
         const SkipPackageContents = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/includedirectoriespreorder?language=objc)
         #[doc(alias = "kCFURLEnumeratorIncludeDirectoriesPreOrder")]
         const IncludeDirectoriesPreOrder = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/includedirectoriespostorder?language=objc)
         #[doc(alias = "kCFURLEnumeratorIncludeDirectoriesPostOrder")]
         const IncludeDirectoriesPostOrder = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/generaterelativepathurls?language=objc)
         #[doc(alias = "kCFURLEnumeratorGenerateRelativePathURLs")]
         const GenerateRelativePathURLs = 1<<6;
     }
@@ -73,6 +82,8 @@ unsafe impl RefEncode for CFURLEnumeratorOptions {
 }
 
 impl CFURLEnumerator {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorcreatefordirectoryurl(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -102,6 +113,8 @@ impl CFURLEnumerator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorcreateformountedvolumes(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -133,12 +146,16 @@ impl CFURLEnumerator {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLEnumeratorResult(pub CFIndex);
 impl CFURLEnumeratorResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/success?language=objc)
     #[doc(alias = "kCFURLEnumeratorSuccess")]
     pub const Success: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/end?language=objc)
     #[doc(alias = "kCFURLEnumeratorEnd")]
     pub const End: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/error?language=objc)
     #[doc(alias = "kCFURLEnumeratorError")]
     pub const Error: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/directorypostordersuccess?language=objc)
     #[doc(alias = "kCFURLEnumeratorDirectoryPostOrderSuccess")]
     pub const DirectoryPostOrderSuccess: Self = Self(4);
 }
@@ -154,6 +171,8 @@ unsafe impl RefEncode for CFURLEnumeratorResult {
 }
 
 impl CFURLEnumerator {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgetnexturl(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `url` must be a valid pointer.
@@ -176,6 +195,7 @@ impl CFURLEnumerator {
         unsafe { CFURLEnumeratorGetNextURL(self, url, error) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorskipdescendents(_:)?language=objc)
     #[doc(alias = "CFURLEnumeratorSkipDescendents")]
     #[inline]
     pub fn skip_descendents(&self) {
@@ -185,6 +205,7 @@ impl CFURLEnumerator {
         unsafe { CFURLEnumeratorSkipDescendents(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgetdescendentlevel(_:)?language=objc)
     #[doc(alias = "CFURLEnumeratorGetDescendentLevel")]
     #[inline]
     pub fn descendent_level(&self) -> CFIndex {
@@ -194,6 +215,7 @@ impl CFURLEnumerator {
         unsafe { CFURLEnumeratorGetDescendentLevel(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgetsourcedidchange(_:)?language=objc)
     #[doc(alias = "CFURLEnumeratorGetSourceDidChange")]
     #[deprecated = "Use File System Events API instead"]
     #[inline]

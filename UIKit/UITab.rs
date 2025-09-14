@@ -14,26 +14,40 @@ use crate::*;
 pub struct UITabPlacement(pub NSInteger);
 impl UITabPlacement {
     /// Resolves to `.default` for root-level tabs, and `.optional` for all others.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/automatic?language=objc)
     #[doc(alias = "UITabPlacementAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The tab can be added or removed from the tab bar, and appears by default.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/default?language=objc)
     #[doc(alias = "UITabPlacementDefault")]
     pub const Default: Self = Self(1);
     /// The tab can be added or removed from the tab bar, but does NOT appear by default.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/optional?language=objc)
     #[doc(alias = "UITabPlacementOptional")]
     pub const Optional: Self = Self(2);
     /// The tab cannot be removed from the tab bar, but can be moved within.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/movable?language=objc)
     #[doc(alias = "UITabPlacementMovable")]
     pub const Movable: Self = Self(3);
     /// The tab is always available and visible in the tab bar.
     /// Pinned items are placed at the trailing side of the bar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/pinned?language=objc)
     #[doc(alias = "UITabPlacementPinned")]
     pub const Pinned: Self = Self(4);
     /// The tab cannot be moved or removed from the tab bar, and is displayed before
     /// all customizable tabs.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/fixed?language=objc)
     #[doc(alias = "UITabPlacementFixed")]
     pub const Fixed: Self = Self(5);
     /// The tab cannot be added to the tab bar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/sidebaronly?language=objc)
     #[doc(alias = "UITabPlacementSidebarOnly")]
     pub const SidebarOnly: Self = Self(6);
 }

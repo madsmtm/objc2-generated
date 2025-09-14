@@ -15,22 +15,31 @@ use crate::*;
 pub struct LSLaunchFlags(pub OptionBits);
 bitflags::bitflags! {
     impl LSLaunchFlags: OptionBits {
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchdefaults?language=objc)
         #[doc(alias = "kLSLaunchDefaults")]
         const Defaults = 0x00000001;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchandprint?language=objc)
         #[doc(alias = "kLSLaunchAndPrint")]
         const AndPrint = 0x00000002;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchanddisplayerrors?language=objc)
         #[doc(alias = "kLSLaunchAndDisplayErrors")]
         const AndDisplayErrors = 0x00000040;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchdontaddtorecents?language=objc)
         #[doc(alias = "kLSLaunchDontAddToRecents")]
         const DontAddToRecents = 0x00000100;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchdontswitch?language=objc)
         #[doc(alias = "kLSLaunchDontSwitch")]
         const DontSwitch = 0x00000200;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchasync?language=objc)
         #[doc(alias = "kLSLaunchAsync")]
         const Async = 0x00010000;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchnewinstance?language=objc)
         #[doc(alias = "kLSLaunchNewInstance")]
         const NewInstance = 0x00080000;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchandhide?language=objc)
         #[doc(alias = "kLSLaunchAndHide")]
         const AndHide = 0x00100000;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchandhideothers?language=objc)
         #[doc(alias = "kLSLaunchAndHideOthers")]
         const AndHideOthers = 0x00200000;
     }
@@ -78,6 +87,8 @@ unsafe impl RefEncode for LSLaunchURLSpec {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442850-lsopencfurlref?language=objc)
+    ///
     /// # Safety
     ///
     /// `out_launched_url` must be a valid pointer or null.
@@ -85,6 +96,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441986-lsopenfromurlspec?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_launch_spec` must be a valid pointer.

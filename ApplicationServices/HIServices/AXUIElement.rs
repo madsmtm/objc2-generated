@@ -15,6 +15,8 @@ use crate::*;
 /// Returns whether the accessibility API is enabled.
 ///
 /// Returns: Returns TRUE if the accessibility API is currently enabled, otherwise FALSE.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462072-axapienabled?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn AXAPIEnabled() -> bool {
@@ -39,6 +41,8 @@ pub unsafe extern "C-unwind" fn AXAPIEnabled() -> bool {
 ///
 /// - `options` generic must be of the correct type.
 /// - `options` generic must be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459186-axisprocesstrustedwithoptions?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXIsProcessTrustedWithOptions(
     options: Option<&CFDictionary>,
@@ -59,6 +63,8 @@ extern "C" {
 ///
 ///
 /// Returns: Returns TRUE if the current process is a trusted accessibility client, FALSE if it is not.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460720-axisprocesstrusted?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXIsProcessTrusted() -> bool {
     extern "C-unwind" {
@@ -83,6 +89,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An AXError that indicates success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462083-axmakeprocesstrusted?language=objc)
     #[cfg(feature = "AXError")]
     #[deprecated]
     pub fn AXMakeProcessTrusted(executable_path: &CFString) -> AXError;
@@ -125,6 +133,7 @@ cf_objc2_type!(
 pub struct AXCopyMultipleAttributeOptions(pub u32);
 bitflags::bitflags! {
     impl AXCopyMultipleAttributeOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axcopymultipleattributeoptions/kaxcopymultipleattributeoptionstoponerror?language=objc)
         #[doc(alias = "kAXCopyMultipleAttributeOptionStopOnError")]
         const StopOnError = 0x1;
     }
@@ -145,6 +154,8 @@ unsafe impl ConcreteType for AXUIElement {
     ///
     ///
     /// Returns: Returns a CFTypeID representing the AXUIElementRef type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460085-axuielementgettypeid?language=objc)
     #[doc(alias = "AXUIElementGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -223,6 +234,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `names` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459475-axuielementcopyattributenames?language=objc)
     #[doc(alias = "AXUIElementCopyAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -305,6 +318,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462085-axuielementcopyattributevalue?language=objc)
     #[doc(alias = "AXUIElementCopyAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -384,6 +399,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `count` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459066-axuielementgetattributevaluecoun?language=objc)
     #[doc(alias = "AXUIElementGetAttributeValueCount")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -489,6 +506,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `values` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462060-axuielementcopyattributevalues?language=objc)
     #[doc(alias = "AXUIElementCopyAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -586,6 +605,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `settable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459972-axuielementisattributesettable?language=objc)
     #[doc(alias = "AXUIElementIsAttributeSettable")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -668,6 +689,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460434-axuielementsetattributevalue?language=objc)
     #[doc(alias = "AXUIElementSetAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -775,6 +798,8 @@ impl AXUIElement {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `values` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462051-axuielementcopymultipleattribute?language=objc)
     #[doc(alias = "AXUIElementCopyMultipleAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -866,6 +891,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `names` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458783-axuielementcopyparameterizedattr?language=objc)
     #[doc(alias = "AXUIElementCopyParameterizedAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -958,6 +985,8 @@ impl AXUIElement {
     ///
     /// - `parameter` should be of the correct type.
     /// - `result` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461203-axuielementcopyparameterizedattr?language=objc)
     #[doc(alias = "AXUIElementCopyParameterizedAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1043,6 +1072,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `names` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462053-axuielementcopyactionnames?language=objc)
     #[doc(alias = "AXUIElementCopyActionNames")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1117,6 +1148,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `description` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462075-axuielementcopyactiondescription?language=objc)
     #[doc(alias = "AXUIElementCopyActionDescription")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1204,6 +1237,8 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462091-axuielementperformaction?language=objc)
     #[doc(alias = "AXUIElementPerformAction")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1286,6 +1321,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `element` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462077-axuielementcopyelementatposition?language=objc)
     #[doc(alias = "AXUIElementCopyElementAtPosition")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1312,6 +1349,8 @@ impl AXUIElement {
     /// Parameter `pid`: The process ID of an application.
     ///
     /// Returns: The AXUIElementRef representing the top-level accessibility object for the application with the specified process ID.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459374-axuielementcreateapplication?language=objc)
     #[doc(alias = "AXUIElementCreateApplication")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -1331,6 +1370,8 @@ impl AXUIElement {
     ///
     ///
     /// Returns: The AXUIElementRef representing the system-wide accessibility object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462095-axuielementcreatesystemwide?language=objc)
     #[doc(alias = "AXUIElementCreateSystemWide")]
     #[inline]
     pub unsafe fn new_system_wide() -> CFRetained<AXUIElement> {
@@ -1378,6 +1419,8 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `pid` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460337-axuielementgetpid?language=objc)
     #[doc(alias = "AXUIElementGetPid")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
@@ -1438,6 +1481,8 @@ impl AXUIElement {
     /// The AXUIElementRef is invalid.
     /// </dd>
     /// </dl>
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459345-axuielementsetmessagingtimeout?language=objc)
     #[doc(alias = "AXUIElementSetMessagingTimeout")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1523,6 +1568,8 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462057-axuielementpostkeyboardevent?language=objc)
     #[doc(alias = "AXUIElementPostKeyboardEvent")]
     #[cfg(all(feature = "AXError", feature = "objc2-core-graphics"))]
     #[deprecated]
@@ -1578,6 +1625,8 @@ unsafe impl ConcreteType for AXTextMarker {
     ///
     ///
     /// Returns: Returns the CFTypeID of the AXTextMarkerRef type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882826-axtextmarkergettypeid?language=objc)
     #[doc(alias = "AXTextMarkerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1599,6 +1648,8 @@ impl AXTextMarker {
     /// # Safety
     ///
     /// `bytes` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882823-axtextmarkercreate?language=objc)
     #[doc(alias = "AXTextMarkerCreate")]
     #[inline]
     pub unsafe fn new(
@@ -1626,6 +1677,8 @@ impl AXTextMarker {
     ///
     ///
     /// Returns: The length of the data
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882825-axtextmarkergetlength?language=objc)
     #[doc(alias = "AXTextMarkerGetLength")]
     #[inline]
     pub unsafe fn length(&self) -> CFIndex {
@@ -1642,6 +1695,8 @@ impl AXTextMarker {
     ///
     ///
     /// Returns: a pointer to the byte data used to identify this location in text.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882824-axtextmarkergetbyteptr?language=objc)
     #[doc(alias = "AXTextMarkerGetBytePtr")]
     #[inline]
     pub unsafe fn byte_ptr(&self) -> NonNull<u8> {
@@ -1686,6 +1741,8 @@ unsafe impl ConcreteType for AXTextMarkerRange {
     ///
     ///
     /// Returns: Returns the CFTypeID of the AXTextMarkerRangeRef type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882831-axtextmarkerrangegettypeid?language=objc)
     #[doc(alias = "AXTextMarkerRangeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1706,6 +1763,8 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The text marker range object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882829-axtextmarkerrangecreate?language=objc)
     #[doc(alias = "AXTextMarkerRangeCreate")]
     #[inline]
     pub unsafe fn new(
@@ -1744,6 +1803,8 @@ impl AXTextMarkerRange {
     ///
     /// - `start_marker_bytes` must be a valid pointer.
     /// - `end_marker_bytes` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882830-axtextmarkerrangecreatewithbytes?language=objc)
     #[doc(alias = "AXTextMarkerRangeCreateWithBytes")]
     #[inline]
     pub unsafe fn with_bytes(
@@ -1783,6 +1844,8 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The start text marker object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882828-axtextmarkerrangecopystartmarker?language=objc)
     #[doc(alias = "AXTextMarkerRangeCopyStartMarker")]
     #[inline]
     pub unsafe fn start_marker(&self) -> CFRetained<AXTextMarker> {
@@ -1804,6 +1867,8 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The end text marker object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882827-axtextmarkerrangecopyendmarker?language=objc)
     #[doc(alias = "AXTextMarkerRangeCopyEndMarker")]
     #[inline]
     pub unsafe fn end_marker(&self) -> CFRetained<AXTextMarker> {
@@ -1891,6 +1956,8 @@ unsafe impl ConcreteType for AXObserver {
     ///
     ///
     /// Returns: Returns the CFTypeID of the AXObserverRef type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461244-axobservergettypeid?language=objc)
     #[doc(alias = "AXObserverGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1948,6 +2015,8 @@ impl AXObserver {
     ///
     /// - `callback` must be implemented correctly.
     /// - `out_observer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460133-axobservercreate?language=objc)
     #[doc(alias = "AXObserverCreate")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
@@ -2012,6 +2081,8 @@ impl AXObserver {
     ///
     /// - `callback` must be implemented correctly.
     /// - `out_observer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460610-axobservercreatewithinfocallback?language=objc)
     #[doc(alias = "AXObserverCreateWithInfoCallback")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
@@ -2107,6 +2178,8 @@ impl AXObserver {
     /// # Safety
     ///
     /// `refcon` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462089-axobserveraddnotification?language=objc)
     #[doc(alias = "AXObserverAddNotification")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -2198,6 +2271,8 @@ impl AXObserver {
     /// There is some sort of system memory failure.
     /// </dd>
     /// </dl>
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462066-axobserverremovenotification?language=objc)
     #[doc(alias = "AXObserverRemoveNotification")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -2250,6 +2325,8 @@ impl AXObserver {
     /// observer
     /// </code>
     /// .
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459139-axobservergetrunloopsource?language=objc)
     #[doc(alias = "AXObserverGetRunLoopSource")]
     #[inline]
     pub unsafe fn run_loop_source(&self) -> CFRetained<CFRunLoopSource> {

@@ -32,20 +32,28 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageAlphaInfo(pub u32);
 impl CGImageAlphaInfo {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/none?language=objc)
     #[doc(alias = "kCGImageAlphaNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/premultipliedlast?language=objc)
     #[doc(alias = "kCGImageAlphaPremultipliedLast")]
     pub const PremultipliedLast: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/premultipliedfirst?language=objc)
     #[doc(alias = "kCGImageAlphaPremultipliedFirst")]
     pub const PremultipliedFirst: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/last?language=objc)
     #[doc(alias = "kCGImageAlphaLast")]
     pub const Last: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/first?language=objc)
     #[doc(alias = "kCGImageAlphaFirst")]
     pub const First: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/noneskiplast?language=objc)
     #[doc(alias = "kCGImageAlphaNoneSkipLast")]
     pub const NoneSkipLast: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/noneskipfirst?language=objc)
     #[doc(alias = "kCGImageAlphaNoneSkipFirst")]
     pub const NoneSkipFirst: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/alphaonly?language=objc)
     #[doc(alias = "kCGImageAlphaOnly")]
     pub const Only: Self = Self(7);
 }
@@ -66,8 +74,10 @@ unsafe impl RefEncode for CGImageAlphaInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageComponentInfo(pub u32);
 impl CGImageComponentInfo {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecomponentinfo/integer?language=objc)
     #[doc(alias = "kCGImageComponentInteger")]
     pub const Integer: Self = Self(0 << 8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecomponentinfo/float?language=objc)
     #[doc(alias = "kCGImageComponentFloat")]
     pub const Float: Self = Self(1 << 8);
 }
@@ -88,17 +98,23 @@ unsafe impl RefEncode for CGImageComponentInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageByteOrderInfo(pub u32);
 impl CGImageByteOrderInfo {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/ordermask?language=objc)
     #[doc(alias = "kCGImageByteOrderMask")]
     #[deprecated]
     pub const OrderMask: Self = Self(0x7000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/orderdefault?language=objc)
     #[doc(alias = "kCGImageByteOrderDefault")]
     pub const OrderDefault: Self = Self(0 << 12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/order16little?language=objc)
     #[doc(alias = "kCGImageByteOrder16Little")]
     pub const Order16Little: Self = Self(1 << 12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/order32little?language=objc)
     #[doc(alias = "kCGImageByteOrder32Little")]
     pub const Order32Little: Self = Self(2 << 12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/order16big?language=objc)
     #[doc(alias = "kCGImageByteOrder16Big")]
     pub const Order16Big: Self = Self(3 << 12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/order32big?language=objc)
     #[doc(alias = "kCGImageByteOrder32Big")]
     pub const Order32Big: Self = Self(4 << 12);
 }
@@ -119,17 +135,23 @@ unsafe impl RefEncode for CGImageByteOrderInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImagePixelFormatInfo(pub u32);
 impl CGImagePixelFormatInfo {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/mask?language=objc)
     #[doc(alias = "kCGImagePixelFormatMask")]
     #[deprecated]
     pub const Mask: Self = Self(0xF0000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/packed?language=objc)
     #[doc(alias = "kCGImagePixelFormatPacked")]
     pub const Packed: Self = Self(0 << 16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/rgb555?language=objc)
     #[doc(alias = "kCGImagePixelFormatRGB555")]
     pub const RGB555: Self = Self(1 << 16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/rgb565?language=objc)
     #[doc(alias = "kCGImagePixelFormatRGB565")]
     pub const RGB565: Self = Self(2 << 16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/rgb101010?language=objc)
     #[doc(alias = "kCGImagePixelFormatRGB101010")]
     pub const RGB101010: Self = Self(3 << 16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/rgbcif10?language=objc)
     #[doc(alias = "kCGImagePixelFormatRGBCIF10")]
     pub const RGBCIF10: Self = Self(4 << 16);
 }
@@ -151,35 +173,47 @@ unsafe impl RefEncode for CGImagePixelFormatInfo {
 pub struct CGBitmapInfo(pub u32);
 bitflags::bitflags! {
     impl CGBitmapInfo: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmapalphainfomask?language=objc)
         #[doc(alias = "kCGBitmapAlphaInfoMask")]
         const AlphaInfoMask = 0x1F;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmapcomponentinfomask?language=objc)
         #[doc(alias = "kCGBitmapComponentInfoMask")]
         const ComponentInfoMask = 0xF00;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmapbyteorderinfomask?language=objc)
         #[doc(alias = "kCGBitmapByteOrderInfoMask")]
         const ByteOrderInfoMask = 0x7000;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmappixelformatinfomask?language=objc)
         #[doc(alias = "kCGBitmapPixelFormatInfoMask")]
         const PixelFormatInfoMask = 0xF0000;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmapfloatinfomask?language=objc)
         #[doc(alias = "kCGBitmapFloatInfoMask")]
 #[deprecated]
         const FloatInfoMask = CGBitmapInfo::ComponentInfoMask.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmapbyteordermask?language=objc)
         #[doc(alias = "kCGBitmapByteOrderMask")]
 #[deprecated]
         const ByteOrderMask = CGBitmapInfo::ByteOrderInfoMask.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/floatcomponents?language=objc)
         #[doc(alias = "kCGBitmapFloatComponents")]
 #[deprecated]
         const FloatComponents = CGImageComponentInfo::Float.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/byteorderdefault?language=objc)
         #[doc(alias = "kCGBitmapByteOrderDefault")]
 #[deprecated]
         const ByteOrderDefault = CGImageByteOrderInfo::OrderDefault.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/byteorder16little?language=objc)
         #[doc(alias = "kCGBitmapByteOrder16Little")]
 #[deprecated]
         const ByteOrder16Little = CGImageByteOrderInfo::Order16Little.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/byteorder32little?language=objc)
         #[doc(alias = "kCGBitmapByteOrder32Little")]
 #[deprecated]
         const ByteOrder32Little = CGImageByteOrderInfo::Order32Little.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/byteorder16big?language=objc)
         #[doc(alias = "kCGBitmapByteOrder16Big")]
 #[deprecated]
         const ByteOrder16Big = CGImageByteOrderInfo::Order16Big.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/byteorder32big?language=objc)
         #[doc(alias = "kCGBitmapByteOrder32Big")]
 #[deprecated]
         const ByteOrder32Big = CGImageByteOrderInfo::Order32Big.0;
@@ -201,6 +235,7 @@ impl CGBitmapInfo {
 }
 
 unsafe impl ConcreteType for CGImage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/typeid?language=objc)
     #[doc(alias = "CGImageGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -212,6 +247,8 @@ unsafe impl ConcreteType for CGImage {
 }
 
 impl CGImage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(width:height:bitspercomponent:bitsperpixel:bytesperrow:space:bitmapinfo:provider:decode:shouldinterpolate:intent:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `decode` must be a valid pointer or null.
@@ -264,6 +301,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(maskwidth:height:bitspercomponent:bitsperpixel:bytesperrow:provider:decode:shouldinterpolate:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `decode` must be a valid pointer or null.
@@ -307,6 +346,7 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/copy()?language=objc)
     #[doc(alias = "CGImageCreateCopy")]
     #[inline]
     pub fn new_copy(image: Option<&CGImage>) -> Option<CFRetained<CGImage>> {
@@ -317,6 +357,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(jpegdataprovidersource:decode:shouldinterpolate:intent:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `decode` must be a valid pointer or null.
@@ -343,6 +385,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(pngdataprovidersource:decode:shouldinterpolate:intent:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `decode` must be a valid pointer or null.
@@ -368,6 +412,7 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/cropping(to:)?language=objc)
     #[doc(alias = "CGImageCreateWithImageInRect")]
     #[inline]
     pub fn with_image_in_rect(
@@ -384,6 +429,7 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/masking(_:)?language=objc)
     #[doc(alias = "CGImageCreateWithMask")]
     #[inline]
     pub fn with_mask(
@@ -400,6 +446,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecreatewithmaskingcolors?language=objc)
+    ///
     /// # Safety
     ///
     /// `components` must be a valid pointer or null.
@@ -419,6 +467,7 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/copy(colorspace:)?language=objc)
     #[doc(alias = "CGImageCreateCopyWithColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -436,6 +485,8 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(headroom:width:height:bitspercomponent:bitsperpixel:bytesperrow:space:bitmapinfo:provider:decode:shouldinterpolate:intent:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `decode` must be a valid pointer or null.
@@ -491,6 +542,7 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecreatecopywithcontentheadroom(_:_:)?language=objc)
     #[doc(alias = "CGImageCreateCopyWithContentHeadroom")]
     #[inline]
     pub fn new_copy_with_content_headroom(
@@ -514,6 +566,7 @@ extern "C" {
 }
 
 impl CGImage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/contentheadroom?language=objc)
     #[doc(alias = "CGImageGetContentHeadroom")]
     #[inline]
     pub fn content_headroom(image: Option<&CGImage>) -> c_float {
@@ -523,6 +576,7 @@ impl CGImage {
         unsafe { CGImageGetContentHeadroom(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/calculatedcontentheadroom?language=objc)
     #[doc(alias = "CGImageCalculateContentHeadroom")]
     #[inline]
     pub fn calculate_content_headroom(image: Option<&CGImage>) -> c_float {
@@ -532,6 +586,7 @@ impl CGImage {
         unsafe { CGImageCalculateContentHeadroom(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/contentaveragelightlevel?language=objc)
     #[doc(alias = "CGImageGetContentAverageLightLevel")]
     #[inline]
     pub fn content_average_light_level(image: Option<&CGImage>) -> c_float {
@@ -541,6 +596,7 @@ impl CGImage {
         unsafe { CGImageGetContentAverageLightLevel(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/calculatedcontentaveragelightlevel?language=objc)
     #[doc(alias = "CGImageCalculateContentAverageLightLevel")]
     #[inline]
     pub fn calculate_content_average_light_level(image: Option<&CGImage>) -> c_float {
@@ -550,6 +606,7 @@ impl CGImage {
         unsafe { CGImageCalculateContentAverageLightLevel(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/copy(contentaveragelightlevel:)?language=objc)
     #[doc(alias = "CGImageCreateCopyWithContentAverageLightLevel")]
     #[inline]
     pub fn new_copy_with_content_average_light_level(
@@ -566,6 +623,7 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/copywithcalculatedhdrstats()?language=objc)
     #[doc(alias = "CGImageCreateCopyWithCalculatedHDRStats")]
     #[inline]
     pub fn new_copy_with_calculated_hdr_stats(
@@ -580,6 +638,7 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/ismask?language=objc)
     #[doc(alias = "CGImageIsMask")]
     #[inline]
     pub fn is_mask(image: Option<&CGImage>) -> bool {
@@ -589,6 +648,7 @@ impl CGImage {
         unsafe { CGImageIsMask(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/width?language=objc)
     #[doc(alias = "CGImageGetWidth")]
     #[inline]
     pub fn width(image: Option<&CGImage>) -> usize {
@@ -598,6 +658,7 @@ impl CGImage {
         unsafe { CGImageGetWidth(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/height?language=objc)
     #[doc(alias = "CGImageGetHeight")]
     #[inline]
     pub fn height(image: Option<&CGImage>) -> usize {
@@ -607,6 +668,7 @@ impl CGImage {
         unsafe { CGImageGetHeight(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/bitspercomponent?language=objc)
     #[doc(alias = "CGImageGetBitsPerComponent")]
     #[inline]
     pub fn bits_per_component(image: Option<&CGImage>) -> usize {
@@ -616,6 +678,7 @@ impl CGImage {
         unsafe { CGImageGetBitsPerComponent(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/bitsperpixel?language=objc)
     #[doc(alias = "CGImageGetBitsPerPixel")]
     #[inline]
     pub fn bits_per_pixel(image: Option<&CGImage>) -> usize {
@@ -625,6 +688,7 @@ impl CGImage {
         unsafe { CGImageGetBitsPerPixel(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/bytesperrow?language=objc)
     #[doc(alias = "CGImageGetBytesPerRow")]
     #[inline]
     pub fn bytes_per_row(image: Option<&CGImage>) -> usize {
@@ -634,6 +698,7 @@ impl CGImage {
         unsafe { CGImageGetBytesPerRow(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/colorspace?language=objc)
     #[doc(alias = "CGImageGetColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -645,6 +710,7 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/alphainfo?language=objc)
     #[doc(alias = "CGImageGetAlphaInfo")]
     #[inline]
     pub fn alpha_info(image: Option<&CGImage>) -> CGImageAlphaInfo {
@@ -654,6 +720,7 @@ impl CGImage {
         unsafe { CGImageGetAlphaInfo(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/dataprovider?language=objc)
     #[doc(alias = "CGImageGetDataProvider")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
@@ -665,6 +732,7 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/decode?language=objc)
     #[doc(alias = "CGImageGetDecode")]
     #[inline]
     pub fn decode(image: Option<&CGImage>) -> *const CGFloat {
@@ -674,6 +742,7 @@ impl CGImage {
         unsafe { CGImageGetDecode(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/shouldinterpolate?language=objc)
     #[doc(alias = "CGImageGetShouldInterpolate")]
     #[inline]
     pub fn should_interpolate(image: Option<&CGImage>) -> bool {
@@ -683,6 +752,7 @@ impl CGImage {
         unsafe { CGImageGetShouldInterpolate(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/renderingintent?language=objc)
     #[doc(alias = "CGImageGetRenderingIntent")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -693,6 +763,7 @@ impl CGImage {
         unsafe { CGImageGetRenderingIntent(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/bitmapinfo?language=objc)
     #[doc(alias = "CGImageGetBitmapInfo")]
     #[inline]
     pub fn bitmap_info(image: Option<&CGImage>) -> CGBitmapInfo {
@@ -702,6 +773,7 @@ impl CGImage {
         unsafe { CGImageGetBitmapInfo(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/byteorderinfo?language=objc)
     #[doc(alias = "CGImageGetByteOrderInfo")]
     #[inline]
     pub fn byte_order_info(image: Option<&CGImage>) -> CGImageByteOrderInfo {
@@ -711,6 +783,7 @@ impl CGImage {
         unsafe { CGImageGetByteOrderInfo(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/pixelformatinfo?language=objc)
     #[doc(alias = "CGImageGetPixelFormatInfo")]
     #[inline]
     pub fn pixel_format_info(image: Option<&CGImage>) -> CGImagePixelFormatInfo {
@@ -720,6 +793,7 @@ impl CGImage {
         unsafe { CGImageGetPixelFormatInfo(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/shouldtonemap?language=objc)
     #[doc(alias = "CGImageShouldToneMap")]
     #[inline]
     pub fn should_tone_map(image: Option<&CGImage>) -> bool {
@@ -729,6 +803,7 @@ impl CGImage {
         unsafe { CGImageShouldToneMap(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/containsimagespecifictonemappingmetadata?language=objc)
     #[doc(alias = "CGImageContainsImageSpecificToneMappingMetadata")]
     #[inline]
     pub fn contains_image_specific_tone_mapping_metadata(image: Option<&CGImage>) -> bool {
@@ -738,6 +813,7 @@ impl CGImage {
         unsafe { CGImageContainsImageSpecificToneMappingMetadata(image) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/uttype?language=objc)
     #[doc(alias = "CGImageGetUTType")]
     #[inline]
     pub fn ut_type(image: Option<&CGImage>) -> Option<CFRetained<CFString>> {

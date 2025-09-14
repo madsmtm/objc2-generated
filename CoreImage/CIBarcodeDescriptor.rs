@@ -64,15 +64,23 @@ impl CIBarcodeDescriptor {
 pub struct CIQRCodeErrorCorrectionLevel(pub NSInteger);
 impl CIQRCodeErrorCorrectionLevel {
     /// Indicates that approximately 20% of the symbol data is dedicated to error correction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor/errorcorrectionlevel-swift.enum/levell?language=objc)
     #[doc(alias = "CIQRCodeErrorCorrectionLevelL")]
     pub const L: Self = Self(b'L' as _);
     /// Indicates that approximately 37% of the symbol data is dedicated to error correction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor/errorcorrectionlevel-swift.enum/levelm?language=objc)
     #[doc(alias = "CIQRCodeErrorCorrectionLevelM")]
     pub const M: Self = Self(b'M' as _);
     /// Indicates that approximately 55% of the symbol data is dedicated to error correction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor/errorcorrectionlevel-swift.enum/levelq?language=objc)
     #[doc(alias = "CIQRCodeErrorCorrectionLevelQ")]
     pub const Q: Self = Self(b'Q' as _);
     /// Indicates that approximately 65% of the symbol data is dedicated to error correction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor/errorcorrectionlevel-swift.enum/levelh?language=objc)
     #[doc(alias = "CIQRCodeErrorCorrectionLevelH")]
     pub const H: Self = Self(b'H' as _);
 }
@@ -491,21 +499,33 @@ impl CIPDF417CodeDescriptor {
 pub struct CIDataMatrixCodeECCVersion(pub NSInteger);
 impl CIDataMatrixCodeECCVersion {
     /// Indicates error correction using convolutional code error correction with no data protection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v000?language=objc)
     #[doc(alias = "CIDataMatrixCodeECCVersion000")]
     pub const Version000: Self = Self(0);
     /// Indicates 1/4 of the symbol is dedicated to convolutional code error correction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v050?language=objc)
     #[doc(alias = "CIDataMatrixCodeECCVersion050")]
     pub const Version050: Self = Self(50);
     /// Indicates 1/3 of the symbol is dedicated to convolutional code error correction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v080?language=objc)
     #[doc(alias = "CIDataMatrixCodeECCVersion080")]
     pub const Version080: Self = Self(80);
     /// Indicates 1/2 of the symbol is dedicated to convolutional code error correction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v100?language=objc)
     #[doc(alias = "CIDataMatrixCodeECCVersion100")]
     pub const Version100: Self = Self(100);
     /// Indicates 3/4 of the symbol is dedicated to convolutional code error correction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v140?language=objc)
     #[doc(alias = "CIDataMatrixCodeECCVersion140")]
     pub const Version140: Self = Self(140);
     /// Indicates error correction using Reed-Solomon error correction. Data protection overhead varies based on symbol size.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v200?language=objc)
     #[doc(alias = "CIDataMatrixCodeECCVersion200")]
     pub const Version200: Self = Self(200);
 }

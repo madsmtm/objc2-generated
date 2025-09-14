@@ -14,20 +14,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderTestingOperationType(pub NSInteger);
 impl NSFileProviderTestingOperationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/ingestion?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationTypeIngestion")]
     pub const Ingestion: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/lookup?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationTypeLookup")]
     pub const Lookup: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/creation?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationTypeCreation")]
     pub const Creation: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/modification?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationTypeModification")]
     pub const Modification: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/deletion?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationTypeDeletion")]
     pub const Deletion: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/contentfetch?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationTypeContentFetch")]
     pub const ContentFetch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/childrenenumeration?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationTypeChildrenEnumeration")]
     pub const ChildrenEnumeration: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/collisionresolution?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationTypeCollisionResolution")]
     pub const CollisionResolution: Self = Self(7);
 }
@@ -185,9 +193,13 @@ impl NSFileProviderManager {
 pub struct NSFileProviderTestingOperationSide(pub NSUInteger);
 impl NSFileProviderTestingOperationSide {
     /// The operation reads or writes the disk.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationside/disk?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationSideDisk")]
     pub const Disk: Self = Self(0);
     /// The operation reads or writes the file provider extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationside/fileprovider?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationSideFileProvider")]
     pub const FileProvider: Self = Self(1);
 }

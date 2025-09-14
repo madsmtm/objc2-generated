@@ -11,18 +11,25 @@ use crate::*;
 pub struct INShortcutAvailabilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INShortcutAvailabilityOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepmindfulness?language=objc)
         #[doc(alias = "INShortcutAvailabilityOptionSleepMindfulness")]
         const SleepMindfulness = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepjournaling?language=objc)
         #[doc(alias = "INShortcutAvailabilityOptionSleepJournaling")]
         const SleepJournaling = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepmusic?language=objc)
         #[doc(alias = "INShortcutAvailabilityOptionSleepMusic")]
         const SleepMusic = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleeppodcasts?language=objc)
         #[doc(alias = "INShortcutAvailabilityOptionSleepPodcasts")]
         const SleepPodcasts = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepreading?language=objc)
         #[doc(alias = "INShortcutAvailabilityOptionSleepReading")]
         const SleepReading = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepwrapupyourday?language=objc)
         #[doc(alias = "INShortcutAvailabilityOptionSleepWrapUpYourDay")]
         const SleepWrapUpYourDay = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepyogaandstretching?language=objc)
         #[doc(alias = "INShortcutAvailabilityOptionSleepYogaAndStretching")]
         const SleepYogaAndStretching = 1<<6;
     }

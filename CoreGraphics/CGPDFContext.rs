@@ -8,6 +8,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/init(consumer:mediabox:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `media_box` must be a valid pointer or null.
@@ -31,6 +33,8 @@ pub unsafe extern "C-unwind" fn CGPDFContextCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/init(_:mediabox:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `media_box` must be a valid pointer or null.
@@ -54,6 +58,7 @@ pub unsafe extern "C-unwind" fn CGPDFContextCreateWithURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/closepdf()?language=objc)
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextClose(context: Option<&CGContext>) {
@@ -64,6 +69,8 @@ pub extern "C-unwind" fn CGPDFContextClose(context: Option<&CGContext>) {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/beginpdfpage(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_info` generic must be of the correct type.
@@ -72,6 +79,7 @@ extern "C-unwind" {
     pub fn CGPDFContextBeginPage(context: Option<&CGContext>, page_info: Option<&CFDictionary>);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/endpdfpage()?language=objc)
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextEndPage(context: Option<&CGContext>) {
@@ -81,6 +89,7 @@ pub extern "C-unwind" fn CGPDFContextEndPage(context: Option<&CGContext>) {
     unsafe { CGPDFContextEndPage(context) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/adddocumentmetadata(_:)?language=objc)
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextAddDocumentMetadata(
@@ -94,6 +103,8 @@ pub extern "C-unwind" fn CGPDFContextAddDocumentMetadata(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextsetparenttree(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `parent_tree_dictionary` must be a valid pointer.
@@ -105,6 +116,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextsetidtree(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `id_tree_dictionary` must be a valid pointer.
@@ -116,6 +129,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextsetpagetagstructuretree(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `page_tag_structure_tree_dictionary` generic must be of the correct type.
@@ -127,6 +142,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/seturl(_:for:)?language=objc)
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextSetURLForRect(
@@ -140,6 +156,7 @@ pub extern "C-unwind" fn CGPDFContextSetURLForRect(
     unsafe { CGPDFContextSetURLForRect(context, url, rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/adddestination(_:at:)?language=objc)
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextAddDestinationAtPoint(
@@ -157,6 +174,7 @@ pub extern "C-unwind" fn CGPDFContextAddDestinationAtPoint(
     unsafe { CGPDFContextAddDestinationAtPoint(context, name, point) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setdestination(_:for:)?language=objc)
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextSetDestinationForRect(
@@ -295,6 +313,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextsetoutline(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `outline` generic must be of the correct type.
@@ -319,104 +339,154 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGPDFTagType(pub i32);
 impl CGPDFTagType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/document?language=objc)
     #[doc(alias = "CGPDFTagTypeDocument")]
     pub const Document: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/part?language=objc)
     #[doc(alias = "CGPDFTagTypePart")]
     pub const Part: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/art?language=objc)
     #[doc(alias = "CGPDFTagTypeArt")]
     pub const Art: Self = Self(102);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/section?language=objc)
     #[doc(alias = "CGPDFTagTypeSection")]
     pub const Section: Self = Self(103);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/div?language=objc)
     #[doc(alias = "CGPDFTagTypeDiv")]
     pub const Div: Self = Self(104);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/blockquote?language=objc)
     #[doc(alias = "CGPDFTagTypeBlockQuote")]
     pub const BlockQuote: Self = Self(105);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/caption?language=objc)
     #[doc(alias = "CGPDFTagTypeCaption")]
     pub const Caption: Self = Self(106);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/toc?language=objc)
     #[doc(alias = "CGPDFTagTypeTOC")]
     pub const TOC: Self = Self(107);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/toci?language=objc)
     #[doc(alias = "CGPDFTagTypeTOCI")]
     pub const TOCI: Self = Self(108);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/index?language=objc)
     #[doc(alias = "CGPDFTagTypeIndex")]
     pub const Index: Self = Self(109);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/nonstructure?language=objc)
     #[doc(alias = "CGPDFTagTypeNonStructure")]
     pub const NonStructure: Self = Self(110);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/private?language=objc)
     #[doc(alias = "CGPDFTagTypePrivate")]
     pub const Private: Self = Self(111);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/paragraph?language=objc)
     #[doc(alias = "CGPDFTagTypeParagraph")]
     pub const Paragraph: Self = Self(200);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader")]
     pub const Header: Self = Self(201);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header1?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader1")]
     pub const Header1: Self = Self(202);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header2?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader2")]
     pub const Header2: Self = Self(203);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header3?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader3")]
     pub const Header3: Self = Self(204);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header4?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader4")]
     pub const Header4: Self = Self(205);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header5?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader5")]
     pub const Header5: Self = Self(206);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header6?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader6")]
     pub const Header6: Self = Self(207);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/list?language=objc)
     #[doc(alias = "CGPDFTagTypeList")]
     pub const List: Self = Self(300);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/listitem?language=objc)
     #[doc(alias = "CGPDFTagTypeListItem")]
     pub const ListItem: Self = Self(301);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/label?language=objc)
     #[doc(alias = "CGPDFTagTypeLabel")]
     pub const Label: Self = Self(302);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/listbody?language=objc)
     #[doc(alias = "CGPDFTagTypeListBody")]
     pub const ListBody: Self = Self(303);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/table?language=objc)
     #[doc(alias = "CGPDFTagTypeTable")]
     pub const Table: Self = Self(400);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tablerow?language=objc)
     #[doc(alias = "CGPDFTagTypeTableRow")]
     pub const TableRow: Self = Self(401);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tableheadercell?language=objc)
     #[doc(alias = "CGPDFTagTypeTableHeaderCell")]
     pub const TableHeaderCell: Self = Self(402);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tabledatacell?language=objc)
     #[doc(alias = "CGPDFTagTypeTableDataCell")]
     pub const TableDataCell: Self = Self(403);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tableheader?language=objc)
     #[doc(alias = "CGPDFTagTypeTableHeader")]
     pub const TableHeader: Self = Self(404);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tablebody?language=objc)
     #[doc(alias = "CGPDFTagTypeTableBody")]
     pub const TableBody: Self = Self(405);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tablefooter?language=objc)
     #[doc(alias = "CGPDFTagTypeTableFooter")]
     pub const TableFooter: Self = Self(406);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/span?language=objc)
     #[doc(alias = "CGPDFTagTypeSpan")]
     pub const Span: Self = Self(500);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/quote?language=objc)
     #[doc(alias = "CGPDFTagTypeQuote")]
     pub const Quote: Self = Self(501);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/note?language=objc)
     #[doc(alias = "CGPDFTagTypeNote")]
     pub const Note: Self = Self(502);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/reference?language=objc)
     #[doc(alias = "CGPDFTagTypeReference")]
     pub const Reference: Self = Self(503);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/bibliography?language=objc)
     #[doc(alias = "CGPDFTagTypeBibliography")]
     pub const Bibliography: Self = Self(504);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/code?language=objc)
     #[doc(alias = "CGPDFTagTypeCode")]
     pub const Code: Self = Self(505);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/link?language=objc)
     #[doc(alias = "CGPDFTagTypeLink")]
     pub const Link: Self = Self(506);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/annotation?language=objc)
     #[doc(alias = "CGPDFTagTypeAnnotation")]
     pub const Annotation: Self = Self(507);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/ruby?language=objc)
     #[doc(alias = "CGPDFTagTypeRuby")]
     pub const Ruby: Self = Self(600);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/rubybasetext?language=objc)
     #[doc(alias = "CGPDFTagTypeRubyBaseText")]
     pub const RubyBaseText: Self = Self(601);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/rubyannotationtext?language=objc)
     #[doc(alias = "CGPDFTagTypeRubyAnnotationText")]
     pub const RubyAnnotationText: Self = Self(602);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/rubypunctuation?language=objc)
     #[doc(alias = "CGPDFTagTypeRubyPunctuation")]
     pub const RubyPunctuation: Self = Self(603);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/warichu?language=objc)
     #[doc(alias = "CGPDFTagTypeWarichu")]
     pub const Warichu: Self = Self(604);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/warichutext?language=objc)
     #[doc(alias = "CGPDFTagTypeWarichuText")]
     pub const WarichuText: Self = Self(605);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/warichupunctiation?language=objc)
     #[doc(alias = "CGPDFTagTypeWarichuPunctiation")]
     pub const WarichuPunctiation: Self = Self(606);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/figure?language=objc)
     #[doc(alias = "CGPDFTagTypeFigure")]
     pub const Figure: Self = Self(700);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/formula?language=objc)
     #[doc(alias = "CGPDFTagTypeFormula")]
     pub const Formula: Self = Self(701);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/form?language=objc)
     #[doc(alias = "CGPDFTagTypeForm")]
     pub const Form: Self = Self(702);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/object?language=objc)
     #[doc(alias = "CGPDFTagTypeObject")]
     pub const Object: Self = Self(800);
 }
@@ -432,6 +502,7 @@ unsafe impl RefEncode for CGPDFTagType {
 }
 
 impl CGPDFTagType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/name?language=objc)
     #[doc(alias = "CGPDFTagTypeGetName")]
     #[inline]
     pub fn name(self) -> *const c_char {
@@ -467,6 +538,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextbegintag(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `tag_properties` generic must be of the correct type.
@@ -479,6 +552,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextendtag(_:)?language=objc)
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextEndTag(context: &CGContext) {

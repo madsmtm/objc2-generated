@@ -22,6 +22,8 @@ extern "C" {
 /// User preference for audible media characteristic
 ///
 /// Returns: An array containing the preferred order of media characteristics for audible media.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/maaudiblemediacopypreferredcharacteristics()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MAAudibleMediaCopyPreferredCharacteristics() -> CFRetained<CFArray>
 {

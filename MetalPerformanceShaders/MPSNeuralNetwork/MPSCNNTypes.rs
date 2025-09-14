@@ -10,26 +10,37 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNLossType(pub u32);
 impl MPSCNNLossType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/meanabsoluteerror?language=objc)
     #[doc(alias = "MPSCNNLossTypeMeanAbsoluteError")]
     pub const MeanAbsoluteError: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/meansquarederror?language=objc)
     #[doc(alias = "MPSCNNLossTypeMeanSquaredError")]
     pub const MeanSquaredError: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/softmaxcrossentropy?language=objc)
     #[doc(alias = "MPSCNNLossTypeSoftMaxCrossEntropy")]
     pub const SoftMaxCrossEntropy: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/sigmoidcrossentropy?language=objc)
     #[doc(alias = "MPSCNNLossTypeSigmoidCrossEntropy")]
     pub const SigmoidCrossEntropy: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/categoricalcrossentropy?language=objc)
     #[doc(alias = "MPSCNNLossTypeCategoricalCrossEntropy")]
     pub const CategoricalCrossEntropy: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/hinge?language=objc)
     #[doc(alias = "MPSCNNLossTypeHinge")]
     pub const Hinge: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/huber?language=objc)
     #[doc(alias = "MPSCNNLossTypeHuber")]
     pub const Huber: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/cosinedistance?language=objc)
     #[doc(alias = "MPSCNNLossTypeCosineDistance")]
     pub const CosineDistance: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/log?language=objc)
     #[doc(alias = "MPSCNNLossTypeLog")]
     pub const Log: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/kullbackleiblerdivergence?language=objc)
     #[doc(alias = "MPSCNNLossTypeKullbackLeiblerDivergence")]
     pub const KullbackLeiblerDivergence: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosstype/count?language=objc)
     #[doc(alias = "MPSCNNLossTypeCount")]
     pub const Count: Self = Self(10);
 }
@@ -48,14 +59,19 @@ unsafe impl RefEncode for MPSCNNLossType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNReductionType(pub i32);
 impl MPSCNNReductionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnreductiontype/none?language=objc)
     #[doc(alias = "MPSCNNReductionTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnreductiontype/sum?language=objc)
     #[doc(alias = "MPSCNNReductionTypeSum")]
     pub const Sum: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnreductiontype/mean?language=objc)
     #[doc(alias = "MPSCNNReductionTypeMean")]
     pub const Mean: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnreductiontype/sumbynonzeroweights?language=objc)
     #[doc(alias = "MPSCNNReductionTypeSumByNonZeroWeights")]
     pub const SumByNonZeroWeights: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnreductiontype/count?language=objc)
     #[doc(alias = "MPSCNNReductionTypeCount")]
     pub const Count: Self = Self(4);
 }

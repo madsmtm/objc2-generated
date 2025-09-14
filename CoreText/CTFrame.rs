@@ -30,6 +30,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for CTFrame {
     /// Returns the CFType of the frame object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegettypeid()?language=objc)
     #[doc(alias = "CTFrameGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -64,10 +66,13 @@ unsafe impl ConcreteType for CTFrame {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFrameProgression(pub u32);
 impl CTFrameProgression {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeprogression/toptobottom?language=objc)
     #[doc(alias = "kCTFrameProgressionTopToBottom")]
     pub const TopToBottom: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeprogression/righttoleft?language=objc)
     #[doc(alias = "kCTFrameProgressionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeprogression/lefttoright?language=objc)
     #[doc(alias = "kCTFrameProgressionLeftToRight")]
     pub const LeftToRight: Self = Self(2);
 }
@@ -116,8 +121,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFramePathFillRule(pub u32);
 impl CTFramePathFillRule {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframepathfillrule/evenodd?language=objc)
     #[doc(alias = "kCTFramePathFillEvenOdd")]
     pub const EvenOdd: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframepathfillrule/windingnumber?language=objc)
     #[doc(alias = "kCTFramePathFillWindingNumber")]
     pub const WindingNumber: Self = Self(1);
 }
@@ -203,6 +210,8 @@ impl CTFrame {
     /// store range of characters that were originally requested
     /// to fill the frame. If the function call is not successful,
     /// then an empty range will be returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetstringrange(_:)?language=objc)
     #[doc(alias = "CTFrameGetStringRange")]
     #[inline]
     pub fn string_range(&self) -> CFRange {
@@ -229,6 +238,8 @@ impl CTFrame {
     /// store range of characters that fit into the frame. If the
     /// function call is not successful, or if no characters fit
     /// in the frame, then an empty range will be returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetvisiblestringrange(_:)?language=objc)
     #[doc(alias = "CTFrameGetVisibleStringRange")]
     #[inline]
     pub fn visible_string_range(&self) -> CFRange {
@@ -242,6 +253,8 @@ impl CTFrame {
     ///
     ///
     /// Parameter `frame`: The frame that you want to obtain the path from.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetpath(_:)?language=objc)
     #[doc(alias = "CTFrameGetPath")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -271,6 +284,8 @@ impl CTFrame {
     /// frame attributes that were used to create the frame. If the
     /// frame was created without any frame attributes, this function
     /// will return NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetframeattributes(_:)?language=objc)
     #[doc(alias = "CTFrameGetFrameAttributes")]
     #[inline]
     pub fn frame_attributes(&self) -> Option<CFRetained<CFDictionary>> {
@@ -297,6 +312,8 @@ impl CTFrame {
     ///
     /// Returns: This function will return a CFArray object containing the
     /// CTLine objects that make up the frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetlines(_:)?language=objc)
     #[doc(alias = "CTFrameGetLines")]
     #[inline]
     pub fn lines(&self) -> CFRetained<CFArray> {
@@ -341,6 +358,8 @@ impl CTFrame {
     /// # Safety
     ///
     /// `origins` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetlineorigins(_:_:_:)?language=objc)
     #[doc(alias = "CTFrameGetLineOrigins")]
     #[inline]
     pub unsafe fn line_origins(&self, range: CFRange, origins: NonNull<CGPoint>) {
@@ -366,6 +385,8 @@ impl CTFrame {
     ///
     /// If both the frame and the context are valid, the frame will be
     /// drawn in the context.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframedraw(_:_:)?language=objc)
     #[doc(alias = "CTFrameDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]

@@ -39,14 +39,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageLoadStatus(pub NSUInteger);
 impl NSImageLoadStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus/completed?language=objc)
     #[doc(alias = "NSImageLoadStatusCompleted")]
     pub const Completed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus/cancelled?language=objc)
     #[doc(alias = "NSImageLoadStatusCancelled")]
     pub const Cancelled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus/invaliddata?language=objc)
     #[doc(alias = "NSImageLoadStatusInvalidData")]
     pub const InvalidData: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus/unexpectedeof?language=objc)
     #[doc(alias = "NSImageLoadStatusUnexpectedEOF")]
     pub const UnexpectedEOF: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus/readerror?language=objc)
     #[doc(alias = "NSImageLoadStatusReadError")]
     pub const ReadError: Self = Self(4);
 }
@@ -65,12 +70,16 @@ unsafe impl RefEncode for NSImageLoadStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageCacheMode(pub NSUInteger);
 impl NSImageCacheMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.enum/default?language=objc)
     #[doc(alias = "NSImageCacheDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.enum/always?language=objc)
     #[doc(alias = "NSImageCacheAlways")]
     pub const Always: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.enum/bysize?language=objc)
     #[doc(alias = "NSImageCacheBySize")]
     pub const BySize: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.enum/never?language=objc)
     #[doc(alias = "NSImageCacheNever")]
     pub const Never: Self = Self(3);
 }
@@ -1584,10 +1593,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSImageSymbolScale(pub NSInteger);
 impl NSImageSymbolScale {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolscale/small?language=objc)
     #[doc(alias = "NSImageSymbolScaleSmall")]
     pub const Small: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolscale/medium?language=objc)
     #[doc(alias = "NSImageSymbolScaleMedium")]
     pub const Medium: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolscale/large?language=objc)
     #[doc(alias = "NSImageSymbolScaleLarge")]
     pub const Large: Self = Self(3);
 }
@@ -1607,14 +1619,20 @@ unsafe impl RefEncode for NSImageSymbolScale {
 pub struct NSImageSymbolVariableValueMode(pub NSInteger);
 impl NSImageSymbolVariableValueMode {
     /// Automatically selects an appropriate variable value mode for the symbol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolvariablevaluemode/automatic?language=objc)
     #[doc(alias = "NSImageSymbolVariableValueModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The "color" variable value mode. Sets the opacity of each variable layer to
     /// either on or off depending on how its threshold compared to the current value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolvariablevaluemode/color?language=objc)
     #[doc(alias = "NSImageSymbolVariableValueModeColor")]
     pub const Color: Self = Self(1);
     /// The "draw" variable value mode. Changes the drawn length of each variable layer
     /// to either based on how its range relates to the current value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolvariablevaluemode/draw?language=objc)
     #[doc(alias = "NSImageSymbolVariableValueModeDraw")]
     pub const Draw: Self = Self(2);
 }
@@ -1638,12 +1656,18 @@ unsafe impl Sync for NSImageSymbolVariableValueMode {}
 pub struct NSImageSymbolColorRenderingMode(pub NSInteger);
 impl NSImageSymbolColorRenderingMode {
     /// Automatically uses an appropriate color rendering mode for the symbol’s color layers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolcolorrenderingmode/automatic?language=objc)
     #[doc(alias = "NSImageSymbolColorRenderingModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Renders the symbol’s color layers using flat colors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolcolorrenderingmode/flat?language=objc)
     #[doc(alias = "NSImageSymbolColorRenderingModeFlat")]
     pub const Flat: Self = Self(1);
     /// Renders the symbol’s color layers using gradients.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolcolorrenderingmode/gradient?language=objc)
     #[doc(alias = "NSImageSymbolColorRenderingModeGradient")]
     pub const Gradient: Self = Self(2);
 }

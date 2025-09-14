@@ -111,8 +111,10 @@ unsafe impl RefEncode for CAF_UUID_ChunkHeader {
 pub struct CAFFormatFlags(pub u32);
 bitflags::bitflags! {
     impl CAFFormatFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafformatflags/linearpcmformatflagisfloat?language=objc)
         #[doc(alias = "kCAFLinearPCMFormatFlagIsFloat")]
         const LinearPCMFormatFlagIsFloat = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafformatflags/linearpcmformatflagislittleendian?language=objc)
         #[doc(alias = "kCAFLinearPCMFormatFlagIsLittleEndian")]
         const LinearPCMFormatFlagIsLittleEndian = 1<<1;
     }
@@ -379,10 +381,13 @@ unsafe impl RefEncode for CAFMarkerChunk {
 pub struct CAFRegionFlags(pub u32);
 bitflags::bitflags! {
     impl CAFRegionFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionflags/loopenable?language=objc)
         #[doc(alias = "kCAFRegionFlag_LoopEnable")]
         const LoopEnable = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionflags/playforward?language=objc)
         #[doc(alias = "kCAFRegionFlag_PlayForward")]
         const PlayForward = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionflags/playbackward?language=objc)
         #[doc(alias = "kCAFRegionFlag_PlayBackward")]
         const PlayBackward = 4;
     }

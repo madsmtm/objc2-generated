@@ -92,10 +92,13 @@ unsafe impl RefEncode for MPSStateTextureInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSStateResourceType(pub NSUInteger);
 impl MPSStateResourceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstateresourcetype/none?language=objc)
     #[doc(alias = "MPSStateResourceTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstateresourcetype/buffer?language=objc)
     #[doc(alias = "MPSStateResourceTypeBuffer")]
     pub const Buffer: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstateresourcetype/texture?language=objc)
     #[doc(alias = "MPSStateResourceTypeTexture")]
     pub const Texture: Self = Self(2);
 }
@@ -575,6 +578,8 @@ impl MPSState {
     /// Parameter `amount`: The value to add to the read count for each unique state in the batch
     ///
     /// Returns: The number of different objects in the batch
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatebatchincrementreadcount(_:_:)?language=objc)
     #[doc(alias = "MPSStateBatchIncrementReadCount")]
     #[inline]
     pub unsafe fn batch_increment_read_count(
@@ -591,6 +596,8 @@ impl MPSState {
     }
 
     /// Call [MTLBlitEncoder synchronizeResource:] on unique resources
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatebatchsynchronize(_:_:)?language=objc)
     #[doc(alias = "MPSStateBatchSynchronize")]
     #[inline]
     pub unsafe fn batch_synchronize(
@@ -607,6 +614,8 @@ impl MPSState {
     }
 
     /// Call [MTLBlitEncoder resourceSize] on unique resources
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatebatchresourcesize(_:)?language=objc)
     #[doc(alias = "MPSStateBatchResourceSize")]
     #[inline]
     pub unsafe fn batch_resource_size(batch: Option<&MPSStateBatch>) -> NSUInteger {

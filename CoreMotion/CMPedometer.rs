@@ -93,8 +93,10 @@ impl CMPedometerData {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMPedometerEventType(pub NSInteger);
 impl CMPedometerEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventtype/pause?language=objc)
     #[doc(alias = "CMPedometerEventTypePause")]
     pub const Pause: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventtype/resume?language=objc)
     #[doc(alias = "CMPedometerEventTypeResume")]
     pub const Resume: Self = Self(1);
 }

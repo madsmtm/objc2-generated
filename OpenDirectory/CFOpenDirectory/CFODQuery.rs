@@ -29,6 +29,8 @@ unsafe impl ConcreteType for ODQueryRef {
     /// Returns the typeID for the ODQuery object
     ///
     /// Returns: a valid CFTypeID for the ODQuery object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerygettypeid()?language=objc)
     #[doc(alias = "ODQueryGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -79,6 +81,8 @@ impl ODQueryRef {
     /// - `return_attribute_or_list` should be of the correct type.
     /// - `return_attribute_or_list` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycreatewithnode(_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODQueryCreateWithNode")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -164,6 +168,8 @@ impl ODQueryRef {
     /// - `return_attribute_or_list` should be of the correct type.
     /// - `return_attribute_or_list` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycreatewithnodetype(_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODQueryCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -230,6 +236,8 @@ impl ODQueryRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycopyresults(_:_:_:)?language=objc)
     #[doc(alias = "ODQueryCopyResults")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -257,6 +265,8 @@ impl ODQueryRef {
     /// all existing results should be thrown away in preparation for new results.
     ///
     /// Parameter `query`: an ODQueryRef to use
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerysynchronize(_:)?language=objc)
     #[doc(alias = "ODQuerySynchronize")]
     #[inline]
     pub unsafe fn synchronize(&self) {
@@ -281,6 +291,8 @@ impl ODQueryRef {
     ///
     /// - `callback` must be implemented correctly.
     /// - `user_info` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerysetcallback(_:_:_:)?language=objc)
     #[doc(alias = "ODQuerySetCallback")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -313,6 +325,8 @@ impl ODQueryRef {
     /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odqueryschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "ODQueryScheduleWithRunLoop")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -346,6 +360,8 @@ impl ODQueryRef {
     /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odqueryunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "ODQueryUnscheduleFromRunLoop")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -378,6 +394,8 @@ impl ODQueryRef {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `queue` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerysetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "ODQuerySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

@@ -10,27 +10,37 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCallDestinationType(pub NSInteger);
 impl INCallDestinationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/unknown?language=objc)
     #[doc(alias = "INCallDestinationTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/normal?language=objc)
     #[doc(alias = "INCallDestinationTypeNormal")]
     pub const Normal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/emergency?language=objc)
     #[doc(alias = "INCallDestinationTypeEmergency")]
     pub const Emergency: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/voicemail?language=objc)
     #[doc(alias = "INCallDestinationTypeVoicemail")]
     pub const Voicemail: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/redial?language=objc)
     #[doc(alias = "INCallDestinationTypeRedial")]
     pub const Redial: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/callback?language=objc)
     #[doc(alias = "INCallDestinationTypeCallBack")]
     pub const CallBack: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/normaldestination?language=objc)
     #[doc(alias = "INCallDestinationTypeNormalDestination")]
     #[deprecated = "Use INCallDestinationTypeNormal instead"]
     pub const NormalDestination: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/emergencydestination?language=objc)
     #[doc(alias = "INCallDestinationTypeEmergencyDestination")]
     #[deprecated = "Use INCallDestinationTypeEmergency instead"]
     pub const EmergencyDestination: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/voicemaildestination?language=objc)
     #[doc(alias = "INCallDestinationTypeVoicemailDestination")]
     #[deprecated = "Use INCallDestinationTypeVoicemail instead"]
     pub const VoicemailDestination: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/redialdestination?language=objc)
     #[doc(alias = "INCallDestinationTypeRedialDestination")]
     #[deprecated = "Use INCallDestinationTypeRedial instead"]
     pub const RedialDestination: Self = Self(4);

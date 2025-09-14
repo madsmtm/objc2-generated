@@ -209,10 +209,13 @@ impl PKBarcodeEventSignatureResponse {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKBarcodeEventConfigurationDataType(pub NSInteger);
 impl PKBarcodeEventConfigurationDataType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventconfigurationdatatype/unknown?language=objc)
     #[doc(alias = "PKBarcodeEventConfigurationDataTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventconfigurationdatatype/signingkeymaterial?language=objc)
     #[doc(alias = "PKBarcodeEventConfigurationDataTypeSigningKeyMaterial")]
     pub const SigningKeyMaterial: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventconfigurationdatatype/signingcertificate?language=objc)
     #[doc(alias = "PKBarcodeEventConfigurationDataTypeSigningCertificate")]
     pub const SigningCertificate: Self = Self(2);
 }

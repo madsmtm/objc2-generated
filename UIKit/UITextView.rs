@@ -505,9 +505,13 @@ extern_protocol!(
 pub struct UITextViewBorderStyle(pub NSInteger);
 impl UITextViewBorderStyle {
     /// The text view does not display a border.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextview/borderstyle-swift.enum/none?language=objc)
     #[doc(alias = "UITextViewBorderStyleNone")]
     pub const None: Self = Self(0);
     /// Displays a rounded-style border for the text view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextview/borderstyle-swift.enum/roundedrect?language=objc)
     #[doc(alias = "UITextViewBorderStyleRoundedRect")]
     pub const RoundedRect: Self = Self(1);
 }

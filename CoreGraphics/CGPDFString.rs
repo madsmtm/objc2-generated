@@ -26,6 +26,8 @@ unsafe impl RefEncode for CGPDFString {
 pub type CGPDFStringRef = *mut CGPDFString;
 
 impl CGPDFString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringgetlength(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `string` must be a valid pointer or null.
@@ -38,6 +40,8 @@ impl CGPDFString {
         unsafe { CGPDFStringGetLength(string) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringgetbyteptr(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `string` must be a valid pointer or null.
@@ -50,6 +54,8 @@ impl CGPDFString {
         unsafe { CGPDFStringGetBytePtr(string) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringcopytextstring(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `string` must be a valid pointer or null.
@@ -63,6 +69,8 @@ impl CGPDFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringcopydate(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `string` must be a valid pointer or null.

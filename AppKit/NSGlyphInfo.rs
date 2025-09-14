@@ -107,16 +107,22 @@ impl DefaultRetained for NSGlyphInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCharacterCollection(pub NSUInteger);
 impl NSCharacterCollection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/identitymappingcharactercollection?language=objc)
     #[doc(alias = "NSIdentityMappingCharacterCollection")]
     pub const IdentityMappingCharacterCollection: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/adobecns1charactercollection?language=objc)
     #[doc(alias = "NSAdobeCNS1CharacterCollection")]
     pub const AdobeCNS1CharacterCollection: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/adobegb1charactercollection?language=objc)
     #[doc(alias = "NSAdobeGB1CharacterCollection")]
     pub const AdobeGB1CharacterCollection: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/adobejapan1charactercollection?language=objc)
     #[doc(alias = "NSAdobeJapan1CharacterCollection")]
     pub const AdobeJapan1CharacterCollection: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/adobejapan2charactercollection?language=objc)
     #[doc(alias = "NSAdobeJapan2CharacterCollection")]
     pub const AdobeJapan2CharacterCollection: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/adobekorea1charactercollection?language=objc)
     #[doc(alias = "NSAdobeKorea1CharacterCollection")]
     pub const AdobeKorea1CharacterCollection: Self = Self(5);
 }

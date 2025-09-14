@@ -13,32 +13,46 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSendPaymentIntentResponseCode(pub NSInteger);
 impl INSendPaymentIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/ready?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/success?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/failure?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/failurecredentialsunverified?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeFailureCredentialsUnverified")]
     pub const FailureCredentialsUnverified: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/failurepaymentsamountbelowminimum?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeFailurePaymentsAmountBelowMinimum")]
     pub const FailurePaymentsAmountBelowMinimum: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/failurepaymentsamountabovemaximum?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeFailurePaymentsAmountAboveMaximum")]
     pub const FailurePaymentsAmountAboveMaximum: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/failurepaymentscurrencyunsupported?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeFailurePaymentsCurrencyUnsupported")]
     pub const FailurePaymentsCurrencyUnsupported: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/failureinsufficientfunds?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeFailureInsufficientFunds")]
     pub const FailureInsufficientFunds: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/failurenobankaccount?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeFailureNoBankAccount")]
     pub const FailureNoBankAccount: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/failurenoteligible?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeFailureNotEligible")]
     pub const FailureNotEligible: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentresponsecode/failuretermsandconditionsacceptancerequired?language=objc)
     #[doc(alias = "INSendPaymentIntentResponseCodeFailureTermsAndConditionsAcceptanceRequired")]
     pub const FailureTermsAndConditionsAcceptanceRequired: Self = Self(13);
 }

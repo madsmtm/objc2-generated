@@ -26,6 +26,8 @@ use crate::*;
 /// # Safety
 ///
 /// `ssid_array` generic must be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/cnsetsupportedssids?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> bool {
@@ -44,6 +46,8 @@ pub unsafe extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> boo
 /// Parameter `interfaceName`: Name of the interface that is now online.
 ///
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/cnmarkportalonline?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn CNMarkPortalOnline(interface_name: &CFString) -> bool {
@@ -60,6 +64,8 @@ pub extern "C-unwind" fn CNMarkPortalOnline(interface_name: &CFString) -> bool {
 /// Parameter `interfaceName`: Name of the interface that is still captive.
 ///
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/cnmarkportaloffline?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -> bool {
@@ -75,6 +81,8 @@ pub extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -> bool 
 /// Returns: An array of CFStringRef- BSD interface names.
 /// Returns NULL if an error was encountered.
 /// You MUST release the returned value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/cncopysupportedinterfaces?language=objc)
 #[inline]
 pub extern "C-unwind" fn CNCopySupportedInterfaces() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -139,6 +147,8 @@ extern "C" {
 /// Returns: Network Information dictionary associated with the interface.
 /// Returns NULL if an error was encountered.
 /// You MUST release the returned value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/cncopycurrentnetworkinfo?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn CNCopyCurrentNetworkInfo(

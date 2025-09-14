@@ -18,8 +18,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISliderStyle(pub NSInteger);
 impl UISliderStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uislider/style/default?language=objc)
     #[doc(alias = "UISliderStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uislider/style/thumbless?language=objc)
     #[doc(alias = "UISliderStyleThumbless")]
     pub const Thumbless: Self = Self(1);
 }

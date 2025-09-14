@@ -12,12 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSItemProviderRepresentationVisibility(pub NSInteger);
 impl NSItemProviderRepresentationVisibility {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility/all?language=objc)
     #[doc(alias = "NSItemProviderRepresentationVisibilityAll")]
     pub const All: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility/team?language=objc)
     #[doc(alias = "NSItemProviderRepresentationVisibilityTeam")]
     pub const Team: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility/group?language=objc)
     #[doc(alias = "NSItemProviderRepresentationVisibilityGroup")]
     pub const Group: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility/ownprocess?language=objc)
     #[doc(alias = "NSItemProviderRepresentationVisibilityOwnProcess")]
     pub const OwnProcess: Self = Self(3);
 }
@@ -37,6 +41,7 @@ unsafe impl RefEncode for NSItemProviderRepresentationVisibility {
 pub struct NSItemProviderFileOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSItemProviderFileOptions: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderfileoptions/openinplace?language=objc)
         #[doc(alias = "NSItemProviderFileOptionOpenInPlace")]
         const OpenInPlace = 1;
     }
@@ -484,12 +489,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSItemProviderErrorCode(pub NSInteger);
 impl NSItemProviderErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errorcode/unknownerror?language=objc)
     #[doc(alias = "NSItemProviderUnknownError")]
     pub const UnknownError: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errorcode/itemunavailableerror?language=objc)
     #[doc(alias = "NSItemProviderItemUnavailableError")]
     pub const ItemUnavailableError: Self = Self(-1000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errorcode/unexpectedvalueclasserror?language=objc)
     #[doc(alias = "NSItemProviderUnexpectedValueClassError")]
     pub const UnexpectedValueClassError: Self = Self(-1100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errorcode/unavailablecoercionerror?language=objc)
     #[doc(alias = "NSItemProviderUnavailableCoercionError")]
     pub const UnavailableCoercionError: Self = Self(-1200);
 }

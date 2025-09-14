@@ -13,9 +13,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKMatchSendDataMode(pub NSInteger);
 impl GKMatchSendDataMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatch/senddatamode/reliable?language=objc)
     #[doc(alias = "GKMatchSendDataReliable")]
     pub const Reliable: Self = Self(0);
     /// a.s.a.p. but requires fragmentation and reassembly for large messages, may stall if network congestion occurs
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatch/senddatamode/unreliable?language=objc)
     #[doc(alias = "GKMatchSendDataUnreliable")]
     pub const Unreliable: Self = Self(1);
 }
@@ -34,12 +37,17 @@ unsafe impl RefEncode for GKMatchSendDataMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKPlayerConnectionState(pub NSInteger);
 impl GKPlayerConnectionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerconnectionstate/unknown?language=objc)
     #[doc(alias = "GKPlayerStateUnknown")]
     pub const StateUnknown: Self = Self(0);
     /// initial player state
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerconnectionstate/connected?language=objc)
     #[doc(alias = "GKPlayerStateConnected")]
     pub const StateConnected: Self = Self(1);
     /// connected to the match
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerconnectionstate/disconnected?language=objc)
     #[doc(alias = "GKPlayerStateDisconnected")]
     pub const StateDisconnected: Self = Self(2);
 }

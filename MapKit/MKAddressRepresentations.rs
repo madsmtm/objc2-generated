@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKAddressRepresentationsContextStyle(pub NSInteger);
 impl MKAddressRepresentationsContextStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/contextstyle/automatic?language=objc)
     #[doc(alias = "MKAddressRepresentationsContextStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/contextstyle/short?language=objc)
     #[doc(alias = "MKAddressRepresentationsContextStyleShort")]
     pub const Short: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/contextstyle/full?language=objc)
     #[doc(alias = "MKAddressRepresentationsContextStyleFull")]
     pub const Full: Self = Self(2);
 }

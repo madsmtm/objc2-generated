@@ -11,6 +11,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLFunctionLogType(pub NSUInteger);
 impl MTLFunctionLogType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionlogtype/validation?language=objc)
     #[doc(alias = "MTLFunctionLogTypeValidation")]
     pub const Validation: Self = Self(0);
 }

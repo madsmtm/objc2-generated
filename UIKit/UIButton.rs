@@ -18,22 +18,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonType(pub NSInteger);
 impl UIButtonType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/custom?language=objc)
     #[doc(alias = "UIButtonTypeCustom")]
     pub const Custom: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/system?language=objc)
     #[doc(alias = "UIButtonTypeSystem")]
     pub const System: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/detaildisclosure?language=objc)
     #[doc(alias = "UIButtonTypeDetailDisclosure")]
     pub const DetailDisclosure: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/infolight?language=objc)
     #[doc(alias = "UIButtonTypeInfoLight")]
     pub const InfoLight: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/infodark?language=objc)
     #[doc(alias = "UIButtonTypeInfoDark")]
     pub const InfoDark: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/contactadd?language=objc)
     #[doc(alias = "UIButtonTypeContactAdd")]
     pub const ContactAdd: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/plain?language=objc)
     #[doc(alias = "UIButtonTypePlain")]
     pub const Plain: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/close?language=objc)
     #[doc(alias = "UIButtonTypeClose")]
     pub const Close: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/roundedrect?language=objc)
     #[doc(alias = "UIButtonTypeRoundedRect")]
     pub const RoundedRect: Self = Self(UIButtonType::System.0);
 }
@@ -52,12 +61,16 @@ unsafe impl RefEncode for UIButtonType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonRole(pub NSInteger);
 impl UIButtonRole {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/role-swift.enum/normal?language=objc)
     #[doc(alias = "UIButtonRoleNormal")]
     pub const Normal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/role-swift.enum/primary?language=objc)
     #[doc(alias = "UIButtonRolePrimary")]
     pub const Primary: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/role-swift.enum/cancel?language=objc)
     #[doc(alias = "UIButtonRoleCancel")]
     pub const Cancel: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/role-swift.enum/destructive?language=objc)
     #[doc(alias = "UIButtonRoleDestructive")]
     pub const Destructive: Self = Self(3);
 }

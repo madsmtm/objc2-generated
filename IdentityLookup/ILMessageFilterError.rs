@@ -17,18 +17,28 @@ extern "C" {
 pub struct ILMessageFilterError(pub NSInteger);
 impl ILMessageFilterError {
     /// An unspecified system error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code/system?language=objc)
     #[doc(alias = "ILMessageFilterErrorSystem")]
     pub const System: Self = Self(1);
     /// The network request URL included in the extension's Info.plist was either missing or invalid. See documentation for network request URL requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code/invalidnetworkurl?language=objc)
     #[doc(alias = "ILMessageFilterErrorInvalidNetworkURL")]
     pub const InvalidNetworkURL: Self = Self(2);
     /// Extension's containing app is not authorized to allow extension to defer network requests to the host specified in the URL of the extension's Info.plist.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code/networkurlunauthorized?language=objc)
     #[doc(alias = "ILMessageFilterErrorNetworkURLUnauthorized")]
     pub const NetworkURLUnauthorized: Self = Self(3);
     /// Network request was attempted but failed. See `NSUnderlyingErrorKey` in `userInfo` dictionary for details.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code/networkrequestfailed?language=objc)
     #[doc(alias = "ILMessageFilterErrorNetworkRequestFailed")]
     pub const NetworkRequestFailed: Self = Self(4);
     /// Extension requested to defer a request to its network service more than once. Requests may be deferred to the network at most once.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code/redundantnetworkdeferral?language=objc)
     #[doc(alias = "ILMessageFilterErrorRedundantNetworkDeferral")]
     pub const RedundantNetworkDeferral: Self = Self(5);
 }

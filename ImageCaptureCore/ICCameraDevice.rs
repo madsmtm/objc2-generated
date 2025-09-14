@@ -146,8 +146,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICMediaPresentation(pub NSUInteger);
 impl ICMediaPresentation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icmediapresentation/convertedassets?language=objc)
     #[doc(alias = "ICMediaPresentationConvertedAssets")]
     pub const ConvertedAssets: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icmediapresentation/originalassets?language=objc)
     #[doc(alias = "ICMediaPresentationOriginalAssets")]
     pub const OriginalAssets: Self = Self(2);
 }

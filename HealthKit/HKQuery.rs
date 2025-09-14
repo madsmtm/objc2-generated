@@ -63,10 +63,13 @@ impl HKQuery {
 pub struct HKQueryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl HKQueryOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryoptions/hkqueryoptionnone?language=objc)
         #[doc(alias = "HKQueryOptionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryoptions/strictstartdate?language=objc)
         #[doc(alias = "HKQueryOptionStrictStartDate")]
         const StrictStartDate = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryoptions/strictenddate?language=objc)
         #[doc(alias = "HKQueryOptionStrictEndDate")]
         const StrictEndDate = 1<<1;
     }

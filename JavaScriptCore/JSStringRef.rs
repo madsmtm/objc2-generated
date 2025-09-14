@@ -23,6 +23,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `chars` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringcreatewithcharacters(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringCreateWithCharacters(chars: *const JSChar, num_chars: usize) -> JSStringRef;
 }
@@ -37,6 +39,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringcreatewithutf8cstring(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringCreateWithUTF8CString(string: *const c_char) -> JSStringRef;
 }
@@ -51,6 +55,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringretain(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringRetain(string: JSStringRef) -> JSStringRef;
 }
@@ -63,6 +69,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringrelease(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringRelease(string: JSStringRef);
 }
@@ -77,6 +85,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringgetlength(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetLength(string: JSStringRef) -> usize;
 }
@@ -93,6 +103,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringgetcharactersptr(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetCharactersPtr(string: JSStringRef) -> *const JSChar;
 }
@@ -111,6 +123,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringgetmaximumutf8cstringsize(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetMaximumUTF8CStringSize(string: JSStringRef) -> usize;
 }
@@ -135,6 +149,8 @@ extern "C-unwind" {
     ///
     /// - `string` must be a valid pointer.
     /// - `buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringgetutf8cstring(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetUTF8CString(
         string: JSStringRef,
@@ -156,6 +172,8 @@ extern "C-unwind" {
     ///
     /// - `a` must be a valid pointer.
     /// - `b` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringisequal(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) -> bool;
 }
@@ -173,6 +191,8 @@ extern "C-unwind" {
     ///
     /// - `a` must be a valid pointer.
     /// - `b` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringisequaltoutf8cstring(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringIsEqualToUTF8CString(a: JSStringRef, b: *const c_char) -> bool;
 }

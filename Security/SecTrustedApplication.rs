@@ -11,6 +11,8 @@ unsafe impl ConcreteType for SecTrustedApplication {
     /// Returns the type identifier of SecTrustedApplication instances.
     ///
     /// Returns: The CFTypeID of SecTrustedApplication instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustedapplicationgettypeid()?language=objc)
     #[doc(alias = "SecTrustedApplicationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -37,6 +39,8 @@ impl SecTrustedApplication {
     ///
     /// - `path` must be a valid pointer or null.
     /// - `app` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:)?language=objc)
     #[doc(alias = "SecTrustedApplicationCreateFromPath")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -65,6 +69,8 @@ impl SecTrustedApplication {
     /// # Safety
     ///
     /// `data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustedapplicationcopydata(_:_:)?language=objc)
     #[doc(alias = "SecTrustedApplicationCopyData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -86,6 +92,8 @@ impl SecTrustedApplication {
     /// Parameter `data`: A reference to the data to set in the trusted application.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustedapplicationsetdata(_:_:)?language=objc)
     #[doc(alias = "SecTrustedApplicationSetData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

@@ -41,8 +41,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVAttachmentMode(pub u32);
 impl CVAttachmentMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvattachmentmode/shouldnotpropagate?language=objc)
     #[doc(alias = "kCVAttachmentMode_ShouldNotPropagate")]
     pub const ShouldNotPropagate: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvattachmentmode/shouldpropagate?language=objc)
     #[doc(alias = "kCVAttachmentMode_ShouldPropagate")]
     pub const ShouldPropagate: Self = Self(1);
 }
@@ -92,6 +94,8 @@ impl CVBuffer {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbuffersetattachment(_:_:_:_:)?language=objc)
     #[doc(alias = "CVBufferSetAttachment")]
     #[inline]
     pub unsafe fn set_attachment(
@@ -126,6 +130,8 @@ impl CVBuffer {
     /// # Safety
     ///
     /// `attachment_mode` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbuffergetattachment(_:_:_:)?language=objc)
     #[doc(alias = "CVBufferGetAttachment")]
     #[deprecated]
     #[inline]
@@ -152,6 +158,8 @@ impl CVBuffer {
     /// Parameter `buffer`: Target CVBuffer object.
     ///
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbufferremoveattachment(_:_:)?language=objc)
     #[doc(alias = "CVBufferRemoveAttachment")]
     #[inline]
     pub fn remove_attachment(&self, key: &CFString) {
@@ -166,6 +174,8 @@ impl CVBuffer {
     /// While CVBufferRemoveAttachment removes a specific attachement identified by a key CVBufferRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.
     ///
     /// Parameter `buffer`: Target CVBuffer object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbufferremoveallattachments(_:)?language=objc)
     #[doc(alias = "CVBufferRemoveAllAttachments")]
     #[inline]
     pub fn remove_all_attachments(&self) {
@@ -183,6 +193,8 @@ impl CVBuffer {
     ///
     /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, the dictionary is empty.  Returns NULL
     /// for invalid attachment mode.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbuffergetattachments(_:_:)?language=objc)
     #[doc(alias = "CVBufferGetAttachments")]
     #[deprecated]
     #[inline]
@@ -210,6 +222,8 @@ impl CVBuffer {
     ///
     /// - `the_attachments` generic must be of the correct type.
     /// - `the_attachments` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbuffersetattachments(_:_:_:)?language=objc)
     #[doc(alias = "CVBufferSetAttachments")]
     #[inline]
     pub unsafe fn set_attachments(
@@ -235,6 +249,8 @@ impl CVBuffer {
     /// Parameter `sourceBuffer`: CVBuffer to copy attachments from.
     ///
     /// Parameter `destinationBuffer`: CVBuffer to copy attachments to.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbufferpropagateattachments(_:_:)?language=objc)
     #[doc(alias = "CVBufferPropagateAttachments")]
     #[inline]
     pub fn propagate_attachments(&self, destination_buffer: &CVBuffer) {
@@ -254,6 +270,8 @@ impl CVBuffer {
     /// Parameter `buffer`: Target CVBuffer object.
     ///
     /// Returns: A CFDictionary with all buffer attachments identified by their keys. If no attachment is present or invalid attachment mode,   returns NULL
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbuffercopyattachments(_:_:)?language=objc)
     #[doc(alias = "CVBufferCopyAttachments")]
     #[inline]
     pub fn attachments(
@@ -285,6 +303,8 @@ impl CVBuffer {
     /// # Safety
     ///
     /// `attachment_mode` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbuffercopyattachment(_:_:_:)?language=objc)
     #[doc(alias = "CVBufferCopyAttachment")]
     #[inline]
     pub unsafe fn attachment(
@@ -310,6 +330,8 @@ impl CVBuffer {
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
     ///
     /// Returns: True if an attachment with this key is present, otherwise false.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbufferhasattachment(_:_:)?language=objc)
     #[doc(alias = "CVBufferHasAttachment")]
     #[inline]
     pub fn has_attachment(&self, key: &CFString) -> bool {

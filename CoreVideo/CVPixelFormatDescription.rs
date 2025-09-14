@@ -224,6 +224,7 @@ extern "C" {
     pub static kCVPixelFormatFillExtendedPixelsCallback: &'static CFString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelformatdescriptioncreatewithpixelformattype(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
     allocator: Option<&CFAllocator>,
@@ -239,6 +240,7 @@ pub extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelformatdescriptionarraycreatewithallpixelformattypes(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
     allocator: Option<&CFAllocator>,
@@ -253,6 +255,8 @@ pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTy
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelformatdescriptionregisterdescriptionwithpixelformattype(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `description` generic must be of the correct type.
@@ -268,6 +272,8 @@ extern "C-unwind" {
 /// Parameter `pixelFormat`: The pixel format to convert
 ///
 /// Returns: A string with a user displayable conversion of a pixel format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelformattypecopyfourcharcodestring(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVPixelFormatTypeCopyFourCharCodeString(
     pixel_format: OSType,
@@ -287,6 +293,8 @@ pub extern "C-unwind" fn CVPixelFormatTypeCopyFourCharCodeString(
 /// Parameter `pixelFormatType`: compressed pixel format.
 ///
 /// Returns: True if pixel format is supported on the current platform.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cviscompressedpixelformatavailable(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVIsCompressedPixelFormatAvailable(pixel_format_type: OSType) -> bool {
     extern "C-unwind" {

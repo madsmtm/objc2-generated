@@ -20,12 +20,18 @@ extern "C" {
 pub struct UITextItemContentType(pub NSInteger);
 impl UITextItemContentType {
     /// The text item represents a link.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemcontenttype/uitextitemcontenttypelink?language=objc)
     #[doc(alias = "UITextItemContentTypeLink")]
     pub const Link: Self = Self(0);
     /// The text item represents a text attachment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemcontenttype/uitextitemcontenttypetextattachment?language=objc)
     #[doc(alias = "UITextItemContentTypeTextAttachment")]
     pub const TextAttachment: Self = Self(1);
     /// The text item represents a custom tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemcontenttype/uitextitemcontenttypetag?language=objc)
     #[doc(alias = "UITextItemContentTypeTag")]
     pub const Tag: Self = Self(2);
 }

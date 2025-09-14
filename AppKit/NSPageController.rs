@@ -16,10 +16,13 @@ pub type NSPageControllerObjectIdentifier = NSString;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPageControllerTransitionStyle(pub NSInteger);
 impl NSPageControllerTransitionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.enum/stackhistory?language=objc)
     #[doc(alias = "NSPageControllerTransitionStyleStackHistory")]
     pub const StackHistory: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.enum/stackbook?language=objc)
     #[doc(alias = "NSPageControllerTransitionStyleStackBook")]
     pub const StackBook: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.enum/horizontalstrip?language=objc)
     #[doc(alias = "NSPageControllerTransitionStyleHorizontalStrip")]
     pub const HorizontalStrip: Self = Self(2);
 }

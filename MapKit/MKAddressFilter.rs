@@ -13,16 +13,22 @@ use crate::*;
 pub struct MKAddressFilterOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MKAddressFilterOption: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/country?language=objc)
         #[doc(alias = "MKAddressFilterOptionCountry")]
         const Country = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/administrativearea?language=objc)
         #[doc(alias = "MKAddressFilterOptionAdministrativeArea")]
         const AdministrativeArea = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/subadministrativearea?language=objc)
         #[doc(alias = "MKAddressFilterOptionSubAdministrativeArea")]
         const SubAdministrativeArea = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/locality?language=objc)
         #[doc(alias = "MKAddressFilterOptionLocality")]
         const Locality = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/sublocality?language=objc)
         #[doc(alias = "MKAddressFilterOptionSubLocality")]
         const SubLocality = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/postalcode?language=objc)
         #[doc(alias = "MKAddressFilterOptionPostalCode")]
         const PostalCode = 1<<5;
     }

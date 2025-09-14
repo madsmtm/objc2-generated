@@ -18,14 +18,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContentInsetsReference(pub NSInteger);
 impl UIContentInsetsReference {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference/automatic?language=objc)
     #[doc(alias = "UIContentInsetsReferenceAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference/none?language=objc)
     #[doc(alias = "UIContentInsetsReferenceNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference/safearea?language=objc)
     #[doc(alias = "UIContentInsetsReferenceSafeArea")]
     pub const SafeArea: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference/layoutmargins?language=objc)
     #[doc(alias = "UIContentInsetsReferenceLayoutMargins")]
     pub const LayoutMargins: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference/readablecontent?language=objc)
     #[doc(alias = "UIContentInsetsReferenceReadableContent")]
     pub const ReadableContent: Self = Self(4);
 }
@@ -237,18 +242,24 @@ impl UICollectionViewCompositionalLayout {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutSectionOrthogonalScrollingBehavior(pub NSInteger);
 impl UICollectionLayoutSectionOrthogonalScrollingBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/none?language=objc)
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/continuous?language=objc)
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorContinuous")]
     pub const Continuous: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/continuousgroupleadingboundary?language=objc)
     #[doc(
         alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorContinuousGroupLeadingBoundary"
     )]
     pub const ContinuousGroupLeadingBoundary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/paging?language=objc)
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorPaging")]
     pub const Paging: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/grouppaging?language=objc)
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorGroupPaging")]
     pub const GroupPaging: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/grouppagingcentered?language=objc)
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorGroupPagingCentered")]
     pub const GroupPagingCentered: Self = Self(5);
 }
@@ -307,10 +318,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutSectionOrthogonalScrollingBounce(pub NSInteger);
 impl UICollectionLayoutSectionOrthogonalScrollingBounce {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/bounce-swift.enum/automatic?language=objc)
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBounceAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/bounce-swift.enum/always?language=objc)
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBounceAlways")]
     pub const Always: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/bounce-swift.enum/never?language=objc)
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBounceNever")]
     pub const Never: Self = Self(2);
 }

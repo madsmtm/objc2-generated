@@ -27,6 +27,8 @@ pub struct cp_layer_renderer_configuration_error_code(pub CFIndex);
 impl cp_layer_renderer_configuration_error_code {
     /// An error that indicates the system didn't find a default
     /// layer renderer configuration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_missing_configuration?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_missing_configuration")]
     pub const missing_configuration: Self = Self(-20);
     /// An error that indicates the layer doesn’t support the current
@@ -35,6 +37,8 @@ impl cp_layer_renderer_configuration_error_code {
     /// Compare the value the ``cp_layer_renderer_configuration_get_color_format``
     /// function returns and make sure it matches one of the values the
     /// ``cp_layer_renderer_capabilities_supported_color_format`` function returns.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_unsupported_color_format?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_color_format")]
     pub const unsupported_color_format: Self = Self(-4);
     /// An error that indicates the layer doesn’t support the current
@@ -43,6 +47,8 @@ impl cp_layer_renderer_configuration_error_code {
     /// Compare the value the ``cp_layer_renderer_configuration_get_color_usage``
     /// function returns and make sure it has at least `MTLTextureUsageShaderRead`
     /// and does not contain `MTLTextureUsageShaderAtomic` or `MTLTextureUsageShaderWrite`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_unsupported_color_usage?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_color_usage")]
     pub const unsupported_color_usage: Self = Self(-5);
     /// An error that indicates the layer doesn’t support the current
@@ -51,6 +57,8 @@ impl cp_layer_renderer_configuration_error_code {
     /// Compare the value the ``cp_layer_renderer_configuration_get_depth_format``
     /// function returns and make sure it matches one of the values the
     /// ``cp_layer_renderer_capabilities_supported_depth_format`` function returns.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_unsupported_depth_format?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_depth_format")]
     pub const unsupported_depth_format: Self = Self(-7);
     /// An error that indicates the layer doesn’t support the current
@@ -59,26 +67,36 @@ impl cp_layer_renderer_configuration_error_code {
     /// Compare the value the ``cp_layer_renderer_configuration_get_depth_usage``
     /// function returns and make sure it has at least `MTLTextureUsageShaderRead`
     /// and does not contain `MTLTextureUsageShaderAtomic`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_unsupported_depth_usage?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_depth_usage")]
     pub const unsupported_depth_usage: Self = Self(-8);
     /// An error that indicates foveation is enabled but not supported.
     ///
     /// Disable foveation in your layer's configuration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_variable_rasterization_rate_is_not_supported?language=objc)
     #[doc(
         alias = "cp_layer_renderer_configuration_error_code_variable_rasterization_rate_is_not_supported"
     )]
     pub const variable_rasterization_rate_is_not_supported: Self = Self(-16);
     /// An error that occurs when you try to enable temporal anti-aliasing
     /// but the current configuration parameters don't support it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_temporal_anti_aliasing_not_supported?language=objc)
     #[doc(
         alias = "cp_layer_renderer_configuration_error_code_temporal_anti_aliasing_not_supported"
     )]
     pub const temporal_anti_aliasing_not_supported: Self = Self(-17);
     /// An error that indicates not enough frames are available for rendering.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_not_enough_frames_requested?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_not_enough_frames_requested")]
     pub const not_enough_frames_requested: Self = Self(-10);
     /// An error that indicates the system requested too many frames
     /// for rendering.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_too_many_frames_requested?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_too_many_frames_requested")]
     pub const too_many_frames_requested: Self = Self(-11);
     /// An error that indicates the depth range values aren't in
@@ -88,6 +106,8 @@ impl cp_layer_renderer_configuration_error_code {
     /// make sure the first value in your `depth_range` vector contains
     /// the value for the far plane. In addition, make sure the distance
     /// to the far plane is greater than the distance to the near plane.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_unsupported_forward_depth_range?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_forward_depth_range")]
     pub const unsupported_forward_depth_range: Self = Self(-101);
     /// An error that indicates the configuration's current layout value
@@ -96,10 +116,14 @@ impl cp_layer_renderer_configuration_error_code {
     /// Specify a supported layout value using the ``cp_layer_renderer_configuration_set_layout``
     /// function. Get a list of supported layouts from the
     /// ``cp_layer_renderer_capabilities_supported_layout`` function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_layout_not_supported?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_layout_not_supported")]
     pub const layout_not_supported: Self = Self(-6);
     /// An error that indicates the near plane of the client is smaller
     /// than the supported value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_unsupported_near_plane_distance?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_near_plane_distance")]
     pub const unsupported_near_plane_distance: Self = Self(-104);
     /// An error that indicates the layer doesn’t support the current
@@ -108,6 +132,8 @@ impl cp_layer_renderer_configuration_error_code {
     /// Compare the value the ``cp_layer_renderer_configuration_get_tracking_areas_format``
     /// function returns and make sure it matches one of the values the
     /// ``cp_layer_renderer_capabilities_supported_tracking_areas_format`` function returns.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_unsupported_tracking_areas_format?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_tracking_areas_format")]
     pub const unsupported_tracking_areas_format: Self = Self(-21);
     /// An error that indicates the layer doesn’t support the current
@@ -116,6 +142,8 @@ impl cp_layer_renderer_configuration_error_code {
     /// Compare the value the ``cp_layer_renderer_configuration_get_tracking_areas_usage``
     /// function returns and make sure it has at least `MTLTextureUsageShaderRead`
     /// and does not contain `MTLTextureUsageShaderAtomic`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_unsupported_tracking_areas_usage?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_tracking_areas_usage")]
     pub const unsupported_tracking_areas_usage: Self = Self(-22);
     /// An error that indicates the layer doesn't support the current
@@ -124,6 +152,8 @@ impl cp_layer_renderer_configuration_error_code {
     /// Compare the value the ``cp_layer_renderer_configuration_get_drawable_render_context_stencil_format``
     /// function returns and make sure it matches one of the values the
     /// ``cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format`` function returns.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_unsupported_drawable_render_context_stencil_format?language=objc)
     #[doc(
         alias = "cp_layer_renderer_configuration_error_code_unsupported_drawable_render_context_stencil_format"
     )]
@@ -131,6 +161,8 @@ impl cp_layer_renderer_configuration_error_code {
     /// An error that indicates the configuration's render quality is unsupported.
     /// This could be because foveation is disabled or the quality is outside of the valid range of [0, 1],
     /// the error `userInfo` will contain additional information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_error_code/cp_layer_renderer_configuration_error_code_unsupported_render_quality?language=objc)
     #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_render_quality")]
     pub const unsupported_render_quality: Self = Self(-18);
 }

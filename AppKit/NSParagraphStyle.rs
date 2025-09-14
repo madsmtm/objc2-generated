@@ -15,16 +15,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineBreakMode(pub NSUInteger);
 impl NSLineBreakMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/bywordwrapping?language=objc)
     #[doc(alias = "NSLineBreakByWordWrapping")]
     pub const ByWordWrapping: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/bycharwrapping?language=objc)
     #[doc(alias = "NSLineBreakByCharWrapping")]
     pub const ByCharWrapping: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/byclipping?language=objc)
     #[doc(alias = "NSLineBreakByClipping")]
     pub const ByClipping: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/bytruncatinghead?language=objc)
     #[doc(alias = "NSLineBreakByTruncatingHead")]
     pub const ByTruncatingHead: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/bytruncatingtail?language=objc)
     #[doc(alias = "NSLineBreakByTruncatingTail")]
     pub const ByTruncatingTail: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/bytruncatingmiddle?language=objc)
     #[doc(alias = "NSLineBreakByTruncatingMiddle")]
     pub const ByTruncatingMiddle: Self = Self(5);
 }
@@ -44,12 +50,16 @@ unsafe impl RefEncode for NSLineBreakMode {
 pub struct NSLineBreakStrategy(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLineBreakStrategy: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakstrategy/nslinebreakstrategynone?language=objc)
         #[doc(alias = "NSLineBreakStrategyNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakstrategy-swift.struct/pushout?language=objc)
         #[doc(alias = "NSLineBreakStrategyPushOut")]
         const PushOut = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakstrategy-swift.struct/hangulwordpriority?language=objc)
         #[doc(alias = "NSLineBreakStrategyHangulWordPriority")]
         const HangulWordPriority = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakstrategy-swift.struct/standard?language=objc)
         #[doc(alias = "NSLineBreakStrategyStandard")]
         const Standard = 0xFFFF;
     }
@@ -652,12 +662,16 @@ impl NSMutableParagraphStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextTabType(pub NSUInteger);
 impl NSTextTabType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/texttabtype/lefttabstoptype?language=objc)
     #[doc(alias = "NSLeftTabStopType")]
     pub const LeftTabStopType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/texttabtype/righttabstoptype?language=objc)
     #[doc(alias = "NSRightTabStopType")]
     pub const RightTabStopType: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/texttabtype/centertabstoptype?language=objc)
     #[doc(alias = "NSCenterTabStopType")]
     pub const CenterTabStopType: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/texttabtype/decimaltabstoptype?language=objc)
     #[doc(alias = "NSDecimalTabStopType")]
     pub const DecimalTabStopType: Self = Self(3);
 }

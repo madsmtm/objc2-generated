@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantAcceptanceStatus(pub NSInteger);
 impl CKShareParticipantAcceptanceStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantacceptancestatus/unknown?language=objc)
     #[doc(alias = "CKShareParticipantAcceptanceStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantacceptancestatus/pending?language=objc)
     #[doc(alias = "CKShareParticipantAcceptanceStatusPending")]
     pub const Pending: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantacceptancestatus/accepted?language=objc)
     #[doc(alias = "CKShareParticipantAcceptanceStatusAccepted")]
     pub const Accepted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantacceptancestatus/removed?language=objc)
     #[doc(alias = "CKShareParticipantAcceptanceStatusRemoved")]
     pub const Removed: Self = Self(3);
 }
@@ -39,12 +43,16 @@ unsafe impl RefEncode for CKShareParticipantAcceptanceStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantPermission(pub NSInteger);
 impl CKShareParticipantPermission {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantpermission/unknown?language=objc)
     #[doc(alias = "CKShareParticipantPermissionUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantpermission/none?language=objc)
     #[doc(alias = "CKShareParticipantPermissionNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantpermission/readonly?language=objc)
     #[doc(alias = "CKShareParticipantPermissionReadOnly")]
     pub const ReadOnly: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantpermission/readwrite?language=objc)
     #[doc(alias = "CKShareParticipantPermissionReadWrite")]
     pub const ReadWrite: Self = Self(3);
 }
@@ -72,14 +80,19 @@ unsafe impl RefEncode for CKShareParticipantPermission {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantRole(pub NSInteger);
 impl CKShareParticipantRole {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantrole/unknown?language=objc)
     #[doc(alias = "CKShareParticipantRoleUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantrole/owner?language=objc)
     #[doc(alias = "CKShareParticipantRoleOwner")]
     pub const Owner: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantrole/privateuser?language=objc)
     #[doc(alias = "CKShareParticipantRolePrivateUser")]
     pub const PrivateUser: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantrole/publicuser?language=objc)
     #[doc(alias = "CKShareParticipantRolePublicUser")]
     pub const PublicUser: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantrole/administrator?language=objc)
     #[doc(alias = "CKShareParticipantRoleAdministrator")]
     pub const Administrator: Self = Self(2);
 }
@@ -99,15 +112,19 @@ unsafe impl RefEncode for CKShareParticipantRole {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantType(pub NSInteger);
 impl CKShareParticipantType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participanttype/unknown?language=objc)
     #[doc(alias = "CKShareParticipantTypeUnknown")]
     #[deprecated]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participanttype/owner?language=objc)
     #[doc(alias = "CKShareParticipantTypeOwner")]
     #[deprecated]
     pub const Owner: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participanttype/privateuser?language=objc)
     #[doc(alias = "CKShareParticipantTypePrivateUser")]
     #[deprecated]
     pub const PrivateUser: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participanttype/publicuser?language=objc)
     #[doc(alias = "CKShareParticipantTypePublicUser")]
     #[deprecated]
     pub const PublicUser: Self = Self(4);

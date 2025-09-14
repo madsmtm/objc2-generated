@@ -15,18 +15,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGestureRecognizerState(pub NSInteger);
 impl UIGestureRecognizerState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/possible?language=objc)
     #[doc(alias = "UIGestureRecognizerStatePossible")]
     pub const Possible: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/began?language=objc)
     #[doc(alias = "UIGestureRecognizerStateBegan")]
     pub const Began: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/changed?language=objc)
     #[doc(alias = "UIGestureRecognizerStateChanged")]
     pub const Changed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/ended?language=objc)
     #[doc(alias = "UIGestureRecognizerStateEnded")]
     pub const Ended: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/cancelled?language=objc)
     #[doc(alias = "UIGestureRecognizerStateCancelled")]
     pub const Cancelled: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/failed?language=objc)
     #[doc(alias = "UIGestureRecognizerStateFailed")]
     pub const Failed: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/recognized?language=objc)
     #[doc(alias = "UIGestureRecognizerStateRecognized")]
     pub const Recognized: Self = Self(UIGestureRecognizerState::Ended.0);
 }

@@ -65,6 +65,7 @@ pub const kCMMemoryPoolError_AllocationFailed: OSStatus = -15490;
 pub const kCMMemoryPoolError_InvalidParameter: OSStatus = -15491;
 
 unsafe impl ConcreteType for CMMemoryPool {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolgettypeid()?language=objc)
     #[doc(alias = "CMMemoryPoolGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -91,6 +92,8 @@ impl CMMemoryPool {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolcreate(options:)?language=objc)
     #[doc(alias = "CMMemoryPoolCreate")]
     #[inline]
     pub unsafe fn new(options: Option<&CFDictionary>) -> CFRetained<CMMemoryPool> {
@@ -104,6 +107,8 @@ impl CMMemoryPool {
     }
 
     /// Returns the pool's CFAllocator.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolgetallocator(_:)?language=objc)
     #[doc(alias = "CMMemoryPoolGetAllocator")]
     #[inline]
     pub unsafe fn allocator(&self) -> CFRetained<CFAllocator> {
@@ -117,6 +122,8 @@ impl CMMemoryPool {
     }
 
     /// Deallocates all memory the pool was holding for recycling.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolflush(_:)?language=objc)
     #[doc(alias = "CMMemoryPoolFlush")]
     #[inline]
     pub unsafe fn flush(&self) {
@@ -132,6 +139,8 @@ impl CMMemoryPool {
     /// The pool deallocates any memory it was holding for recycling.
     /// This also happens when the retain count of the CMMemoryPool drops to zero,
     /// except that under GC it may be delayed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolinvalidate(_:)?language=objc)
     #[doc(alias = "CMMemoryPoolInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {

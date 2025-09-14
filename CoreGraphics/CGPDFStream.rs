@@ -30,10 +30,13 @@ pub type CGPDFStreamRef = *mut CGPDFStream;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPDFDataFormat(pub i32);
 impl CGPDFDataFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat/raw?language=objc)
     #[doc(alias = "CGPDFDataFormatRaw")]
     pub const Raw: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat/jpegencoded?language=objc)
     #[doc(alias = "CGPDFDataFormatJPEGEncoded")]
     pub const JPEGEncoded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat/jpeg2000?language=objc)
     #[doc(alias = "CGPDFDataFormatJPEG2000")]
     pub const JPEG2000: Self = Self(2);
 }
@@ -49,6 +52,8 @@ unsafe impl RefEncode for CGPDFDataFormat {
 }
 
 impl CGPDFStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstreamgetdictionary(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `stream` must be a valid pointer or null.
@@ -62,6 +67,8 @@ impl CGPDFStream {
         unsafe { CGPDFStreamGetDictionary(stream) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstreamcopydata(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `stream` must be a valid pointer or null.

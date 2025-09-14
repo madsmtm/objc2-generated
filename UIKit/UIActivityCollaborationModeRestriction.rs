@@ -27,8 +27,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIActivityCollaborationMode(pub NSInteger);
 impl UIActivityCollaborationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycollaborationmode/sendcopy?language=objc)
     #[doc(alias = "UIActivityCollaborationModeSendCopy")]
     pub const SendCopy: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycollaborationmode/collaborate?language=objc)
     #[doc(alias = "UIActivityCollaborationModeCollaborate")]
     pub const Collaborate: Self = Self(1);
 }

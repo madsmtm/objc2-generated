@@ -46,6 +46,8 @@ impl cp_view_texture_map {
     /// # Safety
     ///
     /// `view_texture_map` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.struct/textureindex?language=objc)
     #[doc(alias = "cp_view_texture_map_get_texture_index")]
     #[inline]
     pub unsafe fn texture_index(view_texture_map: cp_view_texture_map_t) -> usize {
@@ -78,6 +80,8 @@ impl cp_view_texture_map {
     /// # Safety
     ///
     /// `view_texture_map` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.struct/sliceindex?language=objc)
     #[doc(alias = "cp_view_texture_map_get_slice_index")]
     #[inline]
     pub unsafe fn slice_index(view_texture_map: cp_view_texture_map_t) -> usize {
@@ -105,6 +109,8 @@ impl cp_view_texture_map {
     /// # Safety
     ///
     /// `view_texture_map` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.struct/viewport?language=objc)
     #[doc(alias = "cp_view_texture_map_get_viewport")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -155,6 +161,8 @@ impl cp_view {
     /// # Safety
     ///
     /// `view` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.property?language=objc)
     #[doc(alias = "cp_view_get_view_texture_map")]
     #[inline]
     pub unsafe fn view_texture_map(view: cp_view_t) -> cp_view_texture_map_t {

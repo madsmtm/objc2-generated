@@ -15,14 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLTaskState(pub NSInteger);
 impl MLTaskState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate/suspended?language=objc)
     #[doc(alias = "MLTaskStateSuspended")]
     pub const Suspended: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate/running?language=objc)
     #[doc(alias = "MLTaskStateRunning")]
     pub const Running: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate/cancelling?language=objc)
     #[doc(alias = "MLTaskStateCancelling")]
     pub const Cancelling: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate/completed?language=objc)
     #[doc(alias = "MLTaskStateCompleted")]
     pub const Completed: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate/failed?language=objc)
     #[doc(alias = "MLTaskStateFailed")]
     pub const Failed: Self = Self(5);
 }

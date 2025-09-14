@@ -51,40 +51,58 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ITLibMediaItemMediaKind(pub NSUInteger);
 impl ITLibMediaItemMediaKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindunknown?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindUnknown")]
     pub const KindUnknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindsong?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindSong")]
     pub const KindSong: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindmovie?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindMovie")]
     pub const KindMovie: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindpodcast?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindPodcast")]
     pub const KindPodcast: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindaudiobook?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindAudiobook")]
     pub const KindAudiobook: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindpdfbooklet?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindPDFBooklet")]
     pub const KindPDFBooklet: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindmusicvideo?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindMusicVideo")]
     pub const KindMusicVideo: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindtvshow?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindTVShow")]
     pub const KindTVShow: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindinteractivebooklet?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindInteractiveBooklet")]
     pub const KindInteractiveBooklet: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindhomevideo?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindHomeVideo")]
     pub const KindHomeVideo: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindringtone?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindRingtone")]
     pub const KindRingtone: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kinddigitalbooklet?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindDigitalBooklet")]
     pub const KindDigitalBooklet: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindiosapplication?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindIOSApplication")]
     pub const KindIOSApplication: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindvoicememo?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindVoiceMemo")]
     pub const KindVoiceMemo: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kinditunesu?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindiTunesU")]
     pub const KindiTunesU: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindbook?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindBook")]
     pub const KindBook: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindpdfbook?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindPDFBook")]
     pub const KindPDFBook: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindalerttone?language=objc)
     #[doc(alias = "ITLibMediaItemMediaKindAlertTone")]
     pub const KindAlertTone: Self = Self(21);
 }
@@ -111,10 +129,13 @@ unsafe impl RefEncode for ITLibMediaItemMediaKind {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemLyricsContentRating(pub NSUInteger);
 impl ITLibMediaItemLyricsContentRating {
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlyricscontentrating/none?language=objc)
     #[doc(alias = "ITLibMediaItemLyricsContentRatingNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlyricscontentrating/explicit?language=objc)
     #[doc(alias = "ITLibMediaItemLyricsContentRatingExplicit")]
     pub const Explicit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlyricscontentrating/clean?language=objc)
     #[doc(alias = "ITLibMediaItemLyricsContentRatingClean")]
     pub const Clean: Self = Self(2);
 }
@@ -143,12 +164,16 @@ unsafe impl RefEncode for ITLibMediaItemLyricsContentRating {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemLocationType(pub NSUInteger);
 impl ITLibMediaItemLocationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype/unknown?language=objc)
     #[doc(alias = "ITLibMediaItemLocationTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype/file?language=objc)
     #[doc(alias = "ITLibMediaItemLocationTypeFile")]
     pub const File: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype/url?language=objc)
     #[doc(alias = "ITLibMediaItemLocationTypeURL")]
     pub const URL: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype/remote?language=objc)
     #[doc(alias = "ITLibMediaItemLocationTypeRemote")]
     pub const Remote: Self = Self(3);
 }
@@ -175,10 +200,13 @@ unsafe impl RefEncode for ITLibMediaItemLocationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemPlayStatus(pub NSUInteger);
 impl ITLibMediaItemPlayStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemplaystatus/none?language=objc)
     #[doc(alias = "ITLibMediaItemPlayStatusNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemplaystatus/partiallyplayed?language=objc)
     #[doc(alias = "ITLibMediaItemPlayStatusPartiallyPlayed")]
     pub const PartiallyPlayed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemplaystatus/unplayed?language=objc)
     #[doc(alias = "ITLibMediaItemPlayStatusUnplayed")]
     pub const Unplayed: Self = Self(2);
 }

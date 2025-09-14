@@ -56,6 +56,8 @@ pub type SCNetworkConnectionFlags = u32;
 ///
 /// - `address` must be a valid pointer.
 /// - `flags` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkcheckreachabilitybyaddress?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -107,6 +109,8 @@ pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByAddress(
 ///
 /// - `nodename` must be a valid pointer.
 /// - `flags` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkcheckreachabilitybyname?language=objc)
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByName(
@@ -133,6 +137,8 @@ pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByName(
 /// CFSTR("en0").
 ///
 /// Returns: Returns TRUE if the notification was sent; FALSE otherwise.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacerefreshconfiguration?language=objc)
 #[deprecated = "No longer supported"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkInterfaceRefreshConfiguration(if_name: &CFString) -> bool {

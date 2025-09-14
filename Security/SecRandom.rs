@@ -58,6 +58,8 @@ extern "C-unwind" {
     ///
     /// - `rnd` must be a valid pointer or null.
     /// - `bytes` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrandomcopybytes(_:_:_:)?language=objc)
     #[must_use]
     pub fn SecRandomCopyBytes(rnd: SecRandomRef, count: usize, bytes: NonNull<c_void>) -> c_int;
 }

@@ -15,24 +15,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSButtonType(pub NSUInteger);
 impl NSButtonType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/momentarylight?language=objc)
     #[doc(alias = "NSButtonTypeMomentaryLight")]
     pub const MomentaryLight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/pushonpushoff?language=objc)
     #[doc(alias = "NSButtonTypePushOnPushOff")]
     pub const PushOnPushOff: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/toggle?language=objc)
     #[doc(alias = "NSButtonTypeToggle")]
     pub const Toggle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/switch?language=objc)
     #[doc(alias = "NSButtonTypeSwitch")]
     pub const Switch: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/radio?language=objc)
     #[doc(alias = "NSButtonTypeRadio")]
     pub const Radio: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/momentarychange?language=objc)
     #[doc(alias = "NSButtonTypeMomentaryChange")]
     pub const MomentaryChange: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/onoff?language=objc)
     #[doc(alias = "NSButtonTypeOnOff")]
     pub const OnOff: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/momentarypushin?language=objc)
     #[doc(alias = "NSButtonTypeMomentaryPushIn")]
     pub const MomentaryPushIn: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/accelerator?language=objc)
     #[doc(alias = "NSButtonTypeAccelerator")]
     pub const Accelerator: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/multilevelaccelerator?language=objc)
     #[doc(alias = "NSButtonTypeMultiLevelAccelerator")]
     pub const MultiLevelAccelerator: Self = Self(9);
 }
@@ -52,77 +62,121 @@ unsafe impl RefEncode for NSButtonType {
 pub struct NSBezelStyle(pub NSUInteger);
 impl NSBezelStyle {
     /// The appearance of this bezel style is automatically determined based on the button's contents and position within the window. This bezel style is the default for all button initializers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/automatic?language=objc)
     #[doc(alias = "NSBezelStyleAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The standard system push button style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/push?language=objc)
     #[doc(alias = "NSBezelStylePush")]
     pub const Push: Self = Self(1);
     /// A flexible-height variant of NSBezelStylePush.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/flexiblepush?language=objc)
     #[doc(alias = "NSBezelStyleFlexiblePush")]
     pub const FlexiblePush: Self = Self(2);
     /// An unbezeled button with a disclosure triangle.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/disclosure?language=objc)
     #[doc(alias = "NSBezelStyleDisclosure")]
     pub const Disclosure: Self = Self(5);
     /// A button with a circular bezel suitable for a small icon or single character.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/circular?language=objc)
     #[doc(alias = "NSBezelStyleCircular")]
     pub const Circular: Self = Self(7);
     /// A circular button with a question mark providing the standard Help button appearance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/helpbutton?language=objc)
     #[doc(alias = "NSBezelStyleHelpButton")]
     pub const HelpButton: Self = Self(9);
     /// A button with squared edges and flexible height.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/smallsquare?language=objc)
     #[doc(alias = "NSBezelStyleSmallSquare")]
     pub const SmallSquare: Self = Self(10);
     /// A button style that is appropriate for use in a toolbar item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/toolbar?language=objc)
     #[doc(alias = "NSBezelStyleToolbar")]
     pub const Toolbar: Self = Self(11);
     /// A bezel style that is suitable for accessory and scope bars. This style is typically used for buttons that perform an action or for pop-up buttons.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/accessorybaraction?language=objc)
     #[doc(alias = "NSBezelStyleAccessoryBarAction")]
     pub const AccessoryBarAction: Self = Self(12);
     /// A bezel style that is suitable for accessory and scope bars. This style is typically used for buttons with togglable state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/accessorybar?language=objc)
     #[doc(alias = "NSBezelStyleAccessoryBar")]
     pub const AccessoryBar: Self = Self(13);
     /// A bezeled variant of NSBezelStyleDisclosure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/pushdisclosure?language=objc)
     #[doc(alias = "NSBezelStylePushDisclosure")]
     pub const PushDisclosure: Self = Self(14);
     /// A bezel style that is typically used in table rows to display information about the row, such as a count.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/badge?language=objc)
     #[doc(alias = "NSBezelStyleBadge")]
     pub const Badge: Self = Self(15);
     /// A bezel style with a glass effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/glass?language=objc)
     #[doc(alias = "NSBezelStyleGlass")]
     pub const Glass: Self = Self(16);
     /// A bezel style with a glass effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/shadowlesssquare?language=objc)
     #[doc(alias = "NSBezelStyleShadowlessSquare")]
     #[deprecated]
     pub const ShadowlessSquare: Self = Self(6);
     /// A bezel style with a glass effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/texturedsquare?language=objc)
     #[doc(alias = "NSBezelStyleTexturedSquare")]
     #[deprecated]
     pub const TexturedSquare: Self = Self(8);
     /// A bezel style with a glass effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/rounded?language=objc)
     #[doc(alias = "NSBezelStyleRounded")]
     #[deprecated]
     pub const Rounded: Self = Self(NSBezelStyle::Push.0);
     /// A bezel style with a glass effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/regularsquare?language=objc)
     #[doc(alias = "NSBezelStyleRegularSquare")]
     #[deprecated]
     pub const RegularSquare: Self = Self(NSBezelStyle::FlexiblePush.0);
     /// A bezel style with a glass effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/texturedrounded?language=objc)
     #[doc(alias = "NSBezelStyleTexturedRounded")]
     #[deprecated]
     pub const TexturedRounded: Self = Self(NSBezelStyle::Toolbar.0);
     /// A bezel style with a glass effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/roundrect?language=objc)
     #[doc(alias = "NSBezelStyleRoundRect")]
     #[deprecated]
     pub const RoundRect: Self = Self(NSBezelStyle::AccessoryBarAction.0);
     /// A bezel style with a glass effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/recessed?language=objc)
     #[doc(alias = "NSBezelStyleRecessed")]
     #[deprecated]
     pub const Recessed: Self = Self(NSBezelStyle::AccessoryBar.0);
     /// A bezel style with a glass effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/roundeddisclosure?language=objc)
     #[doc(alias = "NSBezelStyleRoundedDisclosure")]
     #[deprecated]
     pub const RoundedDisclosure: Self = Self(NSBezelStyle::PushDisclosure.0);
     /// A bezel style with a glass effect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/inline?language=objc)
     #[doc(alias = "NSBezelStyleInline")]
     #[deprecated]
     pub const Inline: Self = Self(NSBezelStyle::Badge.0);
@@ -484,18 +538,23 @@ impl NSButtonCell {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGradientType(pub NSUInteger);
 impl NSGradientType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype/none?language=objc)
     #[doc(alias = "NSGradientNone")]
     #[deprecated]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype/concaveweak?language=objc)
     #[doc(alias = "NSGradientConcaveWeak")]
     #[deprecated]
     pub const ConcaveWeak: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype/concavestrong?language=objc)
     #[doc(alias = "NSGradientConcaveStrong")]
     #[deprecated]
     pub const ConcaveStrong: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype/convexweak?language=objc)
     #[doc(alias = "NSGradientConvexWeak")]
     #[deprecated]
     pub const ConvexWeak: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype/convexstrong?language=objc)
     #[doc(alias = "NSGradientConvexStrong")]
     #[deprecated]
     pub const ConvexStrong: Self = Self(4);

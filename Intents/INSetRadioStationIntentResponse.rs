@@ -13,24 +13,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetRadioStationIntentResponseCode(pub NSInteger);
 impl INSetRadioStationIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSetRadioStationIntentResponseCodeUnspecified")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/ready?language=objc)
     #[doc(alias = "INSetRadioStationIntentResponseCodeReady")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSetRadioStationIntentResponseCodeInProgress")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/success?language=objc)
     #[doc(alias = "INSetRadioStationIntentResponseCodeSuccess")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/failure?language=objc)
     #[doc(alias = "INSetRadioStationIntentResponseCodeFailure")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSetRadioStationIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/failurenotsubscribed?language=objc)
     #[doc(alias = "INSetRadioStationIntentResponseCodeFailureNotSubscribed")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureNotSubscribed: Self = Self(6);

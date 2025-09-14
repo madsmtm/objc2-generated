@@ -136,6 +136,8 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercreateempty(allocator:capacity:flags:blockbufferout:)?language=objc)
     #[doc(alias = "CMBlockBufferCreateEmpty")]
     #[inline]
     pub unsafe fn create_empty(
@@ -208,6 +210,8 @@ impl CMBlockBuffer {
     /// - `memory_block` must be a valid pointer or null.
     /// - `custom_block_source` must be a valid pointer or null.
     /// - `block_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercreatewithmemoryblock(allocator:memoryblock:blocklength:blockallocator:customblocksource:offsettodata:datalength:flags:blockbufferout:)?language=objc)
     #[doc(alias = "CMBlockBufferCreateWithMemoryBlock")]
     #[inline]
     pub unsafe fn create_with_memory_block(
@@ -276,6 +280,8 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercreatewithbufferreference(allocator:referencebuffer:offsettodata:datalength:flags:blockbufferout:)?language=objc)
     #[doc(alias = "CMBlockBufferCreateWithBufferReference")]
     #[inline]
     pub unsafe fn create_with_buffer_reference(
@@ -346,6 +352,8 @@ impl CMBlockBuffer {
     ///
     /// - `custom_block_source` must be a valid pointer or null.
     /// - `block_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercreatecontiguous(allocator:sourcebuffer:blockallocator:customblocksource:offsettodata:datalength:flags:blockbufferout:)?language=objc)
     #[doc(alias = "CMBlockBufferCreateContiguous")]
     #[inline]
     pub unsafe fn create_contiguous(
@@ -392,6 +400,8 @@ unsafe impl ConcreteType for CMBlockBuffer {
     ///
     ///
     /// Returns: Returns the CFTypeID corresponding to CMBlockBuffer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffergettypeid()?language=objc)
     #[doc(alias = "CMBlockBufferGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -447,6 +457,8 @@ impl CMBlockBuffer {
     ///
     /// - `memory_block` must be a valid pointer or null.
     /// - `custom_block_source` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferappendmemoryblock(_:memoryblock:length:blockallocator:customblocksource:offsettodata:datalength:flags:)?language=objc)
     #[doc(alias = "CMBlockBufferAppendMemoryBlock")]
     #[inline]
     pub unsafe fn append_memory_block(
@@ -507,6 +519,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferappendbufferreference(_:targetbbuf:offsettodata:datalength:flags:)?language=objc)
     #[doc(alias = "CMBlockBufferAppendBufferReference")]
     #[inline]
     pub unsafe fn append_buffer_reference(
@@ -546,6 +560,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferassureblockmemory(_:)?language=objc)
     #[doc(alias = "CMBlockBufferAssureBlockMemory")]
     #[inline]
     pub unsafe fn assure_block_memory(&self) -> OSStatus {
@@ -581,6 +597,8 @@ impl CMBlockBuffer {
     ///
     /// - `temporary_block` must be a valid pointer.
     /// - `returned_pointer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferaccessdatabytes(_:atoffset:length:temporaryblock:returnedpointerout:)?language=objc)
     #[doc(alias = "CMBlockBufferAccessDataBytes")]
     #[inline]
     pub unsafe fn access_data_bytes(
@@ -633,6 +651,8 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// `destination` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercopydatabytes(_:atoffset:datalength:destination:)?language=objc)
     #[doc(alias = "CMBlockBufferCopyDataBytes")]
     #[inline]
     pub unsafe fn copy_data_bytes(
@@ -674,6 +694,8 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// `source_bytes` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferreplacedatabytes(with:blockbuffer:offsetintodestination:datalength:)?language=objc)
     #[doc(alias = "CMBlockBufferReplaceDataBytes")]
     #[inline]
     pub unsafe fn replace_data_bytes(
@@ -719,6 +741,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the fill succeeded, returns an error otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferfilldatabytes(with:blockbuffer:offsetintodestination:datalength:)?language=objc)
     #[doc(alias = "CMBlockBufferFillDataBytes")]
     #[inline]
     pub unsafe fn fill_data_bytes(
@@ -778,6 +802,8 @@ impl CMBlockBuffer {
     /// - `length_at_offset_out` must be a valid pointer or null.
     /// - `total_length_out` must be a valid pointer or null.
     /// - `data_pointer_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffergetdatapointer(_:atoffset:lengthatoffsetout:totallengthout:datapointerout:)?language=objc)
     #[doc(alias = "CMBlockBufferGetDataPointer")]
     #[inline]
     pub unsafe fn data_pointer(
@@ -819,6 +845,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns the total data length available via this CMBlockBuffer, or zero if it is empty, NULL, or somehow invalid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffergetdatalength(_:)?language=objc)
     #[doc(alias = "CMBlockBufferGetDataLength")]
     #[inline]
     pub unsafe fn data_length(&self) -> usize {
@@ -844,6 +872,8 @@ impl CMBlockBuffer {
     ///
     /// Returns: Returns true if the specified range is contiguous within the CMBlockBuffer, false otherwise. Also returns false if the
     /// CMBlockBuffer is NULL or empty.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferisrangecontiguous(_:atoffset:length:)?language=objc)
     #[doc(alias = "CMBlockBufferIsRangeContiguous")]
     #[inline]
     pub unsafe fn is_range_contiguous(&self, offset: usize, length: usize) -> bool {
@@ -868,6 +898,8 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns the result of the emptiness test. Will return false if the CMBlockBuffer is NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferisempty(_:)?language=objc)
     #[doc(alias = "CMBlockBufferIsEmpty")]
     #[inline]
     pub unsafe fn is_empty(&self) -> bool {

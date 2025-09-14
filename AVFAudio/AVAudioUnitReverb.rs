@@ -15,30 +15,43 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioUnitReverbPreset(pub NSInteger);
 impl AVAudioUnitReverbPreset {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/smallroom?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetSmallRoom")]
     pub const SmallRoom: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/mediumroom?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetMediumRoom")]
     pub const MediumRoom: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/largeroom?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetLargeRoom")]
     pub const LargeRoom: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/mediumhall?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetMediumHall")]
     pub const MediumHall: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/largehall?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetLargeHall")]
     pub const LargeHall: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/plate?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetPlate")]
     pub const Plate: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/mediumchamber?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetMediumChamber")]
     pub const MediumChamber: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/largechamber?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetLargeChamber")]
     pub const LargeChamber: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/cathedral?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetCathedral")]
     pub const Cathedral: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/largeroom2?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetLargeRoom2")]
     pub const LargeRoom2: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/mediumhall2?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetMediumHall2")]
     pub const MediumHall2: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/mediumhall3?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetMediumHall3")]
     pub const MediumHall3: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/largehall2?language=objc)
     #[doc(alias = "AVAudioUnitReverbPresetLargeHall2")]
     pub const LargeHall2: Self = Self(12);
 }

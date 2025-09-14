@@ -14,14 +14,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImpactFeedbackStyle(pub NSInteger);
 impl UIImpactFeedbackStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle/light?language=objc)
     #[doc(alias = "UIImpactFeedbackStyleLight")]
     pub const Light: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle/medium?language=objc)
     #[doc(alias = "UIImpactFeedbackStyleMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle/heavy?language=objc)
     #[doc(alias = "UIImpactFeedbackStyleHeavy")]
     pub const Heavy: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle/soft?language=objc)
     #[doc(alias = "UIImpactFeedbackStyleSoft")]
     pub const Soft: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle/rigid?language=objc)
     #[doc(alias = "UIImpactFeedbackStyleRigid")]
     pub const Rigid: Self = Self(4);
 }

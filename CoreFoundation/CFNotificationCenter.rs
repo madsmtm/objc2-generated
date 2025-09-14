@@ -47,12 +47,16 @@ pub type CFNotificationCallback = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNotificationSuspensionBehavior(pub CFIndex);
 impl CFNotificationSuspensionBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior/drop?language=objc)
     #[doc(alias = "CFNotificationSuspensionBehaviorDrop")]
     pub const Drop: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior/coalesce?language=objc)
     #[doc(alias = "CFNotificationSuspensionBehaviorCoalesce")]
     pub const Coalesce: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior/hold?language=objc)
     #[doc(alias = "CFNotificationSuspensionBehaviorHold")]
     pub const Hold: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior/deliverimmediately?language=objc)
     #[doc(alias = "CFNotificationSuspensionBehaviorDeliverImmediately")]
     pub const DeliverImmediately: Self = Self(4);
 }
@@ -68,6 +72,7 @@ unsafe impl RefEncode for CFNotificationSuspensionBehavior {
 }
 
 unsafe impl ConcreteType for CFNotificationCenter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergettypeid()?language=objc)
     #[doc(alias = "CFNotificationCenterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -79,6 +84,7 @@ unsafe impl ConcreteType for CFNotificationCenter {
 }
 
 impl CFNotificationCenter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergetlocalcenter()?language=objc)
     #[doc(alias = "CFNotificationCenterGetLocalCenter")]
     #[inline]
     pub fn local_center() -> Option<CFRetained<CFNotificationCenter>> {
@@ -89,6 +95,7 @@ impl CFNotificationCenter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergetdistributedcenter()?language=objc)
     #[doc(alias = "CFNotificationCenterGetDistributedCenter")]
     #[inline]
     pub fn distributed_center() -> Option<CFRetained<CFNotificationCenter>> {
@@ -99,6 +106,7 @@ impl CFNotificationCenter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergetdarwinnotifycenter()?language=objc)
     #[doc(alias = "CFNotificationCenterGetDarwinNotifyCenter")]
     #[inline]
     pub fn darwin_notify_center() -> Option<CFRetained<CFNotificationCenter>> {
@@ -109,6 +117,8 @@ impl CFNotificationCenter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenteraddobserver(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `observer` must be a valid pointer.
@@ -148,6 +158,8 @@ impl CFNotificationCenter {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterremoveobserver(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `observer` must be a valid pointer.
@@ -172,6 +184,8 @@ impl CFNotificationCenter {
         unsafe { CFNotificationCenterRemoveObserver(self, observer, name, object) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterremoveeveryobserver(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `observer` must be a valid pointer.
@@ -187,6 +201,8 @@ impl CFNotificationCenter {
         unsafe { CFNotificationCenterRemoveEveryObserver(self, observer) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterpostnotification(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `name` might not allow `None`.
@@ -231,6 +247,8 @@ pub const kCFNotificationDeliverImmediately: CFOptionFlags = 1 << 0;
 pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
 
 impl CFNotificationCenter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterpostnotificationwithoptions(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `name` might not allow `None`.

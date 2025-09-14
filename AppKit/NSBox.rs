@@ -15,18 +15,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTitlePosition(pub NSUInteger);
 impl NSTitlePosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/notitle?language=objc)
     #[doc(alias = "NSNoTitle")]
     pub const NoTitle: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/abovetop?language=objc)
     #[doc(alias = "NSAboveTop")]
     pub const AboveTop: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/attop?language=objc)
     #[doc(alias = "NSAtTop")]
     pub const AtTop: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/belowtop?language=objc)
     #[doc(alias = "NSBelowTop")]
     pub const BelowTop: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/abovebottom?language=objc)
     #[doc(alias = "NSAboveBottom")]
     pub const AboveBottom: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/atbottom?language=objc)
     #[doc(alias = "NSAtBottom")]
     pub const AtBottom: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/belowbottom?language=objc)
     #[doc(alias = "NSBelowBottom")]
     pub const BelowBottom: Self = Self(6);
 }
@@ -45,10 +52,13 @@ unsafe impl RefEncode for NSTitlePosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBoxType(pub NSUInteger);
 impl NSBoxType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum/primary?language=objc)
     #[doc(alias = "NSBoxPrimary")]
     pub const Primary: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum/separator?language=objc)
     #[doc(alias = "NSBoxSeparator")]
     pub const Separator: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum/custom?language=objc)
     #[doc(alias = "NSBoxCustom")]
     pub const Custom: Self = Self(4);
 }

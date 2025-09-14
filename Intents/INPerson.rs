@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPersonSuggestionType(pub NSInteger);
 impl INPersonSuggestionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonsuggestiontype/none?language=objc)
     #[doc(alias = "INPersonSuggestionTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonsuggestiontype/socialprofile?language=objc)
     #[doc(alias = "INPersonSuggestionTypeSocialProfile")]
     pub const SocialProfile: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonsuggestiontype/instantmessageaddress?language=objc)
     #[doc(alias = "INPersonSuggestionTypeInstantMessageAddress")]
     pub const InstantMessageAddress: Self = Self(2);
 }

@@ -958,17 +958,23 @@ extern "C" {
 pub struct NSURLBookmarkCreationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSURLBookmarkCreationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/preferfileidresolution?language=objc)
         #[doc(alias = "NSURLBookmarkCreationPreferFileIDResolution")]
 #[deprecated = "Not supported"]
         const PreferFileIDResolution = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/minimalbookmark?language=objc)
         #[doc(alias = "NSURLBookmarkCreationMinimalBookmark")]
         const MinimalBookmark = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/suitableforbookmarkfile?language=objc)
         #[doc(alias = "NSURLBookmarkCreationSuitableForBookmarkFile")]
         const SuitableForBookmarkFile = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/withsecurityscope?language=objc)
         #[doc(alias = "NSURLBookmarkCreationWithSecurityScope")]
         const WithSecurityScope = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/securityscopeallowonlyreadaccess?language=objc)
         #[doc(alias = "NSURLBookmarkCreationSecurityScopeAllowOnlyReadAccess")]
         const SecurityScopeAllowOnlyReadAccess = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/withoutimplicitsecurityscope?language=objc)
         #[doc(alias = "NSURLBookmarkCreationWithoutImplicitSecurityScope")]
         const WithoutImplicitSecurityScope = 1<<29;
     }
@@ -989,12 +995,16 @@ unsafe impl RefEncode for NSURLBookmarkCreationOptions {
 pub struct NSURLBookmarkResolutionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSURLBookmarkResolutionOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkresolutionoptions/withoutui?language=objc)
         #[doc(alias = "NSURLBookmarkResolutionWithoutUI")]
         const WithoutUI = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkresolutionoptions/withoutmounting?language=objc)
         #[doc(alias = "NSURLBookmarkResolutionWithoutMounting")]
         const WithoutMounting = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkresolutionoptions/withsecurityscope?language=objc)
         #[doc(alias = "NSURLBookmarkResolutionWithSecurityScope")]
         const WithSecurityScope = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkresolutionoptions/withoutimplicitstartaccessing?language=objc)
         #[doc(alias = "NSURLBookmarkResolutionWithoutImplicitStartAccessing")]
         const WithoutImplicitStartAccessing = 1<<15;
     }

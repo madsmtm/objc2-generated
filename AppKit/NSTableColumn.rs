@@ -16,10 +16,13 @@ use crate::*;
 pub struct NSTableColumnResizingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableColumnResizingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablecolumnresizingoptions/nstablecolumnnoresizing?language=objc)
         #[doc(alias = "NSTableColumnNoResizing")]
         const NoResizing = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablecolumn/resizingoptions/autoresizingmask?language=objc)
         #[doc(alias = "NSTableColumnAutoresizingMask")]
         const AutoresizingMask = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablecolumn/resizingoptions/userresizingmask?language=objc)
         #[doc(alias = "NSTableColumnUserResizingMask")]
         const UserResizingMask = 1<<1;
     }

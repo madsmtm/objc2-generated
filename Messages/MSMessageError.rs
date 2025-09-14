@@ -21,28 +21,40 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MSMessageErrorCode(pub NSInteger);
 impl MSMessageErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/unknown?language=objc)
     #[doc(alias = "MSMessageErrorCodeUnknown")]
     pub const Unknown: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/filenotfound?language=objc)
     #[doc(alias = "MSMessageErrorCodeFileNotFound")]
     pub const FileNotFound: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/fileunreadable?language=objc)
     #[doc(alias = "MSMessageErrorCodeFileUnreadable")]
     pub const FileUnreadable: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/improperfiletype?language=objc)
     #[doc(alias = "MSMessageErrorCodeImproperFileType")]
     pub const ImproperFileType: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/improperfileurl?language=objc)
     #[doc(alias = "MSMessageErrorCodeImproperFileURL")]
     pub const ImproperFileURL: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/stickerfileimproperfileattributes?language=objc)
     #[doc(alias = "MSMessageErrorCodeStickerFileImproperFileAttributes")]
     pub const StickerFileImproperFileAttributes: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/stickerfileimproperfilesize?language=objc)
     #[doc(alias = "MSMessageErrorCodeStickerFileImproperFileSize")]
     pub const StickerFileImproperFileSize: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/stickerfileimproperfileformat?language=objc)
     #[doc(alias = "MSMessageErrorCodeStickerFileImproperFileFormat")]
     pub const StickerFileImproperFileFormat: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/urlexceedsmaxsize?language=objc)
     #[doc(alias = "MSMessageErrorCodeURLExceedsMaxSize")]
     pub const URLExceedsMaxSize: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/sendwithoutrecentinteraction?language=objc)
     #[doc(alias = "MSMessageErrorCodeSendWithoutRecentInteraction")]
     pub const SendWithoutRecentInteraction: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/sendwhilenotvisible?language=objc)
     #[doc(alias = "MSMessageErrorCodeSendWhileNotVisible")]
     pub const SendWhileNotVisible: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/apiunavailableinpresentationcontext?language=objc)
     #[doc(alias = "MSMessageErrorCodeAPIUnavailableInPresentationContext")]
     pub const APIUnavailableInPresentationContext: Self = Self(11);
 }

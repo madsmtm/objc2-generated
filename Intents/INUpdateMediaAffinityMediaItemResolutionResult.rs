@@ -12,20 +12,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INUpdateMediaAffinityMediaItemUnsupportedReason(pub NSInteger);
 impl INUpdateMediaAffinityMediaItemUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/loginrequired?language=objc)
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonLoginRequired")]
     pub const LoginRequired: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/subscriptionrequired?language=objc)
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonSubscriptionRequired")]
     pub const SubscriptionRequired: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/unsupportedmediatype?language=objc)
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonUnsupportedMediaType")]
     pub const UnsupportedMediaType: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/explicitcontentsettings?language=objc)
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonExplicitContentSettings")]
     pub const ExplicitContentSettings: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/cellulardatasettings?language=objc)
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonCellularDataSettings")]
     pub const CellularDataSettings: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/restrictedcontent?language=objc)
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonRestrictedContent")]
     pub const RestrictedContent: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/serviceunavailable?language=objc)
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonServiceUnavailable")]
     pub const ServiceUnavailable: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/regionrestriction?language=objc)
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonRegionRestriction")]
     pub const RegionRestriction: Self = Self(8);
 }

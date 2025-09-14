@@ -1002,16 +1002,22 @@ impl MPSCNNDivide {
 pub struct MPSNNComparisonType(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNComparisonType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/equal?language=objc)
         #[doc(alias = "MPSNNComparisonTypeEqual")]
         const Equal = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/notequal?language=objc)
         #[doc(alias = "MPSNNComparisonTypeNotEqual")]
         const NotEqual = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/less?language=objc)
         #[doc(alias = "MPSNNComparisonTypeLess")]
         const Less = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/lessorequal?language=objc)
         #[doc(alias = "MPSNNComparisonTypeLessOrEqual")]
         const LessOrEqual = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/greater?language=objc)
         #[doc(alias = "MPSNNComparisonTypeGreater")]
         const Greater = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/greaterorequal?language=objc)
         #[doc(alias = "MPSNNComparisonTypeGreaterOrEqual")]
         const GreaterOrEqual = 5;
     }

@@ -28,14 +28,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetReaderStatus(pub NSInteger);
 impl AVAssetReaderStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum/unknown?language=objc)
     #[doc(alias = "AVAssetReaderStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum/reading?language=objc)
     #[doc(alias = "AVAssetReaderStatusReading")]
     pub const Reading: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum/completed?language=objc)
     #[doc(alias = "AVAssetReaderStatusCompleted")]
     pub const Completed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum/failed?language=objc)
     #[doc(alias = "AVAssetReaderStatusFailed")]
     pub const Failed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum/cancelled?language=objc)
     #[doc(alias = "AVAssetReaderStatusCancelled")]
     pub const Cancelled: Self = Self(4);
 }

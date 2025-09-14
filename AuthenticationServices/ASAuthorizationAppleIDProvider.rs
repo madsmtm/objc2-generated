@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationAppleIDProviderCredentialState(pub NSInteger);
 impl ASAuthorizationAppleIDProviderCredentialState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate/revoked?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialRevoked")]
     pub const Revoked: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate/authorized?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialAuthorized")]
     pub const Authorized: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate/notfound?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialNotFound")]
     pub const NotFound: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate/transferred?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialTransferred")]
     pub const Transferred: Self = Self(3);
 }

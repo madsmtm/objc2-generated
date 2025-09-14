@@ -14,24 +14,34 @@ use crate::*;
 pub struct MPRemoteCommandHandlerStatus(pub NSInteger);
 impl MPRemoteCommandHandlerStatus {
     /// There was no error executing the requested command.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus/success?language=objc)
     #[doc(alias = "MPRemoteCommandHandlerStatusSuccess")]
     pub const Success: Self = Self(0);
     /// The command could not be executed because the requested content does not
     /// exist in the current application state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus/nosuchcontent?language=objc)
     #[doc(alias = "MPRemoteCommandHandlerStatusNoSuchContent")]
     pub const NoSuchContent: Self = Self(100);
     /// The command could not be executed because there is no now playing item
     /// available that is required for this command. As an example, an
     /// application would return this error code if an "enable language option"
     /// command is received, but nothing is currently playing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus/noactionablenowplayingitem?language=objc)
     #[doc(alias = "MPRemoteCommandHandlerStatusNoActionableNowPlayingItem")]
     pub const NoActionableNowPlayingItem: Self = Self(110);
     /// The command could not be executed because a device required
     /// is not available. For instance, if headphones are required, or if a watch
     /// app realizes that it needs the companion to fulfull a request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus/devicenotfound?language=objc)
     #[doc(alias = "MPRemoteCommandHandlerStatusDeviceNotFound")]
     pub const DeviceNotFound: Self = Self(120);
     /// The command could not be executed for another reason.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus/commandfailed?language=objc)
     #[doc(alias = "MPRemoteCommandHandlerStatusCommandFailed")]
     pub const CommandFailed: Self = Self(200);
 }

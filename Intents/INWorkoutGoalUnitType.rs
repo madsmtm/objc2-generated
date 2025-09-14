@@ -10,26 +10,37 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INWorkoutGoalUnitType(pub NSInteger);
 impl INWorkoutGoalUnitType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/unknown?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/inch?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeInch")]
     pub const Inch: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/meter?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeMeter")]
     pub const Meter: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/foot?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeFoot")]
     pub const Foot: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/mile?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeMile")]
     pub const Mile: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/yard?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeYard")]
     pub const Yard: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/second?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeSecond")]
     pub const Second: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/minute?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeMinute")]
     pub const Minute: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/hour?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeHour")]
     pub const Hour: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/joule?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeJoule")]
     pub const Joule: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/kilocalorie?language=objc)
     #[doc(alias = "INWorkoutGoalUnitTypeKiloCalorie")]
     pub const KiloCalorie: Self = Self(10);
 }

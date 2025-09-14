@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRestaurantReservationUserBookingStatus(pub NSUInteger);
 impl INRestaurantReservationUserBookingStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrestaurantreservationuserbookingstatus/pending?language=objc)
     #[doc(alias = "INRestaurantReservationUserBookingStatusPending")]
     pub const Pending: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrestaurantreservationuserbookingstatus/confirmed?language=objc)
     #[doc(alias = "INRestaurantReservationUserBookingStatusConfirmed")]
     pub const Confirmed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrestaurantreservationuserbookingstatus/denied?language=objc)
     #[doc(alias = "INRestaurantReservationUserBookingStatusDenied")]
     pub const Denied: Self = Self(2);
 }

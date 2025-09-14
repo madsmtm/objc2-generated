@@ -11,12 +11,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneActivationState(pub NSInteger);
 impl UISceneActivationState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationstate-swift.enum/unattached?language=objc)
     #[doc(alias = "UISceneActivationStateUnattached")]
     pub const Unattached: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationstate-swift.enum/foregroundactive?language=objc)
     #[doc(alias = "UISceneActivationStateForegroundActive")]
     pub const ForegroundActive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationstate-swift.enum/foregroundinactive?language=objc)
     #[doc(alias = "UISceneActivationStateForegroundInactive")]
     pub const ForegroundInactive: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationstate-swift.enum/background?language=objc)
     #[doc(alias = "UISceneActivationStateBackground")]
     pub const Background: Self = Self(2);
 }
@@ -35,10 +39,13 @@ unsafe impl RefEncode for UISceneActivationState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneCaptureState(pub NSInteger);
 impl UISceneCaptureState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecapturestate/unspecified?language=objc)
     #[doc(alias = "UISceneCaptureStateUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecapturestate/inactive?language=objc)
     #[doc(alias = "UISceneCaptureStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecapturestate/active?language=objc)
     #[doc(alias = "UISceneCaptureStateActive")]
     pub const Active: Self = Self(1);
 }
@@ -66,12 +73,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneErrorCode(pub NSInteger);
 impl UISceneErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerror/code/multiplescenesnotsupported?language=objc)
     #[doc(alias = "UISceneErrorCodeMultipleScenesNotSupported")]
     pub const MultipleScenesNotSupported: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerror/code/requestdenied?language=objc)
     #[doc(alias = "UISceneErrorCodeRequestDenied")]
     pub const RequestDenied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerror/code/geometryrequestunsupported?language=objc)
     #[doc(alias = "UISceneErrorCodeGeometryRequestUnsupported")]
     pub const GeometryRequestUnsupported: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerror/code/geometryrequestdenied?language=objc)
     #[doc(alias = "UISceneErrorCodeGeometryRequestDenied")]
     pub const GeometryRequestDenied: Self = Self(101);
 }

@@ -38,10 +38,13 @@ pub type CGGlyph = CGFontIndex;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGFontPostScriptFormat(pub i32);
 impl CGFontPostScriptFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontpostscriptformat/type1?language=objc)
     #[doc(alias = "kCGFontPostScriptFormatType1")]
     pub const Type1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontpostscriptformat/type3?language=objc)
     #[doc(alias = "kCGFontPostScriptFormatType3")]
     pub const Type3: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontpostscriptformat/type42?language=objc)
     #[doc(alias = "kCGFontPostScriptFormatType42")]
     pub const Type42: Self = Self(42);
 }
@@ -66,6 +69,7 @@ pub static kCGFontIndexInvalid: CGFontIndex = 65535;
 pub static kCGGlyphMax: CGFontIndex = kCGFontIndexMax;
 
 unsafe impl ConcreteType for CGFont {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/typeid?language=objc)
     #[doc(alias = "CGFontGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -77,6 +81,8 @@ unsafe impl ConcreteType for CGFont {
 }
 
 impl CGFont {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontcreatewithplatformfont?language=objc)
+    ///
     /// # Safety
     ///
     /// `platform_font_reference` must be a valid pointer or null.
@@ -95,6 +101,7 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/init(_:)-9aour?language=objc)
     #[doc(alias = "CGFontCreateWithDataProvider")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
@@ -106,6 +113,7 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/init(_:)-1p4b?language=objc)
     #[doc(alias = "CGFontCreateWithFontName")]
     #[inline]
     pub fn with_font_name(name: Option<&CFString>) -> Option<CFRetained<CGFont>> {
@@ -116,6 +124,8 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/copy(withvariations:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `variations` generic must be of the correct type.
@@ -136,6 +146,7 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/numberofglyphs?language=objc)
     #[doc(alias = "CGFontGetNumberOfGlyphs")]
     #[inline]
     pub fn number_of_glyphs(font: Option<&CGFont>) -> usize {
@@ -145,6 +156,7 @@ impl CGFont {
         unsafe { CGFontGetNumberOfGlyphs(font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/unitsperem?language=objc)
     #[doc(alias = "CGFontGetUnitsPerEm")]
     #[inline]
     pub fn units_per_em(font: Option<&CGFont>) -> c_int {
@@ -154,6 +166,7 @@ impl CGFont {
         unsafe { CGFontGetUnitsPerEm(font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/postscriptname?language=objc)
     #[doc(alias = "CGFontCopyPostScriptName")]
     #[inline]
     pub fn post_script_name(font: Option<&CGFont>) -> Option<CFRetained<CFString>> {
@@ -164,6 +177,7 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/fullname?language=objc)
     #[doc(alias = "CGFontCopyFullName")]
     #[inline]
     pub fn full_name(font: Option<&CGFont>) -> Option<CFRetained<CFString>> {
@@ -174,6 +188,7 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/ascent?language=objc)
     #[doc(alias = "CGFontGetAscent")]
     #[inline]
     pub fn ascent(font: Option<&CGFont>) -> c_int {
@@ -183,6 +198,7 @@ impl CGFont {
         unsafe { CGFontGetAscent(font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/descent?language=objc)
     #[doc(alias = "CGFontGetDescent")]
     #[inline]
     pub fn descent(font: Option<&CGFont>) -> c_int {
@@ -192,6 +208,7 @@ impl CGFont {
         unsafe { CGFontGetDescent(font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/leading?language=objc)
     #[doc(alias = "CGFontGetLeading")]
     #[inline]
     pub fn leading(font: Option<&CGFont>) -> c_int {
@@ -201,6 +218,7 @@ impl CGFont {
         unsafe { CGFontGetLeading(font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/capheight?language=objc)
     #[doc(alias = "CGFontGetCapHeight")]
     #[inline]
     pub fn cap_height(font: Option<&CGFont>) -> c_int {
@@ -210,6 +228,7 @@ impl CGFont {
         unsafe { CGFontGetCapHeight(font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/xheight?language=objc)
     #[doc(alias = "CGFontGetXHeight")]
     #[inline]
     pub fn x_height(font: Option<&CGFont>) -> c_int {
@@ -219,6 +238,7 @@ impl CGFont {
         unsafe { CGFontGetXHeight(font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/fontbbox?language=objc)
     #[doc(alias = "CGFontGetFontBBox")]
     #[inline]
     pub fn font_b_box(font: Option<&CGFont>) -> CGRect {
@@ -228,6 +248,7 @@ impl CGFont {
         unsafe { CGFontGetFontBBox(font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/italicangle?language=objc)
     #[doc(alias = "CGFontGetItalicAngle")]
     #[inline]
     pub fn italic_angle(font: Option<&CGFont>) -> CGFloat {
@@ -237,6 +258,7 @@ impl CGFont {
         unsafe { CGFontGetItalicAngle(font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/stemv?language=objc)
     #[doc(alias = "CGFontGetStemV")]
     #[inline]
     pub fn stem_v(font: Option<&CGFont>) -> CGFloat {
@@ -246,6 +268,7 @@ impl CGFont {
         unsafe { CGFontGetStemV(font) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variationaxes?language=objc)
     #[doc(alias = "CGFontCopyVariationAxes")]
     #[inline]
     pub fn variation_axes(font: Option<&CGFont>) -> Option<CFRetained<CFArray>> {
@@ -256,6 +279,7 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variations?language=objc)
     #[doc(alias = "CGFontCopyVariations")]
     #[inline]
     pub fn variations(font: Option<&CGFont>) -> Option<CFRetained<CFDictionary>> {
@@ -266,6 +290,8 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/getglyphadvances(glyphs:count:advances:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `glyphs` must be a valid pointer.
@@ -289,6 +315,8 @@ impl CGFont {
         unsafe { CGFontGetGlyphAdvances(font, glyphs, count, advances) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/getglyphbboxes(glyphs:count:bboxes:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `glyphs` must be a valid pointer.
@@ -312,6 +340,7 @@ impl CGFont {
         unsafe { CGFontGetGlyphBBoxes(font, glyphs, count, bboxes) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/getglyphwithglyphname(name:)?language=objc)
     #[doc(alias = "CGFontGetGlyphWithGlyphName")]
     #[inline]
     pub fn glyph_with_glyph_name(font: Option<&CGFont>, name: Option<&CFString>) -> CGGlyph {
@@ -324,6 +353,7 @@ impl CGFont {
         unsafe { CGFontGetGlyphWithGlyphName(font, name) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/name(for:)?language=objc)
     #[doc(alias = "CGFontCopyGlyphNameForGlyph")]
     #[inline]
     pub fn glyph_name_for_glyph(
@@ -340,6 +370,7 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/cancreatepostscriptsubset(_:)?language=objc)
     #[doc(alias = "CGFontCanCreatePostScriptSubset")]
     #[inline]
     pub fn can_create_post_script_subset(
@@ -355,6 +386,7 @@ impl CGFont {
         unsafe { CGFontCanCreatePostScriptSubset(font, format) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/tabletags?language=objc)
     #[doc(alias = "CGFontCopyTableTags")]
     #[inline]
     pub fn table_tags(font: Option<&CGFont>) -> Option<CFRetained<CFArray>> {
@@ -365,6 +397,7 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/table(for:)?language=objc)
     #[doc(alias = "CGFontCopyTableForTag")]
     #[inline]
     pub fn table_for_tag(font: Option<&CGFont>, tag: u32) -> Option<CFRetained<CFData>> {
@@ -404,9 +437,11 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGGlyphDeprecatedEnum(pub i32);
 impl CGGlyphDeprecatedEnum {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgglyphdeprecatedenum/min?language=objc)
     #[doc(alias = "CGGlyphMin")]
     #[deprecated]
     pub const Min: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgglyphdeprecatedenum/max?language=objc)
     #[doc(alias = "CGGlyphMax")]
     #[deprecated]
     pub const Max: Self = Self(1);

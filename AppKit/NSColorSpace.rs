@@ -16,20 +16,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorSpaceModel(pub NSInteger);
 impl NSColorSpaceModel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/unknown?language=objc)
     #[doc(alias = "NSColorSpaceModelUnknown")]
     pub const Unknown: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/gray?language=objc)
     #[doc(alias = "NSColorSpaceModelGray")]
     pub const Gray: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/rgb?language=objc)
     #[doc(alias = "NSColorSpaceModelRGB")]
     pub const RGB: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/cmyk?language=objc)
     #[doc(alias = "NSColorSpaceModelCMYK")]
     pub const CMYK: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/lab?language=objc)
     #[doc(alias = "NSColorSpaceModelLAB")]
     pub const LAB: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/devicen?language=objc)
     #[doc(alias = "NSColorSpaceModelDeviceN")]
     pub const DeviceN: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/indexed?language=objc)
     #[doc(alias = "NSColorSpaceModelIndexed")]
     pub const Indexed: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/patterned?language=objc)
     #[doc(alias = "NSColorSpaceModelPatterned")]
     pub const Patterned: Self = Self(6);
 }

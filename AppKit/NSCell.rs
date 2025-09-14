@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellType(pub NSUInteger);
 impl NSCellType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/celltype/nullcelltype?language=objc)
     #[doc(alias = "NSNullCellType")]
     pub const NullCellType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/celltype/textcelltype?language=objc)
     #[doc(alias = "NSTextCellType")]
     pub const TextCellType: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/celltype/imagecelltype?language=objc)
     #[doc(alias = "NSImageCellType")]
     pub const ImageCellType: Self = Self(2);
 }
@@ -37,38 +40,55 @@ unsafe impl RefEncode for NSCellType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellAttribute(pub NSUInteger);
 impl NSCellAttribute {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/celldisabled?language=objc)
     #[doc(alias = "NSCellDisabled")]
     pub const CellDisabled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellstate?language=objc)
     #[doc(alias = "NSCellState")]
     pub const CellState: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/pushincell?language=objc)
     #[doc(alias = "NSPushInCell")]
     pub const PushInCell: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/celleditable?language=objc)
     #[doc(alias = "NSCellEditable")]
     pub const CellEditable: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/changegraycell?language=objc)
     #[doc(alias = "NSChangeGrayCell")]
     pub const ChangeGrayCell: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellhighlighted?language=objc)
     #[doc(alias = "NSCellHighlighted")]
     pub const CellHighlighted: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/celllightsbycontents?language=objc)
     #[doc(alias = "NSCellLightsByContents")]
     pub const CellLightsByContents: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/celllightsbygray?language=objc)
     #[doc(alias = "NSCellLightsByGray")]
     pub const CellLightsByGray: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/changebackgroundcell?language=objc)
     #[doc(alias = "NSChangeBackgroundCell")]
     pub const ChangeBackgroundCell: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/celllightsbybackground?language=objc)
     #[doc(alias = "NSCellLightsByBackground")]
     pub const CellLightsByBackground: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellisbordered?language=objc)
     #[doc(alias = "NSCellIsBordered")]
     pub const CellIsBordered: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellhasoverlappingimage?language=objc)
     #[doc(alias = "NSCellHasOverlappingImage")]
     pub const CellHasOverlappingImage: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellhasimagehorizontal?language=objc)
     #[doc(alias = "NSCellHasImageHorizontal")]
     pub const CellHasImageHorizontal: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellhasimageonleftorbottom?language=objc)
     #[doc(alias = "NSCellHasImageOnLeftOrBottom")]
     pub const CellHasImageOnLeftOrBottom: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellchangescontents?language=objc)
     #[doc(alias = "NSCellChangesContents")]
     pub const CellChangesContents: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellisinsetbutton?language=objc)
     #[doc(alias = "NSCellIsInsetButton")]
     pub const CellIsInsetButton: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellallowsmixedstate?language=objc)
     #[doc(alias = "NSCellAllowsMixedState")]
     pub const CellAllowsMixedState: Self = Self(16);
 }
@@ -87,22 +107,31 @@ unsafe impl RefEncode for NSCellAttribute {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellImagePosition(pub NSUInteger);
 impl NSCellImagePosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/noimage?language=objc)
     #[doc(alias = "NSNoImage")]
     pub const NoImage: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageonly?language=objc)
     #[doc(alias = "NSImageOnly")]
     pub const ImageOnly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageleft?language=objc)
     #[doc(alias = "NSImageLeft")]
     pub const ImageLeft: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageright?language=objc)
     #[doc(alias = "NSImageRight")]
     pub const ImageRight: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imagebelow?language=objc)
     #[doc(alias = "NSImageBelow")]
     pub const ImageBelow: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageabove?language=objc)
     #[doc(alias = "NSImageAbove")]
     pub const ImageAbove: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageoverlaps?language=objc)
     #[doc(alias = "NSImageOverlaps")]
     pub const ImageOverlaps: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageleading?language=objc)
     #[doc(alias = "NSImageLeading")]
     pub const ImageLeading: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imagetrailing?language=objc)
     #[doc(alias = "NSImageTrailing")]
     pub const ImageTrailing: Self = Self(8);
 }
@@ -121,18 +150,25 @@ unsafe impl RefEncode for NSCellImagePosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageScaling(pub NSUInteger);
 impl NSImageScaling {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/scaleproportionallydown?language=objc)
     #[doc(alias = "NSImageScaleProportionallyDown")]
     pub const ScaleProportionallyDown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/scaleaxesindependently?language=objc)
     #[doc(alias = "NSImageScaleAxesIndependently")]
     pub const ScaleAxesIndependently: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/scalenone?language=objc)
     #[doc(alias = "NSImageScaleNone")]
     pub const ScaleNone: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/scaleproportionallyupordown?language=objc)
     #[doc(alias = "NSImageScaleProportionallyUpOrDown")]
     pub const ScaleProportionallyUpOrDown: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/nsscaleproportionally?language=objc)
     #[deprecated = "Use NSImageScaleProportionallyDown instead"]
     pub const NSScaleProportionally: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/nsscaletofit?language=objc)
     #[deprecated = "Use NSImageScaleAxesIndependently instead"]
     pub const NSScaleToFit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/nsscalenone?language=objc)
     #[deprecated = "Use NSImageScaleNone instead"]
     pub const NSScaleNone: Self = Self(2);
 }
@@ -165,14 +201,19 @@ pub static NSControlStateValueOn: NSControlStateValue = 1;
 pub struct NSCellStyleMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCellStyleMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellstylemask/nsnocellmask?language=objc)
         #[doc(alias = "NSNoCellMask")]
         const NoCellMask = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/stylemask/contentscellmask?language=objc)
         #[doc(alias = "NSContentsCellMask")]
         const ContentsCellMask = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/stylemask/pushincellmask?language=objc)
         #[doc(alias = "NSPushInCellMask")]
         const PushInCellMask = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/stylemask/changegraycellmask?language=objc)
         #[doc(alias = "NSChangeGrayCellMask")]
         const ChangeGrayCellMask = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/stylemask/changebackgroundcellmask?language=objc)
         #[doc(alias = "NSChangeBackgroundCellMask")]
         const ChangeBackgroundCellMask = 8;
     }
@@ -192,12 +233,16 @@ unsafe impl RefEncode for NSCellStyleMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlTint(pub NSUInteger);
 impl NSControlTint {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint/defaultcontroltint?language=objc)
     #[doc(alias = "NSDefaultControlTint")]
     pub const DefaultControlTint: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint/bluecontroltint?language=objc)
     #[doc(alias = "NSBlueControlTint")]
     pub const BlueControlTint: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint/graphitecontroltint?language=objc)
     #[doc(alias = "NSGraphiteControlTint")]
     pub const GraphiteControlTint: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint/clearcontroltint?language=objc)
     #[doc(alias = "NSClearControlTint")]
     pub const ClearControlTint: Self = Self(7);
 }
@@ -216,14 +261,19 @@ unsafe impl RefEncode for NSControlTint {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlSize(pub NSUInteger);
 impl NSControlSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum/regular?language=objc)
     #[doc(alias = "NSControlSizeRegular")]
     pub const Regular: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum/small?language=objc)
     #[doc(alias = "NSControlSizeSmall")]
     pub const Small: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum/mini?language=objc)
     #[doc(alias = "NSControlSizeMini")]
     pub const Mini: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum/large?language=objc)
     #[doc(alias = "NSControlSizeLarge")]
     pub const Large: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum/extralarge?language=objc)
     #[doc(alias = "NSControlSizeExtraLarge")]
     pub const ExtraLarge: Self = Self(4);
 }
@@ -1099,12 +1149,16 @@ impl NSCell {
 pub struct NSCellHitResult(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCellHitResult: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellhitresult/nscellhitnone?language=objc)
         #[doc(alias = "NSCellHitNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/hitresult/contentarea?language=objc)
         #[doc(alias = "NSCellHitContentArea")]
         const ContentArea = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/hitresult/editabletextarea?language=objc)
         #[doc(alias = "NSCellHitEditableTextArea")]
         const EditableTextArea = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/hitresult/trackablearea?language=objc)
         #[doc(alias = "NSCellHitTrackableArea")]
         const TrackableArea = 1<<2;
     }
@@ -1154,12 +1208,16 @@ impl NSCell {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBackgroundStyle(pub NSInteger);
 impl NSBackgroundStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/normal?language=objc)
     #[doc(alias = "NSBackgroundStyleNormal")]
     pub const Normal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/emphasized?language=objc)
     #[doc(alias = "NSBackgroundStyleEmphasized")]
     pub const Emphasized: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/raised?language=objc)
     #[doc(alias = "NSBackgroundStyleRaised")]
     pub const Raised: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/lowered?language=objc)
     #[doc(alias = "NSBackgroundStyleLowered")]
     pub const Lowered: Self = Self(3);
 }
@@ -1190,6 +1248,7 @@ impl NSCell {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawthreepartimage(_:_:_:_:_:_:_:_:)?language=objc)
 #[cfg(all(
     feature = "NSGraphics",
     feature = "NSImage",
@@ -1232,6 +1291,7 @@ pub extern "C-unwind" fn NSDrawThreePartImage(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawninepartimage(_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
 #[cfg(all(
     feature = "NSGraphics",
     feature = "NSImage",

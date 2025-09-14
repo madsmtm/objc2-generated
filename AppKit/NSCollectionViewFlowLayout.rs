@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionViewScrollDirection(pub NSInteger);
 impl NSCollectionViewScrollDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrolldirection/vertical?language=objc)
     #[doc(alias = "NSCollectionViewScrollDirectionVertical")]
     pub const Vertical: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrolldirection/horizontal?language=objc)
     #[doc(alias = "NSCollectionViewScrollDirectionHorizontal")]
     pub const Horizontal: Self = Self(1);
 }

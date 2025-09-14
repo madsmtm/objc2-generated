@@ -18,12 +18,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPasteControlDisplayMode(pub NSUInteger);
 impl UIPasteControlDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/displaymode/iconandlabel?language=objc)
     #[doc(alias = "UIPasteControlDisplayModeIconAndLabel")]
     pub const IconAndLabel: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/displaymode/icononly?language=objc)
     #[doc(alias = "UIPasteControlDisplayModeIconOnly")]
     pub const IconOnly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/displaymode/labelonly?language=objc)
     #[doc(alias = "UIPasteControlDisplayModeLabelOnly")]
     pub const LabelOnly: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/displaymode/arrowandlabel?language=objc)
     #[doc(alias = "UIPasteControlDisplayModeArrowAndLabel")]
     pub const ArrowAndLabel: Self = Self(3);
 }

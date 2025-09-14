@@ -11,20 +11,28 @@ use crate::*;
 pub struct INCallRecordTypeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INCallRecordTypeOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/outgoing?language=objc)
         #[doc(alias = "INCallRecordTypeOptionOutgoing")]
         const Outgoing = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/missed?language=objc)
         #[doc(alias = "INCallRecordTypeOptionMissed")]
         const Missed = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/received?language=objc)
         #[doc(alias = "INCallRecordTypeOptionReceived")]
         const Received = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/latest?language=objc)
         #[doc(alias = "INCallRecordTypeOptionLatest")]
         const Latest = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/voicemail?language=objc)
         #[doc(alias = "INCallRecordTypeOptionVoicemail")]
         const Voicemail = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/ringing?language=objc)
         #[doc(alias = "INCallRecordTypeOptionRinging")]
         const Ringing = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/inprogress?language=objc)
         #[doc(alias = "INCallRecordTypeOptionInProgress")]
         const InProgress = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/onhold?language=objc)
         #[doc(alias = "INCallRecordTypeOptionOnHold")]
         const OnHold = 1<<7;
     }

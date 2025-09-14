@@ -15,32 +15,46 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKHapticType(pub NSInteger);
 impl WKHapticType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/notification?language=objc)
     #[doc(alias = "WKHapticTypeNotification")]
     pub const Notification: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/directionup?language=objc)
     #[doc(alias = "WKHapticTypeDirectionUp")]
     pub const DirectionUp: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/directiondown?language=objc)
     #[doc(alias = "WKHapticTypeDirectionDown")]
     pub const DirectionDown: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/success?language=objc)
     #[doc(alias = "WKHapticTypeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/failure?language=objc)
     #[doc(alias = "WKHapticTypeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/retry?language=objc)
     #[doc(alias = "WKHapticTypeRetry")]
     pub const Retry: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/start?language=objc)
     #[doc(alias = "WKHapticTypeStart")]
     pub const Start: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/stop?language=objc)
     #[doc(alias = "WKHapticTypeStop")]
     pub const Stop: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/click?language=objc)
     #[doc(alias = "WKHapticTypeClick")]
     pub const Click: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/navigationleftturn?language=objc)
     #[doc(alias = "WKHapticTypeNavigationLeftTurn")]
     pub const NavigationLeftTurn: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/navigationrightturn?language=objc)
     #[doc(alias = "WKHapticTypeNavigationRightTurn")]
     pub const NavigationRightTurn: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/navigationgenericmaneuver?language=objc)
     #[doc(alias = "WKHapticTypeNavigationGenericManeuver")]
     pub const NavigationGenericManeuver: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/underwaterdepthprompt?language=objc)
     #[doc(alias = "WKHapticTypeUnderwaterDepthPrompt")]
     pub const UnderwaterDepthPrompt: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/underwaterdepthcriticalprompt?language=objc)
     #[doc(alias = "WKHapticTypeUnderwaterDepthCriticalPrompt")]
     pub const UnderwaterDepthCriticalPrompt: Self = Self(13);
 }
@@ -59,8 +73,10 @@ unsafe impl RefEncode for WKHapticType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceLayoutDirection(pub NSInteger);
 impl WKInterfaceLayoutDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacelayoutdirection/lefttoright?language=objc)
     #[doc(alias = "WKInterfaceLayoutDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacelayoutdirection/righttoleft?language=objc)
     #[doc(alias = "WKInterfaceLayoutDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -79,14 +95,19 @@ unsafe impl RefEncode for WKInterfaceLayoutDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceSemanticContentAttribute(pub NSInteger);
 impl WKInterfaceSemanticContentAttribute {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute/unspecified?language=objc)
     #[doc(alias = "WKInterfaceSemanticContentAttributeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute/playback?language=objc)
     #[doc(alias = "WKInterfaceSemanticContentAttributePlayback")]
     pub const Playback: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute/spatial?language=objc)
     #[doc(alias = "WKInterfaceSemanticContentAttributeSpatial")]
     pub const Spatial: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute/forcelefttoright?language=objc)
     #[doc(alias = "WKInterfaceSemanticContentAttributeForceLeftToRight")]
     pub const ForceLeftToRight: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute/forcerighttoleft?language=objc)
     #[doc(alias = "WKInterfaceSemanticContentAttributeForceRightToLeft")]
     pub const ForceRightToLeft: Self = Self(4);
 }
@@ -105,8 +126,10 @@ unsafe impl RefEncode for WKInterfaceSemanticContentAttribute {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceDeviceWristLocation(pub NSInteger);
 impl WKInterfaceDeviceWristLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicewristlocation/left?language=objc)
     #[doc(alias = "WKInterfaceDeviceWristLocationLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicewristlocation/right?language=objc)
     #[doc(alias = "WKInterfaceDeviceWristLocationRight")]
     pub const Right: Self = Self(1);
 }
@@ -125,8 +148,10 @@ unsafe impl RefEncode for WKInterfaceDeviceWristLocation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceDeviceCrownOrientation(pub NSInteger);
 impl WKInterfaceDeviceCrownOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicecrownorientation/left?language=objc)
     #[doc(alias = "WKInterfaceDeviceCrownOrientationLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicecrownorientation/right?language=objc)
     #[doc(alias = "WKInterfaceDeviceCrownOrientationRight")]
     pub const Right: Self = Self(1);
 }
@@ -145,10 +170,13 @@ unsafe impl RefEncode for WKInterfaceDeviceCrownOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWaterResistanceRating(pub NSInteger);
 impl WKWaterResistanceRating {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkwaterresistancerating/ipx7?language=objc)
     #[doc(alias = "WKWaterResistanceRatingIPX7")]
     pub const IPX7: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkwaterresistancerating/wr50?language=objc)
     #[doc(alias = "WKWaterResistanceRatingWR50")]
     pub const WR50: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkwaterresistancerating/wr100?language=objc)
     #[doc(alias = "WKWaterResistanceRatingWR100")]
     pub const WR100: Self = Self(2);
 }
@@ -167,12 +195,16 @@ unsafe impl RefEncode for WKWaterResistanceRating {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceDeviceBatteryState(pub NSInteger);
 impl WKInterfaceDeviceBatteryState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate/unknown?language=objc)
     #[doc(alias = "WKInterfaceDeviceBatteryStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate/unplugged?language=objc)
     #[doc(alias = "WKInterfaceDeviceBatteryStateUnplugged")]
     pub const Unplugged: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate/charging?language=objc)
     #[doc(alias = "WKInterfaceDeviceBatteryStateCharging")]
     pub const Charging: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate/full?language=objc)
     #[doc(alias = "WKInterfaceDeviceBatteryStateFull")]
     pub const Full: Self = Self(3);
 }

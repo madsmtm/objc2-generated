@@ -68,6 +68,8 @@ use crate::*;
 ///
 /// Returns: YES             The device is supported.
 /// NO              The device is not supported
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpssupportsmtldevice(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MPSSupportsMTLDevice(
     device: Option<&ProtocolObject<dyn MTLDevice>>,
@@ -131,6 +133,8 @@ extern "C-unwind" {
     /// Parameter `bytes`: The size, in bytes, of the prefetched heap. The actual size ussed may be rounded
     /// up according to device alignment requirements. This should be the maximum
     /// `                         amount of temporary memory used at any point in the command buffer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpshinttemporarymemoryhighwatermark(_:_:)?language=objc)
     pub fn MPSHintTemporaryMemoryHighWaterMark(
         cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         bytes: NSUInteger,
@@ -158,6 +162,8 @@ extern "C-unwind" {
     ///
     /// Parameter `seconds`: The number of seconds to cache used MTLHeaps before retiring them.
     /// NaN will be interpeted as 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpssetheapcacheduration(_:_:)?language=objc)
     pub fn MPSSetHeapCacheDuration(
         cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         seconds: c_double,
@@ -172,12 +178,18 @@ pub struct MPSDeviceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSDeviceOptions: NSUInteger {
 /// Use default options
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceoptions/default?language=objc)
         #[doc(alias = "MPSDeviceOptionsDefault")]
         const Default = 0;
 /// Prefer a low power device
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceoptions/lowpower?language=objc)
         #[doc(alias = "MPSDeviceOptionsLowPower")]
         const LowPower = 1;
 /// Skip removable devices
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceoptions/skipremovable?language=objc)
         #[doc(alias = "MPSDeviceOptionsSkipRemovable")]
         const SkipRemovable = 2;
     }
@@ -216,6 +228,8 @@ unsafe impl RefEncode for MPSDeviceOptions {
 /// If a matching device can not be found, another device will be returned, if available.
 ///
 /// Returns: A valid MTLDevice supported by MPS or nil if none are available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsgetpreferreddevice(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MPSGetPreferredDevice(
     options: MPSDeviceOptions,

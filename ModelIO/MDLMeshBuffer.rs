@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDLMeshBufferType(pub NSUInteger);
 impl MDLMeshBufferType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbuffertype/vertex?language=objc)
     #[doc(alias = "MDLMeshBufferTypeVertex")]
     pub const Vertex: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbuffertype/index?language=objc)
     #[doc(alias = "MDLMeshBufferTypeIndex")]
     pub const Index: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbuffertype/custom?language=objc)
     #[doc(alias = "MDLMeshBufferTypeCustom")]
     pub const Custom: Self = Self(3);
 }

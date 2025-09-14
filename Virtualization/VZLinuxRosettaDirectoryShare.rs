@@ -16,12 +16,18 @@ use crate::*;
 pub struct VZLinuxRosettaAvailability(pub NSInteger);
 impl VZLinuxRosettaAvailability {
     /// Rosetta support for Linux binaries is not available on the host system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaavailability/notsupported?language=objc)
     #[doc(alias = "VZLinuxRosettaAvailabilityNotSupported")]
     pub const NotSupported: Self = Self(0);
     /// Rosetta support for Linux binaries is not installed on the host system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaavailability/notinstalled?language=objc)
     #[doc(alias = "VZLinuxRosettaAvailabilityNotInstalled")]
     pub const NotInstalled: Self = Self(1);
     /// Rosetta support for Linux is installed on the host system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaavailability/installed?language=objc)
     #[doc(alias = "VZLinuxRosettaAvailabilityInstalled")]
     pub const Installed: Self = Self(2);
 }

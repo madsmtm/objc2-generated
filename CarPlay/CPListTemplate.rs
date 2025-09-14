@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAssistantCellActionType(pub NSInteger);
 impl CPAssistantCellActionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellactiontype/playmedia?language=objc)
     #[doc(alias = "CPAssistantCellActionTypePlayMedia")]
     pub const PlayMedia: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellactiontype/startcall?language=objc)
     #[doc(alias = "CPAssistantCellActionTypeStartCall")]
     pub const StartCall: Self = Self(1);
 }
@@ -35,10 +37,13 @@ unsafe impl RefEncode for CPAssistantCellActionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAssistantCellVisibility(pub NSInteger);
 impl CPAssistantCellVisibility {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellvisibility/off?language=objc)
     #[doc(alias = "CPAssistantCellVisibilityOff")]
     pub const Off: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellvisibility/whilelimiteduiactive?language=objc)
     #[doc(alias = "CPAssistantCellVisibilityWhileLimitedUIActive")]
     pub const WhileLimitedUIActive: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellvisibility/always?language=objc)
     #[doc(alias = "CPAssistantCellVisibilityAlways")]
     pub const Always: Self = Self(2);
 }
@@ -57,8 +62,10 @@ unsafe impl RefEncode for CPAssistantCellVisibility {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAssistantCellPosition(pub NSInteger);
 impl CPAssistantCellPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellposition/top?language=objc)
     #[doc(alias = "CPAssistantCellPositionTop")]
     pub const Top: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellposition/bottom?language=objc)
     #[doc(alias = "CPAssistantCellPositionBottom")]
     pub const Bottom: Self = Self(1);
 }

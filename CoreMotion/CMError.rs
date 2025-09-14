@@ -10,32 +10,46 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMError(pub c_uint);
 impl CMError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrornull?language=objc)
     #[doc(alias = "CMErrorNULL")]
     pub const NULL: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrordevicerequiresmovement?language=objc)
     #[doc(alias = "CMErrorDeviceRequiresMovement")]
     pub const DeviceRequiresMovement: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrortruenorthnotavailable?language=objc)
     #[doc(alias = "CMErrorTrueNorthNotAvailable")]
     pub const TrueNorthNotAvailable: Self = Self(102);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrorunknown?language=objc)
     #[doc(alias = "CMErrorUnknown")]
     pub const Unknown: Self = Self(103);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrormotionactivitynotavailable?language=objc)
     #[doc(alias = "CMErrorMotionActivityNotAvailable")]
     pub const MotionActivityNotAvailable: Self = Self(104);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrormotionactivitynotauthorized?language=objc)
     #[doc(alias = "CMErrorMotionActivityNotAuthorized")]
     pub const MotionActivityNotAuthorized: Self = Self(105);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrormotionactivitynotentitled?language=objc)
     #[doc(alias = "CMErrorMotionActivityNotEntitled")]
     pub const MotionActivityNotEntitled: Self = Self(106);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrorinvalidparameter?language=objc)
     #[doc(alias = "CMErrorInvalidParameter")]
     pub const InvalidParameter: Self = Self(107);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrorinvalidaction?language=objc)
     #[doc(alias = "CMErrorInvalidAction")]
     pub const InvalidAction: Self = Self(108);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrornotavailable?language=objc)
     #[doc(alias = "CMErrorNotAvailable")]
     pub const NotAvailable: Self = Self(109);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrornotentitled?language=objc)
     #[doc(alias = "CMErrorNotEntitled")]
     pub const NotEntitled: Self = Self(110);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrornotauthorized?language=objc)
     #[doc(alias = "CMErrorNotAuthorized")]
     pub const NotAuthorized: Self = Self(111);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrornildata?language=objc)
     #[doc(alias = "CMErrorNilData")]
     pub const NilData: Self = Self(112);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrorsize?language=objc)
     #[doc(alias = "CMErrorSize")]
     pub const Size: Self = Self(113);
 }

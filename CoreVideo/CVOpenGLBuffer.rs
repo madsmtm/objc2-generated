@@ -43,6 +43,7 @@ extern "C" {
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVOpenGLBuffer = CVImageBuffer;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbuffergettypeid()?language=objc)
 #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
 #[inline]
 pub extern "C-unwind" fn CVOpenGLBufferGetTypeID() -> CFTypeID {
@@ -72,6 +73,8 @@ extern "C-unwind" {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbuffercreate(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferCreate(
@@ -86,6 +89,8 @@ extern "C-unwind" {
 /// Parameter `openGLBuffer`: Target OpenGL Buffer.
 ///
 /// Returns: CVOpenGLBuffer attributes dictionary, NULL if not set.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbuffergetattributes(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
 #[inline]
@@ -117,6 +122,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `cgl_context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferattach(_:_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",

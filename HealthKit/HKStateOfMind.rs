@@ -15,18 +15,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKStateOfMindValenceClassification(pub NSInteger);
 impl HKStateOfMindValenceClassification {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/valenceclassification-swift.enum/veryunpleasant?language=objc)
     #[doc(alias = "HKStateOfMindValenceClassificationVeryUnpleasant")]
     pub const VeryUnpleasant: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/valenceclassification-swift.enum/unpleasant?language=objc)
     #[doc(alias = "HKStateOfMindValenceClassificationUnpleasant")]
     pub const Unpleasant: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/valenceclassification-swift.enum/slightlyunpleasant?language=objc)
     #[doc(alias = "HKStateOfMindValenceClassificationSlightlyUnpleasant")]
     pub const SlightlyUnpleasant: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/valenceclassification-swift.enum/neutral?language=objc)
     #[doc(alias = "HKStateOfMindValenceClassificationNeutral")]
     pub const Neutral: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/valenceclassification-swift.enum/slightlypleasant?language=objc)
     #[doc(alias = "HKStateOfMindValenceClassificationSlightlyPleasant")]
     pub const SlightlyPleasant: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/valenceclassification-swift.enum/pleasant?language=objc)
     #[doc(alias = "HKStateOfMindValenceClassificationPleasant")]
     pub const Pleasant: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/valenceclassification-swift.enum/verypleasant?language=objc)
     #[doc(alias = "HKStateOfMindValenceClassificationVeryPleasant")]
     pub const VeryPleasant: Self = Self(7);
 }
@@ -43,6 +50,8 @@ impl HKStateOfMindValenceClassification {
     /// Returns the valence classification appropriate for a valence value.
     /// If the given valence is outside the supported range of values, this function returns
     /// `nil.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindvalenceclassificationforvalence?language=objc)
     #[doc(alias = "HKStateOfMindValenceClassificationForValence")]
     #[inline]
     pub unsafe fn for_valence(valence: c_double) -> Option<Retained<NSNumber>> {
@@ -62,80 +71,118 @@ impl HKStateOfMindValenceClassification {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKStateOfMindLabel(pub NSInteger);
 impl HKStateOfMindLabel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/amazed?language=objc)
     #[doc(alias = "HKStateOfMindLabelAmazed")]
     pub const Amazed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/amused?language=objc)
     #[doc(alias = "HKStateOfMindLabelAmused")]
     pub const Amused: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/angry?language=objc)
     #[doc(alias = "HKStateOfMindLabelAngry")]
     pub const Angry: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/anxious?language=objc)
     #[doc(alias = "HKStateOfMindLabelAnxious")]
     pub const Anxious: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/ashamed?language=objc)
     #[doc(alias = "HKStateOfMindLabelAshamed")]
     pub const Ashamed: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/brave?language=objc)
     #[doc(alias = "HKStateOfMindLabelBrave")]
     pub const Brave: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/calm?language=objc)
     #[doc(alias = "HKStateOfMindLabelCalm")]
     pub const Calm: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/content?language=objc)
     #[doc(alias = "HKStateOfMindLabelContent")]
     pub const Content: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/disappointed?language=objc)
     #[doc(alias = "HKStateOfMindLabelDisappointed")]
     pub const Disappointed: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/discouraged?language=objc)
     #[doc(alias = "HKStateOfMindLabelDiscouraged")]
     pub const Discouraged: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/disgusted?language=objc)
     #[doc(alias = "HKStateOfMindLabelDisgusted")]
     pub const Disgusted: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/embarrassed?language=objc)
     #[doc(alias = "HKStateOfMindLabelEmbarrassed")]
     pub const Embarrassed: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/excited?language=objc)
     #[doc(alias = "HKStateOfMindLabelExcited")]
     pub const Excited: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/frustrated?language=objc)
     #[doc(alias = "HKStateOfMindLabelFrustrated")]
     pub const Frustrated: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/grateful?language=objc)
     #[doc(alias = "HKStateOfMindLabelGrateful")]
     pub const Grateful: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/guilty?language=objc)
     #[doc(alias = "HKStateOfMindLabelGuilty")]
     pub const Guilty: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/happy?language=objc)
     #[doc(alias = "HKStateOfMindLabelHappy")]
     pub const Happy: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/hopeless?language=objc)
     #[doc(alias = "HKStateOfMindLabelHopeless")]
     pub const Hopeless: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/irritated?language=objc)
     #[doc(alias = "HKStateOfMindLabelIrritated")]
     pub const Irritated: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/jealous?language=objc)
     #[doc(alias = "HKStateOfMindLabelJealous")]
     pub const Jealous: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/joyful?language=objc)
     #[doc(alias = "HKStateOfMindLabelJoyful")]
     pub const Joyful: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/lonely?language=objc)
     #[doc(alias = "HKStateOfMindLabelLonely")]
     pub const Lonely: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/passionate?language=objc)
     #[doc(alias = "HKStateOfMindLabelPassionate")]
     pub const Passionate: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/peaceful?language=objc)
     #[doc(alias = "HKStateOfMindLabelPeaceful")]
     pub const Peaceful: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/proud?language=objc)
     #[doc(alias = "HKStateOfMindLabelProud")]
     pub const Proud: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/relieved?language=objc)
     #[doc(alias = "HKStateOfMindLabelRelieved")]
     pub const Relieved: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/sad?language=objc)
     #[doc(alias = "HKStateOfMindLabelSad")]
     pub const Sad: Self = Self(27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/scared?language=objc)
     #[doc(alias = "HKStateOfMindLabelScared")]
     pub const Scared: Self = Self(28);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/stressed?language=objc)
     #[doc(alias = "HKStateOfMindLabelStressed")]
     pub const Stressed: Self = Self(29);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/surprised?language=objc)
     #[doc(alias = "HKStateOfMindLabelSurprised")]
     pub const Surprised: Self = Self(30);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/worried?language=objc)
     #[doc(alias = "HKStateOfMindLabelWorried")]
     pub const Worried: Self = Self(31);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/annoyed?language=objc)
     #[doc(alias = "HKStateOfMindLabelAnnoyed")]
     pub const Annoyed: Self = Self(32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/confident?language=objc)
     #[doc(alias = "HKStateOfMindLabelConfident")]
     pub const Confident: Self = Self(33);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/drained?language=objc)
     #[doc(alias = "HKStateOfMindLabelDrained")]
     pub const Drained: Self = Self(34);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/hopeful?language=objc)
     #[doc(alias = "HKStateOfMindLabelHopeful")]
     pub const Hopeful: Self = Self(35);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/indifferent?language=objc)
     #[doc(alias = "HKStateOfMindLabelIndifferent")]
     pub const Indifferent: Self = Self(36);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/overwhelmed?language=objc)
     #[doc(alias = "HKStateOfMindLabelOverwhelmed")]
     pub const Overwhelmed: Self = Self(37);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label/satisfied?language=objc)
     #[doc(alias = "HKStateOfMindLabelSatisfied")]
     pub const Satisfied: Self = Self(38);
 }
@@ -156,40 +203,58 @@ unsafe impl RefEncode for HKStateOfMindLabel {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKStateOfMindAssociation(pub NSInteger);
 impl HKStateOfMindAssociation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/community?language=objc)
     #[doc(alias = "HKStateOfMindAssociationCommunity")]
     pub const Community: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/currentevents?language=objc)
     #[doc(alias = "HKStateOfMindAssociationCurrentEvents")]
     pub const CurrentEvents: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/dating?language=objc)
     #[doc(alias = "HKStateOfMindAssociationDating")]
     pub const Dating: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/education?language=objc)
     #[doc(alias = "HKStateOfMindAssociationEducation")]
     pub const Education: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/family?language=objc)
     #[doc(alias = "HKStateOfMindAssociationFamily")]
     pub const Family: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/fitness?language=objc)
     #[doc(alias = "HKStateOfMindAssociationFitness")]
     pub const Fitness: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/friends?language=objc)
     #[doc(alias = "HKStateOfMindAssociationFriends")]
     pub const Friends: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/health?language=objc)
     #[doc(alias = "HKStateOfMindAssociationHealth")]
     pub const Health: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/hobbies?language=objc)
     #[doc(alias = "HKStateOfMindAssociationHobbies")]
     pub const Hobbies: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/identity?language=objc)
     #[doc(alias = "HKStateOfMindAssociationIdentity")]
     pub const Identity: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/money?language=objc)
     #[doc(alias = "HKStateOfMindAssociationMoney")]
     pub const Money: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/partner?language=objc)
     #[doc(alias = "HKStateOfMindAssociationPartner")]
     pub const Partner: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/selfcare?language=objc)
     #[doc(alias = "HKStateOfMindAssociationSelfCare")]
     pub const SelfCare: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/spirituality?language=objc)
     #[doc(alias = "HKStateOfMindAssociationSpirituality")]
     pub const Spirituality: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/tasks?language=objc)
     #[doc(alias = "HKStateOfMindAssociationTasks")]
     pub const Tasks: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/travel?language=objc)
     #[doc(alias = "HKStateOfMindAssociationTravel")]
     pub const Travel: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/work?language=objc)
     #[doc(alias = "HKStateOfMindAssociationWork")]
     pub const Work: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association/weather?language=objc)
     #[doc(alias = "HKStateOfMindAssociationWeather")]
     pub const Weather: Self = Self(18);
 }
@@ -210,8 +275,10 @@ unsafe impl RefEncode for HKStateOfMindAssociation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKStateOfMindKind(pub NSInteger);
 impl HKStateOfMindKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/kind-swift.enum/momentaryemotion?language=objc)
     #[doc(alias = "HKStateOfMindKindMomentaryEmotion")]
     pub const MomentaryEmotion: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/kind-swift.enum/dailymood?language=objc)
     #[doc(alias = "HKStateOfMindKindDailyMood")]
     pub const DailyMood: Self = Self(2);
 }

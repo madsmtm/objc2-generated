@@ -70,14 +70,19 @@ extern "C" {
 pub struct AVCaptureSystemPressureFactors(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCaptureSystemPressureFactors: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystempressurefactors/avcapturesystempressurefactornone?language=objc)
         #[doc(alias = "AVCaptureSystemPressureFactorNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/factors-swift.struct/systemtemperature?language=objc)
         #[doc(alias = "AVCaptureSystemPressureFactorSystemTemperature")]
         const SystemTemperature = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/factors-swift.struct/peakpower?language=objc)
         #[doc(alias = "AVCaptureSystemPressureFactorPeakPower")]
         const PeakPower = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/factors-swift.struct/depthmoduletemperature?language=objc)
         #[doc(alias = "AVCaptureSystemPressureFactorDepthModuleTemperature")]
         const DepthModuleTemperature = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/factors-swift.struct/cameratemperature?language=objc)
         #[doc(alias = "AVCaptureSystemPressureFactorCameraTemperature")]
         const CameraTemperature = 1<<3;
     }

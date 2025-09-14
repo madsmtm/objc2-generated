@@ -56,6 +56,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for CVOpenGLTextureCache {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecachegettypeid()?language=objc)
     #[doc(alias = "CVOpenGLTextureCacheGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -92,6 +93,8 @@ impl CVOpenGLTextureCache {
     /// - `texture_attributes` generic must be of the correct type.
     /// - `texture_attributes` generic must be of the correct type.
     /// - `cache_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecachecreate(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CVOpenGLTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
     #[cfg(target_os = "macos")]
@@ -146,6 +149,8 @@ impl CVOpenGLTextureCache {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `texture_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecachecreatetexturefromimage(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CVOpenGLTextureCacheCreateTextureFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -192,6 +197,8 @@ impl CVOpenGLTextureCache {
     /// Parameter `options`: Currently unused, set to 0.
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecacheflush(_:_:)?language=objc)
     #[doc(alias = "CVOpenGLTextureCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]

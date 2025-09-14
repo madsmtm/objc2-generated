@@ -15,24 +15,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTensorDataType(pub NSInteger);
 impl MTLTensorDataType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype/none?language=objc)
     #[doc(alias = "MTLTensorDataTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype/float32?language=objc)
     #[doc(alias = "MTLTensorDataTypeFloat32")]
     pub const Float32: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype/float16?language=objc)
     #[doc(alias = "MTLTensorDataTypeFloat16")]
     pub const Float16: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype/bfloat16?language=objc)
     #[doc(alias = "MTLTensorDataTypeBFloat16")]
     pub const BFloat16: Self = Self(121);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype/int8?language=objc)
     #[doc(alias = "MTLTensorDataTypeInt8")]
     pub const Int8: Self = Self(45);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype/uint8?language=objc)
     #[doc(alias = "MTLTensorDataTypeUInt8")]
     pub const UInt8: Self = Self(49);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype/int16?language=objc)
     #[doc(alias = "MTLTensorDataTypeInt16")]
     pub const Int16: Self = Self(37);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype/uint16?language=objc)
     #[doc(alias = "MTLTensorDataTypeUInt16")]
     pub const UInt16: Self = Self(41);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype/int32?language=objc)
     #[doc(alias = "MTLTensorDataTypeInt32")]
     pub const Int32: Self = Self(29);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype/uint32?language=objc)
     #[doc(alias = "MTLTensorDataTypeUInt32")]
     pub const UInt32: Self = Self(33);
 }
@@ -138,10 +148,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTensorError(pub NSInteger);
 impl MTLTensorError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorerror-swift.struct/code/none?language=objc)
     #[doc(alias = "MTLTensorErrorNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorerror-swift.struct/code/internalerror?language=objc)
     #[doc(alias = "MTLTensorErrorInternalError")]
     pub const InternalError: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorerror-swift.struct/code/invaliddescriptor?language=objc)
     #[doc(alias = "MTLTensorErrorInvalidDescriptor")]
     pub const InvalidDescriptor: Self = Self(2);
 }
@@ -166,16 +179,22 @@ bitflags::bitflags! {
 /// A tensor context that applies to compute encoders.
 ///
 /// You can use tensors with this context in ``MTL4ComputeCommandEncoder`` or ``MTLComputeCommandEncoder`` instances.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorusage/compute?language=objc)
         #[doc(alias = "MTLTensorUsageCompute")]
         const Compute = 1<<0;
 /// A tensor context that applies to render encoders.
 ///
 /// You can use tensors with this context in ``MTL4RenderCommandEncoder`` or ``MTLRenderCommandEncoder`` instances.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorusage/render?language=objc)
         #[doc(alias = "MTLTensorUsageRender")]
         const Render = 1<<1;
 /// A tensor context that applies to machine learning encoders.
 ///
 /// You can use tensors with this context in ``MTL4MachineLearningCommandEncoder`` instances.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorusage/machinelearning?language=objc)
         #[doc(alias = "MTLTensorUsageMachineLearning")]
         const MachineLearning = 1<<2;
     }

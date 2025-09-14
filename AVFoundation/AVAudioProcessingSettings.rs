@@ -76,12 +76,16 @@ extern "C" {
 pub struct AVAudioSpatializationFormats(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSpatializationFormats: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats/avaudiospatializationformatnone?language=objc)
         #[doc(alias = "AVAudioSpatializationFormatNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats/monoandstereo?language=objc)
         #[doc(alias = "AVAudioSpatializationFormatMonoAndStereo")]
         const MonoAndStereo = 0x3;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats/multichannel?language=objc)
         #[doc(alias = "AVAudioSpatializationFormatMultichannel")]
         const Multichannel = 0x4;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats/monostereoandmultichannel?language=objc)
         #[doc(alias = "AVAudioSpatializationFormatMonoStereoAndMultichannel")]
         const MonoStereoAndMultichannel = 0x7;
     }

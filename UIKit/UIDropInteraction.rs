@@ -62,12 +62,16 @@ impl UIDropInteraction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDropOperation(pub NSUInteger);
 impl UIDropOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation/cancel?language=objc)
     #[doc(alias = "UIDropOperationCancel")]
     pub const Cancel: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation/forbidden?language=objc)
     #[doc(alias = "UIDropOperationForbidden")]
     pub const Forbidden: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation/copy?language=objc)
     #[doc(alias = "UIDropOperationCopy")]
     pub const Copy: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation/move?language=objc)
     #[doc(alias = "UIDropOperationMove")]
     pub const Move: Self = Self(3);
 }

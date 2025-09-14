@@ -74,6 +74,8 @@ unsafe impl RefEncode for AEBuildError {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445158-aeprintdesctohandle?language=objc)
+    ///
     /// # Safety
     ///
     /// - `desc` must be a valid pointer.
@@ -98,10 +100,13 @@ unsafe impl RefEncode for OpaqueAEStreamRef {
 pub type AEStreamRef = *mut OpaqueAEStreamRef;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447732-aestreamopen?language=objc)
     pub fn AEStreamOpen() -> AEStreamRef;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449821-aestreamclose?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.
@@ -111,6 +116,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446544-aestreamopendesc?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -119,6 +126,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442610-aestreamwritedata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.
@@ -127,6 +136,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449272-aestreamclosedesc?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -134,6 +145,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450387-aestreamwritedesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.
@@ -148,6 +161,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448487-aestreamwriteaedesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.
@@ -157,6 +172,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448594-aestreamopenlist?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -164,6 +181,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448185-aestreamcloselist?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -171,6 +190,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447141-aestreamopenrecord?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -179,6 +200,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447704-aestreamsetrecordtype?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -187,6 +210,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449522-aestreamcloserecord?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -194,6 +219,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442568-aestreamwritekeydesc?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.
@@ -209,6 +236,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442897-aestreamopenkeydesc?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -217,6 +246,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448750-aestreamwritekey?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -225,6 +256,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446562-aestreamcreateevent?language=objc)
+    ///
     /// # Safety
     ///
     /// `target_data` must be a valid pointer.
@@ -241,6 +274,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445366-aestreamopenevent?language=objc)
+    ///
     /// # Safety
     ///
     /// `event` must be a valid pointer.
@@ -249,6 +284,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444481-aestreamoptionalparam?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.

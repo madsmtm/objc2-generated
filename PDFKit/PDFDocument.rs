@@ -18,10 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFPrintScalingMode(pub NSInteger);
 impl PDFPrintScalingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfprintscalingmode/pagescalenone?language=objc)
     #[doc(alias = "kPDFPrintPageScaleNone")]
     pub const PageScaleNone: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfprintscalingmode/pagescaletofit?language=objc)
     #[doc(alias = "kPDFPrintPageScaleToFit")]
     pub const PageScaleToFit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfprintscalingmode/pagescaledowntofit?language=objc)
     #[doc(alias = "kPDFPrintPageScaleDownToFit")]
     pub const PageScaleDownToFit: Self = Self(2);
 }
@@ -40,10 +43,13 @@ unsafe impl RefEncode for PDFPrintScalingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDocumentPermissions(pub NSInteger);
 impl PDFDocumentPermissions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentpermissions/none?language=objc)
     #[doc(alias = "kPDFDocumentPermissionsNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentpermissions/user?language=objc)
     #[doc(alias = "kPDFDocumentPermissionsUser")]
     pub const User: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentpermissions/owner?language=objc)
     #[doc(alias = "kPDFDocumentPermissionsOwner")]
     pub const Owner: Self = Self(2);
 }
@@ -205,20 +211,28 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PDFAccessPermissions(pub NSUInteger);
 impl PDFAccessPermissions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowslowqualityprinting?language=objc)
     #[doc(alias = "PDFAllowsLowQualityPrinting")]
     pub const AllowsLowQualityPrinting: Self = Self(1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowshighqualityprinting?language=objc)
     #[doc(alias = "PDFAllowsHighQualityPrinting")]
     pub const AllowsHighQualityPrinting: Self = Self(1 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowsdocumentchanges?language=objc)
     #[doc(alias = "PDFAllowsDocumentChanges")]
     pub const AllowsDocumentChanges: Self = Self(1 << 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowsdocumentassembly?language=objc)
     #[doc(alias = "PDFAllowsDocumentAssembly")]
     pub const AllowsDocumentAssembly: Self = Self(1 << 3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowscontentcopying?language=objc)
     #[doc(alias = "PDFAllowsContentCopying")]
     pub const AllowsContentCopying: Self = Self(1 << 4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowscontentaccessibility?language=objc)
     #[doc(alias = "PDFAllowsContentAccessibility")]
     pub const AllowsContentAccessibility: Self = Self(1 << 5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowscommenting?language=objc)
     #[doc(alias = "PDFAllowsCommenting")]
     pub const AllowsCommenting: Self = Self(1 << 6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowsformfieldentry?language=objc)
     #[doc(alias = "PDFAllowsFormFieldEntry")]
     pub const AllowsFormFieldEntry: Self = Self(1 << 7);
 }

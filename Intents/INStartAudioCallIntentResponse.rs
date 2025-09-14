@@ -13,30 +13,39 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartAudioCallIntentResponseCode(pub NSInteger);
 impl INStartAudioCallIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INStartAudioCallIntentResponseCodeUnspecified")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/ready?language=objc)
     #[doc(alias = "INStartAudioCallIntentResponseCodeReady")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INStartAudioCallIntentResponseCodeContinueInApp")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failure?language=objc)
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailure")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Failure: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureRequiringAppLaunch: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failureappconfigurationrequired?language=objc)
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureAppConfigurationRequired: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failurecallingservicenotavailable?language=objc)
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureCallingServiceNotAvailable")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureCallingServiceNotAvailable: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failurecontactnotsupportedbyapp?language=objc)
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureContactNotSupportedByApp")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureContactNotSupportedByApp: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failurenovalidnumber?language=objc)
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureNoValidNumber")]
     pub const FailureNoValidNumber: Self = Self(8);
 }

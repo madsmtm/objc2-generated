@@ -14,16 +14,22 @@ use crate::*;
 pub struct UIPopoverArrowDirection(pub NSUInteger);
 bitflags::bitflags! {
     impl UIPopoverArrowDirection: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/up?language=objc)
         #[doc(alias = "UIPopoverArrowDirectionUp")]
         const Up = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/down?language=objc)
         #[doc(alias = "UIPopoverArrowDirectionDown")]
         const Down = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/left?language=objc)
         #[doc(alias = "UIPopoverArrowDirectionLeft")]
         const Left = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/right?language=objc)
         #[doc(alias = "UIPopoverArrowDirectionRight")]
         const Right = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/any?language=objc)
         #[doc(alias = "UIPopoverArrowDirectionAny")]
         const Any = UIPopoverArrowDirection::Up.0|UIPopoverArrowDirection::Down.0|UIPopoverArrowDirection::Left.0|UIPopoverArrowDirection::Right.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/unknown?language=objc)
         #[doc(alias = "UIPopoverArrowDirectionUnknown")]
         const Unknown = NSUIntegerMax as _;
     }

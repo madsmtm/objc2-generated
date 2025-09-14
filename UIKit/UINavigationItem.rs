@@ -14,17 +14,25 @@ use crate::*;
 pub struct UINavigationItemLargeTitleDisplayMode(pub NSInteger);
 impl UINavigationItemLargeTitleDisplayMode {
     /// Automatically use the large out-of-line title based on the state of the previous item in the navigation bar. An item with largeTitleDisplayMode=Automatic will show or hide the large title based on the request of the previous navigation item. If the first item pushed is set to Automatic, then it will show the large title if the navigation bar has prefersLargeTitles=YES.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum/automatic?language=objc)
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Always use a larger title when this item is topmost.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum/always?language=objc)
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeAlways")]
     pub const Always: Self = Self(1);
     /// Never use a larger title when this item is topmost.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum/never?language=objc)
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeNever")]
     pub const Never: Self = Self(2);
     /// Always use a large title when this item is topmost. If there is a back button present, this will revert to `Always`. Leading
     /// &
     /// center items will move to the overflow menu if present.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum/inline?language=objc)
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeInline")]
     pub const Inline: Self = Self(3);
 }
@@ -44,12 +52,18 @@ unsafe impl RefEncode for UINavigationItemLargeTitleDisplayMode {
 pub struct UINavigationItemBackButtonDisplayMode(pub NSInteger);
 impl UINavigationItemBackButtonDisplayMode {
     /// Default mode, uses an appropriate title, followed by a generic title (typically 'Back'), then no title.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.enum/default?language=objc)
     #[doc(alias = "UINavigationItemBackButtonDisplayModeDefault")]
     pub const Default: Self = Self(0);
     /// Generic titles only. Ignores .title and .backButtonTitle (but *not* .backBarButtonItem.title).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.enum/generic?language=objc)
     #[doc(alias = "UINavigationItemBackButtonDisplayModeGeneric")]
     pub const Generic: Self = Self(1);
     /// Don't use a title, just the back button indicator image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.enum/minimal?language=objc)
     #[doc(alias = "UINavigationItemBackButtonDisplayModeMinimal")]
     pub const Minimal: Self = Self(2);
 }
@@ -69,23 +83,35 @@ unsafe impl RefEncode for UINavigationItemBackButtonDisplayMode {
 pub struct UINavigationItemSearchBarPlacement(pub NSInteger);
 impl UINavigationItemSearchBarPlacement {
     /// The navigation bar will choose a placement for the search bar that is appropriate for the current layout
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/automatic?language=objc)
     #[doc(alias = "UINavigationItemSearchBarPlacementAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The navigation bar will place the search bar inline with other content, on the trailing edge.
     /// On iPhone, when the navigation bar belongs to a UINavigationController, the search bar may be integrated into the toolbar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/integrated?language=objc)
     #[doc(alias = "UINavigationItemSearchBarPlacementIntegrated")]
     pub const Integrated: Self = Self(1);
     /// The navigation bar will place the search bar vertically stacked with other content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/stacked?language=objc)
     #[doc(alias = "UINavigationItemSearchBarPlacementStacked")]
     pub const Stacked: Self = Self(2);
     /// Placement is the same as Integrated, except that in regular width on iPad, the search bar is centered in the navigation bar.
     /// Only respected when used in a view controller that is a descendant of a tab bar controller or when using a navigation item style that requires a leading aligned title
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/integratedcentered?language=objc)
     #[doc(alias = "UINavigationItemSearchBarPlacementIntegratedCentered")]
     pub const IntegratedCentered: Self = Self(3);
     /// Placement is the same as Integrated, except that the inactive search bar is always shown as a button even when space permits a search field.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/integratedbutton?language=objc)
     #[doc(alias = "UINavigationItemSearchBarPlacementIntegratedButton")]
     pub const IntegratedButton: Self = Self(4);
     /// Placement is the same as Integrated, except that the inactive search bar is always shown as a button even when space permits a search field.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/inline?language=objc)
     #[doc(alias = "UINavigationItemSearchBarPlacementInline")]
     #[deprecated]
     pub const Inline: Self = Self(UINavigationItemSearchBarPlacement::Integrated.0);
@@ -106,12 +132,18 @@ unsafe impl RefEncode for UINavigationItemSearchBarPlacement {
 pub struct UINavigationItemStyle(pub NSInteger);
 impl UINavigationItemStyle {
     /// Traditional navigation bar behavior. Center items are placed in the overflow menu.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/itemstyle/navigator?language=objc)
     #[doc(alias = "UINavigationItemStyleNavigator")]
     pub const Navigator: Self = Self(0);
     /// A style designed for use as a browser. Title is leading aligned, center items are displayed. Typically used with history-based navigation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/itemstyle/browser?language=objc)
     #[doc(alias = "UINavigationItemStyleBrowser")]
     pub const Browser: Self = Self(1);
     /// A style designed for use as an editor. The back button will always present as chevron-only, title is leading aligned, center items are displayed. Typically used without navigation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/itemstyle/editor?language=objc)
     #[doc(alias = "UINavigationItemStyleEditor")]
     pub const Editor: Self = Self(2);
 }

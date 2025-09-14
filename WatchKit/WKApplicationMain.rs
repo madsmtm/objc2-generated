@@ -8,6 +8,8 @@ use crate::*;
 
 #[cfg(feature = "WKApplication")]
 impl WKApplication {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationmain(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `argv` must be a valid pointer.

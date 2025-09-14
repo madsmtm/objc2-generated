@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPersonHandleType(pub NSInteger);
 impl INPersonHandleType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandletype/unknown?language=objc)
     #[doc(alias = "INPersonHandleTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandletype/emailaddress?language=objc)
     #[doc(alias = "INPersonHandleTypeEmailAddress")]
     pub const EmailAddress: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandletype/phonenumber?language=objc)
     #[doc(alias = "INPersonHandleTypePhoneNumber")]
     pub const PhoneNumber: Self = Self(2);
 }

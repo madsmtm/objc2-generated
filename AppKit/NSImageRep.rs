@@ -25,10 +25,13 @@ pub const NSImageRepMatchesDevice: c_uint = 0;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSImageLayoutDirection(pub NSInteger);
 impl NSImageLayoutDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/layoutdirection/unspecified?language=objc)
     #[doc(alias = "NSImageLayoutDirectionUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/layoutdirection/lefttoright?language=objc)
     #[doc(alias = "NSImageLayoutDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/layoutdirection/righttoleft?language=objc)
     #[doc(alias = "NSImageLayoutDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(3);
 }

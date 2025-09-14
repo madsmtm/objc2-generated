@@ -14,12 +14,16 @@ use crate::*;
 pub struct UISwipeGestureRecognizerDirection(pub NSUInteger);
 bitflags::bitflags! {
     impl UISwipeGestureRecognizerDirection: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/direction-swift.struct/right?language=objc)
         #[doc(alias = "UISwipeGestureRecognizerDirectionRight")]
         const Right = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/direction-swift.struct/left?language=objc)
         #[doc(alias = "UISwipeGestureRecognizerDirectionLeft")]
         const Left = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/direction-swift.struct/up?language=objc)
         #[doc(alias = "UISwipeGestureRecognizerDirectionUp")]
         const Up = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/direction-swift.struct/down?language=objc)
         #[doc(alias = "UISwipeGestureRecognizerDirectionDown")]
         const Down = 1<<3;
     }

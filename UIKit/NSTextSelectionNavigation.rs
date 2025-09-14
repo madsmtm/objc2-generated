@@ -15,16 +15,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationDirection(pub NSInteger);
 impl NSTextSelectionNavigationDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/forward?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDirectionForward")]
     pub const Forward: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/backward?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDirectionBackward")]
     pub const Backward: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/right?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDirectionRight")]
     pub const Right: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/left?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDirectionLeft")]
     pub const Left: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/up?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDirectionUp")]
     pub const Up: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/down?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDirectionDown")]
     pub const Down: Self = Self(5);
 }
@@ -43,18 +49,25 @@ unsafe impl RefEncode for NSTextSelectionNavigationDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationDestination(pub NSInteger);
 impl NSTextSelectionNavigationDestination {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/character?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDestinationCharacter")]
     pub const Character: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/word?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDestinationWord")]
     pub const Word: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/line?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDestinationLine")]
     pub const Line: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/sentence?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDestinationSentence")]
     pub const Sentence: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/paragraph?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDestinationParagraph")]
     pub const Paragraph: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/container?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDestinationContainer")]
     pub const Container: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/document?language=objc)
     #[doc(alias = "NSTextSelectionNavigationDestinationDocument")]
     pub const Document: Self = Self(6);
 }
@@ -74,10 +87,13 @@ unsafe impl RefEncode for NSTextSelectionNavigationDestination {
 pub struct NSTextSelectionNavigationModifier(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextSelectionNavigationModifier: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/modifier/extend?language=objc)
         #[doc(alias = "NSTextSelectionNavigationModifierExtend")]
         const Extend = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/modifier/visual?language=objc)
         #[doc(alias = "NSTextSelectionNavigationModifierVisual")]
         const Visual = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/modifier/multiple?language=objc)
         #[doc(alias = "NSTextSelectionNavigationModifierMultiple")]
         const Multiple = 1<<2;
     }
@@ -97,8 +113,10 @@ unsafe impl RefEncode for NSTextSelectionNavigationModifier {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationWritingDirection(pub NSInteger);
 impl NSTextSelectionNavigationWritingDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/writingdirection/lefttoright?language=objc)
     #[doc(alias = "NSTextSelectionNavigationWritingDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/writingdirection/righttoleft?language=objc)
     #[doc(alias = "NSTextSelectionNavigationWritingDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -117,8 +135,10 @@ unsafe impl RefEncode for NSTextSelectionNavigationWritingDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationLayoutOrientation(pub NSInteger);
 impl NSTextSelectionNavigationLayoutOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/layoutorientation/horizontal?language=objc)
     #[doc(alias = "NSTextSelectionNavigationLayoutOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/layoutorientation/vertical?language=objc)
     #[doc(alias = "NSTextSelectionNavigationLayoutOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }

@@ -23,8 +23,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerItemSegmentType(pub NSInteger);
 impl AVPlayerItemSegmentType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemsegment/segmenttype-swift.enum/primary?language=objc)
     #[doc(alias = "AVPlayerItemSegmentTypePrimary")]
     pub const Primary: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemsegment/segmenttype-swift.enum/interstitial?language=objc)
     #[doc(alias = "AVPlayerItemSegmentTypeInterstitial")]
     pub const Interstitial: Self = Self(1);
 }

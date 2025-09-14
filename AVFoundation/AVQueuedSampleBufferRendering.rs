@@ -24,10 +24,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVQueuedSampleBufferRenderingStatus(pub NSInteger);
 impl AVQueuedSampleBufferRenderingStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrenderingstatus/unknown?language=objc)
     #[doc(alias = "AVQueuedSampleBufferRenderingStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrenderingstatus/rendering?language=objc)
     #[doc(alias = "AVQueuedSampleBufferRenderingStatusRendering")]
     pub const Rendering: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrenderingstatus/failed?language=objc)
     #[doc(alias = "AVQueuedSampleBufferRenderingStatusFailed")]
     pub const Failed: Self = Self(2);
 }

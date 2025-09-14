@@ -11,14 +11,19 @@ use crate::*;
 pub struct MKDirectionsTransportType(pub NSUInteger);
 bitflags::bitflags! {
     impl MKDirectionsTransportType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype/automobile?language=objc)
         #[doc(alias = "MKDirectionsTransportTypeAutomobile")]
         const Automobile = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype/walking?language=objc)
         #[doc(alias = "MKDirectionsTransportTypeWalking")]
         const Walking = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype/transit?language=objc)
         #[doc(alias = "MKDirectionsTransportTypeTransit")]
         const Transit = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype/cycling?language=objc)
         #[doc(alias = "MKDirectionsTransportTypeCycling")]
         const Cycling = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype/any?language=objc)
         #[doc(alias = "MKDirectionsTransportTypeAny")]
         const Any = 0x0FFFFFFF;
     }

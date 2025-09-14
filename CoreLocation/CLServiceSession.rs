@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLServiceSessionAuthorizationRequirement(pub NSInteger);
 impl CLServiceSessionAuthorizationRequirement {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesessionauthorizationrequirement/clservicesessionauthorizationrequirementnone?language=objc)
     #[doc(alias = "CLServiceSessionAuthorizationRequirementNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesessionauthorizationrequirement/clservicesessionauthorizationrequirementwheninuse?language=objc)
     #[doc(alias = "CLServiceSessionAuthorizationRequirementWhenInUse")]
     pub const WhenInUse: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesessionauthorizationrequirement/clservicesessionauthorizationrequirementalways?language=objc)
     #[doc(alias = "CLServiceSessionAuthorizationRequirementAlways")]
     pub const Always: Self = Self(2);
 }

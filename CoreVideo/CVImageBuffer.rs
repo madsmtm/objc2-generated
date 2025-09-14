@@ -347,6 +347,7 @@ extern "C" {
     pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: Option<&'static CFString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvycbcrmatrixgetintegercodepointforstring(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVYCbCrMatrixGetIntegerCodePointForString(
     y_cb_cr_matrix_string: Option<&CFString>,
@@ -359,6 +360,7 @@ pub extern "C-unwind" fn CVYCbCrMatrixGetIntegerCodePointForString(
     unsafe { CVYCbCrMatrixGetIntegerCodePointForString(y_cb_cr_matrix_string) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvcolorprimariesgetintegercodepointforstring(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVColorPrimariesGetIntegerCodePointForString(
     color_primaries_string: Option<&CFString>,
@@ -371,6 +373,7 @@ pub extern "C-unwind" fn CVColorPrimariesGetIntegerCodePointForString(
     unsafe { CVColorPrimariesGetIntegerCodePointForString(color_primaries_string) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtransferfunctiongetintegercodepointforstring(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVTransferFunctionGetIntegerCodePointForString(
     transfer_function_string: Option<&CFString>,
@@ -383,6 +386,7 @@ pub extern "C-unwind" fn CVTransferFunctionGetIntegerCodePointForString(
     unsafe { CVTransferFunctionGetIntegerCodePointForString(transfer_function_string) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvycbcrmatrixgetstringforintegercodepoint(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
     y_cb_cr_matrix_code_point: c_int,
@@ -396,6 +400,7 @@ pub extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvcolorprimariesgetstringforintegercodepoint(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
     color_primaries_code_point: c_int,
@@ -409,6 +414,7 @@ pub extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtransferfunctiongetstringforintegercodepoint(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVTransferFunctionGetStringForIntegerCodePoint(
     transfer_function_code_point: c_int,
@@ -436,6 +442,8 @@ pub type CVImageBuffer = CVBuffer;
 ///
 /// Returns: A CGSize returning the full encoded size of the buffer
 /// Returns zero size if called with a non-CVImageBufferRef type or NULL.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffergetencodedsize(_:)?language=objc)
 #[cfg(feature = "CVBuffer")]
 #[inline]
 pub extern "C-unwind" fn CVImageBufferGetEncodedSize(image_buffer: &CVImageBuffer) -> CGSize {
@@ -452,6 +460,8 @@ pub extern "C-unwind" fn CVImageBufferGetEncodedSize(image_buffer: &CVImageBuffe
 ///
 /// Returns: A CGSize returning the nominal display size of the buffer
 /// Returns zero size if called with a non-CVImageBufferRef type or NULL.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffergetdisplaysize(_:)?language=objc)
 #[cfg(feature = "CVBuffer")]
 #[inline]
 pub extern "C-unwind" fn CVImageBufferGetDisplaySize(image_buffer: &CVImageBuffer) -> CGSize {
@@ -471,6 +481,8 @@ pub extern "C-unwind" fn CVImageBufferGetDisplaySize(image_buffer: &CVImageBuffe
 ///
 /// Returns: A CGSize returning the nominal display size of the buffer
 /// Returns zero rect if called with a non-CVImageBufferRef type or NULL.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffergetcleanrect(_:)?language=objc)
 #[cfg(feature = "CVBuffer")]
 #[inline]
 pub extern "C-unwind" fn CVImageBufferGetCleanRect(image_buffer: &CVImageBuffer) -> CGRect {
@@ -485,6 +497,8 @@ pub extern "C-unwind" fn CVImageBufferGetCleanRect(image_buffer: &CVImageBuffer)
 /// Parameter `imageBuffer`: target
 ///
 /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebufferisflipped(_:)?language=objc)
 #[cfg(feature = "CVBuffer")]
 #[inline]
 pub extern "C-unwind" fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) -> bool {
@@ -501,6 +515,8 @@ pub extern "C-unwind" fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) ->
 ///
 /// Returns: A CGColorSpaceRef representing the color space of the buffer.
 /// Returns NULL if called with a non-CVImageBufferRef type or NULL.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffergetcolorspace(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "objc2-core-graphics"))]
 #[inline]
 pub extern "C-unwind" fn CVImageBufferGetColorSpace(
@@ -531,6 +547,8 @@ pub extern "C-unwind" fn CVImageBufferGetColorSpace(
 ///
 /// - `attachments` generic must be of the correct type.
 /// - `attachments` generic must be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffercreatecolorspacefromattachments(_:)?language=objc)
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn CVImageBufferCreateColorSpaceFromAttachments(

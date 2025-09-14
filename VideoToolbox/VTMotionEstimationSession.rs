@@ -24,6 +24,8 @@ bitflags::bitflags! {
 /// A hint to the motion-estimation session that you are going to reuse the `currentBuffer` as `referenceBuffer` in
 /// the next call to ``VTMotionEstimationSessionEstimateMotionVectors``. Using this flag allows the motion-estimation
 /// processor to deliver better performance.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationframeflags/kvtmotionestimationframeflags_currentbufferwillbenextreferencebuffer?language=objc)
         #[doc(alias = "kVTMotionEstimationFrameFlags_CurrentBufferWillBeNextReferenceBuffer")]
         const CurrentBufferWillBeNextReferenceBuffer = 1<<0;
     }
@@ -48,6 +50,7 @@ unsafe impl RefEncode for VTMotionEstimationFrameFlags {
 pub struct VTMotionEstimationInfoFlags(pub u32);
 bitflags::bitflags! {
     impl VTMotionEstimationInfoFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationinfoflags/kvtmotionestimationinfoflags_reserved0?language=objc)
         #[doc(alias = "kVTMotionEstimationInfoFlags_Reserved0")]
         const Reserved0 = 1<<0;
     }
@@ -90,6 +93,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for VTMotionEstimationSession {
     /// Get the CoreFoundation type identifier for motion-estimation session type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessiongettypeid?language=objc)
     #[doc(alias = "VTMotionEstimationSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -120,6 +125,8 @@ impl VTMotionEstimationSession {
     /// - `motion_vector_processor_selection_options` generic must be of the correct type.
     /// - `motion_vector_processor_selection_options` generic must be of the correct type.
     /// - `motion_estimation_session_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessioncreate?language=objc)
     #[doc(alias = "VTMotionEstimationSessionCreate")]
     #[inline]
     pub unsafe fn create(
@@ -163,6 +170,8 @@ impl VTMotionEstimationSession {
     /// # Safety
     ///
     /// `attributes_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessioncopysourcepixelbufferattributes?language=objc)
     #[doc(alias = "VTMotionEstimationSessionCopySourcePixelBufferAttributes")]
     #[inline]
     pub unsafe fn copy_source_pixel_buffer_attributes(
@@ -184,6 +193,8 @@ impl VTMotionEstimationSession {
     /// it down and then `CFRelease` to release the session object reference. When a motion-estimation session's retain count
     /// reaches zero, the system automatically invalidates it, but because multiple parties may retain sessions, it can be
     /// hard to predict when this happens. Calling this function ensures a deterministic, orderly teardown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessioninvalidate?language=objc)
     #[doc(alias = "VTMotionEstimationSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -237,6 +248,8 @@ impl VTMotionEstimationSession {
     /// - `additional_frame_options` generic must be of the correct type.
     /// - `additional_frame_options` generic must be of the correct type.
     /// - `output_handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessionestimatemotionvectors?language=objc)
     #[doc(alias = "VTMotionEstimationSessionEstimateMotionVectors")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
@@ -273,6 +286,8 @@ impl VTMotionEstimationSession {
     /// Directs the motion-estimation session to emit all pending frames and waits for completion.
     ///
     /// Directs the motion-estimation session to emit all pending frames, then waits for all outstanding requests to complete, then returns.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessioncompleteframes?language=objc)
     #[doc(alias = "VTMotionEstimationSessionCompleteFrames")]
     #[inline]
     pub unsafe fn complete_frames(&self) -> OSStatus {

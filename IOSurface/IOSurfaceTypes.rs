@@ -16,8 +16,10 @@ pub type IOSurfaceID = u32;
 pub struct IOSurfaceLockOptions(pub u32);
 bitflags::bitflags! {
     impl IOSurfaceLockOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelockoptions/readonly?language=objc)
         #[doc(alias = "kIOSurfaceLockReadOnly")]
         const ReadOnly = 0x00000001;
+/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelockoptions/avoidsync?language=objc)
         #[doc(alias = "kIOSurfaceLockAvoidSync")]
         const AvoidSync = 0x00000002;
     }
@@ -44,12 +46,16 @@ unsafe impl Sync for IOSurfaceLockOptions {}
 pub struct IOSurfacePurgeabilityState(pub u32);
 bitflags::bitflags! {
     impl IOSurfacePurgeabilityState: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepurgeabilitystate/kiosurfacepurgeablenonvolatile?language=objc)
         #[doc(alias = "kIOSurfacePurgeableNonVolatile")]
         const PurgeableNonVolatile = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepurgeabilitystate/purgeablevolatile?language=objc)
         #[doc(alias = "kIOSurfacePurgeableVolatile")]
         const PurgeableVolatile = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepurgeabilitystate/purgeableempty?language=objc)
         #[doc(alias = "kIOSurfacePurgeableEmpty")]
         const PurgeableEmpty = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepurgeabilitystate/purgeablekeepcurrent?language=objc)
         #[doc(alias = "kIOSurfacePurgeableKeepCurrent")]
         const PurgeableKeepCurrent = 3;
     }

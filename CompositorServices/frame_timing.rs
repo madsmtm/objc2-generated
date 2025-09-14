@@ -45,6 +45,8 @@ impl cp_frame_timing {
     /// # Safety
     ///
     /// `frame_timing` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_get_optimal_input_time?language=objc)
     #[doc(alias = "cp_frame_timing_get_optimal_input_time")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -76,6 +78,8 @@ impl cp_frame_timing {
     /// # Safety
     ///
     /// `frame_timing` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_get_rendering_deadline?language=objc)
     #[doc(alias = "cp_frame_timing_get_rendering_deadline")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -106,6 +110,8 @@ impl cp_frame_timing {
     /// # Safety
     ///
     /// `frame_timing` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_get_presentation_time?language=objc)
     #[doc(alias = "cp_frame_timing_get_presentation_time")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -137,6 +143,8 @@ impl cp_frame_timing {
     /// # Safety
     ///
     /// `frame_timing` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_get_trackable_anchor_time?language=objc)
     #[doc(alias = "cp_frame_timing_get_trackable_anchor_time")]
     #[cfg(feature = "cp_types")]
     #[inline]

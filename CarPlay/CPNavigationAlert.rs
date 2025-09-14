@@ -17,10 +17,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPNavigationAlertDismissalContext(pub NSUInteger);
 impl CPNavigationAlertDismissalContext {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationalert/dismissalcontext/timeout?language=objc)
     #[doc(alias = "CPNavigationAlertDismissalContextTimeout")]
     pub const Timeout: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationalert/dismissalcontext/userdismissed?language=objc)
     #[doc(alias = "CPNavigationAlertDismissalContextUserDismissed")]
     pub const UserDismissed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationalert/dismissalcontext/systemdismissed?language=objc)
     #[doc(alias = "CPNavigationAlertDismissalContextSystemDismissed")]
     pub const SystemDismissed: Self = Self(2);
 }

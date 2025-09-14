@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuElementState(pub NSInteger);
 impl UIMenuElementState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/state/off?language=objc)
     #[doc(alias = "UIMenuElementStateOff")]
     pub const Off: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/state/on?language=objc)
     #[doc(alias = "UIMenuElementStateOn")]
     pub const On: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/state/mixed?language=objc)
     #[doc(alias = "UIMenuElementStateMixed")]
     pub const Mixed: Self = Self(2);
 }
@@ -36,15 +39,20 @@ unsafe impl RefEncode for UIMenuElementState {
 pub struct UIMenuElementAttributes(pub NSUInteger);
 bitflags::bitflags! {
     impl UIMenuElementAttributes: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/attributes/disabled?language=objc)
         #[doc(alias = "UIMenuElementAttributesDisabled")]
         const Disabled = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/attributes/destructive?language=objc)
         #[doc(alias = "UIMenuElementAttributesDestructive")]
         const Destructive = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/attributes/hidden?language=objc)
         #[doc(alias = "UIMenuElementAttributesHidden")]
         const Hidden = 1<<2;
 /// Indicates that the menu should remain presented after firing
 /// the element's action rather than dismissing as it normally does.
 /// This attribute has no effect on Mac Catalyst.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/attributes/keepsmenupresented?language=objc)
         #[doc(alias = "UIMenuElementAttributesKeepsMenuPresented")]
         const KeepsMenuPresented = 1<<3;
     }
@@ -67,12 +75,18 @@ unsafe impl RefEncode for UIMenuElementAttributes {
 pub struct UIMenuElementRepeatBehavior(pub NSInteger);
 impl UIMenuElementRepeatBehavior {
     /// Automatically uses the appropriate repeat behavior for this element.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/repeatbehavior/automatic?language=objc)
     #[doc(alias = "UIMenuElementRepeatBehaviorAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The element should be allowed to repeat.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/repeatbehavior/repeatable?language=objc)
     #[doc(alias = "UIMenuElementRepeatBehaviorRepeatable")]
     pub const Repeatable: Self = Self(1);
     /// The element should not be repeatable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/repeatbehavior/nonrepeatable?language=objc)
     #[doc(alias = "UIMenuElementRepeatBehaviorNonRepeatable")]
     pub const NonRepeatable: Self = Self(2);
 }

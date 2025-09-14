@@ -13,21 +13,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetDefrosterSettingsInCarIntentResponseCode(pub NSInteger);
 impl INSetDefrosterSettingsInCarIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeUnspecified")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/ready?language=objc)
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeReady")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeInProgress")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/success?language=objc)
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeSuccess")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/failure?language=objc)
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeFailure")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);

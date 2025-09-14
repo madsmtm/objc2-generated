@@ -13,26 +13,36 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForAccountsIntentResponseCode(pub NSInteger);
 impl INSearchForAccountsIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSearchForAccountsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/ready?language=objc)
     #[doc(alias = "INSearchForAccountsIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSearchForAccountsIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/success?language=objc)
     #[doc(alias = "INSearchForAccountsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failure?language=objc)
     #[doc(alias = "INSearchForAccountsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSearchForAccountsIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failurecredentialsunverified?language=objc)
     #[doc(alias = "INSearchForAccountsIntentResponseCodeFailureCredentialsUnverified")]
     pub const FailureCredentialsUnverified: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failureaccountnotfound?language=objc)
     #[doc(alias = "INSearchForAccountsIntentResponseCodeFailureAccountNotFound")]
     pub const FailureAccountNotFound: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failuretermsandconditionsacceptancerequired?language=objc)
     #[doc(
         alias = "INSearchForAccountsIntentResponseCodeFailureTermsAndConditionsAcceptanceRequired"
     )]
     pub const FailureTermsAndConditionsAcceptanceRequired: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failurenoteligible?language=objc)
     #[doc(alias = "INSearchForAccountsIntentResponseCodeFailureNotEligible")]
     pub const FailureNotEligible: Self = Self(9);
 }

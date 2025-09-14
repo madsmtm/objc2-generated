@@ -104,6 +104,8 @@ pub type SCDynamicStoreCallBack =
 
 unsafe impl ConcreteType for SCDynamicStore {
     /// Returns the type identifier of all SCDynamicStore instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoregettypeid()?language=objc)
     #[doc(alias = "SCDynamicStoreGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -141,6 +143,8 @@ impl SCDynamicStore {
     ///
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecreate(_:_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCreate")]
     #[inline]
     pub unsafe fn new(
@@ -226,6 +230,8 @@ impl SCDynamicStore {
     /// - `store_options` generic must be of the correct type.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecreatewithoptions(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCreateWithOptions")]
     #[inline]
     pub unsafe fn with_options(
@@ -280,6 +286,8 @@ impl SCDynamicStore {
     ///
     /// Returns: A reference to the new CFRunLoopSource.
     /// You must release the returned value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecreaterunloopsource(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCreateRunLoopSource")]
     #[inline]
     pub fn new_run_loop_source(
@@ -311,6 +319,8 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -336,6 +346,8 @@ impl SCDynamicStore {
     /// Returns: Returns the list of matching keys; NULL if an error was
     /// encountered.
     /// You must release the returned value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopykeylist(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyKeyList")]
     #[inline]
     pub fn key_list(
@@ -367,6 +379,8 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoreaddvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreAddValue")]
     #[inline]
     pub unsafe fn add_value(
@@ -402,6 +416,8 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoreaddtemporaryvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreAddTemporaryValue")]
     #[inline]
     pub unsafe fn add_temporary_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
@@ -425,6 +441,8 @@ impl SCDynamicStore {
     /// Returns: Returns the value from the dynamic store that is associated with the given
     /// key; NULL if no value was located or an error was encountered.
     /// You must release the returned value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopyvalue(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyValue")]
     #[inline]
     pub fn value(
@@ -460,6 +478,8 @@ impl SCDynamicStore {
     ///
     /// - `keys` generic must be of the correct type.
     /// - `patterns` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopymultiple(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyMultiple")]
     #[inline]
     pub unsafe fn multiple(
@@ -492,6 +512,8 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreSetValue")]
     #[inline]
     pub unsafe fn set_value(
@@ -528,6 +550,8 @@ impl SCDynamicStore {
     /// - `keys_to_set` generic must be of the correct type.
     /// - `keys_to_remove` generic must be of the correct type.
     /// - `keys_to_notify` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetmultiple(_:_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreSetMultiple")]
     #[inline]
     pub unsafe fn set_multiple(
@@ -559,6 +583,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns TRUE if the key was removed; FALSE if no value was
     /// located or an error was encountered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoreremovevalue(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreRemoveValue")]
     #[inline]
     pub fn remove_value(store: Option<&SCDynamicStore>, key: &CFString) -> bool {
@@ -580,6 +606,8 @@ impl SCDynamicStore {
     /// key's value is not updated.
     ///
     /// Returns: Returns TRUE if the notification was processed; FALSE if an error was encountered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorenotifyvalue(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreNotifyValue")]
     #[inline]
     pub fn notify_value(store: Option<&SCDynamicStore>, key: &CFString) -> bool {
@@ -609,6 +637,8 @@ impl SCDynamicStore {
     ///
     /// - `keys` generic must be of the correct type.
     /// - `patterns` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetnotificationkeys(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreSetNotificationKeys")]
     #[inline]
     pub unsafe fn set_notification_keys(
@@ -638,6 +668,8 @@ impl SCDynamicStore {
     /// Returns: Returns the list of changed keys;
     /// NULL if an error was encountered.
     /// You must release the returned value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopynotifiedkeys(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyNotifiedKeys")]
     #[inline]
     pub fn notified_keys(&self) -> Option<CFRetained<CFArray>> {

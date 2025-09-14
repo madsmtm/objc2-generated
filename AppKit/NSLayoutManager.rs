@@ -18,8 +18,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutOrientation(pub NSInteger);
 impl NSTextLayoutOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/textlayoutorientation/horizontal?language=objc)
     #[doc(alias = "NSTextLayoutOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/textlayoutorientation/vertical?language=objc)
     #[doc(alias = "NSTextLayoutOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -39,12 +41,16 @@ unsafe impl RefEncode for NSTextLayoutOrientation {
 pub struct NSGlyphProperty(pub NSInteger);
 bitflags::bitflags! {
     impl NSGlyphProperty: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphproperty/null?language=objc)
         #[doc(alias = "NSGlyphPropertyNull")]
         const Null = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphproperty/controlcharacter?language=objc)
         #[doc(alias = "NSGlyphPropertyControlCharacter")]
         const ControlCharacter = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphproperty/elastic?language=objc)
         #[doc(alias = "NSGlyphPropertyElastic")]
         const Elastic = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphproperty/nonbasecharacter?language=objc)
         #[doc(alias = "NSGlyphPropertyNonBaseCharacter")]
         const NonBaseCharacter = 1<<3;
     }
@@ -65,16 +71,22 @@ unsafe impl RefEncode for NSGlyphProperty {
 pub struct NSControlCharacterAction(pub NSInteger);
 bitflags::bitflags! {
     impl NSControlCharacterAction: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/zeroadvancement?language=objc)
         #[doc(alias = "NSControlCharacterActionZeroAdvancement")]
         const ZeroAdvancement = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/whitespace?language=objc)
         #[doc(alias = "NSControlCharacterActionWhitespace")]
         const Whitespace = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/horizontaltab?language=objc)
         #[doc(alias = "NSControlCharacterActionHorizontalTab")]
         const HorizontalTab = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/linebreak?language=objc)
         #[doc(alias = "NSControlCharacterActionLineBreak")]
         const LineBreak = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/paragraphbreak?language=objc)
         #[doc(alias = "NSControlCharacterActionParagraphBreak")]
         const ParagraphBreak = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/containerbreak?language=objc)
         #[doc(alias = "NSControlCharacterActionContainerBreak")]
         const ContainerBreak = 1<<5;
     }
@@ -103,16 +115,22 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTypesetterBehavior(pub NSInteger);
 impl NSTypesetterBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/latestbehavior?language=objc)
     #[doc(alias = "NSTypesetterLatestBehavior")]
     pub const LatestBehavior: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/originalbehavior?language=objc)
     #[doc(alias = "NSTypesetterOriginalBehavior")]
     pub const OriginalBehavior: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/behavior_10_2_withcompatibility?language=objc)
     #[doc(alias = "NSTypesetterBehavior_10_2_WithCompatibility")]
     pub const Behavior_10_2_WithCompatibility: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/behavior_10_2?language=objc)
     #[doc(alias = "NSTypesetterBehavior_10_2")]
     pub const Behavior_10_2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/behavior_10_3?language=objc)
     #[doc(alias = "NSTypesetterBehavior_10_3")]
     pub const Behavior_10_3: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/behavior_10_4?language=objc)
     #[doc(alias = "NSTypesetterBehavior_10_4")]
     pub const Behavior_10_4: Self = Self(4);
 }
@@ -1373,18 +1391,23 @@ pub const NSGlyphAttributeInscribe: c_uint = 5;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGlyphInscription(pub NSUInteger);
 impl NSGlyphInscription {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription/nsglyphinscribebase?language=objc)
     #[doc(alias = "NSGlyphInscribeBase")]
     #[deprecated]
     pub const InscribeBase: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription/nsglyphinscribebelow?language=objc)
     #[doc(alias = "NSGlyphInscribeBelow")]
     #[deprecated]
     pub const InscribeBelow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription/nsglyphinscribeabove?language=objc)
     #[doc(alias = "NSGlyphInscribeAbove")]
     #[deprecated]
     pub const InscribeAbove: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription/nsglyphinscribeoverstrike?language=objc)
     #[doc(alias = "NSGlyphInscribeOverstrike")]
     #[deprecated]
     pub const InscribeOverstrike: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription/nsglyphinscribeoverbelow?language=objc)
     #[doc(alias = "NSGlyphInscribeOverBelow")]
     #[deprecated]
     pub const InscribeOverBelow: Self = Self(4);

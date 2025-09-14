@@ -172,20 +172,28 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceComponentName(pub i32);
 impl IOSurfaceComponentName {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/unknown?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/alpha?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameAlpha")]
     pub const Alpha: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/red?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameRed")]
     pub const Red: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/green?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameGreen")]
     pub const Green: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/blue?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameBlue")]
     pub const Blue: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/luma?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameLuma")]
     pub const Luma: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/chromared?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameChromaRed")]
     pub const ChromaRed: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/chromablue?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameChromaBlue")]
     pub const ChromaBlue: Self = Self(7);
 }
@@ -216,14 +224,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceComponentType(pub i32);
 impl IOSurfaceComponentType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype/unknown?language=objc)
     #[doc(alias = "kIOSurfaceComponentTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype/unsignedinteger?language=objc)
     #[doc(alias = "kIOSurfaceComponentTypeUnsignedInteger")]
     pub const UnsignedInteger: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype/signedinteger?language=objc)
     #[doc(alias = "kIOSurfaceComponentTypeSignedInteger")]
     pub const SignedInteger: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype/float?language=objc)
     #[doc(alias = "kIOSurfaceComponentTypeFloat")]
     pub const Float: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype/signednormalized?language=objc)
     #[doc(alias = "kIOSurfaceComponentTypeSignedNormalized")]
     pub const SignedNormalized: Self = Self(4);
 }
@@ -254,12 +267,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceComponentRange(pub i32);
 impl IOSurfaceComponentRange {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange/unknown?language=objc)
     #[doc(alias = "kIOSurfaceComponentRangeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange/fullrange?language=objc)
     #[doc(alias = "kIOSurfaceComponentRangeFullRange")]
     pub const FullRange: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange/videorange?language=objc)
     #[doc(alias = "kIOSurfaceComponentRangeVideoRange")]
     pub const VideoRange: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange/widerange?language=objc)
     #[doc(alias = "kIOSurfaceComponentRangeWideRange")]
     pub const WideRange: Self = Self(3);
 }
@@ -290,14 +307,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceSubsampling(pub i32);
 impl IOSurfaceSubsampling {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling/subsamplingunknown?language=objc)
     #[doc(alias = "kIOSurfaceSubsamplingUnknown")]
     pub const SubsamplingUnknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling/subsamplingnone?language=objc)
     #[doc(alias = "kIOSurfaceSubsamplingNone")]
     pub const SubsamplingNone: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling/subsampling422?language=objc)
     #[doc(alias = "kIOSurfaceSubsampling422")]
     pub const Subsampling422: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling/subsampling420?language=objc)
     #[doc(alias = "kIOSurfaceSubsampling420")]
     pub const Subsampling420: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling/subsampling411?language=objc)
     #[doc(alias = "kIOSurfaceSubsampling411")]
     pub const Subsampling411: Self = Self(4);
 }
@@ -324,6 +346,7 @@ extern "C" {
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for IOSurfaceRef {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegettypeid()?language=objc)
     #[doc(alias = "IOSurfaceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -335,6 +358,8 @@ unsafe impl ConcreteType for IOSurfaceRef {
 }
 
 impl IOSurfaceRef {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecreate(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `properties` generic must be of the correct type.
@@ -350,6 +375,7 @@ impl IOSurfaceRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelookup(_:)?language=objc)
     #[doc(alias = "IOSurfaceLookup")]
     #[cfg(all(feature = "IOSurfaceTypes", feature = "objc2-core-foundation"))]
     #[inline]
@@ -361,6 +387,7 @@ impl IOSurfaceRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetid(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetID")]
     #[cfg(feature = "IOSurfaceTypes")]
     #[inline]
@@ -371,6 +398,8 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetID(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelock(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `seed` must be a valid pointer or null.
@@ -392,6 +421,8 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceLock(self, options, seed) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceunlock(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `seed` must be a valid pointer or null.
@@ -413,6 +444,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceUnlock(self, options, seed) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetallocsize(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetAllocSize")]
     #[inline]
     pub fn alloc_size(&self) -> usize {
@@ -422,6 +454,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetAllocSize(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetwidth(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetWidth")]
     #[inline]
     pub fn width(&self) -> usize {
@@ -431,6 +464,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetWidth(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetheight(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetHeight")]
     #[inline]
     pub fn height(&self) -> usize {
@@ -440,6 +474,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetHeight(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbytesperelement(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetBytesPerElement")]
     #[inline]
     pub fn bytes_per_element(&self) -> usize {
@@ -449,6 +484,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBytesPerElement(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbytesperrow(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetBytesPerRow")]
     #[inline]
     pub fn bytes_per_row(&self) -> usize {
@@ -458,6 +494,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBytesPerRow(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbaseaddress(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetBaseAddress")]
     #[inline]
     pub fn base_address(&self) -> NonNull<c_void> {
@@ -468,6 +505,7 @@ impl IOSurfaceRef {
         ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetelementwidth(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetElementWidth")]
     #[inline]
     pub fn element_width(&self) -> usize {
@@ -477,6 +515,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetElementWidth(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetelementheight(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetElementHeight")]
     #[inline]
     pub fn element_height(&self) -> usize {
@@ -486,6 +525,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetElementHeight(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetpixelformat(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetPixelFormat")]
     #[inline]
     pub fn pixel_format(&self) -> OSType {
@@ -495,6 +535,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetPixelFormat(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetseed(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetSeed")]
     #[inline]
     pub fn seed(&self) -> u32 {
@@ -504,6 +545,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetSeed(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetplanecount(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetPlaneCount")]
     #[inline]
     pub fn plane_count(&self) -> usize {
@@ -513,6 +555,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetPlaneCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetwidthofplane(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetWidthOfPlane")]
     #[inline]
     pub fn width_of_plane(&self, plane_index: usize) -> usize {
@@ -522,6 +565,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetWidthOfPlane(self, plane_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetheightofplane(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetHeightOfPlane")]
     #[inline]
     pub fn height_of_plane(&self, plane_index: usize) -> usize {
@@ -531,6 +575,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetHeightOfPlane(self, plane_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbytesperelementofplane(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetBytesPerElementOfPlane")]
     #[inline]
     pub fn bytes_per_element_of_plane(&self, plane_index: usize) -> usize {
@@ -543,6 +588,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBytesPerElementOfPlane(self, plane_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbytesperrowofplane(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetBytesPerRowOfPlane")]
     #[inline]
     pub fn bytes_per_row_of_plane(&self, plane_index: usize) -> usize {
@@ -552,6 +598,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBytesPerRowOfPlane(self, plane_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbaseaddressofplane(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetBaseAddressOfPlane")]
     #[inline]
     pub fn base_address_of_plane(&self, plane_index: usize) -> NonNull<c_void> {
@@ -565,6 +612,7 @@ impl IOSurfaceRef {
         ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetelementwidthofplane(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetElementWidthOfPlane")]
     #[inline]
     pub fn element_width_of_plane(&self, plane_index: usize) -> usize {
@@ -574,6 +622,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetElementWidthOfPlane(self, plane_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetelementheightofplane(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetElementHeightOfPlane")]
     #[inline]
     pub fn element_height_of_plane(&self, plane_index: usize) -> usize {
@@ -584,6 +633,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetElementHeightOfPlane(self, plane_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetnumberofcomponentsofplane(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetNumberOfComponentsOfPlane")]
     #[inline]
     pub fn number_of_components_of_plane(&self, plane_index: usize) -> usize {
@@ -596,6 +646,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetNumberOfComponentsOfPlane(self, plane_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetnameofcomponentofplane(_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetNameOfComponentOfPlane")]
     #[inline]
     pub fn name_of_component_of_plane(
@@ -613,6 +664,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetNameOfComponentOfPlane(self, plane_index, component_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegettypeofcomponentofplane(_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetTypeOfComponentOfPlane")]
     #[inline]
     pub fn type_of_component_of_plane(
@@ -630,6 +682,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetTypeOfComponentOfPlane(self, plane_index, component_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetrangeofcomponentofplane(_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetRangeOfComponentOfPlane")]
     #[inline]
     pub fn range_of_component_of_plane(
@@ -647,6 +700,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetRangeOfComponentOfPlane(self, plane_index, component_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbitdepthofcomponentofplane(_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetBitDepthOfComponentOfPlane")]
     #[inline]
     pub fn bit_depth_of_component_of_plane(
@@ -664,6 +718,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBitDepthOfComponentOfPlane(self, plane_index, component_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbitoffsetofcomponentofplane(_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetBitOffsetOfComponentOfPlane")]
     #[inline]
     pub fn bit_offset_of_component_of_plane(
@@ -681,6 +736,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBitOffsetOfComponentOfPlane(self, plane_index, component_index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetsubsampling(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetSubsampling")]
     #[inline]
     pub fn subsampling(&self) -> IOSurfaceSubsampling {
@@ -710,6 +766,8 @@ extern "C" {
 }
 
 impl IOSurfaceRef {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesetvalue(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `value` should be of the correct type.
@@ -723,6 +781,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceSetValue(self, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecopyvalue(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceCopyValue")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -735,6 +794,7 @@ impl IOSurfaceRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceremovevalue(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceRemoveValue")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -745,6 +805,8 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceRemoveValue(self, key) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesetvalues(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `keys_and_values` generic must be of the correct type.
@@ -759,6 +821,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceSetValues(self, keys_and_values) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecopyallvalues(_:)?language=objc)
     #[doc(alias = "IOSurfaceCopyAllValues")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -770,6 +833,7 @@ impl IOSurfaceRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceremoveallvalues(_:)?language=objc)
     #[doc(alias = "IOSurfaceRemoveAllValues")]
     #[inline]
     pub fn remove_all_values(&self) {
@@ -779,6 +843,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceRemoveAllValues(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecreatemachport(_:)?language=objc)
     #[doc(alias = "IOSurfaceCreateMachPort")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -789,6 +854,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceCreateMachPort(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelookupfrommachport(_:)?language=objc)
     #[doc(alias = "IOSurfaceLookupFromMachPort")]
     #[cfg(all(feature = "libc", feature = "objc2-core-foundation"))]
     #[inline]
@@ -802,6 +868,7 @@ impl IOSurfaceRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetpropertymaximum(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetPropertyMaximum")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -812,6 +879,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetPropertyMaximum(property) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetpropertyalignment(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetPropertyAlignment")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -822,6 +890,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetPropertyAlignment(property) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacealignproperty(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceAlignProperty")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -832,6 +901,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceAlignProperty(property, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceincrementusecount(_:)?language=objc)
     #[doc(alias = "IOSurfaceIncrementUseCount")]
     #[inline]
     pub fn increment_use_count(&self) {
@@ -841,6 +911,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceIncrementUseCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacedecrementusecount(_:)?language=objc)
     #[doc(alias = "IOSurfaceDecrementUseCount")]
     #[inline]
     pub fn decrement_use_count(&self) {
@@ -850,6 +921,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceDecrementUseCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetusecount(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetUseCount")]
     #[inline]
     pub fn use_count(&self) -> i32 {
@@ -859,6 +931,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetUseCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceisinuse(_:)?language=objc)
     #[doc(alias = "IOSurfaceIsInUse")]
     #[inline]
     pub fn is_in_use(&self) -> bool {
@@ -869,6 +942,7 @@ impl IOSurfaceRef {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceallowspixelsizecasting(_:)?language=objc)
     #[doc(alias = "IOSurfaceAllowsPixelSizeCasting")]
     #[inline]
     pub fn allows_pixel_size_casting(&self) -> bool {
@@ -879,6 +953,8 @@ impl IOSurfaceRef {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesetpurgeable(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `old_state` must be a valid pointer or null.
@@ -903,14 +979,19 @@ impl IOSurfaceRef {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOSurfaceMemoryLedgerTags(pub c_int);
 impl IOSurfaceMemoryLedgerTags {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags/default?language=objc)
     #[doc(alias = "kIOSurfaceMemoryLedgerTagDefault")]
     pub const Default: Self = Self(0x00000001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags/network?language=objc)
     #[doc(alias = "kIOSurfaceMemoryLedgerTagNetwork")]
     pub const Network: Self = Self(0x00000002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags/media?language=objc)
     #[doc(alias = "kIOSurfaceMemoryLedgerTagMedia")]
     pub const Media: Self = Self(0x00000003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags/graphics?language=objc)
     #[doc(alias = "kIOSurfaceMemoryLedgerTagGraphics")]
     pub const Graphics: Self = Self(0x00000004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags/neural?language=objc)
     #[doc(alias = "kIOSurfaceMemoryLedgerTagNeural")]
     pub const Neural: Self = Self(0x00000005);
 }
@@ -936,6 +1017,7 @@ unsafe impl Sync for IOSurfaceMemoryLedgerTags {}
 pub struct IOSurfaceMemoryLedgerFlags(pub u32);
 bitflags::bitflags! {
     impl IOSurfaceMemoryLedgerFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgerflags/nofootprint?language=objc)
         #[doc(alias = "kIOSurfaceMemoryLedgerFlagNoFootprint")]
         const NoFootprint = 1<<0;
     }
@@ -956,6 +1038,7 @@ unsafe impl Send for IOSurfaceMemoryLedgerFlags {}
 unsafe impl Sync for IOSurfaceMemoryLedgerFlags {}
 
 impl IOSurfaceRef {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesetownershipidentity(_:_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceSetOwnershipIdentity")]
     #[cfg(feature = "libc")]
     #[inline]

@@ -39,24 +39,34 @@ use crate::*;
 pub struct WKWebExtensionTabChangedProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl WKWebExtensionTabChangedProperties: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiontabchangedproperties/wkwebextensiontabchangedpropertiesnone?language=objc)
         #[doc(alias = "WKWebExtensionTabChangedPropertiesNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/loading?language=objc)
         #[doc(alias = "WKWebExtensionTabChangedPropertiesLoading")]
         const Loading = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/muted?language=objc)
         #[doc(alias = "WKWebExtensionTabChangedPropertiesMuted")]
         const Muted = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/pinned?language=objc)
         #[doc(alias = "WKWebExtensionTabChangedPropertiesPinned")]
         const Pinned = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/playingaudio?language=objc)
         #[doc(alias = "WKWebExtensionTabChangedPropertiesPlayingAudio")]
         const PlayingAudio = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/readermode?language=objc)
         #[doc(alias = "WKWebExtensionTabChangedPropertiesReaderMode")]
         const ReaderMode = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/size?language=objc)
         #[doc(alias = "WKWebExtensionTabChangedPropertiesSize")]
         const Size = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/title?language=objc)
         #[doc(alias = "WKWebExtensionTabChangedPropertiesTitle")]
         const Title = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/url?language=objc)
         #[doc(alias = "WKWebExtensionTabChangedPropertiesURL")]
         const URL = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/zoomfactor?language=objc)
         #[doc(alias = "WKWebExtensionTabChangedPropertiesZoomFactor")]
         const ZoomFactor = 1<<9;
     }

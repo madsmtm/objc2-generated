@@ -25,6 +25,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_session_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobexsessioncreatewithiobluetoothsdpservicerecordref?language=objc)
     #[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
     #[deprecated]
     pub fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
@@ -56,6 +58,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_session_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobexsessioncreatewithiobluetoothdevicerefandchannelnumber?language=objc)
     #[cfg(all(
         feature = "Bluetooth",
         feature = "IOBluetoothUserLib",
@@ -95,6 +99,8 @@ extern "C-unwind" {
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
     /// - `out_session_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobexsessioncreatewithincomingiobluetoothrfcommchannel?language=objc)
     #[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
     #[deprecated]
     pub fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
@@ -135,6 +141,8 @@ extern "C-unwind" {
     /// - `in_session_ref` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobexsessionopentransportconnection?language=objc)
     #[cfg(feature = "OBEX")]
     #[deprecated]
     pub fn IOBluetoothOBEXSessionOpenTransportConnection(

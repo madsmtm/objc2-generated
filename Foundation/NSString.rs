@@ -18,22 +18,31 @@ pub type unichar = c_ushort;
 pub struct NSStringCompareOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringCompareOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/caseinsensitive?language=objc)
         #[doc(alias = "NSCaseInsensitiveSearch")]
         const CaseInsensitiveSearch = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/literal?language=objc)
         #[doc(alias = "NSLiteralSearch")]
         const LiteralSearch = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/backwards?language=objc)
         #[doc(alias = "NSBackwardsSearch")]
         const BackwardsSearch = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/anchored?language=objc)
         #[doc(alias = "NSAnchoredSearch")]
         const AnchoredSearch = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/numeric?language=objc)
         #[doc(alias = "NSNumericSearch")]
         const NumericSearch = 64;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/diacriticinsensitive?language=objc)
         #[doc(alias = "NSDiacriticInsensitiveSearch")]
         const DiacriticInsensitiveSearch = 128;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/widthinsensitive?language=objc)
         #[doc(alias = "NSWidthInsensitiveSearch")]
         const WidthInsensitiveSearch = 256;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/forcedordering?language=objc)
         #[doc(alias = "NSForcedOrderingSearch")]
         const ForcedOrderingSearch = 512;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/regularexpression?language=objc)
         #[doc(alias = "NSRegularExpressionSearch")]
         const RegularExpressionSearch = 1024;
     }
@@ -104,8 +113,10 @@ pub const NSUTF32LittleEndianStringEncoding: NSStringEncoding = 0x9c000100;
 pub struct NSStringEncodingConversionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringEncodingConversionOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/encodingconversionoptions/allowlossy?language=objc)
         #[doc(alias = "NSStringEncodingConversionAllowLossy")]
         const AllowLossy = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/encodingconversionoptions/externalrepresentation?language=objc)
         #[doc(alias = "NSStringEncodingConversionExternalRepresentation")]
         const ExternalRepresentation = 2;
     }
@@ -226,24 +237,34 @@ impl DefaultRetained for NSString {
 pub struct NSStringEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringEnumerationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bylines?language=objc)
         #[doc(alias = "NSStringEnumerationByLines")]
         const ByLines = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/byparagraphs?language=objc)
         #[doc(alias = "NSStringEnumerationByParagraphs")]
         const ByParagraphs = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bycomposedcharactersequences?language=objc)
         #[doc(alias = "NSStringEnumerationByComposedCharacterSequences")]
         const ByComposedCharacterSequences = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bywords?language=objc)
         #[doc(alias = "NSStringEnumerationByWords")]
         const ByWords = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bysentences?language=objc)
         #[doc(alias = "NSStringEnumerationBySentences")]
         const BySentences = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bycaretpositions?language=objc)
         #[doc(alias = "NSStringEnumerationByCaretPositions")]
         const ByCaretPositions = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bydeletionclusters?language=objc)
         #[doc(alias = "NSStringEnumerationByDeletionClusters")]
         const ByDeletionClusters = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/reverse?language=objc)
         #[doc(alias = "NSStringEnumerationReverse")]
         const Reverse = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/substringnotrequired?language=objc)
         #[doc(alias = "NSStringEnumerationSubstringNotRequired")]
         const SubstringNotRequired = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/localized?language=objc)
         #[doc(alias = "NSStringEnumerationLocalized")]
         const Localized = 1<<10;
     }

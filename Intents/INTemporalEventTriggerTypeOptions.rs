@@ -11,10 +11,13 @@ use crate::*;
 pub struct INTemporalEventTriggerTypeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INTemporalEventTriggerTypeOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptions/notscheduled?language=objc)
         #[doc(alias = "INTemporalEventTriggerTypeOptionNotScheduled")]
         const NotScheduled = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptions/schedulednonrecurring?language=objc)
         #[doc(alias = "INTemporalEventTriggerTypeOptionScheduledNonRecurring")]
         const ScheduledNonRecurring = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptions/scheduledrecurring?language=objc)
         #[doc(alias = "INTemporalEventTriggerTypeOptionScheduledRecurring")]
         const ScheduledRecurring = 1<<2;
     }

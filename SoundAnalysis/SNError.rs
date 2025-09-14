@@ -16,14 +16,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SNErrorCode(pub NSInteger);
 impl SNErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code/unknownerror?language=objc)
     #[doc(alias = "SNErrorCodeUnknownError")]
     pub const UnknownError: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code/operationfailed?language=objc)
     #[doc(alias = "SNErrorCodeOperationFailed")]
     pub const OperationFailed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code/invalidformat?language=objc)
     #[doc(alias = "SNErrorCodeInvalidFormat")]
     pub const InvalidFormat: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code/invalidmodel?language=objc)
     #[doc(alias = "SNErrorCodeInvalidModel")]
     pub const InvalidModel: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code/invalidfile?language=objc)
     #[doc(alias = "SNErrorCodeInvalidFile")]
     pub const InvalidFile: Self = Self(5);
 }

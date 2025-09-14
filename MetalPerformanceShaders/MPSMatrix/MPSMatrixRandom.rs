@@ -15,10 +15,13 @@ use crate::*;
 pub struct MPSMatrixRandomDistribution(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSMatrixRandomDistribution: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistribution/default?language=objc)
         #[doc(alias = "MPSMatrixRandomDistributionDefault")]
         const Default = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistribution/uniform?language=objc)
         #[doc(alias = "MPSMatrixRandomDistributionUniform")]
         const Uniform = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistribution/normal?language=objc)
         #[doc(alias = "MPSMatrixRandomDistributionNormal")]
         const Normal = 3;
     }

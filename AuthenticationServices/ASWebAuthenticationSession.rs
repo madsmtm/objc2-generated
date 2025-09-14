@@ -27,10 +27,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASWebAuthenticationSessionErrorCode(pub NSInteger);
 impl ASWebAuthenticationSessionErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerror/code/canceledlogin?language=objc)
     #[doc(alias = "ASWebAuthenticationSessionErrorCodeCanceledLogin")]
     pub const CanceledLogin: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerror/code/presentationcontextnotprovided?language=objc)
     #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextNotProvided")]
     pub const PresentationContextNotProvided: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerror/code/presentationcontextinvalid?language=objc)
     #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextInvalid")]
     pub const PresentationContextInvalid: Self = Self(3);
 }

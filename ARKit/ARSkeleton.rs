@@ -165,6 +165,8 @@ impl ARSkeleton {
     /// Parameter `recognizedPointKey`: Recognized key point.
     ///
     /// Returns: Joint name that could be mapped to a ARSkeleton2D. Nil if no mapping exists.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/init(_:)?language=objc)
     #[doc(alias = "ARSkeletonJointNameForRecognizedPointKey")]
     #[cfg(all(
         feature = "ARSkeletonDefinition",

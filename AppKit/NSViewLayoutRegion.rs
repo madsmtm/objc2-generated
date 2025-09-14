@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSViewLayoutRegionAdaptivityAxis(pub NSInteger);
 impl NSViewLayoutRegionAdaptivityAxis {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewlayoutregionadaptivityaxis/nsviewlayoutregionadaptivityaxisnone?language=objc)
     #[doc(alias = "NSViewLayoutRegionAdaptivityAxisNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewlayoutregionadaptivityaxis/nsviewlayoutregionadaptivityaxishorizontal?language=objc)
     #[doc(alias = "NSViewLayoutRegionAdaptivityAxisHorizontal")]
     pub const Horizontal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewlayoutregionadaptivityaxis/nsviewlayoutregionadaptivityaxisvertical?language=objc)
     #[doc(alias = "NSViewLayoutRegionAdaptivityAxisVertical")]
     pub const Vertical: Self = Self(2);
 }

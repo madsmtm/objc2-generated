@@ -10,11 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/icversion4number?language=objc)
 pub const icVersion4Number: c_uint = 0x04000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/icversion4point4number?language=objc)
 pub const icVersion4Point4Number: c_uint = 0x04400000;
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_profile_install_entitlement?language=objc)
 pub const COLORSYNC_PROFILE_INSTALL_ENTITLEMENT: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.ColorSync.profile.install\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_md5_length?language=objc)
 pub const COLORSYNC_MD5_LENGTH: c_uint = 16;
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofile?language=objc)
 #[doc(alias = "ColorSyncProfileRef")]
@@ -374,6 +378,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for ColorSyncProfile {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilegettypeid()?language=objc)
     #[doc(alias = "ColorSyncProfileGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -385,6 +390,8 @@ unsafe impl ConcreteType for ColorSyncProfile {
 }
 
 impl ColorSyncProfile {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreate(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -404,6 +411,8 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatewithurl(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -430,6 +439,8 @@ extern "C" {
 }
 
 impl ColorSyncProfile {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatewithurlandoptions(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -453,6 +464,7 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatewithname(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCreateWithName")]
     #[inline]
     pub unsafe fn with_name(name: &CFString) -> Option<CFRetained<ColorSyncProfile>> {
@@ -464,6 +476,7 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatewithdisplayid(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCreateWithDisplayID")]
     #[inline]
     pub unsafe fn with_display_id(display_id: u32) -> Option<CFRetained<ColorSyncProfile>> {
@@ -476,6 +489,8 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatedeviceprofile(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `profile_id` should be of the correct type.
@@ -500,6 +515,7 @@ impl ColorSyncProfile {
 }
 
 impl ColorSyncMutableProfile {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatemutable()?language=objc)
     #[doc(alias = "ColorSyncProfileCreateMutable")]
     #[inline]
     pub unsafe fn new() -> Option<CFRetained<ColorSyncMutableProfile>> {
@@ -510,6 +526,7 @@ impl ColorSyncMutableProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatemutablecopy(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(prof: &ColorSyncProfile) -> Option<CFRetained<ColorSyncMutableProfile>> {
@@ -524,6 +541,8 @@ impl ColorSyncMutableProfile {
 }
 
 impl ColorSyncProfile {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatelink(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `profile_info` generic must be of the correct type.
@@ -545,6 +564,8 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileverify(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `errors` must be a valid pointer or null.
@@ -562,6 +583,7 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileVerify(self, errors, warnings) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileiswidegamut(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileIsWideGamut")]
     #[inline]
     pub unsafe fn is_wide_gamut(&self) -> bool {
@@ -571,6 +593,7 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsWideGamut(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileismatrixbased(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileIsMatrixBased")]
     #[inline]
     pub unsafe fn is_matrix_based(&self) -> bool {
@@ -580,6 +603,7 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsMatrixBased(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileispqbased(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileIsPQBased")]
     #[inline]
     pub unsafe fn is_pq_based(&self) -> bool {
@@ -589,6 +613,7 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsPQBased(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileishlgbased(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileIsHLGBased")]
     #[inline]
     pub unsafe fn is_hlg_based(&self) -> bool {
@@ -598,6 +623,7 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsHLGBased(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilegettagcount(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileGetTagCount")]
     #[inline]
     pub unsafe fn tag_count(&self) -> usize {
@@ -607,6 +633,8 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileGetTagCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileestimategammawithdisplayid(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -625,6 +653,8 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileEstimateGammaWithDisplayID(display_id, error) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilegetdisplaytransferformulafromvcgt(_:_:_:_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `red_min` must be a valid pointer.
@@ -680,6 +710,8 @@ impl ColorSyncProfile {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatedisplaytransfertablesfromvcgt(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `n_samples_per_channel` must be a valid pointer.
@@ -701,6 +733,8 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileestimategamma(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -735,6 +769,7 @@ unsafe impl RefEncode for ColorSyncMD5 {
 }
 
 impl ColorSyncProfile {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilegetmd5(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileGetMD5")]
     #[inline]
     pub unsafe fn md_5(&self) -> ColorSyncMD5 {
@@ -744,6 +779,8 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileGetMD5(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecopydata(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -762,6 +799,8 @@ impl ColorSyncProfile {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilegeturl(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -780,6 +819,7 @@ impl ColorSyncProfile {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecopyheader(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCopyHeader")]
     #[inline]
     pub unsafe fn header(&self) -> CFRetained<CFData> {
@@ -794,6 +834,7 @@ impl ColorSyncProfile {
 }
 
 impl ColorSyncMutableProfile {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilesetheader(_:_:)?language=objc)
     #[doc(alias = "ColorSyncProfileSetHeader")]
     #[inline]
     pub unsafe fn set_header(&self, header: &CFData) {
@@ -805,6 +846,7 @@ impl ColorSyncMutableProfile {
 }
 
 impl ColorSyncProfile {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecopydescriptionstring(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCopyDescriptionString")]
     #[inline]
     pub unsafe fn description_string(&self) -> Option<CFRetained<CFString>> {
@@ -817,6 +859,7 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecopytagsignatures(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCopyTagSignatures")]
     #[inline]
     pub unsafe fn tag_signatures(&self) -> Option<CFRetained<CFArray>> {
@@ -829,6 +872,7 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecontainstag(_:_:)?language=objc)
     #[doc(alias = "ColorSyncProfileContainsTag")]
     #[inline]
     pub unsafe fn contains_tag(&self, signature: &CFString) -> bool {
@@ -838,6 +882,7 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileContainsTag(self, signature) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecopytag(_:_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCopyTag")]
     #[inline]
     pub unsafe fn tag(&self, signature: &CFString) -> Option<CFRetained<CFData>> {
@@ -853,6 +898,7 @@ impl ColorSyncProfile {
 }
 
 impl ColorSyncMutableProfile {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilesettag(_:_:_:)?language=objc)
     #[doc(alias = "ColorSyncProfileSetTag")]
     #[inline]
     pub unsafe fn set_tag(&self, signature: &CFString, data: &CFData) {
@@ -866,6 +912,7 @@ impl ColorSyncMutableProfile {
         unsafe { ColorSyncProfileSetTag(self, signature, data) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileremovetag(_:_:)?language=objc)
     #[doc(alias = "ColorSyncProfileRemoveTag")]
     #[inline]
     pub unsafe fn remove_tag(&self, signature: &CFString) {
@@ -886,6 +933,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynciterateinstalledprofiles(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `call_back` must be implemented correctly.
@@ -906,6 +955,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynciterateinstalledprofileswithoptions(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `call_back` must be implemented correctly.
@@ -924,6 +975,8 @@ extern "C-unwind" {
 }
 
 impl ColorSyncProfile {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileinstall(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -946,6 +999,8 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileInstall(self, domain, subpath, error) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileuninstall(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.

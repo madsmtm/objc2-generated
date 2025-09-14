@@ -17,12 +17,18 @@ pub struct ARPlaneDetection(pub NSUInteger);
 bitflags::bitflags! {
     impl ARPlaneDetection: NSUInteger {
 /// No plane detection is run.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplanedetection/arplanedetectionnone?language=objc)
         #[doc(alias = "ARPlaneDetectionNone")]
         const None = 0;
 /// Plane detection determines horizontal planes in the scene.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.struct/horizontal?language=objc)
         #[doc(alias = "ARPlaneDetectionHorizontal")]
         const Horizontal = 1<<0;
 /// Plane detection determines vertical planes in the scene.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.struct/vertical?language=objc)
         #[doc(alias = "ARPlaneDetectionVertical")]
         const Vertical = 1<<1;
     }

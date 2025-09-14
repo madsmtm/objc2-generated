@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInactiveSchedulingPolicy(pub NSInteger);
 impl WKInactiveSchedulingPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpreferences/inactiveschedulingpolicy-swift.enum/suspend?language=objc)
     #[doc(alias = "WKInactiveSchedulingPolicySuspend")]
     pub const Suspend: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpreferences/inactiveschedulingpolicy-swift.enum/throttle?language=objc)
     #[doc(alias = "WKInactiveSchedulingPolicyThrottle")]
     pub const Throttle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpreferences/inactiveschedulingpolicy-swift.enum/none?language=objc)
     #[doc(alias = "WKInactiveSchedulingPolicyNone")]
     pub const None: Self = Self(2);
 }

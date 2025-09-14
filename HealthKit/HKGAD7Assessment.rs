@@ -14,12 +14,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKGAD7AssessmentRisk(pub NSInteger);
 impl HKGAD7AssessmentRisk {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment/risk-swift.enum/nonetominimal?language=objc)
     #[doc(alias = "HKGAD7AssessmentRiskNoneToMinimal")]
     pub const NoneToMinimal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment/risk-swift.enum/mild?language=objc)
     #[doc(alias = "HKGAD7AssessmentRiskMild")]
     pub const Mild: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment/risk-swift.enum/moderate?language=objc)
     #[doc(alias = "HKGAD7AssessmentRiskModerate")]
     pub const Moderate: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment/risk-swift.enum/severe?language=objc)
     #[doc(alias = "HKGAD7AssessmentRiskSevere")]
     pub const Severe: Self = Self(4);
 }
@@ -40,12 +44,16 @@ unsafe impl RefEncode for HKGAD7AssessmentRisk {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKGAD7AssessmentAnswer(pub NSInteger);
 impl HKGAD7AssessmentAnswer {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment/answer/notatall?language=objc)
     #[doc(alias = "HKGAD7AssessmentAnswerNotAtAll")]
     pub const NotAtAll: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment/answer/severaldays?language=objc)
     #[doc(alias = "HKGAD7AssessmentAnswerSeveralDays")]
     pub const SeveralDays: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment/answer/morethanhalfthedays?language=objc)
     #[doc(alias = "HKGAD7AssessmentAnswerMoreThanHalfTheDays")]
     pub const MoreThanHalfTheDays: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment/answer/nearlyeveryday?language=objc)
     #[doc(alias = "HKGAD7AssessmentAnswerNearlyEveryDay")]
     pub const NearlyEveryDay: Self = Self(3);
 }
@@ -60,11 +68,15 @@ unsafe impl RefEncode for HKGAD7AssessmentAnswer {
 
 extern "C-unwind" {
     /// Returns the lower bound of the score range for the given GAD-7 risk classification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkminimumscoreforgad7assessmentrisk?language=objc)
     pub fn HKMinimumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger;
 }
 
 extern "C-unwind" {
     /// Returns the upper bound of the score range for the given GAD-7 risk classification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmaximumscoreforgad7assessmentrisk?language=objc)
     pub fn HKMaximumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger;
 }
 

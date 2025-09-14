@@ -16,10 +16,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMutability(pub NSUInteger);
 impl MTLMutability {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmutability/default?language=objc)
     #[doc(alias = "MTLMutabilityDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmutability/mutable?language=objc)
     #[doc(alias = "MTLMutabilityMutable")]
     pub const Mutable: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmutability/immutable?language=objc)
     #[doc(alias = "MTLMutabilityImmutable")]
     pub const Immutable: Self = Self(2);
 }
@@ -38,10 +41,13 @@ unsafe impl RefEncode for MTLMutability {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLShaderValidation(pub NSInteger);
 impl MTLShaderValidation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlshadervalidation/default?language=objc)
     #[doc(alias = "MTLShaderValidationDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlshadervalidation/enabled?language=objc)
     #[doc(alias = "MTLShaderValidationEnabled")]
     pub const Enabled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlshadervalidation/disabled?language=objc)
     #[doc(alias = "MTLShaderValidationDisabled")]
     pub const Disabled: Self = Self(2);
 }

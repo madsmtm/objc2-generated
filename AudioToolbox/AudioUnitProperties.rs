@@ -12,46 +12,71 @@ use objc2_core_midi::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey?language=objc)
 pub const kAUPresetVersionKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"version\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey?language=objc)
 pub const kAUPresetTypeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"type\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey?language=objc)
 pub const kAUPresetSubtypeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"subtype\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey?language=objc)
 pub const kAUPresetManufacturerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"manufacturer\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey?language=objc)
 pub const kAUPresetDataKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"data\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey?language=objc)
 pub const kAUPresetNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey?language=objc)
 pub const kAUPresetNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"preset-number\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey?language=objc)
 pub const kAUPresetRenderQualityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"render-quality\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey?language=objc)
 pub const kAUPresetCPULoadKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"cpu-load\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey?language=objc)
 pub const kAUPresetElementNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"element-name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs?language=objc)
 pub const kAUPresetExternalFileRefs: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"file-references\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey?language=objc)
 pub const kAUPresetVSTDataKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"vstdata\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey?language=objc)
 pub const kAUPresetVSTPresetKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"vstpreset\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey?language=objc)
 pub const kAUPresetMASDataKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"masdata\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey?language=objc)
 pub const kAUPresetPartKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"part\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_hascustomview?language=objc)
 pub const kAudioUnitConfigurationInfo_HasCustomView: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HasCustomView\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_channelconfigurations?language=objc)
 pub const kAudioUnitConfigurationInfo_ChannelConfigurations: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ChannelConfigurations\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_initialinputs?language=objc)
 pub const kAudioUnitConfigurationInfo_InitialInputs: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"InitialInputs\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_initialoutputs?language=objc)
 pub const kAudioUnitConfigurationInfo_InitialOutputs: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"InitialOutputs\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_iconurl?language=objc)
 pub const kAudioUnitConfigurationInfo_IconURL: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IconURL\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_buscountwritable?language=objc)
 pub const kAudioUnitConfigurationInfo_BusCountWritable: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BusCountWritable\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_supportedchannellayouttags?language=objc)
 pub const kAudioUnitConfigurationInfo_SupportedChannelLayoutTags: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SupportedChannelLayoutTags\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_midiprotocol?language=objc)
 pub const kAudioUnitConfigurationInfo_MIDIProtocol: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MIDIProtocol\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_migratefromplugin?language=objc)
 pub const kAudioUnitConfigurationInfo_MigrateFromPlugin: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MigrateFromPlugin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_availablearchitectures?language=objc)
 pub const kAudioUnitConfigurationInfo_AvailableArchitectures: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AvailableArchitectures\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitscope_global?language=objc)
@@ -836,60 +861,88 @@ pub type AUEventSampleTime = i64;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioUnitParameterUnit(pub u32);
 impl AudioUnitParameterUnit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/generic?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Generic")]
     pub const Generic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/indexed?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Indexed")]
     pub const Indexed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/boolean?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Boolean")]
     pub const Boolean: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/percent?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Percent")]
     pub const Percent: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/seconds?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Seconds")]
     pub const Seconds: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/sampleframes?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_SampleFrames")]
     pub const SampleFrames: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/phase?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Phase")]
     pub const Phase: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/rate?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Rate")]
     pub const Rate: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/hertz?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Hertz")]
     pub const Hertz: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/cents?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Cents")]
     pub const Cents: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/relativesemitones?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_RelativeSemiTones")]
     pub const RelativeSemiTones: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/midinotenumber?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_MIDINoteNumber")]
     pub const MIDINoteNumber: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/midicontroller?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_MIDIController")]
     pub const MIDIController: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/decibels?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Decibels")]
     pub const Decibels: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/lineargain?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_LinearGain")]
     pub const LinearGain: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/degrees?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Degrees")]
     pub const Degrees: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/equalpowercrossfade?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_EqualPowerCrossfade")]
     pub const EqualPowerCrossfade: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/mixerfadercurve1?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_MixerFaderCurve1")]
     pub const MixerFaderCurve1: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/pan?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Pan")]
     pub const Pan: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/meters?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Meters")]
     pub const Meters: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/absolutecents?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_AbsoluteCents")]
     pub const AbsoluteCents: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/octaves?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Octaves")]
     pub const Octaves: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/bpm?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_BPM")]
     pub const BPM: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/beats?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Beats")]
     pub const Beats: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/milliseconds?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Milliseconds")]
     pub const Milliseconds: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/ratio?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_Ratio")]
     pub const Ratio: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/customunit?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_CustomUnit")]
     pub const CustomUnit: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/midi2controller?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_MIDI2Controller")]
     pub const MIDI2Controller: Self = Self(27);
 }
@@ -947,48 +1000,70 @@ unsafe impl RefEncode for AudioUnitParameterUnit {
 pub struct AudioUnitParameterOptions(pub u32);
 bitflags::bitflags! {
     impl AudioUnitParameterOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_cfnamerelease?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_CFNameRelease")]
         const Flag_CFNameRelease = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_omitfrompresets?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_OmitFromPresets")]
         const Flag_OmitFromPresets = 1<<13;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_plothistory?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_PlotHistory")]
         const Flag_PlotHistory = 1<<14;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_meterreadonly?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_MeterReadOnly")]
         const Flag_MeterReadOnly = 1<<15;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaymask?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplayMask")]
         const Flag_DisplayMask = (7<<16)|(1<<22);
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaysquareroot?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplaySquareRoot")]
         const Flag_DisplaySquareRoot = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaysquared?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplaySquared")]
         const Flag_DisplaySquared = 2<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaycubed?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplayCubed")]
         const Flag_DisplayCubed = 3<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaycuberoot?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplayCubeRoot")]
         const Flag_DisplayCubeRoot = 4<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displayexponential?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplayExponential")]
         const Flag_DisplayExponential = 5<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_hasclump?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_HasClump")]
         const Flag_HasClump = 1<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_valueshavestrings?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_ValuesHaveStrings")]
         const Flag_ValuesHaveStrings = 1<<21;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaylogarithmic?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplayLogarithmic")]
         const Flag_DisplayLogarithmic = 1<<22;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_ishighresolution?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_IsHighResolution")]
         const Flag_IsHighResolution = 1<<23;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_nonrealtime?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_NonRealTime")]
         const Flag_NonRealTime = 1<<24;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_canramp?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_CanRamp")]
         const Flag_CanRamp = 1<<25;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_expertmode?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_ExpertMode")]
         const Flag_ExpertMode = 1<<26;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_hascfnamestring?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_HasCFNameString")]
         const Flag_HasCFNameString = 1<<27;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_isglobalmeta?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_IsGlobalMeta")]
         const Flag_IsGlobalMeta = 1<<28;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_iselementmeta?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_IsElementMeta")]
         const Flag_IsElementMeta = 1<<29;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_isreadable?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_IsReadable")]
         const Flag_IsReadable = 1<<30;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_iswritable?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_IsWritable")]
         const Flag_IsWritable = 1<<31;
     }
@@ -1184,10 +1259,13 @@ unsafe impl RefEncode for AudioUnitParameterValueFromString {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioUnitRemoteControlEvent(pub u32);
 impl AudioUnitRemoteControlEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontrolevent/toggleplaypause?language=objc)
     #[doc(alias = "kAudioUnitRemoteControlEvent_TogglePlayPause")]
     pub const TogglePlayPause: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontrolevent/togglerecord?language=objc)
     #[doc(alias = "kAudioUnitRemoteControlEvent_ToggleRecord")]
     pub const ToggleRecord: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontrolevent/rewind?language=objc)
     #[doc(alias = "kAudioUnitRemoteControlEvent_Rewind")]
     pub const Rewind: Self = Self(3);
 }
@@ -1271,16 +1349,22 @@ pub const kAudioUnitProperty_HotMapParameterMIDIMapping: AudioUnitPropertyID = 4
 pub struct AUParameterMIDIMappingFlags(pub u32);
 bitflags::bitflags! {
     impl AUParameterMIDIMappingFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/anychannelflag?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_AnyChannelFlag")]
         const AnyChannelFlag = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/anynoteflag?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_AnyNoteFlag")]
         const AnyNoteFlag = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/subrange?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_SubRange")]
         const SubRange = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/toggle?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_Toggle")]
         const Toggle = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/bipolar?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_Bipolar")]
         const Bipolar = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/bipolar_on?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_Bipolar_On")]
         const Bipolar_On = 1<<5;
     }
@@ -1664,8 +1748,10 @@ pub const kAUVoiceIOProperty_MuteOutput: AudioUnitPropertyID = 2104;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUVoiceIOSpeechActivityEvent(pub u32);
 impl AUVoiceIOSpeechActivityEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiospeechactivityevent/hasstarted?language=objc)
     #[doc(alias = "kAUVoiceIOSpeechActivityHasStarted")]
     pub const HasStarted: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiospeechactivityevent/hasended?language=objc)
     #[doc(alias = "kAUVoiceIOSpeechActivityHasEnded")]
     pub const HasEnded: Self = Self(1);
 }
@@ -1702,12 +1788,16 @@ pub const kAUVoiceIOProperty_MutedSpeechActivityEventListener: AudioUnitProperty
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUVoiceIOOtherAudioDuckingLevel(pub u32);
 impl AUVoiceIOOtherAudioDuckingLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel/default?language=objc)
     #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel/min?language=objc)
     #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelMin")]
     pub const Min: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel/mid?language=objc)
     #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelMid")]
     pub const Mid: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel/max?language=objc)
     #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelMax")]
     pub const Max: Self = Self(30);
 }
@@ -1860,20 +1950,28 @@ pub const kAudioUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF: AudioU
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatializationAlgorithm(pub u32);
 impl AUSpatializationAlgorithm {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_equalpowerpanning?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_EqualPowerPanning")]
     pub const SpatializationAlgorithm_EqualPowerPanning: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_sphericalhead?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_SphericalHead")]
     pub const SpatializationAlgorithm_SphericalHead: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_hrtf?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_HRTF")]
     pub const SpatializationAlgorithm_HRTF: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_soundfield?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_SoundField")]
     pub const SpatializationAlgorithm_SoundField: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_vectorbasedpanning?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_VectorBasedPanning")]
     pub const SpatializationAlgorithm_VectorBasedPanning: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_stereopassthrough?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_StereoPassThrough")]
     pub const SpatializationAlgorithm_StereoPassThrough: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_hrtfhq?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_HRTFHQ")]
     pub const SpatializationAlgorithm_HRTFHQ: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_useoutputtype?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_UseOutputType")]
     pub const SpatializationAlgorithm_UseOutputType: Self = Self(7);
 }
@@ -1918,12 +2016,16 @@ unsafe impl RefEncode for AUSpatializationAlgorithm {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerSourceMode(pub u32);
 impl AUSpatialMixerSourceMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode/spatialmixersourcemode_spatializeifmono?language=objc)
     #[doc(alias = "kSpatialMixerSourceMode_SpatializeIfMono")]
     pub const SpatialMixerSourceMode_SpatializeIfMono: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode/spatialmixersourcemode_bypass?language=objc)
     #[doc(alias = "kSpatialMixerSourceMode_Bypass")]
     pub const SpatialMixerSourceMode_Bypass: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode/spatialmixersourcemode_pointsource?language=objc)
     #[doc(alias = "kSpatialMixerSourceMode_PointSource")]
     pub const SpatialMixerSourceMode_PointSource: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode/spatialmixersourcemode_ambiencebed?language=objc)
     #[doc(alias = "kSpatialMixerSourceMode_AmbienceBed")]
     pub const SpatialMixerSourceMode_AmbienceBed: Self = Self(3);
 }
@@ -1945,30 +2047,43 @@ unsafe impl RefEncode for AUSpatialMixerSourceMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUReverbRoomType(pub u32);
 impl AUReverbRoomType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_smallroom?language=objc)
     #[doc(alias = "kReverbRoomType_SmallRoom")]
     pub const ReverbRoomType_SmallRoom: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_mediumroom?language=objc)
     #[doc(alias = "kReverbRoomType_MediumRoom")]
     pub const ReverbRoomType_MediumRoom: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_largeroom?language=objc)
     #[doc(alias = "kReverbRoomType_LargeRoom")]
     pub const ReverbRoomType_LargeRoom: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_mediumhall?language=objc)
     #[doc(alias = "kReverbRoomType_MediumHall")]
     pub const ReverbRoomType_MediumHall: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_largehall?language=objc)
     #[doc(alias = "kReverbRoomType_LargeHall")]
     pub const ReverbRoomType_LargeHall: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_plate?language=objc)
     #[doc(alias = "kReverbRoomType_Plate")]
     pub const ReverbRoomType_Plate: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_mediumchamber?language=objc)
     #[doc(alias = "kReverbRoomType_MediumChamber")]
     pub const ReverbRoomType_MediumChamber: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_largechamber?language=objc)
     #[doc(alias = "kReverbRoomType_LargeChamber")]
     pub const ReverbRoomType_LargeChamber: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_cathedral?language=objc)
     #[doc(alias = "kReverbRoomType_Cathedral")]
     pub const ReverbRoomType_Cathedral: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_largeroom2?language=objc)
     #[doc(alias = "kReverbRoomType_LargeRoom2")]
     pub const ReverbRoomType_LargeRoom2: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_mediumhall2?language=objc)
     #[doc(alias = "kReverbRoomType_MediumHall2")]
     pub const ReverbRoomType_MediumHall2: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_mediumhall3?language=objc)
     #[doc(alias = "kReverbRoomType_MediumHall3")]
     pub const ReverbRoomType_MediumHall3: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_largehall2?language=objc)
     #[doc(alias = "kReverbRoomType_LargeHall2")]
     pub const ReverbRoomType_LargeHall2: Self = Self(12);
 }
@@ -1987,12 +2102,16 @@ unsafe impl RefEncode for AUReverbRoomType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerAttenuationCurve(pub u32);
 impl AUSpatialMixerAttenuationCurve {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve/spatialmixerattenuationcurve_power?language=objc)
     #[doc(alias = "kSpatialMixerAttenuationCurve_Power")]
     pub const SpatialMixerAttenuationCurve_Power: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve/spatialmixerattenuationcurve_exponential?language=objc)
     #[doc(alias = "kSpatialMixerAttenuationCurve_Exponential")]
     pub const SpatialMixerAttenuationCurve_Exponential: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve/spatialmixerattenuationcurve_inverse?language=objc)
     #[doc(alias = "kSpatialMixerAttenuationCurve_Inverse")]
     pub const SpatialMixerAttenuationCurve_Inverse: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve/spatialmixerattenuationcurve_linear?language=objc)
     #[doc(alias = "kSpatialMixerAttenuationCurve_Linear")]
     pub const SpatialMixerAttenuationCurve_Linear: Self = Self(3);
 }
@@ -2032,8 +2151,10 @@ unsafe impl RefEncode for MixerDistanceParams {
 pub struct AUSpatialMixerRenderingFlags(pub u32);
 bitflags::bitflags! {
     impl AUSpatialMixerRenderingFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerrenderingflags/spatialmixerrenderingflags_interauraldelay?language=objc)
         #[doc(alias = "kSpatialMixerRenderingFlags_InterAuralDelay")]
         const SpatialMixerRenderingFlags_InterAuralDelay = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerrenderingflags/spatialmixerrenderingflags_distanceattenuation?language=objc)
         #[doc(alias = "kSpatialMixerRenderingFlags_DistanceAttenuation")]
         const SpatialMixerRenderingFlags_DistanceAttenuation = 1<<2;
     }
@@ -2064,10 +2185,13 @@ unsafe impl RefEncode for AUSpatialMixerRenderingFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerPersonalizedHRTFMode(pub u32);
 impl AUSpatialMixerPersonalizedHRTFMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpersonalizedhrtfmode/off?language=objc)
     #[doc(alias = "kSpatialMixerPersonalizedHRTFMode_Off")]
     pub const SpatialMixerPersonalizedHRTFMode_Off: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpersonalizedhrtfmode/on?language=objc)
     #[doc(alias = "kSpatialMixerPersonalizedHRTFMode_On")]
     pub const SpatialMixerPersonalizedHRTFMode_On: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpersonalizedhrtfmode/auto?language=objc)
     #[doc(alias = "kSpatialMixerPersonalizedHRTFMode_Auto")]
     pub const SpatialMixerPersonalizedHRTFMode_Auto: Self = Self(2);
 }
@@ -2099,10 +2223,13 @@ unsafe impl RefEncode for AUSpatialMixerPersonalizedHRTFMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUSpatialMixerOutputType(pub u32);
 impl AUSpatialMixerOutputType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixeroutputtype/spatialmixeroutputtype_headphones?language=objc)
     #[doc(alias = "kSpatialMixerOutputType_Headphones")]
     pub const SpatialMixerOutputType_Headphones: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixeroutputtype/spatialmixeroutputtype_builtinspeakers?language=objc)
     #[doc(alias = "kSpatialMixerOutputType_BuiltInSpeakers")]
     pub const SpatialMixerOutputType_BuiltInSpeakers: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixeroutputtype/spatialmixeroutputtype_externalspeakers?language=objc)
     #[doc(alias = "kSpatialMixerOutputType_ExternalSpeakers")]
     pub const SpatialMixerOutputType_ExternalSpeakers: Self = Self(3);
 }
@@ -2135,8 +2262,10 @@ unsafe impl RefEncode for AUSpatialMixerOutputType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerPointSourceInHeadMode(pub u32);
 impl AUSpatialMixerPointSourceInHeadMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpointsourceinheadmode/spatialmixerpointsourceinheadmode_mono?language=objc)
     #[doc(alias = "kSpatialMixerPointSourceInHeadMode_Mono")]
     pub const SpatialMixerPointSourceInHeadMode_Mono: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpointsourceinheadmode/spatialmixerpointsourceinheadmode_bypass?language=objc)
     #[doc(alias = "kSpatialMixerPointSourceInHeadMode_Bypass")]
     pub const SpatialMixerPointSourceInHeadMode_Bypass: Self = Self(1);
 }
@@ -2188,12 +2317,19 @@ pub const kAudioUnitProperty_ReverbPreset: AudioUnitPropertyID = 3012;
 pub struct AU3DMixerRenderingFlags(pub u32);
 bitflags::bitflags! {
     impl AU3DMixerRenderingFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_interauraldelay?language=objc)
         const k3DMixerRenderingFlags_InterAuralDelay = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_dopplershift?language=objc)
         const k3DMixerRenderingFlags_DopplerShift = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_distanceattenuation?language=objc)
         const k3DMixerRenderingFlags_DistanceAttenuation = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_distancefilter?language=objc)
         const k3DMixerRenderingFlags_DistanceFilter = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_distancediffusion?language=objc)
         const k3DMixerRenderingFlags_DistanceDiffusion = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_lineardistanceattenuation?language=objc)
         const k3DMixerRenderingFlags_LinearDistanceAttenuation = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_constantreverbblend?language=objc)
         const k3DMixerRenderingFlags_ConstantReverbBlend = 1<<6;
     }
 }
@@ -2212,9 +2348,13 @@ unsafe impl RefEncode for AU3DMixerRenderingFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AU3DMixerAttenuationCurve(pub u32);
 impl AU3DMixerAttenuationCurve {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve/k3dmixerattenuationcurve_power?language=objc)
     pub const k3DMixerAttenuationCurve_Power: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve/k3dmixerattenuationcurve_exponential?language=objc)
     pub const k3DMixerAttenuationCurve_Exponential: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve/k3dmixerattenuationcurve_inverse?language=objc)
     pub const k3DMixerAttenuationCurve_Inverse: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve/k3dmixerattenuationcurve_linear?language=objc)
     pub const k3DMixerAttenuationCurve_Linear: Self = Self(3);
 }
 
@@ -2261,16 +2401,22 @@ pub const kAudioUnitProperty_CurrentPlayTime: AudioUnitPropertyID = 3302;
 pub struct AUScheduledAudioSliceFlags(pub u32);
 bitflags::bitflags! {
     impl AUScheduledAudioSliceFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_complete?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_Complete")]
         const ScheduledAudioSliceFlag_Complete = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_begantorender?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_BeganToRender")]
         const ScheduledAudioSliceFlag_BeganToRender = 0x02;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_begantorenderlate?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_BeganToRenderLate")]
         const ScheduledAudioSliceFlag_BeganToRenderLate = 0x04;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_loop?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_Loop")]
         const ScheduledAudioSliceFlag_Loop = 0x08;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_interrupt?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_Interrupt")]
         const ScheduledAudioSliceFlag_Interrupt = 0x10;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_interruptatloop?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_InterruptAtLoop")]
         const ScheduledAudioSliceFlag_InterruptAtLoop = 0x20;
     }

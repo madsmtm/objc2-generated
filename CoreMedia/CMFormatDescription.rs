@@ -86,6 +86,8 @@ impl CMFormatDescription {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptioncreate(allocator:mediatype:mediasubtype:extensions:formatdescriptionout:)?language=objc)
     #[doc(alias = "CMFormatDescriptionCreate")]
     #[inline]
     pub unsafe fn create(
@@ -121,6 +123,8 @@ unsafe impl ConcreteType for CMFormatDescription {
     ///
     /// You can check if a CFTypeRef object is actually a CMFormatDescription
     /// by comparing CFGetTypeID(object) with CMFormatDescriptionGetTypeID().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptiongettypeid()?language=objc)
     #[doc(alias = "CMFormatDescriptionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -136,6 +140,8 @@ impl CMFormatDescription {
     ///
     /// This calls CFEqual on the provided CMFormatDescription objects.
     /// In contrast to the CF call it is NULL safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptionequal(_:otherformatdescription:)?language=objc)
     #[doc(alias = "CMFormatDescriptionEqual")]
     #[inline]
     pub unsafe fn equal(
@@ -170,6 +176,8 @@ impl CMFormatDescription {
     ///
     /// - `format_description_extension_keys_to_ignore` should be of the correct type.
     /// - `sample_description_extension_atom_keys_to_ignore` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptionequalignoringextensionkeys(_:otherformatdescription:extensionkeystoignore:sampledescriptionextensionatomkeystoignore:)?language=objc)
     #[doc(alias = "CMFormatDescriptionEqualIgnoringExtensionKeys")]
     #[inline]
     pub unsafe fn equal_ignoring_extension_keys(
@@ -202,6 +210,8 @@ impl CMFormatDescription {
     /// For example, returns kCMMediaType_Audio for a description of an audio stream.
     ///
     /// Returns: The media type of the CMFormatDescription.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptiongetmediatype(_:)?language=objc)
     #[doc(alias = "CMFormatDescriptionGetMediaType")]
     #[inline]
     pub unsafe fn media_type(&self) -> CMMediaType {
@@ -224,6 +234,8 @@ impl CMFormatDescription {
     /// does not have subtypes, this API may return 0.
     ///
     /// Returns: The media subtype of the CMFormatDescription.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptiongetmediasubtype(_:)?language=objc)
     #[doc(alias = "CMFormatDescriptionGetMediaSubType")]
     #[inline]
     pub unsafe fn media_sub_type(&self) -> FourCharCode {
@@ -242,6 +254,8 @@ impl CMFormatDescription {
     /// need to keep it longer.
     ///
     /// Returns: An immutable dictionary containing all the extensions of the CMFormatDescription.  May be NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptiongetextensions(_:)?language=objc)
     #[doc(alias = "CMFormatDescriptionGetExtensions")]
     #[inline]
     pub unsafe fn extensions(&self) -> Option<CFRetained<CFDictionary>> {
@@ -325,6 +339,8 @@ impl CMFormatDescription {
     /// need to keep it longer.
     ///
     /// Returns: The specified extension of the CMFormatDescription.  May be NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptiongetextension(_:extensionkey:)?language=objc)
     #[doc(alias = "CMFormatDescriptionGetExtension")]
     #[inline]
     pub unsafe fn extension(&self, extension_key: &CFString) -> Option<CFRetained<CFPropertyList>> {
@@ -372,6 +388,8 @@ extern "C-unwind" {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptioncreate(allocator:asbd:layoutsize:layout:magiccookiesize:magiccookie:extensions:formatdescriptionout:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionCreate(
         allocator: Option<&CFAllocator>,
@@ -391,6 +409,8 @@ extern "C-unwind" {
     /// See CoreAudioTypes.h for the definition of AudioStreamBasicDescription.
     /// This API is specific to audio format descriptions, and will return NULL if
     /// used with a non-audio format descriptions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptiongetstreambasicdescription(_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetStreamBasicDescription(
         desc: &CMAudioFormatDescription,
@@ -411,6 +431,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `size_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptiongetmagiccookie(_:sizeout:)?language=objc)
     pub fn CMAudioFormatDescriptionGetMagicCookie(
         desc: &CMAudioFormatDescription,
         size_out: *mut usize,
@@ -431,6 +453,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `size_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptiongetchannellayout(_:sizeout:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetChannelLayout(
         desc: &CMAudioFormatDescription,
@@ -452,6 +476,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `size_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptiongetformatlist(_:sizeout:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetFormatList(
         desc: &CMAudioFormatDescription,
@@ -469,6 +495,8 @@ extern "C-unwind" {
     /// current system for this audio format.
     ///
     /// Returns: A read-only pointer to the appropriate AudioFormatListItem inside the audio format description.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptiongetrichestdecodableformat(_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetRichestDecodableFormat(
         desc: &CMAudioFormatDescription,
@@ -483,6 +511,8 @@ extern "C-unwind" {
     /// with a non-audio format description.
     ///
     /// Returns: A read-only pointer to the appropriate AudioFormatListItem inside the audio format description.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptiongetmostcompatibleformat(_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetMostCompatibleFormat(
         desc: &CMAudioFormatDescription,
@@ -500,6 +530,8 @@ extern "C-unwind" {
     ///
     /// - `format_description_array` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptioncreatesummary(allocator:formatdescriptionarray:flags:formatdescriptionout:)?language=objc)
     pub fn CMAudioFormatDescriptionCreateSummary(
         allocator: Option<&CFAllocator>,
         format_description_array: &CFArray,
@@ -553,6 +585,8 @@ pub const kCMAudioFormatDescriptionMask_All: CMAudioFormatDescriptionMask =
 /// # Safety
 ///
 /// `equality_mask_out` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptionequal(_:otherformatdescription:equalitymask:equalitymaskout:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMAudioFormatDescriptionEqual(
     format_description: &CMAudioFormatDescription,
@@ -1576,6 +1610,8 @@ extern "C-unwind" {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncreate(allocator:codectype:width:height:extensions:formatdescriptionout:)?language=objc)
     pub fn CMVideoFormatDescriptionCreate(
         allocator: Option<&CFAllocator>,
         codec_type: CMVideoCodecType,
@@ -1604,6 +1640,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncreateforimagebuffer(allocator:imagebuffer:formatdescriptionout:)?language=objc)
     #[cfg(feature = "objc2-core-video")]
     pub fn CMVideoFormatDescriptionCreateForImageBuffer(
         allocator: Option<&CFAllocator>,
@@ -1624,6 +1662,8 @@ extern "C-unwind" {
     /// - `parameter_set_pointers` must be a valid pointer.
     /// - `parameter_set_sizes` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncreatefromh264parametersets(allocator:parametersetcount:parametersetpointers:parametersetsizes:nalunitheaderlength:formatdescriptionout:)?language=objc)
     pub fn CMVideoFormatDescriptionCreateFromH264ParameterSets(
         allocator: Option<&CFAllocator>,
         parameter_set_count: usize,
@@ -1648,6 +1688,8 @@ extern "C-unwind" {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncreatefromhevcparametersets(allocator:parametersetcount:parametersetpointers:parametersetsizes:nalunitheaderlength:extensions:formatdescriptionout:)?language=objc)
     pub fn CMVideoFormatDescriptionCreateFromHEVCParameterSets(
         allocator: Option<&CFAllocator>,
         parameter_set_count: usize,
@@ -1673,6 +1715,8 @@ extern "C-unwind" {
     /// - `parameter_set_size_out` must be a valid pointer or null.
     /// - `parameter_set_count_out` must be a valid pointer or null.
     /// - `nal_unit_header_length_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptiongeth264parametersetatindex(_:parametersetindex:parametersetpointerout:parametersetsizeout:parametersetcountout:nalunitheaderlengthout:)?language=objc)
     pub fn CMVideoFormatDescriptionGetH264ParameterSetAtIndex(
         video_desc: &CMFormatDescription,
         parameter_set_index: usize,
@@ -1697,6 +1741,8 @@ extern "C-unwind" {
     /// - `parameter_set_size_out` must be a valid pointer or null.
     /// - `parameter_set_count_out` must be a valid pointer or null.
     /// - `nal_unit_header_length_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptiongethevcparametersetatindex(_:parametersetindex:parametersetpointerout:parametersetsizeout:parametersetcountout:nalunitheaderlengthout:)?language=objc)
     pub fn CMVideoFormatDescriptionGetHEVCParameterSetAtIndex(
         video_desc: &CMFormatDescription,
         parameter_set_index: usize,
@@ -1711,6 +1757,8 @@ extern "C-unwind" {
     /// Returns the dimensions (in encoded pixels)
     ///
     /// This does not take into account pixel aspect ratio or clean aperture tags.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptiongetdimensions(_:)?language=objc)
     pub fn CMVideoFormatDescriptionGetDimensions(
         video_desc: &CMVideoFormatDescription,
     ) -> CMVideoDimensions;
@@ -1719,6 +1767,8 @@ extern "C-unwind" {
 /// Returns the dimensions, adjusted to take pixel aspect ratio and/or clean aperture into account.
 ///
 /// Pixel aspect ratio is used to adjust the width, leaving the height alone.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptiongetpresentationdimensions(_:usepixelaspectratio:usecleanaperture:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetPresentationDimensions(
     video_desc: &CMVideoFormatDescription,
@@ -1745,6 +1795,8 @@ pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetPresentationDimension
 ///
 /// The clean aperture is a rectangle that defines the portion of the encoded pixel dimensions
 /// that represents image data valid for display.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptiongetcleanaperture(_:originisattopleft:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetCleanAperture(
     video_desc: &CMVideoFormatDescription,
@@ -1784,6 +1836,8 @@ pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetCleanAperture(
 /// kCMFormatDescriptionExtension_ChromaLocationBottomField
 /// kCMFormatDescriptionExtension_MasteringDisplayColorVolume
 /// kCMFormatDescriptionExtension_ContentLightLevelInfo
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptiongetextensionkeyscommonwithimagebuffers()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers(
 ) -> CFRetained<CFArray> {
@@ -1802,6 +1856,8 @@ pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetExtensionKeysCommonWi
 /// to compares the extensions of the given format description to the attachments of the
 /// given image buffer (if an attachment is absent in either it must be absent in both).
 /// It also checks kCMFormatDescriptionExtension_BytesPerRow against CVPixelBufferGetBytesPerRow, if applicable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptionmatchesimagebuffer(_:imagebuffer:)?language=objc)
 #[cfg(feature = "objc2-core-video")]
 #[inline]
 pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionMatchesImageBuffer(
@@ -1835,6 +1891,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `tag_collections_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncopytagcollectionarray?language=objc)
     pub fn CMVideoFormatDescriptionCopyTagCollectionArray(
         format_description: &CMVideoFormatDescription,
         tag_collections_out: *mut *const CFArray,
@@ -1900,6 +1958,8 @@ extern "C-unwind" {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmuxedformatdescriptioncreate(allocator:muxtype:extensions:formatdescriptionout:)?language=objc)
     pub fn CMMuxedFormatDescriptionCreate(
         allocator: Option<&CFAllocator>,
         mux_type: CMMuxedStreamType,
@@ -2125,6 +2185,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `display_flags_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptiongetdisplayflags(_:displayflagsout:)?language=objc)
     pub fn CMTextFormatDescriptionGetDisplayFlags(
         desc: &CMFormatDescription,
         display_flags_out: NonNull<CMTextDisplayFlags>,
@@ -2140,6 +2202,8 @@ extern "C-unwind" {
     ///
     /// - `horizonta_justificationl_out` must be a valid pointer or null.
     /// - `vertical_justification_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptiongetjustification(_:horizontalout:verticalout:)?language=objc)
     pub fn CMTextFormatDescriptionGetJustification(
         desc: &CMFormatDescription,
         horizonta_justificationl_out: *mut CMTextJustificationValue,
@@ -2154,6 +2218,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `default_text_box_out` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptiongetdefaulttextbox(_:originisattopleft:heightoftexttrack:defaulttextboxout:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMTextFormatDescriptionGetDefaultTextBox(
     desc: &CMFormatDescription,
@@ -2187,6 +2253,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `font_name_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptiongetfontname(_:localfontid:fontnameout:)?language=objc)
     pub fn CMTextFormatDescriptionGetFontName(
         desc: &CMFormatDescription,
         local_font_id: u16,
@@ -2240,6 +2308,8 @@ extern "C-unwind" {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptioncreate(allocator:timecodeformattype:frameduration:framequanta:flags:extensions:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMTime")]
     pub fn CMTimeCodeFormatDescriptionCreate(
         allocator: Option<&CFAllocator>,
@@ -2255,6 +2325,8 @@ extern "C-unwind" {
 #[cfg(feature = "CMTime")]
 impl CMTime {
     /// Returns the duration of each frame (eg. 100/2997)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptiongetframeduration(_:)?language=objc)
     #[doc(alias = "CMTimeCodeFormatDescriptionGetFrameDuration")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -2272,6 +2344,8 @@ impl CMTime {
 
 extern "C-unwind" {
     /// Returns the frames/sec for timecode (eg. 30) OR frames/tick for counter mode
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptiongetframequanta(_:)?language=objc)
     pub fn CMTimeCodeFormatDescriptionGetFrameQuanta(
         time_code_format_description: &CMTimeCodeFormatDescription,
     ) -> u32;
@@ -2279,6 +2353,8 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Returns the flags for kCMTimeCodeFlag_DropFrame, kCMTimeCodeFlag_24HourMax, kCMTimeCodeFlag_NegTimesOK
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptiongettimecodeflags(_:)?language=objc)
     pub fn CMTimeCodeFormatDescriptionGetTimeCodeFlags(desc: &CMTimeCodeFormatDescription) -> u32;
 }
 
@@ -2401,6 +2477,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptioncreatewithkeys(allocator:metadatatype:keys:formatdescriptionout:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `keys` generic must be of the correct type.
@@ -2414,6 +2492,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptioncreatewithmetadataspecifications(allocator:metadatatype:metadataspecifications:formatdescriptionout:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `metadata_specifications` generic must be of the correct type.
@@ -2427,6 +2507,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptioncreatewithmetadataformatdescriptionandmetadataspecifications(allocator:sourcedescription:metadataspecifications:formatdescriptionout:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `metadata_specifications` generic must be of the correct type.
@@ -2440,6 +2522,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptioncreatebymergingmetadataformatdescriptions(allocator:sourcedescription:othersourcedescription:formatdescriptionout:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
@@ -2451,6 +2535,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptiongetkeywithlocalid(_:localkeyid:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataFormatDescriptionGetKeyWithLocalID(
     desc: &CMMetadataFormatDescription,
@@ -2466,6 +2551,7 @@ pub unsafe extern "C-unwind" fn CMMetadataFormatDescriptionGetKeyWithLocalID(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptiongetidentifiers(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataFormatDescriptionGetIdentifiers(
     desc: &CMMetadataFormatDescription,

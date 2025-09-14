@@ -59,6 +59,7 @@ unsafe impl RefEncode for CGDataConsumerCallbacks {
 }
 
 unsafe impl ConcreteType for CGDataConsumer {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/typeid?language=objc)
     #[doc(alias = "CGDataConsumerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -70,6 +71,8 @@ unsafe impl ConcreteType for CGDataConsumer {
 }
 
 impl CGDataConsumer {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(info:cbks:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
@@ -90,6 +93,7 @@ impl CGDataConsumer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(url:)?language=objc)
     #[doc(alias = "CGDataConsumerCreateWithURL")]
     #[inline]
     pub fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataConsumer>> {
@@ -100,6 +104,7 @@ impl CGDataConsumer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(data:)?language=objc)
     #[doc(alias = "CGDataConsumerCreateWithCFData")]
     #[inline]
     pub fn with_cf_data(data: Option<&CFMutableData>) -> Option<CFRetained<CGDataConsumer>> {

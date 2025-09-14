@@ -21,6 +21,8 @@ bitflags::bitflags! {
 /// When your picker uses this option, your ``ASAccessorySession-class`` receives events of type ``ASAccessoryEventType/accessoryDiscovered``.
 /// Handle this event by examining the discovered accessory.
 /// To include it in the picker, create a new ``ASDiscoveredDisplayItem`` for it and call ``ASAccessorySession/updatePicker(showing:completionHandler:)``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/options-swift.struct/filterdiscoveryresults?language=objc)
         #[doc(alias = "ASPickerDisplaySettingsOptionFilterDiscoveryResults")]
         const FilterDiscoveryResults = 1<<0;
     }

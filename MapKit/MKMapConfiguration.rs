@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKMapElevationStyle(pub NSInteger);
 impl MKMapElevationStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapconfiguration/elevationstyle-swift.enum/flat?language=objc)
     #[doc(alias = "MKMapElevationStyleFlat")]
     pub const Flat: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapconfiguration/elevationstyle-swift.enum/realistic?language=objc)
     #[doc(alias = "MKMapElevationStyleRealistic")]
     pub const Realistic: Self = Self(1);
 }

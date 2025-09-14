@@ -14,15 +14,23 @@ use crate::*;
 pub struct UISearchControllerScopeBarActivation(pub NSInteger);
 impl UISearchControllerScopeBarActivation {
     /// System-defined automatic showing and hiding of the scope bar
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontroller/scopebaractivation-swift.enum/automatic?language=objc)
     #[doc(alias = "UISearchControllerScopeBarActivationAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Showing and hiding the scope bar will be controlled by client code through the `showsScopeBar` API on the UISearchController's `searchBar`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontroller/scopebaractivation-swift.enum/manual?language=objc)
     #[doc(alias = "UISearchControllerScopeBarActivationManual")]
     pub const Manual: Self = Self(1);
     /// The search controller shows the scope bar when typing begins in the search field, and hides it when search is cancelled
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontroller/scopebaractivation-swift.enum/ontextentry?language=objc)
     #[doc(alias = "UISearchControllerScopeBarActivationOnTextEntry")]
     pub const OnTextEntry: Self = Self(2);
     /// The search controller shows the scope bar when search becomes active, and hides it when search is cancelled
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontroller/scopebaractivation-swift.enum/onsearchactivation?language=objc)
     #[doc(alias = "UISearchControllerScopeBarActivationOnSearchActivation")]
     pub const OnSearchActivation: Self = Self(3);
 }

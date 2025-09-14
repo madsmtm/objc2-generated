@@ -164,14 +164,19 @@ impl CKContainer {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKAccountStatus(pub NSInteger);
 impl CKAccountStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/couldnotdetermine?language=objc)
     #[doc(alias = "CKAccountStatusCouldNotDetermine")]
     pub const CouldNotDetermine: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/available?language=objc)
     #[doc(alias = "CKAccountStatusAvailable")]
     pub const Available: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/restricted?language=objc)
     #[doc(alias = "CKAccountStatusRestricted")]
     pub const Restricted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/noaccount?language=objc)
     #[doc(alias = "CKAccountStatusNoAccount")]
     pub const NoAccount: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/temporarilyunavailable?language=objc)
     #[doc(alias = "CKAccountStatusTemporarilyUnavailable")]
     pub const TemporarilyUnavailable: Self = Self(4);
 }
@@ -219,6 +224,8 @@ pub struct CKApplicationPermissions(pub NSUInteger);
 bitflags::bitflags! {
     impl CKApplicationPermissions: NSUInteger {
 /// Allows the user's record in CloudKit to be discoverable via the user's email address
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissions/userdiscoverability?language=objc)
         #[doc(alias = "CKApplicationPermissionUserDiscoverability")]
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         const UserDiscoverability = 1<<0;
@@ -240,15 +247,19 @@ unsafe impl RefEncode for CKApplicationPermissions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKApplicationPermissionStatus(pub NSInteger);
 impl CKApplicationPermissionStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus/initialstate?language=objc)
     #[doc(alias = "CKApplicationPermissionStatusInitialState")]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const InitialState: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus/couldnotcomplete?language=objc)
     #[doc(alias = "CKApplicationPermissionStatusCouldNotComplete")]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const CouldNotComplete: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus/denied?language=objc)
     #[doc(alias = "CKApplicationPermissionStatusDenied")]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus/granted?language=objc)
     #[doc(alias = "CKApplicationPermissionStatusGranted")]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const Granted: Self = Self(3);

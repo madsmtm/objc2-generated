@@ -287,47 +287,74 @@ pub const NSUpdateWindowsRunLoopOrdering: c_uint = 500000;
 pub struct NSApplicationPresentationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationPresentationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationpresentationoptions/nsapplicationpresentationdefault?language=objc)
         #[doc(alias = "NSApplicationPresentationDefault")]
         const Default = 0;
 /// Dock appears when moused to.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidedock?language=objc)
         #[doc(alias = "NSApplicationPresentationAutoHideDock")]
         const AutoHideDock = 1<<0;
 /// Dock is entirely unavailable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/hidedock?language=objc)
         #[doc(alias = "NSApplicationPresentationHideDock")]
         const HideDock = 1<<1;
 /// Menu Bar appears when moused to.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidemenubar?language=objc)
         #[doc(alias = "NSApplicationPresentationAutoHideMenuBar")]
         const AutoHideMenuBar = 1<<2;
 /// Menu Bar is entirely unavailable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/hidemenubar?language=objc)
         #[doc(alias = "NSApplicationPresentationHideMenuBar")]
         const HideMenuBar = 1<<3;
 /// All Apple menu items are disabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disableapplemenu?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableAppleMenu")]
         const DisableAppleMenu = 1<<4;
 /// Cmd+Tab UI is disabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disableprocessswitching?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableProcessSwitching")]
         const DisableProcessSwitching = 1<<5;
 /// Cmd+Opt+Esc panel is disabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disableforcequit?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableForceQuit")]
         const DisableForceQuit = 1<<6;
 /// PowerKey panel and Restart/Shut Down/Log Out disabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disablesessiontermination?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableSessionTermination")]
         const DisableSessionTermination = 1<<7;
 /// Application "Hide" menu item is disabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disablehideapplication?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableHideApplication")]
         const DisableHideApplication = 1<<8;
 /// Menu Bar's transparent appearance is disabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disablemenubartransparency?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableMenuBarTransparency")]
         const DisableMenuBarTransparency = 1<<9;
 /// Application is in fullscreen mode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/fullscreen?language=objc)
         #[doc(alias = "NSApplicationPresentationFullScreen")]
         const FullScreen = 1<<10;
 /// Fullscreen window toolbar is detached from window and hides/shows on rollover.
 /// May be used only when both
 /// `NSApplicationPresentationFullScreen`is also set.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidetoolbar?language=objc)
         #[doc(alias = "NSApplicationPresentationAutoHideToolbar")]
         const AutoHideToolbar = 1<<11;
 /// "Shake mouse pointer to locate" is disabled for this application.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disablecursorlocationassistance?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableCursorLocationAssistance")]
         const DisableCursorLocationAssistance = 1<<12;
     }
@@ -349,6 +376,8 @@ pub struct NSApplicationOcclusionState(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationOcclusionState: NSUInteger {
 /// If set, at least part of any window owned by this application is visible. If not set, all parts of all windows owned by this application are completely occluded. The menu bar does not count as a window owned by this application, so if only the menu bar is showing then the application is considered not visible. Status items, however, have windows owned by your application. If the status item is present in the menu bar, your application will be considered visible as long as the menu bar is visible.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/occlusionstate-swift.struct/visible?language=objc)
         #[doc(alias = "NSApplicationOcclusionStateVisible")]
         const Visible = 1<<1;
     }
@@ -370,6 +399,8 @@ pub struct NSWindowListOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSWindowListOptions: NSInteger {
 /// Onscreen application windows in front to back order. By default, -[NSApp windows] is used.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/windowlistoptions/orderedfronttoback?language=objc)
         #[doc(alias = "NSWindowListOrderedFrontToBack")]
         const OrderedFrontToBack = 1<<0;
     }
@@ -405,8 +436,10 @@ pub type NSModalSession = *mut _NSModalSession;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRequestUserAttentionType(pub NSUInteger);
 impl NSRequestUserAttentionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/requestuserattentiontype/criticalrequest?language=objc)
     #[doc(alias = "NSCriticalRequest")]
     pub const CriticalRequest: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/requestuserattentiontype/informationalrequest?language=objc)
     #[doc(alias = "NSInformationalRequest")]
     pub const InformationalRequest: Self = Self(10);
 }
@@ -425,10 +458,13 @@ unsafe impl RefEncode for NSRequestUserAttentionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationDelegateReply(pub NSUInteger);
 impl NSApplicationDelegateReply {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/delegatereply/success?language=objc)
     #[doc(alias = "NSApplicationDelegateReplySuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/delegatereply/cancel?language=objc)
     #[doc(alias = "NSApplicationDelegateReplyCancel")]
     pub const Cancel: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/delegatereply/failure?language=objc)
     #[doc(alias = "NSApplicationDelegateReplyFailure")]
     pub const Failure: Self = Self(2);
 }
@@ -1057,10 +1093,13 @@ impl NSApplication {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationTerminateReply(pub NSUInteger);
 impl NSApplicationTerminateReply {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/terminatereply/terminatecancel?language=objc)
     #[doc(alias = "NSTerminateCancel")]
     pub const TerminateCancel: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/terminatereply/terminatenow?language=objc)
     #[doc(alias = "NSTerminateNow")]
     pub const TerminateNow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/terminatereply/terminatelater?language=objc)
     #[doc(alias = "NSTerminateLater")]
     pub const TerminateLater: Self = Self(2);
 }
@@ -1081,12 +1120,16 @@ unsafe impl RefEncode for NSApplicationTerminateReply {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationPrintReply(pub NSUInteger);
 impl NSApplicationPrintReply {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/printreply/printingcancelled?language=objc)
     #[doc(alias = "NSPrintingCancelled")]
     pub const PrintingCancelled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/printreply/printingsuccess?language=objc)
     #[doc(alias = "NSPrintingSuccess")]
     pub const PrintingSuccess: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/printreply/printingreplylater?language=objc)
     #[doc(alias = "NSPrintingReplyLater")]
     pub const PrintingReplyLater: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/printreply/printingfailure?language=objc)
     #[doc(alias = "NSPrintingFailure")]
     pub const PrintingFailure: Self = Self(3);
 }
@@ -1672,12 +1715,16 @@ impl NSApplication {
 pub struct NSRemoteNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl NSRemoteNotificationType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsremotenotificationtype/nsremotenotificationtypenone?language=objc)
         #[doc(alias = "NSRemoteNotificationTypeNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/remotenotificationtype/badge?language=objc)
         #[doc(alias = "NSRemoteNotificationTypeBadge")]
         const Badge = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/remotenotificationtype/sound?language=objc)
         #[doc(alias = "NSRemoteNotificationTypeSound")]
         const Sound = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/remotenotificationtype/alert?language=objc)
         #[doc(alias = "NSRemoteNotificationTypeAlert")]
         const Alert = 1<<2;
     }
@@ -1727,6 +1774,8 @@ impl NSApplication {
     /// # Safety
     ///
     /// `argv` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationmain?language=objc)
     #[doc(alias = "NSApplicationMain")]
     #[inline]
     pub(crate) unsafe fn __main(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int {
@@ -1738,6 +1787,8 @@ impl NSApplication {
 
     /// `NSApplicationLoad`should be called when loading a Cocoa bundle in a Carbon app in order to initialize
     /// `NSApplication`and other Cocoa objects.  Redundant calls are ignored.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationload?language=objc)
     #[doc(alias = "NSApplicationLoad")]
     #[inline]
     pub fn load() -> bool {
@@ -1750,6 +1801,8 @@ impl NSApplication {
 
 /// `NSShowsServicesMenuItem()`always returns
 /// `YES.`
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshowsservicesmenuitem(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
     extern "C-unwind" {
@@ -1759,6 +1812,8 @@ pub extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
 }
 
 /// `NSSetShowsServicesMenuItem()`has no effect, and always returns 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssetshowsservicesmenuitem(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSSetShowsServicesMenuItem(
     item_name: &NSString,
@@ -1772,6 +1827,8 @@ pub extern "C-unwind" fn NSSetShowsServicesMenuItem(
 
 /// `NSUpdateDynamicServices()`causes the services information for the system to be updated.
 /// This will only be necessary if your program adds dynamic services to the system (i.e. services not found in mach-o segments of executables).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsupdatedynamicservices()?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSUpdateDynamicServices() {
     extern "C-unwind" {
@@ -1780,6 +1837,7 @@ pub extern "C-unwind" fn NSUpdateDynamicServices() {
     unsafe { NSUpdateDynamicServices() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsperformservice(_:_:)?language=objc)
 #[cfg(feature = "NSPasteboard")]
 #[inline]
 pub extern "C-unwind" fn NSPerformService(
@@ -1801,9 +1859,12 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `provider` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsregisterservicesprovider(_:_:)?language=objc)
     pub fn NSRegisterServicesProvider(provider: Option<&AnyObject>, name: &NSServiceProviderName);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunregisterservicesprovider(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSUnregisterServicesProvider(name: &NSServiceProviderName) {
     extern "C-unwind" {

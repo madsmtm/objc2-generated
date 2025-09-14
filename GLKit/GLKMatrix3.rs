@@ -46,6 +46,8 @@ extern "C" {
 // TODO: pub fn GLKMatrix3Transpose(matrix: GLKMatrix3,) -> GLKMatrix3;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix3invert(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `is_invertible` must be a valid pointer.
@@ -54,6 +56,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix3invertandtranspose(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `is_invertible` must be a valid pointer.

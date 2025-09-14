@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPreferredPresentationStyle(pub NSInteger);
 impl UIPreferredPresentationStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreferredpresentationstyle/uipreferredpresentationstyleunspecified?language=objc)
     #[doc(alias = "UIPreferredPresentationStyleUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreferredpresentationstyle/uipreferredpresentationstyleinline?language=objc)
     #[doc(alias = "UIPreferredPresentationStyleInline")]
     pub const Inline: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreferredpresentationstyle/uipreferredpresentationstyleattachment?language=objc)
     #[doc(alias = "UIPreferredPresentationStyleAttachment")]
     pub const Attachment: Self = Self(2);
 }

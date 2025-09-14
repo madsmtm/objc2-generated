@@ -13,22 +13,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageAlignment(pub NSUInteger);
 impl NSImageAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/aligncenter?language=objc)
     #[doc(alias = "NSImageAlignCenter")]
     pub const AlignCenter: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/aligntop?language=objc)
     #[doc(alias = "NSImageAlignTop")]
     pub const AlignTop: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/aligntopleft?language=objc)
     #[doc(alias = "NSImageAlignTopLeft")]
     pub const AlignTopLeft: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/aligntopright?language=objc)
     #[doc(alias = "NSImageAlignTopRight")]
     pub const AlignTopRight: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/alignleft?language=objc)
     #[doc(alias = "NSImageAlignLeft")]
     pub const AlignLeft: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/alignbottom?language=objc)
     #[doc(alias = "NSImageAlignBottom")]
     pub const AlignBottom: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/alignbottomleft?language=objc)
     #[doc(alias = "NSImageAlignBottomLeft")]
     pub const AlignBottomLeft: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/alignbottomright?language=objc)
     #[doc(alias = "NSImageAlignBottomRight")]
     pub const AlignBottomRight: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/alignright?language=objc)
     #[doc(alias = "NSImageAlignRight")]
     pub const AlignRight: Self = Self(8);
 }
@@ -47,14 +56,19 @@ unsafe impl RefEncode for NSImageAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageFrameStyle(pub NSUInteger);
 impl NSImageFrameStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle/none?language=objc)
     #[doc(alias = "NSImageFrameNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle/photo?language=objc)
     #[doc(alias = "NSImageFramePhoto")]
     pub const Photo: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle/graybezel?language=objc)
     #[doc(alias = "NSImageFrameGrayBezel")]
     pub const GrayBezel: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle/groove?language=objc)
     #[doc(alias = "NSImageFrameGroove")]
     pub const Groove: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle/button?language=objc)
     #[doc(alias = "NSImageFrameButton")]
     pub const Button: Self = Self(4);
 }

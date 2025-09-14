@@ -24,6 +24,8 @@ pub const NSMacintoshInterfaceStyle: c_uint = 3;
 pub type NSInterfaceStyle = NSUInteger;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinterfacestyleforkey?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` might not allow `None`.

@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaAffinityType(pub NSInteger);
 impl INMediaAffinityType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaaffinitytype/unknown?language=objc)
     #[doc(alias = "INMediaAffinityTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaaffinitytype/like?language=objc)
     #[doc(alias = "INMediaAffinityTypeLike")]
     pub const Like: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaaffinitytype/dislike?language=objc)
     #[doc(alias = "INMediaAffinityTypeDislike")]
     pub const Dislike: Self = Self(2);
 }

@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerNavigationOrientation(pub NSInteger);
 impl UIPageViewControllerNavigationOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationorientation-swift.enum/horizontal?language=objc)
     #[doc(alias = "UIPageViewControllerNavigationOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationorientation-swift.enum/vertical?language=objc)
     #[doc(alias = "UIPageViewControllerNavigationOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -33,12 +35,16 @@ unsafe impl RefEncode for UIPageViewControllerNavigationOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerSpineLocation(pub NSInteger);
 impl UIPageViewControllerSpineLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum/none?language=objc)
     #[doc(alias = "UIPageViewControllerSpineLocationNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum/min?language=objc)
     #[doc(alias = "UIPageViewControllerSpineLocationMin")]
     pub const Min: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum/mid?language=objc)
     #[doc(alias = "UIPageViewControllerSpineLocationMid")]
     pub const Mid: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum/max?language=objc)
     #[doc(alias = "UIPageViewControllerSpineLocationMax")]
     pub const Max: Self = Self(3);
 }
@@ -57,8 +63,10 @@ unsafe impl RefEncode for UIPageViewControllerSpineLocation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerNavigationDirection(pub NSInteger);
 impl UIPageViewControllerNavigationDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationdirection/forward?language=objc)
     #[doc(alias = "UIPageViewControllerNavigationDirectionForward")]
     pub const Forward: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationdirection/reverse?language=objc)
     #[doc(alias = "UIPageViewControllerNavigationDirectionReverse")]
     pub const Reverse: Self = Self(1);
 }
@@ -77,8 +85,10 @@ unsafe impl RefEncode for UIPageViewControllerNavigationDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerTransitionStyle(pub NSInteger);
 impl UIPageViewControllerTransitionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum/pagecurl?language=objc)
     #[doc(alias = "UIPageViewControllerTransitionStylePageCurl")]
     pub const PageCurl: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum/scroll?language=objc)
     #[doc(alias = "UIPageViewControllerTransitionStyleScroll")]
     pub const Scroll: Self = Self(1);
 }

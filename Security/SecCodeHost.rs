@@ -11,6 +11,8 @@ pub const kSecCSDedicatedHost: u32 = 1;
 pub const kSecCSGenerateGuestHash: u32 = 2;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostcreateguest?language=objc)
+    ///
     /// # Safety
     ///
     /// - `attributes` generic must be of the correct type.
@@ -29,6 +31,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostremoveguest?language=objc)
     #[cfg(feature = "CSCommon")]
     #[deprecated]
     pub fn SecHostRemoveGuest(host: SecGuestRef, guest: SecGuestRef, flags: SecCSFlags)
@@ -36,12 +39,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostselectguest?language=objc)
     #[cfg(feature = "CSCommon")]
     #[deprecated]
     pub fn SecHostSelectGuest(guest_ref: SecGuestRef, flags: SecCSFlags) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostselectedguest?language=objc)
+    ///
     /// # Safety
     ///
     /// `guest_ref` must be a valid pointer.
@@ -51,6 +57,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostsetgueststatus?language=objc)
+    ///
     /// # Safety
     ///
     /// - `attributes` generic must be of the correct type.
@@ -66,6 +74,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostsethostingport?language=objc)
     #[cfg(all(feature = "CSCommon", feature = "libc"))]
     #[deprecated]
     pub fn SecHostSetHostingPort(hosting_port: libc::mach_port_t, flags: SecCSFlags) -> OSStatus;

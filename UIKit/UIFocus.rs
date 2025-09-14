@@ -16,22 +16,31 @@ use crate::*;
 pub struct UIFocusHeading(pub NSUInteger);
 bitflags::bitflags! {
     impl UIFocusHeading: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/uifocusheadingnone?language=objc)
         #[doc(alias = "UIFocusHeadingNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/up?language=objc)
         #[doc(alias = "UIFocusHeadingUp")]
         const Up = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/down?language=objc)
         #[doc(alias = "UIFocusHeadingDown")]
         const Down = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/left?language=objc)
         #[doc(alias = "UIFocusHeadingLeft")]
         const Left = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/right?language=objc)
         #[doc(alias = "UIFocusHeadingRight")]
         const Right = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/next?language=objc)
         #[doc(alias = "UIFocusHeadingNext")]
         const Next = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/previous?language=objc)
         #[doc(alias = "UIFocusHeadingPrevious")]
         const Previous = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/first?language=objc)
         #[doc(alias = "UIFocusHeadingFirst")]
         const First = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/last?language=objc)
         #[doc(alias = "UIFocusHeadingLast")]
         const Last = 1<<9;
     }
@@ -52,16 +61,22 @@ unsafe impl RefEncode for UIFocusHeading {
 pub struct UIFocusItemDeferralMode(pub NSInteger);
 impl UIFocusItemDeferralMode {
     /// Use the system default behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemdeferralmode/automatic?language=objc)
     #[doc(alias = "UIFocusItemDeferralModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Always defer focus for this item, even if deferral is disabled right now.
     /// This means a programmatic update to this item would result in focus
     /// disappearing until the user interacts with the focus engine again.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemdeferralmode/always?language=objc)
     #[doc(alias = "UIFocusItemDeferralModeAlways")]
     pub const Always: Self = Self(1);
     /// Never defer focus for this item. When a programmatic focus update
     /// lands on this item, it will always be and appear focused even if focus
     /// deferral is currently enabled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemdeferralmode/never?language=objc)
     #[doc(alias = "UIFocusItemDeferralModeNever")]
     pub const Never: Self = Self(2);
 }

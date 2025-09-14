@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextMenuInteractionCommitStyle(pub NSInteger);
 impl UIContextMenuInteractionCommitStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle/dismiss?language=objc)
     #[doc(alias = "UIContextMenuInteractionCommitStyleDismiss")]
     pub const Dismiss: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle/pop?language=objc)
     #[doc(alias = "UIContextMenuInteractionCommitStylePop")]
     pub const Pop: Self = Self(1);
 }
@@ -35,10 +37,13 @@ unsafe impl RefEncode for UIContextMenuInteractionCommitStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextMenuInteractionAppearance(pub NSInteger);
 impl UIContextMenuInteractionAppearance {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction/appearance/unknown?language=objc)
     #[doc(alias = "UIContextMenuInteractionAppearanceUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction/appearance/rich?language=objc)
     #[doc(alias = "UIContextMenuInteractionAppearanceRich")]
     pub const Rich: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction/appearance/compact?language=objc)
     #[doc(alias = "UIContextMenuInteractionAppearanceCompact")]
     pub const Compact: Self = Self(2);
 }

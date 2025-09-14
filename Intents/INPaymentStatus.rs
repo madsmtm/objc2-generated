@@ -10,16 +10,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPaymentStatus(pub NSInteger);
 impl INPaymentStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/unknown?language=objc)
     #[doc(alias = "INPaymentStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/pending?language=objc)
     #[doc(alias = "INPaymentStatusPending")]
     pub const Pending: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/completed?language=objc)
     #[doc(alias = "INPaymentStatusCompleted")]
     pub const Completed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/canceled?language=objc)
     #[doc(alias = "INPaymentStatusCanceled")]
     pub const Canceled: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/failed?language=objc)
     #[doc(alias = "INPaymentStatusFailed")]
     pub const Failed: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/unpaid?language=objc)
     #[doc(alias = "INPaymentStatusUnpaid")]
     pub const Unpaid: Self = Self(5);
 }

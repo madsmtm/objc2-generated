@@ -35,16 +35,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandBufferStatus(pub NSUInteger);
 impl MTLCommandBufferStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/notenqueued?language=objc)
     #[doc(alias = "MTLCommandBufferStatusNotEnqueued")]
     pub const NotEnqueued: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/enqueued?language=objc)
     #[doc(alias = "MTLCommandBufferStatusEnqueued")]
     pub const Enqueued: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/committed?language=objc)
     #[doc(alias = "MTLCommandBufferStatusCommitted")]
     pub const Committed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/scheduled?language=objc)
     #[doc(alias = "MTLCommandBufferStatusScheduled")]
     pub const Scheduled: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/completed?language=objc)
     #[doc(alias = "MTLCommandBufferStatusCompleted")]
     pub const Completed: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/error?language=objc)
     #[doc(alias = "MTLCommandBufferStatusError")]
     pub const Error: Self = Self(5);
 }
@@ -102,29 +108,41 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandBufferError(pub NSUInteger);
 impl MTLCommandBufferError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/none?language=objc)
     #[doc(alias = "MTLCommandBufferErrorNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/internal?language=objc)
     #[doc(alias = "MTLCommandBufferErrorInternal")]
     pub const Internal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/timeout?language=objc)
     #[doc(alias = "MTLCommandBufferErrorTimeout")]
     pub const Timeout: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/pagefault?language=objc)
     #[doc(alias = "MTLCommandBufferErrorPageFault")]
     pub const PageFault: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/blacklisted?language=objc)
     #[doc(alias = "MTLCommandBufferErrorBlacklisted")]
     #[deprecated]
     pub const Blacklisted: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-c.enum/mtlcommandbuffererroraccessrevoked?language=objc)
     #[doc(alias = "MTLCommandBufferErrorAccessRevoked")]
     pub const AccessRevoked: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/notpermitted?language=objc)
     #[doc(alias = "MTLCommandBufferErrorNotPermitted")]
     pub const NotPermitted: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/outofmemory?language=objc)
     #[doc(alias = "MTLCommandBufferErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/invalidresource?language=objc)
     #[doc(alias = "MTLCommandBufferErrorInvalidResource")]
     pub const InvalidResource: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/memoryless?language=objc)
     #[doc(alias = "MTLCommandBufferErrorMemoryless")]
     pub const Memoryless: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/deviceremoved?language=objc)
     #[doc(alias = "MTLCommandBufferErrorDeviceRemoved")]
     pub const DeviceRemoved: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/stackoverflow?language=objc)
     #[doc(alias = "MTLCommandBufferErrorStackOverflow")]
     pub const StackOverflow: Self = Self(12);
 }
@@ -159,8 +177,10 @@ extern "C" {
 pub struct MTLCommandBufferErrorOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLCommandBufferErrorOption: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption/mtlcommandbuffererroroptionnone?language=objc)
         #[doc(alias = "MTLCommandBufferErrorOptionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption/encoderexecutionstatus?language=objc)
         #[doc(alias = "MTLCommandBufferErrorOptionEncoderExecutionStatus")]
         const EncoderExecutionStatus = 1<<0;
     }
@@ -197,14 +217,19 @@ unsafe impl RefEncode for MTLCommandBufferErrorOption {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandEncoderErrorState(pub NSInteger);
 impl MTLCommandEncoderErrorState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate/unknown?language=objc)
     #[doc(alias = "MTLCommandEncoderErrorStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate/completed?language=objc)
     #[doc(alias = "MTLCommandEncoderErrorStateCompleted")]
     pub const Completed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate/affected?language=objc)
     #[doc(alias = "MTLCommandEncoderErrorStateAffected")]
     pub const Affected: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate/pending?language=objc)
     #[doc(alias = "MTLCommandEncoderErrorStatePending")]
     pub const Pending: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate/faulted?language=objc)
     #[doc(alias = "MTLCommandEncoderErrorStateFaulted")]
     pub const Faulted: Self = Self(4);
 }
@@ -335,8 +360,10 @@ pub type MTLCommandBufferHandler =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDispatchType(pub NSUInteger);
 impl MTLDispatchType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchtype/serial?language=objc)
     #[doc(alias = "MTLDispatchTypeSerial")]
     pub const Serial: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchtype/concurrent?language=objc)
     #[doc(alias = "MTLDispatchTypeConcurrent")]
     pub const Concurrent: Self = Self(1);
 }

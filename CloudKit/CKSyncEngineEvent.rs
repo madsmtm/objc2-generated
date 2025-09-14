@@ -16,39 +16,63 @@ use crate::*;
 pub struct CKSyncEngineEventType(pub NSInteger);
 impl CKSyncEngineEventType {
     /// The sync engine state was updated. You should persist it locally.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/stateupdate?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeStateUpdate")]
     pub const StateUpdate: Self = Self(0);
     /// The user signed in or out of their account.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/accountchange?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeAccountChange")]
     pub const AccountChange: Self = Self(1);
     /// The sync engine fetched new database changes from the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/fetcheddatabasechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeFetchedDatabaseChanges")]
     pub const FetchedDatabaseChanges: Self = Self(2);
     /// The sync engine fetched new record zone changes from the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/fetchedrecordzonechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeFetchedRecordZoneChanges")]
     pub const FetchedRecordZoneChanges: Self = Self(3);
     /// The sync engine sent a batch of database changes to the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/sentdatabasechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeSentDatabaseChanges")]
     pub const SentDatabaseChanges: Self = Self(4);
     /// The sync engine sent a batch of record zone changes to the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/sentrecordzonechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeSentRecordZoneChanges")]
     pub const SentRecordZoneChanges: Self = Self(5);
     /// The sync engine is about to fetch changes from the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/willfetchchanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeWillFetchChanges")]
     pub const WillFetchChanges: Self = Self(6);
     /// The sync engine is about to fetch record zone changes from the server for a specific zone.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/willfetchrecordzonechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeWillFetchRecordZoneChanges")]
     pub const WillFetchRecordZoneChanges: Self = Self(7);
     /// The sync engine finished fetching record zone changes from the server for a specific zone.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/didfetchrecordzonechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeDidFetchRecordZoneChanges")]
     pub const DidFetchRecordZoneChanges: Self = Self(8);
     /// The sync engine finished fetching changes from the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/didfetchchanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeDidFetchChanges")]
     pub const DidFetchChanges: Self = Self(9);
     /// The sync engine is about to send changes to the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/willsendchanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeWillSendChanges")]
     pub const WillSendChanges: Self = Self(10);
     /// The sync engine finished sending changes to the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/didsendchanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeDidSendChanges")]
     pub const DidSendChanges: Self = Self(11);
 }
@@ -317,17 +341,23 @@ impl CKSyncEngineAccountChangeType {
     /// - Keep the local data separate from cloud-synced data (e.g. a separate "local account").
     /// - Delete the local data.
     /// - Prompt the user to make the decision.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangetype/signin?language=objc)
     #[doc(alias = "CKSyncEngineAccountChangeTypeSignIn")]
     pub const SignIn: Self = Self(0);
     /// The user signed out of their account.
     ///
     /// You should delete any locally-stored data for the previous account.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangetype/signout?language=objc)
     #[doc(alias = "CKSyncEngineAccountChangeTypeSignOut")]
     pub const SignOut: Self = Self(1);
     /// The user switched from one account to another.
     /// This might happen if the user signs out and in to a new account while your application is quit.
     ///
     /// You should delete any locally-stored data for the previous account.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangetype/switchaccounts?language=objc)
     #[doc(alias = "CKSyncEngineAccountChangeTypeSwitchAccounts")]
     pub const SwitchAccounts: Self = Self(2);
 }
@@ -1038,14 +1068,20 @@ impl CKSyncEngineFetchedRecordDeletion {
 pub struct CKSyncEngineZoneDeletionReason(pub NSInteger);
 impl CKSyncEngineZoneDeletionReason {
     /// A deletion from your software.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginezonedeletionreason/deleted?language=objc)
     #[doc(alias = "CKSyncEngineZoneDeletionReasonDeleted")]
     pub const Deleted: Self = Self(0);
     /// A deletion from the user via the iCloud storage UI.
     /// This is an indication that the user wanted all data deleted, so local cached data should be wiped and not re-uploaded to the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginezonedeletionreason/purged?language=objc)
     #[doc(alias = "CKSyncEngineZoneDeletionReasonPurged")]
     pub const Purged: Self = Self(1);
     /// The user chose to reset all encrypted data for their account.
     /// This is an indication that the user had to reset encrypted data during account recovery, so local cached data should be re-uploaded to the server to minimize data loss.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginezonedeletionreason/encrypteddatareset?language=objc)
     #[doc(alias = "CKSyncEngineZoneDeletionReasonEncryptedDataReset")]
     pub const EncryptedDataReset: Self = Self(2);
 }

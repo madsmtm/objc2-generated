@@ -175,6 +175,8 @@ impl<T: ?Sized> CFMutableArray<T> {
 
 unsafe impl ConcreteType for CFArray {
     /// Returns the type identifier of all CFArray instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygettypeid()?language=objc)
     #[doc(alias = "CFArrayGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -244,6 +246,8 @@ impl CFArray {
     /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
     /// - `call_backs` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CFArrayCreate")]
     #[inline]
     pub unsafe fn new(
@@ -288,6 +292,8 @@ impl CFArray {
     /// - `allocator` might not allow `None`.
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFArrayCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -354,6 +360,8 @@ impl CFMutableArray {
     /// - `allocator` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - The returned generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycreatemutable(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -407,6 +415,8 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - The returned generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycreatemutablecopy(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -433,6 +443,8 @@ impl CFArray {
     /// CFArray, the behavior is undefined.
     ///
     /// Returns: The number of values in the array.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetcount(_:)?language=objc)
     #[doc(alias = "CFArrayGetCount")]
     #[inline]
     pub fn count(&self) -> CFIndex {
@@ -468,6 +480,8 @@ impl CFArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetcountofvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
@@ -507,6 +521,8 @@ impl CFArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycontainsvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayContainsValue")]
     #[inline]
     pub unsafe fn contains_value(&self, range: CFRange, value: *const c_void) -> bool {
@@ -536,6 +552,8 @@ impl CFArray {
     /// # Safety
     ///
     /// `the_array` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetvalueatindex(_:_:)?language=objc)
     #[doc(alias = "CFArrayGetValueAtIndex")]
     #[inline]
     pub unsafe fn value_at_index(&self, idx: CFIndex) -> *const c_void {
@@ -568,6 +586,8 @@ impl CFArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `values` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetvalues(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayGetValues")]
     #[inline]
     pub unsafe fn values(&self, range: CFRange, values: *mut *const c_void) {
@@ -608,6 +628,8 @@ impl CFArray {
     /// - `the_array` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayapplyfunction(_:_:_:_:)?language=objc)
     #[doc(alias = "CFArrayApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
@@ -655,6 +677,8 @@ impl CFArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetfirstindexofvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayGetFirstIndexOfValue")]
     #[inline]
     pub unsafe fn first_index_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
@@ -696,6 +720,8 @@ impl CFArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetlastindexofvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayGetLastIndexOfValue")]
     #[inline]
     pub unsafe fn last_index_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
@@ -755,6 +781,8 @@ impl CFArray {
     /// - `value` must be a valid pointer.
     /// - `comparator` must be implemented correctly.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraybsearchvalues(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFArrayBSearchValues")]
     #[inline]
     pub unsafe fn b_search_values(
@@ -796,6 +824,8 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayappendvalue(_:_:)?language=objc)
     #[doc(alias = "CFArrayAppendValue")]
     #[inline]
     pub unsafe fn append_value(the_array: Option<&CFMutableArray>, value: *const c_void) {
@@ -829,6 +859,8 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayinsertvalueatindex(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayInsertValueAtIndex")]
     #[inline]
     pub unsafe fn insert_value_at_index(
@@ -870,6 +902,8 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraysetvalueatindex(_:_:_:)?language=objc)
     #[doc(alias = "CFArraySetValueAtIndex")]
     #[inline]
     pub unsafe fn set_value_at_index(
@@ -902,6 +936,8 @@ impl CFMutableArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayremovevalueatindex(_:_:)?language=objc)
     #[doc(alias = "CFArrayRemoveValueAtIndex")]
     #[inline]
     pub unsafe fn remove_value_at_index(the_array: Option<&CFMutableArray>, idx: CFIndex) {
@@ -916,6 +952,8 @@ impl CFMutableArray {
     /// Parameter `theArray`: The array from which all of the values are to be
     /// removed. If this parameter is not a valid mutable CFArray,
     /// the behavior is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayremoveallvalues(_:)?language=objc)
     #[doc(alias = "CFArrayRemoveAllValues")]
     #[inline]
     pub fn remove_all_values(the_array: Option<&CFMutableArray>) {
@@ -963,6 +1001,8 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `new_values` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayreplacevalues(_:_:_:_:)?language=objc)
     #[doc(alias = "CFArrayReplaceValues")]
     #[inline]
     pub unsafe fn replace_values(
@@ -1002,6 +1042,8 @@ impl CFMutableArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayexchangevaluesatindices(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayExchangeValuesAtIndices")]
     #[inline]
     pub unsafe fn exchange_values_at_indices(
@@ -1054,6 +1096,8 @@ impl CFMutableArray {
     /// - `the_array` might not allow `None`.
     /// - `comparator` must be implemented correctly.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraysortvalues(_:_:_:_:)?language=objc)
     #[doc(alias = "CFArraySortValues")]
     #[inline]
     pub unsafe fn sort_values(
@@ -1104,6 +1148,8 @@ impl CFMutableArray {
     /// - `the_array` might not allow `None`.
     /// - `other_array` generic must be of the correct type.
     /// - `other_array` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayappendarray(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayAppendArray")]
     #[inline]
     pub unsafe fn append_array(

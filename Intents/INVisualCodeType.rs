@@ -11,22 +11,29 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INVisualCodeType(pub NSInteger);
 impl INVisualCodeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/unknown?language=objc)
     #[doc(alias = "INVisualCodeTypeUnknown")]
     #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/contact?language=objc)
     #[doc(alias = "INVisualCodeTypeContact")]
     #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const Contact: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/requestpayment?language=objc)
     #[doc(alias = "INVisualCodeTypeRequestPayment")]
     #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const RequestPayment: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/sendpayment?language=objc)
     #[doc(alias = "INVisualCodeTypeSendPayment")]
     #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const SendPayment: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/transit?language=objc)
     #[doc(alias = "INVisualCodeTypeTransit")]
     pub const Transit: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/bus?language=objc)
     #[doc(alias = "INVisualCodeTypeBus")]
     pub const Bus: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/subway?language=objc)
     #[doc(alias = "INVisualCodeTypeSubway")]
     pub const Subway: Self = Self(6);
 }

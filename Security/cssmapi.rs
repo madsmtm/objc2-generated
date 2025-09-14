@@ -5,6 +5,8 @@ use core::ffi::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_init?language=objc)
+    ///
     /// # Safety
     ///
     /// - `version` must be a valid pointer.
@@ -24,12 +26,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_terminate?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_Terminate() -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_moduleload?language=objc)
+    ///
     /// # Safety
     ///
     /// - `module_guid` must be a valid pointer.
@@ -46,6 +51,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_moduleunload?language=objc)
+    ///
     /// # Safety
     ///
     /// - `module_guid` must be a valid pointer.
@@ -61,6 +68,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_introduce?language=objc)
+    ///
     /// # Safety
     ///
     /// `module_id` must be a valid pointer.
@@ -73,6 +82,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_unintroduce?language=objc)
+    ///
     /// # Safety
     ///
     /// `module_id` must be a valid pointer.
@@ -82,6 +93,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_moduleattach?language=objc)
+    ///
     /// # Safety
     ///
     /// - `module_guid` must be a valid pointer.
@@ -108,18 +121,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_moduledetach?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_ModuleDetach(module_handle: CSSM_MODULE_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_setprivilege?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_SetPrivilege(privilege: CSSM_PRIVILEGE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_getprivilege?language=objc)
+    ///
     /// # Safety
     ///
     /// `privilege` must be a valid pointer.
@@ -129,6 +146,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_getmoduleguidfromhandle?language=objc)
+    ///
     /// # Safety
     ///
     /// `module_guid` must be a valid pointer.
@@ -141,6 +160,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_getsubserviceuidfromhandle?language=objc)
+    ///
     /// # Safety
     ///
     /// `subservice_uid` must be a valid pointer.
@@ -153,6 +174,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_listattachedmodulemanagers?language=objc)
+    ///
     /// # Safety
     ///
     /// - `number_of_module_managers` must be a valid pointer.
@@ -166,6 +189,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_getapimemoryfunctions?language=objc)
+    ///
     /// # Safety
     ///
     /// `app_memory_funcs` must be a valid pointer.
@@ -178,6 +203,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_createsignaturecontext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -195,6 +222,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_createsymmetriccontext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -218,6 +247,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_createdigestcontext?language=objc)
+    ///
     /// # Safety
     ///
     /// `new_context_handle` must be a valid pointer.
@@ -231,6 +262,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_createmaccontext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` must be a valid pointer.
@@ -246,6 +279,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_createrandomgencontext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `seed` must be a valid pointer.
@@ -262,6 +297,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_createasymmetriccontext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -280,6 +317,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_createderivekeycontext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -304,6 +343,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_createkeygencontext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `seed` must be a valid pointer.
@@ -328,6 +369,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_createpassthroughcontext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` must be a valid pointer.
@@ -342,6 +385,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_getcontext?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -359,6 +404,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_freecontext?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -373,6 +420,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_setcontext?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -387,12 +436,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_deletecontext?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DeleteContext(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_getcontextattribute?language=objc)
+    ///
     /// # Safety
     ///
     /// - `context` must be a valid pointer.
@@ -412,6 +464,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_updatecontextattributes?language=objc)
+    ///
     /// # Safety
     ///
     /// `context_attributes` must be a valid pointer.
@@ -430,6 +484,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_deletecontextattributes?language=objc)
+    ///
     /// # Safety
     ///
     /// `context_attributes` must be a valid pointer.
@@ -448,6 +504,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_login?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -464,12 +522,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_logout?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_Logout(csp_handle: CSSM_CSP_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_getloginacl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `selection_tag` must be a valid pointer.
@@ -486,6 +547,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_changeloginacl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -500,6 +563,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_getkeyacl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` must be a valid pointer.
@@ -518,6 +583,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_changekeyacl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -534,6 +601,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_getkeyowner?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` must be a valid pointer.
@@ -548,6 +617,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_changekeyowner?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -564,6 +635,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_getloginowner?language=objc)
+    ///
     /// # Safety
     ///
     /// `owner` must be a valid pointer.
@@ -576,6 +649,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_changeloginowner?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -590,6 +665,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_signdata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_bufs` must be a valid pointer.
@@ -606,12 +683,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_signdatainit?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_SignDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_signdataupdate?language=objc)
+    ///
     /// # Safety
     ///
     /// `data_bufs` must be a valid pointer.
@@ -625,6 +705,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_signdatafinal?language=objc)
+    ///
     /// # Safety
     ///
     /// `signature` must be a valid pointer.
@@ -634,6 +716,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_verifydata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_bufs` must be a valid pointer.
@@ -650,12 +734,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_verifydatainit?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_VerifyDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_verifydataupdate?language=objc)
+    ///
     /// # Safety
     ///
     /// `data_bufs` must be a valid pointer.
@@ -669,6 +756,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_verifydatafinal?language=objc)
+    ///
     /// # Safety
     ///
     /// `signature` must be a valid pointer.
@@ -681,6 +770,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_digestdata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_bufs` must be a valid pointer.
@@ -696,12 +787,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_digestdatainit?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DigestDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_digestdataupdate?language=objc)
+    ///
     /// # Safety
     ///
     /// `data_bufs` must be a valid pointer.
@@ -715,6 +809,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_digestdataclone?language=objc)
+    ///
     /// # Safety
     ///
     /// `clonednew_cc_handle` must be a valid pointer.
@@ -727,6 +823,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_digestdatafinal?language=objc)
+    ///
     /// # Safety
     ///
     /// `digest` must be a valid pointer.
@@ -736,6 +834,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_generatemac?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_bufs` must be a valid pointer.
@@ -751,12 +851,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_generatemacinit?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GenerateMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_generatemacupdate?language=objc)
+    ///
     /// # Safety
     ///
     /// `data_bufs` must be a valid pointer.
@@ -770,6 +873,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_generatemacfinal?language=objc)
+    ///
     /// # Safety
     ///
     /// `mac` must be a valid pointer.
@@ -779,6 +884,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_verifymac?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data_bufs` must be a valid pointer.
@@ -794,12 +901,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_verifymacinit?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_VerifyMacInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_verifymacupdate?language=objc)
+    ///
     /// # Safety
     ///
     /// `data_bufs` must be a valid pointer.
@@ -813,6 +923,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_verifymacfinal?language=objc)
+    ///
     /// # Safety
     ///
     /// `mac` must be a valid pointer.
@@ -822,6 +934,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_querysize?language=objc)
+    ///
     /// # Safety
     ///
     /// `data_block_sizes` must be a valid pointer.
@@ -836,6 +950,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encryptdata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `clear_bufs` must be a valid pointer.
@@ -856,6 +972,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encryptdatap?language=objc)
+    ///
     /// # Safety
     ///
     /// - `clear_bufs` must be a valid pointer.
@@ -877,12 +995,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encryptdatainit?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_EncryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encryptdatainitp?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_EncryptDataInitP(
@@ -892,6 +1012,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encryptdataupdate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `clear_bufs` must be a valid pointer.
@@ -910,6 +1032,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encryptdatafinal?language=objc)
+    ///
     /// # Safety
     ///
     /// `rem_data` must be a valid pointer.
@@ -920,6 +1044,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_decryptdata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cipher_bufs` must be a valid pointer.
@@ -940,6 +1066,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_decryptdatap?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cipher_bufs` must be a valid pointer.
@@ -961,12 +1089,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_decryptdatainit?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DecryptDataInit(cc_handle: CSSM_CC_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_decryptdatainitp?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DecryptDataInitP(
@@ -976,6 +1106,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_decryptdataupdate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cipher_bufs` must be a valid pointer.
@@ -994,6 +1126,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_decryptdatafinal?language=objc)
+    ///
     /// # Safety
     ///
     /// `rem_data` must be a valid pointer.
@@ -1004,6 +1138,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_querykeysizeinbits?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` must be a valid pointer.
@@ -1019,6 +1155,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_generatekey?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key_label` must be a valid pointer.
@@ -1037,6 +1175,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_generatekeyp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key_label` must be a valid pointer.
@@ -1056,6 +1196,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_generatekeypair?language=objc)
+    ///
     /// # Safety
     ///
     /// - `public_key_label` must be a valid pointer.
@@ -1080,6 +1222,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_generatekeypairp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `public_key_label` must be a valid pointer.
@@ -1105,6 +1249,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_generaterandom?language=objc)
+    ///
     /// # Safety
     ///
     /// `random_number` must be a valid pointer.
@@ -1117,6 +1263,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_obtainprivatekeyfrompublickey?language=objc)
+    ///
     /// # Safety
     ///
     /// - `public_key` must be a valid pointer.
@@ -1131,6 +1279,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_wrapkey?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -1149,6 +1299,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_unwrapkey?language=objc)
+    ///
     /// # Safety
     ///
     /// - `public_key` must be a valid pointer.
@@ -1173,6 +1325,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_wrapkeyp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -1192,6 +1346,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_unwrapkeyp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `public_key` must be a valid pointer.
@@ -1217,6 +1373,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_derivekey?language=objc)
+    ///
     /// # Safety
     ///
     /// - `param` must be a valid pointer.
@@ -1237,6 +1395,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_freekey?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -1252,6 +1412,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_generatealgorithmparams?language=objc)
+    ///
     /// # Safety
     ///
     /// `param` must be a valid pointer.
@@ -1265,6 +1427,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_getoperationalstatistics?language=objc)
+    ///
     /// # Safety
     ///
     /// `statistics` must be a valid pointer.
@@ -1277,6 +1441,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_gettimevalue?language=objc)
+    ///
     /// # Safety
     ///
     /// `time_data` must be a valid pointer.
@@ -1290,6 +1456,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_retrieveuniqueid?language=objc)
+    ///
     /// # Safety
     ///
     /// `unique_id` must be a valid pointer.
@@ -1302,6 +1470,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_retrievecounter?language=objc)
+    ///
     /// # Safety
     ///
     /// `counter` must be a valid pointer.
@@ -1312,6 +1482,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_verifydevice?language=objc)
+    ///
     /// # Safety
     ///
     /// `device_cert` must be a valid pointer.
@@ -1324,6 +1496,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_passthrough?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_data` must be a valid pointer.
@@ -1339,6 +1513,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_submitcredrequest?language=objc)
+    ///
     /// # Safety
     ///
     /// - `preferred_authority` must be a valid pointer.
@@ -1360,6 +1536,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_retrievecredresult?language=objc)
+    ///
     /// # Safety
     ///
     /// - `reference_identifier` must be a valid pointer.
@@ -1380,6 +1558,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_confirmcredresult?language=objc)
+    ///
     /// # Safety
     ///
     /// - `reference_identifier` must be a valid pointer.
@@ -1398,6 +1578,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_receiveconfirmation?language=objc)
+    ///
     /// # Safety
     ///
     /// - `reference_identifier` must be a valid pointer.
@@ -1414,6 +1596,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaimkey?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_group` must be a valid pointer.
@@ -1431,6 +1615,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaimabort?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertReclaimAbort(
@@ -1440,6 +1625,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_formrequest?language=objc)
+    ///
     /// # Safety
     ///
     /// - `preferred_authority` must be a valid pointer.
@@ -1455,6 +1642,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_formsubmit?language=objc)
+    ///
     /// # Safety
     ///
     /// - `form` must be a valid pointer.
@@ -1474,6 +1663,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certgroupverify?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_group_to_be_verified` must be a valid pointer.
@@ -1492,6 +1683,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certcreatetemplate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_fields` must be a valid pointer.
@@ -1508,6 +1701,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certgetalltemplatefields?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_template` must be a valid pointer.
@@ -1525,6 +1720,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certsign?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_template_to_be_signed` must be a valid pointer.
@@ -1547,6 +1744,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlverify?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl_to_be_verified` must be a valid pointer.
@@ -1567,6 +1766,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlcreatetemplate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl_fields` must be a valid pointer.
@@ -1583,6 +1784,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certrevoke?language=objc)
+    ///
     /// # Safety
     ///
     /// - `old_crl_template` must be a valid pointer.
@@ -1608,6 +1811,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certremovefromcrltemplate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `old_crl_template` must be a valid pointer.
@@ -1632,6 +1837,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlsign?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl_to_be_signed` must be a valid pointer.
@@ -1654,6 +1861,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_applycrltodb?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl_to_be_applied` must be a valid pointer.
@@ -1674,6 +1883,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certgroupconstruct?language=objc)
+    ///
     /// # Safety
     ///
     /// - `db_list` must be a valid pointer.
@@ -1694,6 +1905,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certgroupprune?language=objc)
+    ///
     /// # Safety
     ///
     /// - `db_list` must be a valid pointer.
@@ -1711,6 +1924,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certgrouptotuplegroup?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_group` must be a valid pointer.
@@ -1726,6 +1941,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_tuplegrouptocertgroup?language=objc)
+    ///
     /// # Safety
     ///
     /// - `tuple_group` must be a valid pointer.
@@ -1741,6 +1958,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_passthrough?language=objc)
+    ///
     /// # Safety
     ///
     /// - `db_list` must be a valid pointer.
@@ -1760,6 +1979,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_ac_authcompute?language=objc)
+    ///
     /// # Safety
     ///
     /// - `base_authorizations` must be a valid pointer.
@@ -1783,6 +2004,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_ac_passthrough?language=objc)
+    ///
     /// # Safety
     ///
     /// - `db_list` must be a valid pointer.
@@ -1803,6 +2026,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certcreatetemplate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_fields` must be a valid pointer.
@@ -1818,6 +2043,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certgetalltemplatefields?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_template` must be a valid pointer.
@@ -1834,6 +2061,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certsign?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_template` must be a valid pointer.
@@ -1852,6 +2081,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certverify?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_to_be_verified` must be a valid pointer.
@@ -1870,6 +2101,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certverifywithkey?language=objc)
+    ///
     /// # Safety
     ///
     /// `cert_to_be_verified` must be a valid pointer.
@@ -1883,6 +2116,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certgetfirstfieldvalue?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert` must be a valid pointer.
@@ -1903,6 +2138,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certgetnextfieldvalue?language=objc)
+    ///
     /// # Safety
     ///
     /// `value` must be a valid pointer.
@@ -1916,6 +2153,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certabortquery?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertAbortQuery(
@@ -1925,6 +2163,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certgetkeyinfo?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert` must be a valid pointer.
@@ -1939,6 +2179,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certgetallfields?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert` must be a valid pointer.
@@ -1955,6 +2197,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_freefields?language=objc)
+    ///
     /// # Safety
     ///
     /// `fields` must be a valid pointer.
@@ -1968,6 +2212,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_freefieldvalue?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_or_crl_oid` must be a valid pointer.
@@ -1982,6 +2228,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certcache?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert` must be a valid pointer.
@@ -1996,6 +2244,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certgetfirstcachedfieldvalue?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_field` must be a valid pointer.
@@ -2015,6 +2265,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certgetnextcachedfieldvalue?language=objc)
+    ///
     /// # Safety
     ///
     /// `value` must be a valid pointer.
@@ -2028,6 +2280,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certabortcache?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertAbortCache(
@@ -2037,6 +2290,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certgrouptosignedbundle?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_group_to_bundle` must be a valid pointer.
@@ -2054,6 +2309,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certgroupfromverifiedbundle?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert_bundle` must be a valid pointer.
@@ -2071,6 +2328,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_certdescribeformat?language=objc)
+    ///
     /// # Safety
     ///
     /// - `number_of_fields` must be a valid pointer.
@@ -2085,6 +2344,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlcreatetemplate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl_template` must be a valid pointer.
@@ -2100,6 +2361,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlsetfields?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl_template` must be a valid pointer.
@@ -2117,6 +2380,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crladdcert?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert` must be a valid pointer.
@@ -2137,6 +2402,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlremovecert?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert` must be a valid pointer.
@@ -2153,6 +2420,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlsign?language=objc)
+    ///
     /// # Safety
     ///
     /// - `unsigned_crl` must be a valid pointer.
@@ -2171,6 +2440,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlverify?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl_to_be_verified` must be a valid pointer.
@@ -2189,6 +2460,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlverifywithkey?language=objc)
+    ///
     /// # Safety
     ///
     /// `crl_to_be_verified` must be a valid pointer.
@@ -2202,6 +2475,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_iscertincrl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert` must be a valid pointer.
@@ -2218,6 +2493,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlgetfirstfieldvalue?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl` must be a valid pointer.
@@ -2238,6 +2515,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlgetnextfieldvalue?language=objc)
+    ///
     /// # Safety
     ///
     /// `value` must be a valid pointer.
@@ -2251,6 +2530,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlabortquery?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlAbortQuery(
@@ -2260,6 +2540,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlgetallfields?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl` must be a valid pointer.
@@ -2276,6 +2558,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlcache?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl` must be a valid pointer.
@@ -2290,6 +2574,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_iscertincachedcrl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cert` must be a valid pointer.
@@ -2307,6 +2593,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlgetfirstcachedfieldvalue?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl_record_index` must be a valid pointer.
@@ -2328,6 +2616,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlgetnextcachedfieldvalue?language=objc)
+    ///
     /// # Safety
     ///
     /// `value` must be a valid pointer.
@@ -2341,6 +2631,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlgetallcachedrecordfields?language=objc)
+    ///
     /// # Safety
     ///
     /// - `crl_record_index` must be a valid pointer.
@@ -2358,6 +2650,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crlabortcache?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlAbortCache(cl_handle: CSSM_CL_HANDLE, crl_handle: CSSM_HANDLE)
@@ -2365,6 +2658,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_crldescribeformat?language=objc)
+    ///
     /// # Safety
     ///
     /// - `number_of_fields` must be a valid pointer.
@@ -2379,6 +2674,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_passthrough?language=objc)
+    ///
     /// # Safety
     ///
     /// - `input_params` must be a valid pointer.
@@ -2395,6 +2692,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_dbopen?language=objc)
+    ///
     /// # Safety
     ///
     /// - `db_name` must be a valid pointer.
@@ -2416,12 +2715,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_dbclose?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DbClose(dldb_handle: CSSM_DL_DB_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_dbcreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `db_name` must be a valid pointer.
@@ -2445,6 +2747,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_dbdelete?language=objc)
+    ///
     /// # Safety
     ///
     /// - `db_name` must be a valid pointer.
@@ -2461,6 +2765,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_createrelation?language=objc)
+    ///
     /// # Safety
     ///
     /// - `relation_name` must be a valid pointer.
@@ -2480,6 +2786,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_destroyrelation?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DestroyRelation(
@@ -2489,6 +2796,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_authenticate?language=objc)
+    ///
     /// # Safety
     ///
     /// `access_cred` must be a valid pointer.
@@ -2502,6 +2811,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_getdbacl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `selection_tag` must be a valid pointer.
@@ -2518,6 +2829,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_changedbacl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -2532,6 +2845,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_getdbowner?language=objc)
+    ///
     /// # Safety
     ///
     /// `owner` must be a valid pointer.
@@ -2544,6 +2859,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_changedbowner?language=objc)
+    ///
     /// # Safety
     ///
     /// - `access_cred` must be a valid pointer.
@@ -2558,6 +2875,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_getdbnames?language=objc)
+    ///
     /// # Safety
     ///
     /// `name_list` must be a valid pointer.
@@ -2570,6 +2889,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_getdbnamefromhandle?language=objc)
+    ///
     /// # Safety
     ///
     /// `db_name` must be a valid pointer.
@@ -2582,6 +2903,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_freenamelist?language=objc)
+    ///
     /// # Safety
     ///
     /// `name_list` must be a valid pointer.
@@ -2594,6 +2917,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_datainsert?language=objc)
+    ///
     /// # Safety
     ///
     /// - `attributes` must be a valid pointer.
@@ -2611,6 +2936,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_datadelete?language=objc)
+    ///
     /// # Safety
     ///
     /// `unique_record_identifier` must be a valid pointer.
@@ -2623,6 +2950,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_datamodify?language=objc)
+    ///
     /// # Safety
     ///
     /// - `unique_record_identifier` must be a valid pointer.
@@ -2641,6 +2970,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_datagetfirst?language=objc)
+    ///
     /// # Safety
     ///
     /// - `query` must be a valid pointer.
@@ -2661,6 +2992,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_datagetnext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `attributes` must be a valid pointer.
@@ -2678,6 +3011,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_dataabortquery?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DataAbortQuery(
@@ -2687,6 +3021,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_datagetfromuniquerecordid?language=objc)
+    ///
     /// # Safety
     ///
     /// - `unique_record` must be a valid pointer.
@@ -2703,6 +3039,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_freeuniquerecord?language=objc)
+    ///
     /// # Safety
     ///
     /// `unique_record` must be a valid pointer.
@@ -2715,6 +3053,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_passthrough?language=objc)
+    ///
     /// # Safety
     ///
     /// - `input_params` must be a valid pointer.

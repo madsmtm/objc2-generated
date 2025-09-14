@@ -73,6 +73,8 @@ pub const kIOBluetoothUISuccess: c_int = -1000;
 pub const kIOBluetoothUIUserCanceledErr: c_int = -1001;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothvalidatehardwarewithdescription(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `cancel_button_title` might not allow `None`.
@@ -84,6 +86,7 @@ extern "C-unwind" {
     ) -> IOReturn;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothgetpairingcontroller()?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothGetPairingController(
@@ -95,6 +98,7 @@ pub unsafe extern "C-unwind" fn IOBluetoothGetPairingController(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothgetdeviceselectorcontroller()?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothGetDeviceSelectorController(

@@ -55,6 +55,8 @@ impl cp_texture_topology {
     /// # Safety
     ///
     /// `texture_topology` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/texturetopology/arraylength?language=objc)
     #[doc(alias = "cp_texture_topology_get_array_length")]
     #[inline]
     pub unsafe fn array_length(texture_topology: cp_texture_topology_t) -> u64 {
@@ -83,6 +85,8 @@ impl cp_texture_topology {
     /// # Safety
     ///
     /// `texture_topology` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/texturetopology/texturetype?language=objc)
     #[doc(alias = "cp_texture_topology_get_texture_type")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -168,6 +172,8 @@ pub type cp_layer_renderer_properties_t = CP_OBJECT_cp_layer_renderer_properties
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_create_using_configuration?language=objc)
 #[cfg(all(
     feature = "layer_renderer_configuration",
     feature = "objc2-core-foundation"
@@ -199,6 +205,8 @@ extern "C-unwind" {
     /// topologies, and each topology contains details about one texture you
     /// use for rendering. Fetch the topology details using the
     /// ``cp_layer_renderer_properties_get_texture_topology`` function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_texture_topology_count?language=objc)
     pub fn cp_layer_renderer_properties_get_texture_topology_count(
         layer_properties: &cp_layer_renderer_properties_t,
     ) -> usize;
@@ -220,6 +228,8 @@ extern "C-unwind" {
     /// of that topology, including its type and array length.
     /// Use that information to allocate the resources you need to manage
     /// your content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_texture_topology?language=objc)
     pub fn cp_layer_renderer_properties_get_texture_topology(
         layer_properties: &cp_layer_renderer_properties_t,
         index: usize,
@@ -239,6 +249,8 @@ extern "C-unwind" {
     ///
     /// Should use ``cp_drawable_get_view_count`` when drawing to
     /// determine how many views the specific frame has.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_view_count?language=objc)
     pub fn cp_layer_renderer_properties_get_view_count(
         layer_properties: &cp_layer_renderer_properties_t,
     ) -> usize;
@@ -254,6 +266,8 @@ extern "C-unwind" {
     /// The layer’s configuration determines the total number of available
     /// tracking areas. This will be the max render value available, based on
     /// ``cp_layer_renderer_configuration_get_tracking_areas_format`` function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_tracking_areas_max_value?language=objc)
     #[cfg(feature = "tracking_area")]
     pub fn cp_layer_renderer_properties_get_tracking_areas_max_value(
         properties: &cp_layer_renderer_properties_t,

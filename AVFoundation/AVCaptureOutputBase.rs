@@ -165,12 +165,16 @@ impl AVCaptureOutput {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureOutputDataDroppedReason(pub NSInteger);
 impl AVCaptureOutputDataDroppedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput/datadroppedreason/none?language=objc)
     #[doc(alias = "AVCaptureOutputDataDroppedReasonNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput/datadroppedreason/latedata?language=objc)
     #[doc(alias = "AVCaptureOutputDataDroppedReasonLateData")]
     pub const LateData: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput/datadroppedreason/outofbuffers?language=objc)
     #[doc(alias = "AVCaptureOutputDataDroppedReasonOutOfBuffers")]
     pub const OutOfBuffers: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput/datadroppedreason/discontinuity?language=objc)
     #[doc(alias = "AVCaptureOutputDataDroppedReasonDiscontinuity")]
     pub const Discontinuity: Self = Self(3);
 }

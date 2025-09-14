@@ -27,6 +27,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for CTRubyAnnotation {
     /// Returns the CFType of the ruby annotation object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationgettypeid()?language=objc)
     #[doc(alias = "CTRubyAnnotationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -66,20 +68,28 @@ unsafe impl ConcreteType for CTRubyAnnotation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRubyAlignment(pub u8);
 impl CTRubyAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/invalid?language=objc)
     #[doc(alias = "kCTRubyAlignmentInvalid")]
     pub const Invalid: Self = Self(255);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/auto?language=objc)
     #[doc(alias = "kCTRubyAlignmentAuto")]
     pub const Auto: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/start?language=objc)
     #[doc(alias = "kCTRubyAlignmentStart")]
     pub const Start: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/center?language=objc)
     #[doc(alias = "kCTRubyAlignmentCenter")]
     pub const Center: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/end?language=objc)
     #[doc(alias = "kCTRubyAlignmentEnd")]
     pub const End: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/distributeletter?language=objc)
     #[doc(alias = "kCTRubyAlignmentDistributeLetter")]
     pub const DistributeLetter: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/distributespace?language=objc)
     #[doc(alias = "kCTRubyAlignmentDistributeSpace")]
     pub const DistributeSpace: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/lineedge?language=objc)
     #[doc(alias = "kCTRubyAlignmentLineEdge")]
     pub const LineEdge: Self = Self(6);
 }
@@ -114,14 +124,19 @@ unsafe impl RefEncode for CTRubyAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRubyOverhang(pub u8);
 impl CTRubyOverhang {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang/invalid?language=objc)
     #[doc(alias = "kCTRubyOverhangInvalid")]
     pub const Invalid: Self = Self(255);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang/auto?language=objc)
     #[doc(alias = "kCTRubyOverhangAuto")]
     pub const Auto: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang/start?language=objc)
     #[doc(alias = "kCTRubyOverhangStart")]
     pub const Start: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang/end?language=objc)
     #[doc(alias = "kCTRubyOverhangEnd")]
     pub const End: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang/none?language=objc)
     #[doc(alias = "kCTRubyOverhangNone")]
     pub const None: Self = Self(3);
 }
@@ -156,14 +171,19 @@ unsafe impl RefEncode for CTRubyOverhang {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRubyPosition(pub u8);
 impl CTRubyPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition/before?language=objc)
     #[doc(alias = "kCTRubyPositionBefore")]
     pub const Before: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition/after?language=objc)
     #[doc(alias = "kCTRubyPositionAfter")]
     pub const After: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition/intercharacter?language=objc)
     #[doc(alias = "kCTRubyPositionInterCharacter")]
     pub const InterCharacter: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition/inline?language=objc)
     #[doc(alias = "kCTRubyPositionInline")]
     pub const Inline: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition/count?language=objc)
     #[doc(alias = "kCTRubyPositionCount")]
     pub const Count: Self = Self(4);
 }
@@ -203,6 +223,8 @@ impl CTRubyAnnotation {
     /// # Safety
     ///
     /// `text` array element must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationCreate")]
     #[inline]
     pub unsafe fn new(
@@ -281,6 +303,8 @@ impl CTRubyAnnotation {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationcreatewithattributes(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationCreateWithAttributes")]
     #[inline]
     pub unsafe fn with_attributes(
@@ -317,6 +341,8 @@ impl CTRubyAnnotation {
     /// function will return valid reference to an immutable
     /// CTRubyAnnotation object that is a copy of the one passed into
     /// "rubyAnnotation".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationcreatecopy(_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationCreateCopy")]
     #[inline]
     pub fn copy(&self) -> CFRetained<CTRubyAnnotation> {
@@ -339,6 +365,8 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its alignment. Otherwise it will return kCTRubyAlignmentInvalid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationgetalignment(_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationGetAlignment")]
     #[inline]
     pub fn alignment(&self) -> CTRubyAlignment {
@@ -356,6 +384,8 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its overhang value. Otherwise it will return kCTRubyOverhangInvalid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationgetoverhang(_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationGetOverhang")]
     #[inline]
     pub fn overhang(&self) -> CTRubyOverhang {
@@ -373,6 +403,8 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its sizeFactor. Otherwise it will return 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationgetsizefactor(_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationGetSizeFactor")]
     #[inline]
     pub fn size_factor(&self) -> CGFloat {
@@ -393,6 +425,8 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference and the position are valid, then this
     /// function will return a CFStringRef for the text. Otherwise it will return NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationgettextforposition(_:_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationGetTextForPosition")]
     #[inline]
     pub fn text_for_position(&self, position: CTRubyPosition) -> Option<CFRetained<CFString>> {

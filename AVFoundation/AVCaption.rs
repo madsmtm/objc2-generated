@@ -29,10 +29,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionUnitsType(pub NSInteger);
 impl AVCaptionUnitsType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype/unspecified?language=objc)
     #[doc(alias = "AVCaptionUnitsTypeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype/cells?language=objc)
     #[doc(alias = "AVCaptionUnitsTypeCells")]
     pub const Cells: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype/percent?language=objc)
     #[doc(alias = "AVCaptionUnitsTypePercent")]
     pub const Percent: Self = Self(2);
 }
@@ -132,6 +135,8 @@ unsafe impl RefEncode for AVCaptionSize {
 #[cfg(feature = "objc2-core-foundation")]
 impl AVCaptionDimension {
     /// Makes an AVCaptionDimension from a value and units.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondimensionmake?language=objc)
     #[doc(alias = "AVCaptionDimensionMake")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -149,6 +154,8 @@ impl AVCaptionDimension {
 #[cfg(feature = "objc2-core-foundation")]
 impl AVCaptionPoint {
     /// Makes an AVCaptionPoint from x and y coordinate AVCaptionDimensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionpointmake?language=objc)
     #[doc(alias = "AVCaptionPointMake")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -163,6 +170,8 @@ impl AVCaptionPoint {
 #[cfg(feature = "objc2-core-foundation")]
 impl AVCaptionSize {
     /// Makes an AVCaptionSize from width and height AVCaptionDimensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsizemake?language=objc)
     #[doc(alias = "AVCaptionSizeMake")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -199,10 +208,13 @@ impl AVCaptionSize {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRegionDisplayAlignment(pub NSInteger);
 impl AVCaptionRegionDisplayAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/displayalignment-swift.enum/before?language=objc)
     #[doc(alias = "AVCaptionRegionDisplayAlignmentBefore")]
     pub const Before: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/displayalignment-swift.enum/center?language=objc)
     #[doc(alias = "AVCaptionRegionDisplayAlignmentCenter")]
     pub const Center: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/displayalignment-swift.enum/after?language=objc)
     #[doc(alias = "AVCaptionRegionDisplayAlignmentAfter")]
     pub const After: Self = Self(2);
 }
@@ -223,8 +235,10 @@ unsafe impl RefEncode for AVCaptionRegionDisplayAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRegionWritingMode(pub NSInteger);
 impl AVCaptionRegionWritingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/writingmode-swift.enum/lefttorightandtoptobottom?language=objc)
     #[doc(alias = "AVCaptionRegionWritingModeLeftToRightAndTopToBottom")]
     pub const LeftToRightAndTopToBottom: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/writingmode-swift.enum/toptobottomandrighttoleft?language=objc)
     #[doc(alias = "AVCaptionRegionWritingModeTopToBottomAndRightToLeft")]
     pub const TopToBottomAndRightToLeft: Self = Self(2);
 }
@@ -245,8 +259,10 @@ unsafe impl RefEncode for AVCaptionRegionWritingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRegionScroll(pub NSInteger);
 impl AVCaptionRegionScroll {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/scroll-swift.enum/none?language=objc)
     #[doc(alias = "AVCaptionRegionScrollNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/scroll-swift.enum/rollup?language=objc)
     #[doc(alias = "AVCaptionRegionScrollRollUp")]
     pub const RollUp: Self = Self(1);
 }
@@ -559,8 +575,10 @@ impl AVMutableCaptionRegion {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionAnimation(pub NSInteger);
 impl AVCaptionAnimation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.enum/none?language=objc)
     #[doc(alias = "AVCaptionAnimationNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.enum/characterreveal?language=objc)
     #[doc(alias = "AVCaptionAnimationCharacterReveal")]
     pub const CharacterReveal: Self = Self(1);
 }
@@ -786,10 +804,13 @@ impl AVMutableCaption {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionFontWeight(pub NSInteger);
 impl AVCaptionFontWeight {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontweight/unknown?language=objc)
     #[doc(alias = "AVCaptionFontWeightUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontweight/normal?language=objc)
     #[doc(alias = "AVCaptionFontWeightNormal")]
     pub const Normal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontweight/bold?language=objc)
     #[doc(alias = "AVCaptionFontWeightBold")]
     pub const Bold: Self = Self(2);
 }
@@ -810,10 +831,13 @@ unsafe impl RefEncode for AVCaptionFontWeight {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionFontStyle(pub NSInteger);
 impl AVCaptionFontStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontstyle/unknown?language=objc)
     #[doc(alias = "AVCaptionFontStyleUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontstyle/normal?language=objc)
     #[doc(alias = "AVCaptionFontStyleNormal")]
     pub const Normal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontstyle/italic?language=objc)
     #[doc(alias = "AVCaptionFontStyleItalic")]
     pub const Italic: Self = Self(2);
 }
@@ -835,12 +859,16 @@ unsafe impl RefEncode for AVCaptionFontStyle {
 pub struct AVCaptionDecoration(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCaptionDecoration: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondecoration/avcaptiondecorationnone?language=objc)
         #[doc(alias = "AVCaptionDecorationNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/decoration/underline?language=objc)
         #[doc(alias = "AVCaptionDecorationUnderline")]
         const Underline = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/decoration/linethrough?language=objc)
         #[doc(alias = "AVCaptionDecorationLineThrough")]
         const LineThrough = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/decoration/overline?language=objc)
         #[doc(alias = "AVCaptionDecorationOverline")]
         const Overline = 1<<2;
     }
@@ -885,16 +913,22 @@ unsafe impl RefEncode for AVCaptionDecoration {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionTextCombine(pub NSInteger);
 impl AVCaptionTextCombine {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/all?language=objc)
     #[doc(alias = "AVCaptionTextCombineAll")]
     pub const All: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/none?language=objc)
     #[doc(alias = "AVCaptionTextCombineNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/onedigit?language=objc)
     #[doc(alias = "AVCaptionTextCombineOneDigit")]
     pub const OneDigit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/twodigits?language=objc)
     #[doc(alias = "AVCaptionTextCombineTwoDigits")]
     pub const TwoDigits: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/threedigits?language=objc)
     #[doc(alias = "AVCaptionTextCombineThreeDigits")]
     pub const ThreeDigits: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/fourdigits?language=objc)
     #[doc(alias = "AVCaptionTextCombineFourDigits")]
     pub const FourDigits: Self = Self(4);
 }
@@ -925,14 +959,19 @@ unsafe impl RefEncode for AVCaptionTextCombine {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionTextAlignment(pub NSInteger);
 impl AVCaptionTextAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum/start?language=objc)
     #[doc(alias = "AVCaptionTextAlignmentStart")]
     pub const Start: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum/end?language=objc)
     #[doc(alias = "AVCaptionTextAlignmentEnd")]
     pub const End: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum/center?language=objc)
     #[doc(alias = "AVCaptionTextAlignmentCenter")]
     pub const Center: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum/left?language=objc)
     #[doc(alias = "AVCaptionTextAlignmentLeft")]
     pub const Left: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum/right?language=objc)
     #[doc(alias = "AVCaptionTextAlignmentRight")]
     pub const Right: Self = Self(4);
 }
@@ -1292,8 +1331,10 @@ impl AVMutableCaption {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRubyPosition(pub NSInteger);
 impl AVCaptionRubyPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyposition/before?language=objc)
     #[doc(alias = "AVCaptionRubyPositionBefore")]
     pub const Before: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyposition/after?language=objc)
     #[doc(alias = "AVCaptionRubyPositionAfter")]
     pub const After: Self = Self(1);
 }
@@ -1338,12 +1379,16 @@ unsafe impl RefEncode for AVCaptionRubyPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRubyAlignment(pub NSInteger);
 impl AVCaptionRubyAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment/start?language=objc)
     #[doc(alias = "AVCaptionRubyAlignmentStart")]
     pub const Start: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment/center?language=objc)
     #[doc(alias = "AVCaptionRubyAlignmentCenter")]
     pub const Center: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment/distributespacebetween?language=objc)
     #[doc(alias = "AVCaptionRubyAlignmentDistributeSpaceBetween")]
     pub const DistributeSpaceBetween: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment/distributespacearound?language=objc)
     #[doc(alias = "AVCaptionRubyAlignmentDistributeSpaceAround")]
     pub const DistributeSpaceAround: Self = Self(3);
 }

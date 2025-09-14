@@ -14,27 +14,35 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVViewElementStyleType(pub NSInteger);
 impl TVViewElementStyleType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/integer?language=objc)
     #[doc(alias = "TVViewElementStyleTypeInteger")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Integer: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/double?language=objc)
     #[doc(alias = "TVViewElementStyleTypeDouble")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Double: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/point?language=objc)
     #[doc(alias = "TVViewElementStyleTypePoint")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Point: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/string?language=objc)
     #[doc(alias = "TVViewElementStyleTypeString")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const String: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/color?language=objc)
     #[doc(alias = "TVViewElementStyleTypeColor")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Color: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/url?language=objc)
     #[doc(alias = "TVViewElementStyleTypeURL")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const URL: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/transform?language=objc)
     #[doc(alias = "TVViewElementStyleTypeTransform")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Transform: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/edgeinsets?language=objc)
     #[doc(alias = "TVViewElementStyleTypeEdgeInsets")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const EdgeInsets: Self = Self(8);

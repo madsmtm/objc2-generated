@@ -17,16 +17,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WatchKitErrorCode(pub NSInteger);
 impl WatchKitErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/unknown?language=objc)
     #[doc(alias = "WatchKitUnknownError")]
     pub const UnknownError: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/applicationdelegatewatchkitrequestreplynotcalled?language=objc)
     #[doc(alias = "WatchKitApplicationDelegateWatchKitRequestReplyNotCalledError")]
     pub const ApplicationDelegateWatchKitRequestReplyNotCalledError: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/invalidargument?language=objc)
     #[doc(alias = "WatchKitInvalidArgumentError")]
     pub const InvalidArgumentError: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/mediaplayerfailed?language=objc)
     #[doc(alias = "WatchKitMediaPlayerError")]
     pub const MediaPlayerError: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/downloadfailed?language=objc)
     #[doc(alias = "WatchKitDownloadError")]
     pub const DownloadError: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/recordingfailed?language=objc)
     #[doc(alias = "WatchKitRecordingFailedError")]
     pub const RecordingFailedError: Self = Self(6);
 }

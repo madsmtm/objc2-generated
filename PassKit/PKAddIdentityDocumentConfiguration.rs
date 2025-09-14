@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddIdentityDocumentType(pub NSInteger);
 impl PKAddIdentityDocumentType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumenttype/idcard?language=objc)
     #[doc(alias = "PKAddIdentityDocumentTypeIDCard")]
     pub const IDCard: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumenttype/mdl?language=objc)
     #[doc(alias = "PKAddIdentityDocumentTypeMDL")]
     pub const MDL: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumenttype/photoid?language=objc)
     #[doc(alias = "PKAddIdentityDocumentTypePhotoID")]
     pub const PhotoID: Self = Self(2);
 }

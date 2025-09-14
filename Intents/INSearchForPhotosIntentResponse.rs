@@ -14,21 +14,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForPhotosIntentResponseCode(pub NSInteger);
 impl INSearchForPhotosIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSearchForPhotosIntentResponseCodeUnspecified")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/ready?language=objc)
     #[doc(alias = "INSearchForPhotosIntentResponseCodeReady")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INSearchForPhotosIntentResponseCodeContinueInApp")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/failure?language=objc)
     #[doc(alias = "INSearchForPhotosIntentResponseCodeFailure")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSearchForPhotosIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/failureappconfigurationrequired?language=objc)
     #[doc(alias = "INSearchForPhotosIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(5);

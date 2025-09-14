@@ -29,9 +29,12 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDDeviceProtocol(pub NSInteger);
 impl DDDeviceProtocol {
+    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/protocol-swift.enum/invalid?language=objc)
     #[doc(alias = "DDDeviceProtocolInvalid")]
     pub const Invalid: Self = Self(0);
     /// Invalid protocol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/protocol-swift.enum/dial?language=objc)
     #[doc(alias = "DDDeviceProtocolDIAL")]
     pub const DIAL: Self = Self(1);
 }
@@ -46,6 +49,8 @@ unsafe impl RefEncode for DDDeviceProtocol {
 
 impl DDDeviceProtocol {
     /// Converts a device protocol type to a string for logging, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceprotocoltostring(_:)?language=objc)
     #[doc(alias = "DDDeviceProtocolToString")]
     #[inline]
     pub unsafe fn to_string(self) -> Retained<NSString> {
@@ -66,24 +71,37 @@ impl DDDeviceProtocol {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDDeviceCategory(pub NSInteger);
 impl DDDeviceCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/category-swift.enum/hifispeaker?language=objc)
     #[doc(alias = "DDDeviceCategoryHiFiSpeaker")]
     pub const HiFiSpeaker: Self = Self(0);
     /// Hi-Fi speaker.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/category-swift.enum/hifispeakermultiple?language=objc)
     #[doc(alias = "DDDeviceCategoryHiFiSpeakerMultiple")]
     pub const HiFiSpeakerMultiple: Self = Self(1);
     /// Multiple Hi-Fi speakers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/category-swift.enum/tvwithmediabox?language=objc)
     #[doc(alias = "DDDeviceCategoryTVWithMediaBox")]
     pub const TVWithMediaBox: Self = Self(2);
     /// TV with MediaBox.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/category-swift.enum/tv?language=objc)
     #[doc(alias = "DDDeviceCategoryTV")]
     pub const TV: Self = Self(3);
     /// TV.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/category-swift.enum/laptopcomputer?language=objc)
     #[doc(alias = "DDDeviceCategoryLaptopComputer")]
     pub const LaptopComputer: Self = Self(4);
     /// Laptop computer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/category-swift.enum/desktopcomputer?language=objc)
     #[doc(alias = "DDDeviceCategoryDesktopComputer")]
     pub const DesktopComputer: Self = Self(5);
     /// Desktop computer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/category-swift.enum/accessorysetup?language=objc)
     #[doc(alias = "DDDeviceCategoryAccessorySetup")]
     pub const AccessorySetup: Self = Self(6);
 }
@@ -98,6 +116,8 @@ unsafe impl RefEncode for DDDeviceCategory {
 
 impl DDDeviceCategory {
     /// Converts a device category to a string for logging, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicecategorytostring(_:)?language=objc)
     #[doc(alias = "DDDeviceCategoryToString")]
     #[inline]
     pub unsafe fn to_string(self) -> Retained<NSString> {
@@ -118,18 +138,27 @@ impl DDDeviceCategory {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDDeviceState(pub NSInteger);
 impl DDDeviceState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicestate/invalid?language=objc)
     #[doc(alias = "DDDeviceStateInvalid")]
     pub const Invalid: Self = Self(0);
     /// Invalid/unapproved state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicestate/activating?language=objc)
     #[doc(alias = "DDDeviceStateActivating")]
     pub const Activating: Self = Self(10);
     /// Selected by the user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicestate/activated?language=objc)
     #[doc(alias = "DDDeviceStateActivated")]
     pub const Activated: Self = Self(20);
     /// Authorized and connected.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicestate/authorized?language=objc)
     #[doc(alias = "DDDeviceStateAuthorized")]
     pub const Authorized: Self = Self(25);
     /// Authorized by the user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicestate/invalidating?language=objc)
     #[doc(alias = "DDDeviceStateInvalidating")]
     pub const Invalidating: Self = Self(30);
 }
@@ -144,6 +173,8 @@ unsafe impl RefEncode for DDDeviceState {
 
 impl DDDeviceState {
     /// Converts a device state to a string for logging, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicestatetostring(_:)?language=objc)
     #[doc(alias = "DDDeviceStateToString")]
     #[inline]
     pub unsafe fn to_string(self) -> Retained<NSString> {
@@ -164,12 +195,17 @@ impl DDDeviceState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDDeviceMediaPlaybackState(pub NSInteger);
 impl DDDeviceMediaPlaybackState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/mediaplaybackstate-swift.enum/nocontent?language=objc)
     #[doc(alias = "DDDeviceMediaPlaybackStateNoContent")]
     pub const NoContent: Self = Self(0);
     /// Not playing any media content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/mediaplaybackstate-swift.enum/paused?language=objc)
     #[doc(alias = "DDDeviceMediaPlaybackStatePaused")]
     pub const Paused: Self = Self(1);
     /// Media content playback is paused.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/mediaplaybackstate-swift.enum/playing?language=objc)
     #[doc(alias = "DDDeviceMediaPlaybackStatePlaying")]
     pub const Playing: Self = Self(2);
 }
@@ -191,12 +227,17 @@ unsafe impl RefEncode for DDDeviceMediaPlaybackState {
 pub struct DDDeviceSupports(pub NSUInteger);
 bitflags::bitflags! {
     impl DDDeviceSupports: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicesupports/bluetoothpairingle?language=objc)
         #[doc(alias = "DDDeviceSupportsBluetoothPairingLE")]
         const BluetoothPairingLE = 1<<1;
 /// Device supports Bluetooth Low Energy pairing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicesupports/bluetoothtransportbridging?language=objc)
         #[doc(alias = "DDDeviceSupportsBluetoothTransportBridging")]
         const BluetoothTransportBridging = 1<<2;
 /// Device supports bring up of classic transport profiles when low energy transport for peripheral is connected.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicesupports/bluetoothhid?language=objc)
         #[doc(alias = "DDDeviceSupportsBluetoothHID")]
         const BluetoothHID = 1<<3;
     }
@@ -218,8 +259,10 @@ unsafe impl RefEncode for DDDeviceSupports {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DDDeviceWiFiAwareServiceRole(pub NSInteger);
 impl DDDeviceWiFiAwareServiceRole {
+    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/wifiawareservicerole-swift.enum/subscriber?language=objc)
     #[doc(alias = "DDDeviceWiFiAwareServiceRoleSubscriber")]
     pub const Subscriber: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/wifiawareservicerole-swift.enum/publisher?language=objc)
     #[doc(alias = "DDDeviceWiFiAwareServiceRolePublisher")]
     pub const Publisher: Self = Self(20);
 }
@@ -234,6 +277,8 @@ unsafe impl RefEncode for DDDeviceWiFiAwareServiceRole {
 
 impl DDDeviceMediaPlaybackState {
     /// Converts a device media playback state to a string for logging, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicemediaplaybackstatetostring(_:)?language=objc)
     #[doc(alias = "DDDeviceMediaPlaybackStateToString")]
     #[inline]
     pub unsafe fn to_string(self) -> Retained<NSString> {

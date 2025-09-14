@@ -18,12 +18,16 @@ use crate::*;
 pub struct QLThumbnailGenerationRequestRepresentationTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl QLThumbnailGenerationRequestRepresentationTypes: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/icon?language=objc)
         #[doc(alias = "QLThumbnailGenerationRequestRepresentationTypeIcon")]
         const Icon = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/lowqualitythumbnail?language=objc)
         #[doc(alias = "QLThumbnailGenerationRequestRepresentationTypeLowQualityThumbnail")]
         const LowQualityThumbnail = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/thumbnail?language=objc)
         #[doc(alias = "QLThumbnailGenerationRequestRepresentationTypeThumbnail")]
         const Thumbnail = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/all?language=objc)
         #[doc(alias = "QLThumbnailGenerationRequestRepresentationTypeAll")]
         const All = NSUIntegerMax as _;
     }

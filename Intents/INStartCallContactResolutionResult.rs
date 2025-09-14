@@ -12,21 +12,29 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INStartCallContactUnsupportedReason(pub NSInteger);
 impl INStartCallContactUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/nocontactfound?language=objc)
     #[doc(alias = "INStartCallContactUnsupportedReasonNoContactFound")]
     pub const NoContactFound: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/multiplecontactsunsupported?language=objc)
     #[doc(alias = "INStartCallContactUnsupportedReasonMultipleContactsUnsupported")]
     pub const MultipleContactsUnsupported: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/nohandleforlabel?language=objc)
     #[doc(alias = "INStartCallContactUnsupportedReasonNoHandleForLabel")]
     pub const NoHandleForLabel: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/invalidhandle?language=objc)
     #[doc(alias = "INStartCallContactUnsupportedReasonInvalidHandle")]
     pub const InvalidHandle: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/unsupportedmmiussd?language=objc)
     #[doc(alias = "INStartCallContactUnsupportedReasonUnsupportedMmiUssd")]
     pub const UnsupportedMmiUssd: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/nocallhistoryforredial?language=objc)
     #[doc(alias = "INStartCallContactUnsupportedReasonNoCallHistoryForRedial")]
     #[deprecated]
     pub const NoCallHistoryForRedial: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/nousablehandleforredial?language=objc)
     #[doc(alias = "INStartCallContactUnsupportedReasonNoUsableHandleForRedial")]
     pub const NoUsableHandleForRedial: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/requiringinappauthentication?language=objc)
     #[doc(alias = "INStartCallContactUnsupportedReasonRequiringInAppAuthentication")]
     pub const RequiringInAppAuthentication: Self = Self(8);
 }

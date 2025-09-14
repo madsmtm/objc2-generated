@@ -28,6 +28,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFCalendar {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargettypeid()?language=objc)
     #[doc(alias = "CFCalendarGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -39,6 +40,7 @@ unsafe impl ConcreteType for CFCalendar {
 }
 
 impl CFCalendar {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarcopycurrent()?language=objc)
     #[doc(alias = "CFCalendarCopyCurrent")]
     #[inline]
     pub fn current() -> Option<CFRetained<CFCalendar>> {
@@ -50,6 +52,8 @@ impl CFCalendar {
     }
 
     /// Creates a calendar.  The identifiers are the `kCF*Calendar` constants in CFLocale.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarcreatewithidentifier(_:_:)?language=objc)
     #[doc(alias = "CFCalendarCreateWithIdentifier")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -68,6 +72,8 @@ impl CFCalendar {
     }
 
     /// Returns the calendar's identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetidentifier(_:)?language=objc)
     #[doc(alias = "CFCalendarGetIdentifier")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -81,6 +87,7 @@ impl CFCalendar {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarcopylocale(_:)?language=objc)
     #[doc(alias = "CFCalendarCopyLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -92,6 +99,8 @@ impl CFCalendar {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarsetlocale(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `locale` might not allow `None`.
@@ -105,6 +114,7 @@ impl CFCalendar {
         unsafe { CFCalendarSetLocale(self, locale) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarcopytimezone(_:)?language=objc)
     #[doc(alias = "CFCalendarCopyTimeZone")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -116,6 +126,7 @@ impl CFCalendar {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarsettimezone(_:_:)?language=objc)
     #[doc(alias = "CFCalendarSetTimeZone")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -126,6 +137,7 @@ impl CFCalendar {
         unsafe { CFCalendarSetTimeZone(self, tz) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetfirstweekday(_:)?language=objc)
     #[doc(alias = "CFCalendarGetFirstWeekday")]
     #[inline]
     pub fn first_weekday(&self) -> CFIndex {
@@ -135,6 +147,7 @@ impl CFCalendar {
         unsafe { CFCalendarGetFirstWeekday(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarsetfirstweekday(_:_:)?language=objc)
     #[doc(alias = "CFCalendarSetFirstWeekday")]
     #[inline]
     pub fn set_first_weekday(&self, wkdy: CFIndex) {
@@ -144,6 +157,7 @@ impl CFCalendar {
         unsafe { CFCalendarSetFirstWeekday(self, wkdy) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetminimumdaysinfirstweek(_:)?language=objc)
     #[doc(alias = "CFCalendarGetMinimumDaysInFirstWeek")]
     #[inline]
     pub fn minimum_days_in_first_week(&self) -> CFIndex {
@@ -153,6 +167,7 @@ impl CFCalendar {
         unsafe { CFCalendarGetMinimumDaysInFirstWeek(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarsetminimumdaysinfirstweek(_:_:)?language=objc)
     #[doc(alias = "CFCalendarSetMinimumDaysInFirstWeek")]
     #[inline]
     pub fn set_minimum_days_in_first_week(&self, mwd: CFIndex) {
@@ -170,35 +185,50 @@ impl CFCalendar {
 pub struct CFCalendarUnit(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFCalendarUnit: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/era?language=objc)
         #[doc(alias = "kCFCalendarUnitEra")]
         const Era = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/year?language=objc)
         #[doc(alias = "kCFCalendarUnitYear")]
         const Year = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/month?language=objc)
         #[doc(alias = "kCFCalendarUnitMonth")]
         const Month = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/day?language=objc)
         #[doc(alias = "kCFCalendarUnitDay")]
         const Day = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/hour?language=objc)
         #[doc(alias = "kCFCalendarUnitHour")]
         const Hour = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/minute?language=objc)
         #[doc(alias = "kCFCalendarUnitMinute")]
         const Minute = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/second?language=objc)
         #[doc(alias = "kCFCalendarUnitSecond")]
         const Second = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/week?language=objc)
         #[doc(alias = "kCFCalendarUnitWeek")]
 #[deprecated = "Use kCFCalendarUnitWeekOfYear or kCFCalendarUnitWeekOfMonth instead"]
         const Week = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/weekday?language=objc)
         #[doc(alias = "kCFCalendarUnitWeekday")]
         const Weekday = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/weekdayordinal?language=objc)
         #[doc(alias = "kCFCalendarUnitWeekdayOrdinal")]
         const WeekdayOrdinal = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/quarter?language=objc)
         #[doc(alias = "kCFCalendarUnitQuarter")]
         const Quarter = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/weekofmonth?language=objc)
         #[doc(alias = "kCFCalendarUnitWeekOfMonth")]
         const WeekOfMonth = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/weekofyear?language=objc)
         #[doc(alias = "kCFCalendarUnitWeekOfYear")]
         const WeekOfYear = 1<<13;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/yearforweekofyear?language=objc)
         #[doc(alias = "kCFCalendarUnitYearForWeekOfYear")]
         const YearForWeekOfYear = 1<<14;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/dayofyear?language=objc)
         #[doc(alias = "kCFCalendarUnitDayOfYear")]
         const DayOfYear = 1<<16;
     }
@@ -215,6 +245,7 @@ unsafe impl RefEncode for CFCalendarUnit {
 }
 
 impl CFCalendar {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetminimumrangeofunit(_:_:)?language=objc)
     #[doc(alias = "CFCalendarGetMinimumRangeOfUnit")]
     #[inline]
     pub fn minimum_range_of_unit(&self, unit: CFCalendarUnit) -> CFRange {
@@ -227,6 +258,7 @@ impl CFCalendar {
         unsafe { CFCalendarGetMinimumRangeOfUnit(self, unit) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetmaximumrangeofunit(_:_:)?language=objc)
     #[doc(alias = "CFCalendarGetMaximumRangeOfUnit")]
     #[inline]
     pub fn maximum_range_of_unit(&self, unit: CFCalendarUnit) -> CFRange {
@@ -239,6 +271,7 @@ impl CFCalendar {
         unsafe { CFCalendarGetMaximumRangeOfUnit(self, unit) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetrangeofunit(_:_:_:_:)?language=objc)
     #[doc(alias = "CFCalendarGetRangeOfUnit")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -259,6 +292,7 @@ impl CFCalendar {
         unsafe { CFCalendarGetRangeOfUnit(self, smaller_unit, bigger_unit, at) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetordinalityofunit(_:_:_:_:)?language=objc)
     #[doc(alias = "CFCalendarGetOrdinalityOfUnit")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -279,6 +313,8 @@ impl CFCalendar {
         unsafe { CFCalendarGetOrdinalityOfUnit(self, smaller_unit, bigger_unit, at) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargettimerangeofunit(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `startp` must be a valid pointer.

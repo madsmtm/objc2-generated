@@ -12,16 +12,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDLTransformOpRotationOrder(pub NSUInteger);
 impl MDLTransformOpRotationOrder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/xyz?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderXYZ")]
     pub const XYZ: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/xzy?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderXZY")]
     pub const XZY: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/yxz?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderYXZ")]
     pub const YXZ: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/yzx?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderYZX")]
     pub const YZX: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/zxy?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderZXY")]
     pub const ZXY: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/zyx?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderZYX")]
     pub const ZYX: Self = Self(6);
 }

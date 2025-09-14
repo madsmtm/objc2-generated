@@ -14,63 +14,95 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceuidkey?language=objc)
 pub const kAudioEndPointDeviceUIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicenamekey?language=objc)
 pub const kAudioEndPointDeviceNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceendpointlistkey?language=objc)
 pub const kAudioEndPointDeviceEndPointListKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"endpoints\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicemainendpointkey?language=objc)
 pub const kAudioEndPointDeviceMainEndPointKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"main\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicemasterendpointkey?language=objc)
 pub const kAudioEndPointDeviceMasterEndPointKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceisprivatekey?language=objc)
 pub const kAudioEndPointDeviceIsPrivateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"private\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointuidkey?language=objc)
 pub const kAudioEndPointUIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointnamekey?language=objc)
 pub const kAudioEndPointNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointinputchannelskey?language=objc)
 pub const kAudioEndPointInputChannelsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-in\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointoutputchannelskey?language=objc)
 pub const kAudioEndPointOutputChannelsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-out\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceuidkey?language=objc)
 pub const kAudioAggregateDeviceUIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicenamekey?language=objc)
 pub const kAudioAggregateDeviceNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicesubdevicelistkey?language=objc)
 pub const kAudioAggregateDeviceSubDeviceListKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"subdevices\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicemainsubdevicekey?language=objc)
 pub const kAudioAggregateDeviceMainSubDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceclockdevicekey?language=objc)
 pub const kAudioAggregateDeviceClockDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"clock\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceisprivatekey?language=objc)
 pub const kAudioAggregateDeviceIsPrivateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"private\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceisstackedkey?language=objc)
 pub const kAudioAggregateDeviceIsStackedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"stacked\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicetaplistkey?language=objc)
 pub const kAudioAggregateDeviceTapListKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"taps\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicetapautostartkey?language=objc)
 pub const kAudioAggregateDeviceTapAutoStartKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"tapautostart\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceuidkey?language=objc)
 pub const kAudioSubDeviceUIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicenamekey?language=objc)
 pub const kAudioSubDeviceNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceinputchannelskey?language=objc)
 pub const kAudioSubDeviceInputChannelsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-in\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceoutputchannelskey?language=objc)
 pub const kAudioSubDeviceOutputChannelsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-out\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceextrainputlatencykey?language=objc)
 pub const kAudioSubDeviceExtraInputLatencyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-in\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceextraoutputlatencykey?language=objc)
 pub const kAudioSubDeviceExtraOutputLatencyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-out\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationkey?language=objc)
 pub const kAudioSubDeviceDriftCompensationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"drift\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationqualitykey?language=objc)
 pub const kAudioSubDeviceDriftCompensationQualityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"drift quality\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapuidkey?language=objc)
 pub const kAudioSubTapUIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapextrainputlatencykey?language=objc)
 pub const kAudioSubTapExtraInputLatencyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-in\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapextraoutputlatencykey?language=objc)
 pub const kAudioSubTapExtraOutputLatencyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-out\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapdriftcompensationkey?language=objc)
 pub const kAudioSubTapDriftCompensationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"drift\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapdriftcompensationqualitykey?language=objc)
 pub const kAudioSubTapDriftCompensationQualityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"drift quality\0") };
 /// A UInt32 that provides a handle on a specific AudioObject.
@@ -665,6 +697,8 @@ extern "C-unwind" {
     /// Prints to standard out a textural description of the AudioObject.
     ///
     /// Parameter `inObjectID`: The AudioObject to show.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectshow(_:)?language=objc)
     pub fn AudioObjectShow(in_object_id: AudioObjectID);
 }
 
@@ -679,6 +713,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `in_address` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjecthasproperty(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioObjectHasProperty(
     in_object_id: AudioObjectID,
@@ -710,6 +746,8 @@ extern "C-unwind" {
     ///
     /// - `in_address` must be a valid pointer.
     /// - `out_is_settable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectispropertysettable(_:_:_:)?language=objc)
     pub fn AudioObjectIsPropertySettable(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -741,6 +779,8 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_qualifier_data` must be a valid pointer or null.
     /// - `out_data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectgetpropertydatasize(_:_:_:_:_:)?language=objc)
     pub fn AudioObjectGetPropertyDataSize(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -780,6 +820,8 @@ extern "C-unwind" {
     /// - `in_qualifier_data` must be a valid pointer or null.
     /// - `io_data_size` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectgetpropertydata(_:_:_:_:_:_:)?language=objc)
     pub fn AudioObjectGetPropertyData(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -821,6 +863,8 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_qualifier_data` must be a valid pointer or null.
     /// - `in_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectsetpropertydata(_:_:_:_:_:_:)?language=objc)
     pub fn AudioObjectSetPropertyData(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -851,6 +895,8 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectaddpropertylistener(_:_:_:_:)?language=objc)
     pub fn AudioObjectAddPropertyListener(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -879,6 +925,8 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectremovepropertylistener(_:_:_:_:)?language=objc)
     pub fn AudioObjectRemovePropertyListener(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -915,6 +963,8 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_listener` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectaddpropertylistenerblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn AudioObjectAddPropertyListenerBlock(
         in_object_id: AudioObjectID,
@@ -944,6 +994,8 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_listener` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectremovepropertylistenerblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn AudioObjectRemovePropertyListenerBlock(
         in_object_id: AudioObjectID,
@@ -978,8 +1030,10 @@ pub const kAudioSystemObjectClassID: AudioClassID = 0x61737973;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioHardwarePowerHint(pub u32);
 impl AudioHardwarePowerHint {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarepowerhint/none?language=objc)
     #[doc(alias = "kAudioHardwarePowerHintNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarepowerhint/favorsavingpower?language=objc)
     #[doc(alias = "kAudioHardwarePowerHintFavorSavingPower")]
     pub const FavorSavingPower: Self = Self(1);
 }
@@ -1062,6 +1116,8 @@ extern "C-unwind" {
     /// routine essentially returns the HAL to its uninitialized state.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareunload()?language=objc)
     pub fn AudioHardwareUnload() -> OSStatus;
 }
 
@@ -1080,6 +1136,8 @@ extern "C-unwind" {
     /// - `in_description` generic must be of the correct type.
     /// - `in_description` generic must be of the correct type.
     /// - `out_device_id` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarecreateaggregatedevice(_:_:)?language=objc)
     pub fn AudioHardwareCreateAggregateDevice(
         in_description: &CFDictionary,
         out_device_id: NonNull<AudioObjectID>,
@@ -1095,6 +1153,8 @@ extern "C-unwind" {
     /// Parameter `inDeviceID`: The AudioObjectID of the AudioAggregateDevice to destroy.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwaredestroyaggregatedevice(_:)?language=objc)
     pub fn AudioHardwareDestroyAggregateDevice(in_device_id: AudioObjectID) -> OSStatus;
 }
 
@@ -1430,6 +1490,8 @@ extern "C-unwind" {
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
     /// - `out_io_proc_id` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicecreateioprocid(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceCreateIOProcID(
         in_device: AudioObjectID,
@@ -1462,6 +1524,8 @@ extern "C-unwind" {
     /// - `out_io_proc_id` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_io_block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicecreateioprocidwithblock(_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -1490,6 +1554,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_io_proc_id` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicedestroyioprocid(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceDestroyIOProcID(
         in_device: AudioObjectID,
@@ -1513,6 +1579,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_proc_id` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicestart(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceStart(in_device: AudioObjectID, in_proc_id: AudioDeviceIOProcID) -> OSStatus;
 }
@@ -1540,6 +1608,8 @@ extern "C-unwind" {
     ///
     /// - `in_proc_id` must be implemented correctly.
     /// - `io_requested_start_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicestartattime(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceStartAtTime(
         in_device: AudioObjectID,
@@ -1561,6 +1631,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_proc_id` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicestop(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceStop(in_device: AudioObjectID, in_proc_id: AudioDeviceIOProcID) -> OSStatus;
 }
@@ -1582,6 +1654,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicegetcurrenttime(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceGetCurrentTime(
         in_device: AudioObjectID,
@@ -1609,6 +1683,8 @@ extern "C-unwind" {
     ///
     /// - `in_time` must be a valid pointer.
     /// - `out_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicetranslatetime(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceTranslateTime(
         in_device: AudioObjectID,
@@ -1646,6 +1722,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `io_requested_start_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicegetneareststarttime(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceGetNearestStartTime(
         in_device: AudioObjectID,
@@ -1759,6 +1837,8 @@ extern "C-unwind" {
     ///
     /// - `in_description` might not allow `None`.
     /// - `out_tap_id` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarecreateprocesstap(_:_:)?language=objc)
     #[cfg(feature = "objc2")]
     pub fn AudioHardwareCreateProcessTap(
         in_description: Option<&CATapDescription>,
@@ -1772,6 +1852,8 @@ extern "C-unwind" {
     /// Parameter `inTapID`: The AudioObjectID of the Tap to destroy.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwaredestroyprocesstap(_:)?language=objc)
     pub fn AudioHardwareDestroyProcessTap(in_tap_id: AudioObjectID) -> OSStatus;
 }
 
@@ -1792,10 +1874,13 @@ extern "C-unwind" {
 pub struct CATapMuteBehavior(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl CATapMuteBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/catapmutebehavior/unmuted?language=objc)
     #[doc(alias = "CATapUnmuted")]
     pub const Unmuted: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/catapmutebehavior/muted?language=objc)
     #[doc(alias = "CATapMuted")]
     pub const Muted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/catapmutebehavior/mutedwhentapped?language=objc)
     #[doc(alias = "CATapMutedWhenTapped")]
     pub const MutedWhenTapped: Self = Self(2);
 }

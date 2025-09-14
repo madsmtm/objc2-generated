@@ -18,14 +18,19 @@ use crate::*;
 pub struct NSTextLayoutFragmentEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextLayoutFragmentEnumerationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragmentenumerationoptions/nstextlayoutfragmentenumerationoptionsnone?language=objc)
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragment/enumerationoptions/reverse?language=objc)
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsReverse")]
         const Reverse = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragment/enumerationoptions/estimatessize?language=objc)
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEstimatesSize")]
         const EstimatesSize = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragment/enumerationoptions/ensureslayout?language=objc)
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresLayout")]
         const EnsuresLayout = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragment/enumerationoptions/ensuresextralinefragment?language=objc)
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment")]
         const EnsuresExtraLineFragment = 1<<3;
     }
@@ -45,12 +50,16 @@ unsafe impl RefEncode for NSTextLayoutFragmentEnumerationOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutFragmentState(pub NSUInteger);
 impl NSTextLayoutFragmentState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragment/state-swift.enum/none?language=objc)
     #[doc(alias = "NSTextLayoutFragmentStateNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragment/state-swift.enum/estimatedusagebounds?language=objc)
     #[doc(alias = "NSTextLayoutFragmentStateEstimatedUsageBounds")]
     pub const EstimatedUsageBounds: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragment/state-swift.enum/calculatedusagebounds?language=objc)
     #[doc(alias = "NSTextLayoutFragmentStateCalculatedUsageBounds")]
     pub const CalculatedUsageBounds: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragment/state-swift.enum/layoutavailable?language=objc)
     #[doc(alias = "NSTextLayoutFragmentStateLayoutAvailable")]
     pub const LayoutAvailable: Self = Self(3);
 }

@@ -71,6 +71,8 @@ impl VTRAWProcessingSession {
     /// - `processing_session_options` generic must be of the correct type.
     /// - `processing_session_options` generic must be of the correct type.
     /// - `processing_session_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncreate?language=objc)
     #[doc(alias = "VTRAWProcessingSessionCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -108,6 +110,8 @@ impl VTRAWProcessingSession {
     /// When a  session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTRAWProcessingSessionInvalidate ensures a deterministic, orderly teardown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioninvalidate?language=objc)
     #[doc(alias = "VTRAWProcessingSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -120,6 +124,8 @@ impl VTRAWProcessingSession {
 
 unsafe impl ConcreteType for VTRAWProcessingSession {
     /// Returns the CFTypeID for RAW processing sessions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessiongettypeid?language=objc)
     #[doc(alias = "VTRAWProcessingSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -145,6 +151,8 @@ impl VTRAWProcessingSession {
     /// # Safety
     ///
     /// `parameter_change_handler` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionsetparameterchangedhandler?language=objc)
     #[doc(alias = "VTRAWProcessingSessionSetParameterChangedHandler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -161,6 +169,8 @@ impl VTRAWProcessingSession {
         unsafe { VTRAWProcessingSessionSetParameterChangedHandler(self, parameter_change_handler) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionsetparameterchangedhander?language=objc)
+    ///
     /// # Safety
     ///
     /// `parameter_change_handler` must be a valid pointer or null.
@@ -220,6 +230,8 @@ impl VTRAWProcessingSession {
     /// - `frame_options` generic must be of the correct type.
     /// - `frame_options` generic must be of the correct type.
     /// - `output_handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionprocessframe?language=objc)
     #[doc(alias = "VTRAWProcessingSessionProcessFrame")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
@@ -253,6 +265,8 @@ impl VTRAWProcessingSession {
     /// Before VTRAWProcessingSessionCompleteFrames returns, the output handler will be invoked for all pending frames.
     ///
     /// Parameter `session`: The RAW processing session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncompleteframes?language=objc)
     #[doc(alias = "VTRAWProcessingSessionCompleteFrames")]
     #[inline]
     pub unsafe fn complete_frames(&self) -> OSStatus {
@@ -278,6 +292,8 @@ impl VTRAWProcessingSession {
     /// # Safety
     ///
     /// `out_parameter_array` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncopyprocessingparameters?language=objc)
     #[doc(alias = "VTRAWProcessingSessionCopyProcessingParameters")]
     #[inline]
     pub unsafe fn copy_processing_parameters(
@@ -317,6 +333,8 @@ impl VTRAWProcessingSession {
     ///
     /// - `processing_parameters` generic must be of the correct type.
     /// - `processing_parameters` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionsetprocessingparameters?language=objc)
     #[doc(alias = "VTRAWProcessingSessionSetProcessingParameters")]
     #[inline]
     pub unsafe fn set_processing_parameters(

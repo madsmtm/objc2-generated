@@ -32,10 +32,13 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFStreamErrorHTTPAuthentication(pub c_int);
 impl CFStreamErrorHTTPAuthentication {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttpauthentication/typeunsupported?language=objc)
     #[doc(alias = "kCFStreamErrorHTTPAuthenticationTypeUnsupported")]
     pub const TypeUnsupported: Self = Self(-1000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttpauthentication/badusername?language=objc)
     #[doc(alias = "kCFStreamErrorHTTPAuthenticationBadUserName")]
     pub const BadUserName: Self = Self(-1001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttpauthentication/badpassword?language=objc)
     #[doc(alias = "kCFStreamErrorHTTPAuthenticationBadPassword")]
     pub const BadPassword: Self = Self(-1002);
 }
@@ -66,6 +69,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for CFHTTPAuthentication {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationgettypeid()?language=objc)
     #[doc(alias = "CFHTTPAuthenticationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -77,6 +81,7 @@ unsafe impl ConcreteType for CFHTTPAuthentication {
 }
 
 impl CFHTTPAuthentication {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcreatefromresponse(_:_:)?language=objc)
     #[doc(alias = "CFHTTPAuthenticationCreateFromResponse")]
     #[cfg(feature = "CFHTTPMessage")]
     #[inline]
@@ -96,6 +101,8 @@ impl CFHTTPAuthentication {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationisvalid(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -112,6 +119,7 @@ impl CFHTTPAuthentication {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationappliestorequest(_:_:)?language=objc)
     #[doc(alias = "CFHTTPAuthenticationAppliesToRequest")]
     #[cfg(feature = "CFHTTPMessage")]
     #[inline]
@@ -126,6 +134,7 @@ impl CFHTTPAuthentication {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationrequiresorderedrequests(_:)?language=objc)
     #[doc(alias = "CFHTTPAuthenticationRequiresOrderedRequests")]
     #[inline]
     pub unsafe fn requires_ordered_requests(&self) -> bool {
@@ -139,6 +148,8 @@ impl CFHTTPAuthentication {
 
 #[cfg(feature = "CFHTTPMessage")]
 impl CFHTTPMessage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageapplycredentials(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -165,6 +176,8 @@ impl CFHTTPMessage {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageapplycredentialdictionary(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` generic must be of the correct type.
@@ -193,6 +206,7 @@ impl CFHTTPMessage {
 }
 
 impl CFHTTPAuthentication {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcopyrealm(_:)?language=objc)
     #[doc(alias = "CFHTTPAuthenticationCopyRealm")]
     #[inline]
     pub unsafe fn realm(&self) -> CFRetained<CFString> {
@@ -207,6 +221,7 @@ impl CFHTTPAuthentication {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcopydomains(_:)?language=objc)
     #[doc(alias = "CFHTTPAuthenticationCopyDomains")]
     #[inline]
     pub unsafe fn domains(&self) -> CFRetained<CFArray> {
@@ -221,6 +236,7 @@ impl CFHTTPAuthentication {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcopymethod(_:)?language=objc)
     #[doc(alias = "CFHTTPAuthenticationCopyMethod")]
     #[inline]
     pub unsafe fn method(&self) -> CFRetained<CFString> {
@@ -235,6 +251,7 @@ impl CFHTTPAuthentication {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationrequiresusernameandpassword(_:)?language=objc)
     #[doc(alias = "CFHTTPAuthenticationRequiresUserNameAndPassword")]
     #[inline]
     pub unsafe fn requires_user_name_and_password(&self) -> bool {
@@ -247,6 +264,7 @@ impl CFHTTPAuthentication {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationrequiresaccountdomain(_:)?language=objc)
     #[doc(alias = "CFHTTPAuthenticationRequiresAccountDomain")]
     #[inline]
     pub unsafe fn requires_account_domain(&self) -> bool {

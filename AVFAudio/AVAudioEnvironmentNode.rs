@@ -37,10 +37,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioEnvironmentDistanceAttenuationModel(pub NSInteger);
 impl AVAudioEnvironmentDistanceAttenuationModel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationmodel/exponential?language=objc)
     #[doc(alias = "AVAudioEnvironmentDistanceAttenuationModelExponential")]
     pub const Exponential: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationmodel/inverse?language=objc)
     #[doc(alias = "AVAudioEnvironmentDistanceAttenuationModelInverse")]
     pub const Inverse: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationmodel/linear?language=objc)
     #[doc(alias = "AVAudioEnvironmentDistanceAttenuationModelLinear")]
     pub const Linear: Self = Self(3);
 }
@@ -258,12 +261,16 @@ impl AVAudioEnvironmentReverbParameters {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioEnvironmentOutputType(pub NSInteger);
 impl AVAudioEnvironmentOutputType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype/auto?language=objc)
     #[doc(alias = "AVAudioEnvironmentOutputTypeAuto")]
     pub const Auto: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype/headphones?language=objc)
     #[doc(alias = "AVAudioEnvironmentOutputTypeHeadphones")]
     pub const Headphones: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype/builtinspeakers?language=objc)
     #[doc(alias = "AVAudioEnvironmentOutputTypeBuiltInSpeakers")]
     pub const BuiltInSpeakers: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype/externalspeakers?language=objc)
     #[doc(alias = "AVAudioEnvironmentOutputTypeExternalSpeakers")]
     pub const ExternalSpeakers: Self = Self(3);
 }

@@ -18,10 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarItemGroupSelectionMode(pub NSInteger);
 impl NSToolbarItemGroupSelectionMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.enum/selectone?language=objc)
     #[doc(alias = "NSToolbarItemGroupSelectionModeSelectOne")]
     pub const SelectOne: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.enum/selectany?language=objc)
     #[doc(alias = "NSToolbarItemGroupSelectionModeSelectAny")]
     pub const SelectAny: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.enum/momentary?language=objc)
     #[doc(alias = "NSToolbarItemGroupSelectionModeMomentary")]
     pub const Momentary: Self = Self(2);
 }
@@ -40,10 +43,13 @@ unsafe impl RefEncode for NSToolbarItemGroupSelectionMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarItemGroupControlRepresentation(pub NSInteger);
 impl NSToolbarItemGroupControlRepresentation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.enum/automatic?language=objc)
     #[doc(alias = "NSToolbarItemGroupControlRepresentationAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.enum/expanded?language=objc)
     #[doc(alias = "NSToolbarItemGroupControlRepresentationExpanded")]
     pub const Expanded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.enum/collapsed?language=objc)
     #[doc(alias = "NSToolbarItemGroupControlRepresentationCollapsed")]
     pub const Collapsed: Self = Self(2);
 }

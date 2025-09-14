@@ -19,9 +19,13 @@ use crate::*;
 pub struct INDailyRoutineSituation(pub NSInteger);
 impl INDailyRoutineSituation {
     /// A situation that occurs in the morning, around the time the user wakes up.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/morning?language=objc)
     #[doc(alias = "INDailyRoutineSituationMorning")]
     pub const Morning: Self = Self(0);
     /// A situation that occurs in the evening, around the time the user goes to bed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/evening?language=objc)
     #[doc(alias = "INDailyRoutineSituationEvening")]
     pub const Evening: Self = Self(1);
     /// A situation that occurs when the user is at home.
@@ -29,6 +33,8 @@ impl INDailyRoutineSituation {
     /// Note: Your app needs Always location authorization to use this situation.
     ///
     /// See also: CLLocationManager
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/home?language=objc)
     #[doc(alias = "INDailyRoutineSituationHome")]
     pub const Home: Self = Self(2);
     /// A situation that occurs when the user is at work.
@@ -36,6 +42,8 @@ impl INDailyRoutineSituation {
     /// Note: Your app needs Always location authorization to use this situation.
     ///
     /// See also: CLLocationManager
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/work?language=objc)
     #[doc(alias = "INDailyRoutineSituationWork")]
     pub const Work: Self = Self(3);
     /// A situation that occurs when the user is at school.
@@ -43,6 +51,8 @@ impl INDailyRoutineSituation {
     /// Note: Your app needs Always location authorization to use this situation.
     ///
     /// See also: CLLocationManager
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/school?language=objc)
     #[doc(alias = "INDailyRoutineSituationSchool")]
     pub const School: Self = Self(4);
     /// A situation that occurs when the user is at the gym.
@@ -50,18 +60,28 @@ impl INDailyRoutineSituation {
     /// Note: Your app needs Always location authorization to use this situation.
     ///
     /// See also: CLLocationManager
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/gym?language=objc)
     #[doc(alias = "INDailyRoutineSituationGym")]
     pub const Gym: Self = Self(5);
     /// A situation that occurs when the user is commuting, for example driving into work.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/commute?language=objc)
     #[doc(alias = "INDailyRoutineSituationCommute")]
     pub const Commute: Self = Self(6);
     /// A situation that occurs when the user connects headphones.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/headphonesconnected?language=objc)
     #[doc(alias = "INDailyRoutineSituationHeadphonesConnected")]
     pub const HeadphonesConnected: Self = Self(7);
     /// A situation that occurs when the user is currently in a workout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/activeworkout?language=objc)
     #[doc(alias = "INDailyRoutineSituationActiveWorkout")]
     pub const ActiveWorkout: Self = Self(8);
     /// A situation that occurs when the user is expected to perform more physical activity during the day.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/physicalactivityincomplete?language=objc)
     #[doc(alias = "INDailyRoutineSituationPhysicalActivityIncomplete")]
     pub const PhysicalActivityIncomplete: Self = Self(9);
 }

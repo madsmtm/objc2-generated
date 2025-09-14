@@ -11,8 +11,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKIssuerProvisioningExtensionAuthorizationResult(pub NSInteger);
 impl PKIssuerProvisioningExtensionAuthorizationResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkissuerprovisioningextensionauthorizationresult/canceled?language=objc)
     #[doc(alias = "PKIssuerProvisioningExtensionAuthorizationResultCanceled")]
     pub const Canceled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkissuerprovisioningextensionauthorizationresult/authorized?language=objc)
     #[doc(alias = "PKIssuerProvisioningExtensionAuthorizationResultAuthorized")]
     pub const Authorized: Self = Self(1);
 }

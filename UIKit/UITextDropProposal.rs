@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropAction(pub NSUInteger);
 impl UITextDropAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/action/insert?language=objc)
     #[doc(alias = "UITextDropActionInsert")]
     pub const Insert: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/action/replaceselection?language=objc)
     #[doc(alias = "UITextDropActionReplaceSelection")]
     pub const ReplaceSelection: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/action/replaceall?language=objc)
     #[doc(alias = "UITextDropActionReplaceAll")]
     pub const ReplaceAll: Self = Self(2);
 }
@@ -35,8 +38,10 @@ unsafe impl RefEncode for UITextDropAction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropProgressMode(pub NSUInteger);
 impl UITextDropProgressMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/progressmode/system?language=objc)
     #[doc(alias = "UITextDropProgressModeSystem")]
     pub const System: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/progressmode/custom?language=objc)
     #[doc(alias = "UITextDropProgressModeCustom")]
     pub const Custom: Self = Self(1);
 }
@@ -55,8 +60,10 @@ unsafe impl RefEncode for UITextDropProgressMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropPerformer(pub NSUInteger);
 impl UITextDropPerformer {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/performer/view?language=objc)
     #[doc(alias = "UITextDropPerformerView")]
     pub const View: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/performer/delegate?language=objc)
     #[doc(alias = "UITextDropPerformerDelegate")]
     pub const Delegate: Self = Self(1);
 }

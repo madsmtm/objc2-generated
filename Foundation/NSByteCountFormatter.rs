@@ -13,26 +13,37 @@ use crate::*;
 pub struct NSByteCountFormatterUnits(pub NSUInteger);
 bitflags::bitflags! {
     impl NSByteCountFormatterUnits: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbytecountformatterunits/nsbytecountformatterusedefault?language=objc)
         #[doc(alias = "NSByteCountFormatterUseDefault")]
         const UseDefault = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usebytes?language=objc)
         #[doc(alias = "NSByteCountFormatterUseBytes")]
         const UseBytes = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usekb?language=objc)
         #[doc(alias = "NSByteCountFormatterUseKB")]
         const UseKB = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usemb?language=objc)
         #[doc(alias = "NSByteCountFormatterUseMB")]
         const UseMB = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usegb?language=objc)
         #[doc(alias = "NSByteCountFormatterUseGB")]
         const UseGB = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usetb?language=objc)
         #[doc(alias = "NSByteCountFormatterUseTB")]
         const UseTB = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usepb?language=objc)
         #[doc(alias = "NSByteCountFormatterUsePB")]
         const UsePB = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/useeb?language=objc)
         #[doc(alias = "NSByteCountFormatterUseEB")]
         const UseEB = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usezb?language=objc)
         #[doc(alias = "NSByteCountFormatterUseZB")]
         const UseZB = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/useyborhigher?language=objc)
         #[doc(alias = "NSByteCountFormatterUseYBOrHigher")]
         const UseYBOrHigher = 0x0FF<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/useall?language=objc)
         #[doc(alias = "NSByteCountFormatterUseAll")]
         const UseAll = 0x0FFFF;
     }
@@ -52,12 +63,16 @@ unsafe impl RefEncode for NSByteCountFormatterUnits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSByteCountFormatterCountStyle(pub NSInteger);
 impl NSByteCountFormatterCountStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/file?language=objc)
     #[doc(alias = "NSByteCountFormatterCountStyleFile")]
     pub const File: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/memory?language=objc)
     #[doc(alias = "NSByteCountFormatterCountStyleMemory")]
     pub const Memory: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/decimal?language=objc)
     #[doc(alias = "NSByteCountFormatterCountStyleDecimal")]
     pub const Decimal: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/binary?language=objc)
     #[doc(alias = "NSByteCountFormatterCountStyleBinary")]
     pub const Binary: Self = Self(3);
 }

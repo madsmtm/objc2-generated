@@ -17,12 +17,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationAppleIDButtonType(pub NSInteger);
 impl ASAuthorizationAppleIDButtonType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/buttontype/signin?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignIn")]
     pub const SignIn: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/buttontype/continue?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDButtonTypeContinue")]
     pub const Continue: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/buttontype/signup?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignUp")]
     pub const SignUp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/buttontype/default?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDButtonTypeDefault")]
     pub const Default: Self = Self(ASAuthorizationAppleIDButtonType::SignIn.0);
 }
@@ -41,10 +45,13 @@ unsafe impl RefEncode for ASAuthorizationAppleIDButtonType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationAppleIDButtonStyle(pub NSInteger);
 impl ASAuthorizationAppleIDButtonStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/style/white?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhite")]
     pub const White: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/style/whiteoutline?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhiteOutline")]
     pub const WhiteOutline: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/style/black?language=objc)
     #[doc(alias = "ASAuthorizationAppleIDButtonStyleBlack")]
     pub const Black: Self = Self(2);
 }

@@ -15,22 +15,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorPanelMode(pub NSInteger);
 impl NSColorPanelMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/none?language=objc)
     #[doc(alias = "NSColorPanelModeNone")]
     pub const None: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/gray?language=objc)
     #[doc(alias = "NSColorPanelModeGray")]
     pub const Gray: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/rgb?language=objc)
     #[doc(alias = "NSColorPanelModeRGB")]
     pub const RGB: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/cmyk?language=objc)
     #[doc(alias = "NSColorPanelModeCMYK")]
     pub const CMYK: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/hsb?language=objc)
     #[doc(alias = "NSColorPanelModeHSB")]
     pub const HSB: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/custompalette?language=objc)
     #[doc(alias = "NSColorPanelModeCustomPalette")]
     pub const CustomPalette: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/colorlist?language=objc)
     #[doc(alias = "NSColorPanelModeColorList")]
     pub const ColorList: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/wheel?language=objc)
     #[doc(alias = "NSColorPanelModeWheel")]
     pub const Wheel: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/crayon?language=objc)
     #[doc(alias = "NSColorPanelModeCrayon")]
     pub const Crayon: Self = Self(7);
 }
@@ -50,22 +59,31 @@ unsafe impl RefEncode for NSColorPanelMode {
 pub struct NSColorPanelOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSColorPanelOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/graymodemask?language=objc)
         #[doc(alias = "NSColorPanelGrayModeMask")]
         const GrayModeMask = 0x00000001;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/rgbmodemask?language=objc)
         #[doc(alias = "NSColorPanelRGBModeMask")]
         const RGBModeMask = 0x00000002;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/cmykmodemask?language=objc)
         #[doc(alias = "NSColorPanelCMYKModeMask")]
         const CMYKModeMask = 0x00000004;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/hsbmodemask?language=objc)
         #[doc(alias = "NSColorPanelHSBModeMask")]
         const HSBModeMask = 0x00000008;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/custompalettemodemask?language=objc)
         #[doc(alias = "NSColorPanelCustomPaletteModeMask")]
         const CustomPaletteModeMask = 0x00000010;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/colorlistmodemask?language=objc)
         #[doc(alias = "NSColorPanelColorListModeMask")]
         const ColorListModeMask = 0x00000020;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/wheelmodemask?language=objc)
         #[doc(alias = "NSColorPanelWheelModeMask")]
         const WheelModeMask = 0x00000040;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/crayonmodemask?language=objc)
         #[doc(alias = "NSColorPanelCrayonModeMask")]
         const CrayonModeMask = 0x00000080;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/allmodesmask?language=objc)
         #[doc(alias = "NSColorPanelAllModesMask")]
         const AllModesMask = 0x0000ffff;
     }

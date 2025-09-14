@@ -16,18 +16,28 @@ use crate::*;
 pub struct SFSpeechRecognitionTaskState(pub NSInteger);
 impl SFSpeechRecognitionTaskState {
     /// Speech recognition (potentially including audio recording) has not yet started.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate/starting?language=objc)
     #[doc(alias = "SFSpeechRecognitionTaskStateStarting")]
     pub const Starting: Self = Self(0);
     /// Speech recognition (potentially including audio recording) is in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate/running?language=objc)
     #[doc(alias = "SFSpeechRecognitionTaskStateRunning")]
     pub const Running: Self = Self(1);
     /// Audio recording has stopped, but delivery of recognition results may continue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate/finishing?language=objc)
     #[doc(alias = "SFSpeechRecognitionTaskStateFinishing")]
     pub const Finishing: Self = Self(2);
     /// Delivery of recognition results has finished, but audio recording may be ongoing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate/canceling?language=objc)
     #[doc(alias = "SFSpeechRecognitionTaskStateCanceling")]
     pub const Canceling: Self = Self(3);
     /// Delivery of recognition requests has finished and audio recording has stopped.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate/completed?language=objc)
     #[doc(alias = "SFSpeechRecognitionTaskStateCompleted")]
     pub const Completed: Self = Self(4);
 }

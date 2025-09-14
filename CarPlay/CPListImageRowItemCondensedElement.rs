@@ -18,9 +18,13 @@ use crate::*;
 pub struct CPListImageRowItemCondensedElementShape(pub NSInteger);
 impl CPListImageRowItemCondensedElementShape {
     /// The list item will render an element with a circular image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemcondensedelement/shape/circular?language=objc)
     #[doc(alias = "CPListImageRowItemCondensedElementShapeCircular")]
     pub const Circular: Self = Self(0);
     /// The list item will render an element with a rounded rectangle image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemcondensedelement/shape/roundedrectangle?language=objc)
     #[doc(alias = "CPListImageRowItemCondensedElementShapeRoundedRectangle")]
     pub const RoundedRectangle: Self = Self(1);
 }

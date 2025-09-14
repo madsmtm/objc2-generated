@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/eventkituibundle()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn EventKitUIBundle() -> Option<Retained<NSBundle>> {
     extern "C-unwind" {

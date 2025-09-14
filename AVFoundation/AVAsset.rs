@@ -157,24 +157,38 @@ pub struct AVAssetReferenceRestrictions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAssetReferenceRestrictions: NSUInteger {
 /// Indicates that all types of references should be followed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/avassetreferencerestrictionforbidnone?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidNone")]
         const ForbidNone = 0;
 /// Indicates that references from a remote asset (e.g. referenced via http URL) to local media data (e.g. stored in a local file) should not be followed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidremotereferencetolocal?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidRemoteReferenceToLocal")]
         const ForbidRemoteReferenceToLocal = 1<<0;
 /// Indicates that references from a local asset to remote media data should not be followed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidlocalreferencetoremote?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidLocalReferenceToRemote")]
         const ForbidLocalReferenceToRemote = 1<<1;
 /// Indicates that references from a remote asset to remote media data stored at a different site should not be followed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidcrosssitereference?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidCrossSiteReference")]
         const ForbidCrossSiteReference = 1<<2;
 /// Indicates that references from a local asset to local media data stored outside the asset's container file should not be followed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidlocalreferencetolocal?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidLocalReferenceToLocal")]
         const ForbidLocalReferenceToLocal = 1<<3;
 /// Indicates that only references to media data stored within the asset's container file should be allowed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidall?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidAll")]
         const ForbidAll = 0xFFFF;
 /// Indicates that only references to media data stored within the asset's container file should be allowed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/defaultpolicy?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionDefaultPolicy")]
         const DefaultPolicy = AVAssetReferenceRestrictions::ForbidLocalReferenceToRemote.0;
     }

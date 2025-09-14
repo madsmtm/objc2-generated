@@ -27,6 +27,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFFileSecurity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritygettypeid()?language=objc)
     #[doc(alias = "CFFileSecurityGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,6 +39,7 @@ unsafe impl ConcreteType for CFFileSecurity {
 }
 
 impl CFFileSecurity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritycreate(_:)?language=objc)
     #[doc(alias = "CFFileSecurityCreate")]
     #[inline]
     pub fn new(allocator: Option<&CFAllocator>) -> Option<CFRetained<CFFileSecurity>> {
@@ -50,6 +52,7 @@ impl CFFileSecurity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritycreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFFileSecurityCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -66,6 +69,8 @@ impl CFFileSecurity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritycopyowneruuid(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `owner_uuid` must be a valid pointer.
@@ -83,6 +88,7 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritysetowneruuid(_:_:)?language=objc)
     #[doc(alias = "CFFileSecuritySetOwnerUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -97,6 +103,8 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritycopygroupuuid(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `group_uuid` must be a valid pointer.
@@ -114,6 +122,7 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritysetgroupuuid(_:_:)?language=objc)
     #[doc(alias = "CFFileSecuritySetGroupUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -128,6 +137,8 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritygetowner(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `owner` must be a valid pointer.
@@ -145,6 +156,7 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritysetowner(_:_:)?language=objc)
     #[doc(alias = "CFFileSecuritySetOwner")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -156,6 +168,8 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritygetgroup(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `group` must be a valid pointer.
@@ -173,6 +187,7 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritysetgroup(_:_:)?language=objc)
     #[doc(alias = "CFFileSecuritySetGroup")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -184,6 +199,8 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritygetmode(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `mode` must be a valid pointer.
@@ -199,6 +216,7 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritysetmode(_:_:)?language=objc)
     #[doc(alias = "CFFileSecuritySetMode")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -218,16 +236,22 @@ impl CFFileSecurity {
 pub struct CFFileSecurityClearOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFFileSecurityClearOptions: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/owner?language=objc)
         #[doc(alias = "kCFFileSecurityClearOwner")]
         const Owner = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/group?language=objc)
         #[doc(alias = "kCFFileSecurityClearGroup")]
         const Group = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/mode?language=objc)
         #[doc(alias = "kCFFileSecurityClearMode")]
         const Mode = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/owneruuid?language=objc)
         #[doc(alias = "kCFFileSecurityClearOwnerUUID")]
         const OwnerUUID = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/groupuuid?language=objc)
         #[doc(alias = "kCFFileSecurityClearGroupUUID")]
         const GroupUUID = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/accesscontrollist?language=objc)
         #[doc(alias = "kCFFileSecurityClearAccessControlList")]
         const AccessControlList = 1<<5;
     }
@@ -244,6 +268,7 @@ unsafe impl RefEncode for CFFileSecurityClearOptions {
 }
 
 impl CFFileSecurity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearproperties(_:_:)?language=objc)
     #[doc(alias = "CFFileSecurityClearProperties")]
     #[inline]
     pub fn clear_properties(&self, clear_property_mask: CFFileSecurityClearOptions) -> bool {

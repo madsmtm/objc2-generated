@@ -138,22 +138,31 @@ pub type MIDITimeStamp = u64;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIObjectType(pub i32);
 impl MIDIObjectType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/other?language=objc)
     #[doc(alias = "kMIDIObjectType_Other")]
     pub const Other: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/device?language=objc)
     #[doc(alias = "kMIDIObjectType_Device")]
     pub const Device: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/entity?language=objc)
     #[doc(alias = "kMIDIObjectType_Entity")]
     pub const Entity: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/source?language=objc)
     #[doc(alias = "kMIDIObjectType_Source")]
     pub const Source: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/destination?language=objc)
     #[doc(alias = "kMIDIObjectType_Destination")]
     pub const Destination: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/externaldevice?language=objc)
     #[doc(alias = "kMIDIObjectType_ExternalDevice")]
     pub const ExternalDevice: Self = Self(0x10 | MIDIObjectType::Device.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/externalentity?language=objc)
     #[doc(alias = "kMIDIObjectType_ExternalEntity")]
     pub const ExternalEntity: Self = Self(0x10 | MIDIObjectType::Entity.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/externalsource?language=objc)
     #[doc(alias = "kMIDIObjectType_ExternalSource")]
     pub const ExternalSource: Self = Self(0x10 | MIDIObjectType::Source.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/externaldestination?language=objc)
     #[doc(alias = "kMIDIObjectType_ExternalDestination")]
     pub const ExternalDestination: Self = Self(0x10 | MIDIObjectType::Destination.0);
 }
@@ -193,8 +202,10 @@ pub const kMIDIInvalidUniqueID: MIDIUniqueID = 0;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MIDIProtocolID(pub i32);
 impl MIDIProtocolID {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiprotocolid/kmidiprotocol_1_0?language=objc)
     #[doc(alias = "kMIDIProtocol_1_0")]
     pub const Protocol_1_0: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiprotocolid/kmidiprotocol_2_0?language=objc)
     #[doc(alias = "kMIDIProtocol_2_0")]
     pub const Protocol_2_0: Self = Self(2);
 }
@@ -699,20 +710,28 @@ unsafe impl RefEncode for MIDISysexSendRequestUMP {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MIDINotificationMessageID(pub i32);
 impl MIDINotificationMessageID {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgsetupchanged?language=objc)
     #[doc(alias = "kMIDIMsgSetupChanged")]
     pub const MsgSetupChanged: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgobjectadded?language=objc)
     #[doc(alias = "kMIDIMsgObjectAdded")]
     pub const MsgObjectAdded: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgobjectremoved?language=objc)
     #[doc(alias = "kMIDIMsgObjectRemoved")]
     pub const MsgObjectRemoved: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgpropertychanged?language=objc)
     #[doc(alias = "kMIDIMsgPropertyChanged")]
     pub const MsgPropertyChanged: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgthruconnectionschanged?language=objc)
     #[doc(alias = "kMIDIMsgThruConnectionsChanged")]
     pub const MsgThruConnectionsChanged: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgserialportownerchanged?language=objc)
     #[doc(alias = "kMIDIMsgSerialPortOwnerChanged")]
     pub const MsgSerialPortOwnerChanged: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgioerror?language=objc)
     #[doc(alias = "kMIDIMsgIOError")]
     pub const MsgIOError: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msginternalstart?language=objc)
     #[doc(alias = "kMIDIMsgInternalStart")]
     pub const MsgInternalStart: Self = Self(0x1000);
 }
@@ -1550,6 +1569,8 @@ extern "C-unwind" {
     /// - `notify_proc` must be implemented correctly.
     /// - `notify_ref_con` must be a valid pointer or null.
     /// - `out_client` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiclientcreate(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIClientCreate(
         name: &CFString,
@@ -1580,6 +1601,8 @@ extern "C-unwind" {
     ///
     /// - `out_client` must be a valid pointer.
     /// - `notify_block` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiclientcreatewithblock(_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIClientCreateWithBlock(
         name: &CFString,
@@ -1603,6 +1626,8 @@ extern "C-unwind" {
     /// exit if there are no other MIDIClients remaining in the system, causing all subsequent calls
     /// to MIDIClientCreate and MIDIClientCreateWithBlock by that application to fail. For this reason,
     /// disposing all of an application's MIDIClients is strongly discouraged.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiclientdispose(_:)?language=objc)
     pub fn MIDIClientDispose(client: MIDIClientRef) -> OSStatus;
 }
 
@@ -1636,6 +1661,8 @@ extern "C-unwind" {
     ///
     /// - `out_port` must be a valid pointer.
     /// - `receive_block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiinputportcreatewithprotocol(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIInputPortCreateWithProtocol(
         client: MIDIClientRef,
@@ -1676,6 +1703,8 @@ extern "C-unwind" {
     /// - `read_proc` must be implemented correctly.
     /// - `ref_con` must be a valid pointer or null.
     /// - `out_port` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiinputportcreate(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn MIDIInputPortCreate(
@@ -1714,6 +1743,8 @@ extern "C-unwind" {
     ///
     /// - `out_port` must be a valid pointer.
     /// - `read_block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiinputportcreatewithblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     #[deprecated]
     pub fn MIDIInputPortCreateWithBlock(
@@ -1749,6 +1780,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_port` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midioutputportcreate(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIOutputPortCreate(
         client: MIDIClientRef,
@@ -1769,6 +1802,8 @@ extern "C-unwind" {
     /// It is not usually necessary to call this function; when an application's MIDIClient's
     /// are automatically disposed at termination, or explicitly, via MIDIClientDispose, the
     /// client's ports are automatically disposed at that time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiportdispose(_:)?language=objc)
     pub fn MIDIPortDispose(port: MIDIPortRef) -> OSStatus;
 }
 
@@ -1789,6 +1824,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `conn_ref_con` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiportconnectsource(_:_:_:)?language=objc)
     pub fn MIDIPortConnectSource(
         port: MIDIPortRef,
         source: MIDIEndpointRef,
@@ -1807,6 +1844,8 @@ extern "C-unwind" {
     /// specified port.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiportdisconnectsource(_:_:)?language=objc)
     pub fn MIDIPortDisconnectSource(port: MIDIPortRef, source: MIDIEndpointRef) -> OSStatus;
 }
 
@@ -1816,6 +1855,8 @@ extern "C-unwind" {
     ///
     /// Returns: The number of devices in the system, or 0 if an error
     /// occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetnumberofdevices()?language=objc)
     pub fn MIDIGetNumberOfDevices() -> ItemCount;
 }
 
@@ -1843,6 +1884,8 @@ extern "C-unwind" {
     /// Thus clients should usually use MIDIGetNumberOfSources, MIDIGetSource,
     /// MIDIGetNumberOfDestinations and MIDIGetDestination, rather iterating through devices and
     /// entities to locate endpoints.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetdevice(_:)?language=objc)
     pub fn MIDIGetDevice(device_index0: ItemCount) -> MIDIDeviceRef;
 }
 
@@ -1855,6 +1898,8 @@ extern "C-unwind" {
     ///
     /// Returns: The number of entities the device contains, or 0 if an
     /// error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicegetnumberofentities(_:)?language=objc)
     pub fn MIDIDeviceGetNumberOfEntities(device: MIDIDeviceRef) -> ItemCount;
 }
 
@@ -1869,6 +1914,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A reference to an entity, or NULL if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicegetentity(_:_:)?language=objc)
     pub fn MIDIDeviceGetEntity(device: MIDIDeviceRef, entity_index0: ItemCount) -> MIDIEntityRef;
 }
 
@@ -1881,6 +1928,8 @@ extern "C-unwind" {
     ///
     /// Returns: The number of sources the entity contains, or 0 if an
     /// error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientitygetnumberofsources(_:)?language=objc)
     pub fn MIDIEntityGetNumberOfSources(entity: MIDIEntityRef) -> ItemCount;
 }
 
@@ -1895,6 +1944,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A reference to a source, or NULL if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientitygetsource(_:_:)?language=objc)
     pub fn MIDIEntityGetSource(entity: MIDIEntityRef, source_index0: ItemCount) -> MIDIEndpointRef;
 }
 
@@ -1907,6 +1958,8 @@ extern "C-unwind" {
     ///
     /// Returns: The number of destinations the entity contains, or 0
     /// if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientitygetnumberofdestinations(_:)?language=objc)
     pub fn MIDIEntityGetNumberOfDestinations(entity: MIDIEntityRef) -> ItemCount;
 }
 
@@ -1921,6 +1974,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A reference to a destination, or NULL if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientitygetdestination(_:_:)?language=objc)
     pub fn MIDIEntityGetDestination(
         entity: MIDIEntityRef,
         dest_index0: ItemCount,
@@ -1938,6 +1993,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_device` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientitygetdevice(_:_:)?language=objc)
     pub fn MIDIEntityGetDevice(
         in_entity: MIDIEntityRef,
         out_device: *mut MIDIDeviceRef,
@@ -1950,6 +2007,8 @@ extern "C-unwind" {
     ///
     /// Returns: The number of sources in the system, or 0 if an error
     /// occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetnumberofsources()?language=objc)
     pub fn MIDIGetNumberOfSources() -> ItemCount;
 }
 
@@ -1961,6 +2020,8 @@ extern "C-unwind" {
     /// to return
     ///
     /// Returns: A reference to a source, or NULL if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetsource(_:)?language=objc)
     pub fn MIDIGetSource(source_index0: ItemCount) -> MIDIEndpointRef;
 }
 
@@ -1970,6 +2031,8 @@ extern "C-unwind" {
     ///
     /// Returns: The number of destinations in the system, or 0 if an error
     /// occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetnumberofdestinations()?language=objc)
     pub fn MIDIGetNumberOfDestinations() -> ItemCount;
 }
 
@@ -1981,6 +2044,8 @@ extern "C-unwind" {
     /// destination to return
     ///
     /// Returns: A reference to a destination, or NULL if an error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetdestination(_:)?language=objc)
     pub fn MIDIGetDestination(dest_index0: ItemCount) -> MIDIEndpointRef;
 }
 
@@ -1998,6 +2063,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_entity` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiendpointgetentity(_:_:)?language=objc)
     pub fn MIDIEndpointGetEntity(
         in_endpoint: MIDIEndpointRef,
         out_entity: *mut MIDIEntityRef,
@@ -2042,6 +2109,8 @@ extern "C-unwind" {
     ///
     /// - `out_dest` must be a valid pointer.
     /// - `read_block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididestinationcreatewithprotocol(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIDestinationCreateWithProtocol(
         client: MIDIClientRef,
@@ -2090,6 +2159,8 @@ extern "C-unwind" {
     /// - `read_proc` must be implemented correctly.
     /// - `ref_con` must be a valid pointer or null.
     /// - `out_dest` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididestinationcreate(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn MIDIDestinationCreate(
@@ -2136,6 +2207,8 @@ extern "C-unwind" {
     ///
     /// - `out_dest` must be a valid pointer.
     /// - `read_block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididestinationcreatewithblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     #[deprecated]
     pub fn MIDIDestinationCreateWithBlock(
@@ -2178,6 +2251,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_src` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisourcecreatewithprotocol(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDISourceCreateWithProtocol(
         client: MIDIClientRef,
@@ -2215,6 +2290,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_src` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisourcecreate(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn MIDISourceCreate(
@@ -2232,6 +2309,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiendpointdispose(_:)?language=objc)
     pub fn MIDIEndpointDispose(endpt: MIDIEndpointRef) -> OSStatus;
 }
 
@@ -2246,6 +2325,8 @@ extern "C-unwind" {
     /// External MIDI devices are MIDI devices connected to driver endpoints via a standard MIDI
     /// cable. Their presence is completely optional, only when a UI (such as Audio MIDI Setup)
     /// adds them.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetnumberofexternaldevices()?language=objc)
     pub fn MIDIGetNumberOfExternalDevices() -> ItemCount;
 }
 
@@ -2260,6 +2341,8 @@ extern "C-unwind" {
     ///
     ///
     /// Use this to enumerate the external devices in the system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetexternaldevice(_:)?language=objc)
     pub fn MIDIGetExternalDevice(device_index0: ItemCount) -> MIDIDeviceRef;
 }
 
@@ -2281,6 +2364,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectgetintegerproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetIntegerProperty(
         obj: MIDIObjectRef,
@@ -2303,6 +2388,8 @@ extern "C-unwind" {
     ///
     ///
     /// (See the MIDIObjectRef documentation for information about properties.)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectsetintegerproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectSetIntegerProperty(
         obj: MIDIObjectRef,
@@ -2329,6 +2416,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `str` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectgetstringproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetStringProperty(
         obj: MIDIObjectRef,
@@ -2351,6 +2440,8 @@ extern "C-unwind" {
     ///
     ///
     /// (See the MIDIObjectRef documentation for information about properties.)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectsetstringproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectSetStringProperty(
         obj: MIDIObjectRef,
@@ -2378,6 +2469,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectgetdataproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetDataProperty(
         obj: MIDIObjectRef,
@@ -2400,6 +2493,8 @@ extern "C-unwind" {
     ///
     ///
     /// (See the MIDIObjectRef documentation for information about properties.)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectsetdataproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectSetDataProperty(
         obj: MIDIObjectRef,
@@ -2426,6 +2521,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_dict` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectgetdictionaryproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetDictionaryProperty(
         obj: MIDIObjectRef,
@@ -2453,6 +2550,8 @@ extern "C-unwind" {
     ///
     /// - `dict` generic must be of the correct type.
     /// - `dict` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectsetdictionaryproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectSetDictionaryProperty(
         obj: MIDIObjectRef,
@@ -2483,6 +2582,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `out_properties` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectgetproperties(_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIObjectGetProperties(
@@ -2509,6 +2610,8 @@ extern "C-unwind" {
     /// Parameter `propertyID`: The property to be removed.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectremoveproperty(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectRemoveProperty(obj: MIDIObjectRef, property_id: &CFString) -> OSStatus;
 }
@@ -2536,6 +2639,8 @@ extern "C-unwind" {
     ///
     /// - `out_object` must be a valid pointer or null.
     /// - `out_object_type` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectfindbyuniqueid(_:_:_:)?language=objc)
     pub fn MIDIObjectFindByUniqueID(
         in_unique_id: MIDIUniqueID,
         out_object: *mut MIDIObjectRef,
@@ -2562,6 +2667,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `evtlist` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisendeventlist(_:_:_:)?language=objc)
     pub fn MIDISendEventList(
         port: MIDIPortRef,
         dest: MIDIEndpointRef,
@@ -2588,6 +2695,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `pktlist` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisend(_:_:_:)?language=objc)
     #[deprecated]
     pub fn MIDISend(
         port: MIDIPortRef,
@@ -2610,6 +2719,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `request` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisendsysex(_:)?language=objc)
     pub fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus;
 }
 
@@ -2627,6 +2738,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ump_request` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisendumpsysex(_:)?language=objc)
     pub fn MIDISendUMPSysex(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
 }
 
@@ -2644,6 +2757,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ump_request` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisendumpsysex8(_:)?language=objc)
     pub fn MIDISendUMPSysex8(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
 }
 
@@ -2669,6 +2784,8 @@ impl MIDIEventPacket {
     ///
     /// - `pkt` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventpacketsysexbytesforgroup(_:_:_:)?language=objc)
     #[doc(alias = "MIDIEventPacketSysexBytesForGroup")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -2711,6 +2828,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `evtlist` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireceivedeventlist(_:_:)?language=objc)
     pub fn MIDIReceivedEventList(src: MIDIEndpointRef, evtlist: NonNull<MIDIEventList>)
         -> OSStatus;
 }
@@ -2738,6 +2857,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `pktlist` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireceived(_:_:)?language=objc)
     #[deprecated]
     pub fn MIDIReceived(src: MIDIEndpointRef, pktlist: NonNull<MIDIPacketList>) -> OSStatus;
 }
@@ -2753,6 +2874,8 @@ extern "C-unwind" {
     ///
     /// Clients may use MIDIFlushOutput to cancel the sending of packets that were previously
     /// scheduled for future delivery.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiflushoutput(_:)?language=objc)
     pub fn MIDIFlushOutput(dest: MIDIEndpointRef) -> OSStatus;
 }
 
@@ -2764,6 +2887,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midirestart()?language=objc)
     pub fn MIDIRestart() -> OSStatus;
 }
 
@@ -2783,6 +2908,8 @@ impl MIDIEventList {
     /// # Safety
     ///
     /// `evtlist` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventlistinit(_:_:)?language=objc)
     #[doc(alias = "MIDIEventListInit")]
     #[inline]
     pub unsafe fn init(
@@ -2836,6 +2963,8 @@ impl MIDIEventList {
     /// - `evtlist` must be a valid pointer.
     /// - `cur_packet` must be a valid pointer.
     /// - `words` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventlistadd(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "MIDIEventListAdd")]
     #[inline]
     pub unsafe fn add(
@@ -2878,6 +3007,8 @@ impl MIDIPacketList {
     /// # Safety
     ///
     /// `pktlist` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipacketlistinit(_:)?language=objc)
     #[doc(alias = "MIDIPacketListInit")]
     #[deprecated]
     #[inline]
@@ -2924,6 +3055,8 @@ impl MIDIPacketList {
     /// - `pktlist` must be a valid pointer.
     /// - `cur_packet` must be a valid pointer.
     /// - `data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipacketlistadd(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "MIDIPacketListAdd")]
     #[deprecated]
     #[inline]

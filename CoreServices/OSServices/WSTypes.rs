@@ -22,15 +22,25 @@ pub const errWSTimeoutError: c_int = -65796;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WSTypeID(pub c_uint);
 impl WSTypeID {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsunknowntype?language=objc)
     pub const eWSUnknownType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsnulltype?language=objc)
     pub const eWSNullType: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsbooleantype?language=objc)
     pub const eWSBooleanType: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsintegertype?language=objc)
     pub const eWSIntegerType: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsdoubletype?language=objc)
     pub const eWSDoubleType: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsstringtype?language=objc)
     pub const eWSStringType: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsdatetype?language=objc)
     pub const eWSDateType: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsdatatype?language=objc)
     pub const eWSDataType: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsarraytype?language=objc)
     pub const eWSArrayType: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsdictionarytype?language=objc)
     pub const eWSDictionaryType: Self = Self(9);
 }
 
@@ -105,6 +115,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508442-wsgetwstypeidfromcftype?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` should be of the correct type.
@@ -113,6 +125,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508451-wsgetcftypeidfromwstypeid?language=objc)
     #[deprecated = "No longer supported"]
     pub fn WSGetCFTypeIDFromWSTypeID(type_id: WSTypeID) -> CFTypeID;
 }

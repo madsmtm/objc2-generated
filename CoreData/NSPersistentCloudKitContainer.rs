@@ -15,10 +15,13 @@ use crate::*;
 pub struct NSPersistentCloudKitContainerSchemaInitializationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPersistentCloudKitContainerSchemaInitializationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainerschemainitializationoptions/nspersistentcloudkitcontainerschemainitializationoptionsnone?language=objc)
         #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainerschemainitializationoptions/dryrun?language=objc)
         #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsDryRun")]
         const DryRun = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainerschemainitializationoptions/printschema?language=objc)
         #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema")]
         const PrintSchema = 1<<2;
     }

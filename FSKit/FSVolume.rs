@@ -47,6 +47,8 @@ pub struct FSDeactivateOptions(pub NSInteger);
 bitflags::bitflags! {
     impl FSDeactivateOptions: NSInteger {
 /// An option to force deactivation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdeactivateoptions/force?language=objc)
         #[doc(alias = "FSDeactivateOptionsForce")]
         const Force = 1<<0;
     }
@@ -71,12 +73,18 @@ unsafe impl RefEncode for FSDeactivateOptions {
 pub struct FSSyncFlags(pub NSInteger);
 impl FSSyncFlags {
     /// A flag for synchronized I/O with file-integrity completion.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssyncflags/wait?language=objc)
     #[doc(alias = "FSSyncFlagsWait")]
     pub const Wait: Self = Self(1);
     /// A flag for synchronized I/O that starts I/O but doesn't wait for it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssyncflags/nowait?language=objc)
     #[doc(alias = "FSSyncFlagsNoWait")]
     pub const NoWait: Self = Self(2);
     /// A flag for synchronized I/O with data-integrity completion.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssyncflags/dwait?language=objc)
     #[doc(alias = "FSSyncFlagsDWait")]
     pub const DWait: Self = Self(4);
 }
@@ -258,12 +266,18 @@ impl FSDirectoryEntryPacker {
 pub struct FSVolumeCaseFormat(pub NSInteger);
 impl FSVolumeCaseFormat {
     /// The volume is case sensitive.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/caseformat/sensitive?language=objc)
     #[doc(alias = "FSVolumeCaseFormatSensitive")]
     pub const Sensitive: Self = Self(0);
     /// The volume isn't case sensitive.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/caseformat/insensitive?language=objc)
     #[doc(alias = "FSVolumeCaseFormatInsensitive")]
     pub const Insensitive: Self = Self(1);
     /// The volume isn't case sensitive, but supports preserving the case of file and directory names.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/caseformat/insensitivecasepreserving?language=objc)
     #[doc(alias = "FSVolumeCaseFormatInsensitiveCasePreserving")]
     pub const InsensitiveCasePreserving: Self = Self(2);
 }
@@ -1333,15 +1347,23 @@ extern_protocol!(
 pub struct FSSetXattrPolicy(pub NSUInteger);
 impl FSSetXattrPolicy {
     /// Set the value, regardless of previous state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/setxattrpolicy/alwaysset?language=objc)
     #[doc(alias = "FSSetXattrPolicyAlwaysSet")]
     pub const AlwaysSet: Self = Self(0);
     /// Set the value, but fail if the extended attribute already exists.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/setxattrpolicy/mustcreate?language=objc)
     #[doc(alias = "FSSetXattrPolicyMustCreate")]
     pub const MustCreate: Self = Self(1);
     /// Set the value, but fail if the extended attribute doesn't already exist.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/setxattrpolicy/mustreplace?language=objc)
     #[doc(alias = "FSSetXattrPolicyMustReplace")]
     pub const MustReplace: Self = Self(2);
     /// Delete the value, failing if the extended attribute doesn't exist.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/setxattrpolicy/delete?language=objc)
     #[doc(alias = "FSSetXattrPolicyDelete")]
     pub const Delete: Self = Self(3);
 }
@@ -1455,11 +1477,15 @@ bitflags::bitflags! {
 /// The read mode.
 ///
 /// This mode is equivalent to POSIX `FREAD`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/openmodes/read?language=objc)
         #[doc(alias = "FSVolumeOpenModesRead")]
         const Read = 1;
 /// The write mode.
 ///
 /// This mode is equivalent to POSIX `FRWITE`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/openmodes/write?language=objc)
         #[doc(alias = "FSVolumeOpenModesWrite")]
         const Write = 2;
     }
@@ -1608,54 +1634,88 @@ pub struct FSAccessMask(pub NSUInteger);
 bitflags::bitflags! {
     impl FSAccessMask: NSUInteger {
 /// The file system allows reading data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/readdata?language=objc)
         #[doc(alias = "FSAccessReadData")]
         const ReadData = 1<<1;
 /// The file system allows listing directory contents.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/listdirectory?language=objc)
         #[doc(alias = "FSAccessListDirectory")]
         const ListDirectory = FSAccessMask::ReadData.0;
 /// The file system allows writing data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/writedata?language=objc)
         #[doc(alias = "FSAccessWriteData")]
         const WriteData = 1<<2;
 /// The file system allows adding files.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/addfile?language=objc)
         #[doc(alias = "FSAccessAddFile")]
         const AddFile = FSAccessMask::WriteData.0;
 /// The file system allows file executuion.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/execute?language=objc)
         #[doc(alias = "FSAccessExecute")]
         const Execute = 1<<3;
 /// The file system allows searching files.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/search?language=objc)
         #[doc(alias = "FSAccessSearch")]
         const Search = FSAccessMask::Execute.0;
 /// The file system allows deleting a file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/delete?language=objc)
         #[doc(alias = "FSAccessDelete")]
         const Delete = 1<<4;
 /// The file system allows appending data to a file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/appenddata?language=objc)
         #[doc(alias = "FSAccessAppendData")]
         const AppendData = 1<<5;
 /// The file system allows adding subdirectories.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/addsubdirectory?language=objc)
         #[doc(alias = "FSAccessAddSubdirectory")]
         const AddSubdirectory = FSAccessMask::AppendData.0;
 /// The file system allows deleting subdirectories.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/deletechild?language=objc)
         #[doc(alias = "FSAccessDeleteChild")]
         const DeleteChild = 1<<6;
 /// The file system allows reading file attributes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/readattributes?language=objc)
         #[doc(alias = "FSAccessReadAttributes")]
         const ReadAttributes = 1<<7;
 /// The file system allows writing file attributes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/writeattributes?language=objc)
         #[doc(alias = "FSAccessWriteAttributes")]
         const WriteAttributes = 1<<8;
 /// The file system allows reading extended file attributes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/readxattr?language=objc)
         #[doc(alias = "FSAccessReadXattr")]
         const ReadXattr = 1<<9;
 /// The file system allows writing extended file attributes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/writexattr?language=objc)
         #[doc(alias = "FSAccessWriteXattr")]
         const WriteXattr = 1<<10;
 /// The file system allows reading a file's security descriptors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/readsecurity?language=objc)
         #[doc(alias = "FSAccessReadSecurity")]
         const ReadSecurity = 1<<11;
 /// The file system allows writing a file's security descriptors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/writesecurity?language=objc)
         #[doc(alias = "FSAccessWriteSecurity")]
         const WriteSecurity = 1<<12;
 /// The file system allows taking ownership of a file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/takeownership?language=objc)
         #[doc(alias = "FSAccessTakeOwnership")]
         const TakeOwnership = 1<<13;
     }
@@ -1753,20 +1813,28 @@ pub struct FSPreallocateFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl FSPreallocateFlags: NSUInteger {
 /// Allocates contiguous space.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateflags/contiguous?language=objc)
         #[doc(alias = "FSPreallocateFlagsContiguous")]
         const Contiguous = 0x00000002;
 /// Allocates all requested space or no space at all.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateflags/all?language=objc)
         #[doc(alias = "FSPreallocateFlagsAll")]
         const All = 0x00000004;
 /// Allocates space that isn't freed when deleting the descriptor.
 ///
 /// This space remains allocated even after calling `close(2)`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateflags/persist?language=objc)
         #[doc(alias = "FSPreallocateFlagsPersist")]
         const Persist = 0x00000008;
 /// Allocates space from the physical end of file.
 ///
 /// When implementing this behavior, ignore any offset in the preallocate call.
 /// This flag is currently set for all ``FSVolume/PreallocateOperations/preallocateSpace(for:at:length:flags:replyHandler:)`` calls.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateflags/fromeof?language=objc)
         #[doc(alias = "FSPreallocateFlagsFromEOF")]
         const FromEOF = 0x00000010;
     }
@@ -1847,20 +1915,28 @@ bitflags::bitflags! {
 /// An option to never perform deactivation.
 ///
 /// With this deactivation option, FSKit never issues `deactivateItem` calls, even though the volume conforms to ``FSVolume/ItemDeactivation``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemdeactivationoptions/fsitemdeactivationnever?language=objc)
         #[doc(alias = "FSItemDeactivationNever")]
         const Never = 0;
 /// An option to always perform deactivation calls.
 ///
 /// Use this option if the file system needs `deactivateItem` calls in circumstances beyond those covered by ``forRemovedItems`` and ``forPreallocatedItems``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivationoptions/always?language=objc)
         #[doc(alias = "FSItemDeactivationAlways")]
         const Always = NSUIntegerMax as _;
 /// An option to process deactivation for open-unlinked items at the moment of last close.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivationoptions/forremoveditems?language=objc)
         #[doc(alias = "FSItemDeactivationForRemovedItems")]
         const ForRemovedItems = 1<<0;
 /// An option to process deactivation for for files with preallocated space.
 ///
 /// This option facilitates a sort of trim-on-close behavior.
 /// It is only meaningful for volumes that conform to ``FSVolume/PreallocateOperations``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivationoptions/forpreallocateditems?language=objc)
         #[doc(alias = "FSItemDeactivationForPreallocatedItems")]
         const ForPreallocatedItems = 1<<1;
     }

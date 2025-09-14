@@ -43,10 +43,13 @@ impl MTLClearColor {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLoadAction(pub NSUInteger);
 impl MTLLoadAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloadaction/dontcare?language=objc)
     #[doc(alias = "MTLLoadActionDontCare")]
     pub const DontCare: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloadaction/load?language=objc)
     #[doc(alias = "MTLLoadActionLoad")]
     pub const Load: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloadaction/clear?language=objc)
     #[doc(alias = "MTLLoadActionClear")]
     pub const Clear: Self = Self(2);
 }
@@ -65,16 +68,22 @@ unsafe impl RefEncode for MTLLoadAction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStoreAction(pub NSUInteger);
 impl MTLStoreAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/dontcare?language=objc)
     #[doc(alias = "MTLStoreActionDontCare")]
     pub const DontCare: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/store?language=objc)
     #[doc(alias = "MTLStoreActionStore")]
     pub const Store: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/multisampleresolve?language=objc)
     #[doc(alias = "MTLStoreActionMultisampleResolve")]
     pub const MultisampleResolve: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/storeandmultisampleresolve?language=objc)
     #[doc(alias = "MTLStoreActionStoreAndMultisampleResolve")]
     pub const StoreAndMultisampleResolve: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/unknown?language=objc)
     #[doc(alias = "MTLStoreActionUnknown")]
     pub const Unknown: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/customsampledepthstore?language=objc)
     #[doc(alias = "MTLStoreActionCustomSampleDepthStore")]
     pub const CustomSampleDepthStore: Self = Self(5);
 }
@@ -94,8 +103,10 @@ unsafe impl RefEncode for MTLStoreAction {
 pub struct MTLStoreActionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLStoreActionOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreactionoptions/mtlstoreactionoptionnone?language=objc)
         #[doc(alias = "MTLStoreActionOptionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreactionoptions/customsamplepositions?language=objc)
         #[doc(alias = "MTLStoreActionOptionCustomSamplePositions")]
         const CustomSamplePositions = 1<<0;
     }
@@ -122,9 +133,13 @@ unsafe impl RefEncode for MTLStoreActionOptions {
 pub struct MTLVisibilityResultType(pub NSInteger);
 impl MTLVisibilityResultType {
     /// Reset visibility result data when you create a render command encoder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresulttype/reset?language=objc)
     #[doc(alias = "MTLVisibilityResultTypeReset")]
     pub const Reset: Self = Self(0);
     /// Accumulate visibility results data across multiple render passes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresulttype/accumulate?language=objc)
     #[doc(alias = "MTLVisibilityResultTypeAccumulate")]
     pub const Accumulate: Self = Self(1);
 }
@@ -375,10 +390,13 @@ impl DefaultRetained for MTLRenderPassColorAttachmentDescriptor {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMultisampleDepthResolveFilter(pub NSUInteger);
 impl MTLMultisampleDepthResolveFilter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisampledepthresolvefilter/sample0?language=objc)
     #[doc(alias = "MTLMultisampleDepthResolveFilterSample0")]
     pub const Sample0: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisampledepthresolvefilter/min?language=objc)
     #[doc(alias = "MTLMultisampleDepthResolveFilterMin")]
     pub const Min: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisampledepthresolvefilter/max?language=objc)
     #[doc(alias = "MTLMultisampleDepthResolveFilterMax")]
     pub const Max: Self = Self(2);
 }
@@ -463,9 +481,13 @@ impl DefaultRetained for MTLRenderPassDepthAttachmentDescriptor {
 pub struct MTLMultisampleStencilResolveFilter(pub NSUInteger);
 impl MTLMultisampleStencilResolveFilter {
     /// The stencil sample corresponding to sample 0. This is the default behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisamplestencilresolvefilter/sample0?language=objc)
     #[doc(alias = "MTLMultisampleStencilResolveFilterSample0")]
     pub const Sample0: Self = Self(0);
     /// The stencil sample corresponding to whichever depth sample is selected by the depth resolve filter. If depth resolve is not enabled, the stencil sample is chosen based on what a depth resolve filter would have selected.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisamplestencilresolvefilter/depthresolvedsample?language=objc)
     #[doc(alias = "MTLMultisampleStencilResolveFilterDepthResolvedSample")]
     pub const DepthResolvedSample: Self = Self(1);
 }

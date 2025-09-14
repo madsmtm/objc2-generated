@@ -14,25 +14,35 @@ use crate::*;
 pub struct NSDragOperation(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDragOperation: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/nsdragoperationnone?language=objc)
         #[doc(alias = "NSDragOperationNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/copy?language=objc)
         #[doc(alias = "NSDragOperationCopy")]
         const Copy = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/link?language=objc)
         #[doc(alias = "NSDragOperationLink")]
         const Link = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/generic?language=objc)
         #[doc(alias = "NSDragOperationGeneric")]
         const Generic = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/private?language=objc)
         #[doc(alias = "NSDragOperationPrivate")]
         const Private = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/move?language=objc)
         #[doc(alias = "NSDragOperationMove")]
         const Move = 16;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/delete?language=objc)
         #[doc(alias = "NSDragOperationDelete")]
         const Delete = 32;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/every?language=objc)
         #[doc(alias = "NSDragOperationEvery")]
         const Every = NSUIntegerMax as _;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/all_obsolete?language=objc)
         #[doc(alias = "NSDragOperationAll_Obsolete")]
 #[deprecated]
         const All_Obsolete = 15;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/all?language=objc)
         #[doc(alias = "NSDragOperationAll")]
 #[deprecated]
         const All = NSDragOperation::All_Obsolete.0;
@@ -53,14 +63,19 @@ unsafe impl RefEncode for NSDragOperation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDraggingFormation(pub NSInteger);
 impl NSDraggingFormation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation/default?language=objc)
     #[doc(alias = "NSDraggingFormationDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation/none?language=objc)
     #[doc(alias = "NSDraggingFormationNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation/pile?language=objc)
     #[doc(alias = "NSDraggingFormationPile")]
     pub const Pile: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation/list?language=objc)
     #[doc(alias = "NSDraggingFormationList")]
     pub const List: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation/stack?language=objc)
     #[doc(alias = "NSDraggingFormationStack")]
     pub const Stack: Self = Self(4);
 }
@@ -79,8 +94,10 @@ unsafe impl RefEncode for NSDraggingFormation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDraggingContext(pub NSInteger);
 impl NSDraggingContext {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingcontext/outsideapplication?language=objc)
     #[doc(alias = "NSDraggingContextOutsideApplication")]
     pub const OutsideApplication: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingcontext/withinapplication?language=objc)
     #[doc(alias = "NSDraggingContextWithinApplication")]
     pub const WithinApplication: Self = Self(1);
 }
@@ -100,8 +117,10 @@ unsafe impl RefEncode for NSDraggingContext {
 pub struct NSDraggingItemEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDraggingItemEnumerationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitemenumerationoptions/concurrent?language=objc)
         #[doc(alias = "NSDraggingItemEnumerationConcurrent")]
         const Concurrent = NSEnumerationOptions::Concurrent.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitemenumerationoptions/clearnonenumeratedimages?language=objc)
         #[doc(alias = "NSDraggingItemEnumerationClearNonenumeratedImages")]
         const ClearNonenumeratedImages = 1<<16;
     }
@@ -121,10 +140,13 @@ unsafe impl RefEncode for NSDraggingItemEnumerationOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSpringLoadingHighlight(pub NSInteger);
 impl NSSpringLoadingHighlight {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadinghighlight/none?language=objc)
     #[doc(alias = "NSSpringLoadingHighlightNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadinghighlight/standard?language=objc)
     #[doc(alias = "NSSpringLoadingHighlightStandard")]
     pub const Standard: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadinghighlight/emphasized?language=objc)
     #[doc(alias = "NSSpringLoadingHighlightEmphasized")]
     pub const Emphasized: Self = Self(2);
 }
@@ -351,12 +373,16 @@ extern_protocol!(
 pub struct NSSpringLoadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSpringLoadingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions/disabled?language=objc)
         #[doc(alias = "NSSpringLoadingDisabled")]
         const Disabled = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions/enabled?language=objc)
         #[doc(alias = "NSSpringLoadingEnabled")]
         const Enabled = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions/continuousactivation?language=objc)
         #[doc(alias = "NSSpringLoadingContinuousActivation")]
         const ContinuousActivation = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions/nohover?language=objc)
         #[doc(alias = "NSSpringLoadingNoHover")]
         const NoHover = 1<<3;
     }

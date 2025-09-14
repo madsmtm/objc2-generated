@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NIDLTDOACoordinatesType(pub NSInteger);
 impl NIDLTDOACoordinatesType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoacoordinatestype/geodetic?language=objc)
     #[doc(alias = "NIDLTDOACoordinatesTypeGeodetic")]
     pub const Geodetic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoacoordinatestype/relative?language=objc)
     #[doc(alias = "NIDLTDOACoordinatesTypeRelative")]
     pub const Relative: Self = Self(1);
 }
@@ -37,10 +39,13 @@ unsafe impl RefEncode for NIDLTDOACoordinatesType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NIDLTDOAMeasurementType(pub NSInteger);
 impl NIDLTDOAMeasurementType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurementtype/poll?language=objc)
     #[doc(alias = "NIDLTDOAMeasurementTypePoll")]
     pub const Poll: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurementtype/response?language=objc)
     #[doc(alias = "NIDLTDOAMeasurementTypeResponse")]
     pub const Response: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurementtype/final?language=objc)
     #[doc(alias = "NIDLTDOAMeasurementTypeFinal")]
     pub const Final: Self = Self(2);
 }

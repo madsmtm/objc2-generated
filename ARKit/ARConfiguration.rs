@@ -25,6 +25,8 @@ pub struct ARFrameSemantics(pub NSUInteger);
 bitflags::bitflags! {
     impl ARFrameSemantics: NSUInteger {
 /// No semantic operation is run.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframesemantics/arframesemanticnone?language=objc)
         #[doc(alias = "ARFrameSemanticNone")]
         const None = 0;
 /// Person segmentation.
@@ -34,6 +36,8 @@ bitflags::bitflags! {
 /// See: -[ARFrame segmentationBuffer]
 ///
 /// See: ARSegmentationClass
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/personsegmentation?language=objc)
         #[doc(alias = "ARFrameSemanticPersonSegmentation")]
         const PersonSegmentation = 1<<0;
 /// Person segmentation with depth.
@@ -44,6 +48,8 @@ bitflags::bitflags! {
 /// See: -[ARFrame estimatedDepthData]
 ///
 /// See: -[ARFrame segmentationBuffer]
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/personsegmentationwithdepth?language=objc)
         #[doc(alias = "ARFrameSemanticPersonSegmentationWithDepth")]
         const PersonSegmentationWithDepth = (1<<1)|(1<<0);
 /// Body detection.
@@ -53,6 +59,8 @@ bitflags::bitflags! {
 /// See: -[ARFrame detectedBody]
 ///
 /// See: ARBody2D
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/bodydetection?language=objc)
         #[doc(alias = "ARFrameSemanticBodyDetection")]
         const BodyDetection = 1<<2;
 /// Scene Depth.
@@ -60,6 +68,8 @@ bitflags::bitflags! {
 /// Each capturedImage will have an associated scene depth data.
 ///
 /// See: - [ARFrame sceneDepth]
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/scenedepth?language=objc)
         #[doc(alias = "ARFrameSemanticSceneDepth")]
         const SceneDepth = 1<<3;
 /// Smoothed Scene Depth.
@@ -67,6 +77,8 @@ bitflags::bitflags! {
 /// Each capturedImage will have an associated scene depth data that is temporally smoothed.
 ///
 /// See: - [ARFrame smoothedSceneDepth]
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/smoothedscenedepth?language=objc)
         #[doc(alias = "ARFrameSemanticSmoothedSceneDepth")]
         const SmoothedSceneDepth = 1<<4;
     }
@@ -93,13 +105,19 @@ pub struct ARWorldAlignment(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARWorldAlignment {
     /// Aligns the world with gravity that is defined by vector (0, -1, 0).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum/gravity?language=objc)
     #[doc(alias = "ARWorldAlignmentGravity")]
     pub const Gravity: Self = Self(0);
     /// Aligns the world with gravity that is defined by the vector (0, -1, 0)
     /// and heading (w.r.t. True North) that is given by the vector (0, 0, -1).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum/gravityandheading?language=objc)
     #[doc(alias = "ARWorldAlignmentGravityAndHeading")]
     pub const GravityAndHeading: Self = Self(1);
     /// Aligns the world with the camera’s orientation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum/camera?language=objc)
     #[doc(alias = "ARWorldAlignmentCamera")]
     pub const Camera: Self = Self(2);
 }
@@ -125,13 +143,19 @@ pub struct AREnvironmentTexturing(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl AREnvironmentTexturing {
     /// No texture information is gathered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/none?language=objc)
     #[doc(alias = "AREnvironmentTexturingNone")]
     pub const None: Self = Self(0);
     /// Texture information is gathered for the environment.
     /// Environment textures will be generated for AREnvironmentProbes added to the session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/manual?language=objc)
     #[doc(alias = "AREnvironmentTexturingManual")]
     pub const Manual: Self = Self(1);
     /// Texture information is gathered for the environment and probes automatically placed in the scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/automatic?language=objc)
     #[doc(alias = "AREnvironmentTexturingAutomatic")]
     pub const Automatic: Self = Self(2);
 }
@@ -158,12 +182,18 @@ pub struct ARSceneReconstruction(pub NSUInteger);
 bitflags::bitflags! {
     impl ARSceneReconstruction: NSUInteger {
 /// No scene reconstruction is run.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscenereconstruction/arscenereconstructionnone?language=objc)
         #[doc(alias = "ARSceneReconstructionNone")]
         const None = 0;
 /// Scene reconstruction generates a mesh of the world
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/scenereconstruction/mesh?language=objc)
         #[doc(alias = "ARSceneReconstructionMesh")]
         const Mesh = 1<<0;
 /// Scene reconstruction generates a mesh of the world with classification for each face.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/scenereconstruction/meshwithclassification?language=objc)
         #[doc(alias = "ARSceneReconstructionMeshWithClassification")]
         const MeshWithClassification = (1<<1)|(1<<0);
     }

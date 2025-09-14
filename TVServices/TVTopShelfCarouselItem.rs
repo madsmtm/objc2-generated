@@ -19,33 +19,49 @@ bitflags::bitflags! {
 /// High-definition video resolution.
 ///
 /// Only one resolution value should be provided.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videoresolutionhd?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemVideoResolutionHD")]
         const VideoResolutionHD = 1<<0;
 /// Ultra-high-definition 4K video resolution.
 ///
 /// Only one resolution value should be provided.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videoresolution4k?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemVideoResolution4K")]
         const VideoResolution4K = 2<<0;
 /// High-dynamic-range video.
 ///
 /// Only one color space value should be provided.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videocolorspacehdr?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemVideoColorSpaceHDR")]
         const VideoColorSpaceHDR = 1<<6;
 /// Dolby Vision video.
 ///
 /// Only one color space value should be provided.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videocolorspacedolbyvision?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemVideoColorSpaceDolbyVision")]
         const VideoColorSpaceDolbyVision = 2<<6;
 /// Whether the movie or show supports Dolby Atmos audio.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/audiodolbyatmos?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemAudioDolbyAtmos")]
         const AudioDolbyAtmos = 1<<12;
 /// Whether the movie or show supports closed captioning.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/audiotranscriptionclosedcaptioning?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemAudioTranscriptionClosedCaptioning")]
         const AudioTranscriptionClosedCaptioning = 1<<13;
 /// Whether the movie or show supports subtitles for the deaf and hard-of-hearing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/audiotranscriptionsdh?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemAudioTranscriptionSDH")]
         const AudioTranscriptionSDH = 1<<14;
 /// Whether the movie or show supports audio descriptions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/audiodescription?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemAudioDescription")]
         const AudioDescription = 1<<15;
     }

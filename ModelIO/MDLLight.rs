@@ -15,28 +15,40 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLLightType(pub NSUInteger);
 impl MDLLightType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/unknown?language=objc)
     #[doc(alias = "MDLLightTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/ambient?language=objc)
     #[doc(alias = "MDLLightTypeAmbient")]
     pub const Ambient: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/directional?language=objc)
     #[doc(alias = "MDLLightTypeDirectional")]
     pub const Directional: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/spot?language=objc)
     #[doc(alias = "MDLLightTypeSpot")]
     pub const Spot: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/point?language=objc)
     #[doc(alias = "MDLLightTypePoint")]
     pub const Point: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/linear?language=objc)
     #[doc(alias = "MDLLightTypeLinear")]
     pub const Linear: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/discarea?language=objc)
     #[doc(alias = "MDLLightTypeDiscArea")]
     pub const DiscArea: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/rectangulararea?language=objc)
     #[doc(alias = "MDLLightTypeRectangularArea")]
     pub const RectangularArea: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/superelliptical?language=objc)
     #[doc(alias = "MDLLightTypeSuperElliptical")]
     pub const SuperElliptical: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/photometric?language=objc)
     #[doc(alias = "MDLLightTypePhotometric")]
     pub const Photometric: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/probe?language=objc)
     #[doc(alias = "MDLLightTypeProbe")]
     pub const Probe: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/environment?language=objc)
     #[doc(alias = "MDLLightTypeEnvironment")]
     pub const Environment: Self = Self(11);
 }

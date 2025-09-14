@@ -57,34 +57,49 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFCharacterSetPredefinedSet(pub CFIndex);
 impl CFCharacterSetPredefinedSet {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/control?language=objc)
     #[doc(alias = "kCFCharacterSetControl")]
     pub const Control: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/whitespace?language=objc)
     #[doc(alias = "kCFCharacterSetWhitespace")]
     pub const Whitespace: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/whitespaceandnewline?language=objc)
     #[doc(alias = "kCFCharacterSetWhitespaceAndNewline")]
     pub const WhitespaceAndNewline: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/decimaldigit?language=objc)
     #[doc(alias = "kCFCharacterSetDecimalDigit")]
     pub const DecimalDigit: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/letter?language=objc)
     #[doc(alias = "kCFCharacterSetLetter")]
     pub const Letter: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/lowercaseletter?language=objc)
     #[doc(alias = "kCFCharacterSetLowercaseLetter")]
     pub const LowercaseLetter: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/uppercaseletter?language=objc)
     #[doc(alias = "kCFCharacterSetUppercaseLetter")]
     pub const UppercaseLetter: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/nonbase?language=objc)
     #[doc(alias = "kCFCharacterSetNonBase")]
     pub const NonBase: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/decomposable?language=objc)
     #[doc(alias = "kCFCharacterSetDecomposable")]
     pub const Decomposable: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/alphanumeric?language=objc)
     #[doc(alias = "kCFCharacterSetAlphaNumeric")]
     pub const AlphaNumeric: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/punctuation?language=objc)
     #[doc(alias = "kCFCharacterSetPunctuation")]
     pub const Punctuation: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/capitalizedletter?language=objc)
     #[doc(alias = "kCFCharacterSetCapitalizedLetter")]
     pub const CapitalizedLetter: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/symbol?language=objc)
     #[doc(alias = "kCFCharacterSetSymbol")]
     pub const Symbol: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/newline?language=objc)
     #[doc(alias = "kCFCharacterSetNewline")]
     pub const Newline: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/illegal?language=objc)
     #[doc(alias = "kCFCharacterSetIllegal")]
     pub const Illegal: Self = Self(12);
 }
@@ -101,6 +116,8 @@ unsafe impl RefEncode for CFCharacterSetPredefinedSet {
 
 unsafe impl ConcreteType for CFCharacterSet {
     /// Returns the type identifier of all CFCharacterSet instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetgettypeid()?language=objc)
     #[doc(alias = "CFCharacterSetGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -121,6 +138,8 @@ impl CFCharacterSet {
     ///
     /// Returns: A reference to the predefined immutable CFCharacterSet.
     /// This instance is owned by CF.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetgetpredefined(_:)?language=objc)
     #[doc(alias = "CFCharacterSetGetPredefined")]
     #[inline]
     pub fn predefined(
@@ -155,6 +174,8 @@ impl CFCharacterSet {
     /// # Safety
     ///
     /// `alloc` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatewithcharactersinrange(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateWithCharactersInRange")]
     #[inline]
     pub unsafe fn with_characters_in_range(
@@ -190,6 +211,8 @@ impl CFCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_string` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatewithcharactersinstring(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateWithCharactersInString")]
     #[inline]
     pub unsafe fn with_characters_in_string(
@@ -236,6 +259,8 @@ impl CFCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_data` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatewithbitmaprepresentation(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateWithBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -271,6 +296,8 @@ impl CFCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_set` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreateinvertedset(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateInvertedSet")]
     #[inline]
     pub unsafe fn new_inverted_set(
@@ -298,6 +325,8 @@ impl CFCharacterSet {
     /// # Safety
     ///
     /// `the_otherset` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetissupersetofset(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetIsSupersetOfSet")]
     #[inline]
     pub unsafe fn is_superset_of_set(&self, the_otherset: Option<&CFCharacterSet>) -> bool {
@@ -319,6 +348,8 @@ impl CFCharacterSet {
     /// Parameter `thePlane`: The plane number to be checked for the membership.
     /// The valid value range is from 0 to 16.  If the value is outside of the valid
     /// plane number range, the behavior is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersethasmemberinplane(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetHasMemberInPlane")]
     #[inline]
     pub unsafe fn has_member_in_plane(&self, the_plane: CFIndex) -> bool {
@@ -347,6 +378,8 @@ impl CFMutableCharacterSet {
     /// # Safety
     ///
     /// `alloc` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatemutable(_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateMutable")]
     #[inline]
     pub unsafe fn new(alloc: Option<&CFAllocator>) -> Option<CFRetained<CFMutableCharacterSet>> {
@@ -379,6 +412,8 @@ impl CFCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_set` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -415,6 +450,8 @@ impl CFMutableCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_set` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatemutablecopy(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -444,6 +481,8 @@ impl CFCharacterSet {
     /// non-BMP planes.
     ///
     /// Returns: true, if the value is in the character set, otherwise false.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetischaractermember(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetIsCharacterMember")]
     #[inline]
     pub fn is_character_member(&self, the_char: UniChar) -> bool {
@@ -466,6 +505,8 @@ impl CFCharacterSet {
     /// character set.
     ///
     /// Returns: true, if the value is in the character set, otherwise false.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetislongcharactermember(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetIsLongCharacterMember")]
     #[inline]
     pub fn is_long_character_member(&self, the_char: UTF32Char) -> bool {
@@ -500,6 +541,8 @@ impl CFCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_set` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatebitmaprepresentation(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -534,6 +577,8 @@ impl CFMutableCharacterSet {
     /// # Safety
     ///
     /// `the_set` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetaddcharactersinrange(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetAddCharactersInRange")]
     #[inline]
     pub unsafe fn add_characters_in_range(
@@ -564,6 +609,8 @@ impl CFMutableCharacterSet {
     /// # Safety
     ///
     /// `the_set` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetremovecharactersinrange(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetRemoveCharactersInRange")]
     #[inline]
     pub unsafe fn remove_characters_in_range(
@@ -593,6 +640,8 @@ impl CFMutableCharacterSet {
     ///
     /// - `the_set` might not allow `None`.
     /// - `the_string` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetaddcharactersinstring(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetAddCharactersInString")]
     #[inline]
     pub unsafe fn add_characters_in_string(
@@ -622,6 +671,8 @@ impl CFMutableCharacterSet {
     ///
     /// - `the_set` might not allow `None`.
     /// - `the_string` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetremovecharactersinstring(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetRemoveCharactersInString")]
     #[inline]
     pub unsafe fn remove_characters_in_string(
@@ -652,6 +703,8 @@ impl CFMutableCharacterSet {
     ///
     /// - `the_set` might not allow `None`.
     /// - `the_other_set` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetunion(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetUnion")]
     #[inline]
     pub unsafe fn union(
@@ -682,6 +735,8 @@ impl CFMutableCharacterSet {
     ///
     /// - `the_set` might not allow `None`.
     /// - `the_other_set` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetintersect(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetIntersect")]
     #[inline]
     pub unsafe fn intersect(
@@ -706,6 +761,8 @@ impl CFMutableCharacterSet {
     /// # Safety
     ///
     /// `the_set` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetinvert(_:)?language=objc)
     #[doc(alias = "CFCharacterSetInvert")]
     #[inline]
     pub unsafe fn invert(the_set: Option<&CFMutableCharacterSet>) {

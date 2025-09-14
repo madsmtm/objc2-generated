@@ -19,38 +19,55 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BAErrorCode(pub NSInteger);
 impl BAErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/downloadinvalid?language=objc)
     #[doc(alias = "BAErrorCodeDownloadInvalid")]
     pub const DownloadInvalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/callfromextensionnotallowed?language=objc)
     #[doc(alias = "BAErrorCodeCallFromExtensionNotAllowed")]
     pub const CallFromExtensionNotAllowed: Self = Self(50);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/callfrominactiveprocessnotallowed?language=objc)
     #[doc(alias = "BAErrorCodeCallFromInactiveProcessNotAllowed")]
     pub const CallFromInactiveProcessNotAllowed: Self = Self(51);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/callerconnectionnotaccepted?language=objc)
     #[doc(alias = "BAErrorCodeCallerConnectionNotAccepted")]
     pub const CallerConnectionNotAccepted: Self = Self(55);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/callerconnectioninvalid?language=objc)
     #[doc(alias = "BAErrorCodeCallerConnectionInvalid")]
     pub const CallerConnectionInvalid: Self = Self(56);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/downloadalreadyscheduled?language=objc)
     #[doc(alias = "BAErrorCodeDownloadAlreadyScheduled")]
     pub const DownloadAlreadyScheduled: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/downloadnotscheduled?language=objc)
     #[doc(alias = "BAErrorCodeDownloadNotScheduled")]
     pub const DownloadNotScheduled: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/downloadfailedtostart?language=objc)
     #[doc(alias = "BAErrorCodeDownloadFailedToStart")]
     pub const DownloadFailedToStart: Self = Self(102);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/downloadalreadyfailed?language=objc)
     #[doc(alias = "BAErrorCodeDownloadAlreadyFailed")]
     pub const DownloadAlreadyFailed: Self = Self(103);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/downloadessentialdownloadnotpermitted?language=objc)
     #[doc(alias = "BAErrorCodeDownloadEssentialDownloadNotPermitted")]
     pub const DownloadEssentialDownloadNotPermitted: Self = Self(109);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/downloadbackgroundactivityprohibited?language=objc)
     #[doc(alias = "BAErrorCodeDownloadBackgroundActivityProhibited")]
     pub const DownloadBackgroundActivityProhibited: Self = Self(111);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/downloadwouldexceedallowance?language=objc)
     #[doc(alias = "BAErrorCodeDownloadWouldExceedAllowance")]
     pub const DownloadWouldExceedAllowance: Self = Self(112);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/downloaddoesnotexist?language=objc)
     #[doc(alias = "BAErrorCodeDownloadDoesNotExist")]
     pub const DownloadDoesNotExist: Self = Self(113);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/sessiondownloaddisallowedbydomain?language=objc)
     #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByDomain")]
     pub const SessionDownloadDisallowedByDomain: Self = Self(202);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/sessiondownloaddisallowedbyallowance?language=objc)
     #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByAllowance")]
     pub const SessionDownloadDisallowedByAllowance: Self = Self(203);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/sessiondownloadallowanceexceeded?language=objc)
     #[doc(alias = "BAErrorCodeSessionDownloadAllowanceExceeded")]
     pub const SessionDownloadAllowanceExceeded: Self = Self(204);
+    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrorcode/sessiondownloadnotpermittedbeforeapplaunch?language=objc)
     #[doc(alias = "BAErrorCodeSessionDownloadNotPermittedBeforeAppLaunch")]
     pub const SessionDownloadNotPermittedBeforeAppLaunch: Self = Self(206);
 }

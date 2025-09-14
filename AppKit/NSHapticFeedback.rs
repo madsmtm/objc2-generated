@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHapticFeedbackPattern(pub NSInteger);
 impl NSHapticFeedbackPattern {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/feedbackpattern/generic?language=objc)
     #[doc(alias = "NSHapticFeedbackPatternGeneric")]
     pub const Generic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/feedbackpattern/alignment?language=objc)
     #[doc(alias = "NSHapticFeedbackPatternAlignment")]
     pub const Alignment: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/feedbackpattern/levelchange?language=objc)
     #[doc(alias = "NSHapticFeedbackPatternLevelChange")]
     pub const LevelChange: Self = Self(2);
 }
@@ -34,10 +37,13 @@ unsafe impl RefEncode for NSHapticFeedbackPattern {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHapticFeedbackPerformanceTime(pub NSUInteger);
 impl NSHapticFeedbackPerformanceTime {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/performancetime/default?language=objc)
     #[doc(alias = "NSHapticFeedbackPerformanceTimeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/performancetime/now?language=objc)
     #[doc(alias = "NSHapticFeedbackPerformanceTimeNow")]
     pub const Now: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/performancetime/drawcompleted?language=objc)
     #[doc(alias = "NSHapticFeedbackPerformanceTimeDrawCompleted")]
     pub const DrawCompleted: Self = Self(2);
 }

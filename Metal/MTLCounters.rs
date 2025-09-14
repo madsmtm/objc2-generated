@@ -377,10 +377,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCounterSampleBufferError(pub NSInteger);
 impl MTLCounterSampleBufferError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror-swift.struct/code/outofmemory?language=objc)
     #[doc(alias = "MTLCounterSampleBufferErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror-swift.struct/code/invalid?language=objc)
     #[doc(alias = "MTLCounterSampleBufferErrorInvalid")]
     pub const Invalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror-swift.struct/code/internal?language=objc)
     #[doc(alias = "MTLCounterSampleBufferErrorInternal")]
     pub const Internal: Self = Self(2);
 }

@@ -13,12 +13,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState(pub NSInteger);
 impl ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstate/authorized?language=objc)
     #[doc(
         alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized"
     )]
     pub const Authorized: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstate/denied?language=objc)
     #[doc(alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied")]
     pub const Denied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstate/notdetermined?language=objc)
     #[doc(
         alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined"
     )]

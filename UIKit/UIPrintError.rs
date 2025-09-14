@@ -17,12 +17,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIPrintErrorCode(pub NSInteger);
 impl UIPrintErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterror/code/notavailable?language=objc)
     #[doc(alias = "UIPrintingNotAvailableError")]
     pub const PrintingNotAvailableError: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterror/code/nocontent?language=objc)
     #[doc(alias = "UIPrintNoContentError")]
     pub const PrintNoContentError: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterror/code/unknownimageformat?language=objc)
     #[doc(alias = "UIPrintUnknownImageFormatError")]
     pub const PrintUnknownImageFormatError: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterror/code/jobfailed?language=objc)
     #[doc(alias = "UIPrintJobFailedError")]
     pub const PrintJobFailedError: Self = Self(4);
 }

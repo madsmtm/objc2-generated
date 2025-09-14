@@ -15,14 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSStackViewGravity(pub NSInteger);
 impl NSStackViewGravity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity/top?language=objc)
     #[doc(alias = "NSStackViewGravityTop")]
     pub const Top: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity/leading?language=objc)
     #[doc(alias = "NSStackViewGravityLeading")]
     pub const Leading: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity/center?language=objc)
     #[doc(alias = "NSStackViewGravityCenter")]
     pub const Center: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity/bottom?language=objc)
     #[doc(alias = "NSStackViewGravityBottom")]
     pub const Bottom: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity/trailing?language=objc)
     #[doc(alias = "NSStackViewGravityTrailing")]
     pub const Trailing: Self = Self(3);
 }
@@ -42,21 +47,33 @@ unsafe impl RefEncode for NSStackViewGravity {
 pub struct NSStackViewDistribution(pub NSInteger);
 impl NSStackViewDistribution {
     /// Default value. NSStackView will not have any special distribution behavior, relying on behavior described by gravity areas and set hugging priorities along the stacking axis.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/gravityareas?language=objc)
     #[doc(alias = "NSStackViewDistributionGravityAreas")]
     pub const GravityAreas: Self = Self(-1);
     /// The effective hugging priority in the stacking axis is NSLayoutPriorityRequired, causing the stacked views to tightly fill the container along the stacking axis.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/fill?language=objc)
     #[doc(alias = "NSStackViewDistributionFill")]
     pub const Fill: Self = Self(0);
     /// Stacked views will have sizes maintained to be equal as much as possible along the stacking axis. The effective hugging priority in the stacking axis is NSLayoutPriorityRequired.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/fillequally?language=objc)
     #[doc(alias = "NSStackViewDistributionFillEqually")]
     pub const FillEqually: Self = Self(1);
     /// Stacked views will have sizes maintained to be equal, proportionally to their intrinsicContentSizes, as much as possible. The effective hugging priority in the stacking axis is NSLayoutPriorityRequired.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/fillproportionally?language=objc)
     #[doc(alias = "NSStackViewDistributionFillProportionally")]
     pub const FillProportionally: Self = Self(2);
     /// The space separating stacked views along the stacking axis are maintained to be equal as much as possible while still maintaining the minimum spacing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/equalspacing?language=objc)
     #[doc(alias = "NSStackViewDistributionEqualSpacing")]
     pub const EqualSpacing: Self = Self(3);
     /// Equal center-to-center spacing of the items is maintained as much as possible while still maintaining the minimum spacing between each view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/equalcentering?language=objc)
     #[doc(alias = "NSStackViewDistributionEqualCentering")]
     pub const EqualCentering: Self = Self(4);
 }

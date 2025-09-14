@@ -14,6 +14,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityZoomType(pub NSInteger);
 impl UIAccessibilityZoomType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/zoomtype/insertionpoint?language=objc)
     #[doc(alias = "UIAccessibilityZoomTypeInsertionPoint")]
     pub const InsertionPoint: Self = Self(0);
 }
@@ -26,6 +27,7 @@ unsafe impl RefEncode for UIAccessibilityZoomType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/zoomfocuschanged(zoomtype:toframe:in:)?language=objc)
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIView",
@@ -47,6 +49,7 @@ pub extern "C-unwind" fn UIAccessibilityZoomFocusChanged(
     unsafe { UIAccessibilityZoomFocusChanged(r#type, frame, view) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/registergestureconflictwithzoom()?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityRegisterGestureConflictWithZoom() {
     extern "C-unwind" {

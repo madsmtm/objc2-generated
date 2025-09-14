@@ -24,6 +24,8 @@ unsafe impl RefEncode for CGPDFArray {
 pub type CGPDFArrayRef = *mut CGPDFArray;
 
 impl CGPDFArray {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetcount(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `array` must be a valid pointer or null.
@@ -36,6 +38,8 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetCount(array) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetobject(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `array` must be a valid pointer or null.
@@ -54,6 +58,8 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetObject(array, index, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetnull(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `array` must be a valid pointer or null.
@@ -66,6 +72,8 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetNull(array, index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetboolean(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `array` must be a valid pointer or null.
@@ -84,6 +92,8 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetBoolean(array, index, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetinteger(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `array` must be a valid pointer or null.
@@ -102,6 +112,8 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetInteger(array, index, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetnumber(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `array` must be a valid pointer or null.
@@ -120,6 +132,8 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetNumber(array, index, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetname(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `array` must be a valid pointer or null.
@@ -137,6 +151,8 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetName(array, index, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetstring(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `array` must be a valid pointer or null.
@@ -155,6 +171,8 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetString(array, index, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetarray(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `array` must be a valid pointer or null.
@@ -172,6 +190,8 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetArray(array, index, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetdictionary(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `array` must be a valid pointer or null.
@@ -194,6 +214,8 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetDictionary(array, index, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarraygetstream(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `array` must be a valid pointer or null.
@@ -219,6 +241,8 @@ pub type CGPDFArrayApplierBlock =
     *mut block2::DynBlock<dyn Fn(usize, CGPDFObjectRef, *mut c_void) -> bool>;
 
 impl CGPDFArray {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarrayapplyblock(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `array` must be a valid pointer or null.

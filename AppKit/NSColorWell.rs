@@ -15,12 +15,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorWellStyle(pub NSInteger);
 impl NSColorWellStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorwell/style/default?language=objc)
     #[doc(alias = "NSColorWellStyleDefault")]
     pub const Default: Self = Self(0);
     /// The default `colorWellStyle`. A well that accepts drag/drop of colors as well as reveals the color panel when clicked.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorwell/style/minimal?language=objc)
     #[doc(alias = "NSColorWellStyleMinimal")]
     pub const Minimal: Self = Self(1);
     /// A minimally adorned well. By default shows a popover color picker when clicked; this interaction behavior can be customized.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorwell/style/expanded?language=objc)
     #[doc(alias = "NSColorWellStyleExpanded")]
     pub const Expanded: Self = Self(2);
 }

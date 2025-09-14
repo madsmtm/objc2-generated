@@ -15,63 +15,92 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCompositingOperation(pub NSUInteger);
 impl NSCompositingOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/clear?language=objc)
     #[doc(alias = "NSCompositingOperationClear")]
     pub const Clear: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/copy?language=objc)
     #[doc(alias = "NSCompositingOperationCopy")]
     pub const Copy: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/sourceover?language=objc)
     #[doc(alias = "NSCompositingOperationSourceOver")]
     pub const SourceOver: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/sourcein?language=objc)
     #[doc(alias = "NSCompositingOperationSourceIn")]
     pub const SourceIn: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/sourceout?language=objc)
     #[doc(alias = "NSCompositingOperationSourceOut")]
     pub const SourceOut: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/sourceatop?language=objc)
     #[doc(alias = "NSCompositingOperationSourceAtop")]
     pub const SourceAtop: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/destinationover?language=objc)
     #[doc(alias = "NSCompositingOperationDestinationOver")]
     pub const DestinationOver: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/destinationin?language=objc)
     #[doc(alias = "NSCompositingOperationDestinationIn")]
     pub const DestinationIn: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/destinationout?language=objc)
     #[doc(alias = "NSCompositingOperationDestinationOut")]
     pub const DestinationOut: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/destinationatop?language=objc)
     #[doc(alias = "NSCompositingOperationDestinationAtop")]
     pub const DestinationAtop: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/xor?language=objc)
     #[doc(alias = "NSCompositingOperationXOR")]
     pub const XOR: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/plusdarker?language=objc)
     #[doc(alias = "NSCompositingOperationPlusDarker")]
     pub const PlusDarker: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/nscompositingoperationhighlight?language=objc)
     #[doc(alias = "NSCompositingOperationHighlight")]
     #[deprecated = "Use NSCompositingOperationSourceOver instead"]
     pub const Highlight: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/pluslighter?language=objc)
     #[doc(alias = "NSCompositingOperationPlusLighter")]
     pub const PlusLighter: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/multiply?language=objc)
     #[doc(alias = "NSCompositingOperationMultiply")]
     pub const Multiply: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/screen?language=objc)
     #[doc(alias = "NSCompositingOperationScreen")]
     pub const Screen: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/overlay?language=objc)
     #[doc(alias = "NSCompositingOperationOverlay")]
     pub const Overlay: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/darken?language=objc)
     #[doc(alias = "NSCompositingOperationDarken")]
     pub const Darken: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/lighten?language=objc)
     #[doc(alias = "NSCompositingOperationLighten")]
     pub const Lighten: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/colordodge?language=objc)
     #[doc(alias = "NSCompositingOperationColorDodge")]
     pub const ColorDodge: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/colorburn?language=objc)
     #[doc(alias = "NSCompositingOperationColorBurn")]
     pub const ColorBurn: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/softlight?language=objc)
     #[doc(alias = "NSCompositingOperationSoftLight")]
     pub const SoftLight: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/hardlight?language=objc)
     #[doc(alias = "NSCompositingOperationHardLight")]
     pub const HardLight: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/difference?language=objc)
     #[doc(alias = "NSCompositingOperationDifference")]
     pub const Difference: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/exclusion?language=objc)
     #[doc(alias = "NSCompositingOperationExclusion")]
     pub const Exclusion: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/hue?language=objc)
     #[doc(alias = "NSCompositingOperationHue")]
     pub const Hue: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/saturation?language=objc)
     #[doc(alias = "NSCompositingOperationSaturation")]
     pub const Saturation: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/color?language=objc)
     #[doc(alias = "NSCompositingOperationColor")]
     pub const Color: Self = Self(27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/luminosity?language=objc)
     #[doc(alias = "NSCompositingOperationLuminosity")]
     pub const Luminosity: Self = Self(28);
 }
@@ -235,12 +264,15 @@ pub static NSCompositeLuminosity: NSCompositingOperation =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBackingStoreType(pub NSUInteger);
 impl NSBackingStoreType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backingstoretype/retained?language=objc)
     #[doc(alias = "NSBackingStoreRetained")]
     #[deprecated]
     pub const Retained: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backingstoretype/nonretained?language=objc)
     #[doc(alias = "NSBackingStoreNonretained")]
     #[deprecated]
     pub const Nonretained: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backingstoretype/buffered?language=objc)
     #[doc(alias = "NSBackingStoreBuffered")]
     pub const Buffered: Self = Self(2);
 }
@@ -259,10 +291,13 @@ unsafe impl RefEncode for NSBackingStoreType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowOrderingMode(pub NSInteger);
 impl NSWindowOrderingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/orderingmode/above?language=objc)
     #[doc(alias = "NSWindowAbove")]
     pub const Above: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/orderingmode/below?language=objc)
     #[doc(alias = "NSWindowBelow")]
     pub const Below: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/orderingmode/out?language=objc)
     #[doc(alias = "NSWindowOut")]
     pub const Out: Self = Self(0);
 }
@@ -281,10 +316,13 @@ unsafe impl RefEncode for NSWindowOrderingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFocusRingPlacement(pub NSUInteger);
 impl NSFocusRingPlacement {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement/only?language=objc)
     #[doc(alias = "NSFocusRingOnly")]
     pub const Only: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement/below?language=objc)
     #[doc(alias = "NSFocusRingBelow")]
     pub const Below: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement/above?language=objc)
     #[doc(alias = "NSFocusRingAbove")]
     pub const Above: Self = Self(2);
 }
@@ -303,10 +341,13 @@ unsafe impl RefEncode for NSFocusRingPlacement {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFocusRingType(pub NSUInteger);
 impl NSFocusRingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringtype/default?language=objc)
     #[doc(alias = "NSFocusRingTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringtype/none?language=objc)
     #[doc(alias = "NSFocusRingTypeNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringtype/exterior?language=objc)
     #[doc(alias = "NSFocusRingTypeExterior")]
     pub const Exterior: Self = Self(2);
 }
@@ -325,14 +366,19 @@ unsafe impl RefEncode for NSFocusRingType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorRenderingIntent(pub NSInteger);
 impl NSColorRenderingIntent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent/default?language=objc)
     #[doc(alias = "NSColorRenderingIntentDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent/absolutecolorimetric?language=objc)
     #[doc(alias = "NSColorRenderingIntentAbsoluteColorimetric")]
     pub const AbsoluteColorimetric: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent/relativecolorimetric?language=objc)
     #[doc(alias = "NSColorRenderingIntentRelativeColorimetric")]
     pub const RelativeColorimetric: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent/perceptual?language=objc)
     #[doc(alias = "NSColorRenderingIntentPerceptual")]
     pub const Perceptual: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent/saturation?language=objc)
     #[doc(alias = "NSColorRenderingIntentSaturation")]
     pub const Saturation: Self = Self(4);
 }
@@ -407,10 +453,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowDepth(pub i32);
 impl NSWindowDepth {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/twentyfourbitrgb?language=objc)
     #[doc(alias = "NSWindowDepthTwentyfourBitRGB")]
     pub const TwentyfourBitRGB: Self = Self(0x208);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/sixtyfourbitrgb?language=objc)
     #[doc(alias = "NSWindowDepthSixtyfourBitRGB")]
     pub const SixtyfourBitRGB: Self = Self(0x210);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/onehundredtwentyeightbitrgb?language=objc)
     #[doc(alias = "NSWindowDepthOnehundredtwentyeightBitRGB")]
     pub const OnehundredtwentyeightBitRGB: Self = Self(0x220);
 }
@@ -423,6 +472,8 @@ unsafe impl RefEncode for NSWindowDepth {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbestdepth?language=objc)
+///
 /// # Safety
 ///
 /// `exact_match` must be a valid pointer or null.
@@ -446,6 +497,7 @@ pub unsafe extern "C-unwind" fn NSBestDepth(
     unsafe { NSBestDepth(color_space, bps, bpp, Bool::new(planar), exact_match) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/isplanar?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool {
     extern "C-unwind" {
@@ -454,6 +506,7 @@ pub extern "C-unwind" fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool {
     unsafe { NSPlanarFromDepth(depth) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/colorspacename?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSColorSpaceFromDepth(
     depth: NSWindowDepth,
@@ -465,6 +518,7 @@ pub extern "C-unwind" fn NSColorSpaceFromDepth(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/bitspersample?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger {
     extern "C-unwind" {
@@ -473,6 +527,7 @@ pub extern "C-unwind" fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInt
     unsafe { NSBitsPerSampleFromDepth(depth) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/bitsperpixel?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger {
     extern "C-unwind" {
@@ -481,6 +536,7 @@ pub extern "C-unwind" fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInte
     unsafe { NSBitsPerPixelFromDepth(depth) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/numberofcolorcomponents?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSNumberOfColorComponents(
     color_space_name: &NSColorSpaceName,
@@ -491,6 +547,7 @@ pub extern "C-unwind" fn NSNumberOfColorComponents(
     unsafe { NSNumberOfColorComponents(color_space_name) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsavailablewindowdepths?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth> {
     extern "C-unwind" {
@@ -530,8 +587,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDisplayGamut(pub NSInteger);
 impl NSDisplayGamut {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaygamut/srgb?language=objc)
     #[doc(alias = "NSDisplayGamutSRGB")]
     pub const SRGB: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaygamut/p3?language=objc)
     #[doc(alias = "NSDisplayGamutP3")]
     pub const P3: Self = Self(2);
 }
@@ -578,6 +637,7 @@ extern "C" {
     pub static NSDeviceSize: &'static NSDeviceDescriptionKey;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfill?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSRectFill(rect: NSRect) {
     extern "C-unwind" {
@@ -587,6 +647,8 @@ pub extern "C-unwind" fn NSRectFill(rect: NSRect) {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfilllist?language=objc)
+    ///
     /// # Safety
     ///
     /// `rects` must be a valid pointer.
@@ -594,6 +656,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfilllistwithgrays?language=objc)
+    ///
     /// # Safety
     ///
     /// - `rects` must be a valid pointer.
@@ -603,6 +667,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfilllistwithcolors?language=objc)
+    ///
     /// # Safety
     ///
     /// - `rects` must be a valid pointer.
@@ -615,6 +681,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfillusingoperation?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation) {
     extern "C-unwind" {
@@ -624,6 +691,8 @@ pub extern "C-unwind" fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositin
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfilllistusingoperation?language=objc)
+    ///
     /// # Safety
     ///
     /// `rects` must be a valid pointer.
@@ -635,6 +704,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfilllistwithcolorsusingoperation?language=objc)
+    ///
     /// # Safety
     ///
     /// - `rects` must be a valid pointer.
@@ -648,6 +719,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsframerect?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSFrameRect(rect: NSRect) {
     extern "C-unwind" {
@@ -656,6 +728,7 @@ pub extern "C-unwind" fn NSFrameRect(rect: NSRect) {
     unsafe { NSFrameRect(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsframerectwithwidth?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat) {
@@ -665,6 +738,7 @@ pub extern "C-unwind" fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat
     unsafe { NSFrameRectWithWidth(rect, frame_width) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsframerectwithwidthusingoperation?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSFrameRectWithWidthUsingOperation(
@@ -682,6 +756,7 @@ pub extern "C-unwind" fn NSFrameRectWithWidthUsingOperation(
     unsafe { NSFrameRectWithWidthUsingOperation(rect, frame_width, op) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectclip?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSRectClip(rect: NSRect) {
     extern "C-unwind" {
@@ -691,6 +766,8 @@ pub extern "C-unwind" fn NSRectClip(rect: NSRect) {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectcliplist?language=objc)
+    ///
     /// # Safety
     ///
     /// `rects` must be a valid pointer.
@@ -698,6 +775,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawtiledrects(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `sides` must be a valid pointer.
@@ -712,6 +791,7 @@ extern "C-unwind" {
     ) -> NSRect;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawgraybezel(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -720,6 +800,7 @@ pub extern "C-unwind" fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawGrayBezel(rect, clip_rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawgroove(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSDrawGroove(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -728,6 +809,7 @@ pub extern "C-unwind" fn NSDrawGroove(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawGroove(rect, clip_rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawwhitebezel(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -736,6 +818,7 @@ pub extern "C-unwind" fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawWhiteBezel(rect, clip_rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawbutton(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSDrawButton(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -744,6 +827,7 @@ pub extern "C-unwind" fn NSDrawButton(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawButton(rect, clip_rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseraserect(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSEraseRect(rect: NSRect) {
     extern "C-unwind" {
@@ -752,6 +836,7 @@ pub extern "C-unwind" fn NSEraseRect(rect: NSRect) {
     unsafe { NSEraseRect(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsreadpixel(_:)?language=objc)
 #[cfg(feature = "NSColor")]
 #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
 #[inline]
@@ -763,6 +848,8 @@ pub extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Retained<N
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawbitmap(_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// `data` must be a valid pointer.
@@ -812,6 +899,7 @@ pub unsafe extern "C-unwind" fn NSDrawBitmap(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshighlightrect?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn NSHighlightRect(rect: NSRect) {
@@ -821,6 +909,7 @@ pub extern "C-unwind" fn NSHighlightRect(rect: NSRect) {
     unsafe { NSHighlightRect(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbeep?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSBeep() {
     extern "C-unwind" {
@@ -830,6 +919,8 @@ pub extern "C-unwind" fn NSBeep() {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgetwindowservermemory(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `virtual_memory` must be a valid pointer.
@@ -845,6 +936,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawcolortiledrects(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `sides` must be a valid pointer.
@@ -859,6 +952,7 @@ extern "C-unwind" {
     ) -> NSRect;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawdarkbezel(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -867,6 +961,7 @@ pub extern "C-unwind" fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawDarkBezel(rect, clip_rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawlightbezel(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -875,6 +970,7 @@ pub extern "C-unwind" fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawLightBezel(rect, clip_rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdottedframerect(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSDottedFrameRect(rect: NSRect) {
     extern "C-unwind" {
@@ -883,6 +979,7 @@ pub extern "C-unwind" fn NSDottedFrameRect(rect: NSRect) {
     unsafe { NSDottedFrameRect(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawwindowbackground(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSDrawWindowBackground(rect: NSRect) {
     extern "C-unwind" {
@@ -891,6 +988,7 @@ pub extern "C-unwind" fn NSDrawWindowBackground(rect: NSRect) {
     unsafe { NSDrawWindowBackground(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement/set()?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSSetFocusRingStyle(placement: NSFocusRingPlacement) {
     extern "C-unwind" {
@@ -899,6 +997,7 @@ pub extern "C-unwind" fn NSSetFocusRingStyle(placement: NSFocusRingPlacement) {
     unsafe { NSSetFocusRingStyle(placement) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisablescreenupdates()?language=objc)
 #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSDisableScreenUpdates."]
 #[inline]
 pub extern "C-unwind" fn NSDisableScreenUpdates() {
@@ -908,6 +1007,7 @@ pub extern "C-unwind" fn NSDisableScreenUpdates() {
     unsafe { NSDisableScreenUpdates() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsenablescreenupdates()?language=objc)
 #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSEnableScreenUpdates."]
 #[inline]
 pub extern "C-unwind" fn NSEnableScreenUpdates() {
@@ -924,8 +1024,10 @@ pub extern "C-unwind" fn NSEnableScreenUpdates() {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAnimationEffect(pub NSUInteger);
 impl NSAnimationEffect {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationeffect/disappearingitemdefault?language=objc)
     #[doc(alias = "NSAnimationEffectDisappearingItemDefault")]
     pub const DisappearingItemDefault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationeffect/poof?language=objc)
     #[doc(alias = "NSAnimationEffectPoof")]
     pub const Poof: Self = Self(10);
 }
@@ -939,6 +1041,8 @@ unsafe impl RefEncode for NSAnimationEffect {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshowanimationeffect?language=objc)
+    ///
     /// # Safety
     ///
     /// - `animation_delegate` should be of the correct type.
@@ -956,6 +1060,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscountwindows?language=objc)
+    ///
     /// # Safety
     ///
     /// `count` must be a valid pointer.
@@ -964,6 +1070,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowlist?language=objc)
+    ///
     /// # Safety
     ///
     /// `list` must be a valid pointer.
@@ -972,6 +1080,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscountwindowsforcontext?language=objc)
+    ///
     /// # Safety
     ///
     /// `count` must be a valid pointer.
@@ -980,6 +1090,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowlistforcontext?language=objc)
+    ///
     /// # Safety
     ///
     /// `list` must be a valid pointer.
@@ -987,6 +1099,7 @@ extern "C-unwind" {
     pub fn NSWindowListForContext(context: NSInteger, size: NSInteger, list: NonNull<NSInteger>);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscopybits(_:_:_:)?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint) {

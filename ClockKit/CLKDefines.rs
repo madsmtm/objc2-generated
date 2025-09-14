@@ -12,28 +12,40 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationFamily(pub NSInteger);
 impl CLKComplicationFamily {
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularsmall?language=objc)
     #[doc(alias = "CLKComplicationFamilyModularSmall")]
     pub const ModularSmall: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularlarge?language=objc)
     #[doc(alias = "CLKComplicationFamilyModularLarge")]
     pub const ModularLarge: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitariansmall?language=objc)
     #[doc(alias = "CLKComplicationFamilyUtilitarianSmall")]
     pub const UtilitarianSmall: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitariansmallflat?language=objc)
     #[doc(alias = "CLKComplicationFamilyUtilitarianSmallFlat")]
     pub const UtilitarianSmallFlat: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitarianlarge?language=objc)
     #[doc(alias = "CLKComplicationFamilyUtilitarianLarge")]
     pub const UtilitarianLarge: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/circularsmall?language=objc)
     #[doc(alias = "CLKComplicationFamilyCircularSmall")]
     pub const CircularSmall: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/extralarge?language=objc)
     #[doc(alias = "CLKComplicationFamilyExtraLarge")]
     pub const ExtraLarge: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccorner?language=objc)
     #[doc(alias = "CLKComplicationFamilyGraphicCorner")]
     pub const GraphicCorner: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicbezel?language=objc)
     #[doc(alias = "CLKComplicationFamilyGraphicBezel")]
     pub const GraphicBezel: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccircular?language=objc)
     #[doc(alias = "CLKComplicationFamilyGraphicCircular")]
     pub const GraphicCircular: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicrectangular?language=objc)
     #[doc(alias = "CLKComplicationFamilyGraphicRectangular")]
     pub const GraphicRectangular: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge?language=objc)
     #[doc(alias = "CLKComplicationFamilyGraphicExtraLarge")]
     pub const GraphicExtraLarge: Self = Self(12);
 }
@@ -54,12 +66,15 @@ unsafe impl RefEncode for CLKComplicationFamily {
 pub struct CLKComplicationTimeTravelDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl CLKComplicationTimeTravelDirections: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimetraveldirections/clkcomplicationtimetraveldirectionnone?language=objc)
         #[doc(alias = "CLKComplicationTimeTravelDirectionNone")]
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimetraveldirections/forward?language=objc)
         #[doc(alias = "CLKComplicationTimeTravelDirectionForward")]
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         const Forward = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimetraveldirections/backward?language=objc)
         #[doc(alias = "CLKComplicationTimeTravelDirectionBackward")]
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         const Backward = 1<<1;
@@ -81,9 +96,11 @@ unsafe impl RefEncode for CLKComplicationTimeTravelDirections {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationPrivacyBehavior(pub NSUInteger);
 impl CLKComplicationPrivacyBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationprivacybehavior/showonlockscreen?language=objc)
     #[doc(alias = "CLKComplicationPrivacyBehaviorShowOnLockScreen")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const ShowOnLockScreen: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationprivacybehavior/hideonlockscreen?language=objc)
     #[doc(alias = "CLKComplicationPrivacyBehaviorHideOnLockScreen")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const HideOnLockScreen: Self = Self(1);
@@ -104,12 +121,15 @@ unsafe impl RefEncode for CLKComplicationPrivacyBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationTimelineAnimationBehavior(pub NSUInteger);
 impl CLKComplicationTimelineAnimationBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimelineanimationbehavior/never?language=objc)
     #[doc(alias = "CLKComplicationTimelineAnimationBehaviorNever")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Never: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimelineanimationbehavior/grouped?language=objc)
     #[doc(alias = "CLKComplicationTimelineAnimationBehaviorGrouped")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Grouped: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimelineanimationbehavior/always?language=objc)
     #[doc(alias = "CLKComplicationTimelineAnimationBehaviorAlways")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Always: Self = Self(2);
@@ -130,15 +150,19 @@ unsafe impl RefEncode for CLKComplicationTimelineAnimationBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationColumnAlignment(pub NSInteger);
 impl CLKComplicationColumnAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment/leading?language=objc)
     #[doc(alias = "CLKComplicationColumnAlignmentLeading")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Leading: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment/trailing?language=objc)
     #[doc(alias = "CLKComplicationColumnAlignmentTrailing")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Trailing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment/left?language=objc)
     #[doc(alias = "CLKComplicationColumnAlignmentLeft")]
     #[deprecated]
     pub const Left: Self = Self(CLKComplicationColumnAlignment::Leading.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment/right?language=objc)
     #[doc(alias = "CLKComplicationColumnAlignmentRight")]
     #[deprecated]
     pub const Right: Self = Self(CLKComplicationColumnAlignment::Trailing.0);
@@ -159,9 +183,11 @@ unsafe impl RefEncode for CLKComplicationColumnAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationRingStyle(pub NSInteger);
 impl CLKComplicationRingStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationringstyle/closed?language=objc)
     #[doc(alias = "CLKComplicationRingStyleClosed")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Closed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationringstyle/open?language=objc)
     #[doc(alias = "CLKComplicationRingStyleOpen")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Open: Self = Self(1);
@@ -182,9 +208,11 @@ unsafe impl RefEncode for CLKComplicationRingStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKGaugeProviderStyle(pub NSInteger);
 impl CLKGaugeProviderStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkgaugeproviderstyle/ring?language=objc)
     #[doc(alias = "CLKGaugeProviderStyleRing")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Ring: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkgaugeproviderstyle/fill?language=objc)
     #[doc(alias = "CLKGaugeProviderStyleFill")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Fill: Self = Self(1);
@@ -221,6 +249,7 @@ extern "C" {
     pub static CLKDefaultComplicationIdentifier: Option<&'static NSString>;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkallcomplicationfamilies?language=objc)
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CLKAllComplicationFamilies() -> Option<Retained<NSArray<NSNumber>>>

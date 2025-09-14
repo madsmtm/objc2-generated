@@ -14,51 +14,83 @@ use crate::*;
 pub struct AXError(pub i32);
 impl AXError {
     /// No error occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrorsuccess?language=objc)
     #[doc(alias = "kAXErrorSuccess")]
     pub const Success: Self = Self(0);
     /// A system error occurred, such as the failure to allocate an object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrorfailure?language=objc)
     #[doc(alias = "kAXErrorFailure")]
     pub const Failure: Self = Self(-25200);
     /// An illegal argument was passed to the function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrorillegalargument?language=objc)
     #[doc(alias = "kAXErrorIllegalArgument")]
     pub const IllegalArgument: Self = Self(-25201);
     /// The AXUIElementRef passed to the function is invalid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrorinvaliduielement?language=objc)
     #[doc(alias = "kAXErrorInvalidUIElement")]
     pub const InvalidUIElement: Self = Self(-25202);
     /// The AXObserverRef passed to the function is not a valid observer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrorinvaliduielementobserver?language=objc)
     #[doc(alias = "kAXErrorInvalidUIElementObserver")]
     pub const InvalidUIElementObserver: Self = Self(-25203);
     /// The function cannot complete because messaging failed in some way or because the application with which the function is communicating is busy or unresponsive.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrorcannotcomplete?language=objc)
     #[doc(alias = "kAXErrorCannotComplete")]
     pub const CannotComplete: Self = Self(-25204);
     /// The attribute is not supported by the AXUIElementRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrorattributeunsupported?language=objc)
     #[doc(alias = "kAXErrorAttributeUnsupported")]
     pub const AttributeUnsupported: Self = Self(-25205);
     /// The action is not supported by the AXUIElementRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerroractionunsupported?language=objc)
     #[doc(alias = "kAXErrorActionUnsupported")]
     pub const ActionUnsupported: Self = Self(-25206);
     /// The notification is not supported by the AXUIElementRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrornotificationunsupported?language=objc)
     #[doc(alias = "kAXErrorNotificationUnsupported")]
     pub const NotificationUnsupported: Self = Self(-25207);
     /// Indicates that the function or method is not implemented (this can be returned if a process does not support the accessibility API).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrornotimplemented?language=objc)
     #[doc(alias = "kAXErrorNotImplemented")]
     pub const NotImplemented: Self = Self(-25208);
     /// This notification has already been registered for.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrornotificationalreadyregistered?language=objc)
     #[doc(alias = "kAXErrorNotificationAlreadyRegistered")]
     pub const NotificationAlreadyRegistered: Self = Self(-25209);
     /// Indicates that a notification is not registered yet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrornotificationnotregistered?language=objc)
     #[doc(alias = "kAXErrorNotificationNotRegistered")]
     pub const NotificationNotRegistered: Self = Self(-25210);
     /// The accessibility API is disabled (as when, for example, the user deselects "Enable access for assistive devices" in Universal Access Preferences).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrorapidisabled?language=objc)
     #[doc(alias = "kAXErrorAPIDisabled")]
     pub const APIDisabled: Self = Self(-25211);
     /// The requested value or AXUIElementRef does not exist.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrornovalue?language=objc)
     #[doc(alias = "kAXErrorNoValue")]
     pub const NoValue: Self = Self(-25212);
     /// The parameterized attribute is not supported by the AXUIElementRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrorparameterizedattributeunsupported?language=objc)
     #[doc(alias = "kAXErrorParameterizedAttributeUnsupported")]
     pub const ParameterizedAttributeUnsupported: Self = Self(-25213);
     /// Not enough precision.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror/kaxerrornotenoughprecision?language=objc)
     #[doc(alias = "kAXErrorNotEnoughPrecision")]
     pub const NotEnoughPrecision: Self = Self(-25214);
 }

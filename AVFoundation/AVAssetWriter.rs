@@ -30,14 +30,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetWriterStatus(pub NSInteger);
 impl AVAssetWriterStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum/unknown?language=objc)
     #[doc(alias = "AVAssetWriterStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum/writing?language=objc)
     #[doc(alias = "AVAssetWriterStatusWriting")]
     pub const Writing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum/completed?language=objc)
     #[doc(alias = "AVAssetWriterStatusCompleted")]
     pub const Completed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum/failed?language=objc)
     #[doc(alias = "AVAssetWriterStatusFailed")]
     pub const Failed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum/cancelled?language=objc)
     #[doc(alias = "AVAssetWriterStatusCancelled")]
     pub const Cancelled: Self = Self(4);
 }

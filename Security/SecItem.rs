@@ -1524,6 +1524,8 @@ extern "C-unwind" {
     /// - `query` generic must be of the correct type.
     /// - `query` generic must be of the correct type.
     /// - `result` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)?language=objc)
     pub fn SecItemCopyMatching(query: &CFDictionary, result: *mut *const CFType) -> OSStatus;
 }
 
@@ -1583,6 +1585,8 @@ extern "C-unwind" {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `result` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemadd(_:_:)?language=objc)
     pub fn SecItemAdd(attributes: &CFDictionary, result: *mut *const CFType) -> OSStatus;
 }
 
@@ -1611,6 +1615,8 @@ extern "C-unwind" {
     /// - `query` generic must be of the correct type.
     /// - `attributes_to_update` generic must be of the correct type.
     /// - `attributes_to_update` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemupdate(_:_:)?language=objc)
     pub fn SecItemUpdate(query: &CFDictionary, attributes_to_update: &CFDictionary) -> OSStatus;
 }
 
@@ -1648,5 +1654,7 @@ extern "C-unwind" {
     ///
     /// - `query` generic must be of the correct type.
     /// - `query` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemdelete(_:)?language=objc)
     pub fn SecItemDelete(query: &CFDictionary) -> OSStatus;
 }

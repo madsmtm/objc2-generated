@@ -14,6 +14,8 @@ use crate::*;
 ///
 ///
 /// Returns: An array of CFStrings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagercopyavailablepostscriptnames()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -28,6 +30,8 @@ pub extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetain
 ///
 ///
 /// Returns: An array of CFStrings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagercopyavailablefontfamilynames()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -42,6 +46,8 @@ pub extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetain
 ///
 ///
 /// Returns: An array of CFURLs.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagercopyavailablefonturls()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -70,6 +76,8 @@ extern "C-unwind" {
     /// - `family1` must be a valid pointer.
     /// - `family2` must be a valid pointer.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagercomparefontfamilynames(_:_:_:)?language=objc)
     pub fn CTFontManagerCompareFontFamilyNames(
         family1: NonNull<c_void>,
         family2: NonNull<c_void>,
@@ -85,6 +93,8 @@ extern "C-unwind" {
 ///
 ///
 /// Returns: An array of CTFontDescriptors or NULL if there are no valid fonts.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagercreatefontdescriptorsfromurl(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromURL(
     file_url: &CFURL,
@@ -107,6 +117,8 @@ pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromURL(
 ///
 ///
 /// Returns: A font descriptor created from the data or NULL if it is not a valid font.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagercreatefontdescriptorfromdata(_:)?language=objc)
 #[cfg(feature = "CTFontDescriptor")]
 #[inline]
 pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorFromData(
@@ -129,6 +141,8 @@ pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorFromData(
 ///
 ///
 /// Returns: An array of font descriptors. This can be an empty array in the event of invalid or unsupported font data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagercreatefontdescriptorsfromdata(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromData(
     data: &CFData,
@@ -158,14 +172,19 @@ pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromData(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontManagerScope(pub u32);
 impl CTFontManagerScope {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerscope/none?language=objc)
     #[doc(alias = "kCTFontManagerScopeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerscope/process?language=objc)
     #[doc(alias = "kCTFontManagerScopeProcess")]
     pub const Process: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerscope/persistent?language=objc)
     #[doc(alias = "kCTFontManagerScopePersistent")]
     pub const Persistent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerscope/session?language=objc)
     #[doc(alias = "kCTFontManagerScopeSession")]
     pub const Session: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerscope/user?language=objc)
     #[doc(alias = "kCTFontManagerScopeUser")]
     pub const User: Self = Self(2);
 }
@@ -209,6 +228,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerregisterfontsforurl(_:_:_:)?language=objc)
     pub fn CTFontManagerRegisterFontsForURL(
         font_url: &CFURL,
         scope: CTFontManagerScope,
@@ -235,6 +256,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerunregisterfontsforurl(_:_:_:)?language=objc)
     pub fn CTFontManagerUnregisterFontsForURL(
         font_url: &CFURL,
         scope: CTFontManagerScope,
@@ -262,6 +285,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerregistergraphicsfont(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL"]
     pub fn CTFontManagerRegisterGraphicsFont(font: &CGFont, error: *mut *mut CFError) -> bool;
@@ -282,6 +307,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerunregistergraphicsfont(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use the API corresponding to the one used to register the font"]
     pub fn CTFontManagerUnregisterGraphicsFont(font: &CGFont, error: *mut *mut CFError) -> bool;
@@ -306,6 +333,8 @@ extern "C-unwind" {
     ///
     /// - `font_ur_ls` generic must be of the correct type.
     /// - `errors` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerregisterfontsforurls(_:_:_:)?language=objc)
     #[deprecated]
     pub fn CTFontManagerRegisterFontsForURLs(
         font_ur_ls: &CFArray,
@@ -334,6 +363,8 @@ extern "C-unwind" {
     ///
     /// - `font_ur_ls` generic must be of the correct type.
     /// - `errors` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerunregisterfontsforurls(_:_:_:)?language=objc)
     #[deprecated]
     pub fn CTFontManagerUnregisterFontsForURLs(
         font_ur_ls: &CFArray,
@@ -363,6 +394,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `font_ur_ls` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerregisterfonturls(_:_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn CTFontManagerRegisterFontURLs(
         font_ur_ls: &CFArray,
@@ -388,6 +421,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `font_ur_ls` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerunregisterfonturls(_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn CTFontManagerUnregisterFontURLs(
         font_ur_ls: &CFArray,
@@ -417,6 +452,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `font_descriptors` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerregisterfontdescriptors(_:_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn CTFontManagerRegisterFontDescriptors(
         font_descriptors: &CFArray,
@@ -441,6 +478,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `font_descriptors` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerunregisterfontdescriptors(_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn CTFontManagerUnregisterFontDescriptors(
         font_descriptors: &CFArray,
@@ -474,6 +513,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `font_asset_names` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerregisterfontswithassetnames(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn CTFontManagerRegisterFontsWithAssetNames(
         font_asset_names: &CFArray,
@@ -496,6 +537,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptors` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerenablefontdescriptors(_:_:)?language=objc)
     pub fn CTFontManagerEnableFontDescriptors(descriptors: &CFArray, enable: bool);
 }
 
@@ -506,6 +549,8 @@ extern "C-unwind" {
 ///
 ///
 /// Returns: Returns the registration scope of the specified URL, will return kCTFontManagerScopeNone if not currently registered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagergetscopeforurl(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFontManagerScope {
     extern "C-unwind" {
@@ -527,6 +572,8 @@ pub extern "C-unwind" fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFont
 ///
 ///
 /// Returns: Array of of font descriptors registered by the application. Array may be empty if nothing is registered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagercopyregisteredfontdescriptors(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CTFontManagerCopyRegisteredFontDescriptors(
     scope: CTFontManagerScope,
@@ -558,6 +605,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `font_descriptors` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerrequestfonts(_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn CTFontManagerRequestFonts(
         font_descriptors: &CFArray,
@@ -575,6 +624,8 @@ extern "C-unwind" {
 ///
 ///
 /// Returns: This function returns true if the file is in a supported font format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerissupportedfont(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool {
     extern "C-unwind" {
@@ -594,6 +645,8 @@ pub extern "C-unwind" fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool 
 /// # Safety
 ///
 /// `create_matches_callback` block's return must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagercreatefontrequestrunloopsource(_:_:)?language=objc)
 #[cfg(all(feature = "block2", feature = "libc"))]
 #[deprecated = "This functionality will be removed in a future release"]
 #[inline]
@@ -643,12 +696,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontManagerAutoActivationSetting(pub u32);
 impl CTFontManagerAutoActivationSetting {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerautoactivationsetting/default?language=objc)
     #[doc(alias = "kCTFontManagerAutoActivationDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerautoactivationsetting/disabled?language=objc)
     #[doc(alias = "kCTFontManagerAutoActivationDisabled")]
     pub const Disabled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerautoactivationsetting/enabled?language=objc)
     #[doc(alias = "kCTFontManagerAutoActivationEnabled")]
     pub const Enabled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerautoactivationsetting/promptuser?language=objc)
     #[doc(alias = "kCTFontManagerAutoActivationPromptUser")]
     #[deprecated = "Deprecated"]
     pub const PromptUser: Self = Self(3);
@@ -673,6 +730,8 @@ unsafe impl RefEncode for CTFontManagerAutoActivationSetting {
 /// Parameter `setting`: The new setting.
 ///
 /// Function will apply the setting to the appropriate preferences location.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagersetautoactivationsetting(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CTFontManagerSetAutoActivationSetting(
     bundle_identifier: Option<&CFString>,
@@ -694,6 +753,8 @@ pub extern "C-unwind" fn CTFontManagerSetAutoActivationSetting(
 /// will set the global auto-activation settings.
 ///
 /// Returns: Will return the auto-activation setting for specified bundle identifier.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagergetautoactivationsetting(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CTFontManagerGetAutoActivationSetting(
     bundle_identifier: Option<&CFString>,

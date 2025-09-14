@@ -11,10 +11,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INStartCallCallCapabilityUnsupportedReason(pub NSInteger);
 impl INStartCallCallCapabilityUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallcapabilityunsupportedreason/videocallunsupported?language=objc)
     #[doc(alias = "INStartCallCallCapabilityUnsupportedReasonVideoCallUnsupported")]
     pub const VideoCallUnsupported: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallcapabilityunsupportedreason/microphonenotaccessible?language=objc)
     #[doc(alias = "INStartCallCallCapabilityUnsupportedReasonMicrophoneNotAccessible")]
     pub const MicrophoneNotAccessible: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallcapabilityunsupportedreason/cameranotaccessible?language=objc)
     #[doc(alias = "INStartCallCallCapabilityUnsupportedReasonCameraNotAccessible")]
     pub const CameraNotAccessible: Self = Self(3);
 }

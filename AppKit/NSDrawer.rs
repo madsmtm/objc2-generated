@@ -15,15 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDrawerState(pub NSUInteger);
 impl NSDrawerState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.enum/closedstate?language=objc)
     #[doc(alias = "NSDrawerClosedState")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const ClosedState: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.enum/openingstate?language=objc)
     #[doc(alias = "NSDrawerOpeningState")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const OpeningState: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.enum/openstate?language=objc)
     #[doc(alias = "NSDrawerOpenState")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const OpenState: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.enum/closingstate?language=objc)
     #[doc(alias = "NSDrawerClosingState")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const ClosingState: Self = Self(3);

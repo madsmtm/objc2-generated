@@ -17,28 +17,40 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TKErrorCode(pub NSInteger);
 impl TKErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerror/code/notimplemented?language=objc)
     #[doc(alias = "TKErrorCodeNotImplemented")]
     pub const NotImplemented: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerror/code/communicationerror?language=objc)
     #[doc(alias = "TKErrorCodeCommunicationError")]
     pub const CommunicationError: Self = Self(-2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerror/code/corrupteddata?language=objc)
     #[doc(alias = "TKErrorCodeCorruptedData")]
     pub const CorruptedData: Self = Self(-3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerror/code/canceledbyuser?language=objc)
     #[doc(alias = "TKErrorCodeCanceledByUser")]
     pub const CanceledByUser: Self = Self(-4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerror/code/authenticationfailed?language=objc)
     #[doc(alias = "TKErrorCodeAuthenticationFailed")]
     pub const AuthenticationFailed: Self = Self(-5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerror/code/objectnotfound?language=objc)
     #[doc(alias = "TKErrorCodeObjectNotFound")]
     pub const ObjectNotFound: Self = Self(-6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerror/code/tokennotfound?language=objc)
     #[doc(alias = "TKErrorCodeTokenNotFound")]
     pub const TokenNotFound: Self = Self(-7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerror/code/badparameter?language=objc)
     #[doc(alias = "TKErrorCodeBadParameter")]
     pub const BadParameter: Self = Self(-8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerror/code/authenticationneeded?language=objc)
     #[doc(alias = "TKErrorCodeAuthenticationNeeded")]
     pub const AuthenticationNeeded: Self = Self(-9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerrorcode/tkerrorauthenticationfailed?language=objc)
     #[deprecated]
     pub const TKErrorAuthenticationFailed: Self = Self(TKErrorCode::AuthenticationFailed.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerrorcode/tkerrorobjectnotfound?language=objc)
     #[deprecated]
     pub const TKErrorObjectNotFound: Self = Self(TKErrorCode::ObjectNotFound.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerrorcode/tkerrortokennotfound?language=objc)
     #[deprecated]
     pub const TKErrorTokenNotFound: Self = Self(TKErrorCode::TokenNotFound.0);
 }

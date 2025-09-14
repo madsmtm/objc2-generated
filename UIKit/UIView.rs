@@ -18,12 +18,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimationCurve(pub NSInteger);
 impl UIViewAnimationCurve {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationcurve/easeinout?language=objc)
     #[doc(alias = "UIViewAnimationCurveEaseInOut")]
     pub const EaseInOut: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationcurve/easein?language=objc)
     #[doc(alias = "UIViewAnimationCurveEaseIn")]
     pub const EaseIn: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationcurve/easeout?language=objc)
     #[doc(alias = "UIViewAnimationCurveEaseOut")]
     pub const EaseOut: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationcurve/linear?language=objc)
     #[doc(alias = "UIViewAnimationCurveLinear")]
     pub const Linear: Self = Self(3);
 }
@@ -42,30 +46,43 @@ unsafe impl RefEncode for UIViewAnimationCurve {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewContentMode(pub NSInteger);
 impl UIViewContentMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaletofill?language=objc)
     #[doc(alias = "UIViewContentModeScaleToFill")]
     pub const ScaleToFill: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaleaspectfit?language=objc)
     #[doc(alias = "UIViewContentModeScaleAspectFit")]
     pub const ScaleAspectFit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaleaspectfill?language=objc)
     #[doc(alias = "UIViewContentModeScaleAspectFill")]
     pub const ScaleAspectFill: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/redraw?language=objc)
     #[doc(alias = "UIViewContentModeRedraw")]
     pub const Redraw: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/center?language=objc)
     #[doc(alias = "UIViewContentModeCenter")]
     pub const Center: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/top?language=objc)
     #[doc(alias = "UIViewContentModeTop")]
     pub const Top: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/bottom?language=objc)
     #[doc(alias = "UIViewContentModeBottom")]
     pub const Bottom: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/left?language=objc)
     #[doc(alias = "UIViewContentModeLeft")]
     pub const Left: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/right?language=objc)
     #[doc(alias = "UIViewContentModeRight")]
     pub const Right: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/topleft?language=objc)
     #[doc(alias = "UIViewContentModeTopLeft")]
     pub const TopLeft: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/topright?language=objc)
     #[doc(alias = "UIViewContentModeTopRight")]
     pub const TopRight: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/bottomleft?language=objc)
     #[doc(alias = "UIViewContentModeBottomLeft")]
     pub const BottomLeft: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/bottomright?language=objc)
     #[doc(alias = "UIViewContentModeBottomRight")]
     pub const BottomRight: Self = Self(12);
 }
@@ -84,14 +101,19 @@ unsafe impl RefEncode for UIViewContentMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimationTransition(pub NSInteger);
 impl UIViewAnimationTransition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition/none?language=objc)
     #[doc(alias = "UIViewAnimationTransitionNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition/flipfromleft?language=objc)
     #[doc(alias = "UIViewAnimationTransitionFlipFromLeft")]
     pub const FlipFromLeft: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition/flipfromright?language=objc)
     #[doc(alias = "UIViewAnimationTransitionFlipFromRight")]
     pub const FlipFromRight: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition/curlup?language=objc)
     #[doc(alias = "UIViewAnimationTransitionCurlUp")]
     pub const CurlUp: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition/curldown?language=objc)
     #[doc(alias = "UIViewAnimationTransitionCurlDown")]
     pub const CurlDown: Self = Self(4);
 }
@@ -111,18 +133,25 @@ unsafe impl RefEncode for UIViewAnimationTransition {
 pub struct UIViewAutoresizing(pub NSUInteger);
 bitflags::bitflags! {
     impl UIViewAutoresizing: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewautoresizing/uiviewautoresizingnone?language=objc)
         #[doc(alias = "UIViewAutoresizingNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexibleleftmargin?language=objc)
         #[doc(alias = "UIViewAutoresizingFlexibleLeftMargin")]
         const FlexibleLeftMargin = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexiblewidth?language=objc)
         #[doc(alias = "UIViewAutoresizingFlexibleWidth")]
         const FlexibleWidth = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexiblerightmargin?language=objc)
         #[doc(alias = "UIViewAutoresizingFlexibleRightMargin")]
         const FlexibleRightMargin = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexibletopmargin?language=objc)
         #[doc(alias = "UIViewAutoresizingFlexibleTopMargin")]
         const FlexibleTopMargin = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexibleheight?language=objc)
         #[doc(alias = "UIViewAutoresizingFlexibleHeight")]
         const FlexibleHeight = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexiblebottommargin?language=objc)
         #[doc(alias = "UIViewAutoresizingFlexibleBottomMargin")]
         const FlexibleBottomMargin = 1<<5;
     }
@@ -143,54 +172,79 @@ unsafe impl RefEncode for UIViewAutoresizing {
 pub struct UIViewAnimationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIViewAnimationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/layoutsubviews?language=objc)
         #[doc(alias = "UIViewAnimationOptionLayoutSubviews")]
         const LayoutSubviews = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/allowuserinteraction?language=objc)
         #[doc(alias = "UIViewAnimationOptionAllowUserInteraction")]
         const AllowUserInteraction = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/beginfromcurrentstate?language=objc)
         #[doc(alias = "UIViewAnimationOptionBeginFromCurrentState")]
         const BeginFromCurrentState = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/repeat?language=objc)
         #[doc(alias = "UIViewAnimationOptionRepeat")]
         const Repeat = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/autoreverse?language=objc)
         #[doc(alias = "UIViewAnimationOptionAutoreverse")]
         const Autoreverse = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/overrideinheritedduration?language=objc)
         #[doc(alias = "UIViewAnimationOptionOverrideInheritedDuration")]
         const OverrideInheritedDuration = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/overrideinheritedcurve?language=objc)
         #[doc(alias = "UIViewAnimationOptionOverrideInheritedCurve")]
         const OverrideInheritedCurve = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/allowanimatedcontent?language=objc)
         #[doc(alias = "UIViewAnimationOptionAllowAnimatedContent")]
         const AllowAnimatedContent = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/showhidetransitionviews?language=objc)
         #[doc(alias = "UIViewAnimationOptionShowHideTransitionViews")]
         const ShowHideTransitionViews = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/overrideinheritedoptions?language=objc)
         #[doc(alias = "UIViewAnimationOptionOverrideInheritedOptions")]
         const OverrideInheritedOptions = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/curveeaseinout?language=objc)
         #[doc(alias = "UIViewAnimationOptionCurveEaseInOut")]
         const CurveEaseInOut = 0<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/curveeasein?language=objc)
         #[doc(alias = "UIViewAnimationOptionCurveEaseIn")]
         const CurveEaseIn = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/curveeaseout?language=objc)
         #[doc(alias = "UIViewAnimationOptionCurveEaseOut")]
         const CurveEaseOut = 2<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/curvelinear?language=objc)
         #[doc(alias = "UIViewAnimationOptionCurveLinear")]
         const CurveLinear = 3<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationoptions/uiviewanimationoptiontransitionnone?language=objc)
         #[doc(alias = "UIViewAnimationOptionTransitionNone")]
         const TransitionNone = 0<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitionflipfromleft?language=objc)
         #[doc(alias = "UIViewAnimationOptionTransitionFlipFromLeft")]
         const TransitionFlipFromLeft = 1<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitionflipfromright?language=objc)
         #[doc(alias = "UIViewAnimationOptionTransitionFlipFromRight")]
         const TransitionFlipFromRight = 2<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitioncurlup?language=objc)
         #[doc(alias = "UIViewAnimationOptionTransitionCurlUp")]
         const TransitionCurlUp = 3<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitioncurldown?language=objc)
         #[doc(alias = "UIViewAnimationOptionTransitionCurlDown")]
         const TransitionCurlDown = 4<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitioncrossdissolve?language=objc)
         #[doc(alias = "UIViewAnimationOptionTransitionCrossDissolve")]
         const TransitionCrossDissolve = 5<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitionflipfromtop?language=objc)
         #[doc(alias = "UIViewAnimationOptionTransitionFlipFromTop")]
         const TransitionFlipFromTop = 6<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitionflipfrombottom?language=objc)
         #[doc(alias = "UIViewAnimationOptionTransitionFlipFromBottom")]
         const TransitionFlipFromBottom = 7<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationoptions/uiviewanimationoptionpreferredframesperseconddefault?language=objc)
         #[doc(alias = "UIViewAnimationOptionPreferredFramesPerSecondDefault")]
         const PreferredFramesPerSecondDefault = 0<<24;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/preferredframespersecond60?language=objc)
         #[doc(alias = "UIViewAnimationOptionPreferredFramesPerSecond60")]
         const PreferredFramesPerSecond60 = 3<<24;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/preferredframespersecond30?language=objc)
         #[doc(alias = "UIViewAnimationOptionPreferredFramesPerSecond30")]
         const PreferredFramesPerSecond30 = 7<<24;
 /// Flush all pending updates (including traits, properties, and layout) whenever the animation context changes.
@@ -201,6 +255,8 @@ bitflags::bitflags! {
 /// - Before disabling animations, for invalidations that happened in the animation scope with animations enabled.
 /// - Before re-enabling animations, for invalidations that happened in the scope with animations disabled.
 /// This animation option implicitly applies to any nested animation scopes, even if they don't explicitly use this option.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/flushupdates?language=objc)
         #[doc(alias = "UIViewAnimationOptionFlushUpdates")]
         const FlushUpdates = 1<<28;
     }
@@ -221,28 +277,40 @@ unsafe impl RefEncode for UIViewAnimationOptions {
 pub struct UIViewKeyframeAnimationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIViewKeyframeAnimationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/layoutsubviews?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionLayoutSubviews")]
         const LayoutSubviews = UIViewAnimationOptions::LayoutSubviews.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/allowuserinteraction?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionAllowUserInteraction")]
         const AllowUserInteraction = UIViewAnimationOptions::AllowUserInteraction.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/beginfromcurrentstate?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionBeginFromCurrentState")]
         const BeginFromCurrentState = UIViewAnimationOptions::BeginFromCurrentState.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/repeat?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionRepeat")]
         const Repeat = UIViewAnimationOptions::Repeat.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/autoreverse?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionAutoreverse")]
         const Autoreverse = UIViewAnimationOptions::Autoreverse.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/overrideinheritedduration?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionOverrideInheritedDuration")]
         const OverrideInheritedDuration = UIViewAnimationOptions::OverrideInheritedDuration.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/overrideinheritedoptions?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionOverrideInheritedOptions")]
         const OverrideInheritedOptions = UIViewAnimationOptions::OverrideInheritedOptions.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/calculationmodelinear?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModeLinear")]
         const CalculationModeLinear = 0<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/calculationmodediscrete?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModeDiscrete")]
         const CalculationModeDiscrete = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/calculationmodepaced?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModePaced")]
         const CalculationModePaced = 2<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/calculationmodecubic?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModeCubic")]
         const CalculationModeCubic = 3<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/calculationmodecubicpaced?language=objc)
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModeCubicPaced")]
         const CalculationModeCubicPaced = 4<<10;
     }
@@ -262,6 +330,7 @@ unsafe impl RefEncode for UIViewKeyframeAnimationOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISystemAnimation(pub NSUInteger);
 impl UISystemAnimation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/systemanimation/delete?language=objc)
     #[doc(alias = "UISystemAnimationDelete")]
     pub const Delete: Self = Self(0);
 }
@@ -280,10 +349,13 @@ unsafe impl RefEncode for UISystemAnimation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewTintAdjustmentMode(pub NSInteger);
 impl UIViewTintAdjustmentMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/tintadjustmentmode-swift.enum/automatic?language=objc)
     #[doc(alias = "UIViewTintAdjustmentModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/tintadjustmentmode-swift.enum/normal?language=objc)
     #[doc(alias = "UIViewTintAdjustmentModeNormal")]
     pub const Normal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/tintadjustmentmode-swift.enum/dimmed?language=objc)
     #[doc(alias = "UIViewTintAdjustmentModeDimmed")]
     pub const Dimmed: Self = Self(2);
 }
@@ -302,14 +374,19 @@ unsafe impl RefEncode for UIViewTintAdjustmentMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISemanticContentAttribute(pub NSInteger);
 impl UISemanticContentAttribute {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute/unspecified?language=objc)
     #[doc(alias = "UISemanticContentAttributeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute/playback?language=objc)
     #[doc(alias = "UISemanticContentAttributePlayback")]
     pub const Playback: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute/spatial?language=objc)
     #[doc(alias = "UISemanticContentAttributeSpatial")]
     pub const Spatial: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute/forcelefttoright?language=objc)
     #[doc(alias = "UISemanticContentAttributeForceLeftToRight")]
     pub const ForceLeftToRight: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute/forcerighttoleft?language=objc)
     #[doc(alias = "UISemanticContentAttributeForceRightToLeft")]
     pub const ForceRightToLeft: Self = Self(4);
 }
@@ -1286,8 +1363,10 @@ impl UIView {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILayoutConstraintAxis(pub NSInteger);
 impl UILayoutConstraintAxis {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutconstraint/axis/horizontal?language=objc)
     #[doc(alias = "UILayoutConstraintAxisHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutconstraint/axis/vertical?language=objc)
     #[doc(alias = "UILayoutConstraintAxisVertical")]
     pub const Vertical: Self = Self(1);
 }

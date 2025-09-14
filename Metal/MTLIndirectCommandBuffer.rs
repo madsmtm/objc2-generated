@@ -16,20 +16,28 @@ use crate::*;
 pub struct MTLIndirectCommandType(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLIndirectCommandType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/draw?language=objc)
         #[doc(alias = "MTLIndirectCommandTypeDraw")]
         const Draw = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/drawindexed?language=objc)
         #[doc(alias = "MTLIndirectCommandTypeDrawIndexed")]
         const DrawIndexed = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/drawpatches?language=objc)
         #[doc(alias = "MTLIndirectCommandTypeDrawPatches")]
         const DrawPatches = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/drawindexedpatches?language=objc)
         #[doc(alias = "MTLIndirectCommandTypeDrawIndexedPatches")]
         const DrawIndexedPatches = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/concurrentdispatch?language=objc)
         #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatch")]
         const ConcurrentDispatch = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/concurrentdispatchthreads?language=objc)
         #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatchThreads")]
         const ConcurrentDispatchThreads = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/drawmeshthreadgroups?language=objc)
         #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreadgroups")]
         const DrawMeshThreadgroups = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/drawmeshthreads?language=objc)
         #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreads")]
         const DrawMeshThreads = 1<<8;
     }

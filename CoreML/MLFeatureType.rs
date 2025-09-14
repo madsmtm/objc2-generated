@@ -12,30 +12,47 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLFeatureType(pub NSInteger);
 impl MLFeatureType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype/invalid?language=objc)
     #[doc(alias = "MLFeatureTypeInvalid")]
     pub const Invalid: Self = Self(0);
     /// Discrete values, sometimes used to hold numeric encoding of a categorical value
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype/int64?language=objc)
     #[doc(alias = "MLFeatureTypeInt64")]
     pub const Int64: Self = Self(1);
     /// Continuous values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype/double?language=objc)
     #[doc(alias = "MLFeatureTypeDouble")]
     pub const Double: Self = Self(2);
     /// Continuous values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype/string?language=objc)
     #[doc(alias = "MLFeatureTypeString")]
     pub const String: Self = Self(3);
     /// CVPixelBufferRef
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype/image?language=objc)
     #[doc(alias = "MLFeatureTypeImage")]
     pub const Image: Self = Self(4);
     /// MLMultiArray
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype/multiarray?language=objc)
     #[doc(alias = "MLFeatureTypeMultiArray")]
     pub const MultiArray: Self = Self(5);
     /// Numerically weighted hashable objects (e.g. word counts)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype/dictionary?language=objc)
     #[doc(alias = "MLFeatureTypeDictionary")]
     pub const Dictionary: Self = Self(6);
     /// MLSequence. Ordered collection of feature values with the same type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype/sequence?language=objc)
     #[doc(alias = "MLFeatureTypeSequence")]
     pub const Sequence: Self = Self(7);
     /// MLState. Represents a model state that may be updated in each inference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype/state?language=objc)
     #[doc(alias = "MLFeatureTypeState")]
     pub const State: Self = Self(8);
 }

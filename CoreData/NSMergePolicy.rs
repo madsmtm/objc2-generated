@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMergePolicyType(pub NSUInteger);
 impl NSMergePolicyType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype/errormergepolicytype?language=objc)
     #[doc(alias = "NSErrorMergePolicyType")]
     pub const ErrorMergePolicyType: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype/mergebypropertystoretrumpmergepolicytype?language=objc)
     #[doc(alias = "NSMergeByPropertyStoreTrumpMergePolicyType")]
     pub const MergeByPropertyStoreTrumpMergePolicyType: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype/mergebypropertyobjecttrumpmergepolicytype?language=objc)
     #[doc(alias = "NSMergeByPropertyObjectTrumpMergePolicyType")]
     pub const MergeByPropertyObjectTrumpMergePolicyType: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype/overwritemergepolicytype?language=objc)
     #[doc(alias = "NSOverwriteMergePolicyType")]
     pub const OverwriteMergePolicyType: Self = Self(0x03);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype/rollbackmergepolicytype?language=objc)
     #[doc(alias = "NSRollbackMergePolicyType")]
     pub const RollbackMergePolicyType: Self = Self(0x04);
 }

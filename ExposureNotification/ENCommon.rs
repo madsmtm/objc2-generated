@@ -22,54 +22,87 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ENErrorCode(pub NSInteger);
 impl ENErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/unknown?language=objc)
     #[doc(alias = "ENErrorCodeUnknown")]
     pub const Unknown: Self = Self(1);
     /// Underlying failure with an unknown cause.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/badparameter?language=objc)
     #[doc(alias = "ENErrorCodeBadParameter")]
     pub const BadParameter: Self = Self(2);
     /// Missing or incorrect parameter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/notentitled?language=objc)
     #[doc(alias = "ENErrorCodeNotEntitled")]
     pub const NotEntitled: Self = Self(3);
     /// Calling process doesn't have the correct entitlement.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/notauthorized?language=objc)
     #[doc(alias = "ENErrorCodeNotAuthorized")]
     pub const NotAuthorized: Self = Self(4);
     /// User denied this process access to Exposure Notification functionality.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/unsupported?language=objc)
     #[doc(alias = "ENErrorCodeUnsupported")]
     pub const Unsupported: Self = Self(5);
     /// Operation is not supported.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/invalidated?language=objc)
     #[doc(alias = "ENErrorCodeInvalidated")]
     pub const Invalidated: Self = Self(6);
     /// Invalidate was called before the operation completed normally.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/bluetoothoff?language=objc)
     #[doc(alias = "ENErrorCodeBluetoothOff")]
     pub const BluetoothOff: Self = Self(7);
     /// Bluetooth was turned off the by user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/insufficientstorage?language=objc)
     #[doc(alias = "ENErrorCodeInsufficientStorage")]
     pub const InsufficientStorage: Self = Self(8);
     /// Insufficient storage space to enable Exposure Notification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/notenabled?language=objc)
     #[doc(alias = "ENErrorCodeNotEnabled")]
     pub const NotEnabled: Self = Self(9);
     /// Exposure Notification has not been enabled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/apimisuse?language=objc)
     #[doc(alias = "ENErrorCodeAPIMisuse")]
     pub const APIMisuse: Self = Self(10);
     /// The API was used incorrectly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/internal?language=objc)
     #[doc(alias = "ENErrorCodeInternal")]
     pub const Internal: Self = Self(11);
     /// Internal error. This indicates a bug in this framework.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/insufficientmemory?language=objc)
     #[doc(alias = "ENErrorCodeInsufficientMemory")]
     pub const InsufficientMemory: Self = Self(12);
     /// Not enough memory to perform an operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/ratelimited?language=objc)
     #[doc(alias = "ENErrorCodeRateLimited")]
     pub const RateLimited: Self = Self(13);
     /// API called too frequently. See API for acceptable frequency.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/restricted?language=objc)
     #[doc(alias = "ENErrorCodeRestricted")]
     pub const Restricted: Self = Self(14);
     /// Exposure Notification is disabled due to system policies.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/badformat?language=objc)
     #[doc(alias = "ENErrorCodeBadFormat")]
     pub const BadFormat: Self = Self(15);
     /// File or data format problem.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/datainaccessible?language=objc)
     #[doc(alias = "ENErrorCodeDataInaccessible")]
     pub const DataInaccessible: Self = Self(16);
     /// The device must be unlocked before data is accessible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/travelstatusnotavailable?language=objc)
     #[doc(alias = "ENErrorCodeTravelStatusNotAvailable")]
     pub const TravelStatusNotAvailable: Self = Self(17);
 }
@@ -111,16 +144,24 @@ pub struct ENAuthorizationStatus(pub NSInteger);
 impl ENAuthorizationStatus {
     /// Authorization status has not yet been determined.
     /// This status means the user has not been prompted yet. Using the API in this state may prompt the user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus/unknown?language=objc)
     #[doc(alias = "ENAuthorizationStatusUnknown")]
     pub const Unknown: Self = Self(0);
     /// This app is not authorized to use Exposure Notification. The user cannot change this app's authorization status.
     /// This status may be due to active restrictions, such as parental controls being in place.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus/restricted?language=objc)
     #[doc(alias = "ENAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
     /// The user denied authorization for this app.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus/notauthorized?language=objc)
     #[doc(alias = "ENAuthorizationStatusNotAuthorized")]
     pub const NotAuthorized: Self = Self(2);
     /// The user has authorized this app to use Exposure Notification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus/authorized?language=objc)
     #[doc(alias = "ENAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -142,19 +183,27 @@ unsafe impl RefEncode for ENAuthorizationStatus {
 pub struct ENCalibrationConfidence(pub u8);
 impl ENCalibrationConfidence {
     /// No calibration data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence/lowest?language=objc)
     #[doc(alias = "ENCalibrationConfidenceLowest")]
     pub const Lowest: Self = Self(0);
     /// Using average calibration over phones of this manufacturer or Android beacons from EN API version
     /// <
     /// 1.5.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence/low?language=objc)
     #[doc(alias = "ENCalibrationConfidenceLow")]
     pub const Low: Self = Self(1);
     /// Using single-antenna orientation for a similar phone model or iPhone beacons from EN API version
     /// <
     /// 1.5.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence/medium?language=objc)
     #[doc(alias = "ENCalibrationConfidenceMedium")]
     pub const Medium: Self = Self(2);
     /// Determined using significant calibration data for this model.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence/high?language=objc)
     #[doc(alias = "ENCalibrationConfidenceHigh")]
     pub const High: Self = Self(3);
 }
@@ -182,22 +231,34 @@ pub static ENDaysSinceOnsetOfSymptomsUnknown: NSInteger = NSIntegerMax as _;
 pub struct ENDiagnosisReportType(pub u32);
 impl ENDiagnosisReportType {
     /// Diagnosis type unknown or not available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/unknown?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeUnknown")]
     pub const Unknown: Self = Self(0);
     /// Confirmed test.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/confirmedtest?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeConfirmedTest")]
     pub const ConfirmedTest: Self = Self(1);
     /// Confirmed clinical diagnosis.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/confirmedclinicaldiagnosis?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeConfirmedClinicalDiagnosis")]
     pub const ConfirmedClinicalDiagnosis: Self = Self(2);
     /// User reported positive diagnosis without health authority involvement.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/selfreported?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeSelfReported")]
     pub const SelfReported: Self = Self(3);
     /// Person determined to be positive based on exposure to another person confirmed to be positive. This report type
     /// is reserved for future use and keys with this report type are not matched by iOS.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/recursive?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeRecursive")]
     pub const Recursive: Self = Self(4);
     /// Negative test. This is mainly to negate a previous self report or clinical diagnosis that may have been in error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/revoked?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeRevoked")]
     pub const Revoked: Self = Self(5);
 }
@@ -218,12 +279,17 @@ unsafe impl RefEncode for ENDiagnosisReportType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENInfectiousness(pub u32);
 impl ENInfectiousness {
+    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/eninfectiousness/none?language=objc)
     #[doc(alias = "ENInfectiousnessNone")]
     pub const None: Self = Self(0);
     /// Never returned through the API, but used for configuration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/eninfectiousness/standard?language=objc)
     #[doc(alias = "ENInfectiousnessStandard")]
     pub const Standard: Self = Self(1);
     /// Never returned through the API, but used for configuration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/eninfectiousness/high?language=objc)
     #[doc(alias = "ENInfectiousnessHigh")]
     pub const High: Self = Self(2);
 }
@@ -242,14 +308,19 @@ unsafe impl RefEncode for ENInfectiousness {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENVariantOfConcernType(pub u32);
 impl ENVariantOfConcernType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/typeunknown?language=objc)
     #[doc(alias = "ENVariantOfConcernTypeUnknown")]
     pub const TypeUnknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type1?language=objc)
     #[doc(alias = "ENVariantOfConcernType1")]
     pub const Type1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type2?language=objc)
     #[doc(alias = "ENVariantOfConcernType2")]
     pub const Type2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type3?language=objc)
     #[doc(alias = "ENVariantOfConcernType3")]
     pub const Type3: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type4?language=objc)
     #[doc(alias = "ENVariantOfConcernType4")]
     pub const Type4: Self = Self(4);
 }

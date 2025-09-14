@@ -7,8 +7,10 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_reason?language=objc)
 pub const kAudioSession_AudioRouteChangeKey_Reason: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"OutputDeviceDidChange_Reason\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_oldroute?language=objc)
 pub const kAudioSession_AudioRouteChangeKey_OldRoute: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"OutputDeviceDidChange_OldRoute\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionnoerror?language=objc)
@@ -414,6 +416,8 @@ extern "C-unwind" {
     /// - `in_run_loop_mode` might not allow `None`.
     /// - `in_interruption_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessioninitialize(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub fn AudioSessionInitialize(
@@ -433,6 +437,8 @@ extern "C-unwind" {
 /// When active is true this call may fail if the currently active AudioSession has a higher priority.
 ///
 /// Parameter `active`: A Boolean indicating if you want to make this AudioSession active or inactive.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionsetactive(_:)?language=objc)
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioSessionSetActive(active: bool) -> OSStatus {
@@ -459,6 +465,8 @@ pub const kAudioSessionSetActiveFlag_NotifyOthersOnDeactivation: c_uint = 1 << 0
 /// Parameter `active`: A Boolean indicating if you want to make this AudioSession active or inactive.
 ///
 /// Parameter `inFlags`: A bitmap containing one or more flags from the AudioSessionActivationFlags enum.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionsetactivewithflags(_:_:)?language=objc)
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioSessionSetActiveWithFlags(
@@ -494,6 +502,8 @@ extern "C-unwind" {
     ///
     /// - `io_data_size` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessiongetproperty(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionGetProperty(
         in_id: AudioSessionPropertyID,
@@ -523,6 +533,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionsetproperty(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionSetProperty(
         in_id: AudioSessionPropertyID,
@@ -544,6 +556,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessiongetpropertysize(_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionGetPropertySize(
         in_id: AudioSessionPropertyID,
@@ -573,6 +587,8 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionaddpropertylistener(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionAddPropertyListener(
         in_id: AudioSessionPropertyID,
@@ -585,6 +601,8 @@ extern "C-unwind" {
     /// see AudioSessionRemovePropertyListenerWithUserData
     ///
     /// see AudioSessionRemovePropertyListenerWithUserData
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionremovepropertylistener(_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionRemovePropertyListener(in_id: AudioSessionPropertyID) -> OSStatus;
 }
@@ -613,6 +631,8 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionremovepropertylistenerwithuserdata(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionRemovePropertyListenerWithUserData(
         in_id: AudioSessionPropertyID,

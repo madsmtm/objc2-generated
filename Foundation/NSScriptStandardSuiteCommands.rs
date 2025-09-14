@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSaveOptions(pub NSUInteger);
 impl NSSaveOptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssaveoptions/yes?language=objc)
     #[doc(alias = "NSSaveOptionsYes")]
     pub const Yes: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssaveoptions/no?language=objc)
     #[doc(alias = "NSSaveOptionsNo")]
     pub const No: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssaveoptions/ask?language=objc)
     #[doc(alias = "NSSaveOptionsAsk")]
     pub const Ask: Self = Self(2);
 }

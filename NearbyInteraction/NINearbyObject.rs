@@ -27,18 +27,27 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NINearbyObjectVerticalDirectionEstimate(pub NSInteger);
 impl NINearbyObjectVerticalDirectionEstimate {
+    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum/unknown?language=objc)
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateUnknown")]
     pub const Unknown: Self = Self(0);
     /// Represents the nearby object is approximately equal
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum/same?language=objc)
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateSame")]
     pub const Same: Self = Self(1);
     /// Represents the nearby object is above the current device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum/above?language=objc)
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateAbove")]
     pub const Above: Self = Self(2);
     /// Represents the nearby object  is below the current device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum/below?language=objc)
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateBelow")]
     pub const Below: Self = Self(3);
     /// Represents the nearby object  is above or below the current device - i.e. not the same level
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum/aboveorbelow?language=objc)
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateAboveOrBelow")]
     pub const AboveOrBelow: Self = Self(4);
 }

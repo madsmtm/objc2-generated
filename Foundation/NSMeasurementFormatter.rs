@@ -13,10 +13,13 @@ use crate::*;
 pub struct NSMeasurementFormatterUnitOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMeasurementFormatterUnitOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.struct/providedunit?language=objc)
         #[doc(alias = "NSMeasurementFormatterUnitOptionsProvidedUnit")]
         const ProvidedUnit = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.struct/naturalscale?language=objc)
         #[doc(alias = "NSMeasurementFormatterUnitOptionsNaturalScale")]
         const NaturalScale = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.struct/temperaturewithoutunit?language=objc)
         #[doc(alias = "NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit")]
         const TemperatureWithoutUnit = 1<<2;
     }

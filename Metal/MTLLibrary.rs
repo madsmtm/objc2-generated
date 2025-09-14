@@ -82,10 +82,13 @@ pub type MTLAutoreleasedArgument = MTLArgument;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPatchType(pub NSUInteger);
 impl MTLPatchType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype/none?language=objc)
     #[doc(alias = "MTLPatchTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype/triangle?language=objc)
     #[doc(alias = "MTLPatchTypeTriangle")]
     pub const Triangle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype/quad?language=objc)
     #[doc(alias = "MTLPatchTypeQuad")]
     pub const Quad: Self = Self(2);
 }
@@ -237,18 +240,25 @@ impl DefaultRetained for MTLAttribute {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLFunctionType(pub NSUInteger);
 impl MTLFunctionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/vertex?language=objc)
     #[doc(alias = "MTLFunctionTypeVertex")]
     pub const Vertex: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/fragment?language=objc)
     #[doc(alias = "MTLFunctionTypeFragment")]
     pub const Fragment: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/kernel?language=objc)
     #[doc(alias = "MTLFunctionTypeKernel")]
     pub const Kernel: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/visible?language=objc)
     #[doc(alias = "MTLFunctionTypeVisible")]
     pub const Visible: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/intersection?language=objc)
     #[doc(alias = "MTLFunctionTypeIntersection")]
     pub const Intersection: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/mesh?language=objc)
     #[doc(alias = "MTLFunctionTypeMesh")]
     pub const Mesh: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/object?language=objc)
     #[doc(alias = "MTLFunctionTypeObject")]
     pub const Object: Self = Self(8);
 }
@@ -419,29 +429,41 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLLanguageVersion(pub NSUInteger);
 impl MTLLanguageVersion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version1_0?language=objc)
     #[doc(alias = "MTLLanguageVersion1_0")]
     #[deprecated = "Use a newer language standard"]
     pub const Version1_0: Self = Self(1 << 16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version1_1?language=objc)
     #[doc(alias = "MTLLanguageVersion1_1")]
     pub const Version1_1: Self = Self((1 << 16) + 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version1_2?language=objc)
     #[doc(alias = "MTLLanguageVersion1_2")]
     pub const Version1_2: Self = Self((1 << 16) + 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version2_0?language=objc)
     #[doc(alias = "MTLLanguageVersion2_0")]
     pub const Version2_0: Self = Self(2 << 16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version2_1?language=objc)
     #[doc(alias = "MTLLanguageVersion2_1")]
     pub const Version2_1: Self = Self((2 << 16) + 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version2_2?language=objc)
     #[doc(alias = "MTLLanguageVersion2_2")]
     pub const Version2_2: Self = Self((2 << 16) + 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version2_3?language=objc)
     #[doc(alias = "MTLLanguageVersion2_3")]
     pub const Version2_3: Self = Self((2 << 16) + 3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version2_4?language=objc)
     #[doc(alias = "MTLLanguageVersion2_4")]
     pub const Version2_4: Self = Self((2 << 16) + 4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version3_0?language=objc)
     #[doc(alias = "MTLLanguageVersion3_0")]
     pub const Version3_0: Self = Self((3 << 16) + 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version3_1?language=objc)
     #[doc(alias = "MTLLanguageVersion3_1")]
     pub const Version3_1: Self = Self((3 << 16) + 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version3_2?language=objc)
     #[doc(alias = "MTLLanguageVersion3_2")]
     pub const Version3_2: Self = Self((3 << 16) + 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version4_0?language=objc)
     #[doc(alias = "MTLLanguageVersion4_0")]
     pub const Version4_0: Self = Self((4 << 16) + 0);
 }
@@ -460,8 +482,10 @@ unsafe impl RefEncode for MTLLanguageVersion {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLibraryType(pub NSInteger);
 impl MTLLibraryType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibrarytype/executable?language=objc)
     #[doc(alias = "MTLLibraryTypeExecutable")]
     pub const Executable: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibrarytype/dynamic?language=objc)
     #[doc(alias = "MTLLibraryTypeDynamic")]
     pub const Dynamic: Self = Self(1);
 }
@@ -488,8 +512,10 @@ unsafe impl RefEncode for MTLLibraryType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLibraryOptimizationLevel(pub NSInteger);
 impl MTLLibraryOptimizationLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel/default?language=objc)
     #[doc(alias = "MTLLibraryOptimizationLevelDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel/size?language=objc)
     #[doc(alias = "MTLLibraryOptimizationLevelSize")]
     pub const Size: Self = Self(1);
 }
@@ -508,8 +534,10 @@ unsafe impl RefEncode for MTLLibraryOptimizationLevel {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCompileSymbolVisibility(pub NSInteger);
 impl MTLCompileSymbolVisibility {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcompilesymbolvisibility/default?language=objc)
     #[doc(alias = "MTLCompileSymbolVisibilityDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcompilesymbolvisibility/hidden?language=objc)
     #[doc(alias = "MTLCompileSymbolVisibilityHidden")]
     pub const Hidden: Self = Self(1);
 }
@@ -539,10 +567,13 @@ unsafe impl RefEncode for MTLCompileSymbolVisibility {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMathMode(pub NSInteger);
 impl MTLMathMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode/safe?language=objc)
     #[doc(alias = "MTLMathModeSafe")]
     pub const Safe: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode/relaxed?language=objc)
     #[doc(alias = "MTLMathModeRelaxed")]
     pub const Relaxed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode/fast?language=objc)
     #[doc(alias = "MTLMathModeFast")]
     pub const Fast: Self = Self(2);
 }
@@ -569,8 +600,10 @@ unsafe impl RefEncode for MTLMathMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMathFloatingPointFunctions(pub NSInteger);
 impl MTLMathFloatingPointFunctions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathfloatingpointfunctions/fast?language=objc)
     #[doc(alias = "MTLMathFloatingPointFunctionsFast")]
     pub const Fast: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathfloatingpointfunctions/precise?language=objc)
     #[doc(alias = "MTLMathFloatingPointFunctionsPrecise")]
     pub const Precise: Self = Self(1);
 }
@@ -909,16 +942,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLLibraryError(pub NSUInteger);
 impl MTLLibraryError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/unsupported?language=objc)
     #[doc(alias = "MTLLibraryErrorUnsupported")]
     pub const Unsupported: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/internal?language=objc)
     #[doc(alias = "MTLLibraryErrorInternal")]
     pub const Internal: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/compilefailure?language=objc)
     #[doc(alias = "MTLLibraryErrorCompileFailure")]
     pub const CompileFailure: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/compilewarning?language=objc)
     #[doc(alias = "MTLLibraryErrorCompileWarning")]
     pub const CompileWarning: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/functionnotfound?language=objc)
     #[doc(alias = "MTLLibraryErrorFunctionNotFound")]
     pub const FunctionNotFound: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/filenotfound?language=objc)
     #[doc(alias = "MTLLibraryErrorFileNotFound")]
     pub const FileNotFound: Self = Self(6);
 }

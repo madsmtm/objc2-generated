@@ -168,6 +168,8 @@ extern "C-unwind" {
     /// Prints to standard out a textural description of the CMIOObject.
     ///
     /// Parameter `objectID`: The CMIOObject to show.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectshow(_:)?language=objc)
     pub fn CMIOObjectShow(object_id: CMIOObjectID);
 }
 
@@ -182,6 +184,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `address` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjecthasproperty(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMIOObjectHasProperty(
     object_id: CMIOObjectID,
@@ -212,6 +216,8 @@ extern "C-unwind" {
     ///
     /// - `address` must be a valid pointer.
     /// - `is_settable` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectispropertysettable(_:_:_:)?language=objc)
     pub fn CMIOObjectIsPropertySettable(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -240,6 +246,8 @@ extern "C-unwind" {
     /// - `address` must be a valid pointer.
     /// - `qualifier_data` must be a valid pointer.
     /// - `data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectgetpropertydatasize(_:_:_:_:_:)?language=objc)
     pub fn CMIOObjectGetPropertyDataSize(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -275,6 +283,8 @@ extern "C-unwind" {
     /// - `qualifier_data` must be a valid pointer.
     /// - `data_used` must be a valid pointer.
     /// - `data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectgetpropertydata(_:_:_:_:_:_:_:)?language=objc)
     pub fn CMIOObjectGetPropertyData(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -311,6 +321,8 @@ extern "C-unwind" {
     /// - `address` must be a valid pointer.
     /// - `qualifier_data` must be a valid pointer.
     /// - `data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectsetpropertydata(_:_:_:_:_:_:)?language=objc)
     pub fn CMIOObjectSetPropertyData(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -339,6 +351,8 @@ extern "C-unwind" {
     /// - `address` must be a valid pointer.
     /// - `listener` must be implemented correctly.
     /// - `client_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectaddpropertylistener(_:_:_:_:)?language=objc)
     pub fn CMIOObjectAddPropertyListener(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -365,6 +379,8 @@ extern "C-unwind" {
     /// - `address` must be a valid pointer.
     /// - `listener` must be implemented correctly.
     /// - `client_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectremovepropertylistener(_:_:_:_:)?language=objc)
     pub fn CMIOObjectRemovePropertyListener(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -395,6 +411,8 @@ extern "C-unwind" {
     /// - `dispatch_queue` possibly has additional threading requirements.
     /// - `dispatch_queue` might not allow `None`.
     /// - `listener` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectaddpropertylistenerblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn CMIOObjectAddPropertyListenerBlock(
         object_id: CMIOObjectID,
@@ -425,6 +443,8 @@ extern "C-unwind" {
     /// - `dispatch_queue` possibly has additional threading requirements.
     /// - `dispatch_queue` might not allow `None`.
     /// - `listener` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectremovepropertylistenerblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn CMIOObjectRemovePropertyListenerBlock(
         object_id: CMIOObjectID,

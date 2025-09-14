@@ -17,8 +17,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutOrientation(pub NSInteger);
 impl NSTextLayoutOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/textlayoutorientation/horizontal?language=objc)
     #[doc(alias = "NSTextLayoutOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/textlayoutorientation/vertical?language=objc)
     #[doc(alias = "NSTextLayoutOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -38,12 +40,16 @@ unsafe impl RefEncode for NSTextLayoutOrientation {
 pub struct NSGlyphProperty(pub NSInteger);
 bitflags::bitflags! {
     impl NSGlyphProperty: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/glyphproperty/null?language=objc)
         #[doc(alias = "NSGlyphPropertyNull")]
         const Null = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/glyphproperty/controlcharacter?language=objc)
         #[doc(alias = "NSGlyphPropertyControlCharacter")]
         const ControlCharacter = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/glyphproperty/elastic?language=objc)
         #[doc(alias = "NSGlyphPropertyElastic")]
         const Elastic = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/glyphproperty/nonbasecharacter?language=objc)
         #[doc(alias = "NSGlyphPropertyNonBaseCharacter")]
         const NonBaseCharacter = 1<<3;
     }
@@ -64,16 +70,22 @@ unsafe impl RefEncode for NSGlyphProperty {
 pub struct NSControlCharacterAction(pub NSInteger);
 bitflags::bitflags! {
     impl NSControlCharacterAction: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/zeroadvancement?language=objc)
         #[doc(alias = "NSControlCharacterActionZeroAdvancement")]
         const ZeroAdvancement = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/whitespace?language=objc)
         #[doc(alias = "NSControlCharacterActionWhitespace")]
         const Whitespace = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/horizontaltab?language=objc)
         #[doc(alias = "NSControlCharacterActionHorizontalTab")]
         const HorizontalTab = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/linebreak?language=objc)
         #[doc(alias = "NSControlCharacterActionLineBreak")]
         const LineBreak = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/paragraphbreak?language=objc)
         #[doc(alias = "NSControlCharacterActionParagraphBreak")]
         const ParagraphBreak = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/containerbreak?language=objc)
         #[doc(alias = "NSControlCharacterActionContainerBreak")]
         const ContainerBreak = 1<<5;
     }

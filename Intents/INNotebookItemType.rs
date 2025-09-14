@@ -10,12 +10,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INNotebookItemType(pub NSInteger);
 impl INNotebookItemType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtype/unknown?language=objc)
     #[doc(alias = "INNotebookItemTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtype/note?language=objc)
     #[doc(alias = "INNotebookItemTypeNote")]
     pub const Note: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtype/tasklist?language=objc)
     #[doc(alias = "INNotebookItemTypeTaskList")]
     pub const TaskList: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtype/task?language=objc)
     #[doc(alias = "INNotebookItemTypeTask")]
     pub const Task: Self = Self(3);
 }

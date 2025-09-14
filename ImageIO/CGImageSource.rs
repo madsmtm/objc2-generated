@@ -34,16 +34,22 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageSourceStatus(pub i32);
 impl CGImageSourceStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcestatus/statusunexpectedeof?language=objc)
     #[doc(alias = "kCGImageStatusUnexpectedEOF")]
     pub const StatusUnexpectedEOF: Self = Self(-5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcestatus/statusinvaliddata?language=objc)
     #[doc(alias = "kCGImageStatusInvalidData")]
     pub const StatusInvalidData: Self = Self(-4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcestatus/statusunknowntype?language=objc)
     #[doc(alias = "kCGImageStatusUnknownType")]
     pub const StatusUnknownType: Self = Self(-3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcestatus/statusreadingheader?language=objc)
     #[doc(alias = "kCGImageStatusReadingHeader")]
     pub const StatusReadingHeader: Self = Self(-2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcestatus/statusincomplete?language=objc)
     #[doc(alias = "kCGImageStatusIncomplete")]
     pub const StatusIncomplete: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcestatus/statuscomplete?language=objc)
     #[doc(alias = "kCGImageStatusComplete")]
     pub const StatusComplete: Self = Self(0);
 }
@@ -109,6 +115,7 @@ extern "C" {
 }
 
 unsafe impl ConcreteType for CGImageSource {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcegettypeid()?language=objc)
     #[doc(alias = "CGImageSourceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -120,6 +127,7 @@ unsafe impl ConcreteType for CGImageSource {
 }
 
 impl CGImageSource {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecopytypeidentifiers()?language=objc)
     #[doc(alias = "CGImageSourceCopyTypeIdentifiers")]
     #[inline]
     pub unsafe fn type_identifiers() -> CFRetained<CFArray> {
@@ -132,6 +140,8 @@ impl CGImageSource {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecreatewithdataprovider(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -153,6 +163,8 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecreatewithdata(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -173,6 +185,8 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecreatewithurl(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -193,6 +207,7 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcegettype(_:)?language=objc)
     #[doc(alias = "CGImageSourceGetType")]
     #[inline]
     pub unsafe fn r#type(&self) -> Option<CFRetained<CFString>> {
@@ -203,6 +218,7 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcegetcount(_:)?language=objc)
     #[doc(alias = "CGImageSourceGetCount")]
     #[inline]
     pub unsafe fn count(&self) -> usize {
@@ -212,6 +228,8 @@ impl CGImageSource {
         unsafe { CGImageSourceGetCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecopyproperties(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -232,6 +250,8 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecopypropertiesatindex(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -254,6 +274,8 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecopymetadataatindex(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -277,6 +299,8 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecreateimageatindex(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -300,6 +324,7 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourceremovecacheatindex(_:_:)?language=objc)
     #[doc(alias = "CGImageSourceRemoveCacheAtIndex")]
     #[inline]
     pub unsafe fn remove_cache_at_index(&self, index: usize) {
@@ -309,6 +334,8 @@ impl CGImageSource {
         unsafe { CGImageSourceRemoveCacheAtIndex(self, index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecreatethumbnailatindex(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -332,6 +359,8 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecreateincremental(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -350,6 +379,7 @@ impl CGImageSource {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourceupdatedata(_:_:_:)?language=objc)
     #[doc(alias = "CGImageSourceUpdateData")]
     #[inline]
     pub unsafe fn update_data(&self, data: &CFData, r#final: bool) {
@@ -359,6 +389,7 @@ impl CGImageSource {
         unsafe { CGImageSourceUpdateData(self, data, r#final) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourceupdatedataprovider(_:_:_:)?language=objc)
     #[doc(alias = "CGImageSourceUpdateDataProvider")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -373,6 +404,7 @@ impl CGImageSource {
         unsafe { CGImageSourceUpdateDataProvider(self, provider, r#final) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcegetstatus(_:)?language=objc)
     #[doc(alias = "CGImageSourceGetStatus")]
     #[inline]
     pub unsafe fn status(&self) -> CGImageSourceStatus {
@@ -382,6 +414,7 @@ impl CGImageSource {
         unsafe { CGImageSourceGetStatus(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcegetstatusatindex(_:_:)?language=objc)
     #[doc(alias = "CGImageSourceGetStatusAtIndex")]
     #[inline]
     pub unsafe fn status_at_index(&self, index: usize) -> CGImageSourceStatus {
@@ -394,6 +427,7 @@ impl CGImageSource {
         unsafe { CGImageSourceGetStatusAtIndex(self, index) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcegetprimaryimageindex(_:)?language=objc)
     #[doc(alias = "CGImageSourceGetPrimaryImageIndex")]
     #[inline]
     pub unsafe fn primary_image_index(&self) -> usize {
@@ -403,6 +437,7 @@ impl CGImageSource {
         unsafe { CGImageSourceGetPrimaryImageIndex(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcecopyauxiliarydatainfoatindex(_:_:_:)?language=objc)
     #[doc(alias = "CGImageSourceCopyAuxiliaryDataInfoAtIndex")]
     #[inline]
     pub unsafe fn auxiliary_data_info_at_index(
@@ -455,6 +490,8 @@ extern "C" {
 }
 
 impl CGImageSource {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcesetallowabletypes(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `allowable_types` generic must be of the correct type.

@@ -18,14 +18,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLKWatchFaceLibraryErrorCode(pub NSInteger);
 impl CLKWatchFaceLibraryErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode/notfileurl?language=objc)
     #[doc(alias = "CLKWatchFaceLibraryErrorCodeNotFileURL")]
     pub const NotFileURL: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode/invalidfile?language=objc)
     #[doc(alias = "CLKWatchFaceLibraryErrorCodeInvalidFile")]
     pub const InvalidFile: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode/permissiondenied?language=objc)
     #[doc(alias = "CLKWatchFaceLibraryErrorCodePermissionDenied")]
     pub const PermissionDenied: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode/facenotavailable?language=objc)
     #[doc(alias = "CLKWatchFaceLibraryErrorCodeFaceNotAvailable")]
     pub const FaceNotAvailable: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode/nourl?language=objc)
     #[doc(alias = "CLKWatchFaceLibraryErrorCodeNoURL")]
     pub const NoURL: Self = Self(5);
 }

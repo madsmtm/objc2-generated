@@ -188,15 +188,23 @@ impl MPSGraphExecutableExecutionDescriptor {
 pub struct MPSGraphDeploymentPlatform(pub u64);
 impl MPSGraphDeploymentPlatform {
     /// Deployment platofmr for macOS.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform/macos?language=objc)
     #[doc(alias = "MPSGraphDeploymentPlatformMacOS")]
     pub const MacOS: Self = Self(0);
     /// Deployment target for iOS.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform/ios?language=objc)
     #[doc(alias = "MPSGraphDeploymentPlatformIOS")]
     pub const IOS: Self = Self(1);
     /// Deployment target for tvOS.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform/tvos?language=objc)
     #[doc(alias = "MPSGraphDeploymentPlatformTvOS")]
     pub const TvOS: Self = Self(2);
     /// Deployment target for visionOS.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform/visionos?language=objc)
     #[doc(alias = "MPSGraphDeploymentPlatformVisionOS")]
     pub const VisionOS: Self = Self(3);
 }

@@ -87,6 +87,7 @@ impl GCMicroGamepadSnapshot {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCMicroGamepadSnapshotDataVersion(pub NSInteger);
 impl GCMicroGamepadSnapshotDataVersion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdataversion/version1?language=objc)
     #[doc(alias = "GCMicroGamepadSnapshotDataVersion1")]
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     pub const Version1: Self = Self(0x0100);
@@ -145,6 +146,8 @@ impl GCMicroGamepadSnapshotData {
     /// # Safety
     ///
     /// `snapshot_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdatafromnsdata(_:_:)?language=objc)
     #[doc(alias = "GCMicroGamepadSnapshotDataFromNSData")]
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     #[inline]
@@ -171,6 +174,8 @@ impl GCMicroGamepadSnapshotData {
 /// # Safety
 ///
 /// `snapshot_data` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/nsdatafromgcmicrogamepadsnapshotdata(_:)?language=objc)
 #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapshotData(
@@ -224,6 +229,8 @@ impl GCMicroGamepadSnapShotDataV100 {
     /// # Safety
     ///
     /// `snapshot_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdatav100fromnsdata(_:_:)?language=objc)
     #[doc(alias = "GCMicroGamepadSnapShotDataV100FromNSData")]
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     #[inline]
@@ -250,6 +257,8 @@ impl GCMicroGamepadSnapShotDataV100 {
 /// # Safety
 ///
 /// `snapshot_data` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/nsdatafromgcmicrogamepadsnapshotdatav100(_:)?language=objc)
 #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapShotDataV100(

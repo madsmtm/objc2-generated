@@ -18,12 +18,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVMediaItemContentTextTransform(pub NSInteger);
 impl TVMediaItemContentTextTransform {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontenttexttransform/tvmediaitemcontenttexttransformnone?language=objc)
     #[doc(alias = "TVMediaItemContentTextTransformNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontenttexttransform/tvmediaitemcontenttexttransformuppercase?language=objc)
     #[doc(alias = "TVMediaItemContentTextTransformUppercase")]
     pub const Uppercase: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontenttexttransform/tvmediaitemcontenttexttransformlowercase?language=objc)
     #[doc(alias = "TVMediaItemContentTextTransformLowercase")]
     pub const Lowercase: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontenttexttransform/tvmediaitemcontenttexttransformcapitalized?language=objc)
     #[doc(alias = "TVMediaItemContentTextTransformCapitalized")]
     pub const Capitalized: Self = Self(3);
 }

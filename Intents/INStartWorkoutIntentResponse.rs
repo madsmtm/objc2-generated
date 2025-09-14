@@ -12,22 +12,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartWorkoutIntentResponseCode(pub NSInteger);
 impl INStartWorkoutIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INStartWorkoutIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/ready?language=objc)
     #[doc(alias = "INStartWorkoutIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INStartWorkoutIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/failure?language=objc)
     #[doc(alias = "INStartWorkoutIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INStartWorkoutIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/failureongoingworkout?language=objc)
     #[doc(alias = "INStartWorkoutIntentResponseCodeFailureOngoingWorkout")]
     pub const FailureOngoingWorkout: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/failurenomatchingworkout?language=objc)
     #[doc(alias = "INStartWorkoutIntentResponseCodeFailureNoMatchingWorkout")]
     pub const FailureNoMatchingWorkout: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/handleinapp?language=objc)
     #[doc(alias = "INStartWorkoutIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/success?language=objc)
     #[doc(alias = "INStartWorkoutIntentResponseCodeSuccess")]
     pub const Success: Self = Self(8);
 }

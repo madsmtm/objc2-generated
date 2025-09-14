@@ -16,26 +16,37 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLSErrorCode(pub NSInteger);
 impl CLSErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/none?language=objc)
     #[doc(alias = "CLSErrorCodeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/classkitunavailable?language=objc)
     #[doc(alias = "CLSErrorCodeClassKitUnavailable")]
     pub const ClassKitUnavailable: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/invalidargument?language=objc)
     #[doc(alias = "CLSErrorCodeInvalidArgument")]
     pub const InvalidArgument: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/invalidmodification?language=objc)
     #[doc(alias = "CLSErrorCodeInvalidModification")]
     pub const InvalidModification: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/authorizationdenied?language=objc)
     #[doc(alias = "CLSErrorCodeAuthorizationDenied")]
     pub const AuthorizationDenied: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/databaseinaccessible?language=objc)
     #[doc(alias = "CLSErrorCodeDatabaseInaccessible")]
     pub const DatabaseInaccessible: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/limits?language=objc)
     #[doc(alias = "CLSErrorCodeLimits")]
     pub const Limits: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/invalidcreate?language=objc)
     #[doc(alias = "CLSErrorCodeInvalidCreate")]
     pub const InvalidCreate: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/invalidupdate?language=objc)
     #[doc(alias = "CLSErrorCodeInvalidUpdate")]
     pub const InvalidUpdate: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/partialfailure?language=objc)
     #[doc(alias = "CLSErrorCodePartialFailure")]
     pub const PartialFailure: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/invalidaccountcredentials?language=objc)
     #[doc(alias = "CLSErrorCodeInvalidAccountCredentials")]
     pub const InvalidAccountCredentials: Self = Self(10);
 }

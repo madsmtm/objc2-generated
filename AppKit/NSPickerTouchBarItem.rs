@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPickerTouchBarItemSelectionMode(pub NSInteger);
 impl NSPickerTouchBarItemSelectionMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectionmode-swift.enum/selectone?language=objc)
     #[doc(alias = "NSPickerTouchBarItemSelectionModeSelectOne")]
     pub const SelectOne: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectionmode-swift.enum/selectany?language=objc)
     #[doc(alias = "NSPickerTouchBarItemSelectionModeSelectAny")]
     pub const SelectAny: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectionmode-swift.enum/momentary?language=objc)
     #[doc(alias = "NSPickerTouchBarItemSelectionModeMomentary")]
     pub const Momentary: Self = Self(2);
 }
@@ -35,10 +38,13 @@ unsafe impl RefEncode for NSPickerTouchBarItemSelectionMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPickerTouchBarItemControlRepresentation(pub NSInteger);
 impl NSPickerTouchBarItemControlRepresentation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/controlrepresentation-swift.enum/automatic?language=objc)
     #[doc(alias = "NSPickerTouchBarItemControlRepresentationAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/controlrepresentation-swift.enum/expanded?language=objc)
     #[doc(alias = "NSPickerTouchBarItemControlRepresentationExpanded")]
     pub const Expanded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/controlrepresentation-swift.enum/collapsed?language=objc)
     #[doc(alias = "NSPickerTouchBarItemControlRepresentationCollapsed")]
     pub const Collapsed: Self = Self(2);
 }

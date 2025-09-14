@@ -32,14 +32,19 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPDFBox(pub i32);
 impl CGPDFBox {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox/mediabox?language=objc)
     #[doc(alias = "kCGPDFMediaBox")]
     pub const MediaBox: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox/cropbox?language=objc)
     #[doc(alias = "kCGPDFCropBox")]
     pub const CropBox: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox/bleedbox?language=objc)
     #[doc(alias = "kCGPDFBleedBox")]
     pub const BleedBox: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox/trimbox?language=objc)
     #[doc(alias = "kCGPDFTrimBox")]
     pub const TrimBox: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox/artbox?language=objc)
     #[doc(alias = "kCGPDFArtBox")]
     pub const ArtBox: Self = Self(4);
 }
@@ -55,6 +60,7 @@ unsafe impl RefEncode for CGPDFBox {
 }
 
 impl CGPDFPage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/document?language=objc)
     #[doc(alias = "CGPDFPageGetDocument")]
     #[cfg(feature = "CGPDFDocument")]
     #[inline]
@@ -66,6 +72,7 @@ impl CGPDFPage {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/pagenumber?language=objc)
     #[doc(alias = "CGPDFPageGetPageNumber")]
     #[inline]
     pub fn page_number(page: Option<&CGPDFPage>) -> usize {
@@ -75,6 +82,7 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetPageNumber(page) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/getboxrect(_:)?language=objc)
     #[doc(alias = "CGPDFPageGetBoxRect")]
     #[inline]
     pub fn box_rect(page: Option<&CGPDFPage>, r#box: CGPDFBox) -> CGRect {
@@ -84,6 +92,7 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetBoxRect(page, r#box) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/rotationangle?language=objc)
     #[doc(alias = "CGPDFPageGetRotationAngle")]
     #[inline]
     pub fn rotation_angle(page: Option<&CGPDFPage>) -> c_int {
@@ -93,6 +102,7 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetRotationAngle(page) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/getdrawingtransform(_:rect:rotate:preserveaspectratio:)?language=objc)
     #[doc(alias = "CGPDFPageGetDrawingTransform")]
     #[inline]
     pub fn drawing_transform(
@@ -114,6 +124,7 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetDrawingTransform(page, r#box, rect, rotate, preserve_aspect_ratio) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/dictionary?language=objc)
     #[doc(alias = "CGPDFPageGetDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
@@ -126,6 +137,7 @@ impl CGPDFPage {
 }
 
 unsafe impl ConcreteType for CGPDFPage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/typeid?language=objc)
     #[doc(alias = "CGPDFPageGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {

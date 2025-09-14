@@ -39,22 +39,31 @@ pub type CGPDFObjectRef = *mut CGPDFObject;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGPDFObjectType(pub i32);
 impl CGPDFObjectType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/null?language=objc)
     #[doc(alias = "kCGPDFObjectTypeNull")]
     pub const Null: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/boolean?language=objc)
     #[doc(alias = "kCGPDFObjectTypeBoolean")]
     pub const Boolean: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/integer?language=objc)
     #[doc(alias = "kCGPDFObjectTypeInteger")]
     pub const Integer: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/real?language=objc)
     #[doc(alias = "kCGPDFObjectTypeReal")]
     pub const Real: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/name?language=objc)
     #[doc(alias = "kCGPDFObjectTypeName")]
     pub const Name: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/string?language=objc)
     #[doc(alias = "kCGPDFObjectTypeString")]
     pub const String: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/array?language=objc)
     #[doc(alias = "kCGPDFObjectTypeArray")]
     pub const Array: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/dictionary?language=objc)
     #[doc(alias = "kCGPDFObjectTypeDictionary")]
     pub const Dictionary: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/stream?language=objc)
     #[doc(alias = "kCGPDFObjectTypeStream")]
     pub const Stream: Self = Self(9);
 }
@@ -70,6 +79,8 @@ unsafe impl RefEncode for CGPDFObjectType {
 }
 
 impl CGPDFObject {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjectgettype(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `object` must be a valid pointer or null.
@@ -82,6 +93,8 @@ impl CGPDFObject {
         unsafe { CGPDFObjectGetType(object) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjectgetvalue(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `object` must be a valid pointer or null.

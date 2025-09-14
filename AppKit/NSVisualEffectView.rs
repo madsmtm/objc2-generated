@@ -16,64 +16,102 @@ use crate::*;
 pub struct NSVisualEffectMaterial(pub NSInteger);
 impl NSVisualEffectMaterial {
     /// The material used by window titlebars.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/titlebar?language=objc)
     #[doc(alias = "NSVisualEffectMaterialTitlebar")]
     pub const Titlebar: Self = Self(3);
     /// The material used in some table views, menus, etc., to indicate selection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/selection?language=objc)
     #[doc(alias = "NSVisualEffectMaterialSelection")]
     pub const Selection: Self = Self(4);
     /// The material used by menus.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/menu?language=objc)
     #[doc(alias = "NSVisualEffectMaterialMenu")]
     pub const Menu: Self = Self(5);
     /// The material used in the background of NSPopover windows.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/popover?language=objc)
     #[doc(alias = "NSVisualEffectMaterialPopover")]
     pub const Popover: Self = Self(6);
     /// The material used in the background of window sidebars.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/sidebar?language=objc)
     #[doc(alias = "NSVisualEffectMaterialSidebar")]
     pub const Sidebar: Self = Self(7);
     /// The material used in various in-line header or footer views (e.g., by NSTableView).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/headerview?language=objc)
     #[doc(alias = "NSVisualEffectMaterialHeaderView")]
     pub const HeaderView: Self = Self(10);
     /// The material used as the background of sheet windows.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/sheet?language=objc)
     #[doc(alias = "NSVisualEffectMaterialSheet")]
     pub const Sheet: Self = Self(11);
     /// The material used by opaque window backgrounds.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/windowbackground?language=objc)
     #[doc(alias = "NSVisualEffectMaterialWindowBackground")]
     pub const WindowBackground: Self = Self(12);
     /// The material used as the background of heads-up display (HUD) windows.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/hudwindow?language=objc)
     #[doc(alias = "NSVisualEffectMaterialHUDWindow")]
     pub const HUDWindow: Self = Self(13);
     /// The material used as the background of full-screen modal UI.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/fullscreenui?language=objc)
     #[doc(alias = "NSVisualEffectMaterialFullScreenUI")]
     pub const FullScreenUI: Self = Self(15);
     /// The material used as the background of tool tips.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/tooltip?language=objc)
     #[doc(alias = "NSVisualEffectMaterialToolTip")]
     pub const ToolTip: Self = Self(17);
     /// The material used as the opaque background of content (e.g., by NSScrollView, NSTableView, NSCollectionView, etc.).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/contentbackground?language=objc)
     #[doc(alias = "NSVisualEffectMaterialContentBackground")]
     pub const ContentBackground: Self = Self(18);
     /// The material used under window backgrounds.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/underwindowbackground?language=objc)
     #[doc(alias = "NSVisualEffectMaterialUnderWindowBackground")]
     pub const UnderWindowBackground: Self = Self(21);
     /// The material used as the background behind document pages.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/underpagebackground?language=objc)
     #[doc(alias = "NSVisualEffectMaterialUnderPageBackground")]
     pub const UnderPageBackground: Self = Self(22);
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/appearancebased?language=objc)
     #[doc(alias = "NSVisualEffectMaterialAppearanceBased")]
     #[deprecated = "Use a specific semantic material instead."]
     pub const AppearanceBased: Self = Self(0);
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/light?language=objc)
     #[doc(alias = "NSVisualEffectMaterialLight")]
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const Light: Self = Self(1);
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/dark?language=objc)
     #[doc(alias = "NSVisualEffectMaterialDark")]
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const Dark: Self = Self(2);
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/mediumlight?language=objc)
     #[doc(alias = "NSVisualEffectMaterialMediumLight")]
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const MediumLight: Self = Self(8);
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/ultradark?language=objc)
     #[doc(alias = "NSVisualEffectMaterialUltraDark")]
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const UltraDark: Self = Self(9);
@@ -94,9 +132,13 @@ unsafe impl RefEncode for NSVisualEffectMaterial {
 pub struct NSVisualEffectBlendingMode(pub NSInteger);
 impl NSVisualEffectBlendingMode {
     /// Blend with the area behind the window (such as the Desktop or other windows).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/blendingmode-swift.enum/behindwindow?language=objc)
     #[doc(alias = "NSVisualEffectBlendingModeBehindWindow")]
     pub const BehindWindow: Self = Self(0);
     /// Blend with the area behind the view in the window.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/blendingmode-swift.enum/withinwindow?language=objc)
     #[doc(alias = "NSVisualEffectBlendingModeWithinWindow")]
     pub const WithinWindow: Self = Self(1);
 }
@@ -116,12 +158,18 @@ unsafe impl RefEncode for NSVisualEffectBlendingMode {
 pub struct NSVisualEffectState(pub NSInteger);
 impl NSVisualEffectState {
     /// Use the active look only when the containing window is active.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/state-swift.enum/followswindowactivestate?language=objc)
     #[doc(alias = "NSVisualEffectStateFollowsWindowActiveState")]
     pub const FollowsWindowActiveState: Self = Self(0);
     /// Use the active look always.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/state-swift.enum/active?language=objc)
     #[doc(alias = "NSVisualEffectStateActive")]
     pub const Active: Self = Self(1);
     /// Use the inactive look always.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/state-swift.enum/inactive?language=objc)
     #[doc(alias = "NSVisualEffectStateInactive")]
     pub const Inactive: Self = Self(2);
 }

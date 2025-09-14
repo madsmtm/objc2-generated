@@ -93,6 +93,8 @@ impl cp_tracking_area {
     /// # Safety
     ///
     /// `tracking_area` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/trackingarea/rendervalue-swift.property?language=objc)
     #[doc(alias = "cp_tracking_area_get_render_value")]
     #[inline]
     pub unsafe fn render_value(tracking_area: cp_tracking_area_t) -> cp_tracking_area_render_value {
@@ -115,6 +117,8 @@ impl cp_tracking_area {
     /// # Safety
     ///
     /// `tracking_area` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/trackingarea/identifier-swift.property?language=objc)
     #[doc(alias = "cp_tracking_area_get_identifier")]
     #[inline]
     pub unsafe fn identifier(tracking_area: cp_tracking_area_t) -> cp_tracking_area_identifier {
@@ -141,6 +145,8 @@ impl cp_tracking_area {
     /// # Safety
     ///
     /// `tracking_area` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_tracking_area_add_automatic_hover_effect?language=objc)
     #[doc(alias = "cp_tracking_area_add_automatic_hover_effect")]
     #[inline]
     pub unsafe fn add_automatic_hover_effect(

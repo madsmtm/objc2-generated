@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintPanelResult(pub NSInteger);
 impl NSPrintPanelResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/result/cancelled?language=objc)
     #[doc(alias = "NSPrintPanelResultCancelled")]
     pub const Cancelled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/result/printed?language=objc)
     #[doc(alias = "NSPrintPanelResultPrinted")]
     pub const Printed: Self = Self(1);
 }
@@ -34,20 +36,28 @@ unsafe impl RefEncode for NSPrintPanelResult {
 pub struct NSPrintPanelOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPrintPanelOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showscopies?language=objc)
         #[doc(alias = "NSPrintPanelShowsCopies")]
         const ShowsCopies = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showspagerange?language=objc)
         #[doc(alias = "NSPrintPanelShowsPageRange")]
         const ShowsPageRange = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showspapersize?language=objc)
         #[doc(alias = "NSPrintPanelShowsPaperSize")]
         const ShowsPaperSize = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showsorientation?language=objc)
         #[doc(alias = "NSPrintPanelShowsOrientation")]
         const ShowsOrientation = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showsscaling?language=objc)
         #[doc(alias = "NSPrintPanelShowsScaling")]
         const ShowsScaling = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showsprintselection?language=objc)
         #[doc(alias = "NSPrintPanelShowsPrintSelection")]
         const ShowsPrintSelection = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showspagesetupaccessory?language=objc)
         #[doc(alias = "NSPrintPanelShowsPageSetupAccessory")]
         const ShowsPageSetupAccessory = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showspreview?language=objc)
         #[doc(alias = "NSPrintPanelShowsPreview")]
         const ShowsPreview = 1<<17;
     }

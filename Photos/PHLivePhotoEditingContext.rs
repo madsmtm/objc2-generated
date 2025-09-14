@@ -176,9 +176,13 @@ impl PHLivePhotoEditingContext {
 pub struct PHLivePhotoFrameType(pub NSInteger);
 impl PHLivePhotoFrameType {
     /// Indicates the still image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframetype/photo?language=objc)
     #[doc(alias = "PHLivePhotoFrameTypePhoto")]
     pub const Photo: Self = Self(0);
     /// Indicates a video frame
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframetype/video?language=objc)
     #[doc(alias = "PHLivePhotoFrameTypeVideo")]
     pub const Video: Self = Self(1);
 }
@@ -247,9 +251,11 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoEditingErrorCode(pub NSInteger);
 impl PHLivePhotoEditingErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrorcode/unknown?language=objc)
     #[doc(alias = "PHLivePhotoEditingErrorCodeUnknown")]
     #[deprecated]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrorcode/aborted?language=objc)
     #[doc(alias = "PHLivePhotoEditingErrorCodeAborted")]
     #[deprecated]
     pub const Aborted: Self = Self(1);

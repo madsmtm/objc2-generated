@@ -22,6 +22,8 @@ extern "C" {
     pub static NSDeallocateZombies: Bool;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisfreedobject?language=objc)
+///
 /// # Safety
 ///
 /// - `an_object` should be of the correct type.
@@ -35,6 +37,8 @@ pub unsafe extern "C-unwind" fn NSIsFreedObject(an_object: Option<&AnyObject>) -
 }
 
 /// **************    Stack processing    ***************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsframeaddress?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSFrameAddress(frame: NSUInteger) -> *mut c_void {
     extern "C-unwind" {
@@ -43,6 +47,7 @@ pub extern "C-unwind" fn NSFrameAddress(frame: NSUInteger) -> *mut c_void {
     unsafe { NSFrameAddress(frame) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreturnaddress?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSReturnAddress(frame: NSUInteger) -> *mut c_void {
     extern "C-unwind" {
@@ -51,6 +56,7 @@ pub extern "C-unwind" fn NSReturnAddress(frame: NSUInteger) -> *mut c_void {
     unsafe { NSReturnAddress(frame) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountframes?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSCountFrames() -> NSUInteger {
     extern "C-unwind" {
@@ -75,6 +81,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecordallocationevent?language=objc)
+    ///
     /// # Safety
     ///
     /// - `object` should be of the correct type.

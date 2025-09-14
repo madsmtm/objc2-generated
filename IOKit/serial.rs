@@ -16,8 +16,10 @@ pub const kIOSerialBSDModemType: &CStr =
 pub const kIOSerialBSDRS232Type: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOSerialStream\0") };
 pub const kIOTTYDeviceKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOTTYDevice\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/serialdriverkit/kiottybasenamekey?language=objc)
 pub const kIOTTYBaseNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOTTYBaseName\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/serialdriverkit/kiottysuffixkey?language=objc)
 pub const kIOTTYSuffixKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOTTYSuffix\0") };
 pub const kIOCalloutDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCalloutDevice\0") };

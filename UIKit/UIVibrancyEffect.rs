@@ -70,20 +70,28 @@ impl UIVibrancyEffect {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIVibrancyEffectStyle(pub NSInteger);
 impl UIVibrancyEffectStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/label?language=objc)
     #[doc(alias = "UIVibrancyEffectStyleLabel")]
     pub const Label: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/secondarylabel?language=objc)
     #[doc(alias = "UIVibrancyEffectStyleSecondaryLabel")]
     pub const SecondaryLabel: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/tertiarylabel?language=objc)
     #[doc(alias = "UIVibrancyEffectStyleTertiaryLabel")]
     pub const TertiaryLabel: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/quaternarylabel?language=objc)
     #[doc(alias = "UIVibrancyEffectStyleQuaternaryLabel")]
     pub const QuaternaryLabel: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/fill?language=objc)
     #[doc(alias = "UIVibrancyEffectStyleFill")]
     pub const Fill: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/secondaryfill?language=objc)
     #[doc(alias = "UIVibrancyEffectStyleSecondaryFill")]
     pub const SecondaryFill: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/tertiaryfill?language=objc)
     #[doc(alias = "UIVibrancyEffectStyleTertiaryFill")]
     pub const TertiaryFill: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/separator?language=objc)
     #[doc(alias = "UIVibrancyEffectStyleSeparator")]
     pub const Separator: Self = Self(7);
 }

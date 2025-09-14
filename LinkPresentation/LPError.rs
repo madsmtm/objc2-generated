@@ -19,18 +19,28 @@ extern "C" {
 pub struct LPErrorCode(pub NSInteger);
 impl LPErrorCode {
     /// An unknown error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code/unknown?language=objc)
     #[doc(alias = "LPErrorUnknown")]
     pub const Unknown: Self = Self(1);
     /// An error indicating that a metadata fetch failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code/metadatafetchfailed?language=objc)
     #[doc(alias = "LPErrorMetadataFetchFailed")]
     pub const MetadataFetchFailed: Self = Self(2);
     /// An error indicating that the metadata fetch was canceled by the client.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code/metadatafetchcancelled?language=objc)
     #[doc(alias = "LPErrorMetadataFetchCancelled")]
     pub const MetadataFetchCancelled: Self = Self(3);
     /// An error indicating that the metadata fetch took longer than allowed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code/metadatafetchtimedout?language=objc)
     #[doc(alias = "LPErrorMetadataFetchTimedOut")]
     pub const MetadataFetchTimedOut: Self = Self(4);
     /// An error indicating that the metadata fetch was not allowed due to system policies.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code/metadatafetchnotallowed?language=objc)
     #[doc(alias = "LPErrorMetadataFetchNotAllowed")]
     pub const MetadataFetchNotAllowed: Self = Self(5);
 }

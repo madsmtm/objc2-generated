@@ -16,6 +16,7 @@ pub type NSRangePointer = *mut NSRange;
 
 // TODO: pub fn NSEqualRanges(range1: NSRange,range2: NSRange,) -> Bool;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionrange(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange {
     extern "C-unwind" {
@@ -24,6 +25,7 @@ pub extern "C-unwind" fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRan
     unsafe { NSUnionRange(range1, range2) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintersectionrange(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange {
     extern "C-unwind" {
@@ -34,6 +36,7 @@ pub extern "C-unwind" fn NSIntersectionRange(range1: NSRange, range2: NSRange) -
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromrange(_:)?language=objc)
     #[doc(alias = "NSStringFromRange")]
     #[cfg(feature = "NSString")]
     #[inline]
@@ -47,6 +50,7 @@ impl NSString {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangefromstring(_:)?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSRangeFromString(a_string: &NSString) -> NSRange {

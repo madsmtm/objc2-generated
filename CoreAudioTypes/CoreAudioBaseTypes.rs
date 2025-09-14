@@ -7,6 +7,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/coreaudiotypes_version?language=objc)
 pub const COREAUDIOTYPES_VERSION: c_uint = 20211130;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_noerror?language=objc)
 pub const kAudio_NoError: OSStatus = 0;
@@ -497,28 +498,40 @@ unsafe impl RefEncode for AudioStreamPacketDependencyDescription {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SMPTETimeType(pub u32);
 impl SMPTETimeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type24?language=objc)
     #[doc(alias = "kSMPTETimeType24")]
     pub const Type24: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type25?language=objc)
     #[doc(alias = "kSMPTETimeType25")]
     pub const Type25: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type30drop?language=objc)
     #[doc(alias = "kSMPTETimeType30Drop")]
     pub const Type30Drop: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type30?language=objc)
     #[doc(alias = "kSMPTETimeType30")]
     pub const Type30: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type2997?language=objc)
     #[doc(alias = "kSMPTETimeType2997")]
     pub const Type2997: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type2997drop?language=objc)
     #[doc(alias = "kSMPTETimeType2997Drop")]
     pub const Type2997Drop: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type60?language=objc)
     #[doc(alias = "kSMPTETimeType60")]
     pub const Type60: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type5994?language=objc)
     #[doc(alias = "kSMPTETimeType5994")]
     pub const Type5994: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type60drop?language=objc)
     #[doc(alias = "kSMPTETimeType60Drop")]
     pub const Type60Drop: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type5994drop?language=objc)
     #[doc(alias = "kSMPTETimeType5994Drop")]
     pub const Type5994Drop: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type50?language=objc)
     #[doc(alias = "kSMPTETimeType50")]
     pub const Type50: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type2398?language=objc)
     #[doc(alias = "kSMPTETimeType2398")]
     pub const Type2398: Self = Self(11);
 }
@@ -546,10 +559,13 @@ unsafe impl RefEncode for SMPTETimeType {
 pub struct SMPTETimeFlags(pub u32);
 bitflags::bitflags! {
     impl SMPTETimeFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimeflags/ksmptetimeunknown?language=objc)
         #[doc(alias = "kSMPTETimeUnknown")]
         const Unknown = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimeflags/valid?language=objc)
         #[doc(alias = "kSMPTETimeValid")]
         const Valid = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimeflags/running?language=objc)
         #[doc(alias = "kSMPTETimeRunning")]
         const Running = 1<<1;
     }
@@ -644,18 +660,25 @@ unsafe impl RefEncode for SMPTETime {
 pub struct AudioTimeStampFlags(pub u32);
 bitflags::bitflags! {
     impl AudioTimeStampFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/kaudiotimestampnothingvalid?language=objc)
         #[doc(alias = "kAudioTimeStampNothingValid")]
         const NothingValid = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/sampletimevalid?language=objc)
         #[doc(alias = "kAudioTimeStampSampleTimeValid")]
         const SampleTimeValid = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/hosttimevalid?language=objc)
         #[doc(alias = "kAudioTimeStampHostTimeValid")]
         const HostTimeValid = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/ratescalarvalid?language=objc)
         #[doc(alias = "kAudioTimeStampRateScalarValid")]
         const RateScalarValid = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/wordclocktimevalid?language=objc)
         #[doc(alias = "kAudioTimeStampWordClockTimeValid")]
         const WordClockTimeValid = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/smptetimevalid?language=objc)
         #[doc(alias = "kAudioTimeStampSMPTETimeValid")]
         const SMPTETimeValid = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/samplehosttimevalid?language=objc)
         #[doc(alias = "kAudioTimeStampSampleHostTimeValid")]
         const SampleHostTimeValid = AudioTimeStampFlags::SampleTimeValid.0|AudioTimeStampFlags::HostTimeValid.0;
     }
@@ -1017,58 +1040,85 @@ pub const kAudioChannelLabel_EndReserved: AudioChannelLabel = 0xFFFFFFFE;
 pub struct AudioChannelBitmap(pub u32);
 bitflags::bitflags! {
     impl AudioChannelBitmap: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_left?language=objc)
         #[doc(alias = "kAudioChannelBit_Left")]
         const Bit_Left = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_right?language=objc)
         #[doc(alias = "kAudioChannelBit_Right")]
         const Bit_Right = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_center?language=objc)
         #[doc(alias = "kAudioChannelBit_Center")]
         const Bit_Center = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_lfescreen?language=objc)
         #[doc(alias = "kAudioChannelBit_LFEScreen")]
         const Bit_LFEScreen = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_leftsurround?language=objc)
         #[doc(alias = "kAudioChannelBit_LeftSurround")]
         const Bit_LeftSurround = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_rightsurround?language=objc)
         #[doc(alias = "kAudioChannelBit_RightSurround")]
         const Bit_RightSurround = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_leftcenter?language=objc)
         #[doc(alias = "kAudioChannelBit_LeftCenter")]
         const Bit_LeftCenter = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_rightcenter?language=objc)
         #[doc(alias = "kAudioChannelBit_RightCenter")]
         const Bit_RightCenter = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_centersurround?language=objc)
         #[doc(alias = "kAudioChannelBit_CenterSurround")]
         const Bit_CenterSurround = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_leftsurrounddirect?language=objc)
         #[doc(alias = "kAudioChannelBit_LeftSurroundDirect")]
         const Bit_LeftSurroundDirect = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_rightsurrounddirect?language=objc)
         #[doc(alias = "kAudioChannelBit_RightSurroundDirect")]
         const Bit_RightSurroundDirect = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_topcentersurround?language=objc)
         #[doc(alias = "kAudioChannelBit_TopCenterSurround")]
         const Bit_TopCenterSurround = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_verticalheightleft?language=objc)
         #[doc(alias = "kAudioChannelBit_VerticalHeightLeft")]
         const Bit_VerticalHeightLeft = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_verticalheightcenter?language=objc)
         #[doc(alias = "kAudioChannelBit_VerticalHeightCenter")]
         const Bit_VerticalHeightCenter = 1<<13;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_verticalheightright?language=objc)
         #[doc(alias = "kAudioChannelBit_VerticalHeightRight")]
         const Bit_VerticalHeightRight = 1<<14;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_topbackleft?language=objc)
         #[doc(alias = "kAudioChannelBit_TopBackLeft")]
         const Bit_TopBackLeft = 1<<15;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_topbackcenter?language=objc)
         #[doc(alias = "kAudioChannelBit_TopBackCenter")]
         const Bit_TopBackCenter = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_topbackright?language=objc)
         #[doc(alias = "kAudioChannelBit_TopBackRight")]
         const Bit_TopBackRight = 1<<17;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_lefttopfront?language=objc)
         #[doc(alias = "kAudioChannelBit_LeftTopFront")]
         const Bit_LeftTopFront = AudioChannelBitmap::Bit_VerticalHeightLeft.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_centertopfront?language=objc)
         #[doc(alias = "kAudioChannelBit_CenterTopFront")]
         const Bit_CenterTopFront = AudioChannelBitmap::Bit_VerticalHeightCenter.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_righttopfront?language=objc)
         #[doc(alias = "kAudioChannelBit_RightTopFront")]
         const Bit_RightTopFront = AudioChannelBitmap::Bit_VerticalHeightRight.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_lefttopmiddle?language=objc)
         #[doc(alias = "kAudioChannelBit_LeftTopMiddle")]
         const Bit_LeftTopMiddle = 1<<21;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_centertopmiddle?language=objc)
         #[doc(alias = "kAudioChannelBit_CenterTopMiddle")]
         const Bit_CenterTopMiddle = AudioChannelBitmap::Bit_TopCenterSurround.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_righttopmiddle?language=objc)
         #[doc(alias = "kAudioChannelBit_RightTopMiddle")]
         const Bit_RightTopMiddle = 1<<23;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_lefttoprear?language=objc)
         #[doc(alias = "kAudioChannelBit_LeftTopRear")]
         const Bit_LeftTopRear = 1<<24;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_centertoprear?language=objc)
         #[doc(alias = "kAudioChannelBit_CenterTopRear")]
         const Bit_CenterTopRear = 1<<25;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_righttoprear?language=objc)
         #[doc(alias = "kAudioChannelBit_RightTopRear")]
         const Bit_RightTopRear = 1<<26;
     }
@@ -1105,12 +1155,16 @@ unsafe impl RefEncode for AudioChannelBitmap {
 pub struct AudioChannelFlags(pub u32);
 bitflags::bitflags! {
     impl AudioChannelFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags/kaudiochannelflags_alloff?language=objc)
         #[doc(alias = "kAudioChannelFlags_AllOff")]
         const AllOff = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags/rectangularcoordinates?language=objc)
         #[doc(alias = "kAudioChannelFlags_RectangularCoordinates")]
         const RectangularCoordinates = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags/sphericalcoordinates?language=objc)
         #[doc(alias = "kAudioChannelFlags_SphericalCoordinates")]
         const SphericalCoordinates = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags/meters?language=objc)
         #[doc(alias = "kAudioChannelFlags_Meters")]
         const Meters = 1<<2;
     }
@@ -1150,16 +1204,22 @@ unsafe impl RefEncode for AudioChannelFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioChannelCoordinateIndex(pub u32);
 impl AudioChannelCoordinateIndex {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_leftright?language=objc)
     #[doc(alias = "kAudioChannelCoordinates_LeftRight")]
     pub const Coordinates_LeftRight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_backfront?language=objc)
     #[doc(alias = "kAudioChannelCoordinates_BackFront")]
     pub const Coordinates_BackFront: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_downup?language=objc)
     #[doc(alias = "kAudioChannelCoordinates_DownUp")]
     pub const Coordinates_DownUp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_azimuth?language=objc)
     #[doc(alias = "kAudioChannelCoordinates_Azimuth")]
     pub const Coordinates_Azimuth: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_elevation?language=objc)
     #[doc(alias = "kAudioChannelCoordinates_Elevation")]
     pub const Coordinates_Elevation: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_distance?language=objc)
     #[doc(alias = "kAudioChannelCoordinates_Distance")]
     pub const Coordinates_Distance: Self = Self(2);
 }
@@ -2164,22 +2224,31 @@ unsafe impl RefEncode for AudioFormatListItem {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPEG4ObjectID(pub c_long);
 impl MPEG4ObjectID {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_main?language=objc)
     #[doc(alias = "kMPEG4Object_AAC_Main")]
     pub const AAC_Main: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_lc?language=objc)
     #[doc(alias = "kMPEG4Object_AAC_LC")]
     pub const AAC_LC: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_ssr?language=objc)
     #[doc(alias = "kMPEG4Object_AAC_SSR")]
     pub const AAC_SSR: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_ltp?language=objc)
     #[doc(alias = "kMPEG4Object_AAC_LTP")]
     pub const AAC_LTP: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_sbr?language=objc)
     #[doc(alias = "kMPEG4Object_AAC_SBR")]
     pub const AAC_SBR: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_scalable?language=objc)
     #[doc(alias = "kMPEG4Object_AAC_Scalable")]
     pub const AAC_Scalable: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/twinvq?language=objc)
     #[doc(alias = "kMPEG4Object_TwinVQ")]
     pub const TwinVQ: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/celp?language=objc)
     #[doc(alias = "kMPEG4Object_CELP")]
     pub const CELP: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/hvxc?language=objc)
     #[doc(alias = "kMPEG4Object_HVXC")]
     pub const HVXC: Self = Self(9);
 }

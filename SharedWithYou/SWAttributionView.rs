@@ -23,9 +23,13 @@ use crate::*;
 pub struct SWAttributionViewDisplayContext(pub NSInteger);
 impl SWAttributionViewDisplayContext {
     /// The default context. Indicates that the attributed content shown along with this view is being offered to the user for consumption
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/displaycontext-swift.enum/summary?language=objc)
     #[doc(alias = "SWAttributionViewDisplayContextSummary")]
     pub const Summary: Self = Self(0);
     /// Indicates that the attributed content shown along with this view is being actively consumed by the user
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/displaycontext-swift.enum/detail?language=objc)
     #[doc(alias = "SWAttributionViewDisplayContextDetail")]
     pub const Detail: Self = Self(1);
 }
@@ -47,15 +51,23 @@ unsafe impl RefEncode for SWAttributionViewDisplayContext {
 pub struct SWAttributionViewHorizontalAlignment(pub NSInteger);
 impl SWAttributionViewHorizontalAlignment {
     /// The default horizontal alignment, to be chosen by SWAttributionView
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/horizontalalignment-swift.enum/default?language=objc)
     #[doc(alias = "SWAttributionViewHorizontalAlignmentDefault")]
     pub const Default: Self = Self(0);
     /// Horizontally align with the leading edge of the view (depends on the user interface layout direction)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/horizontalalignment-swift.enum/leading?language=objc)
     #[doc(alias = "SWAttributionViewHorizontalAlignmentLeading")]
     pub const Leading: Self = Self(1);
     /// Horizontally align with the center of the view
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/horizontalalignment-swift.enum/center?language=objc)
     #[doc(alias = "SWAttributionViewHorizontalAlignmentCenter")]
     pub const Center: Self = Self(2);
     /// Horizontally align with the trailing edge of the view (depends on the user interface layout direction)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/horizontalalignment-swift.enum/trailing?language=objc)
     #[doc(alias = "SWAttributionViewHorizontalAlignmentTrailing")]
     pub const Trailing: Self = Self(3);
 }
@@ -77,12 +89,18 @@ unsafe impl RefEncode for SWAttributionViewHorizontalAlignment {
 pub struct SWAttributionViewBackgroundStyle(pub NSInteger);
 impl SWAttributionViewBackgroundStyle {
     /// The default background style, to be chosen by SWAttributionView
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/backgroundstyle-swift.enum/default?language=objc)
     #[doc(alias = "SWAttributionViewBackgroundStyleDefault")]
     pub const Default: Self = Self(0);
     /// A non-material background color for the view's contents, best when placed over monochrome backgrounds
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/backgroundstyle-swift.enum/color?language=objc)
     #[doc(alias = "SWAttributionViewBackgroundStyleColor")]
     pub const Color: Self = Self(1);
     /// A material background blur for the view's contents, best when placed over multicolored backgrounds
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/backgroundstyle-swift.enum/material?language=objc)
     #[doc(alias = "SWAttributionViewBackgroundStyleMaterial")]
     pub const Material: Self = Self(2);
 }

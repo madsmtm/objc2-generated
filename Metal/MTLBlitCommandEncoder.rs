@@ -16,12 +16,16 @@ use crate::*;
 pub struct MTLBlitOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLBlitOption: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption/mtlblitoptionnone?language=objc)
         #[doc(alias = "MTLBlitOptionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption/depthfromdepthstencil?language=objc)
         #[doc(alias = "MTLBlitOptionDepthFromDepthStencil")]
         const DepthFromDepthStencil = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption/stencilfromdepthstencil?language=objc)
         #[doc(alias = "MTLBlitOptionStencilFromDepthStencil")]
         const StencilFromDepthStencil = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption/rowlinearpvrtc?language=objc)
         #[doc(alias = "MTLBlitOptionRowLinearPVRTC")]
         const RowLinearPVRTC = 1<<2;
     }

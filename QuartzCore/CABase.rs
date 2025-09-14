@@ -5,6 +5,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacurrentmediatime()?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CACurrentMediaTime() -> CFTimeInterval {

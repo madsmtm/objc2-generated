@@ -118,6 +118,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for CFTree {
     /// Returns the type identifier of all CFTree instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegettypeid()?language=objc)
     #[doc(alias = "CFTreeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -151,6 +153,8 @@ impl CFTree {
     ///
     /// - `allocator` might not allow `None`.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecreate(_:_:)?language=objc)
     #[doc(alias = "CFTreeCreate")]
     #[inline]
     pub unsafe fn new(
@@ -173,6 +177,8 @@ impl CFTree {
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: The parent of the tree.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetparent(_:)?language=objc)
     #[doc(alias = "CFTreeGetParent")]
     #[inline]
     pub fn parent(&self) -> Option<CFRetained<CFTree>> {
@@ -189,6 +195,8 @@ impl CFTree {
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: The next sibling of the tree.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetnextsibling(_:)?language=objc)
     #[doc(alias = "CFTreeGetNextSibling")]
     #[inline]
     pub fn next_sibling(&self) -> Option<CFRetained<CFTree>> {
@@ -205,6 +213,8 @@ impl CFTree {
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: The first child of the tree.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetfirstchild(_:)?language=objc)
     #[doc(alias = "CFTreeGetFirstChild")]
     #[inline]
     pub fn first_child(&self) -> Option<CFRetained<CFTree>> {
@@ -229,6 +239,8 @@ impl CFTree {
     /// # Safety
     ///
     /// `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetcontext(_:_:)?language=objc)
     #[doc(alias = "CFTreeGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: *mut CFTreeContext) {
@@ -244,6 +256,8 @@ impl CFTree {
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: The number of children.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetchildcount(_:)?language=objc)
     #[doc(alias = "CFTreeGetChildCount")]
     #[inline]
     pub fn child_count(&self) -> CFIndex {
@@ -263,6 +277,8 @@ impl CFTree {
     /// tree, the result is undefined.
     ///
     /// Returns: A reference to the specified child tree.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetchildatindex(_:_:)?language=objc)
     #[doc(alias = "CFTreeGetChildAtIndex")]
     #[inline]
     pub fn child_at_index(&self, idx: CFIndex) -> Option<CFRetained<CFTree>> {
@@ -285,6 +301,8 @@ impl CFTree {
     /// # Safety
     ///
     /// `children` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetchildren(_:_:)?language=objc)
     #[doc(alias = "CFTreeGetChildren")]
     #[inline]
     pub unsafe fn children(&self, children: *mut *mut CFTree) {
@@ -317,6 +335,8 @@ impl CFTree {
     ///
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeapplyfunctiontochildren(_:_:_:)?language=objc)
     #[doc(alias = "CFTreeApplyFunctionToChildren")]
     #[inline]
     pub unsafe fn apply_function_to_children(
@@ -340,6 +360,8 @@ impl CFTree {
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: A reference to the root of the tree.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreefindroot(_:)?language=objc)
     #[doc(alias = "CFTreeFindRoot")]
     #[inline]
     pub fn find_root(&self) -> Option<CFRetained<CFTree>> {
@@ -367,6 +389,8 @@ impl CFTree {
     /// # Safety
     ///
     /// `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreesetcontext(_:_:)?language=objc)
     #[doc(alias = "CFTreeSetContext")]
     #[inline]
     pub unsafe fn set_context(&self, context: *const CFTreeContext) {
@@ -389,6 +413,8 @@ impl CFTree {
     /// # Safety
     ///
     /// `new_child` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeprependchild(_:_:)?language=objc)
     #[doc(alias = "CFTreePrependChild")]
     #[inline]
     pub unsafe fn prepend_child(&self, new_child: Option<&CFTree>) {
@@ -411,6 +437,8 @@ impl CFTree {
     /// # Safety
     ///
     /// `new_child` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeappendchild(_:_:)?language=objc)
     #[doc(alias = "CFTreeAppendChild")]
     #[inline]
     pub unsafe fn append_child(&self, new_child: Option<&CFTree>) {
@@ -435,6 +463,8 @@ impl CFTree {
     /// # Safety
     ///
     /// `new_sibling` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeinsertsibling(_:_:)?language=objc)
     #[doc(alias = "CFTreeInsertSibling")]
     #[inline]
     pub unsafe fn insert_sibling(&self, new_sibling: Option<&CFTree>) {
@@ -448,6 +478,8 @@ impl CFTree {
     ///
     /// Parameter `tree`: The tree to be removed.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeremove(_:)?language=objc)
     #[doc(alias = "CFTreeRemove")]
     #[inline]
     pub fn remove(&self) {
@@ -461,6 +493,8 @@ impl CFTree {
     ///
     /// Parameter `tree`: The tree to remove all children from.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeremoveallchildren(_:)?language=objc)
     #[doc(alias = "CFTreeRemoveAllChildren")]
     #[inline]
     pub fn remove_all_children(&self) {
@@ -492,6 +526,8 @@ impl CFTree {
     ///
     /// - `comparator` must be implemented correctly.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreesortchildren(_:_:_:)?language=objc)
     #[doc(alias = "CFTreeSortChildren")]
     #[inline]
     pub unsafe fn sort_children(&self, comparator: CFComparatorFunction, context: *mut c_void) {

@@ -14,27 +14,35 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTransferMoneyIntentResponseCode(pub NSInteger);
 impl INTransferMoneyIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INTransferMoneyIntentResponseCodeUnspecified")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/ready?language=objc)
     #[doc(alias = "INTransferMoneyIntentResponseCodeReady")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INTransferMoneyIntentResponseCodeInProgress")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/success?language=objc)
     #[doc(alias = "INTransferMoneyIntentResponseCodeSuccess")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/failure?language=objc)
     #[doc(alias = "INTransferMoneyIntentResponseCodeFailure")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INTransferMoneyIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/failurecredentialsunverified?language=objc)
     #[doc(alias = "INTransferMoneyIntentResponseCodeFailureCredentialsUnverified")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureCredentialsUnverified: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/failureinsufficientfunds?language=objc)
     #[doc(alias = "INTransferMoneyIntentResponseCodeFailureInsufficientFunds")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureInsufficientFunds: Self = Self(7);

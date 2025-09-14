@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSharingCollaborationMode(pub NSInteger);
 impl NSSharingCollaborationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcollaborationmode/sendcopy?language=objc)
     #[doc(alias = "NSSharingCollaborationModeSendCopy")]
     pub const SendCopy: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcollaborationmode/collaborate?language=objc)
     #[doc(alias = "NSSharingCollaborationModeCollaborate")]
     pub const Collaborate: Self = Self(1);
 }

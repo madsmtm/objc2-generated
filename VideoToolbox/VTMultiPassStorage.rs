@@ -33,6 +33,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for VTMultiPassStorage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmultipassstoragegettypeid()?language=objc)
     #[doc(alias = "VTMultiPassStorageGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -61,6 +62,8 @@ impl VTMultiPassStorage {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `multi_pass_storage_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmultipassstoragecreate(allocator:fileurl:timerange:options:multipassstorageout:)?language=objc)
     #[doc(alias = "VTMultiPassStorageCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -102,6 +105,8 @@ impl VTMultiPassStorage {
     ///
     /// After this function is called, all methods on the multipass storage object will fail.
     /// It is still necessary to release the object by calling CFRelease.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmultipassstorageclose(_:)?language=objc)
     #[doc(alias = "VTMultiPassStorageClose")]
     #[inline]
     pub unsafe fn close(&self) -> OSStatus {

@@ -13,23 +13,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetRideStatusIntentResponseCode(pub NSInteger);
 impl INGetRideStatusIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INGetRideStatusIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/ready?language=objc)
     #[doc(alias = "INGetRideStatusIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INGetRideStatusIntentResponseCodeInProgress")]
     #[deprecated = "INGetRideStatusIntentResponseCodeInProgress is deprecated."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/success?language=objc)
     #[doc(alias = "INGetRideStatusIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/failure?language=objc)
     #[doc(alias = "INGetRideStatusIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INGetRideStatusIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/failurerequiringapplaunchmustverifycredentials?language=objc)
     #[doc(
         alias = "INGetRideStatusIntentResponseCodeFailureRequiringAppLaunchMustVerifyCredentials"
     )]
     pub const FailureRequiringAppLaunchMustVerifyCredentials: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/failurerequiringapplaunchservicetemporarilyunavailable?language=objc)
     #[doc(
         alias = "INGetRideStatusIntentResponseCodeFailureRequiringAppLaunchServiceTemporarilyUnavailable"
     )]

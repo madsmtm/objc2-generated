@@ -18,17 +18,25 @@ use crate::*;
 pub struct FSContainerState(pub NSInteger);
 impl FSContainerState {
     /// The container isn't ready.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontainerstate/notready?language=objc)
     #[doc(alias = "FSContainerStateNotReady")]
     pub const NotReady: Self = Self(0);
     /// The container is blocked from transitioning from the not-ready state to the ready state by a potentially-recoverable error.
     ///
     /// This state implies that the error has a resolution that would allow the container to become ready, such as correcting an incorrect password.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontainerstate/blocked?language=objc)
     #[doc(alias = "FSContainerStateBlocked")]
     pub const Blocked: Self = Self(1);
     /// The container is ready, but inactive.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontainerstate/ready?language=objc)
     #[doc(alias = "FSContainerStateReady")]
     pub const Ready: Self = Self(2);
     /// The container is active, and one or more volumes are active.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontainerstate/active?language=objc)
     #[doc(alias = "FSContainerStateActive")]
     pub const Active: Self = Self(3);
 }

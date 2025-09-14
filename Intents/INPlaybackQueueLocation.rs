@@ -10,12 +10,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPlaybackQueueLocation(pub NSInteger);
 impl INPlaybackQueueLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackqueuelocation/unknown?language=objc)
     #[doc(alias = "INPlaybackQueueLocationUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackqueuelocation/now?language=objc)
     #[doc(alias = "INPlaybackQueueLocationNow")]
     pub const Now: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackqueuelocation/next?language=objc)
     #[doc(alias = "INPlaybackQueueLocationNext")]
     pub const Next: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackqueuelocation/later?language=objc)
     #[doc(alias = "INPlaybackQueueLocationLater")]
     pub const Later: Self = Self(3);
 }

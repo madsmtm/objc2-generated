@@ -12,32 +12,46 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartCallIntentResponseCode(pub NSInteger);
 impl INStartCallIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/ready?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/userconfirmationrequired?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeUserConfirmationRequired")]
     pub const UserConfirmationRequired: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failure?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failurecallingservicenotavailable?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureCallingServiceNotAvailable")]
     pub const FailureCallingServiceNotAvailable: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failurecontactnotsupportedbyapp?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureContactNotSupportedByApp")]
     pub const FailureContactNotSupportedByApp: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failureairplanemodeenabled?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureAirplaneModeEnabled")]
     pub const FailureAirplaneModeEnabled: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failureunabletohandoff?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureUnableToHandOff")]
     pub const FailureUnableToHandOff: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failureappconfigurationrequired?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureAppConfigurationRequired")]
     pub const FailureAppConfigurationRequired: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failurecallinprogress?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureCallInProgress")]
     pub const FailureCallInProgress: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/instartcallintentresponsecodefailurecallringing?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureCallRinging")]
     pub const FailureCallRinging: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failurerequiringinappauthentication?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureRequiringInAppAuthentication")]
     pub const FailureRequiringInAppAuthentication: Self = Self(13);
 }

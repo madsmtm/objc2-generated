@@ -16,26 +16,37 @@ use crate::*;
 pub struct NSAppleEventSendOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAppleEventSendOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/noreply?language=objc)
         #[doc(alias = "NSAppleEventSendNoReply")]
         const NoReply = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/queuereply?language=objc)
         #[doc(alias = "NSAppleEventSendQueueReply")]
         const QueueReply = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/waitforreply?language=objc)
         #[doc(alias = "NSAppleEventSendWaitForReply")]
         const WaitForReply = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/neverinteract?language=objc)
         #[doc(alias = "NSAppleEventSendNeverInteract")]
         const NeverInteract = 16;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/caninteract?language=objc)
         #[doc(alias = "NSAppleEventSendCanInteract")]
         const CanInteract = 32;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/alwaysinteract?language=objc)
         #[doc(alias = "NSAppleEventSendAlwaysInteract")]
         const AlwaysInteract = 48;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/canswitchlayer?language=objc)
         #[doc(alias = "NSAppleEventSendCanSwitchLayer")]
         const CanSwitchLayer = 64;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/dontrecord?language=objc)
         #[doc(alias = "NSAppleEventSendDontRecord")]
         const DontRecord = 4096;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/dontexecute?language=objc)
         #[doc(alias = "NSAppleEventSendDontExecute")]
         const DontExecute = 8192;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/dontannotate?language=objc)
         #[doc(alias = "NSAppleEventSendDontAnnotate")]
         const DontAnnotate = 65536;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/defaultoptions?language=objc)
         #[doc(alias = "NSAppleEventSendDefaultOptions")]
         const DefaultOptions = 35;
     }

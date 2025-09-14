@@ -18,12 +18,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISearchBarIcon(pub NSInteger);
 impl UISearchBarIcon {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/icon/search?language=objc)
     #[doc(alias = "UISearchBarIconSearch")]
     pub const Search: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/icon/clear?language=objc)
     #[doc(alias = "UISearchBarIconClear")]
     pub const Clear: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/icon/bookmark?language=objc)
     #[doc(alias = "UISearchBarIconBookmark")]
     pub const Bookmark: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/icon/resultslist?language=objc)
     #[doc(alias = "UISearchBarIconResultsList")]
     pub const ResultsList: Self = Self(3);
 }
@@ -42,10 +46,13 @@ unsafe impl RefEncode for UISearchBarIcon {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISearchBarStyle(pub NSUInteger);
 impl UISearchBarStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/style/default?language=objc)
     #[doc(alias = "UISearchBarStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/style/prominent?language=objc)
     #[doc(alias = "UISearchBarStyleProminent")]
     pub const Prominent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/style/minimal?language=objc)
     #[doc(alias = "UISearchBarStyleMinimal")]
     pub const Minimal: Self = Self(2);
 }

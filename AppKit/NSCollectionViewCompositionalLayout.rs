@@ -16,16 +16,22 @@ use crate::*;
 pub struct NSDirectionalRectEdge(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDirectionalRectEdge: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectionalrectedge/nsdirectionalrectedgenone?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectionalrectedge/top?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeTop")]
         const Top = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectionalrectedge/leading?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeLeading")]
         const Leading = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectionalrectedge/bottom?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeBottom")]
         const Bottom = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectionalrectedge/trailing?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeTrailing")]
         const Trailing = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectionalrectedge/all?language=objc)
         #[doc(alias = "NSDirectionalRectEdgeAll")]
         const All = NSDirectionalRectEdge::Top.0|NSDirectionalRectEdge::Leading.0|NSDirectionalRectEdge::Bottom.0|NSDirectionalRectEdge::Trailing.0;
     }
@@ -86,22 +92,31 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRectAlignment(pub NSInteger);
 impl NSRectAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment/none?language=objc)
     #[doc(alias = "NSRectAlignmentNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment/top?language=objc)
     #[doc(alias = "NSRectAlignmentTop")]
     pub const Top: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment/topleading?language=objc)
     #[doc(alias = "NSRectAlignmentTopLeading")]
     pub const TopLeading: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment/leading?language=objc)
     #[doc(alias = "NSRectAlignmentLeading")]
     pub const Leading: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment/bottomleading?language=objc)
     #[doc(alias = "NSRectAlignmentBottomLeading")]
     pub const BottomLeading: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment/bottom?language=objc)
     #[doc(alias = "NSRectAlignmentBottom")]
     pub const Bottom: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment/bottomtrailing?language=objc)
     #[doc(alias = "NSRectAlignmentBottomTrailing")]
     pub const BottomTrailing: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment/trailing?language=objc)
     #[doc(alias = "NSRectAlignmentTrailing")]
     pub const Trailing: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment/toptrailing?language=objc)
     #[doc(alias = "NSRectAlignmentTopTrailing")]
     pub const TopTrailing: Self = Self(8);
 }
@@ -292,18 +307,24 @@ impl NSCollectionViewCompositionalLayout {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionLayoutSectionOrthogonalScrollingBehavior(pub NSInteger);
 impl NSCollectionLayoutSectionOrthogonalScrollingBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionorthogonalscrollingbehavior/none?language=objc)
     #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionorthogonalscrollingbehavior/continuous?language=objc)
     #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuous")]
     pub const Continuous: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionorthogonalscrollingbehavior/continuousgroupleadingboundary?language=objc)
     #[doc(
         alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorContinuousGroupLeadingBoundary"
     )]
     pub const ContinuousGroupLeadingBoundary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionorthogonalscrollingbehavior/paging?language=objc)
     #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorPaging")]
     pub const Paging: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionorthogonalscrollingbehavior/grouppaging?language=objc)
     #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPaging")]
     pub const GroupPaging: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionorthogonalscrollingbehavior/grouppagingcentered?language=objc)
     #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorGroupPagingCentered")]
     pub const GroupPagingCentered: Self = Self(5);
 }

@@ -14,12 +14,18 @@ use crate::*;
 pub struct PTServiceStatus(pub NSInteger);
 impl PTServiceStatus {
     /// The service is available for use and ready for use by the client.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptservicestatus/ready?language=objc)
     #[doc(alias = "PTServiceStatusReady")]
     pub const Ready: Self = Self(0);
     /// The client is attempting to establish a connection to the service.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptservicestatus/connecting?language=objc)
     #[doc(alias = "PTServiceStatusConnecting")]
     pub const Connecting: Self = Self(1);
     /// The service has become unavailable and availability needs to be re-established once conditions have changed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptservicestatus/unavailable?language=objc)
     #[doc(alias = "PTServiceStatusUnavailable")]
     pub const Unavailable: Self = Self(2);
 }
@@ -39,12 +45,18 @@ unsafe impl RefEncode for PTServiceStatus {
 pub struct PTTransmissionMode(pub NSInteger);
 impl PTTransmissionMode {
     /// Users can transmit and receive simultaneously.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/pttransmissionmode/fullduplex?language=objc)
     #[doc(alias = "PTTransmissionModeFullDuplex")]
     pub const FullDuplex: Self = Self(0);
     /// Users can transmit and receive but not simultaneously. This is the default value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/pttransmissionmode/halfduplex?language=objc)
     #[doc(alias = "PTTransmissionModeHalfDuplex")]
     pub const HalfDuplex: Self = Self(1);
     /// User is able to receive only, transmit is not permitted.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/pttransmissionmode/listenonly?language=objc)
     #[doc(alias = "PTTransmissionModeListenOnly")]
     pub const ListenOnly: Self = Self(2);
 }

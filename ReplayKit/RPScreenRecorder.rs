@@ -18,8 +18,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct RPCameraPosition(pub NSInteger);
 impl RPCameraPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpcameraposition/front?language=objc)
     #[doc(alias = "RPCameraPositionFront")]
     pub const Front: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpcameraposition/back?language=objc)
     #[doc(alias = "RPCameraPositionBack")]
     pub const Back: Self = Self(2);
 }

@@ -87,38 +87,55 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontManagerError(pub CFIndex);
 impl CTFontManagerError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/filenotfound?language=objc)
     #[doc(alias = "kCTFontManagerErrorFileNotFound")]
     pub const FileNotFound: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/insufficientpermissions?language=objc)
     #[doc(alias = "kCTFontManagerErrorInsufficientPermissions")]
     pub const InsufficientPermissions: Self = Self(102);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/unrecognizedformat?language=objc)
     #[doc(alias = "kCTFontManagerErrorUnrecognizedFormat")]
     pub const UnrecognizedFormat: Self = Self(103);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/invalidfontdata?language=objc)
     #[doc(alias = "kCTFontManagerErrorInvalidFontData")]
     pub const InvalidFontData: Self = Self(104);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/alreadyregistered?language=objc)
     #[doc(alias = "kCTFontManagerErrorAlreadyRegistered")]
     pub const AlreadyRegistered: Self = Self(105);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/exceededresourcelimit?language=objc)
     #[doc(alias = "kCTFontManagerErrorExceededResourceLimit")]
     pub const ExceededResourceLimit: Self = Self(106);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/assetnotfound?language=objc)
     #[doc(alias = "kCTFontManagerErrorAssetNotFound")]
     pub const AssetNotFound: Self = Self(107);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/notregistered?language=objc)
     #[doc(alias = "kCTFontManagerErrorNotRegistered")]
     pub const NotRegistered: Self = Self(201);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/inuse?language=objc)
     #[doc(alias = "kCTFontManagerErrorInUse")]
     pub const InUse: Self = Self(202);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/systemrequired?language=objc)
     #[doc(alias = "kCTFontManagerErrorSystemRequired")]
     pub const SystemRequired: Self = Self(203);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/registrationfailed?language=objc)
     #[doc(alias = "kCTFontManagerErrorRegistrationFailed")]
     pub const RegistrationFailed: Self = Self(301);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/missingentitlement?language=objc)
     #[doc(alias = "kCTFontManagerErrorMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(302);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/insufficientinfo?language=objc)
     #[doc(alias = "kCTFontManagerErrorInsufficientInfo")]
     pub const InsufficientInfo: Self = Self(303);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/cancelledbyuser?language=objc)
     #[doc(alias = "kCTFontManagerErrorCancelledByUser")]
     pub const CancelledByUser: Self = Self(304);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/duplicatedname?language=objc)
     #[doc(alias = "kCTFontManagerErrorDuplicatedName")]
     pub const DuplicatedName: Self = Self(305);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/invalidfilepath?language=objc)
     #[doc(alias = "kCTFontManagerErrorInvalidFilePath")]
     pub const InvalidFilePath: Self = Self(306);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/unsupportedscope?language=objc)
     #[doc(alias = "kCTFontManagerErrorUnsupportedScope")]
     pub const UnsupportedScope: Self = Self(307);
 }

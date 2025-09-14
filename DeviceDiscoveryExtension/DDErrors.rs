@@ -23,30 +23,47 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDErrorCode(pub NSInteger);
 impl DDErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/success?language=objc)
     #[doc(alias = "DDErrorCodeSuccess")]
     pub const Success: Self = Self(0);
     /// Success.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/unknown?language=objc)
     #[doc(alias = "DDErrorCodeUnknown")]
     pub const Unknown: Self = Self(350000);
     /// Underlying failure with an unknown cause.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/badparameter?language=objc)
     #[doc(alias = "DDErrorCodeBadParameter")]
     pub const BadParameter: Self = Self(350001);
     /// Bad parameter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/unsupported?language=objc)
     #[doc(alias = "DDErrorCodeUnsupported")]
     pub const Unsupported: Self = Self(350002);
     /// Unsupported value, operation, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/timeout?language=objc)
     #[doc(alias = "DDErrorCodeTimeout")]
     pub const Timeout: Self = Self(350003);
     /// Session or operation timed out.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/internal?language=objc)
     #[doc(alias = "DDErrorCodeInternal")]
     pub const Internal: Self = Self(350004);
     /// Internal problem.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/missingentitlement?language=objc)
     #[doc(alias = "DDErrorCodeMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(350005);
     /// Missing entitlement.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/permission?language=objc)
     #[doc(alias = "DDErrorCodePermission")]
     pub const Permission: Self = Self(350006);
     /// Lacks permission to perform the operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/next?language=objc)
     #[doc(alias = "DDErrorCodeNext")]
     pub const Next: Self = Self(350007);
 }

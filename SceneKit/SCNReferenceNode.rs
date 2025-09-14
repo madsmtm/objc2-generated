@@ -18,8 +18,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNReferenceLoadingPolicy(pub NSInteger);
 impl SCNReferenceLoadingPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnreferenceloadingpolicy/immediate?language=objc)
     #[doc(alias = "SCNReferenceLoadingPolicyImmediate")]
     pub const Immediate: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnreferenceloadingpolicy/ondemand?language=objc)
     #[doc(alias = "SCNReferenceLoadingPolicyOnDemand")]
     pub const OnDemand: Self = Self(1);
 }

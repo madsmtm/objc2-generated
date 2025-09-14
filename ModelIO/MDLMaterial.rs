@@ -119,56 +119,82 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialSemantic(pub NSUInteger);
 impl MDLMaterialSemantic {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/basecolor?language=objc)
     #[doc(alias = "MDLMaterialSemanticBaseColor")]
     pub const BaseColor: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/subsurface?language=objc)
     #[doc(alias = "MDLMaterialSemanticSubsurface")]
     pub const Subsurface: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/metallic?language=objc)
     #[doc(alias = "MDLMaterialSemanticMetallic")]
     pub const Metallic: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/specular?language=objc)
     #[doc(alias = "MDLMaterialSemanticSpecular")]
     pub const Specular: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/specularexponent?language=objc)
     #[doc(alias = "MDLMaterialSemanticSpecularExponent")]
     pub const SpecularExponent: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/speculartint?language=objc)
     #[doc(alias = "MDLMaterialSemanticSpecularTint")]
     pub const SpecularTint: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/roughness?language=objc)
     #[doc(alias = "MDLMaterialSemanticRoughness")]
     pub const Roughness: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/anisotropic?language=objc)
     #[doc(alias = "MDLMaterialSemanticAnisotropic")]
     pub const Anisotropic: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/anisotropicrotation?language=objc)
     #[doc(alias = "MDLMaterialSemanticAnisotropicRotation")]
     pub const AnisotropicRotation: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/sheen?language=objc)
     #[doc(alias = "MDLMaterialSemanticSheen")]
     pub const Sheen: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/sheentint?language=objc)
     #[doc(alias = "MDLMaterialSemanticSheenTint")]
     pub const SheenTint: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/clearcoat?language=objc)
     #[doc(alias = "MDLMaterialSemanticClearcoat")]
     pub const Clearcoat: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/clearcoatgloss?language=objc)
     #[doc(alias = "MDLMaterialSemanticClearcoatGloss")]
     pub const ClearcoatGloss: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/emission?language=objc)
     #[doc(alias = "MDLMaterialSemanticEmission")]
     pub const Emission: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/bump?language=objc)
     #[doc(alias = "MDLMaterialSemanticBump")]
     pub const Bump: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/opacity?language=objc)
     #[doc(alias = "MDLMaterialSemanticOpacity")]
     pub const Opacity: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/interfaceindexofrefraction?language=objc)
     #[doc(alias = "MDLMaterialSemanticInterfaceIndexOfRefraction")]
     pub const InterfaceIndexOfRefraction: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/materialindexofrefraction?language=objc)
     #[doc(alias = "MDLMaterialSemanticMaterialIndexOfRefraction")]
     pub const MaterialIndexOfRefraction: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/objectspacenormal?language=objc)
     #[doc(alias = "MDLMaterialSemanticObjectSpaceNormal")]
     pub const ObjectSpaceNormal: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/tangentspacenormal?language=objc)
     #[doc(alias = "MDLMaterialSemanticTangentSpaceNormal")]
     pub const TangentSpaceNormal: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/displacement?language=objc)
     #[doc(alias = "MDLMaterialSemanticDisplacement")]
     pub const Displacement: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/displacementscale?language=objc)
     #[doc(alias = "MDLMaterialSemanticDisplacementScale")]
     pub const DisplacementScale: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/ambientocclusion?language=objc)
     #[doc(alias = "MDLMaterialSemanticAmbientOcclusion")]
     pub const AmbientOcclusion: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/ambientocclusionscale?language=objc)
     #[doc(alias = "MDLMaterialSemanticAmbientOcclusionScale")]
     pub const AmbientOcclusionScale: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/none?language=objc)
     #[doc(alias = "MDLMaterialSemanticNone")]
     pub const None: Self = Self(0x8000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/userdefined?language=objc)
     #[doc(alias = "MDLMaterialSemanticUserDefined")]
     pub const UserDefined: Self = Self(0x8001);
 }
@@ -187,26 +213,37 @@ unsafe impl RefEncode for MDLMaterialSemantic {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialPropertyType(pub NSUInteger);
 impl MDLMaterialPropertyType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/none?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/string?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeString")]
     pub const String: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/url?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeURL")]
     pub const URL: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/texture?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeTexture")]
     pub const Texture: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/color?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeColor")]
     pub const Color: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/float?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeFloat")]
     pub const Float: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/float2?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeFloat2")]
     pub const Float2: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/float3?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeFloat3")]
     pub const Float3: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/float4?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeFloat4")]
     pub const Float4: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/matrix44?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeMatrix44")]
     pub const Matrix44: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/buffer?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeBuffer")]
     pub const Buffer: Self = Self(10);
 }
@@ -227,10 +264,13 @@ unsafe impl RefEncode for MDLMaterialPropertyType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialTextureWrapMode(pub NSUInteger);
 impl MDLMaterialTextureWrapMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturewrapmode/clamp?language=objc)
     #[doc(alias = "MDLMaterialTextureWrapModeClamp")]
     pub const Clamp: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturewrapmode/repeat?language=objc)
     #[doc(alias = "MDLMaterialTextureWrapModeRepeat")]
     pub const Repeat: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturewrapmode/mirror?language=objc)
     #[doc(alias = "MDLMaterialTextureWrapModeMirror")]
     pub const Mirror: Self = Self(2);
 }
@@ -249,8 +289,10 @@ unsafe impl RefEncode for MDLMaterialTextureWrapMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialTextureFilterMode(pub NSUInteger);
 impl MDLMaterialTextureFilterMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturefiltermode/nearest?language=objc)
     #[doc(alias = "MDLMaterialTextureFilterModeNearest")]
     pub const Nearest: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturefiltermode/linear?language=objc)
     #[doc(alias = "MDLMaterialTextureFilterModeLinear")]
     pub const Linear: Self = Self(1);
 }
@@ -269,8 +311,10 @@ unsafe impl RefEncode for MDLMaterialTextureFilterMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialMipMapFilterMode(pub NSUInteger);
 impl MDLMaterialMipMapFilterMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialmipmapfiltermode/nearest?language=objc)
     #[doc(alias = "MDLMaterialMipMapFilterModeNearest")]
     pub const Nearest: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialmipmapfiltermode/linear?language=objc)
     #[doc(alias = "MDLMaterialMipMapFilterModeLinear")]
     pub const Linear: Self = Self(1);
 }
@@ -981,10 +1025,13 @@ impl MDLPhysicallyPlausibleScatteringFunction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialFace(pub NSUInteger);
 impl MDLMaterialFace {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialface/front?language=objc)
     #[doc(alias = "MDLMaterialFaceFront")]
     pub const Front: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialface/back?language=objc)
     #[doc(alias = "MDLMaterialFaceBack")]
     pub const Back: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialface/doublesided?language=objc)
     #[doc(alias = "MDLMaterialFaceDoubleSided")]
     pub const DoubleSided: Self = Self(2);
 }

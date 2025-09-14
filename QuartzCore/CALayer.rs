@@ -34,18 +34,25 @@ pub type CALayerCornerCurve = NSString;
 pub struct CAAutoresizingMask(pub c_uint);
 bitflags::bitflags! {
     impl CAAutoresizingMask: c_uint {
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/kcalayernotsizable?language=objc)
         #[doc(alias = "kCALayerNotSizable")]
         const LayerNotSizable = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layerminxmargin?language=objc)
         #[doc(alias = "kCALayerMinXMargin")]
         const LayerMinXMargin = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layerwidthsizable?language=objc)
         #[doc(alias = "kCALayerWidthSizable")]
         const LayerWidthSizable = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layermaxxmargin?language=objc)
         #[doc(alias = "kCALayerMaxXMargin")]
         const LayerMaxXMargin = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layerminymargin?language=objc)
         #[doc(alias = "kCALayerMinYMargin")]
         const LayerMinYMargin = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layerheightsizable?language=objc)
         #[doc(alias = "kCALayerHeightSizable")]
         const LayerHeightSizable = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layermaxymargin?language=objc)
         #[doc(alias = "kCALayerMaxYMargin")]
         const LayerMaxYMargin = 1<<5;
     }
@@ -109,12 +116,16 @@ extern "C" {
 pub struct CAEdgeAntialiasingMask(pub c_uint);
 bitflags::bitflags! {
     impl CAEdgeAntialiasingMask: c_uint {
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask/layerleftedge?language=objc)
         #[doc(alias = "kCALayerLeftEdge")]
         const LayerLeftEdge = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask/layerrightedge?language=objc)
         #[doc(alias = "kCALayerRightEdge")]
         const LayerRightEdge = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask/layerbottomedge?language=objc)
         #[doc(alias = "kCALayerBottomEdge")]
         const LayerBottomEdge = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask/layertopedge?language=objc)
         #[doc(alias = "kCALayerTopEdge")]
         const LayerTopEdge = 1<<3;
     }
@@ -135,12 +146,16 @@ unsafe impl RefEncode for CAEdgeAntialiasingMask {
 pub struct CACornerMask(pub NSUInteger);
 bitflags::bitflags! {
     impl CACornerMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask/layerminxminycorner?language=objc)
         #[doc(alias = "kCALayerMinXMinYCorner")]
         const LayerMinXMinYCorner = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask/layermaxxminycorner?language=objc)
         #[doc(alias = "kCALayerMaxXMinYCorner")]
         const LayerMaxXMinYCorner = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask/layerminxmaxycorner?language=objc)
         #[doc(alias = "kCALayerMinXMaxYCorner")]
         const LayerMinXMaxYCorner = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask/layermaxxmaxycorner?language=objc)
         #[doc(alias = "kCALayerMaxXMaxYCorner")]
         const LayerMaxXMaxYCorner = 1<<3;
     }

@@ -301,14 +301,19 @@ pub const SCNConsistencyXMLSchemaValidationError: c_uint = 1005;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCNSceneSourceStatus(pub NSInteger);
 impl SCNSceneSourceStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus/error?language=objc)
     #[doc(alias = "SCNSceneSourceStatusError")]
     pub const Error: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus/parsing?language=objc)
     #[doc(alias = "SCNSceneSourceStatusParsing")]
     pub const Parsing: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus/validating?language=objc)
     #[doc(alias = "SCNSceneSourceStatusValidating")]
     pub const Validating: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus/processing?language=objc)
     #[doc(alias = "SCNSceneSourceStatusProcessing")]
     pub const Processing: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus/complete?language=objc)
     #[doc(alias = "SCNSceneSourceStatusComplete")]
     pub const Complete: Self = Self(16);
 }

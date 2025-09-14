@@ -12,16 +12,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INShareFocusStatusIntentResponseCode(pub NSInteger);
 impl INShareFocusStatusIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INShareFocusStatusIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/ready?language=objc)
     #[doc(alias = "INShareFocusStatusIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INShareFocusStatusIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/success?language=objc)
     #[doc(alias = "INShareFocusStatusIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/failure?language=objc)
     #[doc(alias = "INShareFocusStatusIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INShareFocusStatusIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }

@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterBehavior(pub NSUInteger);
 impl NSNumberFormatterBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/behavior/default?language=objc)
     #[doc(alias = "NSNumberFormatterBehaviorDefault")]
     pub const BehaviorDefault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/behavior/behavior10_0?language=objc)
     #[doc(alias = "NSNumberFormatterBehavior10_0")]
     pub const Behavior10_0: Self = Self(1000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/behavior/behavior10_4?language=objc)
     #[doc(alias = "NSNumberFormatterBehavior10_4")]
     pub const Behavior10_4: Self = Self(1040);
 }
@@ -34,24 +37,34 @@ unsafe impl RefEncode for NSNumberFormatterBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterStyle(pub NSUInteger);
 impl NSNumberFormatterStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/none?language=objc)
     #[doc(alias = "NSNumberFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/decimal?language=objc)
     #[doc(alias = "NSNumberFormatterDecimalStyle")]
     pub const DecimalStyle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/currency?language=objc)
     #[doc(alias = "NSNumberFormatterCurrencyStyle")]
     pub const CurrencyStyle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/percent?language=objc)
     #[doc(alias = "NSNumberFormatterPercentStyle")]
     pub const PercentStyle: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/scientific?language=objc)
     #[doc(alias = "NSNumberFormatterScientificStyle")]
     pub const ScientificStyle: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/spellout?language=objc)
     #[doc(alias = "NSNumberFormatterSpellOutStyle")]
     pub const SpellOutStyle: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/ordinal?language=objc)
     #[doc(alias = "NSNumberFormatterOrdinalStyle")]
     pub const OrdinalStyle: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/currencyisocode?language=objc)
     #[doc(alias = "NSNumberFormatterCurrencyISOCodeStyle")]
     pub const CurrencyISOCodeStyle: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/currencyplural?language=objc)
     #[doc(alias = "NSNumberFormatterCurrencyPluralStyle")]
     pub const CurrencyPluralStyle: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/currencyaccounting?language=objc)
     #[doc(alias = "NSNumberFormatterCurrencyAccountingStyle")]
     pub const CurrencyAccountingStyle: Self = Self(10);
 }
@@ -70,12 +83,16 @@ unsafe impl RefEncode for NSNumberFormatterStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterPadPosition(pub NSUInteger);
 impl NSNumberFormatterPadPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/padposition/beforeprefix?language=objc)
     #[doc(alias = "NSNumberFormatterPadBeforePrefix")]
     pub const BeforePrefix: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/padposition/afterprefix?language=objc)
     #[doc(alias = "NSNumberFormatterPadAfterPrefix")]
     pub const AfterPrefix: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/padposition/beforesuffix?language=objc)
     #[doc(alias = "NSNumberFormatterPadBeforeSuffix")]
     pub const BeforeSuffix: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/padposition/aftersuffix?language=objc)
     #[doc(alias = "NSNumberFormatterPadAfterSuffix")]
     pub const AfterSuffix: Self = Self(3);
 }
@@ -94,18 +111,25 @@ unsafe impl RefEncode for NSNumberFormatterPadPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterRoundingMode(pub NSUInteger);
 impl NSNumberFormatterRoundingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/ceiling?language=objc)
     #[doc(alias = "NSNumberFormatterRoundCeiling")]
     pub const RoundCeiling: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/floor?language=objc)
     #[doc(alias = "NSNumberFormatterRoundFloor")]
     pub const RoundFloor: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/down?language=objc)
     #[doc(alias = "NSNumberFormatterRoundDown")]
     pub const RoundDown: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/up?language=objc)
     #[doc(alias = "NSNumberFormatterRoundUp")]
     pub const RoundUp: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/halfeven?language=objc)
     #[doc(alias = "NSNumberFormatterRoundHalfEven")]
     pub const RoundHalfEven: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/halfdown?language=objc)
     #[doc(alias = "NSNumberFormatterRoundHalfDown")]
     pub const RoundHalfDown: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/halfup?language=objc)
     #[doc(alias = "NSNumberFormatterRoundHalfUp")]
     pub const RoundHalfUp: Self = Self(6);
 }

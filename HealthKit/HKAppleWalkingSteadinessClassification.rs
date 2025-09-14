@@ -14,10 +14,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKAppleWalkingSteadinessClassification(pub NSInteger);
 impl HKAppleWalkingSteadinessClassification {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassification/ok?language=objc)
     #[doc(alias = "HKAppleWalkingSteadinessClassificationOK")]
     pub const OK: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassification/low?language=objc)
     #[doc(alias = "HKAppleWalkingSteadinessClassificationLow")]
     pub const Low: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassification/verylow?language=objc)
     #[doc(alias = "HKAppleWalkingSteadinessClassificationVeryLow")]
     pub const VeryLow: Self = Self(3);
 }
@@ -45,6 +48,8 @@ impl HKAppleWalkingSteadinessClassification {
     ///
     /// - `classification_out` must be a valid pointer.
     /// - `error_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassificationforquantity?language=objc)
     #[doc(alias = "HKAppleWalkingSteadinessClassificationForQuantity")]
     #[cfg(feature = "HKQuantity")]
     #[inline]
@@ -70,6 +75,8 @@ impl HKAppleWalkingSteadinessClassification {
 /// Retrieves the minimum quantity in percent unit for an Apple Walking Steadiness classification.
 ///
 /// Parameter `classification`: Apple Walking Steadiness classification for desired minimum value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessminimumquantityforclassification?language=objc)
 #[cfg(feature = "HKQuantity")]
 #[inline]
 pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
@@ -88,6 +95,8 @@ pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMinimumQuantityForClassi
 /// Retrieves the maximum quantity in percent unit for an Apple Walking Steadiness classification.
 ///
 /// Parameter `classification`: Apple Walking Steadiness classification for desired maximum value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessmaximumquantityforclassification?language=objc)
 #[cfg(feature = "HKQuantity")]
 #[inline]
 pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMaximumQuantityForClassification(

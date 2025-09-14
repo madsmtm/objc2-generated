@@ -29,12 +29,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVRoutePickerViewButtonState(pub NSInteger);
 impl AVRoutePickerViewButtonState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview/buttonstate/normal?language=objc)
     #[doc(alias = "AVRoutePickerViewButtonStateNormal")]
     pub const Normal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview/buttonstate/normalhighlighted?language=objc)
     #[doc(alias = "AVRoutePickerViewButtonStateNormalHighlighted")]
     pub const NormalHighlighted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview/buttonstate/active?language=objc)
     #[doc(alias = "AVRoutePickerViewButtonStateActive")]
     pub const Active: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview/buttonstate/activehighlighted?language=objc)
     #[doc(alias = "AVRoutePickerViewButtonStateActiveHighlighted")]
     pub const ActiveHighlighted: Self = Self(3);
 }
@@ -59,10 +63,13 @@ unsafe impl RefEncode for AVRoutePickerViewButtonState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVRoutePickerViewButtonStyle(pub NSInteger);
 impl AVRoutePickerViewButtonStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle/system?language=objc)
     #[doc(alias = "AVRoutePickerViewButtonStyleSystem")]
     pub const System: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle/plain?language=objc)
     #[doc(alias = "AVRoutePickerViewButtonStylePlain")]
     pub const Plain: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle/custom?language=objc)
     #[doc(alias = "AVRoutePickerViewButtonStyleCustom")]
     pub const Custom: Self = Self(2);
 }

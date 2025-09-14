@@ -10,12 +10,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INBalanceType(pub NSInteger);
 impl INBalanceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbalancetype/unknown?language=objc)
     #[doc(alias = "INBalanceTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbalancetype/money?language=objc)
     #[doc(alias = "INBalanceTypeMoney")]
     pub const Money: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbalancetype/points?language=objc)
     #[doc(alias = "INBalanceTypePoints")]
     pub const Points: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbalancetype/miles?language=objc)
     #[doc(alias = "INBalanceTypeMiles")]
     pub const Miles: Self = Self(3);
 }

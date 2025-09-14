@@ -17,12 +17,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKPinAnnotationColor(pub NSUInteger);
 impl MKPinAnnotationColor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpinannotationcolor/red?language=objc)
     #[doc(alias = "MKPinAnnotationColorRed")]
     #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     pub const Red: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpinannotationcolor/green?language=objc)
     #[doc(alias = "MKPinAnnotationColorGreen")]
     #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     pub const Green: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpinannotationcolor/purple?language=objc)
     #[doc(alias = "MKPinAnnotationColorPurple")]
     #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     pub const Purple: Self = Self(2);

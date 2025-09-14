@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechBoundary(pub NSInteger);
 impl AVSpeechBoundary {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechboundary/immediate?language=objc)
     #[doc(alias = "AVSpeechBoundaryImmediate")]
     pub const Immediate: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechboundary/word?language=objc)
     #[doc(alias = "AVSpeechBoundaryWord")]
     pub const Word: Self = Self(1);
 }
@@ -33,10 +35,13 @@ unsafe impl RefEncode for AVSpeechBoundary {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVSpeechSynthesisVoiceQuality(pub NSInteger);
 impl AVSpeechSynthesisVoiceQuality {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicequality/default?language=objc)
     #[doc(alias = "AVSpeechSynthesisVoiceQualityDefault")]
     pub const Default: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicequality/enhanced?language=objc)
     #[doc(alias = "AVSpeechSynthesisVoiceQualityEnhanced")]
     pub const Enhanced: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicequality/premium?language=objc)
     #[doc(alias = "AVSpeechSynthesisVoiceQualityPremium")]
     pub const Premium: Self = Self(3);
 }
@@ -55,10 +60,13 @@ unsafe impl RefEncode for AVSpeechSynthesisVoiceQuality {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechSynthesisVoiceGender(pub NSInteger);
 impl AVSpeechSynthesisVoiceGender {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicegender/unspecified?language=objc)
     #[doc(alias = "AVSpeechSynthesisVoiceGenderUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicegender/male?language=objc)
     #[doc(alias = "AVSpeechSynthesisVoiceGenderMale")]
     pub const Male: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicegender/female?language=objc)
     #[doc(alias = "AVSpeechSynthesisVoiceGenderFemale")]
     pub const Female: Self = Self(2);
 }
@@ -79,14 +87,19 @@ unsafe impl RefEncode for AVSpeechSynthesisVoiceGender {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechSynthesisMarkerMark(pub NSInteger);
 impl AVSpeechSynthesisMarkerMark {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum/phoneme?language=objc)
     #[doc(alias = "AVSpeechSynthesisMarkerMarkPhoneme")]
     pub const Phoneme: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum/word?language=objc)
     #[doc(alias = "AVSpeechSynthesisMarkerMarkWord")]
     pub const Word: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum/sentence?language=objc)
     #[doc(alias = "AVSpeechSynthesisMarkerMarkSentence")]
     pub const Sentence: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum/paragraph?language=objc)
     #[doc(alias = "AVSpeechSynthesisMarkerMarkParagraph")]
     pub const Paragraph: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum/bookmark?language=objc)
     #[doc(alias = "AVSpeechSynthesisMarkerMarkBookmark")]
     pub const Bookmark: Self = Self(4);
 }
@@ -142,15 +155,23 @@ impl AVSpeechSynthesisPersonalVoiceAuthorizationStatus {
     /// The app's authorization status has not yet been determined.
     ///
     /// When your app's status is not determined, calling the requestAuthorization: method prompts the user to grant or deny authorization.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum/notdetermined?language=objc)
     #[doc(alias = "AVSpeechSynthesisPersonalVoiceAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
     /// The user denied your app's request to use personal voices.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum/denied?language=objc)
     #[doc(alias = "AVSpeechSynthesisPersonalVoiceAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
     /// Personal voices are unsupported on this device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum/unsupported?language=objc)
     #[doc(alias = "AVSpeechSynthesisPersonalVoiceAuthorizationStatusUnsupported")]
     pub const Unsupported: Self = Self(2);
     /// The user granted your app's request to use personal voices.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum/authorized?language=objc)
     #[doc(alias = "AVSpeechSynthesisPersonalVoiceAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -170,12 +191,17 @@ unsafe impl RefEncode for AVSpeechSynthesisPersonalVoiceAuthorizationStatus {
 pub struct AVSpeechSynthesisVoiceTraits(pub NSUInteger);
 bitflags::bitflags! {
     impl AVSpeechSynthesisVoiceTraits: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicetraits/avspeechsynthesisvoicetraitnone?language=objc)
         #[doc(alias = "AVSpeechSynthesisVoiceTraitNone")]
         const None = 0;
 /// The voice is generally for novelty purposes, for example a character's voice in a game.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/traits/isnoveltyvoice?language=objc)
         #[doc(alias = "AVSpeechSynthesisVoiceTraitIsNoveltyVoice")]
         const IsNoveltyVoice = 1<<0;
 /// The voice is was generated by, and belongs to the user. Voices with this trait will only be avilable when AVSpeechSynthesizer.personalVoiceAuthorizationStatus is AVSpeechSynthesisPersonalVoiceAuthorizationStatusAuthorized
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/traits/ispersonalvoice?language=objc)
         #[doc(alias = "AVSpeechSynthesisVoiceTraitIsPersonalVoice")]
         const IsPersonalVoice = 1<<1;
     }

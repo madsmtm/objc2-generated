@@ -15,15 +15,23 @@ use crate::*;
 pub struct MTL4CompilerTaskStatus(pub NSInteger);
 impl MTL4CompilerTaskStatus {
     /// No status.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskstatus/none?language=objc)
     #[doc(alias = "MTL4CompilerTaskStatusNone")]
     pub const None: Self = Self(0);
     /// The compiler task is currently scheduled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskstatus/scheduled?language=objc)
     #[doc(alias = "MTL4CompilerTaskStatusScheduled")]
     pub const Scheduled: Self = Self(1);
     /// The compiler task is currently compiling.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskstatus/compiling?language=objc)
     #[doc(alias = "MTL4CompilerTaskStatusCompiling")]
     pub const Compiling: Self = Self(2);
     /// The compiler task is finished.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskstatus/finished?language=objc)
     #[doc(alias = "MTL4CompilerTaskStatusFinished")]
     pub const Finished: Self = Self(3);
 }

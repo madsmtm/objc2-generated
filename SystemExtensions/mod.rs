@@ -77,30 +77,43 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OSSystemExtensionErrorCode(pub NSInteger);
 impl OSSystemExtensionErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/unknown?language=objc)
     #[doc(alias = "OSSystemExtensionErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/missingentitlement?language=objc)
     #[doc(alias = "OSSystemExtensionErrorMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/unsupportedparentbundlelocation?language=objc)
     #[doc(alias = "OSSystemExtensionErrorUnsupportedParentBundleLocation")]
     pub const UnsupportedParentBundleLocation: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/extensionnotfound?language=objc)
     #[doc(alias = "OSSystemExtensionErrorExtensionNotFound")]
     pub const ExtensionNotFound: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/extensionmissingidentifier?language=objc)
     #[doc(alias = "OSSystemExtensionErrorExtensionMissingIdentifier")]
     pub const ExtensionMissingIdentifier: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/duplicateextensionidentifer?language=objc)
     #[doc(alias = "OSSystemExtensionErrorDuplicateExtensionIdentifer")]
     pub const DuplicateExtensionIdentifer: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/unknownextensioncategory?language=objc)
     #[doc(alias = "OSSystemExtensionErrorUnknownExtensionCategory")]
     pub const UnknownExtensionCategory: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/codesignatureinvalid?language=objc)
     #[doc(alias = "OSSystemExtensionErrorCodeSignatureInvalid")]
     pub const CodeSignatureInvalid: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/validationfailed?language=objc)
     #[doc(alias = "OSSystemExtensionErrorValidationFailed")]
     pub const ValidationFailed: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/forbiddenbysystempolicy?language=objc)
     #[doc(alias = "OSSystemExtensionErrorForbiddenBySystemPolicy")]
     pub const ForbiddenBySystemPolicy: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/requestcanceled?language=objc)
     #[doc(alias = "OSSystemExtensionErrorRequestCanceled")]
     pub const RequestCanceled: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/requestsuperseded?language=objc)
     #[doc(alias = "OSSystemExtensionErrorRequestSuperseded")]
     pub const RequestSuperseded: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/authorizationrequired?language=objc)
     #[doc(alias = "OSSystemExtensionErrorAuthorizationRequired")]
     pub const AuthorizationRequired: Self = Self(13);
 }
@@ -121,10 +134,14 @@ pub struct OSSystemExtensionReplacementAction(pub NSInteger);
 impl OSSystemExtensionReplacementAction {
     /// Returned by the delegate when it determines that replacing an existing
     /// System Extension should not proceed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/replacementaction/cancel?language=objc)
     #[doc(alias = "OSSystemExtensionReplacementActionCancel")]
     pub const Cancel: Self = Self(0);
     /// Returned by the delegate when it determines that replacing an existing
     /// System Extension is desired.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/replacementaction/replace?language=objc)
     #[doc(alias = "OSSystemExtensionReplacementActionReplace")]
     pub const Replace: Self = Self(1);
 }
@@ -146,9 +163,13 @@ unsafe impl RefEncode for OSSystemExtensionReplacementAction {
 pub struct OSSystemExtensionRequestResult(pub NSInteger);
 impl OSSystemExtensionRequestResult {
     /// The request was successfully completed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/result/completed?language=objc)
     #[doc(alias = "OSSystemExtensionRequestCompleted")]
     pub const Completed: Self = Self(0);
     /// The request will be successfully completed after a reboot.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/result/willcompleteafterreboot?language=objc)
     #[doc(alias = "OSSystemExtensionRequestWillCompleteAfterReboot")]
     pub const WillCompleteAfterReboot: Self = Self(1);
 }

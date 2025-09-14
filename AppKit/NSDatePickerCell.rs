@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDatePickerStyle(pub NSUInteger);
 impl NSDatePickerStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/style/textfieldandstepper?language=objc)
     #[doc(alias = "NSDatePickerStyleTextFieldAndStepper")]
     pub const TextFieldAndStepper: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/style/clockandcalendar?language=objc)
     #[doc(alias = "NSDatePickerStyleClockAndCalendar")]
     pub const ClockAndCalendar: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/style/textfield?language=objc)
     #[doc(alias = "NSDatePickerStyleTextField")]
     pub const TextField: Self = Self(2);
 }
@@ -35,8 +38,10 @@ unsafe impl RefEncode for NSDatePickerStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDatePickerMode(pub NSUInteger);
 impl NSDatePickerMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/mode/single?language=objc)
     #[doc(alias = "NSDatePickerModeSingle")]
     pub const Single: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/mode/range?language=objc)
     #[doc(alias = "NSDatePickerModeRange")]
     pub const Range: Self = Self(1);
 }
@@ -56,16 +61,22 @@ unsafe impl RefEncode for NSDatePickerMode {
 pub struct NSDatePickerElementFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDatePickerElementFlags: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/hourminute?language=objc)
         #[doc(alias = "NSDatePickerElementFlagHourMinute")]
         const HourMinute = 0x000c;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/hourminutesecond?language=objc)
         #[doc(alias = "NSDatePickerElementFlagHourMinuteSecond")]
         const HourMinuteSecond = 0x000e;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/timezone?language=objc)
         #[doc(alias = "NSDatePickerElementFlagTimeZone")]
         const TimeZone = 0x0010;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/yearmonth?language=objc)
         #[doc(alias = "NSDatePickerElementFlagYearMonth")]
         const YearMonth = 0x00c0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/yearmonthday?language=objc)
         #[doc(alias = "NSDatePickerElementFlagYearMonthDay")]
         const YearMonthDay = 0x00e0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/era?language=objc)
         #[doc(alias = "NSDatePickerElementFlagEra")]
         const Era = 0x0100;
     }

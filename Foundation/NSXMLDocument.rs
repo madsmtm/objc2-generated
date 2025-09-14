@@ -14,12 +14,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXMLDocumentContentKind(pub NSUInteger);
 impl NSXMLDocumentContentKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument/contentkind/xml?language=objc)
     #[doc(alias = "NSXMLDocumentXMLKind")]
     pub const XMLKind: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument/contentkind/xhtml?language=objc)
     #[doc(alias = "NSXMLDocumentXHTMLKind")]
     pub const XHTMLKind: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument/contentkind/html?language=objc)
     #[doc(alias = "NSXMLDocumentHTMLKind")]
     pub const HTMLKind: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument/contentkind/text?language=objc)
     #[doc(alias = "NSXMLDocumentTextKind")]
     pub const TextKind: Self = Self(3);
 }

@@ -17,24 +17,38 @@ use crate::*;
 pub struct MPSGraphScatterMode(pub NSInteger);
 impl MPSGraphScatterMode {
     /// Add
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/add?language=objc)
     #[doc(alias = "MPSGraphScatterModeAdd")]
     pub const Add: Self = Self(0);
     /// Sub
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/sub?language=objc)
     #[doc(alias = "MPSGraphScatterModeSub")]
     pub const Sub: Self = Self(1);
     /// Multiply
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/mul?language=objc)
     #[doc(alias = "MPSGraphScatterModeMul")]
     pub const Mul: Self = Self(2);
     /// Divide
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/div?language=objc)
     #[doc(alias = "MPSGraphScatterModeDiv")]
     pub const Div: Self = Self(3);
     /// Minimum
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/min?language=objc)
     #[doc(alias = "MPSGraphScatterModeMin")]
     pub const Min: Self = Self(4);
     /// Maximum
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/max?language=objc)
     #[doc(alias = "MPSGraphScatterModeMax")]
     pub const Max: Self = Self(5);
     /// Set
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/set?language=objc)
     #[doc(alias = "MPSGraphScatterModeSet")]
     pub const Set: Self = Self(6);
 }

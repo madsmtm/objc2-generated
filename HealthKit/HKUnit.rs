@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkunitmolarmassbloodglucose?language=objc)
 pub const HKUnitMolarMassBloodGlucose: c_float = 180.15588000005408;
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkunit?language=objc)
@@ -105,32 +106,46 @@ impl HKUnit {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKMetricPrefix(pub NSInteger);
 impl HKMetricPrefix {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/none?language=objc)
     #[doc(alias = "HKMetricPrefixNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/femto?language=objc)
     #[doc(alias = "HKMetricPrefixFemto")]
     pub const Femto: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/pico?language=objc)
     #[doc(alias = "HKMetricPrefixPico")]
     pub const Pico: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/nano?language=objc)
     #[doc(alias = "HKMetricPrefixNano")]
     pub const Nano: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/micro?language=objc)
     #[doc(alias = "HKMetricPrefixMicro")]
     pub const Micro: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/milli?language=objc)
     #[doc(alias = "HKMetricPrefixMilli")]
     pub const Milli: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/centi?language=objc)
     #[doc(alias = "HKMetricPrefixCenti")]
     pub const Centi: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/deci?language=objc)
     #[doc(alias = "HKMetricPrefixDeci")]
     pub const Deci: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/deca?language=objc)
     #[doc(alias = "HKMetricPrefixDeca")]
     pub const Deca: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/hecto?language=objc)
     #[doc(alias = "HKMetricPrefixHecto")]
     pub const Hecto: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/kilo?language=objc)
     #[doc(alias = "HKMetricPrefixKilo")]
     pub const Kilo: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/mega?language=objc)
     #[doc(alias = "HKMetricPrefixMega")]
     pub const Mega: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/giga?language=objc)
     #[doc(alias = "HKMetricPrefixGiga")]
     pub const Giga: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/tera?language=objc)
     #[doc(alias = "HKMetricPrefixTera")]
     pub const Tera: Self = Self(12);
 }

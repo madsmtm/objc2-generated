@@ -11,10 +11,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCompoundPredicateType(pub NSUInteger);
 impl NSCompoundPredicateType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicate/logicaltype/not?language=objc)
     #[doc(alias = "NSNotPredicateType")]
     pub const NotPredicateType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicate/logicaltype/and?language=objc)
     #[doc(alias = "NSAndPredicateType")]
     pub const AndPredicateType: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicate/logicaltype/or?language=objc)
     #[doc(alias = "NSOrPredicateType")]
     pub const OrPredicateType: Self = Self(2);
 }

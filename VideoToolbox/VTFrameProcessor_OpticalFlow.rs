@@ -18,8 +18,10 @@ use crate::*;
 pub struct VTOpticalFlowConfigurationQualityPrioritization(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTOpticalFlowConfigurationQualityPrioritization {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfiguration/qualityprioritization-swift.enum/normal?language=objc)
     #[doc(alias = "VTOpticalFlowConfigurationQualityPrioritizationNormal")]
     pub const Normal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfiguration/qualityprioritization-swift.enum/quality?language=objc)
     #[doc(alias = "VTOpticalFlowConfigurationQualityPrioritizationQuality")]
     pub const Quality: Self = Self(2);
 }
@@ -47,6 +49,7 @@ unsafe impl RefEncode for VTOpticalFlowConfigurationQualityPrioritization {
 pub struct VTOpticalFlowConfigurationRevision(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTOpticalFlowConfigurationRevision {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfiguration/revision-swift.enum/revision1?language=objc)
     #[doc(alias = "VTOpticalFlowConfigurationRevision1")]
     pub const Revision1: Self = Self(1);
 }
@@ -82,8 +85,10 @@ unsafe impl RefEncode for VTOpticalFlowConfigurationRevision {
 pub struct VTOpticalFlowParametersSubmissionMode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTOpticalFlowParametersSubmissionMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowparameters/submissionmode-swift.enum/random?language=objc)
     #[doc(alias = "VTOpticalFlowParametersSubmissionModeRandom")]
     pub const Random: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowparameters/submissionmode-swift.enum/sequential?language=objc)
     #[doc(alias = "VTOpticalFlowParametersSubmissionModeSequential")]
     pub const Sequential: Self = Self(2);
 }

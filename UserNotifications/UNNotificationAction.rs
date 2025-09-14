@@ -13,10 +13,13 @@ use crate::*;
 pub struct UNNotificationActionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNNotificationActionOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationactionoptions/authenticationrequired?language=objc)
         #[doc(alias = "UNNotificationActionOptionAuthenticationRequired")]
         const AuthenticationRequired = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationactionoptions/destructive?language=objc)
         #[doc(alias = "UNNotificationActionOptionDestructive")]
         const Destructive = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationactionoptions/foreground?language=objc)
         #[doc(alias = "UNNotificationActionOptionForeground")]
         const Foreground = 1<<2;
     }

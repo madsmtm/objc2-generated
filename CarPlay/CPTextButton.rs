@@ -14,12 +14,18 @@ use crate::*;
 pub struct CPTextButtonStyle(pub NSInteger);
 impl CPTextButtonStyle {
     /// A style that indicates a default action.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cptextbuttonstyle/normal?language=objc)
     #[doc(alias = "CPTextButtonStyleNormal")]
     pub const Normal: Self = Self(0);
     /// A style that indicates the action will cancel and leave data unchanged.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cptextbuttonstyle/cancel?language=objc)
     #[doc(alias = "CPTextButtonStyleCancel")]
     pub const Cancel: Self = Self(1);
     /// A style that indicates the button will confirm an action.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cptextbuttonstyle/confirm?language=objc)
     #[doc(alias = "CPTextButtonStyleConfirm")]
     pub const Confirm: Self = Self(2);
 }

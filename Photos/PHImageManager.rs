@@ -22,10 +22,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageRequestOptionsVersion(pub NSInteger);
 impl PHImageRequestOptionsVersion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsversion/current?language=objc)
     #[doc(alias = "PHImageRequestOptionsVersionCurrent")]
     pub const Current: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsversion/unadjusted?language=objc)
     #[doc(alias = "PHImageRequestOptionsVersionUnadjusted")]
     pub const Unadjusted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsversion/original?language=objc)
     #[doc(alias = "PHImageRequestOptionsVersionOriginal")]
     pub const Original: Self = Self(2);
 }
@@ -44,10 +47,13 @@ unsafe impl RefEncode for PHImageRequestOptionsVersion {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageRequestOptionsDeliveryMode(pub NSInteger);
 impl PHImageRequestOptionsDeliveryMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode/opportunistic?language=objc)
     #[doc(alias = "PHImageRequestOptionsDeliveryModeOpportunistic")]
     pub const Opportunistic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode/highqualityformat?language=objc)
     #[doc(alias = "PHImageRequestOptionsDeliveryModeHighQualityFormat")]
     pub const HighQualityFormat: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode/fastformat?language=objc)
     #[doc(alias = "PHImageRequestOptionsDeliveryModeFastFormat")]
     pub const FastFormat: Self = Self(2);
 }
@@ -66,10 +72,13 @@ unsafe impl RefEncode for PHImageRequestOptionsDeliveryMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageRequestOptionsResizeMode(pub NSInteger);
 impl PHImageRequestOptionsResizeMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsresizemode/none?language=objc)
     #[doc(alias = "PHImageRequestOptionsResizeModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsresizemode/fast?language=objc)
     #[doc(alias = "PHImageRequestOptionsResizeModeFast")]
     pub const Fast: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsresizemode/exact?language=objc)
     #[doc(alias = "PHImageRequestOptionsResizeModeExact")]
     pub const Exact: Self = Self(2);
 }
@@ -301,8 +310,10 @@ impl PHLivePhotoRequestOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHVideoRequestOptionsVersion(pub NSInteger);
 impl PHVideoRequestOptionsVersion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsversion/current?language=objc)
     #[doc(alias = "PHVideoRequestOptionsVersionCurrent")]
     pub const Current: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsversion/original?language=objc)
     #[doc(alias = "PHVideoRequestOptionsVersionOriginal")]
     pub const Original: Self = Self(1);
 }
@@ -321,12 +332,16 @@ unsafe impl RefEncode for PHVideoRequestOptionsVersion {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHVideoRequestOptionsDeliveryMode(pub NSInteger);
 impl PHVideoRequestOptionsDeliveryMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode/automatic?language=objc)
     #[doc(alias = "PHVideoRequestOptionsDeliveryModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode/highqualityformat?language=objc)
     #[doc(alias = "PHVideoRequestOptionsDeliveryModeHighQualityFormat")]
     pub const HighQualityFormat: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode/mediumqualityformat?language=objc)
     #[doc(alias = "PHVideoRequestOptionsDeliveryModeMediumQualityFormat")]
     pub const MediumQualityFormat: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode/fastformat?language=objc)
     #[doc(alias = "PHVideoRequestOptionsDeliveryModeFastFormat")]
     pub const FastFormat: Self = Self(3);
 }

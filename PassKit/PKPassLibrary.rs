@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassLibraryAddPassesStatus(pub NSInteger);
 impl PKPassLibraryAddPassesStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryaddpassesstatus/didaddpasses?language=objc)
     #[doc(alias = "PKPassLibraryDidAddPasses")]
     pub const DidAddPasses: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryaddpassesstatus/shouldreviewpasses?language=objc)
     #[doc(alias = "PKPassLibraryShouldReviewPasses")]
     pub const ShouldReviewPasses: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryaddpassesstatus/didcanceladdpasses?language=objc)
     #[doc(alias = "PKPassLibraryDidCancelAddPasses")]
     pub const DidCancelAddPasses: Self = Self(2);
 }
@@ -35,14 +38,19 @@ unsafe impl RefEncode for PKPassLibraryAddPassesStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAutomaticPassPresentationSuppressionResult(pub NSUInteger);
 impl PKAutomaticPassPresentationSuppressionResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult/notsupported?language=objc)
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultNotSupported")]
     pub const NotSupported: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult/alreadypresenting?language=objc)
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultAlreadyPresenting")]
     pub const AlreadyPresenting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult/denied?language=objc)
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult/cancelled?language=objc)
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultCancelled")]
     pub const Cancelled: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult/success?language=objc)
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultSuccess")]
     pub const Success: Self = Self(4);
 }
@@ -61,6 +69,7 @@ unsafe impl RefEncode for PKAutomaticPassPresentationSuppressionResult {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassLibraryCapability(pub NSInteger);
 impl PKPassLibraryCapability {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/capability/backgroundaddpasses?language=objc)
     #[doc(alias = "PKPassLibraryCapabilityBackgroundAddPasses")]
     pub const BackgroundAddPasses: Self = Self(0);
 }
@@ -79,12 +88,16 @@ unsafe impl RefEncode for PKPassLibraryCapability {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassLibraryAuthorizationStatus(pub NSInteger);
 impl PKPassLibraryAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/authorizationstatus/notdetermined?language=objc)
     #[doc(alias = "PKPassLibraryAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/authorizationstatus/denied?language=objc)
     #[doc(alias = "PKPassLibraryAuthorizationStatusDenied")]
     pub const Denied: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/authorizationstatus/authorized?language=objc)
     #[doc(alias = "PKPassLibraryAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/authorizationstatus/restricted?language=objc)
     #[doc(alias = "PKPassLibraryAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(2);
 }

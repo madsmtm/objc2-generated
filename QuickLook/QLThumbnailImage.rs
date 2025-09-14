@@ -31,6 +31,8 @@ impl QLThumbnail {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `options` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailimagecreate(_:_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailImageCreate")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use QuickLookThumbnailing to generate thumbnails for files."]

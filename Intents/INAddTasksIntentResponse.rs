@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAddTasksIntentResponseCode(pub NSInteger);
 impl INAddTasksIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INAddTasksIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/ready?language=objc)
     #[doc(alias = "INAddTasksIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INAddTasksIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/success?language=objc)
     #[doc(alias = "INAddTasksIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/failure?language=objc)
     #[doc(alias = "INAddTasksIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INAddTasksIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }

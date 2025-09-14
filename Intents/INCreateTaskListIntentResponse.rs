@@ -14,21 +14,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCreateTaskListIntentResponseCode(pub NSInteger);
 impl INCreateTaskListIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INCreateTaskListIntentResponseCodeUnspecified")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/ready?language=objc)
     #[doc(alias = "INCreateTaskListIntentResponseCodeReady")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INCreateTaskListIntentResponseCodeInProgress")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/success?language=objc)
     #[doc(alias = "INCreateTaskListIntentResponseCodeSuccess")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/failure?language=objc)
     #[doc(alias = "INCreateTaskListIntentResponseCodeFailure")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INCreateTaskListIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);

@@ -67,6 +67,7 @@ pub type CFMachPortInvalidationCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFMachPort, *mut c_void)>;
 
 unsafe impl ConcreteType for CFMachPort {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportgettypeid()?language=objc)
     #[doc(alias = "CFMachPortGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -78,6 +79,8 @@ unsafe impl ConcreteType for CFMachPort {
 }
 
 impl CFMachPort {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcreate(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -104,6 +107,8 @@ impl CFMachPort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcreatewithport(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -135,6 +140,7 @@ impl CFMachPort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportgetport(_:)?language=objc)
     #[doc(alias = "CFMachPortGetPort")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -145,6 +151,8 @@ impl CFMachPort {
         unsafe { CFMachPortGetPort(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportgetcontext(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -157,6 +165,7 @@ impl CFMachPort {
         unsafe { CFMachPortGetContext(self, context) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportinvalidate(_:)?language=objc)
     #[doc(alias = "CFMachPortInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -166,6 +175,7 @@ impl CFMachPort {
         unsafe { CFMachPortInvalidate(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportisvalid(_:)?language=objc)
     #[doc(alias = "CFMachPortIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -176,6 +186,7 @@ impl CFMachPort {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportgetinvalidationcallback(_:)?language=objc)
     #[doc(alias = "CFMachPortGetInvalidationCallBack")]
     #[inline]
     pub fn invalidation_call_back(&self) -> CFMachPortInvalidationCallBack {
@@ -187,6 +198,8 @@ impl CFMachPort {
         unsafe { CFMachPortGetInvalidationCallBack(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportsetinvalidationcallback(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `callout` must be implemented correctly.
@@ -202,6 +215,7 @@ impl CFMachPort {
         unsafe { CFMachPortSetInvalidationCallBack(self, callout) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcreaterunloopsource(_:_:_:)?language=objc)
     #[doc(alias = "CFMachPortCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]

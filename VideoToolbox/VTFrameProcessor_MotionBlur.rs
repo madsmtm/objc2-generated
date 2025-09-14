@@ -18,8 +18,10 @@ use crate::*;
 pub struct VTMotionBlurConfigurationQualityPrioritization(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTMotionBlurConfigurationQualityPrioritization {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration/qualityprioritization-swift.enum/normal?language=objc)
     #[doc(alias = "VTMotionBlurConfigurationQualityPrioritizationNormal")]
     pub const Normal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration/qualityprioritization-swift.enum/quality?language=objc)
     #[doc(alias = "VTMotionBlurConfigurationQualityPrioritizationQuality")]
     pub const Quality: Self = Self(2);
 }
@@ -47,6 +49,7 @@ unsafe impl RefEncode for VTMotionBlurConfigurationQualityPrioritization {
 pub struct VTMotionBlurConfigurationRevision(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTMotionBlurConfigurationRevision {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration/revision-swift.enum/revision1?language=objc)
     #[doc(alias = "VTMotionBlurConfigurationRevision1")]
     pub const Revision1: Self = Self(1);
 }
@@ -82,8 +85,10 @@ unsafe impl RefEncode for VTMotionBlurConfigurationRevision {
 pub struct VTMotionBlurParametersSubmissionMode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTMotionBlurParametersSubmissionMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurparameters/submissionmode-swift.enum/random?language=objc)
     #[doc(alias = "VTMotionBlurParametersSubmissionModeRandom")]
     pub const Random: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurparameters/submissionmode-swift.enum/sequential?language=objc)
     #[doc(alias = "VTMotionBlurParametersSubmissionModeSequential")]
     pub const Sequential: Self = Self(2);
 }

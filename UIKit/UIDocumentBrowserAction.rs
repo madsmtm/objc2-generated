@@ -14,8 +14,10 @@ use crate::*;
 pub struct UIDocumentBrowserActionAvailability(pub NSInteger);
 bitflags::bitflags! {
     impl UIDocumentBrowserActionAvailability: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction/availability-swift.struct/menu?language=objc)
         #[doc(alias = "UIDocumentBrowserActionAvailabilityMenu")]
         const Menu = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction/availability-swift.struct/navigationbar?language=objc)
         #[doc(alias = "UIDocumentBrowserActionAvailabilityNavigationBar")]
         const NavigationBar = 1<<1;
     }

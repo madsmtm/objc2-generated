@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSortType(pub NSInteger);
 impl INSortType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insorttype/unknown?language=objc)
     #[doc(alias = "INSortTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insorttype/asis?language=objc)
     #[doc(alias = "INSortTypeAsIs")]
     pub const AsIs: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insorttype/bydate?language=objc)
     #[doc(alias = "INSortTypeByDate")]
     pub const ByDate: Self = Self(2);
 }

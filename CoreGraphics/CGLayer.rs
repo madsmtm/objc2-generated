@@ -27,6 +27,8 @@ cf_objc2_type!(
 );
 
 impl CGLayer {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayer/init(_:size:auxiliaryinfo:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `auxiliary_info` generic must be of the correct type.
@@ -50,6 +52,7 @@ impl CGLayer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayer/size?language=objc)
     #[doc(alias = "CGLayerGetSize")]
     #[inline]
     pub fn size(layer: Option<&CGLayer>) -> CGSize {
@@ -59,6 +62,7 @@ impl CGLayer {
         unsafe { CGLayerGetSize(layer) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayer/context?language=objc)
     #[doc(alias = "CGLayerGetContext")]
     #[cfg(feature = "CGContext")]
     #[inline]
@@ -73,6 +77,7 @@ impl CGLayer {
 
 #[cfg(feature = "CGContext")]
 impl CGContext {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawlayerinrect?language=objc)
     #[doc(alias = "CGContextDrawLayerInRect")]
     #[cfg(feature = "CGContext")]
     #[inline]
@@ -87,6 +92,7 @@ impl CGContext {
         unsafe { CGContextDrawLayerInRect(context, rect, layer) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawlayeratpoint?language=objc)
     #[doc(alias = "CGContextDrawLayerAtPoint")]
     #[cfg(feature = "CGContext")]
     #[inline]
@@ -107,6 +113,7 @@ impl CGContext {
 }
 
 unsafe impl ConcreteType for CGLayer {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayer/typeid?language=objc)
     #[doc(alias = "CGLayerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {

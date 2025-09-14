@@ -13,12 +13,16 @@ use crate::*;
 pub struct NSKeyValueObservingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSKeyValueObservingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/new?language=objc)
         #[doc(alias = "NSKeyValueObservingOptionNew")]
         const New = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/old?language=objc)
         #[doc(alias = "NSKeyValueObservingOptionOld")]
         const Old = 0x02;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/initial?language=objc)
         #[doc(alias = "NSKeyValueObservingOptionInitial")]
         const Initial = 0x04;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/prior?language=objc)
         #[doc(alias = "NSKeyValueObservingOptionPrior")]
         const Prior = 0x08;
     }
@@ -38,12 +42,16 @@ unsafe impl RefEncode for NSKeyValueObservingOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSKeyValueChange(pub NSUInteger);
 impl NSKeyValueChange {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange/setting?language=objc)
     #[doc(alias = "NSKeyValueChangeSetting")]
     pub const Setting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange/insertion?language=objc)
     #[doc(alias = "NSKeyValueChangeInsertion")]
     pub const Insertion: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange/removal?language=objc)
     #[doc(alias = "NSKeyValueChangeRemoval")]
     pub const Removal: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange/replacement?language=objc)
     #[doc(alias = "NSKeyValueChangeReplacement")]
     pub const Replacement: Self = Self(4);
 }
@@ -62,12 +70,16 @@ unsafe impl RefEncode for NSKeyValueChange {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSKeyValueSetMutationKind(pub NSUInteger);
 impl NSKeyValueSetMutationKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesetmutationkind/union?language=objc)
     #[doc(alias = "NSKeyValueUnionSetMutation")]
     pub const UnionSetMutation: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesetmutationkind/minus?language=objc)
     #[doc(alias = "NSKeyValueMinusSetMutation")]
     pub const MinusSetMutation: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesetmutationkind/intersect?language=objc)
     #[doc(alias = "NSKeyValueIntersectSetMutation")]
     pub const IntersectSetMutation: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesetmutationkind/set?language=objc)
     #[doc(alias = "NSKeyValueSetSetMutation")]
     pub const SetSetMutation: Self = Self(4);
 }

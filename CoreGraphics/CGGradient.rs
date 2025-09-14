@@ -33,8 +33,10 @@ cf_objc2_type!(
 pub struct CGGradientDrawingOptions(pub u32);
 bitflags::bitflags! {
     impl CGGradientDrawingOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions/drawsbeforestartlocation?language=objc)
         #[doc(alias = "kCGGradientDrawsBeforeStartLocation")]
         const DrawsBeforeStartLocation = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions/drawsafterendlocation?language=objc)
         #[doc(alias = "kCGGradientDrawsAfterEndLocation")]
         const DrawsAfterEndLocation = 1<<1;
     }
@@ -51,6 +53,7 @@ unsafe impl RefEncode for CGGradientDrawingOptions {
 }
 
 unsafe impl ConcreteType for CGGradient {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient/typeid?language=objc)
     #[doc(alias = "CGGradientGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -62,6 +65,8 @@ unsafe impl ConcreteType for CGGradient {
 }
 
 impl CGGradient {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient/init(colorspace:colorcomponents:locations:count:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `components` must be a valid pointer or null.
@@ -88,6 +93,8 @@ impl CGGradient {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient/init(headroom:colorspace:colorcomponents:locations:count:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `components` must be a valid pointer or null.
@@ -117,6 +124,8 @@ impl CGGradient {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient/init(colorsspace:colors:locations:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `colors` generic must be of the correct type.
@@ -140,6 +149,7 @@ impl CGGradient {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient/contentheadroom?language=objc)
     #[doc(alias = "CGGradientGetContentHeadroom")]
     #[inline]
     pub fn content_headroom(gradient: Option<&CGGradient>) -> c_float {

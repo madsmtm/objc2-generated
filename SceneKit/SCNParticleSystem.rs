@@ -170,14 +170,19 @@ pub type SCNParticleModifierBlock = *mut block2::DynBlock<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleSortingMode(pub NSInteger);
 impl SCNParticleSortingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode/none?language=objc)
     #[doc(alias = "SCNParticleSortingModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode/projecteddepth?language=objc)
     #[doc(alias = "SCNParticleSortingModeProjectedDepth")]
     pub const ProjectedDepth: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode/distance?language=objc)
     #[doc(alias = "SCNParticleSortingModeDistance")]
     pub const Distance: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode/oldestfirst?language=objc)
     #[doc(alias = "SCNParticleSortingModeOldestFirst")]
     pub const OldestFirst: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode/youngestfirst?language=objc)
     #[doc(alias = "SCNParticleSortingModeYoungestFirst")]
     pub const YoungestFirst: Self = Self(4);
 }
@@ -196,16 +201,22 @@ unsafe impl RefEncode for SCNParticleSortingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleBlendMode(pub NSInteger);
 impl SCNParticleBlendMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/additive?language=objc)
     #[doc(alias = "SCNParticleBlendModeAdditive")]
     pub const Additive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/subtract?language=objc)
     #[doc(alias = "SCNParticleBlendModeSubtract")]
     pub const Subtract: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/multiply?language=objc)
     #[doc(alias = "SCNParticleBlendModeMultiply")]
     pub const Multiply: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/screen?language=objc)
     #[doc(alias = "SCNParticleBlendModeScreen")]
     pub const Screen: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/alpha?language=objc)
     #[doc(alias = "SCNParticleBlendModeAlpha")]
     pub const Alpha: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/replace?language=objc)
     #[doc(alias = "SCNParticleBlendModeReplace")]
     pub const Replace: Self = Self(5);
 }
@@ -224,12 +235,16 @@ unsafe impl RefEncode for SCNParticleBlendMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleOrientationMode(pub NSInteger);
 impl SCNParticleOrientationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode/billboardscreenaligned?language=objc)
     #[doc(alias = "SCNParticleOrientationModeBillboardScreenAligned")]
     pub const BillboardScreenAligned: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode/billboardviewaligned?language=objc)
     #[doc(alias = "SCNParticleOrientationModeBillboardViewAligned")]
     pub const BillboardViewAligned: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode/free?language=objc)
     #[doc(alias = "SCNParticleOrientationModeFree")]
     pub const Free: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode/billboardyaligned?language=objc)
     #[doc(alias = "SCNParticleOrientationModeBillboardYAligned")]
     pub const BillboardYAligned: Self = Self(3);
 }
@@ -248,10 +263,13 @@ unsafe impl RefEncode for SCNParticleOrientationMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleBirthLocation(pub NSInteger);
 impl SCNParticleBirthLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthlocation/surface?language=objc)
     #[doc(alias = "SCNParticleBirthLocationSurface")]
     pub const Surface: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthlocation/volume?language=objc)
     #[doc(alias = "SCNParticleBirthLocationVolume")]
     pub const Volume: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthlocation/vertex?language=objc)
     #[doc(alias = "SCNParticleBirthLocationVertex")]
     pub const Vertex: Self = Self(2);
 }
@@ -270,10 +288,13 @@ unsafe impl RefEncode for SCNParticleBirthLocation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleBirthDirection(pub NSInteger);
 impl SCNParticleBirthDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthdirection/constant?language=objc)
     #[doc(alias = "SCNParticleBirthDirectionConstant")]
     pub const Constant: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthdirection/surfacenormal?language=objc)
     #[doc(alias = "SCNParticleBirthDirectionSurfaceNormal")]
     pub const SurfaceNormal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthdirection/random?language=objc)
     #[doc(alias = "SCNParticleBirthDirectionRandom")]
     pub const Random: Self = Self(2);
 }
@@ -292,10 +313,13 @@ unsafe impl RefEncode for SCNParticleBirthDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleImageSequenceAnimationMode(pub NSInteger);
 impl SCNParticleImageSequenceAnimationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleimagesequenceanimationmode/repeat?language=objc)
     #[doc(alias = "SCNParticleImageSequenceAnimationModeRepeat")]
     pub const Repeat: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleimagesequenceanimationmode/clamp?language=objc)
     #[doc(alias = "SCNParticleImageSequenceAnimationModeClamp")]
     pub const Clamp: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleimagesequenceanimationmode/autoreverse?language=objc)
     #[doc(alias = "SCNParticleImageSequenceAnimationModeAutoReverse")]
     pub const AutoReverse: Self = Self(2);
 }
@@ -314,10 +338,13 @@ unsafe impl RefEncode for SCNParticleImageSequenceAnimationMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleInputMode(pub NSInteger);
 impl SCNParticleInputMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleinputmode/overlife?language=objc)
     #[doc(alias = "SCNParticleInputModeOverLife")]
     pub const OverLife: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleinputmode/overdistance?language=objc)
     #[doc(alias = "SCNParticleInputModeOverDistance")]
     pub const OverDistance: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleinputmode/overotherproperty?language=objc)
     #[doc(alias = "SCNParticleInputModeOverOtherProperty")]
     pub const OverOtherProperty: Self = Self(2);
 }
@@ -336,12 +363,16 @@ unsafe impl RefEncode for SCNParticleInputMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleModifierStage(pub NSInteger);
 impl SCNParticleModifierStage {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierstage/predynamics?language=objc)
     #[doc(alias = "SCNParticleModifierStagePreDynamics")]
     pub const PreDynamics: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierstage/postdynamics?language=objc)
     #[doc(alias = "SCNParticleModifierStagePostDynamics")]
     pub const PostDynamics: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierstage/precollision?language=objc)
     #[doc(alias = "SCNParticleModifierStagePreCollision")]
     pub const PreCollision: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierstage/postcollision?language=objc)
     #[doc(alias = "SCNParticleModifierStagePostCollision")]
     pub const PostCollision: Self = Self(3);
 }
@@ -360,10 +391,13 @@ unsafe impl RefEncode for SCNParticleModifierStage {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleEvent(pub NSInteger);
 impl SCNParticleEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleevent/birth?language=objc)
     #[doc(alias = "SCNParticleEventBirth")]
     pub const Birth: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleevent/death?language=objc)
     #[doc(alias = "SCNParticleEventDeath")]
     pub const Death: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleevent/collision?language=objc)
     #[doc(alias = "SCNParticleEventCollision")]
     pub const Collision: Self = Self(2);
 }

@@ -23,12 +23,16 @@ pub type UIConfigurationTextAttributesTransformer = *mut block2::DynBlock<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationSize(pub NSInteger);
 impl UIButtonConfigurationSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize/uibuttonconfigurationsizemedium?language=objc)
     #[doc(alias = "UIButtonConfigurationSizeMedium")]
     pub const Medium: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize/uibuttonconfigurationsizesmall?language=objc)
     #[doc(alias = "UIButtonConfigurationSizeSmall")]
     pub const Small: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize/uibuttonconfigurationsizemini?language=objc)
     #[doc(alias = "UIButtonConfigurationSizeMini")]
     pub const Mini: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize/uibuttonconfigurationsizelarge?language=objc)
     #[doc(alias = "UIButtonConfigurationSizeLarge")]
     pub const Large: Self = Self(3);
 }
@@ -50,21 +54,29 @@ impl UIButtonConfigurationTitleAlignment {
     /// Align title
     /// &
     /// subtitle automatically
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment/uibuttonconfigurationtitlealignmentautomatic?language=objc)
     #[doc(alias = "UIButtonConfigurationTitleAlignmentAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Align title
     /// &
     /// subtitle along their leading edges
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment/uibuttonconfigurationtitlealignmentleading?language=objc)
     #[doc(alias = "UIButtonConfigurationTitleAlignmentLeading")]
     pub const Leading: Self = Self(1);
     /// Align title
     /// &
     /// subtitle to be centered with respect to each other
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment/uibuttonconfigurationtitlealignmentcenter?language=objc)
     #[doc(alias = "UIButtonConfigurationTitleAlignmentCenter")]
     pub const Center: Self = Self(2);
     /// Align title
     /// &
     /// subtitle along their trailing edges
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment/uibuttonconfigurationtitlealignmenttrailing?language=objc)
     #[doc(alias = "UIButtonConfigurationTitleAlignmentTrailing")]
     pub const Trailing: Self = Self(3);
 }
@@ -84,21 +96,33 @@ unsafe impl RefEncode for UIButtonConfigurationTitleAlignment {
 pub struct UIButtonConfigurationCornerStyle(pub NSInteger);
 impl UIButtonConfigurationCornerStyle {
     /// The corner radius provided by the background style will be used as is, without adjusting for dynamic type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstylefixed?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleFixed")]
     pub const Fixed: Self = Self(-1);
     /// The corner radius provided by the background style is adjusted based on dynamic type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstyledynamic?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleDynamic")]
     pub const Dynamic: Self = Self(0);
     /// Ignore the corner radius provided by the background style and substitute a small system defined corner radius.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstylesmall?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleSmall")]
     pub const Small: Self = Self(1);
     /// Ignore the corner radius provided by the background style and substitute a medium system defined corner radius.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstylemedium?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleMedium")]
     pub const Medium: Self = Self(2);
     /// Ignore the corner radius provided by the background style and substitute a large system defined corner radius.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstylelarge?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleLarge")]
     pub const Large: Self = Self(3);
     /// Ignore the corner radius provided by the background style and always set the corner radius to generate a capsule.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstylecapsule?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleCapsule")]
     pub const Capsule: Self = Self(4);
 }
@@ -118,15 +142,23 @@ unsafe impl RefEncode for UIButtonConfigurationCornerStyle {
 pub struct UIButtonConfigurationMacIdiomStyle(pub NSInteger);
 impl UIButtonConfigurationMacIdiomStyle {
     /// Automatically select the style to use
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle/uibuttonconfigurationmacidiomstyleautomatic?language=objc)
     #[doc(alias = "UIButtonConfigurationMacIdiomStyleAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Always use a bordered style button
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle/uibuttonconfigurationmacidiomstylebordered?language=objc)
     #[doc(alias = "UIButtonConfigurationMacIdiomStyleBordered")]
     pub const Bordered: Self = Self(1);
     /// Always use a borderless style button
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle/uibuttonconfigurationmacidiomstyleborderless?language=objc)
     #[doc(alias = "UIButtonConfigurationMacIdiomStyleBorderless")]
     pub const Borderless: Self = Self(2);
     /// Always use a tinted, borderless style button
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle/uibuttonconfigurationmacidiomstyleborderlesstinted?language=objc)
     #[doc(alias = "UIButtonConfigurationMacIdiomStyleBorderlessTinted")]
     pub const BorderlessTinted: Self = Self(3);
 }
@@ -146,12 +178,18 @@ unsafe impl RefEncode for UIButtonConfigurationMacIdiomStyle {
 pub struct UIButtonConfigurationIndicator(pub NSInteger);
 impl UIButtonConfigurationIndicator {
     /// Automatically determine an indicator based on the button's properties.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationindicator/uibuttonconfigurationindicatorautomatic?language=objc)
     #[doc(alias = "UIButtonConfigurationIndicatorAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Don't show any indicator
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationindicator/uibuttonconfigurationindicatornone?language=objc)
     #[doc(alias = "UIButtonConfigurationIndicatorNone")]
     pub const None: Self = Self(1);
     /// Show an indicator appropriate for a popup-style button
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationindicator/uibuttonconfigurationindicatorpopup?language=objc)
     #[doc(alias = "UIButtonConfigurationIndicatorPopup")]
     pub const Popup: Self = Self(2);
 }

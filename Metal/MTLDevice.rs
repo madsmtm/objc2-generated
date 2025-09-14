@@ -17,14 +17,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOCompressionMethod(pub NSInteger);
 impl MTLIOCompressionMethod {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod/zlib?language=objc)
     #[doc(alias = "MTLIOCompressionMethodZlib")]
     pub const Zlib: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod/lzfse?language=objc)
     #[doc(alias = "MTLIOCompressionMethodLZFSE")]
     pub const LZFSE: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod/lz4?language=objc)
     #[doc(alias = "MTLIOCompressionMethodLZ4")]
     pub const LZ4: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod/lzma?language=objc)
     #[doc(alias = "MTLIOCompressionMethodLZMA")]
     pub const LZMA: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod/lzbitmap?language=objc)
     #[doc(alias = "MTLIOCompressionMethodLZBitmap")]
     pub const LZBitmap: Self = Self(4);
 }
@@ -43,6 +48,8 @@ unsafe impl RefEncode for MTLIOCompressionMethod {
 /// this API to get a Metal device will cause the system to switch to the high power
 /// GPU.  On other systems that support more than one GPU it will return the GPU that
 /// is associated with the main display.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcreatesystemdefaultdevice()?language=objc)
 #[inline]
 pub extern "C-unwind" fn MTLCreateSystemDefaultDevice(
 ) -> Option<Retained<ProtocolObject<dyn MTLDevice>>> {
@@ -102,6 +109,8 @@ pub type MTLDeviceNotificationHandler = *mut block2::DynBlock<
 ///
 /// - `observer` must be a valid pointer.
 /// - `handler` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcopyalldeviceswithobserver?language=objc)
 #[cfg(feature = "block2")]
 #[inline]
 pub unsafe extern "C-unwind" fn MTLCopyAllDevicesWithObserver(
@@ -125,6 +134,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `observer` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlremovedeviceobserver(_:)?language=objc)
     pub fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
 }
 
@@ -135,70 +146,103 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLFeatureSet(pub NSUInteger);
 impl MTLFeatureSet {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily1_v1?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v1")]
     pub const iOS_GPUFamily1_v1: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily2_v1?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v1")]
     pub const iOS_GPUFamily2_v1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily1_v2?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v2")]
     pub const iOS_GPUFamily1_v2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily2_v2?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v2")]
     pub const iOS_GPUFamily2_v2: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily3_v1?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v1")]
     pub const iOS_GPUFamily3_v1: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily1_v3?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v3")]
     pub const iOS_GPUFamily1_v3: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily2_v3?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v3")]
     pub const iOS_GPUFamily2_v3: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily3_v2?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v2")]
     pub const iOS_GPUFamily3_v2: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily1_v4?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v4")]
     pub const iOS_GPUFamily1_v4: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily2_v4?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v4")]
     pub const iOS_GPUFamily2_v4: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily3_v3?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v3")]
     pub const iOS_GPUFamily3_v3: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily4_v1?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v1")]
     pub const iOS_GPUFamily4_v1: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily1_v5?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v5")]
     pub const iOS_GPUFamily1_v5: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily2_v5?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v5")]
     pub const iOS_GPUFamily2_v5: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily3_v4?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v4")]
     pub const iOS_GPUFamily3_v4: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily4_v2?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v2")]
     pub const iOS_GPUFamily4_v2: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily5_v1?language=objc)
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily5_v1")]
     pub const iOS_GPUFamily5_v1: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_gpufamily1_v1?language=objc)
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v1")]
     pub const macOS_GPUFamily1_v1: Self = Self(10000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/osx_gpufamily1_v1?language=objc)
     #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v1")]
     pub const OSX_GPUFamily1_v1: Self = Self(MTLFeatureSet::macOS_GPUFamily1_v1.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_gpufamily1_v2?language=objc)
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v2")]
     pub const macOS_GPUFamily1_v2: Self = Self(10001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/osx_gpufamily1_v2?language=objc)
     #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v2")]
     pub const OSX_GPUFamily1_v2: Self = Self(MTLFeatureSet::macOS_GPUFamily1_v2.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_readwritetexturetier2?language=objc)
     #[doc(alias = "MTLFeatureSet_macOS_ReadWriteTextureTier2")]
     pub const macOS_ReadWriteTextureTier2: Self = Self(10002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/osx_readwritetexturetier2?language=objc)
     #[doc(alias = "MTLFeatureSet_OSX_ReadWriteTextureTier2")]
     pub const OSX_ReadWriteTextureTier2: Self = Self(MTLFeatureSet::macOS_ReadWriteTextureTier2.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_gpufamily1_v3?language=objc)
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v3")]
     pub const macOS_GPUFamily1_v3: Self = Self(10003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_gpufamily1_v4?language=objc)
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v4")]
     pub const macOS_GPUFamily1_v4: Self = Self(10004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_gpufamily2_v1?language=objc)
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily2_v1")]
     pub const macOS_GPUFamily2_v1: Self = Self(10005);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily1_v1-swift.enum.case?language=objc)
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v1")]
     pub const tvOS_GPUFamily1_v1: Self = Self(30000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily1_v1-swift.type.property?language=objc)
     #[doc(alias = "MTLFeatureSet_TVOS_GPUFamily1_v1")]
     pub const TVOS_GPUFamily1_v1: Self = Self(MTLFeatureSet::tvOS_GPUFamily1_v1.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily1_v2?language=objc)
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v2")]
     pub const tvOS_GPUFamily1_v2: Self = Self(30001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily1_v3?language=objc)
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v3")]
     pub const tvOS_GPUFamily1_v3: Self = Self(30002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily2_v1?language=objc)
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v1")]
     pub const tvOS_GPUFamily2_v1: Self = Self(30003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily1_v4?language=objc)
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v4")]
     pub const tvOS_GPUFamily1_v4: Self = Self(30004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily2_v2?language=objc)
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v2")]
     pub const tvOS_GPUFamily2_v2: Self = Self(30005);
 }
@@ -217,45 +261,64 @@ unsafe impl RefEncode for MTLFeatureSet {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLGPUFamily(pub NSInteger);
 impl MTLGPUFamily {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple1?language=objc)
     #[doc(alias = "MTLGPUFamilyApple1")]
     pub const Apple1: Self = Self(1001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple2?language=objc)
     #[doc(alias = "MTLGPUFamilyApple2")]
     pub const Apple2: Self = Self(1002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple3?language=objc)
     #[doc(alias = "MTLGPUFamilyApple3")]
     pub const Apple3: Self = Self(1003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple4?language=objc)
     #[doc(alias = "MTLGPUFamilyApple4")]
     pub const Apple4: Self = Self(1004);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple5?language=objc)
     #[doc(alias = "MTLGPUFamilyApple5")]
     pub const Apple5: Self = Self(1005);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple6?language=objc)
     #[doc(alias = "MTLGPUFamilyApple6")]
     pub const Apple6: Self = Self(1006);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple7?language=objc)
     #[doc(alias = "MTLGPUFamilyApple7")]
     pub const Apple7: Self = Self(1007);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple8?language=objc)
     #[doc(alias = "MTLGPUFamilyApple8")]
     pub const Apple8: Self = Self(1008);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple9?language=objc)
     #[doc(alias = "MTLGPUFamilyApple9")]
     pub const Apple9: Self = Self(1009);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple10?language=objc)
     #[doc(alias = "MTLGPUFamilyApple10")]
     pub const Apple10: Self = Self(1010);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/mac1?language=objc)
     #[doc(alias = "MTLGPUFamilyMac1")]
     #[deprecated]
     pub const Mac1: Self = Self(2001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/mac2?language=objc)
     #[doc(alias = "MTLGPUFamilyMac2")]
     pub const Mac2: Self = Self(2002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/common1?language=objc)
     #[doc(alias = "MTLGPUFamilyCommon1")]
     pub const Common1: Self = Self(3001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/common2?language=objc)
     #[doc(alias = "MTLGPUFamilyCommon2")]
     pub const Common2: Self = Self(3002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/common3?language=objc)
     #[doc(alias = "MTLGPUFamilyCommon3")]
     pub const Common3: Self = Self(3003);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/maccatalyst1?language=objc)
     #[doc(alias = "MTLGPUFamilyMacCatalyst1")]
     #[deprecated]
     pub const MacCatalyst1: Self = Self(4001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/maccatalyst2?language=objc)
     #[doc(alias = "MTLGPUFamilyMacCatalyst2")]
     #[deprecated]
     pub const MacCatalyst2: Self = Self(4002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/metal3?language=objc)
     #[doc(alias = "MTLGPUFamilyMetal3")]
     pub const Metal3: Self = Self(5001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/metal4?language=objc)
     #[doc(alias = "MTLGPUFamilyMetal4")]
     pub const Metal4: Self = Self(5002);
 }
@@ -276,12 +339,16 @@ unsafe impl RefEncode for MTLGPUFamily {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDeviceLocation(pub NSUInteger);
 impl MTLDeviceLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation/builtin?language=objc)
     #[doc(alias = "MTLDeviceLocationBuiltIn")]
     pub const BuiltIn: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation/slot?language=objc)
     #[doc(alias = "MTLDeviceLocationSlot")]
     pub const Slot: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation/external?language=objc)
     #[doc(alias = "MTLDeviceLocationExternal")]
     pub const External: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation/unspecified?language=objc)
     #[doc(alias = "MTLDeviceLocationUnspecified")]
     pub const Unspecified: Self = Self(NSUIntegerMax as _);
 }
@@ -303,15 +370,20 @@ unsafe impl RefEncode for MTLDeviceLocation {
 pub struct MTLPipelineOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLPipelineOption: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption/mtlpipelineoptionnone?language=objc)
         #[doc(alias = "MTLPipelineOptionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption/argumentinfo?language=objc)
         #[doc(alias = "MTLPipelineOptionArgumentInfo")]
 #[deprecated]
         const ArgumentInfo = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption/bindinginfo?language=objc)
         #[doc(alias = "MTLPipelineOptionBindingInfo")]
         const BindingInfo = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption/buffertypeinfo?language=objc)
         #[doc(alias = "MTLPipelineOptionBufferTypeInfo")]
         const BufferTypeInfo = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption/failonbinaryarchivemiss?language=objc)
         #[doc(alias = "MTLPipelineOptionFailOnBinaryArchiveMiss")]
         const FailOnBinaryArchiveMiss = 1<<2;
     }
@@ -333,10 +405,13 @@ unsafe impl RefEncode for MTLPipelineOption {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLReadWriteTextureTier(pub NSUInteger);
 impl MTLReadWriteTextureTier {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier/tiernone?language=objc)
     #[doc(alias = "MTLReadWriteTextureTierNone")]
     pub const TierNone: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier/tier1?language=objc)
     #[doc(alias = "MTLReadWriteTextureTier1")]
     pub const Tier1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier/tier2?language=objc)
     #[doc(alias = "MTLReadWriteTextureTier2")]
     pub const Tier2: Self = Self(2);
 }
@@ -357,8 +432,10 @@ unsafe impl RefEncode for MTLReadWriteTextureTier {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLArgumentBuffersTier(pub NSUInteger);
 impl MTLArgumentBuffersTier {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentbufferstier/tier1?language=objc)
     #[doc(alias = "MTLArgumentBuffersTier1")]
     pub const Tier1: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentbufferstier/tier2?language=objc)
     #[doc(alias = "MTLArgumentBuffersTier2")]
     pub const Tier2: Self = Self(1);
 }
@@ -379,8 +456,10 @@ unsafe impl RefEncode for MTLArgumentBuffersTier {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSparseTextureRegionAlignmentMode(pub NSUInteger);
 impl MTLSparseTextureRegionAlignmentMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetextureregionalignmentmode/outward?language=objc)
     #[doc(alias = "MTLSparseTextureRegionAlignmentModeOutward")]
     pub const Outward: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetextureregionalignmentmode/inward?language=objc)
     #[doc(alias = "MTLSparseTextureRegionAlignmentModeInward")]
     pub const Inward: Self = Self(1);
 }
@@ -445,14 +524,19 @@ unsafe impl RefEncode for MTLAccelerationStructureSizes {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCounterSamplingPoint(pub NSUInteger);
 impl MTLCounterSamplingPoint {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint/atstageboundary?language=objc)
     #[doc(alias = "MTLCounterSamplingPointAtStageBoundary")]
     pub const AtStageBoundary: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint/atdrawboundary?language=objc)
     #[doc(alias = "MTLCounterSamplingPointAtDrawBoundary")]
     pub const AtDrawBoundary: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint/atdispatchboundary?language=objc)
     #[doc(alias = "MTLCounterSamplingPointAtDispatchBoundary")]
     pub const AtDispatchBoundary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint/attiledispatchboundary?language=objc)
     #[doc(alias = "MTLCounterSamplingPointAtTileDispatchBoundary")]
     pub const AtTileDispatchBoundary: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint/atblitboundary?language=objc)
     #[doc(alias = "MTLCounterSamplingPointAtBlitBoundary")]
     pub const AtBlitBoundary: Self = Self(4);
 }

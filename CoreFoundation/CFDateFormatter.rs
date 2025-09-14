@@ -30,6 +30,8 @@ cf_objc2_type!(
 );
 
 impl CFDateFormatter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreatedateformatfromtemplate(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -60,6 +62,7 @@ impl CFDateFormatter {
 }
 
 unsafe impl ConcreteType for CFDateFormatter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergettypeid()?language=objc)
     #[doc(alias = "CFDateFormatterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -76,14 +79,19 @@ unsafe impl ConcreteType for CFDateFormatter {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFDateFormatterStyle(pub CFIndex);
 impl CFDateFormatterStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle/nostyle?language=objc)
     #[doc(alias = "kCFDateFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle/shortstyle?language=objc)
     #[doc(alias = "kCFDateFormatterShortStyle")]
     pub const ShortStyle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle/mediumstyle?language=objc)
     #[doc(alias = "kCFDateFormatterMediumStyle")]
     pub const MediumStyle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle/longstyle?language=objc)
     #[doc(alias = "kCFDateFormatterLongStyle")]
     pub const LongStyle: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle/fullstyle?language=objc)
     #[doc(alias = "kCFDateFormatterFullStyle")]
     pub const FullStyle: Self = Self(4);
 }
@@ -105,32 +113,46 @@ unsafe impl RefEncode for CFDateFormatterStyle {
 pub struct CFISO8601DateFormatOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFISO8601DateFormatOptions: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withyear?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithYear")]
         const WithYear = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withmonth?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithMonth")]
         const WithMonth = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withweekofyear?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithWeekOfYear")]
         const WithWeekOfYear = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withday?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithDay")]
         const WithDay = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withtime?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithTime")]
         const WithTime = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withtimezone?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithTimeZone")]
         const WithTimeZone = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withspacebetweendateandtime?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithSpaceBetweenDateAndTime")]
         const WithSpaceBetweenDateAndTime = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withdashseparatorindate?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithDashSeparatorInDate")]
         const WithDashSeparatorInDate = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withcolonseparatorintime?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithColonSeparatorInTime")]
         const WithColonSeparatorInTime = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withcolonseparatorintimezone?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithColonSeparatorInTimeZone")]
         const WithColonSeparatorInTimeZone = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withfractionalseconds?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithFractionalSeconds")]
         const WithFractionalSeconds = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withfulldate?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithFullDate")]
         const WithFullDate = CFISO8601DateFormatOptions::WithYear.0|CFISO8601DateFormatOptions::WithMonth.0|CFISO8601DateFormatOptions::WithDay.0|CFISO8601DateFormatOptions::WithDashSeparatorInDate.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withfulltime?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithFullTime")]
         const WithFullTime = CFISO8601DateFormatOptions::WithTime.0|CFISO8601DateFormatOptions::WithColonSeparatorInTime.0|CFISO8601DateFormatOptions::WithTimeZone.0|CFISO8601DateFormatOptions::WithColonSeparatorInTimeZone.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withinternetdatetime?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithInternetDateTime")]
         const WithInternetDateTime = CFISO8601DateFormatOptions::WithFullDate.0|CFISO8601DateFormatOptions::WithFullTime.0;
     }
@@ -147,6 +169,8 @@ unsafe impl RefEncode for CFISO8601DateFormatOptions {
 }
 
 impl CFDateFormatter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreateiso8601formatter(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `allocator` might not allow `None`.
@@ -166,6 +190,8 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreate(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -191,6 +217,7 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergetlocale(_:)?language=objc)
     #[doc(alias = "CFDateFormatterGetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -202,6 +229,7 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergetdatestyle(_:)?language=objc)
     #[doc(alias = "CFDateFormatterGetDateStyle")]
     #[inline]
     pub fn date_style(&self) -> CFDateFormatterStyle {
@@ -211,6 +239,7 @@ impl CFDateFormatter {
         unsafe { CFDateFormatterGetDateStyle(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergettimestyle(_:)?language=objc)
     #[doc(alias = "CFDateFormatterGetTimeStyle")]
     #[inline]
     pub fn time_style(&self) -> CFDateFormatterStyle {
@@ -220,6 +249,7 @@ impl CFDateFormatter {
         unsafe { CFDateFormatterGetTimeStyle(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergetformat(_:)?language=objc)
     #[doc(alias = "CFDateFormatterGetFormat")]
     #[inline]
     pub fn format(&self) -> Option<CFRetained<CFString>> {
@@ -230,6 +260,8 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattersetformat(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `format_string` might not allow `None`.
@@ -245,6 +277,8 @@ impl CFDateFormatter {
         unsafe { CFDateFormatterSetFormat(self, format_string) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreatestringwithdate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -269,6 +303,8 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreatestringwithabsolutetime(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -292,6 +328,8 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreatedatefromstring(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -320,6 +358,8 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergetabsolutetimefromstring(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `string` might not allow `None`.
@@ -346,6 +386,8 @@ impl CFDateFormatter {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattersetproperty(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` might not allow `None`.
@@ -364,6 +406,8 @@ impl CFDateFormatter {
         unsafe { CFDateFormatterSetProperty(self, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercopyproperty(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `key` might not allow `None`.

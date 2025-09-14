@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCancelRideIntentResponseCode(pub NSInteger);
 impl INCancelRideIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INCancelRideIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintentresponsecode/ready?language=objc)
     #[doc(alias = "INCancelRideIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintentresponsecode/success?language=objc)
     #[doc(alias = "INCancelRideIntentResponseCodeSuccess")]
     pub const Success: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintentresponsecode/failure?language=objc)
     #[doc(alias = "INCancelRideIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
 }

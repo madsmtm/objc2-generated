@@ -15,12 +15,18 @@ impl GCDevicePhysicalInputElementChange {
     /// Indicates that a change could not be determined.  This is typically
     /// because the input state queue filled up and older input state snapshots
     /// were dropped.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputelementchange/unknownchange?language=objc)
     #[doc(alias = "GCDevicePhysicalInputElementUnknownChange")]
     pub const UnknownChange: Self = Self(-1);
     /// Indicates that no value of the element changed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputelementchange/nochange?language=objc)
     #[doc(alias = "GCDevicePhysicalInputElementNoChange")]
     pub const NoChange: Self = Self(0);
     /// Indicates that a value of the element changed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputelementchange/changed?language=objc)
     #[doc(alias = "GCDevicePhysicalInputElementChanged")]
     pub const Changed: Self = Self(1);
 }

@@ -34,12 +34,18 @@ use crate::*;
 pub struct GCSystemGestureState(pub NSInteger);
 impl GCSystemGestureState {
     /// System gesture recognizers will run before input is sent to app, this is the default state
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/systemgesturestate/enabled?language=objc)
     #[doc(alias = "GCSystemGestureStateEnabled")]
     pub const Enabled: Self = Self(0);
     /// Input is sent to app and processed by system gesture recognizers simultaneously
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/systemgesturestate/alwaysreceive?language=objc)
     #[doc(alias = "GCSystemGestureStateAlwaysReceive")]
     pub const AlwaysReceive: Self = Self(1);
     /// System gesture recognizers will not run at all. Input is passed directly to app
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/systemgesturestate/disabled?language=objc)
     #[doc(alias = "GCSystemGestureStateDisabled")]
     pub const Disabled: Self = Self(2);
 }

@@ -12,7 +12,9 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlreturnmask?language=objc)
 pub const kQLReturnMask: c_uint = 0xaf00;
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlreturnhasmore?language=objc)
 pub const kQLReturnHasMore: c_uint = kQLReturnMask | 10;
 /// This is the type of a reference to Thumbnail requests.
 ///
@@ -34,6 +36,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for QLThumbnailRequest {
     /// Returns the CoreFoundation type ID for QLThumbnailRequests.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestgettypeid()?language=objc)
     #[doc(alias = "QLThumbnailRequestGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -50,6 +54,8 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The url of the file for the thumbnail request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestcopyurl(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestCopyURL")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -66,6 +72,8 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The desired options for the thumbnail request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestcopyoptions(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestCopyOptions")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -84,6 +92,8 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The UTI of the content being thumbnailed, NULL if not available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestcopycontentuti(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestCopyContentUTI")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -102,6 +112,8 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The maximum desired size (in points) for the thumbnail request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestgetmaximumsize(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestGetMaximumSize")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -115,6 +127,8 @@ impl QLThumbnailRequest {
     /// Get the thumbnail request generator bundle.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestgetgeneratorbundle(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestGetGeneratorBundle")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -142,6 +156,8 @@ impl QLThumbnailRequest {
     ///
     /// - `object` must be a valid pointer.
     /// - `callbacks` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetdocumentobject(_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetDocumentObject")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -165,6 +181,8 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The object representing the document
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestgetdocumentobject(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestGetDocumentObject")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -190,6 +208,8 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetimage(_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types"]
@@ -219,6 +239,8 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetimagewithdata(_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetImageWithData")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -256,6 +278,8 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestcreatecontext(_:_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -288,6 +312,8 @@ impl QLThumbnailRequest {
     /// # Safety
     ///
     /// `context` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestflushcontext(_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestFlushContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -316,6 +342,8 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetimageaturl(_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetImageAtURL")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -354,6 +382,8 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetthumbnailwithdatarepresentation(_:_:_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetThumbnailWithDataRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -406,6 +436,8 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetthumbnailwithurlrepresentation(_:_:_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetThumbnailWithURLRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -441,6 +473,8 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: true if the request was cancelled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestiscancelled(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestIsCancelled")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -500,6 +534,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for QLPreviewRequest {
     /// Returns the CoreFoundation type ID for QLPreviewRequests.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestgettypeid()?language=objc)
     #[doc(alias = "QLPreviewRequestGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -558,10 +594,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct QLPreviewPDFStyle(pub c_uint);
 impl QLPreviewPDFStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpdfstandardstyle?language=objc)
     #[doc(alias = "kQLPreviewPDFStandardStyle")]
     pub const StandardStyle: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpdfpageswiththumbnailsonrightstyle?language=objc)
     #[doc(alias = "kQLPreviewPDFPagesWithThumbnailsOnRightStyle")]
     pub const PagesWithThumbnailsOnRightStyle: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpdfpageswiththumbnailsonleftstyle?language=objc)
     #[doc(alias = "kQLPreviewPDFPagesWithThumbnailsOnLeftStyle")]
     pub const PagesWithThumbnailsOnLeftStyle: Self = Self(4);
 }
@@ -609,6 +648,8 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The url of the file for the preview request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcopyurl(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestCopyURL")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -625,6 +666,8 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The desired options for the preview request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcopyoptions(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestCopyOptions")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -643,6 +686,8 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The UTI of the content being previewed, NULL if not available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcopycontentuti(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestCopyContentUTI")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -659,6 +704,8 @@ impl QLPreviewRequest {
     /// Gets the preview request generator bundle.
     ///
     /// Parameter `preview`: The preview request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestgetgeneratorbundle(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestGetGeneratorBundle")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -686,6 +733,8 @@ impl QLPreviewRequest {
     ///
     /// - `object` must be a valid pointer.
     /// - `callbacks` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestsetdocumentobject(_:_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestSetDocumentObject")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -709,6 +758,8 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The object representing the document
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestgetdocumentobject(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestGetDocumentObject")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -724,6 +775,8 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: true if the request was cancelled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestiscancelled(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestIsCancelled")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -756,6 +809,8 @@ impl QLPreviewRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestsetdatarepresentation(_:_:_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestSetDataRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -797,6 +852,8 @@ impl QLPreviewRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestseturlrepresentation(_:_:_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestSetURLRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -832,6 +889,8 @@ impl QLPreviewRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcreatecontext(_:_:_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -873,6 +932,8 @@ impl QLPreviewRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcreatepdfcontext(_:_:_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestCreatePDFContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -906,6 +967,8 @@ impl QLPreviewRequest {
     /// # Safety
     ///
     /// `context` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestflushcontext(_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestFlushContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]

@@ -230,6 +230,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for DADisk {
     /// Returns the type identifier of all DADisk instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskgettypeid()?language=objc)
     #[doc(alias = "DADiskGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -258,6 +260,8 @@ impl DADisk {
     /// # Safety
     ///
     /// `name` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskcreatefrombsdname(_:_:_:)?language=objc)
     #[doc(alias = "DADiskCreateFromBSDName")]
     #[cfg(feature = "DASession")]
     #[inline]
@@ -290,6 +294,8 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskcreatefromvolumepath(_:_:_:)?language=objc)
     #[doc(alias = "DADiskCreateFromVolumePath")]
     #[cfg(feature = "DASession")]
     #[inline]
@@ -316,6 +322,8 @@ impl DADisk {
     /// Returns: The disk's BSD device name.
     ///
     /// The BSD device name can be used with opendev() to open the BSD device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskgetbsdname(_:)?language=objc)
     #[doc(alias = "DADiskGetBSDName")]
     #[inline]
     pub unsafe fn bsd_name(&self) -> *const c_char {
@@ -339,6 +347,8 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskcopydescription(_:)?language=objc)
     #[doc(alias = "DADiskCopyDescription")]
     #[inline]
     pub unsafe fn description(&self) -> Option<CFRetained<CFDictionary>> {
@@ -358,6 +368,8 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskcopywholedisk(_:)?language=objc)
     #[doc(alias = "DADiskCopyWholeDisk")]
     #[inline]
     pub unsafe fn whole_disk(&self) -> Option<CFRetained<DADisk>> {

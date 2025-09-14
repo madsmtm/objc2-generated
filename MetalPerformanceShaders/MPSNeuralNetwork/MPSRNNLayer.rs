@@ -15,9 +15,13 @@ use crate::*;
 pub struct MPSRNNSequenceDirection(pub NSUInteger);
 impl MPSRNNSequenceDirection {
     /// The input sequence is processed from index zero to array length minus one
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnsequencedirection/forward?language=objc)
     #[doc(alias = "MPSRNNSequenceDirectionForward")]
     pub const Forward: Self = Self(0);
     /// The input sequence is processed from index array length minus one to zero
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnsequencedirection/backward?language=objc)
     #[doc(alias = "MPSRNNSequenceDirectionBackward")]
     pub const Backward: Self = Self(1);
 }
@@ -37,12 +41,18 @@ unsafe impl RefEncode for MPSRNNSequenceDirection {
 pub struct MPSRNNBidirectionalCombineMode(pub NSUInteger);
 impl MPSRNNBidirectionalCombineMode {
     /// The two sequences are kept separate
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode/none?language=objc)
     #[doc(alias = "MPSRNNBidirectionalCombineModeNone")]
     pub const None: Self = Self(0);
     /// The two sequences are summed together to form a single output
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode/add?language=objc)
     #[doc(alias = "MPSRNNBidirectionalCombineModeAdd")]
     pub const Add: Self = Self(1);
     /// The two sequences are concatenated together along the feature channels to form a single output
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode/concatenate?language=objc)
     #[doc(alias = "MPSRNNBidirectionalCombineModeConcatenate")]
     pub const Concatenate: Self = Self(2);
 }
@@ -2155,64 +2165,94 @@ impl MPSRNNMatrixTrainingState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSRNNMatrixId(pub NSUInteger);
 impl MPSRNNMatrixId {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/singlegateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdSingleGateInputWeights")]
     pub const SingleGateInputWeights: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/singlegaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdSingleGateRecurrentWeights")]
     pub const SingleGateRecurrentWeights: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/singlegatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdSingleGateBiasTerms")]
     pub const SingleGateBiasTerms: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstminputgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMInputGateInputWeights")]
     pub const LSTMInputGateInputWeights: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstminputgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMInputGateRecurrentWeights")]
     pub const LSTMInputGateRecurrentWeights: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstminputgatememoryweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMInputGateMemoryWeights")]
     pub const LSTMInputGateMemoryWeights: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstminputgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMInputGateBiasTerms")]
     pub const LSTMInputGateBiasTerms: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmforgetgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMForgetGateInputWeights")]
     pub const LSTMForgetGateInputWeights: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmforgetgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMForgetGateRecurrentWeights")]
     pub const LSTMForgetGateRecurrentWeights: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmforgetgatememoryweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMForgetGateMemoryWeights")]
     pub const LSTMForgetGateMemoryWeights: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmforgetgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMForgetGateBiasTerms")]
     pub const LSTMForgetGateBiasTerms: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmmemorygateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMMemoryGateInputWeights")]
     pub const LSTMMemoryGateInputWeights: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmmemorygaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMMemoryGateRecurrentWeights")]
     pub const LSTMMemoryGateRecurrentWeights: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmmemorygatememoryweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMMemoryGateMemoryWeights")]
     pub const LSTMMemoryGateMemoryWeights: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmmemorygatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMMemoryGateBiasTerms")]
     pub const LSTMMemoryGateBiasTerms: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmoutputgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMOutputGateInputWeights")]
     pub const LSTMOutputGateInputWeights: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmoutputgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMOutputGateRecurrentWeights")]
     pub const LSTMOutputGateRecurrentWeights: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmoutputgatememoryweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMOutputGateMemoryWeights")]
     pub const LSTMOutputGateMemoryWeights: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmoutputgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMOutputGateBiasTerms")]
     pub const LSTMOutputGateBiasTerms: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruinputgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUInputGateInputWeights")]
     pub const GRUInputGateInputWeights: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruinputgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUInputGateRecurrentWeights")]
     pub const GRUInputGateRecurrentWeights: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruinputgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUInputGateBiasTerms")]
     pub const GRUInputGateBiasTerms: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/grurecurrentgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRURecurrentGateInputWeights")]
     pub const GRURecurrentGateInputWeights: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/grurecurrentgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRURecurrentGateRecurrentWeights")]
     pub const GRURecurrentGateRecurrentWeights: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/grurecurrentgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRURecurrentGateBiasTerms")]
     pub const GRURecurrentGateBiasTerms: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruoutputgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUOutputGateInputWeights")]
     pub const GRUOutputGateInputWeights: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruoutputgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUOutputGateRecurrentWeights")]
     pub const GRUOutputGateRecurrentWeights: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruoutputgateinputgateweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUOutputGateInputGateWeights")]
     pub const GRUOutputGateInputGateWeights: Self = Self(27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruoutputgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUOutputGateBiasTerms")]
     pub const GRUOutputGateBiasTerms: Self = Self(28);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/mpsrnnmatrixid_count?language=objc)
     #[doc(alias = "MPSRNNMatrixId_count")]
     pub const _count: Self = Self(29);
 }

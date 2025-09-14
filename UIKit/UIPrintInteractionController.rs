@@ -20,14 +20,19 @@ pub type UIPrintInteractionCompletionHandler =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrinterCutterBehavior(pub NSInteger);
 impl UIPrinterCutterBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior/nocut?language=objc)
     #[doc(alias = "UIPrinterCutterBehaviorNoCut")]
     pub const NoCut: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior/printerdefault?language=objc)
     #[doc(alias = "UIPrinterCutterBehaviorPrinterDefault")]
     pub const PrinterDefault: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior/cutaftereachpage?language=objc)
     #[doc(alias = "UIPrinterCutterBehaviorCutAfterEachPage")]
     pub const CutAfterEachPage: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior/cutaftereachcopy?language=objc)
     #[doc(alias = "UIPrinterCutterBehaviorCutAfterEachCopy")]
     pub const CutAfterEachCopy: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior/cutaftereachjob?language=objc)
     #[doc(alias = "UIPrinterCutterBehaviorCutAfterEachJob")]
     pub const CutAfterEachJob: Self = Self(4);
 }

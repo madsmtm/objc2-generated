@@ -69,6 +69,7 @@ extern "C" {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl CATransform3D {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3disidentity(_:)?language=objc)
     #[doc(alias = "CATransform3DIsIdentity")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -79,6 +80,7 @@ impl CATransform3D {
         unsafe { CATransform3DIsIdentity(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dequaltotransform(_:_:)?language=objc)
     #[doc(alias = "CATransform3DEqualToTransform")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -89,6 +91,7 @@ impl CATransform3D {
         unsafe { CATransform3DEqualToTransform(self, b) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dmaketranslation(_:_:_:)?language=objc)
     #[doc(alias = "CATransform3DMakeTranslation")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -100,6 +103,7 @@ impl CATransform3D {
         unsafe { CATransform3DMakeTranslation(tx, ty, tz) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dmakescale(_:_:_:)?language=objc)
     #[doc(alias = "CATransform3DMakeScale")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -110,6 +114,7 @@ impl CATransform3D {
         unsafe { CATransform3DMakeScale(sx, sy, sz) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dmakerotation(_:_:_:_:)?language=objc)
     #[doc(alias = "CATransform3DMakeRotation")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -125,6 +130,7 @@ impl CATransform3D {
         unsafe { CATransform3DMakeRotation(angle, x, y, z) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dtranslate(_:_:_:_:)?language=objc)
     #[doc(alias = "CATransform3DTranslate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -140,6 +146,7 @@ impl CATransform3D {
         unsafe { CATransform3DTranslate(self, tx, ty, tz) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dscale(_:_:_:_:)?language=objc)
     #[doc(alias = "CATransform3DScale")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -155,6 +162,7 @@ impl CATransform3D {
         unsafe { CATransform3DScale(self, sx, sy, sz) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3drotate(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CATransform3DRotate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -171,6 +179,7 @@ impl CATransform3D {
         unsafe { CATransform3DRotate(self, angle, x, y, z) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dconcat(_:_:)?language=objc)
     #[doc(alias = "CATransform3DConcat")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -181,6 +190,7 @@ impl CATransform3D {
         unsafe { CATransform3DConcat(self, b) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dinvert(_:)?language=objc)
     #[doc(alias = "CATransform3DInvert")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -191,6 +201,7 @@ impl CATransform3D {
         unsafe { CATransform3DInvert(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dmakeaffinetransform(_:)?language=objc)
     #[doc(alias = "CATransform3DMakeAffineTransform")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -201,6 +212,7 @@ impl CATransform3D {
         unsafe { CATransform3DMakeAffineTransform(m) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3disaffine(_:)?language=objc)
     #[doc(alias = "CATransform3DIsAffine")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -211,6 +223,7 @@ impl CATransform3D {
         unsafe { CATransform3DIsAffine(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dgetaffinetransform(_:)?language=objc)
     #[doc(alias = "CATransform3DGetAffineTransform")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

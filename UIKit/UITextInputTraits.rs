@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAutocapitalizationType(pub NSInteger);
 impl UITextAutocapitalizationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype/none?language=objc)
     #[doc(alias = "UITextAutocapitalizationTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype/words?language=objc)
     #[doc(alias = "UITextAutocapitalizationTypeWords")]
     pub const Words: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype/sentences?language=objc)
     #[doc(alias = "UITextAutocapitalizationTypeSentences")]
     pub const Sentences: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype/allcharacters?language=objc)
     #[doc(alias = "UITextAutocapitalizationTypeAllCharacters")]
     pub const AllCharacters: Self = Self(3);
 }
@@ -37,10 +41,13 @@ unsafe impl RefEncode for UITextAutocapitalizationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAutocorrectionType(pub NSInteger);
 impl UITextAutocorrectionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/default?language=objc)
     #[doc(alias = "UITextAutocorrectionTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/no?language=objc)
     #[doc(alias = "UITextAutocorrectionTypeNo")]
     pub const No: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/yes?language=objc)
     #[doc(alias = "UITextAutocorrectionTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -59,10 +66,13 @@ unsafe impl RefEncode for UITextAutocorrectionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSpellCheckingType(pub NSInteger);
 impl UITextSpellCheckingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextspellcheckingtype/default?language=objc)
     #[doc(alias = "UITextSpellCheckingTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextspellcheckingtype/no?language=objc)
     #[doc(alias = "UITextSpellCheckingTypeNo")]
     pub const No: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextspellcheckingtype/yes?language=objc)
     #[doc(alias = "UITextSpellCheckingTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -81,10 +91,13 @@ unsafe impl RefEncode for UITextSpellCheckingType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSmartQuotesType(pub NSInteger);
 impl UITextSmartQuotesType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/default?language=objc)
     #[doc(alias = "UITextSmartQuotesTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/no?language=objc)
     #[doc(alias = "UITextSmartQuotesTypeNo")]
     pub const No: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/yes?language=objc)
     #[doc(alias = "UITextSmartQuotesTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -103,10 +116,13 @@ unsafe impl RefEncode for UITextSmartQuotesType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSmartDashesType(pub NSInteger);
 impl UITextSmartDashesType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/default?language=objc)
     #[doc(alias = "UITextSmartDashesTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/no?language=objc)
     #[doc(alias = "UITextSmartDashesTypeNo")]
     pub const No: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/yes?language=objc)
     #[doc(alias = "UITextSmartDashesTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -125,10 +141,13 @@ unsafe impl RefEncode for UITextSmartDashesType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSmartInsertDeleteType(pub NSInteger);
 impl UITextSmartInsertDeleteType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartinsertdeletetype/default?language=objc)
     #[doc(alias = "UITextSmartInsertDeleteTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartinsertdeletetype/no?language=objc)
     #[doc(alias = "UITextSmartInsertDeleteTypeNo")]
     pub const No: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartinsertdeletetype/yes?language=objc)
     #[doc(alias = "UITextSmartInsertDeleteTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -147,10 +166,13 @@ unsafe impl RefEncode for UITextSmartInsertDeleteType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextInlinePredictionType(pub NSInteger);
 impl UITextInlinePredictionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinlinepredictiontype/default?language=objc)
     #[doc(alias = "UITextInlinePredictionTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinlinepredictiontype/no?language=objc)
     #[doc(alias = "UITextInlinePredictionTypeNo")]
     pub const No: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinlinepredictiontype/yes?language=objc)
     #[doc(alias = "UITextInlinePredictionTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -169,10 +191,13 @@ unsafe impl RefEncode for UITextInlinePredictionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextMathExpressionCompletionType(pub NSInteger);
 impl UITextMathExpressionCompletionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextmathexpressioncompletiontype/default?language=objc)
     #[doc(alias = "UITextMathExpressionCompletionTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextmathexpressioncompletiontype/no?language=objc)
     #[doc(alias = "UITextMathExpressionCompletionTypeNo")]
     pub const No: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextmathexpressioncompletiontype/yes?language=objc)
     #[doc(alias = "UITextMathExpressionCompletionTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -191,30 +216,43 @@ unsafe impl RefEncode for UITextMathExpressionCompletionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIKeyboardType(pub NSInteger);
 impl UIKeyboardType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/default?language=objc)
     #[doc(alias = "UIKeyboardTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/asciicapable?language=objc)
     #[doc(alias = "UIKeyboardTypeASCIICapable")]
     pub const ASCIICapable: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/numbersandpunctuation?language=objc)
     #[doc(alias = "UIKeyboardTypeNumbersAndPunctuation")]
     pub const NumbersAndPunctuation: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/url?language=objc)
     #[doc(alias = "UIKeyboardTypeURL")]
     pub const URL: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/numberpad?language=objc)
     #[doc(alias = "UIKeyboardTypeNumberPad")]
     pub const NumberPad: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/phonepad?language=objc)
     #[doc(alias = "UIKeyboardTypePhonePad")]
     pub const PhonePad: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/namephonepad?language=objc)
     #[doc(alias = "UIKeyboardTypeNamePhonePad")]
     pub const NamePhonePad: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/emailaddress?language=objc)
     #[doc(alias = "UIKeyboardTypeEmailAddress")]
     pub const EmailAddress: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/decimalpad?language=objc)
     #[doc(alias = "UIKeyboardTypeDecimalPad")]
     pub const DecimalPad: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/twitter?language=objc)
     #[doc(alias = "UIKeyboardTypeTwitter")]
     pub const Twitter: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/websearch?language=objc)
     #[doc(alias = "UIKeyboardTypeWebSearch")]
     pub const WebSearch: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/asciicapablenumberpad?language=objc)
     #[doc(alias = "UIKeyboardTypeASCIICapableNumberPad")]
     pub const ASCIICapableNumberPad: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/alphabet?language=objc)
     #[doc(alias = "UIKeyboardTypeAlphabet")]
     pub const Alphabet: Self = Self(UIKeyboardType::ASCIICapable.0);
 }
@@ -233,12 +271,16 @@ unsafe impl RefEncode for UIKeyboardType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIKeyboardAppearance(pub NSInteger);
 impl UIKeyboardAppearance {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance/default?language=objc)
     #[doc(alias = "UIKeyboardAppearanceDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance/dark?language=objc)
     #[doc(alias = "UIKeyboardAppearanceDark")]
     pub const Dark: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance/light?language=objc)
     #[doc(alias = "UIKeyboardAppearanceLight")]
     pub const Light: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance/alert?language=objc)
     #[doc(alias = "UIKeyboardAppearanceAlert")]
     pub const Alert: Self = Self(UIKeyboardAppearance::Dark.0);
 }
@@ -257,28 +299,40 @@ unsafe impl RefEncode for UIKeyboardAppearance {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIReturnKeyType(pub NSInteger);
 impl UIReturnKeyType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/default?language=objc)
     #[doc(alias = "UIReturnKeyDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/go?language=objc)
     #[doc(alias = "UIReturnKeyGo")]
     pub const Go: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/google?language=objc)
     #[doc(alias = "UIReturnKeyGoogle")]
     pub const Google: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/join?language=objc)
     #[doc(alias = "UIReturnKeyJoin")]
     pub const Join: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/next?language=objc)
     #[doc(alias = "UIReturnKeyNext")]
     pub const Next: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/route?language=objc)
     #[doc(alias = "UIReturnKeyRoute")]
     pub const Route: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/search?language=objc)
     #[doc(alias = "UIReturnKeySearch")]
     pub const Search: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/send?language=objc)
     #[doc(alias = "UIReturnKeySend")]
     pub const Send: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/yahoo?language=objc)
     #[doc(alias = "UIReturnKeyYahoo")]
     pub const Yahoo: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/done?language=objc)
     #[doc(alias = "UIReturnKeyDone")]
     pub const Done: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/emergencycall?language=objc)
     #[doc(alias = "UIReturnKeyEmergencyCall")]
     pub const EmergencyCall: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/continue?language=objc)
     #[doc(alias = "UIReturnKeyContinue")]
     pub const Continue: Self = Self(11);
 }
@@ -298,15 +352,23 @@ unsafe impl RefEncode for UIReturnKeyType {
 pub struct UIWritingToolsBehavior(pub NSInteger);
 impl UIWritingToolsBehavior {
     /// Writing Tools will ignore this view
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior/none?language=objc)
     #[doc(alias = "UIWritingToolsBehaviorNone")]
     pub const None: Self = Self(-1);
     /// System-defined behavior, may resolve to `None`, `Complete`, or `Limited`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior/default?language=objc)
     #[doc(alias = "UIWritingToolsBehaviorDefault")]
     pub const Default: Self = Self(0);
     /// The complete inline-editing experience will be provided if possible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior/complete?language=objc)
     #[doc(alias = "UIWritingToolsBehaviorComplete")]
     pub const Complete: Self = Self(1);
     /// The limited, overlay-panel experience will be provided if possible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior/limited?language=objc)
     #[doc(alias = "UIWritingToolsBehaviorLimited")]
     pub const Limited: Self = Self(2);
 }
@@ -327,21 +389,33 @@ pub struct UIWritingToolsResultOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIWritingToolsResultOptions: NSUInteger {
 /// System-defined behavior
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/uiwritingtoolsresultdefault?language=objc)
         #[doc(alias = "UIWritingToolsResultDefault")]
         const Default = 0;
 /// Writing Tools will provide plain text in proofreading suggestions or rewrites
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/plaintext?language=objc)
         #[doc(alias = "UIWritingToolsResultPlainText")]
         const PlainText = 1<<0;
 /// As well as plain text, Writing Tools will provide text attributes in proofreading suggestions or rewrites that are natively supported or known to be easily adopted (such as lists)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/richtext?language=objc)
         #[doc(alias = "UIWritingToolsResultRichText")]
         const RichText = 1<<1;
 /// implies `RichText`,  and Writing Tools may provide attributes for list layout
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/list?language=objc)
         #[doc(alias = "UIWritingToolsResultList")]
         const List = 1<<2;
 /// implies `RichText`,  and Writing Tools may provide attributes for tabular layout
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/table?language=objc)
         #[doc(alias = "UIWritingToolsResultTable")]
         const Table = 1<<3;
 /// implies `RichText`, `List`, and `Table`, and Writing Tools may provide text with presentation intent attributes. Writing Tools will use `NSPresentationIntent` instead of `NSTextList` and `NSTextTable` to represent lists and tables.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/presentationintent?language=objc)
         #[doc(alias = "UIWritingToolsResultPresentationIntent")]
         const PresentationIntent = 1<<4;
     }

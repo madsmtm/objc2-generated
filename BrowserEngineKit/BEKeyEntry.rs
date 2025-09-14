@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BEKeyPressState(pub NSInteger);
 impl BEKeyPressState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeyentry/keypressstate/down?language=objc)
     #[doc(alias = "BEKeyPressStateDown")]
     pub const Down: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeyentry/keypressstate/up?language=objc)
     #[doc(alias = "BEKeyPressStateUp")]
     pub const Up: Self = Self(2);
 }

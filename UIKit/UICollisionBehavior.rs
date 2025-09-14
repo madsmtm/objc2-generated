@@ -16,10 +16,13 @@ use crate::*;
 pub struct UICollisionBehaviorMode(pub NSUInteger);
 bitflags::bitflags! {
     impl UICollisionBehaviorMode: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollisionbehavior/mode/items?language=objc)
         #[doc(alias = "UICollisionBehaviorModeItems")]
         const Items = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollisionbehavior/mode/boundaries?language=objc)
         #[doc(alias = "UICollisionBehaviorModeBoundaries")]
         const Boundaries = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollisionbehavior/mode/everything?language=objc)
         #[doc(alias = "UICollisionBehaviorModeEverything")]
         const Everything = NSUIntegerMax as _;
     }

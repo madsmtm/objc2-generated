@@ -342,6 +342,8 @@ unsafe impl RefEncode for GLKVertexAttributeParameters {
 
 extern "C-unwind" {
     /// Returns parameters to use in a call to glVertexAttribPointer given a MDLVertexFormat
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvertexattributeparametersfrommodelio(_:)?language=objc)
     #[cfg(all(feature = "objc2-model-io", feature = "objc2-open-gl"))]
     #[cfg(target_os = "macos")]
     pub fn GLKVertexAttributeParametersFromModelIO(

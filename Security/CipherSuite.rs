@@ -353,14 +353,19 @@ pub const SSL_NO_SUCH_CIPHERSUITE: SSLCipherSuite = 65535;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLCiphersuiteGroup(pub c_int);
 impl SSLCiphersuiteGroup {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslciphersuitegroup/default?language=objc)
     #[doc(alias = "kSSLCiphersuiteGroupDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslciphersuitegroup/compatibility?language=objc)
     #[doc(alias = "kSSLCiphersuiteGroupCompatibility")]
     pub const Compatibility: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslciphersuitegroup/legacy?language=objc)
     #[doc(alias = "kSSLCiphersuiteGroupLegacy")]
     pub const Legacy: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslciphersuitegroup/ats?language=objc)
     #[doc(alias = "kSSLCiphersuiteGroupATS")]
     pub const ATS: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslciphersuitegroup/atscompatibility?language=objc)
     #[doc(alias = "kSSLCiphersuiteGroupATSCompatibility")]
     pub const ATSCompatibility: Self = Self(4);
 }

@@ -7,6 +7,8 @@ extern "C-unwind" {
     /// Gets the current host time.
     ///
     /// Returns: A UInt64 containing the current host time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiogetcurrenthosttime()?language=objc)
     pub fn AudioGetCurrentHostTime() -> u64;
 }
 
@@ -14,6 +16,8 @@ extern "C-unwind" {
     /// Gets the number of ticks per second in the host time base.
     ///
     /// Returns: A Float64 containing the number of ticks per second in the host time base.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiogethostclockfrequency()?language=objc)
     pub fn AudioGetHostClockFrequency() -> f64;
 }
 
@@ -23,6 +27,8 @@ extern "C-unwind" {
     ///
     /// Returns: A UInt32 containing the smallest number of ticks that two succeeding values will
     /// ever differ.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiogethostclockminimumtimedelta()?language=objc)
     pub fn AudioGetHostClockMinimumTimeDelta() -> u32;
 }
 
@@ -32,6 +38,8 @@ extern "C-unwind" {
     /// Parameter `inHostTime`: A UInt64 containing the host time to convert.
     ///
     /// Returns: A UInt64 containining the converted host time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioconverthosttimetonanos(_:)?language=objc)
     pub fn AudioConvertHostTimeToNanos(in_host_time: u64) -> u64;
 }
 
@@ -41,5 +49,7 @@ extern "C-unwind" {
     /// Parameter `inNanos`: A UInt64 containing the nanosecond time to convert.
     ///
     /// Returns: A UInt64 containining the converted nanosecond time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioconvertnanostohosttime(_:)?language=objc)
     pub fn AudioConvertNanosToHostTime(in_nanos: u64) -> u64;
 }

@@ -548,6 +548,8 @@ pub const kIconServicesUpdateIfNeededFlag: c_uint = 0x00000002;
 pub const kIconServicesCatalogInfoMask: c_uint = 531550;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447221-geticonrefowners?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_icon_ref` must be a valid pointer.
@@ -557,6 +559,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441852-acquireiconref?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -565,6 +569,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443504-releaseiconref?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -573,6 +579,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442776-geticonref?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -586,6 +594,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441712-geticonreffromfolder?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -601,6 +611,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447966-geticonreffromfileinfo?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_ref` must be a valid pointer.
@@ -628,6 +640,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445758-geticonreffromtypeinfo?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_extension` might not allow `None`.
@@ -645,6 +659,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443251-geticonreffromiconfamilyptr?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_icon_family_ptr` must be a valid pointer.
@@ -659,6 +675,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447113-geticonreffromcomponent?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_component` must be a valid pointer.
@@ -670,6 +688,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443918-registericonreffromiconfamily?language=objc)
+    ///
     /// # Safety
     ///
     /// - `icon_family` must be a valid pointer.
@@ -685,6 +705,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446795-registericonreffromfsref?language=objc)
+    ///
     /// # Safety
     ///
     /// - `icon_file` must be a valid pointer.
@@ -700,11 +722,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444660-unregistericonref?language=objc)
     #[deprecated = "You do not need to unregister icons."]
     pub fn UnregisterIconRef(creator: OSType, icon_type: OSType) -> OSErr;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445921-updateiconref?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -713,6 +738,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445253-overrideiconref?language=objc)
+    ///
     /// # Safety
     ///
     /// - `old_icon_ref` must be a valid pointer.
@@ -722,6 +749,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445832-removeiconrefoverride?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -730,6 +759,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450541-compositeiconref?language=objc)
+    ///
     /// # Safety
     ///
     /// - `background_icon_ref` must be a valid pointer.
@@ -744,6 +775,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446300-isiconrefcomposite?language=objc)
+    ///
     /// # Safety
     ///
     /// - `composite_icon_ref` must be a valid pointer.
@@ -757,6 +790,8 @@ extern "C-unwind" {
     ) -> OSErr;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450233-isvalidiconref?language=objc)
+///
 /// # Safety
 ///
 /// `the_icon_ref` must be a valid pointer.
@@ -770,6 +805,8 @@ pub unsafe extern "C-unwind" fn IsValidIconRef(the_icon_ref: IconRef) -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446627-isdataavailableiniconref?language=objc)
+///
 /// # Safety
 ///
 /// `in_icon_ref` must be a valid pointer.
@@ -786,6 +823,7 @@ pub unsafe extern "C-unwind" fn IsDataAvailableInIconRef(
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449302-setcustomiconsenabled?language=objc)
 #[deprecated = "This function is no longer supported. Use NSWorkspace and NSImage to get icons."]
 #[inline]
 pub unsafe extern "C-unwind" fn SetCustomIconsEnabled(
@@ -799,6 +837,8 @@ pub unsafe extern "C-unwind" fn SetCustomIconsEnabled(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442255-getcustomiconsenabled?language=objc)
+    ///
     /// # Safety
     ///
     /// `custom_icons_enabled` must be a valid pointer.
@@ -807,6 +847,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444939-readiconfromfsref?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.

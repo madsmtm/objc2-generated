@@ -14,10 +14,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMOdometerOriginDevice(pub NSInteger);
 impl CMOdometerOriginDevice {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmodometerorigindevice/unknown?language=objc)
     #[doc(alias = "CMOdometerOriginDeviceUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmodometerorigindevice/local?language=objc)
     #[doc(alias = "CMOdometerOriginDeviceLocal")]
     pub const Local: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmodometerorigindevice/remote?language=objc)
     #[doc(alias = "CMOdometerOriginDeviceRemote")]
     pub const Remote: Self = Self(2);
 }

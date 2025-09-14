@@ -26,8 +26,10 @@ use crate::*;
 pub struct AudioFileStreamPropertyFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamPropertyFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags/propertyiscached?language=objc)
         #[doc(alias = "kAudioFileStreamPropertyFlag_PropertyIsCached")]
         const PropertyIsCached = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags/cacheproperty?language=objc)
         #[doc(alias = "kAudioFileStreamPropertyFlag_CacheProperty")]
         const CacheProperty = 2;
     }
@@ -52,6 +54,7 @@ unsafe impl RefEncode for AudioFileStreamPropertyFlags {
 pub struct AudioFileStreamParseFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamParseFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparseflags/discontinuity?language=objc)
         #[doc(alias = "kAudioFileStreamParseFlag_Discontinuity")]
         const Discontinuity = 1;
     }
@@ -74,6 +77,7 @@ unsafe impl RefEncode for AudioFileStreamParseFlags {
 pub struct AudioFileStreamSeekFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamSeekFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseekflags/offsetisestimated?language=objc)
         #[doc(alias = "kAudioFileStreamSeekFlag_OffsetIsEstimated")]
         const OffsetIsEstimated = 1;
     }
@@ -236,6 +240,8 @@ extern "C-unwind" {
     /// - `in_property_listener_proc` must be implemented correctly.
     /// - `in_packets_proc` must be implemented correctly.
     /// - `out_audio_file_stream` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
     pub fn AudioFileStreamOpen(
         in_client_data: *mut c_void,
@@ -266,6 +272,8 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file_stream` must be a valid pointer.
     /// - `in_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparsebytes(_:_:_:_:)?language=objc)
     pub fn AudioFileStreamParseBytes(
         in_audio_file_stream: AudioFileStreamID,
         in_data_byte_size: u32,
@@ -298,6 +306,8 @@ extern "C-unwind" {
     /// - `in_audio_file_stream` must be a valid pointer.
     /// - `out_data_byte_offset` must be a valid pointer.
     /// - `io_flags` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseek(_:_:_:_:)?language=objc)
     pub fn AudioFileStreamSeek(
         in_audio_file_stream: AudioFileStreamID,
         in_packet_offset: i64,
@@ -327,6 +337,8 @@ extern "C-unwind" {
     /// - `in_audio_file_stream` must be a valid pointer.
     /// - `out_property_data_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamgetpropertyinfo(_:_:_:_:)?language=objc)
     pub fn AudioFileStreamGetPropertyInfo(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -356,6 +368,8 @@ extern "C-unwind" {
     /// - `in_audio_file_stream` must be a valid pointer.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamgetproperty(_:_:_:_:)?language=objc)
     pub fn AudioFileStreamGetProperty(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -383,6 +397,8 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file_stream` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamsetproperty(_:_:_:_:)?language=objc)
     pub fn AudioFileStreamSetProperty(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -400,5 +416,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_file_stream` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamclose(_:)?language=objc)
     pub fn AudioFileStreamClose(in_audio_file_stream: AudioFileStreamID) -> OSStatus;
 }

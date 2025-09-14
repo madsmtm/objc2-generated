@@ -20,20 +20,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageOrientation(pub NSInteger);
 impl UIImageOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/up?language=objc)
     #[doc(alias = "UIImageOrientationUp")]
     pub const Up: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/down?language=objc)
     #[doc(alias = "UIImageOrientationDown")]
     pub const Down: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/left?language=objc)
     #[doc(alias = "UIImageOrientationLeft")]
     pub const Left: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/right?language=objc)
     #[doc(alias = "UIImageOrientationRight")]
     pub const Right: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/upmirrored?language=objc)
     #[doc(alias = "UIImageOrientationUpMirrored")]
     pub const UpMirrored: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/downmirrored?language=objc)
     #[doc(alias = "UIImageOrientationDownMirrored")]
     pub const DownMirrored: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/leftmirrored?language=objc)
     #[doc(alias = "UIImageOrientationLeftMirrored")]
     pub const LeftMirrored: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/rightmirrored?language=objc)
     #[doc(alias = "UIImageOrientationRightMirrored")]
     pub const RightMirrored: Self = Self(7);
 }
@@ -67,10 +75,13 @@ unsafe impl RefEncode for UIImageResizingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageRenderingMode(pub NSInteger);
 impl UIImageRenderingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/renderingmode-swift.enum/automatic?language=objc)
     #[doc(alias = "UIImageRenderingModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/renderingmode-swift.enum/alwaysoriginal?language=objc)
     #[doc(alias = "UIImageRenderingModeAlwaysOriginal")]
     pub const AlwaysOriginal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/renderingmode-swift.enum/alwaystemplate?language=objc)
     #[doc(alias = "UIImageRenderingModeAlwaysTemplate")]
     pub const AlwaysTemplate: Self = Self(2);
 }
@@ -822,6 +833,8 @@ unsafe impl CIImageUIKitAdditions for CIImage {}
 
 impl UIImage {
     /// return image as PNG. May return nil if image has no CGImageRef or invalid bitmap format
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/pngdata()?language=objc)
     #[doc(alias = "UIImagePNGRepresentation")]
     #[inline]
     pub fn png_representation(&self) -> Option<Retained<NSData>> {
@@ -833,6 +846,8 @@ impl UIImage {
     }
 
     /// return image as JPEG. May return nil if image has no CGImageRef or invalid bitmap format. compression is 0(most)..1(least)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/jpegdata(compressionquality:)?language=objc)
     #[doc(alias = "UIImageJPEGRepresentation")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -848,6 +863,8 @@ impl UIImage {
     }
 
     /// Returns HEIC data representing the image, or nil if such a representation could not be generated. HEIC is recommended for efficiently storing all kinds of images, including those with high dynamic range content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/heicdata()?language=objc)
     #[doc(alias = "UIImageHEICRepresentation")]
     #[inline]
     pub fn heic_representation(&self) -> Option<Retained<NSData>> {

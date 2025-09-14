@@ -15,14 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAuthorizationStatus(pub NSInteger);
 impl PHAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "PHAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus/restricted?language=objc)
     #[doc(alias = "PHAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus/denied?language=objc)
     #[doc(alias = "PHAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus/authorized?language=objc)
     #[doc(alias = "PHAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus/limited?language=objc)
     #[doc(alias = "PHAuthorizationStatusLimited")]
     pub const Limited: Self = Self(4);
 }
@@ -41,8 +46,10 @@ unsafe impl RefEncode for PHAuthorizationStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAccessLevel(pub NSInteger);
 impl PHAccessLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phaccesslevel/addonly?language=objc)
     #[doc(alias = "PHAccessLevelAddOnly")]
     pub const AddOnly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phaccesslevel/readwrite?language=objc)
     #[doc(alias = "PHAccessLevelReadWrite")]
     pub const ReadWrite: Self = Self(2);
 }

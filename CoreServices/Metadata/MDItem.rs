@@ -28,6 +28,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for MDItem {
     /// Returns the type identifier of all MDItem instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1427168-mditemgettypeid?language=objc)
     #[doc(alias = "MDItemGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -56,6 +58,8 @@ impl MDItem {
     ///
     /// - `allocator` might not allow `None`.
     /// - `path` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1426917-mditemcreate?language=objc)
     #[doc(alias = "MDItemCreate")]
     #[inline]
     pub unsafe fn new(
@@ -89,6 +93,8 @@ impl MDItem {
     ///
     /// - `allocator` might not allow `None`.
     /// - `url` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1427034-mditemcreatewithurl?language=objc)
     #[doc(alias = "MDItemCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
@@ -121,6 +127,8 @@ impl MDItem {
 /// - `allocator` might not allow `None`.
 /// - `urls` generic must be of the correct type.
 /// - `urls` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1427086-mditemscreatewithurls?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDItemsCreateWithURLs(
     allocator: Option<&CFAllocator>,
@@ -149,6 +157,8 @@ impl MDItem {
     /// # Safety
     ///
     /// `name` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1427080-mditemcopyattribute?language=objc)
     #[doc(alias = "MDItemCopyAttribute")]
     #[inline]
     pub unsafe fn attribute(&self, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
@@ -178,6 +188,8 @@ impl MDItem {
     ///
     /// - `names` generic must be of the correct type.
     /// - `names` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1426980-mditemcopyattributes?language=objc)
     #[doc(alias = "MDItemCopyAttributes")]
     #[inline]
     pub unsafe fn attributes(&self, names: Option<&CFArray>) -> Option<CFRetained<CFDictionary>> {
@@ -197,6 +209,8 @@ impl MDItem {
     ///
     /// Returns: A CFArray of CFString attribute names, or NULL on
     /// failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1427066-mditemcopyattributenames?language=objc)
     #[doc(alias = "MDItemCopyAttributeNames")]
     #[inline]
     pub unsafe fn attribute_names(&self) -> Option<CFRetained<CFArray>> {
@@ -225,6 +239,8 @@ impl MDItem {
 /// - `items` might not allow `None`.
 /// - `names` generic must be of the correct type.
 /// - `names` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1426975-mditemscopyattributes?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDItemsCopyAttributes(
     items: Option<&CFArray>,
@@ -241,6 +257,8 @@ pub unsafe extern "C-unwind" fn MDItemsCopyAttributes(
 }
 
 impl MDItem {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/4485578-mditemgetcachefiledescriptors?language=objc)
+    ///
     /// # Safety
     ///
     /// - `items` generic must be of the correct type.

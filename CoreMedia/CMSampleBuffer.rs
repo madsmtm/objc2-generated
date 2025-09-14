@@ -264,6 +264,8 @@ impl CMSampleBuffer {
     /// - `sample_timing_array` must be a valid pointer or null.
     /// - `sample_size_array` must be a valid pointer or null.
     /// - `sample_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercreate(allocator:databuffer:dataready:makedatareadycallback:refcon:formatdescription:samplecount:sampletimingentrycount:sampletimingarray:samplesizeentrycount:samplesizearray:samplebufferout:)?language=objc)
     #[doc(alias = "CMSampleBufferCreate")]
     #[cfg(all(
         feature = "CMBase",
@@ -330,6 +332,8 @@ impl CMSampleBuffer {
     /// - `sample_size_array` must be a valid pointer or null.
     /// - `sample_buffer_out` must be a valid pointer.
     /// - `make_data_ready_handler` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercreatewithmakedatareadyhandler(_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CMSampleBufferCreateWithMakeDataReadyHandler")]
     #[cfg(all(
         feature = "CMBase",
@@ -515,6 +519,8 @@ impl CMSampleBuffer {
     /// - `sample_timing_array` must be a valid pointer or null.
     /// - `sample_size_array` must be a valid pointer or null.
     /// - `sample_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercreateready(allocator:databuffer:formatdescription:samplecount:sampletimingentrycount:sampletimingarray:samplesizeentrycount:samplesizearray:samplebufferout:)?language=objc)
     #[doc(alias = "CMSampleBufferCreateReady")]
     #[cfg(all(
         feature = "CMBase",
@@ -575,6 +581,8 @@ impl CMSampleBuffer {
 /// - `make_data_ready_refcon` must be a valid pointer or null.
 /// - `packet_descriptions` must be a valid pointer or null.
 /// - `sample_buffer_out` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiosamplebuffercreatewithpacketdescriptions(allocator:databuffer:dataready:makedatareadycallback:refcon:formatdescription:samplecount:presentationtimestamp:packetdescriptions:samplebufferout:)?language=objc)
 #[cfg(all(
     feature = "CMBase",
     feature = "CMBlockBuffer",
@@ -634,6 +642,8 @@ pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateWithPacketDescriptions(
 /// - `packet_descriptions` must be a valid pointer or null.
 /// - `sample_buffer_out` must be a valid pointer.
 /// - `make_data_ready_handler` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiosamplebuffercreatewithpacketdescriptionsandmakedatareadyhandler(_:_:_:_:_:_:_:_:_:)?language=objc)
 #[cfg(all(
     feature = "CMBase",
     feature = "CMBlockBuffer",
@@ -695,6 +705,8 @@ extern "C-unwind" {
     ///
     /// - `packet_descriptions` must be a valid pointer or null.
     /// - `sample_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiosamplebuffercreatereadywithpacketdescriptions(allocator:databuffer:formatdescription:samplecount:presentationtimestamp:packetdescriptions:samplebufferout:)?language=objc)
     #[cfg(all(
         feature = "CMBase",
         feature = "CMBlockBuffer",
@@ -742,6 +754,8 @@ impl CMSampleBuffer {
     /// - `make_data_ready_refcon` must be a valid pointer or null.
     /// - `sample_timing` must be a valid pointer.
     /// - `sample_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercreateforimagebuffer(allocator:imagebuffer:dataready:makedatareadycallback:refcon:formatdescription:sampletiming:samplebufferout:)?language=objc)
     #[doc(alias = "CMSampleBufferCreateForImageBuffer")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -794,6 +808,8 @@ impl CMSampleBuffer {
     /// - `sample_timing` must be a valid pointer.
     /// - `sample_buffer_out` must be a valid pointer.
     /// - `make_data_ready_handler` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercreateforimagebufferwithmakedatareadyhandler(_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -864,6 +880,8 @@ impl CMSampleBuffer {
     ///
     /// - `sample_timing` must be a valid pointer.
     /// - `sample_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercreatereadywithimagebuffer(allocator:imagebuffer:formatdescription:sampletiming:samplebufferout:)?language=objc)
     #[doc(alias = "CMSampleBufferCreateReadyWithImageBuffer")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -908,6 +926,8 @@ impl CMSampleBuffer {
     /// # Safety
     ///
     /// `sample_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercreatecopy(allocator:samplebuffer:samplebufferout:)?language=objc)
     #[doc(alias = "CMSampleBufferCreateCopy")]
     #[inline]
     pub unsafe fn create_copy(
@@ -938,6 +958,8 @@ impl CMSampleBuffer {
     ///
     /// - `sample_timing_array` must be a valid pointer or null.
     /// - `sample_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercreatecopywithnewtiming(allocator:samplebuffer:sampletimingentrycount:sampletimingarray:samplebufferout:)?language=objc)
     #[doc(alias = "CMSampleBufferCreateCopyWithNewTiming")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -975,6 +997,8 @@ impl CMSampleBuffer {
     /// # Safety
     ///
     /// `sample_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercopysamplebufferforrange(allocator:samplebuffer:samplerange:samplebufferout:)?language=objc)
     #[doc(alias = "CMSampleBufferCopySampleBufferForRange")]
     #[inline]
     pub unsafe fn copy_sample_buffer_for_range(
@@ -1003,6 +1027,8 @@ unsafe impl ConcreteType for CMSampleBuffer {
     /// You can check if a CFTypeRef object is actually a CMSampleBuffer by comparing CFGetTypeID(object) with CMSampleBufferGetTypeID().
     ///
     /// Returns: CFTypeID of CMSampleBuffer objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergettypeid()?language=objc)
     #[doc(alias = "CMSampleBufferGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1023,6 +1049,8 @@ impl CMSampleBuffer {
     /// size, timing, and format information before the data is read.  Such services may create CMSampleBuffers with that
     /// information and insert them into queues early, and use this API to attach the CMBlockBuffers later, when the data
     /// becomes ready.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffersetdatabuffer(_:newvalue:)?language=objc)
     #[doc(alias = "CMSampleBufferSetDataBuffer")]
     #[cfg(feature = "CMBlockBuffer")]
     #[inline]
@@ -1042,6 +1070,8 @@ impl CMSampleBuffer {
     ///
     /// Returns: CMBlockBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CMBlockBuffer, if the
     /// CMSampleBuffer contains a CVImageBuffer, or if there is some other error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetdatabuffer(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetDataBuffer")]
     #[cfg(feature = "CMBlockBuffer")]
     #[inline]
@@ -1060,6 +1090,8 @@ impl CMSampleBuffer {
     ///
     /// Returns: CVImageBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CVImageBuffer, if the
     /// CMSampleBuffer contains a CMBlockBuffer, or if there is some other error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetimagebuffer(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetImageBuffer")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
@@ -1081,6 +1113,8 @@ impl CMSampleBuffer {
     /// # Safety
     ///
     /// `buffer_list` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffersetdatabufferfromaudiobufferlist(_:blockbufferallocator:blockbuffermemoryallocator:flags:bufferlist:)?language=objc)
     #[doc(alias = "CMSampleBufferSetDataBufferFromAudioBufferList")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
@@ -1124,6 +1158,8 @@ impl CMSampleBuffer {
     /// - `buffer_list_size_needed_out` must be a valid pointer or null.
     /// - `buffer_list_out` must be a valid pointer or null.
     /// - `block_buffer_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetaudiobufferlistwithretainedblockbuffer(_:bufferlistsizeneededout:bufferlistout:bufferlistsize:blockbufferallocator:blockbuffermemoryallocator:flags:blockbufferout:)?language=objc)
     #[doc(alias = "CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-audio-types"))]
     #[inline]
@@ -1175,6 +1211,8 @@ impl CMSampleBuffer {
     ///
     /// - `packet_descriptions_out` must be a valid pointer or null.
     /// - `packet_descriptions_size_needed_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetaudiostreampacketdescriptions(_:allocatedsize:packetdescriptionsout:packetdescriptionssizeneededout:)?language=objc)
     #[doc(alias = "CMSampleBufferGetAudioStreamPacketDescriptions")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
@@ -1217,6 +1255,8 @@ impl CMSampleBuffer {
     ///
     /// - `packet_descriptions_pointer_out` must be a valid pointer or null.
     /// - `packet_descriptions_size_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetaudiostreampacketdescriptionsptr(_:packetdescriptionspointerout:sizeout:)?language=objc)
     #[doc(alias = "CMSampleBufferGetAudioStreamPacketDescriptionsPtr")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
@@ -1254,6 +1294,8 @@ impl CMSampleBuffer {
     /// # Safety
     ///
     /// `buffer_list` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercopypcmdataintoaudiobufferlist(_:at:framecount:into:)?language=objc)
     #[doc(alias = "CMSampleBufferCopyPCMDataIntoAudioBufferList")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
@@ -1286,6 +1328,8 @@ impl CMSampleBuffer {
     /// There is no way to undo this operation.  The only way to get an "unready"
     /// CMSampleBuffer is to call CMSampleBufferCreate with the dataReady parameter
     /// set to false. Example of usage: in a read completion routine.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffersetdataready(_:)?language=objc)
     #[doc(alias = "CMSampleBufferSetDataReady")]
     #[inline]
     pub unsafe fn set_data_ready(&self) -> OSStatus {
@@ -1299,6 +1343,8 @@ impl CMSampleBuffer {
     ///
     /// Returns: Whether or not the CMSampleBuffer's data is ready.  True is returned for special marker buffers, even
     /// though they have no data. False is returned if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferdataisready(_:)?language=objc)
     #[doc(alias = "CMSampleBufferDataIsReady")]
     #[inline]
     pub unsafe fn data_is_ready(&self) -> bool {
@@ -1310,6 +1356,8 @@ impl CMSampleBuffer {
     }
 
     /// Marks a CMSampleBuffer's data as "failed", to indicate that the data will not become ready.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffersetdatafailed(_:status:)?language=objc)
     #[doc(alias = "CMSampleBufferSetDataFailed")]
     #[inline]
     pub unsafe fn set_data_failed(&self, status: OSStatus) -> OSStatus {
@@ -1324,6 +1372,8 @@ impl CMSampleBuffer {
     /// # Safety
     ///
     /// `status_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferhasdatafailed(_:statusout:)?language=objc)
     #[doc(alias = "CMSampleBufferHasDataFailed")]
     #[inline]
     pub unsafe fn has_data_failed(&self, status_out: *mut OSStatus) -> bool {
@@ -1346,6 +1396,8 @@ impl CMSampleBuffer {
     /// ready, and there is no CMSampleBufferMakeDataReadyCallback to call, kCMSampleBufferError_BufferNotReady
     /// will be returned. Similarly, if the CMSampleBuffer is not ready, and the CMSampleBufferMakeDataReadyCallback
     /// fails and returns an error, kCMSampleBufferError_BufferNotReady will be returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedataready(_:)?language=objc)
     #[doc(alias = "CMSampleBufferMakeDataReady")]
     #[inline]
     pub unsafe fn make_data_ready(&self) -> OSStatus {
@@ -1362,6 +1414,8 @@ impl CMSampleBuffer {
     /// Example of use: This allows bursting a multi-sample CMSampleBuffer into single-sample CMSampleBuffers
     /// before the data is ready. The single-sample CMSampleBuffers will all track the multi-sample
     /// CMSampleBuffer's data readiness.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffertrackdatareadiness(_:samplebuffertotrack:)?language=objc)
     #[doc(alias = "CMSampleBufferTrackDataReadiness")]
     #[inline]
     pub unsafe fn track_data_readiness(&self, sample_buffer_to_track: &CMSampleBuffer) -> OSStatus {
@@ -1379,6 +1433,8 @@ impl CMSampleBuffer {
     /// An invalid sample buffer cannot be used -- all accessors will return kCMSampleBufferError_Invalidated.
     /// It is not a good idea to do this to a sample buffer that another module may be accessing concurrently.
     /// Example of use: the invalidation callback could cancel pending I/O.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidate(_:)?language=objc)
     #[doc(alias = "CMSampleBufferInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) -> OSStatus {
@@ -1404,6 +1460,8 @@ impl CMSampleBuffer {
     /// # Safety
     ///
     /// `invalidate_callback` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffersetinvalidatecallback(_:callback:refcon:)?language=objc)
     #[doc(alias = "CMSampleBufferSetInvalidateCallback")]
     #[inline]
     pub unsafe fn set_invalidate_callback(
@@ -1439,6 +1497,8 @@ impl CMSampleBuffer {
     /// # Safety
     ///
     /// `invalidate_handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffersetinvalidatehandler(_:invalidatehandler:)?language=objc)
     #[doc(alias = "CMSampleBufferSetInvalidateHandler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1459,6 +1519,8 @@ impl CMSampleBuffer {
     ///
     /// Returns false if sbuf is NULL or CMSampleBufferInvalidate(sbuf) was called, true otherwise.
     /// Does not perform any kind of exhaustive validation of the sample buffer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferisvalid(_:)?language=objc)
     #[doc(alias = "CMSampleBufferIsValid")]
     #[inline]
     pub unsafe fn is_valid(&self) -> bool {
@@ -1557,6 +1619,8 @@ impl CMSampleBuffer {
     /// Returns the number of media samples in a CMSampleBuffer.
     ///
     /// Returns: The number of media samples in the CMSampleBuffer. 0 is returned if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetnumsamples(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetNumSamples")]
     #[cfg(feature = "CMBase")]
     #[inline]
@@ -1573,6 +1637,8 @@ impl CMSampleBuffer {
     /// The returned duration is simply the sum of all the individual sample durations.
     ///
     /// Returns: The duration of the CMSampleBuffer. kCMTimeInvalid is returned if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetduration(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetDuration")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -1590,6 +1656,8 @@ impl CMSampleBuffer {
     /// will be presented first, which is not necessarily the first sample in the buffer.
     ///
     /// Returns: Numerically earliest sample presentation timestamp in the CMSampleBuffer.  kCMTimeInvalid is returned if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetpresentationtimestamp(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetPresentationTimeStamp")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -1606,6 +1674,8 @@ impl CMSampleBuffer {
     /// since even out-of-presentation-order samples are expected to be in decode order in the buffer.
     ///
     /// Returns: Numerically earliest sample decode timestamp in the CMSampleBuffer.  kCMTimeInvalid is returned if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetdecodetimestamp(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetDecodeTimeStamp")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -1622,6 +1692,8 @@ impl CMSampleBuffer {
     /// (Duration - TrimDurationAtStart - TrimDurationAtEnd) / SpeedMultiplier
     ///
     /// Returns: The output duration of the CMSampleBuffer. kCMTimeInvalid is returned if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetoutputduration(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetOutputDuration")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -1649,6 +1721,8 @@ impl CMSampleBuffer {
     /// ((PresentationTimeStamp + Duration - TrimDurationAtEnd - EditStartMediaTime) / EditSpeedMultiplier) + EditStartTrackTime.
     ///
     /// Returns: kCMTimeInvalid is returned if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetoutputpresentationtimestamp(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetOutputPresentationTimeStamp")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -1670,6 +1744,8 @@ impl CMSampleBuffer {
     /// ((PresentationTimeStamp + TrimDurationAtStart - EditStartMediaTime) / EditSpeedMultiplier) + EditStartTrackTime.
     /// For general reversed playback:
     /// ((PresentationTimeStamp + Duration - TrimDurationAtEnd - EditStartMediaTime) / EditSpeedMultiplier) + EditStartTrackTime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffersetoutputpresentationtimestamp(_:newvalue:)?language=objc)
     #[doc(alias = "CMSampleBufferSetOutputPresentationTimeStamp")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -1694,6 +1770,8 @@ impl CMSampleBuffer {
     /// OutputPresentationTimeStamp + ((DecodeTimeStamp - PresentationTimeStamp) / SpeedMultiplier).
     ///
     /// Returns: CMInvalidTime is returned if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetoutputdecodetimestamp(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetOutputDecodeTimeStamp")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -1724,6 +1802,8 @@ impl CMSampleBuffer {
     ///
     /// - `timing_array_out` must be a valid pointer or null.
     /// - `timing_array_entries_needed_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetsampletiminginfoarray(_:entrycount:arraytofill:entriesneededout:)?language=objc)
     #[doc(alias = "CMSampleBufferGetSampleTimingInfoArray")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -1771,6 +1851,8 @@ impl CMSampleBuffer {
     ///
     /// - `timing_array_out` must be a valid pointer or null.
     /// - `timing_array_entries_needed_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetoutputsampletiminginfoarray(_:entrycount:arraytofill:entriesneededout:)?language=objc)
     #[doc(alias = "CMSampleBufferGetOutputSampleTimingInfoArray")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -1810,6 +1892,8 @@ impl CMSampleBuffer {
     /// # Safety
     ///
     /// `timing_info_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetsampletiminginfo(_:at:timinginfoout:)?language=objc)
     #[doc(alias = "CMSampleBufferGetSampleTimingInfo")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -1851,6 +1935,8 @@ impl CMSampleBuffer {
     ///
     /// - `size_array_out` must be a valid pointer or null.
     /// - `size_array_entries_needed_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetsamplesizearray(_:entrycount:arraytofill:entriesneededout:)?language=objc)
     #[doc(alias = "CMSampleBufferGetSampleSizeArray")]
     #[cfg(feature = "CMBase")]
     #[inline]
@@ -1887,6 +1973,8 @@ impl CMSampleBuffer {
     /// if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
     /// the channel values for a single sample are scattered through the buffer),
     /// or if this CMSampleBuffer contains a CVImageBuffer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetsamplesize(_:at:)?language=objc)
     #[doc(alias = "CMSampleBufferGetSampleSize")]
     #[cfg(feature = "CMBase")]
     #[inline]
@@ -1904,6 +1992,8 @@ impl CMSampleBuffer {
     ///
     /// Returns: Total size in bytes of sample data in the CMSampleBuffer.
     /// If there are no sample sizes in this CMSampleBuffer, a size of 0 will be returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergettotalsamplesize(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetTotalSampleSize")]
     #[inline]
     pub unsafe fn total_sample_size(&self) -> usize {
@@ -1918,6 +2008,8 @@ impl CMSampleBuffer {
     /// On return, the caller does not own the returned formatDesc, and must retain it explicitly if the caller needs to maintain a reference to it.
     ///
     /// Returns: The format description of the samples in the CMSampleBuffer.  NULL is returned if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetformatdescription(_:)?language=objc)
     #[doc(alias = "CMSampleBufferGetFormatDescription")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
@@ -1944,6 +2036,8 @@ impl CMSampleBuffer {
     ///
     /// Returns: A reference to the CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary per sample
     /// in the CMSampleBuffer). NULL is returned if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetsampleattachmentsarray(_:createifnecessary:)?language=objc)
     #[doc(alias = "CMSampleBufferGetSampleAttachmentsArray")]
     #[inline]
     pub unsafe fn sample_attachments_array(
@@ -2428,6 +2522,8 @@ impl CMSampleBuffer {
     ///
     /// - `callback` must be implemented correctly.
     /// - `refcon` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercallforeachsample(_:callback:refcon:)?language=objc)
     #[doc(alias = "CMSampleBufferCallForEachSample")]
     #[cfg(feature = "CMBase")]
     #[inline]
@@ -2464,6 +2560,8 @@ impl CMSampleBuffer {
     /// If there are no sample sizes in the provided sample buffer, kCMSampleBufferError_CannotSubdivide will be returned.
     /// This will happen, for example, if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
     /// the channel values for a single sample are scattered through the buffer).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercallblockforeachsample(_:_:)?language=objc)
     #[doc(alias = "CMSampleBufferCallBlockForEachSample")]
     #[cfg(all(feature = "CMBase", feature = "block2"))]
     #[inline]

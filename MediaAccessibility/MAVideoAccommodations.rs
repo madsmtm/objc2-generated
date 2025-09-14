@@ -9,6 +9,8 @@ extern "C-unwind" {
     /// Returns whether the user has enabled the setting to reduce flashing or strobing lights in video content. This setting can also be used to determine if UI in playback controls should be shown.
     ///
     /// Returns: A boolean
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/madimflashinglightsenabled()?language=objc)
     pub fn MADimFlashingLightsEnabled() -> bool;
 }
 

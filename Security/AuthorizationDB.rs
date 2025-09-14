@@ -6,18 +6,25 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationrightrule?language=objc)
 pub const kAuthorizationRightRule: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"rule\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleisadmin?language=objc)
 pub const kAuthorizationRuleIsAdmin: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"is-admin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleauthenticateassessionuser?language=objc)
 pub const kAuthorizationRuleAuthenticateAsSessionUser: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"authenticate-session-owner\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleauthenticateasadmin?language=objc)
 pub const kAuthorizationRuleAuthenticateAsAdmin: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"authenticate-admin\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleclassallow?language=objc)
 pub const kAuthorizationRuleClassAllow: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"allow\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleclassdeny?language=objc)
 pub const kAuthorizationRuleClassDeny: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"deny\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationcomment?language=objc)
 pub const kAuthorizationComment: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"comment\0") };
 extern "C-unwind" {
@@ -37,6 +44,8 @@ extern "C-unwind" {
     ///
     /// - `right_name` must be a valid pointer.
     /// - `right_definition` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationrightget(_:_:)?language=objc)
     pub fn AuthorizationRightGet(
         right_name: NonNull<c_char>,
         right_definition: *mut *const CFDictionary,
@@ -73,6 +82,8 @@ extern "C-unwind" {
     /// - `auth_ref` must be a valid pointer.
     /// - `right_name` must be a valid pointer.
     /// - `right_definition` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationrightset(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "Authorization")]
     pub fn AuthorizationRightSet(
         auth_ref: AuthorizationRef,
@@ -96,6 +107,8 @@ extern "C-unwind" {
     ///
     /// - `auth_ref` must be a valid pointer.
     /// - `right_name` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationrightremove(_:_:)?language=objc)
     #[cfg(feature = "Authorization")]
     pub fn AuthorizationRightRemove(
         auth_ref: AuthorizationRef,

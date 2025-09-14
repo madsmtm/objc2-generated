@@ -14,14 +14,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKPrismBase(pub NSInteger);
 impl HKPrismBase {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase/none?language=objc)
     #[doc(alias = "HKPrismBaseNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase/up?language=objc)
     #[doc(alias = "HKPrismBaseUp")]
     pub const Up: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase/down?language=objc)
     #[doc(alias = "HKPrismBaseDown")]
     pub const Down: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase/in?language=objc)
     #[doc(alias = "HKPrismBaseIn")]
     pub const In: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase/out?language=objc)
     #[doc(alias = "HKPrismBaseOut")]
     pub const Out: Self = Self(4);
 }
@@ -42,8 +47,10 @@ unsafe impl RefEncode for HKPrismBase {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKVisionEye(pub NSInteger);
 impl HKVisionEye {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisioneye/left?language=objc)
     #[doc(alias = "HKVisionEyeLeft")]
     pub const Left: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisioneye/right?language=objc)
     #[doc(alias = "HKVisionEyeRight")]
     pub const Right: Self = Self(2);
 }

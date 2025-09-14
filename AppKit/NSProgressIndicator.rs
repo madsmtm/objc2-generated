@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSProgressIndicatorStyle(pub NSUInteger);
 impl NSProgressIndicatorStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicator/style-swift.enum/bar?language=objc)
     #[doc(alias = "NSProgressIndicatorStyleBar")]
     pub const Bar: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicator/style-swift.enum/spinning?language=objc)
     #[doc(alias = "NSProgressIndicatorStyleSpinning")]
     pub const Spinning: Self = Self(1);
 }
@@ -262,15 +264,19 @@ impl NSProgressIndicator {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSProgressIndicatorThickness(pub NSUInteger);
 impl NSProgressIndicatorThickness {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness/nsprogressindicatorpreferredthickness?language=objc)
     #[doc(alias = "NSProgressIndicatorPreferredThickness")]
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredThickness: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness/nsprogressindicatorpreferredsmallthickness?language=objc)
     #[doc(alias = "NSProgressIndicatorPreferredSmallThickness")]
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredSmallThickness: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness/nsprogressindicatorpreferredlargethickness?language=objc)
     #[doc(alias = "NSProgressIndicatorPreferredLargeThickness")]
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredLargeThickness: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness/nsprogressindicatorpreferredaquathickness?language=objc)
     #[doc(alias = "NSProgressIndicatorPreferredAquaThickness")]
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredAquaThickness: Self = Self(12);

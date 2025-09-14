@@ -15,11 +15,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFURLPathStyle(pub CFIndex);
 impl CFURLPathStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle/cfurlposixpathstyle?language=objc)
     #[doc(alias = "kCFURLPOSIXPathStyle")]
     pub const CFURLPOSIXPathStyle: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle/cfurlhfspathstyle?language=objc)
     #[doc(alias = "kCFURLHFSPathStyle")]
     #[deprecated = "Carbon File Manager is deprecated, use kCFURLPOSIXPathStyle where possible"]
     pub const CFURLHFSPathStyle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle/cfurlwindowspathstyle?language=objc)
     #[doc(alias = "kCFURLWindowsPathStyle")]
     pub const CFURLWindowsPathStyle: Self = Self(2);
 }
@@ -53,6 +56,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFURL {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgettypeid()?language=objc)
     #[doc(alias = "CFURLGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -64,6 +68,8 @@ unsafe impl ConcreteType for CFURL {
 }
 
 impl CFURL {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatewithbytes(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -92,6 +98,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatedata(_:_:_:_:)?language=objc)
     #[doc(alias = "CFURLCreateData")]
     #[cfg(all(feature = "CFData", feature = "CFString"))]
     #[inline]
@@ -113,6 +120,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatewithstring(_:_:_:)?language=objc)
     #[doc(alias = "CFURLCreateWithString")]
     #[inline]
     pub(crate) fn __from_string(
@@ -131,6 +139,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreateabsoluteurlwithbytes(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -170,6 +180,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatewithfilesystempath(_:_:_:_:)?language=objc)
     #[doc(alias = "CFURLCreateWithFileSystemPath")]
     #[inline]
     pub fn with_file_system_path(
@@ -192,6 +203,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatefromfilesystemrepresentation(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -218,6 +231,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatewithfilesystempathrelativetobase(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFURLCreateWithFileSystemPathRelativeToBase")]
     #[inline]
     pub fn with_file_system_path_relative_to_base(
@@ -248,6 +262,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatefromfilesystemrepresentationrelativetobase(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -283,6 +299,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetfilesystemrepresentation(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
@@ -308,6 +326,7 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyabsoluteurl(_:)?language=objc)
     #[doc(alias = "CFURLCopyAbsoluteURL")]
     #[inline]
     pub fn absolute_url(&self) -> Option<CFRetained<CFURL>> {
@@ -318,6 +337,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetstring(_:)?language=objc)
     #[doc(alias = "CFURLGetString")]
     #[inline]
     pub(crate) fn __string(&self) -> Option<CFRetained<CFString>> {
@@ -328,6 +348,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetbaseurl(_:)?language=objc)
     #[doc(alias = "CFURLGetBaseURL")]
     #[inline]
     pub fn base_url(&self) -> Option<CFRetained<CFURL>> {
@@ -338,6 +359,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcanbedecomposed(_:)?language=objc)
     #[doc(alias = "CFURLCanBeDecomposed")]
     #[inline]
     pub fn can_be_decomposed(&self) -> bool {
@@ -348,6 +370,7 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyscheme(_:)?language=objc)
     #[doc(alias = "CFURLCopyScheme")]
     #[inline]
     pub fn scheme(&self) -> Option<CFRetained<CFString>> {
@@ -358,6 +381,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopynetlocation(_:)?language=objc)
     #[doc(alias = "CFURLCopyNetLocation")]
     #[inline]
     pub fn net_location(&self) -> Option<CFRetained<CFString>> {
@@ -368,6 +392,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopypath(_:)?language=objc)
     #[doc(alias = "CFURLCopyPath")]
     #[inline]
     pub fn path(&self) -> Option<CFRetained<CFString>> {
@@ -378,6 +403,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopystrictpath(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `is_absolute` must be a valid pointer.
@@ -394,6 +421,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyfilesystempath(_:_:)?language=objc)
     #[doc(alias = "CFURLCopyFileSystemPath")]
     #[inline]
     pub fn file_system_path(&self, path_style: CFURLPathStyle) -> Option<CFRetained<CFString>> {
@@ -407,6 +435,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlhasdirectorypath(_:)?language=objc)
     #[doc(alias = "CFURLHasDirectoryPath")]
     #[inline]
     pub fn has_directory_path(&self) -> bool {
@@ -417,6 +446,7 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyresourcespecifier(_:)?language=objc)
     #[doc(alias = "CFURLCopyResourceSpecifier")]
     #[inline]
     pub fn resource_specifier(&self) -> Option<CFRetained<CFString>> {
@@ -427,6 +457,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyhostname(_:)?language=objc)
     #[doc(alias = "CFURLCopyHostName")]
     #[inline]
     pub fn host_name(&self) -> Option<CFRetained<CFString>> {
@@ -437,6 +468,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetportnumber(_:)?language=objc)
     #[doc(alias = "CFURLGetPortNumber")]
     #[inline]
     pub fn port_number(&self) -> i32 {
@@ -446,6 +478,7 @@ impl CFURL {
         unsafe { CFURLGetPortNumber(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyusername(_:)?language=objc)
     #[doc(alias = "CFURLCopyUserName")]
     #[inline]
     pub fn user_name(&self) -> Option<CFRetained<CFString>> {
@@ -456,6 +489,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopypassword(_:)?language=objc)
     #[doc(alias = "CFURLCopyPassword")]
     #[inline]
     pub fn password(&self) -> Option<CFRetained<CFString>> {
@@ -466,6 +500,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyparameterstring(_:_:)?language=objc)
     #[doc(alias = "CFURLCopyParameterString")]
     #[deprecated = "The CFURLCopyParameterString function is deprecated. Post deprecation for applications linked with or after the macOS 10.15, and for all iOS, watchOS, and tvOS applications, CFURLCopyParameterString will always return NULL, and the CFURLCopyPath(), CFURLCopyStrictPath(), and CFURLCopyFileSystemPath() functions will return the complete path including the semicolon separator and params component if the URL string contains them."]
     #[inline]
@@ -483,6 +518,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyquerystring(_:_:)?language=objc)
     #[doc(alias = "CFURLCopyQueryString")]
     #[inline]
     pub fn query_string(
@@ -499,6 +535,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyfragment(_:_:)?language=objc)
     #[doc(alias = "CFURLCopyFragment")]
     #[inline]
     pub fn fragment(
@@ -515,6 +552,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopylastpathcomponent(_:)?language=objc)
     #[doc(alias = "CFURLCopyLastPathComponent")]
     #[inline]
     pub fn last_path_component(&self) -> Option<CFRetained<CFString>> {
@@ -525,6 +563,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopypathextension(_:)?language=objc)
     #[doc(alias = "CFURLCopyPathExtension")]
     #[inline]
     pub fn path_extension(&self) -> Option<CFRetained<CFString>> {
@@ -535,6 +574,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatecopyappendingpathcomponent(_:_:_:_:)?language=objc)
     #[doc(alias = "CFURLCreateCopyAppendingPathComponent")]
     #[inline]
     pub fn new_copy_appending_path_component(
@@ -557,6 +597,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatecopydeletinglastpathcomponent(_:_:)?language=objc)
     #[doc(alias = "CFURLCreateCopyDeletingLastPathComponent")]
     #[inline]
     pub fn new_copy_deleting_last_path_component(
@@ -573,6 +614,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatecopyappendingpathextension(_:_:_:)?language=objc)
     #[doc(alias = "CFURLCreateCopyAppendingPathExtension")]
     #[inline]
     pub fn new_copy_appending_path_extension(
@@ -591,6 +633,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatecopydeletingpathextension(_:_:)?language=objc)
     #[doc(alias = "CFURLCreateCopyDeletingPathExtension")]
     #[inline]
     pub fn new_copy_deleting_path_extension(
@@ -607,6 +650,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetbytes(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
@@ -626,28 +671,40 @@ impl CFURL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLComponentType(pub CFIndex);
 impl CFURLComponentType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/scheme?language=objc)
     #[doc(alias = "kCFURLComponentScheme")]
     pub const Scheme: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/netlocation?language=objc)
     #[doc(alias = "kCFURLComponentNetLocation")]
     pub const NetLocation: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/path?language=objc)
     #[doc(alias = "kCFURLComponentPath")]
     pub const Path: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/resourcespecifier?language=objc)
     #[doc(alias = "kCFURLComponentResourceSpecifier")]
     pub const ResourceSpecifier: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/user?language=objc)
     #[doc(alias = "kCFURLComponentUser")]
     pub const User: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/password?language=objc)
     #[doc(alias = "kCFURLComponentPassword")]
     pub const Password: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/userinfo?language=objc)
     #[doc(alias = "kCFURLComponentUserInfo")]
     pub const UserInfo: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/host?language=objc)
     #[doc(alias = "kCFURLComponentHost")]
     pub const Host: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/port?language=objc)
     #[doc(alias = "kCFURLComponentPort")]
     pub const Port: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/parameterstring?language=objc)
     #[doc(alias = "kCFURLComponentParameterString")]
     pub const ParameterString: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/query?language=objc)
     #[doc(alias = "kCFURLComponentQuery")]
     pub const Query: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/fragment?language=objc)
     #[doc(alias = "kCFURLComponentFragment")]
     pub const Fragment: Self = Self(12);
 }
@@ -663,6 +720,8 @@ unsafe impl RefEncode for CFURLComponentType {
 }
 
 impl CFURL {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetbyterangeforcomponent(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `range_including_separators` must be a valid pointer.
@@ -683,6 +742,7 @@ impl CFURL {
         unsafe { CFURLGetByteRangeForComponent(self, component, range_including_separators) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatestringbyreplacingpercentescapes(_:_:_:)?language=objc)
     #[doc(alias = "CFURLCreateStringByReplacingPercentEscapes")]
     #[inline]
     pub fn new_string_by_replacing_percent_escapes(
@@ -707,6 +767,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatestringbyreplacingpercentescapesusingencoding(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -741,6 +803,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatestringbyaddingpercentescapes(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -779,6 +843,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlisfilereferenceurl(_:)?language=objc)
     #[doc(alias = "CFURLIsFileReferenceURL")]
     #[inline]
     pub fn is_file_reference_url(&self) -> bool {
@@ -789,6 +854,8 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatefilereferenceurl(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -813,6 +880,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatefilepathurl(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -837,6 +906,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyresourcepropertyforkey(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` might not allow `None`.
@@ -865,6 +936,8 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyresourcepropertiesforkeys(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `keys` generic must be of the correct type.
@@ -889,6 +962,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlsetresourcepropertyforkey(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` might not allow `None`.
@@ -916,6 +991,8 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlsetresourcepropertiesforkeys(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `keyed_property_values` generic must be of the correct type.
@@ -948,6 +1025,7 @@ extern "C" {
 }
 
 impl CFURL {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlclearresourcepropertycacheforkey(_:_:)?language=objc)
     #[doc(alias = "CFURLClearResourcePropertyCacheForKey")]
     #[inline]
     pub fn clear_resource_property_cache_for_key(&self, key: Option<&CFString>) {
@@ -957,6 +1035,7 @@ impl CFURL {
         unsafe { CFURLClearResourcePropertyCacheForKey(self, key) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlclearresourcepropertycache(_:)?language=objc)
     #[doc(alias = "CFURLClearResourcePropertyCache")]
     #[inline]
     pub fn clear_resource_property_cache(&self) {
@@ -966,6 +1045,7 @@ impl CFURL {
         unsafe { CFURLClearResourcePropertyCache(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlsettemporaryresourcepropertyforkey(_:_:_:)?language=objc)
     #[doc(alias = "CFURLSetTemporaryResourcePropertyForKey")]
     #[inline]
     pub fn set_temporary_resource_property_for_key(
@@ -983,6 +1063,8 @@ impl CFURL {
         unsafe { CFURLSetTemporaryResourcePropertyForKey(self, key, property_value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlresourceisreachable(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer.
@@ -1672,16 +1754,22 @@ extern "C" {
 pub struct CFURLBookmarkCreationOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFURLBookmarkCreationOptions: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/minimalbookmarkmask?language=objc)
         #[doc(alias = "kCFURLBookmarkCreationMinimalBookmarkMask")]
         const MinimalBookmarkMask = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/suitableforbookmarkfile?language=objc)
         #[doc(alias = "kCFURLBookmarkCreationSuitableForBookmarkFile")]
         const SuitableForBookmarkFile = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/withsecurityscope?language=objc)
         #[doc(alias = "kCFURLBookmarkCreationWithSecurityScope")]
         const WithSecurityScope = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/securityscopeallowonlyreadaccess?language=objc)
         #[doc(alias = "kCFURLBookmarkCreationSecurityScopeAllowOnlyReadAccess")]
         const SecurityScopeAllowOnlyReadAccess = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/withoutimplicitsecurityscope?language=objc)
         #[doc(alias = "kCFURLBookmarkCreationWithoutImplicitSecurityScope")]
         const WithoutImplicitSecurityScope = 1<<29;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/preferfileidresolutionmask?language=objc)
         #[doc(alias = "kCFURLBookmarkCreationPreferFileIDResolutionMask")]
 #[deprecated = "kCFURLBookmarkCreationPreferFileIDResolutionMask does nothing and has no effect on bookmark resolution"]
         const PreferFileIDResolutionMask = 1<<8;
@@ -1705,16 +1793,22 @@ unsafe impl RefEncode for CFURLBookmarkCreationOptions {
 pub struct CFURLBookmarkResolutionOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFURLBookmarkResolutionOptions: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfurlbookmarkresolutionwithoutuimask?language=objc)
         #[doc(alias = "kCFURLBookmarkResolutionWithoutUIMask")]
         const CFURLBookmarkResolutionWithoutUIMask = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfurlbookmarkresolutionwithoutmountingmask?language=objc)
         #[doc(alias = "kCFURLBookmarkResolutionWithoutMountingMask")]
         const CFURLBookmarkResolutionWithoutMountingMask = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfurlbookmarkresolutionwithsecurityscope?language=objc)
         #[doc(alias = "kCFURLBookmarkResolutionWithSecurityScope")]
         const CFURLBookmarkResolutionWithSecurityScope = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfurlbookmarkresolutionwithoutimplicitstartaccessing?language=objc)
         #[doc(alias = "kCFURLBookmarkResolutionWithoutImplicitStartAccessing")]
         const CFURLBookmarkResolutionWithoutImplicitStartAccessing = 1<<15;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfbookmarkresolutionwithoutuimask?language=objc)
         #[doc(alias = "kCFBookmarkResolutionWithoutUIMask")]
         const CFBookmarkResolutionWithoutUIMask = CFURLBookmarkResolutionOptions::CFURLBookmarkResolutionWithoutUIMask.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfbookmarkresolutionwithoutmountingmask?language=objc)
         #[doc(alias = "kCFBookmarkResolutionWithoutMountingMask")]
         const CFBookmarkResolutionWithoutMountingMask = CFURLBookmarkResolutionOptions::CFURLBookmarkResolutionWithoutMountingMask.0;
     }
@@ -1734,6 +1828,8 @@ unsafe impl RefEncode for CFURLBookmarkResolutionOptions {
 pub type CFURLBookmarkFileCreationOptions = CFOptionFlags;
 
 impl CFURL {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatebookmarkdata(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -1776,6 +1872,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatebyresolvingbookmarkdata(_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -1822,6 +1920,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreateresourcepropertiesforkeysfrombookmarkdata(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -1853,6 +1953,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreateresourcepropertyforkeyfrombookmarkdata(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -1883,6 +1985,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatebookmarkdatafromfile(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -1907,6 +2011,8 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlwritebookmarkdatatofile(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `bookmark_ref` might not allow `None`.
@@ -1934,6 +2040,8 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatebookmarkdatafromaliasrecord(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator_ref` might not allow `None`.
@@ -1957,6 +2065,7 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlstartaccessingsecurityscopedresource(_:)?language=objc)
     #[doc(alias = "CFURLStartAccessingSecurityScopedResource")]
     #[inline]
     pub unsafe fn start_accessing_security_scoped_resource(&self) -> bool {
@@ -1967,6 +2076,7 @@ impl CFURL {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlstopaccessingsecurityscopedresource(_:)?language=objc)
     #[doc(alias = "CFURLStopAccessingSecurityScopedResource")]
     #[inline]
     pub unsafe fn stop_accessing_security_scoped_resource(&self) {

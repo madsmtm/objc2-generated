@@ -13,15 +13,23 @@ use crate::*;
 pub struct HMCameraStreamState(pub NSUInteger);
 impl HMCameraStreamState {
     /// Start stream request is in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamstate/starting?language=objc)
     #[doc(alias = "HMCameraStreamStateStarting")]
     pub const Starting: Self = Self(1);
     /// Streaming is in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamstate/streaming?language=objc)
     #[doc(alias = "HMCameraStreamStateStreaming")]
     pub const Streaming: Self = Self(2);
     /// Stop stream request is in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamstate/stopping?language=objc)
     #[doc(alias = "HMCameraStreamStateStopping")]
     pub const Stopping: Self = Self(3);
     /// No streaming is in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamstate/notstreaming?language=objc)
     #[doc(alias = "HMCameraStreamStateNotStreaming")]
     pub const NotStreaming: Self = Self(4);
 }
@@ -43,12 +51,18 @@ unsafe impl RefEncode for HMCameraStreamState {
 pub struct HMCameraAudioStreamSetting(pub NSUInteger);
 impl HMCameraAudioStreamSetting {
     /// Muted for incoming and outgoing audio.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameraaudiostreamsetting/muted?language=objc)
     #[doc(alias = "HMCameraAudioStreamSettingMuted")]
     pub const Muted: Self = Self(1);
     /// Only incoming audio is allowed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameraaudiostreamsetting/incomingaudioallowed?language=objc)
     #[doc(alias = "HMCameraAudioStreamSettingIncomingAudioAllowed")]
     pub const IncomingAudioAllowed: Self = Self(2);
     /// Bidirectional audio is allowed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameraaudiostreamsetting/bidirectionalaudioallowed?language=objc)
     #[doc(alias = "HMCameraAudioStreamSettingBidirectionalAudioAllowed")]
     pub const BidirectionalAudioAllowed: Self = Self(3);
 }

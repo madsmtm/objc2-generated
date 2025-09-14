@@ -11,10 +11,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICalendarViewDecorationSize(pub NSInteger);
 impl UICalendarViewDecorationSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarview/decorationsize/small?language=objc)
     #[doc(alias = "UICalendarViewDecorationSizeSmall")]
     pub const Small: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarview/decorationsize/medium?language=objc)
     #[doc(alias = "UICalendarViewDecorationSizeMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarview/decorationsize/large?language=objc)
     #[doc(alias = "UICalendarViewDecorationSizeLarge")]
     pub const Large: Self = Self(2);
 }

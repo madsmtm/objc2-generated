@@ -84,6 +84,8 @@ pub struct NSFileProviderDomainTestingModes(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderDomainTestingModes: NSUInteger {
 /// Enable the domain without any user action required.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/testingmodes-swift.struct/alwaysenabled?language=objc)
         #[doc(alias = "NSFileProviderDomainTestingModeAlwaysEnabled")]
         const AlwaysEnabled = 1<<0;
 /// Enable interactive mode.
@@ -98,6 +100,8 @@ bitflags::bitflags! {
 /// If that mode is enabled, some crash recovery guarantees are lost. For instance,
 /// the system may lose any event that hasn't been ingested. The system does not
 /// support removing this mode from a domain on which it has been enabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/testingmodes-swift.struct/interactive?language=objc)
         #[doc(alias = "NSFileProviderDomainTestingModeInteractive")]
         const Interactive = 1<<1;
     }
@@ -120,8 +124,10 @@ unsafe impl RefEncode for NSFileProviderDomainTestingModes {
 pub struct NSFileProviderKnownFolders(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderKnownFolders: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolders/desktop?language=objc)
         #[doc(alias = "NSFileProviderDesktop")]
         const Desktop = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolders/documents?language=objc)
         #[doc(alias = "NSFileProviderDocuments")]
         const Documents = 1<<1;
     }

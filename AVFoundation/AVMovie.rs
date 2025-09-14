@@ -258,8 +258,10 @@ impl AVMovie {
 pub struct AVMovieWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVMovieWritingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmoviewritingoptions/addmovieheadertodestination?language=objc)
         #[doc(alias = "AVMovieWritingAddMovieHeaderToDestination")]
         const AddMovieHeaderToDestination = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmoviewritingoptions/truncatedestinationtomovieheaderonly?language=objc)
         #[doc(alias = "AVMovieWritingTruncateDestinationToMovieHeaderOnly")]
         const TruncateDestinationToMovieHeaderOnly = 1<<0;
     }

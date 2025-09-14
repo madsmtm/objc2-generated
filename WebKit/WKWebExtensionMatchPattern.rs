@@ -22,12 +22,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionMatchPatternError(pub NSInteger);
 impl WKWebExtensionMatchPatternError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/error/code/unknown?language=objc)
     #[doc(alias = "WKWebExtensionMatchPatternErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/error/code/invalidscheme?language=objc)
     #[doc(alias = "WKWebExtensionMatchPatternErrorInvalidScheme")]
     pub const InvalidScheme: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/error/code/invalidhost?language=objc)
     #[doc(alias = "WKWebExtensionMatchPatternErrorInvalidHost")]
     pub const InvalidHost: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/error/code/invalidpath?language=objc)
     #[doc(alias = "WKWebExtensionMatchPatternErrorInvalidPath")]
     pub const InvalidPath: Self = Self(4);
 }
@@ -49,12 +53,16 @@ unsafe impl RefEncode for WKWebExtensionMatchPatternError {
 pub struct WKWebExtensionMatchPatternOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl WKWebExtensionMatchPatternOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionmatchpatternoptions/wkwebextensionmatchpatternoptionsnone?language=objc)
         #[doc(alias = "WKWebExtensionMatchPatternOptionsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/options/ignoreschemes?language=objc)
         #[doc(alias = "WKWebExtensionMatchPatternOptionsIgnoreSchemes")]
         const IgnoreSchemes = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/options/ignorepaths?language=objc)
         #[doc(alias = "WKWebExtensionMatchPatternOptionsIgnorePaths")]
         const IgnorePaths = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/options/matchbidirectionally?language=objc)
         #[doc(alias = "WKWebExtensionMatchPatternOptionsMatchBidirectionally")]
         const MatchBidirectionally = 1<<2;
     }

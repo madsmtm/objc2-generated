@@ -61,12 +61,16 @@ pub struct MIDICICategoryOptions(pub MIDIUInteger7);
 #[cfg(feature = "MIDIMessages")]
 bitflags::bitflags! {
     impl MIDICICategoryOptions: MIDIUInteger7 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicicategoryoptions/protocolnegotiation?language=objc)
         #[doc(alias = "kMIDICICategoryOptionsProtocolNegotiation")]
         const ProtocolNegotiation = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicicategoryoptions/profileconfigurationsupported?language=objc)
         #[doc(alias = "kMIDICICategoryOptionsProfileConfigurationSupported")]
         const ProfileConfigurationSupported = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicicategoryoptions/propertyexchangesupported?language=objc)
         #[doc(alias = "kMIDICICategoryOptionsPropertyExchangeSupported")]
         const PropertyExchangeSupported = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicicategoryoptions/processinquirysupported?language=objc)
         #[doc(alias = "kMIDICICategoryOptionsProcessInquirySupported")]
         const ProcessInquirySupported = 1<<4;
     }
@@ -94,12 +98,16 @@ pub type MIDIUMPFunctionBlockID = MIDIUInteger7;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDICIDeviceType(pub u8);
 impl MIDICIDeviceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidevicetype/unknown?language=objc)
     #[doc(alias = "kMIDICIDeviceTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidevicetype/legacymidi1?language=objc)
     #[doc(alias = "kMIDICIDeviceTypeLegacyMIDI1")]
     pub const LegacyMIDI1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidevicetype/virtual?language=objc)
     #[doc(alias = "kMIDICIDeviceTypeVirtual")]
     pub const Virtual: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidevicetype/usbmidi?language=objc)
     #[doc(alias = "kMIDICIDeviceTypeUSBMIDI")]
     pub const USBMIDI: Self = Self(3);
 }
@@ -124,26 +132,37 @@ unsafe impl RefEncode for MIDICIDeviceType {
 pub struct MIDICIProfileMessageType(pub MIDIUInteger7);
 #[cfg(feature = "MIDIMessages")]
 impl MIDICIProfileMessageType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/profileinquiry?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeProfileInquiry")]
     pub const ProfileInquiry: Self = Self(0x20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/replytoprofileinquiry?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeReplyToProfileInquiry")]
     pub const ReplyToProfileInquiry: Self = Self(0x21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/setprofileon?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeSetProfileOn")]
     pub const SetProfileOn: Self = Self(0x22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/setprofileoff?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeSetProfileOff")]
     pub const SetProfileOff: Self = Self(0x23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/profileenabledreport?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeProfileEnabledReport")]
     pub const ProfileEnabledReport: Self = Self(0x24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/profiledisabledreport?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeProfileDisabledReport")]
     pub const ProfileDisabledReport: Self = Self(0x25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/profileadded?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeProfileAdded")]
     pub const ProfileAdded: Self = Self(0x26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/profileremoved?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeProfileRemoved")]
     pub const ProfileRemoved: Self = Self(0x27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/detailsinquiry?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeDetailsInquiry")]
     pub const DetailsInquiry: Self = Self(0x28);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/replytodetailsinquiry?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeReplyToDetailsInquiry")]
     pub const ReplyToDetailsInquiry: Self = Self(0x29);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilemessagetype/profilespecificdata?language=objc)
     #[doc(alias = "kMIDICIProfileMessageTypeProfileSpecificData")]
     pub const ProfileSpecificData: Self = Self(0x2F);
 }
@@ -168,26 +187,37 @@ unsafe impl RefEncode for MIDICIProfileMessageType {
 pub struct MIDICIPropertyExchangeMessageType(pub MIDIUInteger7);
 #[cfg(feature = "MIDIMessages")]
 impl MIDICIPropertyExchangeMessageType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/inquirypropertyexchangecapabilities?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeInquiryPropertyExchangeCapabilities")]
     pub const InquiryPropertyExchangeCapabilities: Self = Self(0x30);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/replytopropertyexchangecapabilities?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeReplyToPropertyExchangeCapabilities")]
     pub const ReplyToPropertyExchangeCapabilities: Self = Self(0x31);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/inquiryhaspropertydata_reserved?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeInquiryHasPropertyData_Reserved")]
     pub const InquiryHasPropertyData_Reserved: Self = Self(0x32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/inquiryreplytohaspropertydata_reserved?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeInquiryReplyToHasPropertyData_Reserved")]
     pub const InquiryReplyToHasPropertyData_Reserved: Self = Self(0x33);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/inquirygetpropertydata?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeInquiryGetPropertyData")]
     pub const InquiryGetPropertyData: Self = Self(0x34);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/replytogetproperty?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeReplyToGetProperty")]
     pub const ReplyToGetProperty: Self = Self(0x35);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/inquirysetpropertydata?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeInquirySetPropertyData")]
     pub const InquirySetPropertyData: Self = Self(0x36);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/replytosetpropertydata?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeReplyToSetPropertyData")]
     pub const ReplyToSetPropertyData: Self = Self(0x37);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/subscription?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeSubscription")]
     pub const Subscription: Self = Self(0x38);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/replytosubscription?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeReplyToSubscription")]
     pub const ReplyToSubscription: Self = Self(0x39);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangemessagetype/notify?language=objc)
     #[doc(alias = "kMIDICIPropertyExchangeMessageTypeNotify")]
     pub const Notify: Self = Self(0x3F);
 }
@@ -212,14 +242,19 @@ unsafe impl RefEncode for MIDICIPropertyExchangeMessageType {
 pub struct MIDICIProcessInquiryMessageType(pub MIDIUInteger7);
 #[cfg(feature = "MIDIMessages")]
 impl MIDICIProcessInquiryMessageType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprocessinquirymessagetype/inquiryprocessinquirycapabilities?language=objc)
     #[doc(alias = "kMIDICIProcessInquiryMessageTypeInquiryProcessInquiryCapabilities")]
     pub const InquiryProcessInquiryCapabilities: Self = Self(0x40);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprocessinquirymessagetype/replytoprocessinquirycapabilities?language=objc)
     #[doc(alias = "kMIDICIProcessInquiryMessageTypeReplyToProcessInquiryCapabilities")]
     pub const ReplyToProcessInquiryCapabilities: Self = Self(0x41);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprocessinquirymessagetype/inquirymidimessagereport?language=objc)
     #[doc(alias = "kMIDICIProcessInquiryMessageTypeInquiryMIDIMessageReport")]
     pub const InquiryMIDIMessageReport: Self = Self(0x42);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprocessinquirymessagetype/replytomidimessagereport?language=objc)
     #[doc(alias = "kMIDICIProcessInquiryMessageTypeReplyToMIDIMessageReport")]
     pub const ReplyToMIDIMessageReport: Self = Self(0x43);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprocessinquirymessagetype/endofmidimessagereport?language=objc)
     #[doc(alias = "kMIDICIProcessInquiryMessageTypeEndOfMIDIMessageReport")]
     pub const EndOfMIDIMessageReport: Self = Self(0x44);
 }
@@ -244,18 +279,25 @@ unsafe impl RefEncode for MIDICIProcessInquiryMessageType {
 pub struct MIDICIManagementMessageType(pub MIDIUInteger7);
 #[cfg(feature = "MIDIMessages")]
 impl MIDICIManagementMessageType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicimanagementmessagetype/discovery?language=objc)
     #[doc(alias = "kMIDICIManagementMessageTypeDiscovery")]
     pub const Discovery: Self = Self(0x70);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicimanagementmessagetype/replytodiscovery?language=objc)
     #[doc(alias = "kMIDICIManagementMessageTypeReplyToDiscovery")]
     pub const ReplyToDiscovery: Self = Self(0x71);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicimanagementmessagetype/inquiryendpointinformation?language=objc)
     #[doc(alias = "kMIDICIManagementMessageTypeInquiryEndpointInformation")]
     pub const InquiryEndpointInformation: Self = Self(0x72);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicimanagementmessagetype/replytoendpointinformation?language=objc)
     #[doc(alias = "kMIDICIManagementMessageTypeReplyToEndpointInformation")]
     pub const ReplyToEndpointInformation: Self = Self(0x73);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicimanagementmessagetype/midiciack?language=objc)
     #[doc(alias = "kMIDICIManagementMessageTypeMIDICIACK")]
     pub const MIDICIACK: Self = Self(0x7D);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicimanagementmessagetype/invalidatemuid?language=objc)
     #[doc(alias = "kMIDICIManagementMessageTypeInvalidateMUID")]
     pub const InvalidateMUID: Self = Self(0x7E);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicimanagementmessagetype/midinak?language=objc)
     #[doc(alias = "kMIDICIManagementMessageTypeMIDICINAK")]
     pub const MIDICINAK: Self = Self(0x7F);
 }
@@ -278,12 +320,16 @@ unsafe impl RefEncode for MIDICIManagementMessageType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MIDICIProfileType(pub u8);
 impl MIDICIProfileType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofiletype/singlechannel?language=objc)
     #[doc(alias = "kMIDICIProfileTypeSingleChannel")]
     pub const SingleChannel: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofiletype/group?language=objc)
     #[doc(alias = "kMIDICIProfileTypeGroup")]
     pub const Group: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofiletype/functionblock?language=objc)
     #[doc(alias = "kMIDICIProfileTypeFunctionBlock")]
     pub const FunctionBlock: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofiletype/multichannel?language=objc)
     #[doc(alias = "kMIDICIProfileTypeMultichannel")]
     pub const Multichannel: Self = Self(4);
 }
@@ -306,12 +352,16 @@ unsafe impl RefEncode for MIDICIProfileType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUMPCIObjectBackingType(pub u8);
 impl MIDIUMPCIObjectBackingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpciobjectbackingtype/unknown?language=objc)
     #[doc(alias = "kMIDIUMPCIObjectBackingTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpciobjectbackingtype/virtual?language=objc)
     #[doc(alias = "kMIDIUMPCIObjectBackingTypeVirtual")]
     pub const Virtual: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpciobjectbackingtype/driverdevice?language=objc)
     #[doc(alias = "kMIDIUMPCIObjectBackingTypeDriverDevice")]
     pub const DriverDevice: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpciobjectbackingtype/usbmidi?language=objc)
     #[doc(alias = "kMIDIUMPCIObjectBackingTypeUSBMIDI")]
     pub const USBMIDI: Self = Self(3);
 }

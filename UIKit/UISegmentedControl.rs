@@ -19,15 +19,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISegmentedControlStyle(pub NSInteger);
 impl UISegmentedControlStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolstyle/uisegmentedcontrolstyleplain?language=objc)
     #[doc(alias = "UISegmentedControlStylePlain")]
     #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Plain: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolstyle/uisegmentedcontrolstylebordered?language=objc)
     #[doc(alias = "UISegmentedControlStyleBordered")]
     #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Bordered: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolstyle/uisegmentedcontrolstylebar?language=objc)
     #[doc(alias = "UISegmentedControlStyleBar")]
     #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Bar: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolstyle/uisegmentedcontrolstylebezeled?language=objc)
     #[doc(alias = "UISegmentedControlStyleBezeled")]
     #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Bezeled: Self = Self(3);
@@ -50,14 +54,19 @@ pub const UISegmentedControlNoSegment: c_int = -1;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISegmentedControlSegment(pub NSInteger);
 impl UISegmentedControlSegment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment/any?language=objc)
     #[doc(alias = "UISegmentedControlSegmentAny")]
     pub const Any: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment/left?language=objc)
     #[doc(alias = "UISegmentedControlSegmentLeft")]
     pub const Left: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment/center?language=objc)
     #[doc(alias = "UISegmentedControlSegmentCenter")]
     pub const Center: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment/right?language=objc)
     #[doc(alias = "UISegmentedControlSegmentRight")]
     pub const Right: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment/alone?language=objc)
     #[doc(alias = "UISegmentedControlSegmentAlone")]
     pub const Alone: Self = Self(4);
 }

@@ -27,6 +27,7 @@ cf_objc2_type!(
 );
 
 impl GLKMatrixStack {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackcreate(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackCreate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -42,6 +43,7 @@ impl GLKMatrixStack {
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for GLKMatrixStack {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgettypeid()?language=objc)
     #[doc(alias = "GLKMatrixStackGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -53,6 +55,7 @@ unsafe impl ConcreteType for GLKMatrixStack {
 }
 
 impl GLKMatrixStack {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackpush(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackPush")]
     #[inline]
     pub unsafe fn push(&self) {
@@ -62,6 +65,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackPush(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackpop(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackPop")]
     #[inline]
     pub unsafe fn pop(&self) {
@@ -71,6 +75,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackPop(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstacksize(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackSize")]
     #[inline]
     pub unsafe fn size(&self) -> c_int {
@@ -80,6 +85,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackSize(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackloadmatrix4(_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackLoadMatrix4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -90,6 +96,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackLoadMatrix4(self, matrix) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix4(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackGetMatrix4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -100,6 +107,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix4(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix3(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackGetMatrix3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -110,6 +118,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix3(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix2(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackGetMatrix2")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -120,6 +129,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix2(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix4inverse(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackGetMatrix4Inverse")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -130,6 +140,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix4Inverse(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix4inversetranspose(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackGetMatrix4InverseTranspose")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -140,6 +151,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix4InverseTranspose(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix3inverse(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackGetMatrix3Inverse")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -150,6 +162,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix3Inverse(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix3inversetranspose(_:)?language=objc)
     #[doc(alias = "GLKMatrixStackGetMatrix3InverseTranspose")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -160,6 +173,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix3InverseTranspose(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackmultiplymatrix4(_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackMultiplyMatrix4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -170,6 +184,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackMultiplyMatrix4(self, matrix) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackmultiplymatrixstack(_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackMultiplyMatrixStack")]
     #[inline]
     pub unsafe fn multiply_matrix_stack(&self, stack_right: &GLKMatrixStack) {
@@ -182,6 +197,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackMultiplyMatrixStack(self, stack_right) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstacktranslate(_:_:_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackTranslate")]
     #[inline]
     pub unsafe fn translate(&self, tx: c_float, ty: c_float, tz: c_float) {
@@ -196,6 +212,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackTranslate(self, tx, ty, tz) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstacktranslatewithvector3(_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackTranslateWithVector3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -209,6 +226,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackTranslateWithVector3(self, translation_vector) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstacktranslatewithvector4(_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackTranslateWithVector4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -222,6 +240,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackTranslateWithVector4(self, translation_vector) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackscale(_:_:_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackScale")]
     #[inline]
     pub unsafe fn scale(&self, sx: c_float, sy: c_float, sz: c_float) {
@@ -231,6 +250,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackScale(self, sx, sy, sz) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackscalewithvector3(_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackScaleWithVector3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -241,6 +261,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackScaleWithVector3(self, scale_vector) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackscalewithvector4(_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackScaleWithVector4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -251,6 +272,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackScaleWithVector4(self, scale_vector) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotate(_:_:_:_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackRotate")]
     #[inline]
     pub unsafe fn rotate(&self, radians: c_float, x: c_float, y: c_float, z: c_float) {
@@ -266,6 +288,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackRotate(self, radians, x, y, z) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotatewithvector3(_:_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackRotateWithVector3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -280,6 +303,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackRotateWithVector3(self, radians, axis_vector) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotatewithvector4(_:_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackRotateWithVector4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -294,6 +318,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackRotateWithVector4(self, radians, axis_vector) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotatex(_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackRotateX")]
     #[inline]
     pub unsafe fn rotate_x(&self, radians: c_float) {
@@ -303,6 +328,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackRotateX(self, radians) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotatey(_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackRotateY")]
     #[inline]
     pub unsafe fn rotate_y(&self, radians: c_float) {
@@ -312,6 +338,7 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackRotateY(self, radians) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotatez(_:_:)?language=objc)
     #[doc(alias = "GLKMatrixStackRotateZ")]
     #[inline]
     pub unsafe fn rotate_z(&self, radians: c_float) {

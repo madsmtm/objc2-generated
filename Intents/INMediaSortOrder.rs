@@ -10,22 +10,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaSortOrder(pub NSInteger);
 impl INMediaSortOrder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/unknown?language=objc)
     #[doc(alias = "INMediaSortOrderUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/newest?language=objc)
     #[doc(alias = "INMediaSortOrderNewest")]
     pub const Newest: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/oldest?language=objc)
     #[doc(alias = "INMediaSortOrderOldest")]
     pub const Oldest: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/best?language=objc)
     #[doc(alias = "INMediaSortOrderBest")]
     pub const Best: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/worst?language=objc)
     #[doc(alias = "INMediaSortOrderWorst")]
     pub const Worst: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/popular?language=objc)
     #[doc(alias = "INMediaSortOrderPopular")]
     pub const Popular: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/unpopular?language=objc)
     #[doc(alias = "INMediaSortOrderUnpopular")]
     pub const Unpopular: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/trending?language=objc)
     #[doc(alias = "INMediaSortOrderTrending")]
     pub const Trending: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/recommended?language=objc)
     #[doc(alias = "INMediaSortOrderRecommended")]
     pub const Recommended: Self = Self(8);
 }

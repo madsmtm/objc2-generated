@@ -56,8 +56,10 @@ pub type MusicEventType = u32;
 pub struct MusicSequenceLoadFlags(pub u32);
 bitflags::bitflags! {
     impl MusicSequenceLoadFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadflags/smf_preservetracks?language=objc)
         #[doc(alias = "kMusicSequenceLoadSMF_PreserveTracks")]
         const SMF_PreserveTracks = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadflags/smf_channelstotracks?language=objc)
         #[doc(alias = "kMusicSequenceLoadSMF_ChannelsToTracks")]
         const SMF_ChannelsToTracks = 1<<0;
     }
@@ -93,10 +95,13 @@ unsafe impl RefEncode for MusicSequenceLoadFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MusicSequenceType(pub u32);
 impl MusicSequenceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencetype/beats?language=objc)
     #[doc(alias = "kMusicSequenceType_Beats")]
     pub const Beats: Self = Self(0x62656174);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencetype/seconds?language=objc)
     #[doc(alias = "kMusicSequenceType_Seconds")]
     pub const Seconds: Self = Self(0x73656373);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencetype/samples?language=objc)
     #[doc(alias = "kMusicSequenceType_Samples")]
     pub const Samples: Self = Self(0x73616d70);
 }
@@ -123,10 +128,13 @@ unsafe impl RefEncode for MusicSequenceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MusicSequenceFileTypeID(pub u32);
 impl MusicSequenceFileTypeID {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefiletypeid/anytype?language=objc)
     #[doc(alias = "kMusicSequenceFile_AnyType")]
     pub const AnyType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefiletypeid/miditype?language=objc)
     #[doc(alias = "kMusicSequenceFile_MIDIType")]
     pub const MIDIType: Self = Self(0x6d696469);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefiletypeid/imelodytype?language=objc)
     #[doc(alias = "kMusicSequenceFile_iMelodyType")]
     pub const iMelodyType: Self = Self(0x696d656c);
 }
@@ -153,8 +161,10 @@ unsafe impl RefEncode for MusicSequenceFileTypeID {
 pub struct MusicSequenceFileFlags(pub u32);
 bitflags::bitflags! {
     impl MusicSequenceFileFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileflags/kmusicsequencefileflags_default?language=objc)
         #[doc(alias = "kMusicSequenceFileFlags_Default")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileflags/erasefile?language=objc)
         #[doc(alias = "kMusicSequenceFileFlags_EraseFile")]
         const EraseFile = 1;
     }
@@ -608,6 +618,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_player` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/newmusicplayer(_:)?language=objc)
     pub fn NewMusicPlayer(out_player: NonNull<MusicPlayer>) -> OSStatus;
 }
 
@@ -619,6 +631,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/disposemusicplayer(_:)?language=objc)
     pub fn DisposeMusicPlayer(in_player: MusicPlayer) -> OSStatus;
 }
 
@@ -636,6 +650,8 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `in_sequence` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayersetsequence(_:_:)?language=objc)
     pub fn MusicPlayerSetSequence(in_player: MusicPlayer, in_sequence: MusicSequence) -> OSStatus;
 }
 
@@ -652,6 +668,8 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_sequence` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayergetsequence(_:_:)?language=objc)
     pub fn MusicPlayerGetSequence(
         in_player: MusicPlayer,
         out_sequence: NonNull<MusicSequence>,
@@ -673,6 +691,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayersettime(_:_:)?language=objc)
     pub fn MusicPlayerSetTime(in_player: MusicPlayer, in_time: MusicTimeStamp) -> OSStatus;
 }
 
@@ -690,6 +710,8 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayergettime(_:_:)?language=objc)
     pub fn MusicPlayerGetTime(
         in_player: MusicPlayer,
         out_time: NonNull<MusicTimeStamp>,
@@ -718,6 +740,8 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_host_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayergethosttimeforbeats(_:_:_:)?language=objc)
     pub fn MusicPlayerGetHostTimeForBeats(
         in_player: MusicPlayer,
         in_beats: MusicTimeStamp,
@@ -747,6 +771,8 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_beats` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayergetbeatsforhosttime(_:_:_:)?language=objc)
     pub fn MusicPlayerGetBeatsForHostTime(
         in_player: MusicPlayer,
         in_host_time: u64,
@@ -765,6 +791,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayerpreroll(_:)?language=objc)
     pub fn MusicPlayerPreroll(in_player: MusicPlayer) -> OSStatus;
 }
 
@@ -778,6 +806,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayerstart(_:)?language=objc)
     pub fn MusicPlayerStart(in_player: MusicPlayer) -> OSStatus;
 }
 
@@ -789,6 +819,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayerstop(_:)?language=objc)
     pub fn MusicPlayerStop(in_player: MusicPlayer) -> OSStatus;
 }
 
@@ -808,6 +840,8 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_is_playing` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayerisplaying(_:_:)?language=objc)
     pub fn MusicPlayerIsPlaying(
         in_player: MusicPlayer,
         out_is_playing: NonNull<Boolean>,
@@ -825,6 +859,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayersetplayratescalar(_:_:)?language=objc)
     pub fn MusicPlayerSetPlayRateScalar(in_player: MusicPlayer, in_scale_rate: f64) -> OSStatus;
 }
 
@@ -839,6 +875,8 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_scale_rate` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayergetplayratescalar(_:_:)?language=objc)
     pub fn MusicPlayerGetPlayRateScalar(
         in_player: MusicPlayer,
         out_scale_rate: NonNull<f64>,
@@ -862,6 +900,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_sequence` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/newmusicsequence(_:)?language=objc)
     pub fn NewMusicSequence(out_sequence: NonNull<MusicSequence>) -> OSStatus;
 }
 
@@ -875,6 +915,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/disposemusicsequence(_:)?language=objc)
     pub fn DisposeMusicSequence(in_sequence: MusicSequence) -> OSStatus;
 }
 
@@ -889,6 +931,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencenewtrack(_:_:)?language=objc)
     pub fn MusicSequenceNewTrack(
         in_sequence: MusicSequence,
         out_track: NonNull<MusicTrack>,
@@ -906,6 +950,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `in_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencedisposetrack(_:_:)?language=objc)
     pub fn MusicSequenceDisposeTrack(in_sequence: MusicSequence, in_track: MusicTrack) -> OSStatus;
 }
 
@@ -921,6 +967,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_number_of_tracks` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegettrackcount(_:_:)?language=objc)
     pub fn MusicSequenceGetTrackCount(
         in_sequence: MusicSequence,
         out_number_of_tracks: NonNull<u32>,
@@ -945,6 +993,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetindtrack(_:_:_:)?language=objc)
     pub fn MusicSequenceGetIndTrack(
         in_sequence: MusicSequence,
         in_track_index: u32,
@@ -969,6 +1019,8 @@ extern "C-unwind" {
     /// - `in_sequence` must be a valid pointer.
     /// - `in_track` must be a valid pointer.
     /// - `out_track_index` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegettrackindex(_:_:_:)?language=objc)
     pub fn MusicSequenceGetTrackIndex(
         in_sequence: MusicSequence,
         in_track: MusicTrack,
@@ -991,6 +1043,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegettempotrack(_:_:)?language=objc)
     pub fn MusicSequenceGetTempoTrack(
         in_sequence: MusicSequence,
         out_track: NonNull<MusicTrack>,
@@ -1015,6 +1069,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `in_graph` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencesetaugraph(_:_:)?language=objc)
     #[cfg(feature = "AUGraph")]
     pub fn MusicSequenceSetAUGraph(in_sequence: MusicSequence, in_graph: AUGraph) -> OSStatus;
 }
@@ -1039,6 +1095,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetaugraph(_:_:)?language=objc)
     #[cfg(feature = "AUGraph")]
     pub fn MusicSequenceGetAUGraph(
         in_sequence: MusicSequence,
@@ -1060,6 +1118,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencesetmidiendpoint(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-midi")]
     pub fn MusicSequenceSetMIDIEndpoint(
         in_sequence: MusicSequence,
@@ -1096,6 +1156,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencesetsequencetype(_:_:)?language=objc)
     pub fn MusicSequenceSetSequenceType(
         in_sequence: MusicSequence,
         in_type: MusicSequenceType,
@@ -1115,6 +1177,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_type` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetsequencetype(_:_:)?language=objc)
     pub fn MusicSequenceGetSequenceType(
         in_sequence: MusicSequence,
         out_type: NonNull<MusicSequenceType>,
@@ -1138,6 +1202,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileload(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileLoad(
         in_sequence: MusicSequence,
@@ -1165,6 +1231,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileloaddata(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileLoadData(
         in_sequence: MusicSequence,
@@ -1231,6 +1299,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefilecreate(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileCreate(
         in_sequence: MusicSequence,
@@ -1262,6 +1332,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefilecreatedata(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileCreateData(
         in_sequence: MusicSequence,
@@ -1280,6 +1352,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencereverse(_:)?language=objc)
     pub fn MusicSequenceReverse(in_sequence: MusicSequence) -> OSStatus;
 }
 
@@ -1298,6 +1372,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_seconds` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetsecondsforbeats(_:_:_:)?language=objc)
     pub fn MusicSequenceGetSecondsForBeats(
         in_sequence: MusicSequence,
         in_beats: MusicTimeStamp,
@@ -1320,6 +1396,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_beats` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetbeatsforseconds(_:_:_:)?language=objc)
     pub fn MusicSequenceGetBeatsForSeconds(
         in_sequence: MusicSequence,
         in_seconds: f64,
@@ -1362,6 +1440,8 @@ extern "C-unwind" {
     /// - `in_sequence` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencesetusercallback(_:_:_:)?language=objc)
     pub fn MusicSequenceSetUserCallback(
         in_sequence: MusicSequence,
         in_callback: MusicSequenceUserCallback,
@@ -1388,6 +1468,8 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_bar_beat_time` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencebeatstobarbeattime(_:_:_:_:)?language=objc)
     pub fn MusicSequenceBeatsToBarBeatTime(
         in_sequence: MusicSequence,
         in_beats: MusicTimeStamp,
@@ -1414,6 +1496,8 @@ extern "C-unwind" {
     /// - `in_sequence` must be a valid pointer.
     /// - `in_bar_beat_time` must be a valid pointer.
     /// - `out_beats` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencebarbeattimetobeats(_:_:_:)?language=objc)
     pub fn MusicSequenceBarBeatTimeToBeats(
         in_sequence: MusicSequence,
         in_bar_beat_time: NonNull<CABarBeatTime>,
@@ -1438,6 +1522,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `in_sequence` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetinfodictionary(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn MusicSequenceGetInfoDictionary(
@@ -1464,6 +1550,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `out_sequence` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackgetsequence(_:_:)?language=objc)
     pub fn MusicTrackGetSequence(
         in_track: MusicTrack,
         out_sequence: NonNull<MusicSequence>,
@@ -1483,6 +1571,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracksetdestnode(_:_:)?language=objc)
     #[cfg(feature = "AUGraph")]
     pub fn MusicTrackSetDestNode(in_track: MusicTrack, in_node: AUNode) -> OSStatus;
 }
@@ -1499,6 +1589,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracksetdestmidiendpoint(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-midi")]
     pub fn MusicTrackSetDestMIDIEndpoint(
         in_track: MusicTrack,
@@ -1520,6 +1612,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `out_node` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackgetdestnode(_:_:)?language=objc)
     #[cfg(feature = "AUGraph")]
     pub fn MusicTrackGetDestNode(in_track: MusicTrack, out_node: NonNull<AUNode>) -> OSStatus;
 }
@@ -1538,6 +1632,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `out_endpoint` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackgetdestmidiendpoint(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-midi")]
     pub fn MusicTrackGetDestMIDIEndpoint(
         in_track: MusicTrack,
@@ -1562,6 +1658,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracksetproperty(_:_:_:_:)?language=objc)
     pub fn MusicTrackSetProperty(
         in_track: MusicTrack,
         in_property_id: u32,
@@ -1592,6 +1690,8 @@ extern "C-unwind" {
     /// - `in_track` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
     /// - `io_length` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackgetproperty(_:_:_:_:)?language=objc)
     pub fn MusicTrackGetProperty(
         in_track: MusicTrack,
         in_property_id: u32,
@@ -1622,6 +1722,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackmoveevents(_:_:_:_:)?language=objc)
     pub fn MusicTrackMoveEvents(
         in_track: MusicTrack,
         in_start_time: MusicTimeStamp,
@@ -1646,6 +1748,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackclear(_:_:_:)?language=objc)
     pub fn MusicTrackClear(
         in_track: MusicTrack,
         in_start_time: MusicTimeStamp,
@@ -1672,6 +1776,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackcut(_:_:_:)?language=objc)
     pub fn MusicTrackCut(
         in_track: MusicTrack,
         in_start_time: MusicTimeStamp,
@@ -1705,6 +1811,8 @@ extern "C-unwind" {
     ///
     /// - `in_source_track` must be a valid pointer.
     /// - `in_dest_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackcopyinsert(_:_:_:_:_:)?language=objc)
     pub fn MusicTrackCopyInsert(
         in_source_track: MusicTrack,
         in_source_start_time: MusicTimeStamp,
@@ -1739,6 +1847,8 @@ extern "C-unwind" {
     ///
     /// - `in_source_track` must be a valid pointer.
     /// - `in_dest_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackmerge(_:_:_:_:_:)?language=objc)
     pub fn MusicTrackMerge(
         in_source_track: MusicTrack,
         in_source_start_time: MusicTimeStamp,
@@ -1763,6 +1873,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_message` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewmidinoteevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewMIDINoteEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1785,6 +1897,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_message` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewmidichannelevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewMIDIChannelEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1807,6 +1921,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_raw_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewmidirawdataevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewMIDIRawDataEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1829,6 +1945,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_info` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewextendednoteevent(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
     pub fn MusicTrackNewExtendedNoteEvent(
         in_track: MusicTrack,
@@ -1852,6 +1970,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_info` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewparameterevent(_:_:_:)?language=objc)
     #[cfg(feature = "AUComponent")]
     pub fn MusicTrackNewParameterEvent(
         in_track: MusicTrack,
@@ -1874,6 +1994,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewextendedtempoevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewExtendedTempoEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1896,6 +2018,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_meta_event` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewmetaevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewMetaEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1918,6 +2042,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_user_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewuserevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewUserEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1940,6 +2066,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_preset_event` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewaupresetevent(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
     pub fn MusicTrackNewAUPresetEvent(
         in_track: MusicTrack,
@@ -1963,6 +2091,8 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `out_iterator` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/newmusiceventiterator(_:_:)?language=objc)
     pub fn NewMusicEventIterator(
         in_track: MusicTrack,
         out_iterator: NonNull<MusicEventIterator>,
@@ -1977,6 +2107,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/disposemusiceventiterator(_:)?language=objc)
     pub fn DisposeMusicEventIterator(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
@@ -1997,6 +2129,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorseek(_:_:)?language=objc)
     pub fn MusicEventIteratorSeek(
         in_iterator: MusicEventIterator,
         in_time_stamp: MusicTimeStamp,
@@ -2017,6 +2151,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratornextevent(_:)?language=objc)
     pub fn MusicEventIteratorNextEvent(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
@@ -2033,6 +2169,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorpreviousevent(_:)?language=objc)
     pub fn MusicEventIteratorPreviousEvent(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
@@ -2063,6 +2201,8 @@ extern "C-unwind" {
     /// - `out_event_type` must be a valid pointer.
     /// - `out_event_data` must be a valid pointer.
     /// - `out_event_data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorgeteventinfo(_:_:_:_:_:)?language=objc)
     pub fn MusicEventIteratorGetEventInfo(
         in_iterator: MusicEventIterator,
         out_time_stamp: NonNull<MusicTimeStamp>,
@@ -2090,6 +2230,8 @@ extern "C-unwind" {
     ///
     /// - `in_iterator` must be a valid pointer.
     /// - `in_event_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorseteventinfo(_:_:_:)?language=objc)
     pub fn MusicEventIteratorSetEventInfo(
         in_iterator: MusicEventIterator,
         in_event_type: MusicEventType,
@@ -2112,6 +2254,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorseteventtime(_:_:)?language=objc)
     pub fn MusicEventIteratorSetEventTime(
         in_iterator: MusicEventIterator,
         in_time_stamp: MusicTimeStamp,
@@ -2129,6 +2273,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratordeleteevent(_:)?language=objc)
     pub fn MusicEventIteratorDeleteEvent(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
@@ -2159,6 +2305,8 @@ extern "C-unwind" {
     ///
     /// - `in_iterator` must be a valid pointer.
     /// - `out_has_prev_event` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorhaspreviousevent(_:_:)?language=objc)
     pub fn MusicEventIteratorHasPreviousEvent(
         in_iterator: MusicEventIterator,
         out_has_prev_event: NonNull<Boolean>,
@@ -2192,6 +2340,8 @@ extern "C-unwind" {
     ///
     /// - `in_iterator` must be a valid pointer.
     /// - `out_has_next_event` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorhasnextevent(_:_:)?language=objc)
     pub fn MusicEventIteratorHasNextEvent(
         in_iterator: MusicEventIterator,
         out_has_next_event: NonNull<Boolean>,
@@ -2209,6 +2359,8 @@ extern "C-unwind" {
     ///
     /// - `in_iterator` must be a valid pointer.
     /// - `out_has_cur_event` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorhascurrentevent(_:_:)?language=objc)
     pub fn MusicEventIteratorHasCurrentEvent(
         in_iterator: MusicEventIterator,
         out_has_cur_event: NonNull<Boolean>,
@@ -2216,6 +2368,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadsmfdatawithflags?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
@@ -2229,6 +2383,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencesavesmfdata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_sequence` must be a valid pointer.
@@ -2243,6 +2399,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/newmusictrackfrom?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_source_track` must be a valid pointer.
@@ -2287,6 +2445,8 @@ unsafe impl RefEncode for ExtendedControlEvent {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewextendedcontrolevent?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_track` must be a valid pointer.

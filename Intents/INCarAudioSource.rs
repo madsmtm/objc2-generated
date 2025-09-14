@@ -11,33 +11,43 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCarAudioSource(pub NSInteger);
 impl INCarAudioSource {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceunknown?language=objc)
     #[doc(alias = "INCarAudioSourceUnknown")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceUnknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourcecarplay?language=objc)
     #[doc(alias = "INCarAudioSourceCarPlay")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceCarPlay: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceipod?language=objc)
     #[doc(alias = "INCarAudioSourceiPod")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceiPod: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceradio?language=objc)
     #[doc(alias = "INCarAudioSourceRadio")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceRadio: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourcebluetooth?language=objc)
     #[doc(alias = "INCarAudioSourceBluetooth")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceBluetooth: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceaux?language=objc)
     #[doc(alias = "INCarAudioSourceAUX")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceAUX: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceusb?language=objc)
     #[doc(alias = "INCarAudioSourceUSB")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceUSB: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourcememorycard?language=objc)
     #[doc(alias = "INCarAudioSourceMemoryCard")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceMemoryCard: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceopticaldrive?language=objc)
     #[doc(alias = "INCarAudioSourceOpticalDrive")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceOpticalDrive: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceharddrive?language=objc)
     #[doc(alias = "INCarAudioSourceHardDrive")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceHardDrive: Self = Self(9);

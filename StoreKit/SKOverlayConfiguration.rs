@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKOverlayPosition(pub NSInteger);
 impl SKOverlayPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/position/bottom?language=objc)
     #[doc(alias = "SKOverlayPositionBottom")]
     pub const Bottom: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/position/bottomraised?language=objc)
     #[doc(alias = "SKOverlayPositionBottomRaised")]
     pub const BottomRaised: Self = Self(1);
 }

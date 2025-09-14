@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentChangeKind(pub NSInteger);
 impl UIDocumentChangeKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/changekind/done?language=objc)
     #[doc(alias = "UIDocumentChangeDone")]
     pub const Done: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/changekind/undone?language=objc)
     #[doc(alias = "UIDocumentChangeUndone")]
     pub const Undone: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/changekind/redone?language=objc)
     #[doc(alias = "UIDocumentChangeRedone")]
     pub const Redone: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/changekind/cleared?language=objc)
     #[doc(alias = "UIDocumentChangeCleared")]
     pub const Cleared: Self = Self(3);
 }
@@ -37,8 +41,10 @@ unsafe impl RefEncode for UIDocumentChangeKind {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentSaveOperation(pub NSInteger);
 impl UIDocumentSaveOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/saveoperation/forcreating?language=objc)
     #[doc(alias = "UIDocumentSaveForCreating")]
     pub const ForCreating: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/saveoperation/foroverwriting?language=objc)
     #[doc(alias = "UIDocumentSaveForOverwriting")]
     pub const ForOverwriting: Self = Self(1);
 }
@@ -58,16 +64,22 @@ unsafe impl RefEncode for UIDocumentSaveOperation {
 pub struct UIDocumentState(pub NSUInteger);
 bitflags::bitflags! {
     impl UIDocumentState: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/normal?language=objc)
         #[doc(alias = "UIDocumentStateNormal")]
         const Normal = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/closed?language=objc)
         #[doc(alias = "UIDocumentStateClosed")]
         const Closed = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/inconflict?language=objc)
         #[doc(alias = "UIDocumentStateInConflict")]
         const InConflict = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/savingerror?language=objc)
         #[doc(alias = "UIDocumentStateSavingError")]
         const SavingError = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/editingdisabled?language=objc)
         #[doc(alias = "UIDocumentStateEditingDisabled")]
         const EditingDisabled = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/progressavailable?language=objc)
         #[doc(alias = "UIDocumentStateProgressAvailable")]
         const ProgressAvailable = 1<<4;
     }

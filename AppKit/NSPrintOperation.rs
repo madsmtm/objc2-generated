@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintingPageOrder(pub NSInteger);
 impl NSPrintingPageOrder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.enum/descendingpageorder?language=objc)
     #[doc(alias = "NSDescendingPageOrder")]
     pub const DescendingPageOrder: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.enum/specialpageorder?language=objc)
     #[doc(alias = "NSSpecialPageOrder")]
     pub const SpecialPageOrder: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.enum/ascendingpageorder?language=objc)
     #[doc(alias = "NSAscendingPageOrder")]
     pub const AscendingPageOrder: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.enum/unknownpageorder?language=objc)
     #[doc(alias = "NSUnknownPageOrder")]
     pub const UnknownPageOrder: Self = Self(2);
 }
@@ -37,8 +41,10 @@ unsafe impl RefEncode for NSPrintingPageOrder {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintRenderingQuality(pub NSInteger);
 impl NSPrintRenderingQuality {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/renderingquality/best?language=objc)
     #[doc(alias = "NSPrintRenderingQualityBest")]
     pub const Best: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/renderingquality/responsive?language=objc)
     #[doc(alias = "NSPrintRenderingQualityResponsive")]
     pub const Responsive: Self = Self(1);
 }

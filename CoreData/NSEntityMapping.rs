@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEntityMappingType(pub NSUInteger);
 impl NSEntityMappingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/undefinedentitymappingtype?language=objc)
     #[doc(alias = "NSUndefinedEntityMappingType")]
     pub const UndefinedEntityMappingType: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/customentitymappingtype?language=objc)
     #[doc(alias = "NSCustomEntityMappingType")]
     pub const CustomEntityMappingType: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/addentitymappingtype?language=objc)
     #[doc(alias = "NSAddEntityMappingType")]
     pub const AddEntityMappingType: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/removeentitymappingtype?language=objc)
     #[doc(alias = "NSRemoveEntityMappingType")]
     pub const RemoveEntityMappingType: Self = Self(0x03);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/copyentitymappingtype?language=objc)
     #[doc(alias = "NSCopyEntityMappingType")]
     pub const CopyEntityMappingType: Self = Self(0x04);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/transformentitymappingtype?language=objc)
     #[doc(alias = "NSTransformEntityMappingType")]
     pub const TransformEntityMappingType: Self = Self(0x05);
 }

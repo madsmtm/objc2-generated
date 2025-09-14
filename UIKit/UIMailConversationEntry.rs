@@ -16,21 +16,33 @@ use crate::*;
 pub struct UIMailConversationEntryKind(pub NSInteger);
 impl UIMailConversationEntryKind {
     /// The email does not fit in a specific category.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/none?language=objc)
     #[doc(alias = "UIMailConversationEntryKindNone")]
     pub const None: Self = Self(0);
     /// The email is personal correspondence.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/personal?language=objc)
     #[doc(alias = "UIMailConversationEntryKindPersonal")]
     pub const Personal: Self = Self(1);
     /// The email contains a promotional offer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/promotion?language=objc)
     #[doc(alias = "UIMailConversationEntryKindPromotion")]
     pub const Promotion: Self = Self(2);
     /// The email is related to social media.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/social?language=objc)
     #[doc(alias = "UIMailConversationEntryKindSocial")]
     pub const Social: Self = Self(3);
     /// The email is related to a purchase or transaction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/transaction?language=objc)
     #[doc(alias = "UIMailConversationEntryKindTransaction")]
     pub const Transaction: Self = Self(4);
     /// The email is related to news or current events.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/news?language=objc)
     #[doc(alias = "UIMailConversationEntryKindNews")]
     pub const News: Self = Self(5);
 }

@@ -12,12 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContainerType(pub NSInteger);
 impl CNContainerType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertype/unassigned?language=objc)
     #[doc(alias = "CNContainerTypeUnassigned")]
     pub const Unassigned: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertype/local?language=objc)
     #[doc(alias = "CNContainerTypeLocal")]
     pub const Local: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertype/exchange?language=objc)
     #[doc(alias = "CNContainerTypeExchange")]
     pub const Exchange: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertype/carddav?language=objc)
     #[doc(alias = "CNContainerTypeCardDAV")]
     pub const CardDAV: Self = Self(3);
 }

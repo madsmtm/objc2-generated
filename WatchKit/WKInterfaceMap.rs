@@ -21,10 +21,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceMapPinColor(pub NSInteger);
 impl WKInterfaceMapPinColor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemappincolor/red?language=objc)
     #[doc(alias = "WKInterfaceMapPinColorRed")]
     pub const Red: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemappincolor/green?language=objc)
     #[doc(alias = "WKInterfaceMapPinColorGreen")]
     pub const Green: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemappincolor/purple?language=objc)
     #[doc(alias = "WKInterfaceMapPinColorPurple")]
     pub const Purple: Self = Self(2);
 }
@@ -43,8 +46,10 @@ unsafe impl RefEncode for WKInterfaceMapPinColor {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceMapUserTrackingMode(pub NSInteger);
 impl WKInterfaceMapUserTrackingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemap/usertrackingmode/none?language=objc)
     #[doc(alias = "WKInterfaceMapUserTrackingModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemap/usertrackingmode/follow?language=objc)
     #[doc(alias = "WKInterfaceMapUserTrackingModeFollow")]
     pub const Follow: Self = Self(1);
 }

@@ -14,8 +14,10 @@ use crate::*;
 pub struct LSAcceptanceFlags(pub OptionBits);
 bitflags::bitflags! {
     impl LSAcceptanceFlags: OptionBits {
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsacceptanceflags/klsacceptdefault?language=objc)
         #[doc(alias = "kLSAcceptDefault")]
         const AcceptDefault = 0x00000001;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsacceptanceflags/klsacceptallowloginui?language=objc)
         #[doc(alias = "kLSAcceptAllowLoginUI")]
         const AcceptAllowLoginUI = 0x00000002;
     }
@@ -63,6 +65,8 @@ unsafe impl RefEncode for LSAcceptanceFlags {
 /// # Safety
 ///
 /// `out_error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448824-lscopydefaultapplicationurlforur?language=objc)
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] instead."]
 #[inline]
@@ -112,6 +116,8 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForURL(
 /// # Safety
 ///
 /// `out_error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447734-lscopydefaultapplicationurlforco?language=objc)
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenContentType:] instead."]
 #[inline]
@@ -159,6 +165,8 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForContentType(
 /// # Safety
 ///
 /// `out_error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449290-lscopyapplicationurlsforbundleid?language=objc)
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsWithBundleIdentifier:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForBundleIdentifier(
@@ -199,6 +207,8 @@ pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForBundleIdentifier(
 ///
 /// The order of the resulting array is undefined. If you need the
 /// default application for the specified URL, use LSCopyDefaultApplicationURLForURL.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445148-lscopyapplicationurlsforurl?language=objc)
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsToOpenURL:] instead."]
 #[inline]
@@ -244,6 +254,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_accepts_item` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441854-lscanurlaccepturl?language=objc)
     #[cfg(feature = "LSConstants")]
     pub fn LSCanURLAcceptURL(
         in_item_url: &CFURL,
@@ -272,6 +284,8 @@ extern "C-unwind" {
 /// Returns: An OSStatus value: noErr - Success kLSNoRegistrationInfoErr - The
 /// item does not contain info requiring registration kLSDataErr -
 /// The item's property list info is malformed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446350-lsregisterurl?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn LSRegisterURL(in_url: &CFURL, in_update: bool) -> OSStatus {
     extern "C-unwind" {
@@ -292,6 +306,8 @@ pub unsafe extern "C-unwind" fn LSRegisterURL(in_url: &CFURL, in_update: bool) -
 ///
 ///
 /// Returns: an application bundle identifier which is the default handler for the given type and role, or NULL if there is no default handler
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449868-lscopydefaultrolehandlerforconte?language=objc)
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenContentType:] instead."]
 #[inline]
@@ -323,6 +339,8 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultRoleHandlerForContentType(
 ///
 ///
 /// Returns: an array of of CFStringRef bundle identifiers, or NULL
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448020-lscopyallrolehandlersforcontentt?language=objc)
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsToOpenContentType:] instead."]
 #[inline]
@@ -355,6 +373,8 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr on success, or an error indicating why the call failed
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444955-lssetdefaultrolehandlerforconten?language=objc)
     #[cfg(feature = "LSConstants")]
     #[deprecated = "Use -[NSWorkspace setDefaultApplicationAtURL:toOpenContentType:completionHandler:] instead."]
     pub fn LSSetDefaultRoleHandlerForContentType(
@@ -373,6 +393,8 @@ extern "C-unwind" {
 ///
 ///
 /// Returns: a CFStringRef bundle identifier of the default handler, or NULL if no handler is available
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441725-lscopydefaulthandlerforurlscheme?language=objc)
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn LSCopyDefaultHandlerForURLScheme(
@@ -396,6 +418,8 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultHandlerForURLScheme(
 ///
 ///
 /// Returns: An array of bundle identifier strings
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443240-lscopyallhandlersforurlscheme?language=objc)
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsToOpenURL:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn LSCopyAllHandlersForURLScheme(
@@ -417,6 +441,8 @@ extern "C-unwind" {
     /// Parameter `inURLScheme`: the url scheme to set a default handler for
     ///
     /// Parameter `inHandlerBundleID`: the bundle identifier to be set as the default handler for the given scheme
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447760-lssetdefaulthandlerforurlscheme?language=objc)
     #[deprecated = "Use -[NSWorkspace setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:] instead."]
     pub fn LSSetDefaultHandlerForURLScheme(
         in_url_scheme: &CFString,

@@ -85,8 +85,10 @@ impl MPSkipIntervalCommandEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSeekCommandEventType(pub NSUInteger);
 impl MPSeekCommandEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpseekcommandeventtype/beginseeking?language=objc)
     #[doc(alias = "MPSeekCommandEventTypeBeginSeeking")]
     pub const BeginSeeking: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpseekcommandeventtype/endseeking?language=objc)
     #[doc(alias = "MPSeekCommandEventTypeEndSeeking")]
     pub const EndSeeking: Self = Self(1);
 }

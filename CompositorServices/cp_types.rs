@@ -62,6 +62,8 @@ impl cp_time {
     /// - time: The time value to convert.
     /// - Returns: The elapsed time in seconds that correspond to the specified
     /// time value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_time_to_cf_time_interval?language=objc)
     #[doc(alias = "cp_time_to_cf_time_interval")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -76,6 +78,8 @@ impl cp_time {
     ///
     /// - Parameters:
     /// - time: The Mach absolute time at which to wake up the thread.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_time_wait_until?language=objc)
     #[doc(alias = "cp_time_wait_until")]
     #[inline]
     pub unsafe fn wait_until(time: cp_time_t) {
@@ -103,12 +107,16 @@ impl cp_time {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_axis_direction_convention(pub u8);
 impl cp_axis_direction_convention {
+    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/axisdirectionconvention/rightupback?language=objc)
     #[doc(alias = "cp_axis_direction_convention_right_up_back")]
     pub const right_up_back: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/axisdirectionconvention/rightupforward?language=objc)
     #[doc(alias = "cp_axis_direction_convention_right_up_forward")]
     pub const right_up_forward: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/axisdirectionconvention/rightdownback?language=objc)
     #[doc(alias = "cp_axis_direction_convention_right_down_back")]
     pub const right_down_back: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/axisdirectionconvention/rightdownforward?language=objc)
     #[doc(alias = "cp_axis_direction_convention_right_down_forward")]
     pub const right_down_forward: Self = Self(3);
 }

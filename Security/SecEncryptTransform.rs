@@ -179,6 +179,8 @@ extern "C" {
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secencrypttransformcreate(_:_:)?language=objc)
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -215,6 +217,8 @@ pub unsafe extern "C-unwind" fn SecEncryptTransformCreate(
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secdecrypttransformcreate(_:_:)?language=objc)
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -236,6 +240,8 @@ pub unsafe extern "C-unwind" fn SecDecryptTransformCreate(
 /// Returns the CFTypeID for a decrypt transform.
 ///
 /// Returns: the CFTypeID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secdecrypttransformgettypeid()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub extern "C-unwind" fn SecDecryptTransformGetTypeID() -> CFTypeID {
@@ -248,6 +254,8 @@ pub extern "C-unwind" fn SecDecryptTransformGetTypeID() -> CFTypeID {
 /// Returns the CFTypeID for a decrypt transform.
 ///
 /// Returns: the CFTypeID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secencrypttransformgettypeid()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub extern "C-unwind" fn SecEncryptTransformGetTypeID() -> CFTypeID {

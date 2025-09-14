@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNMorpherCalculationMode(pub NSInteger);
 impl SCNMorpherCalculationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmorphercalculationmode/normalized?language=objc)
     #[doc(alias = "SCNMorpherCalculationModeNormalized")]
     pub const Normalized: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmorphercalculationmode/additive?language=objc)
     #[doc(alias = "SCNMorpherCalculationModeAdditive")]
     pub const Additive: Self = Self(1);
 }

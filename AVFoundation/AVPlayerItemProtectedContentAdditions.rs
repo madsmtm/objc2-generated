@@ -25,18 +25,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVContentAuthorizationStatus(pub NSInteger);
 impl AVContentAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/unknown?language=objc)
     #[doc(alias = "AVContentAuthorizationUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/completed?language=objc)
     #[doc(alias = "AVContentAuthorizationCompleted")]
     pub const Completed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/cancelled?language=objc)
     #[doc(alias = "AVContentAuthorizationCancelled")]
     pub const Cancelled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/timedout?language=objc)
     #[doc(alias = "AVContentAuthorizationTimedOut")]
     pub const TimedOut: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/busy?language=objc)
     #[doc(alias = "AVContentAuthorizationBusy")]
     pub const Busy: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/notavailable?language=objc)
     #[doc(alias = "AVContentAuthorizationNotAvailable")]
     pub const NotAvailable: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/notpossible?language=objc)
     #[doc(alias = "AVContentAuthorizationNotPossible")]
     pub const NotPossible: Self = Self(6);
 }

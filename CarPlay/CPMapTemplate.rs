@@ -18,14 +18,19 @@ use crate::*;
 pub struct CPPanDirection(pub NSInteger);
 bitflags::bitflags! {
     impl CPPanDirection: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cppandirection/cppandirectionnone?language=objc)
         #[doc(alias = "CPPanDirectionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate/pandirection/left?language=objc)
         #[doc(alias = "CPPanDirectionLeft")]
         const Left = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate/pandirection/right?language=objc)
         #[doc(alias = "CPPanDirectionRight")]
         const Right = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate/pandirection/up?language=objc)
         #[doc(alias = "CPPanDirectionUp")]
         const Up = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate/pandirection/down?language=objc)
         #[doc(alias = "CPPanDirectionDown")]
         const Down = 1<<3;
     }
@@ -46,14 +51,19 @@ unsafe impl RefEncode for CPPanDirection {
 pub struct CPManeuverDisplayStyle(pub NSInteger);
 bitflags::bitflags! {
     impl CPManeuverDisplayStyle: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/cpmaneuverdisplaystyledefault?language=objc)
         #[doc(alias = "CPManeuverDisplayStyleDefault")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/leadingsymbol?language=objc)
         #[doc(alias = "CPManeuverDisplayStyleLeadingSymbol")]
         const LeadingSymbol = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/trailingsymbol?language=objc)
         #[doc(alias = "CPManeuverDisplayStyleTrailingSymbol")]
         const TrailingSymbol = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/symbolonly?language=objc)
         #[doc(alias = "CPManeuverDisplayStyleSymbolOnly")]
         const SymbolOnly = 3;
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/instructiononly?language=objc)
         #[doc(alias = "CPManeuverDisplayStyleInstructionOnly")]
         const InstructionOnly = 4;
     }
@@ -73,12 +83,16 @@ unsafe impl RefEncode for CPManeuverDisplayStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPTimeRemainingColor(pub NSUInteger);
 impl CPTimeRemainingColor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptimeremainingcolor/default?language=objc)
     #[doc(alias = "CPTimeRemainingColorDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptimeremainingcolor/green?language=objc)
     #[doc(alias = "CPTimeRemainingColorGreen")]
     pub const Green: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptimeremainingcolor/orange?language=objc)
     #[doc(alias = "CPTimeRemainingColorOrange")]
     pub const Orange: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptimeremainingcolor/red?language=objc)
     #[doc(alias = "CPTimeRemainingColorRed")]
     pub const Red: Self = Self(3);
 }
@@ -97,8 +111,10 @@ unsafe impl RefEncode for CPTimeRemainingColor {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPTripEstimateStyle(pub NSUInteger);
 impl CPTripEstimateStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptripestimatestyle/light?language=objc)
     #[doc(alias = "CPTripEstimateStyleLight")]
     pub const Light: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptripestimatestyle/dark?language=objc)
     #[doc(alias = "CPTripEstimateStyleDark")]
     pub const Dark: Self = Self(1);
 }

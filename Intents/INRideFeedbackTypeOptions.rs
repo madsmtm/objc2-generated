@@ -11,8 +11,10 @@ use crate::*;
 pub struct INRideFeedbackTypeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INRideFeedbackTypeOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inridefeedbacktypeoptions/rate?language=objc)
         #[doc(alias = "INRideFeedbackTypeOptionRate")]
         const Rate = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inridefeedbacktypeoptions/tip?language=objc)
         #[doc(alias = "INRideFeedbackTypeOptionTip")]
         const Tip = 1<<1;
     }

@@ -26,6 +26,8 @@ unsafe impl RefEncode for SecAsn1Coder {
 pub type SecAsn1CoderRef = *mut SecAsn1Coder;
 
 impl SecAsn1Coder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1codercreate?language=objc)
+    ///
     /// # Safety
     ///
     /// `coder` must be a valid pointer.
@@ -39,6 +41,8 @@ impl SecAsn1Coder {
         unsafe { SecAsn1CoderCreate(coder) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1coderrelease?language=objc)
+    ///
     /// # Safety
     ///
     /// `coder` must be a valid pointer.
@@ -54,6 +58,8 @@ impl SecAsn1Coder {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1decode?language=objc)
+    ///
     /// # Safety
     ///
     /// - `coder` must be a valid pointer.
@@ -72,6 +78,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1decodedata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `coder` must be a valid pointer.
@@ -89,6 +97,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1encodeitem?language=objc)
+    ///
     /// # Safety
     ///
     /// - `coder` must be a valid pointer.
@@ -105,6 +115,8 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1malloc?language=objc)
+///
 /// # Safety
 ///
 /// `coder` must be a valid pointer.
@@ -122,6 +134,8 @@ pub unsafe extern "C-unwind" fn SecAsn1Malloc(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1allocitem?language=objc)
+    ///
     /// # Safety
     ///
     /// - `coder` must be a valid pointer.
@@ -136,6 +150,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1alloccopy?language=objc)
+    ///
     /// # Safety
     ///
     /// - `coder` must be a valid pointer.
@@ -152,6 +168,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1alloccopyitem?language=objc)
+    ///
     /// # Safety
     ///
     /// - `coder` must be a valid pointer.
@@ -167,6 +185,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1oidcompare?language=objc)
+    ///
     /// # Safety
     ///
     /// - `oid1` must be a valid pointer.

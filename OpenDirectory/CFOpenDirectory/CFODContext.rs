@@ -12,6 +12,8 @@ unsafe impl ConcreteType for ODContextRef {
     /// Returns the typeID for the ODContext object
     ///
     /// Returns: a valid CFTypeID for the ODContext object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odcontextgettypeid()?language=objc)
     #[doc(alias = "ODContextGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {

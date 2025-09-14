@@ -29,28 +29,40 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHProjectCreationSource(pub NSInteger);
 impl PHProjectCreationSource {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/undefined?language=objc)
     #[doc(alias = "PHProjectCreationSourceUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/userselection?language=objc)
     #[doc(alias = "PHProjectCreationSourceUserSelection")]
     pub const UserSelection: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/album?language=objc)
     #[doc(alias = "PHProjectCreationSourceAlbum")]
     pub const Album: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/memory?language=objc)
     #[doc(alias = "PHProjectCreationSourceMemory")]
     pub const Memory: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/moment?language=objc)
     #[doc(alias = "PHProjectCreationSourceMoment")]
     pub const Moment: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/project?language=objc)
     #[doc(alias = "PHProjectCreationSourceProject")]
     pub const Project: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectbook?language=objc)
     #[doc(alias = "PHProjectCreationSourceProjectBook")]
     pub const ProjectBook: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectcalendar?language=objc)
     #[doc(alias = "PHProjectCreationSourceProjectCalendar")]
     pub const ProjectCalendar: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectcard?language=objc)
     #[doc(alias = "PHProjectCreationSourceProjectCard")]
     pub const ProjectCard: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectprintorder?language=objc)
     #[doc(alias = "PHProjectCreationSourceProjectPrintOrder")]
     pub const ProjectPrintOrder: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectslideshow?language=objc)
     #[doc(alias = "PHProjectCreationSourceProjectSlideshow")]
     pub const ProjectSlideshow: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectextension?language=objc)
     #[doc(alias = "PHProjectCreationSourceProjectExtension")]
     pub const ProjectExtension: Self = Self(26);
 }
@@ -197,12 +209,16 @@ impl PHProjectInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHProjectSectionType(pub NSInteger);
 impl PHProjectSectionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.enum/undefined?language=objc)
     #[doc(alias = "PHProjectSectionTypeUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.enum/cover?language=objc)
     #[doc(alias = "PHProjectSectionTypeCover")]
     pub const Cover: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.enum/content?language=objc)
     #[doc(alias = "PHProjectSectionTypeContent")]
     pub const Content: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.enum/auxiliary?language=objc)
     #[doc(alias = "PHProjectSectionTypeAuxiliary")]
     pub const Auxiliary: Self = Self(3);
 }
@@ -672,10 +688,13 @@ impl PHProjectAssetElement {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHProjectTextElementType(pub NSInteger);
 impl PHProjectTextElementType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement/elementtype/body?language=objc)
     #[doc(alias = "PHProjectTextElementTypeBody")]
     pub const Body: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement/elementtype/title?language=objc)
     #[doc(alias = "PHProjectTextElementTypeTitle")]
     pub const Title: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement/elementtype/subtitle?language=objc)
     #[doc(alias = "PHProjectTextElementTypeSubtitle")]
     pub const Subtitle: Self = Self(2);
 }

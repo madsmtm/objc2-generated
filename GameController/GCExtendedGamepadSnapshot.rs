@@ -86,9 +86,11 @@ impl GCExtendedGamepadSnapshot {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCExtendedGamepadSnapshotDataVersion(pub NSInteger);
 impl GCExtendedGamepadSnapshotDataVersion {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdataversion/version1?language=objc)
     #[doc(alias = "GCExtendedGamepadSnapshotDataVersion1")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     pub const Version1: Self = Self(0x0100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdataversion/version2?language=objc)
     #[doc(alias = "GCExtendedGamepadSnapshotDataVersion2")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     pub const Version2: Self = Self(0x0101);
@@ -173,6 +175,8 @@ impl GCExtendedGamepadSnapshotData {
     /// # Safety
     ///
     /// `snapshot_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdatafromnsdata(_:_:)?language=objc)
     #[doc(alias = "GCExtendedGamepadSnapshotDataFromNSData")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[inline]
@@ -199,6 +203,8 @@ impl GCExtendedGamepadSnapshotData {
 /// # Safety
 ///
 /// `snapshot_data` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/nsdatafromgcextendedgamepadsnapshotdata(_:)?language=objc)
 #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapshotData(
@@ -272,6 +278,8 @@ impl GCExtendedGamepadSnapShotDataV100 {
     /// # Safety
     ///
     /// `snapshot_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdatav100fromnsdata(_:_:)?language=objc)
     #[doc(alias = "GCExtendedGamepadSnapShotDataV100FromNSData")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[inline]
@@ -298,6 +306,8 @@ impl GCExtendedGamepadSnapShotDataV100 {
 /// # Safety
 ///
 /// `snapshot_data` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/nsdatafromgcextendedgamepadsnapshotdatav100(_:)?language=objc)
 #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapShotDataV100(

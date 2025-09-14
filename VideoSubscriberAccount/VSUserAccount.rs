@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSUserAccountType(pub NSInteger);
 impl VSUserAccountType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccounttype/vsuseraccounttypefree?language=objc)
     #[doc(alias = "VSUserAccountTypeFree")]
     pub const Free: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccounttype/vsuseraccounttypepaid?language=objc)
     #[doc(alias = "VSUserAccountTypePaid")]
     pub const Paid: Self = Self(1);
 }
@@ -33,8 +35,10 @@ unsafe impl RefEncode for VSUserAccountType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSOriginatingDeviceCategory(pub NSInteger);
 impl VSOriginatingDeviceCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsoriginatingdevicecategory/vsoriginatingdevicecategorymobile?language=objc)
     #[doc(alias = "VSOriginatingDeviceCategoryMobile")]
     pub const Mobile: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsoriginatingdevicecategory/vsoriginatingdevicecategoryother?language=objc)
     #[doc(alias = "VSOriginatingDeviceCategoryOther")]
     pub const Other: Self = Self(1);
 }

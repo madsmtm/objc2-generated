@@ -14,14 +14,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPressPhase(pub NSInteger);
 impl UIPressPhase {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum/began?language=objc)
     #[doc(alias = "UIPressPhaseBegan")]
     pub const Began: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum/changed?language=objc)
     #[doc(alias = "UIPressPhaseChanged")]
     pub const Changed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum/stationary?language=objc)
     #[doc(alias = "UIPressPhaseStationary")]
     pub const Stationary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum/ended?language=objc)
     #[doc(alias = "UIPressPhaseEnded")]
     pub const Ended: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum/cancelled?language=objc)
     #[doc(alias = "UIPressPhaseCancelled")]
     pub const Cancelled: Self = Self(4);
 }
@@ -40,31 +45,44 @@ unsafe impl RefEncode for UIPressPhase {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPressType(pub NSInteger);
 impl UIPressType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/uparrow?language=objc)
     #[doc(alias = "UIPressTypeUpArrow")]
     pub const UpArrow: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/downarrow?language=objc)
     #[doc(alias = "UIPressTypeDownArrow")]
     pub const DownArrow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/leftarrow?language=objc)
     #[doc(alias = "UIPressTypeLeftArrow")]
     pub const LeftArrow: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/rightarrow?language=objc)
     #[doc(alias = "UIPressTypeRightArrow")]
     pub const RightArrow: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/select?language=objc)
     #[doc(alias = "UIPressTypeSelect")]
     pub const Select: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/menu?language=objc)
     #[doc(alias = "UIPressTypeMenu")]
     pub const Menu: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/playpause?language=objc)
     #[doc(alias = "UIPressTypePlayPause")]
     pub const PlayPause: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/pageup?language=objc)
     #[doc(alias = "UIPressTypePageUp")]
     pub const PageUp: Self = Self(30);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/pagedown?language=objc)
     #[doc(alias = "UIPressTypePageDown")]
     pub const PageDown: Self = Self(31);
     /// Represents a button on a TV remote labeled with 123. When this button is pressed, an app should provide UI to enter a specific channel number if channel
     /// numbers are available. If no channel numbers exist the app should provide UI to toggle channel category filters, search for channels by name or search for
     /// currently airing shows.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/tvremoteonetwothree?language=objc)
     #[doc(alias = "UIPressTypeTVRemoteOneTwoThree")]
     pub const TVRemoteOneTwoThree: Self = Self(32);
     /// Represents a button on a TV remote labeled with four colors, analogous to the four separate color buttons found on some TV remotes. When this button is
     /// pressed, an app should perform the appropriate color action or if there are multiple color actions available provide UI to choose the specific color.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/tvremotefourcolors?language=objc)
     #[doc(alias = "UIPressTypeTVRemoteFourColors")]
     pub const TVRemoteFourColors: Self = Self(33);
 }

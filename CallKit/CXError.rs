@@ -36,12 +36,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCode(pub NSInteger);
 impl CXErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerror/code/unknownerror?language=objc)
     #[doc(alias = "CXErrorCodeUnknownError")]
     pub const UnknownError: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerror/code/unentitled?language=objc)
     #[doc(alias = "CXErrorCodeUnentitled")]
     pub const Unentitled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerror/code/invalidargument?language=objc)
     #[doc(alias = "CXErrorCodeInvalidArgument")]
     pub const InvalidArgument: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerror/code/missingvoipbackgroundmode?language=objc)
     #[doc(alias = "CXErrorCodeMissingVoIPBackgroundMode")]
     pub const MissingVoIPBackgroundMode: Self = Self(3);
 }
@@ -59,20 +63,28 @@ unsafe impl RefEncode for CXErrorCode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeIncomingCallError(pub NSInteger);
 impl CXErrorCodeIncomingCallError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/unknown?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/unentitled?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorUnentitled")]
     pub const Unentitled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/calluuidalreadyexists?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists")]
     pub const CallUUIDAlreadyExists: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/filteredbydonotdisturb?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb")]
     pub const FilteredByDoNotDisturb: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/filteredbyblocklist?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredByBlockList")]
     pub const FilteredByBlockList: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/filteredduringrestrictedsharingmode?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode")]
     pub const FilteredDuringRestrictedSharingMode: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/callisprotected?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorCallIsProtected")]
     pub const CallIsProtected: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/filteredbysensitiveparticipants?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredBySensitiveParticipants")]
     pub const FilteredBySensitiveParticipants: Self = Self(7);
 }
@@ -90,22 +102,31 @@ unsafe impl RefEncode for CXErrorCodeIncomingCallError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeRequestTransactionError(pub NSInteger);
 impl CXErrorCodeRequestTransactionError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/unknown?language=objc)
     #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/unentitled?language=objc)
     #[doc(alias = "CXErrorCodeRequestTransactionErrorUnentitled")]
     pub const Unentitled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/unknowncallprovider?language=objc)
     #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknownCallProvider")]
     pub const UnknownCallProvider: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/emptytransaction?language=objc)
     #[doc(alias = "CXErrorCodeRequestTransactionErrorEmptyTransaction")]
     pub const EmptyTransaction: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/unknowncalluuid?language=objc)
     #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknownCallUUID")]
     pub const UnknownCallUUID: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/calluuidalreadyexists?language=objc)
     #[doc(alias = "CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists")]
     pub const CallUUIDAlreadyExists: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/invalidaction?language=objc)
     #[doc(alias = "CXErrorCodeRequestTransactionErrorInvalidAction")]
     pub const InvalidAction: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/maximumcallgroupsreached?language=objc)
     #[doc(alias = "CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached")]
     pub const MaximumCallGroupsReached: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/callisprotected?language=objc)
     #[doc(alias = "CXErrorCodeRequestTransactionErrorCallIsProtected")]
     pub const CallIsProtected: Self = Self(8);
 }
@@ -123,22 +144,31 @@ unsafe impl RefEncode for CXErrorCodeRequestTransactionError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeCallDirectoryManagerError(pub NSInteger);
 impl CXErrorCodeCallDirectoryManagerError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/unknown?language=objc)
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/noextensionfound?language=objc)
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorNoExtensionFound")]
     pub const NoExtensionFound: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/loadinginterrupted?language=objc)
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorLoadingInterrupted")]
     pub const LoadingInterrupted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/entriesoutoforder?language=objc)
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder")]
     pub const EntriesOutOfOrder: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/duplicateentries?language=objc)
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorDuplicateEntries")]
     pub const DuplicateEntries: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/maximumentriesexceeded?language=objc)
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorMaximumEntriesExceeded")]
     pub const MaximumEntriesExceeded: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/extensiondisabled?language=objc)
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorExtensionDisabled")]
     pub const ExtensionDisabled: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/currentlyloading?language=objc)
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading")]
     pub const CurrentlyLoading: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/unexpectedincrementalremoval?language=objc)
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnexpectedIncrementalRemoval")]
     pub const UnexpectedIncrementalRemoval: Self = Self(8);
 }
@@ -156,10 +186,13 @@ unsafe impl RefEncode for CXErrorCodeCallDirectoryManagerError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeNotificationServiceExtensionError(pub NSInteger);
 impl CXErrorCodeNotificationServiceExtensionError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror-swift.struct/code/unknown?language=objc)
     #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror-swift.struct/code/invalidclientprocess?language=objc)
     #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorInvalidClientProcess")]
     pub const InvalidClientProcess: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror-swift.struct/code/missingnotificationfilteringentitlement?language=objc)
     #[doc(
         alias = "CXErrorCodeNotificationServiceExtensionErrorMissingNotificationFilteringEntitlement"
     )]

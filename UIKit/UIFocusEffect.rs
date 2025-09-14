@@ -55,12 +55,18 @@ impl UIFocusEffect {
 pub struct UIFocusHaloEffectPosition(pub NSInteger);
 impl UIFocusHaloEffectPosition {
     /// Automatically detects the best position depending on the the focus item and its containing view hierarchy.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffect/position-swift.enum/automatic?language=objc)
     #[doc(alias = "UIFocusHaloEffectPositionAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Draws the halo around the given shape.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffect/position-swift.enum/outside?language=objc)
     #[doc(alias = "UIFocusHaloEffectPositionOutside")]
     pub const Outside: Self = Self(1);
     /// Draws the halo inside the given shape.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffect/position-swift.enum/inside?language=objc)
     #[doc(alias = "UIFocusHaloEffectPositionInside")]
     pub const Inside: Self = Self(2);
 }

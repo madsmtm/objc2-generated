@@ -13,24 +13,34 @@ use crate::*;
 pub struct NSTrackingAreaOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTrackingAreaOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/mouseenteredandexited?language=objc)
         #[doc(alias = "NSTrackingMouseEnteredAndExited")]
         const MouseEnteredAndExited = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/mousemoved?language=objc)
         #[doc(alias = "NSTrackingMouseMoved")]
         const MouseMoved = 0x02;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/cursorupdate?language=objc)
         #[doc(alias = "NSTrackingCursorUpdate")]
         const CursorUpdate = 0x04;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activewhenfirstresponder?language=objc)
         #[doc(alias = "NSTrackingActiveWhenFirstResponder")]
         const ActiveWhenFirstResponder = 0x10;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activeinkeywindow?language=objc)
         #[doc(alias = "NSTrackingActiveInKeyWindow")]
         const ActiveInKeyWindow = 0x20;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activeinactiveapp?language=objc)
         #[doc(alias = "NSTrackingActiveInActiveApp")]
         const ActiveInActiveApp = 0x40;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activealways?language=objc)
         #[doc(alias = "NSTrackingActiveAlways")]
         const ActiveAlways = 0x80;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/assumeinside?language=objc)
         #[doc(alias = "NSTrackingAssumeInside")]
         const AssumeInside = 0x100;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/invisiblerect?language=objc)
         #[doc(alias = "NSTrackingInVisibleRect")]
         const InVisibleRect = 0x200;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/enabledduringmousedrag?language=objc)
         #[doc(alias = "NSTrackingEnabledDuringMouseDrag")]
         const EnabledDuringMouseDrag = 0x400;
     }

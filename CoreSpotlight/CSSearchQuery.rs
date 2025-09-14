@@ -18,12 +18,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CSSearchQueryErrorCode(pub NSInteger);
 impl CSSearchQueryErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchqueryerror/code/unknown?language=objc)
     #[doc(alias = "CSSearchQueryErrorCodeUnknown")]
     pub const Unknown: Self = Self(-2000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchqueryerror/code/indexunreachable?language=objc)
     #[doc(alias = "CSSearchQueryErrorCodeIndexUnreachable")]
     pub const IndexUnreachable: Self = Self(-2001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchqueryerror/code/invalidquery?language=objc)
     #[doc(alias = "CSSearchQueryErrorCodeInvalidQuery")]
     pub const InvalidQuery: Self = Self(-2002);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchqueryerror/code/cancelled?language=objc)
     #[doc(alias = "CSSearchQueryErrorCodeCancelled")]
     pub const Cancelled: Self = Self(-2003);
 }
@@ -43,8 +47,10 @@ unsafe impl RefEncode for CSSearchQueryErrorCode {
 pub struct CSSearchQuerySourceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl CSSearchQuerySourceOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchquerysourceoptions/cssearchquerysourceoptiondefault?language=objc)
         #[doc(alias = "CSSearchQuerySourceOptionDefault")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchquerycontext/sourceoptions-swift.struct/allowmail?language=objc)
         #[doc(alias = "CSSearchQuerySourceOptionAllowMail")]
         const AllowMail = 1<<0;
     }

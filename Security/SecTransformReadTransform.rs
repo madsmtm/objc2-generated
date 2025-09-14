@@ -10,6 +10,8 @@ use crate::*;
 ///
 /// Parameter `inputStream`: The stream that is to be opened and read from when
 /// the chain executes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreatereadtransformwithreadstream(_:)?language=objc)
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

@@ -12,16 +12,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateComponentsFormatterUnitsStyle(pub NSInteger);
 impl NSDateComponentsFormatterUnitsStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/positional?language=objc)
     #[doc(alias = "NSDateComponentsFormatterUnitsStylePositional")]
     pub const Positional: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/abbreviated?language=objc)
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleAbbreviated")]
     pub const Abbreviated: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/short?language=objc)
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleShort")]
     pub const Short: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/full?language=objc)
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleFull")]
     pub const Full: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/spellout?language=objc)
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleSpellOut")]
     pub const SpellOut: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/brief?language=objc)
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleBrief")]
     pub const Brief: Self = Self(5);
 }
@@ -41,18 +47,25 @@ unsafe impl RefEncode for NSDateComponentsFormatterUnitsStyle {
 pub struct NSDateComponentsFormatterZeroFormattingBehavior(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDateComponentsFormatterZeroFormattingBehavior: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentsformatterzeroformattingbehavior/nsdatecomponentsformatterzeroformattingbehaviornone?language=objc)
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/default?language=objc)
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDefault")]
         const Default = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/dropleading?language=objc)
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropLeading")]
         const DropLeading = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/dropmiddle?language=objc)
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle")]
         const DropMiddle = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/droptrailing?language=objc)
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing")]
         const DropTrailing = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/dropall?language=objc)
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropAll")]
         const DropAll = NSDateComponentsFormatterZeroFormattingBehavior::DropLeading.0|NSDateComponentsFormatterZeroFormattingBehavior::DropMiddle.0|NSDateComponentsFormatterZeroFormattingBehavior::DropTrailing.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/pad?language=objc)
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorPad")]
         const Pad = 1<<16;
     }

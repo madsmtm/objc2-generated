@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityCustomRotorSearchDirection(pub NSInteger);
 impl NSAccessibilityCustomRotorSearchDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/searchdirection/previous?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionPrevious")]
     pub const Previous: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/searchdirection/next?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionNext")]
     pub const Next: Self = Self(1);
 }
@@ -39,48 +41,70 @@ unsafe impl RefEncode for NSAccessibilityCustomRotorSearchDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityCustomRotorType(pub NSInteger);
 impl NSAccessibilityCustomRotorType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/custom?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeCustom")]
     pub const Custom: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/any?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeAny")]
     pub const Any: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/annotation?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeAnnotation")]
     pub const Annotation: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/boldtext?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeBoldText")]
     pub const BoldText: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/heading?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeading")]
     pub const Heading: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel1?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel1")]
     pub const HeadingLevel1: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel2?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel2")]
     pub const HeadingLevel2: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel3?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel3")]
     pub const HeadingLevel3: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel4?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel4")]
     pub const HeadingLevel4: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel5?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel5")]
     pub const HeadingLevel5: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel6?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel6")]
     pub const HeadingLevel6: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/image?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeImage")]
     pub const Image: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/italictext?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeItalicText")]
     pub const ItalicText: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/landmark?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeLandmark")]
     pub const Landmark: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/link?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeLink")]
     pub const Link: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/list?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeList")]
     pub const List: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/misspelledword?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeMisspelledWord")]
     pub const MisspelledWord: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/table?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeTable")]
     pub const Table: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/textfield?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeTextField")]
     pub const TextField: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/underlinedtext?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeUnderlinedText")]
     pub const UnderlinedText: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/visitedlink?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeVisitedLink")]
     pub const VisitedLink: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/audiograph?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeAudiograph")]
     pub const Audiograph: Self = Self(21);
 }

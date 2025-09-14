@@ -19,17 +19,21 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIActionSheetStyle(pub NSInteger);
 impl UIActionSheetStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheetstyle/automatic?language=objc)
     #[doc(alias = "UIActionSheetStyleAutomatic")]
     #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead."]
     pub const Automatic: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheetstyle/default?language=objc)
     #[doc(alias = "UIActionSheetStyleDefault")]
     #[cfg(feature = "UIInterface")]
     #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead."]
     pub const Default: Self = Self(UIBarStyle::Default.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheetstyle/blacktranslucent?language=objc)
     #[doc(alias = "UIActionSheetStyleBlackTranslucent")]
     #[cfg(feature = "UIInterface")]
     #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead."]
     pub const BlackTranslucent: Self = Self(UIBarStyle::BlackTranslucent.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheetstyle/blackopaque?language=objc)
     #[doc(alias = "UIActionSheetStyleBlackOpaque")]
     #[cfg(feature = "UIInterface")]
     #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead."]

@@ -14,12 +14,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBandSelectionInteractionState(pub NSInteger);
 impl UIBandSelectionInteractionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibandselectioninteraction/state-swift.enum/possible?language=objc)
     #[doc(alias = "UIBandSelectionInteractionStatePossible")]
     pub const Possible: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibandselectioninteraction/state-swift.enum/began?language=objc)
     #[doc(alias = "UIBandSelectionInteractionStateBegan")]
     pub const Began: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibandselectioninteraction/state-swift.enum/selecting?language=objc)
     #[doc(alias = "UIBandSelectionInteractionStateSelecting")]
     pub const Selecting: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibandselectioninteraction/state-swift.enum/ended?language=objc)
     #[doc(alias = "UIBandSelectionInteractionStateEnded")]
     pub const Ended: Self = Self(3);
 }

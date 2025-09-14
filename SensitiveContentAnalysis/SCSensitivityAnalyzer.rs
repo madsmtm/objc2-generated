@@ -18,14 +18,20 @@ use crate::*;
 pub struct SCSensitivityAnalysisPolicy(pub NSInteger);
 impl SCSensitivityAnalysisPolicy {
     /// No feature enabled that is requiring Sensitive Analysis on device, analysis will be disabled
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy/disabled?language=objc)
     #[doc(alias = "SCSensitivityAnalysisPolicyDisabled")]
     pub const Disabled: Self = Self(0);
     /// Sensitive Analysis is enabled on device through "Sensitive Content Warning" in Settings.
     /// It is expected that brief/inline UI, like simple "show" button.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy/simpleinterventions?language=objc)
     #[doc(alias = "SCSensitivityAnalysisPolicySimpleInterventions")]
     pub const SimpleInterventions: Self = Self(1);
     /// Sensitive Analysis is enabled for kids or teens in ScreenTime through "Communications Safety" feature.
     /// It's expected to have more descriptive UI for the user, explaining potential risks.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy/descriptiveinterventions?language=objc)
     #[doc(alias = "SCSensitivityAnalysisPolicyDescriptiveInterventions")]
     pub const DescriptiveInterventions: Self = Self(2);
 }

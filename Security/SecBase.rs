@@ -350,6 +350,8 @@ unsafe impl RefEncode for SecKeychainAttributeInfo {
 /// # Safety
 ///
 /// `reserved` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccopyerrormessagestring(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn SecCopyErrorMessageString(
     status: OSStatus,

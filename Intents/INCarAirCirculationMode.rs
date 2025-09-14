@@ -11,12 +11,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCarAirCirculationMode(pub NSInteger);
 impl INCarAirCirculationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraircirculationmode/unknown?language=objc)
     #[doc(alias = "INCarAirCirculationModeUnknown")]
     #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraircirculationmode/freshair?language=objc)
     #[doc(alias = "INCarAirCirculationModeFreshAir")]
     #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
     pub const FreshAir: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraircirculationmode/recirculateair?language=objc)
     #[doc(alias = "INCarAirCirculationModeRecirculateAir")]
     #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
     pub const RecirculateAir: Self = Self(2);

@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollElasticity(pub NSInteger);
 impl NSScrollElasticity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/elasticity/automatic?language=objc)
     #[doc(alias = "NSScrollElasticityAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/elasticity/none?language=objc)
     #[doc(alias = "NSScrollElasticityNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/elasticity/allowed?language=objc)
     #[doc(alias = "NSScrollElasticityAllowed")]
     pub const Allowed: Self = Self(2);
 }
@@ -641,10 +644,13 @@ impl NSScrollView {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollViewFindBarPosition(pub NSInteger);
 impl NSScrollViewFindBarPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.enum/abovehorizontalruler?language=objc)
     #[doc(alias = "NSScrollViewFindBarPositionAboveHorizontalRuler")]
     pub const AboveHorizontalRuler: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.enum/abovecontent?language=objc)
     #[doc(alias = "NSScrollViewFindBarPositionAboveContent")]
     pub const AboveContent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.enum/belowcontent?language=objc)
     #[doc(alias = "NSScrollViewFindBarPositionBelowContent")]
     pub const BelowContent: Self = Self(2);
 }

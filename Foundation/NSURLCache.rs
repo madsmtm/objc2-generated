@@ -27,10 +27,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLCacheStoragePolicy(pub NSUInteger);
 impl NSURLCacheStoragePolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcache/storagepolicy/allowed?language=objc)
     #[doc(alias = "NSURLCacheStorageAllowed")]
     pub const Allowed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcache/storagepolicy/allowedinmemoryonly?language=objc)
     #[doc(alias = "NSURLCacheStorageAllowedInMemoryOnly")]
     pub const AllowedInMemoryOnly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcache/storagepolicy/notallowed?language=objc)
     #[doc(alias = "NSURLCacheStorageNotAllowed")]
     pub const NotAllowed: Self = Self(2);
 }

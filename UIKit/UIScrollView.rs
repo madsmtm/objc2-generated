@@ -18,10 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewIndicatorStyle(pub NSInteger);
 impl UIScrollViewIndicatorStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indicatorstyle-swift.enum/default?language=objc)
     #[doc(alias = "UIScrollViewIndicatorStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indicatorstyle-swift.enum/black?language=objc)
     #[doc(alias = "UIScrollViewIndicatorStyleBlack")]
     pub const Black: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indicatorstyle-swift.enum/white?language=objc)
     #[doc(alias = "UIScrollViewIndicatorStyleWhite")]
     pub const White: Self = Self(2);
 }
@@ -40,14 +43,19 @@ unsafe impl RefEncode for UIScrollViewIndicatorStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewKeyboardDismissMode(pub NSInteger);
 impl UIScrollViewKeyboardDismissMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum/none?language=objc)
     #[doc(alias = "UIScrollViewKeyboardDismissModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum/ondrag?language=objc)
     #[doc(alias = "UIScrollViewKeyboardDismissModeOnDrag")]
     pub const OnDrag: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum/interactive?language=objc)
     #[doc(alias = "UIScrollViewKeyboardDismissModeInteractive")]
     pub const Interactive: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum/ondragwithaccessory?language=objc)
     #[doc(alias = "UIScrollViewKeyboardDismissModeOnDragWithAccessory")]
     pub const OnDragWithAccessory: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum/interactivewithaccessory?language=objc)
     #[doc(alias = "UIScrollViewKeyboardDismissModeInteractiveWithAccessory")]
     pub const InteractiveWithAccessory: Self = Self(4);
 }
@@ -66,8 +74,10 @@ unsafe impl RefEncode for UIScrollViewKeyboardDismissMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewIndexDisplayMode(pub NSInteger);
 impl UIScrollViewIndexDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indexdisplaymode-swift.enum/automatic?language=objc)
     #[doc(alias = "UIScrollViewIndexDisplayModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indexdisplaymode-swift.enum/alwayshidden?language=objc)
     #[doc(alias = "UIScrollViewIndexDisplayModeAlwaysHidden")]
     pub const AlwaysHidden: Self = Self(1);
 }
@@ -86,12 +96,16 @@ unsafe impl RefEncode for UIScrollViewIndexDisplayMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewContentInsetAdjustmentBehavior(pub NSInteger);
 impl UIScrollViewContentInsetAdjustmentBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior-swift.enum/automatic?language=objc)
     #[doc(alias = "UIScrollViewContentInsetAdjustmentAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior-swift.enum/scrollableaxes?language=objc)
     #[doc(alias = "UIScrollViewContentInsetAdjustmentScrollableAxes")]
     pub const ScrollableAxes: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior-swift.enum/never?language=objc)
     #[doc(alias = "UIScrollViewContentInsetAdjustmentNever")]
     pub const Never: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior-swift.enum/always?language=objc)
     #[doc(alias = "UIScrollViewContentInsetAdjustmentAlways")]
     pub const Always: Self = Self(3);
 }

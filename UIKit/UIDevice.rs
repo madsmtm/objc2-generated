@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDeviceBatteryState(pub NSInteger);
 impl UIDeviceBatteryState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.enum/unknown?language=objc)
     #[doc(alias = "UIDeviceBatteryStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.enum/unplugged?language=objc)
     #[doc(alias = "UIDeviceBatteryStateUnplugged")]
     pub const Unplugged: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.enum/charging?language=objc)
     #[doc(alias = "UIDeviceBatteryStateCharging")]
     pub const Charging: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.enum/full?language=objc)
     #[doc(alias = "UIDeviceBatteryStateFull")]
     pub const Full: Self = Self(3);
 }
@@ -37,18 +41,25 @@ unsafe impl RefEncode for UIDeviceBatteryState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceIdiom(pub NSInteger);
 impl UIUserInterfaceIdiom {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/unspecified?language=objc)
     #[doc(alias = "UIUserInterfaceIdiomUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/phone?language=objc)
     #[doc(alias = "UIUserInterfaceIdiomPhone")]
     pub const Phone: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/pad?language=objc)
     #[doc(alias = "UIUserInterfaceIdiomPad")]
     pub const Pad: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/tv?language=objc)
     #[doc(alias = "UIUserInterfaceIdiomTV")]
     pub const TV: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/carplay?language=objc)
     #[doc(alias = "UIUserInterfaceIdiomCarPlay")]
     pub const CarPlay: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/mac?language=objc)
     #[doc(alias = "UIUserInterfaceIdiomMac")]
     pub const Mac: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/vision?language=objc)
     #[doc(alias = "UIUserInterfaceIdiomVision")]
     pub const Vision: Self = Self(6);
 }

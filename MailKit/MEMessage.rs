@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageState(pub NSInteger);
 impl MEMessageState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagestate/received?language=objc)
     #[doc(alias = "MEMessageStateReceived")]
     pub const Received: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagestate/draft?language=objc)
     #[doc(alias = "MEMessageStateDraft")]
     pub const Draft: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagestate/sending?language=objc)
     #[doc(alias = "MEMessageStateSending")]
     pub const Sending: Self = Self(2);
 }
@@ -34,10 +37,13 @@ unsafe impl RefEncode for MEMessageState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageEncryptionState(pub NSInteger);
 impl MEMessageEncryptionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencryptionstate/unknown?language=objc)
     #[doc(alias = "MEMessageEncryptionStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencryptionstate/notencrypted?language=objc)
     #[doc(alias = "MEMessageEncryptionStateNotEncrypted")]
     pub const NotEncrypted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencryptionstate/encrypted?language=objc)
     #[doc(alias = "MEMessageEncryptionStateEncrypted")]
     pub const Encrypted: Self = Self(2);
 }

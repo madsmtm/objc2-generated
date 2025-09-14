@@ -28,6 +28,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for CTTypesetter {
     /// Returns the CFType of the typesetter object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettergettypeid()?language=objc)
     #[doc(alias = "CTTypesetterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -92,6 +94,8 @@ impl CTTypesetter {
     ///
     ///
     /// Returns: This function will return a reference to a CTTypesetter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettercreatewithattributedstring(_:)?language=objc)
     #[doc(alias = "CTTypesetterCreateWithAttributedString")]
     #[inline]
     pub fn with_attributed_string(string: &CFAttributedString) -> CFRetained<CTTypesetter> {
@@ -133,6 +137,8 @@ impl CTTypesetter {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettercreatewithattributedstringandoptions(_:_:)?language=objc)
     #[doc(alias = "CTTypesetterCreateWithAttributedStringAndOptions")]
     #[inline]
     pub unsafe fn with_attributed_string_and_options(
@@ -170,6 +176,8 @@ impl CTTypesetter {
     ///
     ///
     /// Returns: This function will return a reference to a CTLine.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettercreatelinewithoffset(_:_:_:)?language=objc)
     #[doc(alias = "CTTypesetterCreateLineWithOffset")]
     #[cfg(feature = "CTLine")]
     #[inline]
@@ -188,6 +196,8 @@ impl CTTypesetter {
     }
 
     /// Equivalent to CTTypesetterCreateLineWithOffset with offset = 0.0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettercreateline(_:_:)?language=objc)
     #[doc(alias = "CTTypesetterCreateLine")]
     #[cfg(feature = "CTLine")]
     #[inline]
@@ -228,6 +238,8 @@ impl CTTypesetter {
     /// Returns: The value returned is a count of the characters from startIndex
     /// that would cause the line break. This value returned can be used
     /// to construct a character range for CTTypesetterCreateLine.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettersuggestlinebreakwithoffset(_:_:_:_:)?language=objc)
     #[doc(alias = "CTTypesetterSuggestLineBreakWithOffset")]
     #[inline]
     pub fn suggest_line_break_with_offset(
@@ -248,6 +260,8 @@ impl CTTypesetter {
     }
 
     /// Equivalent to CTTypesetterSuggestLineBreakWithOffset with offset = 0.0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettersuggestlinebreak(_:_:_:)?language=objc)
     #[doc(alias = "CTTypesetterSuggestLineBreak")]
     #[inline]
     pub fn suggest_line_break(&self, start_index: CFIndex, width: c_double) -> CFIndex {
@@ -290,6 +304,8 @@ impl CTTypesetter {
     /// Returns: The value returned is a count of the characters from startIndex
     /// that would cause the cluster break. This value returned can be
     /// used to construct a character range for CTTypesetterCreateLine.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettersuggestclusterbreakwithoffset(_:_:_:_:)?language=objc)
     #[doc(alias = "CTTypesetterSuggestClusterBreakWithOffset")]
     #[inline]
     pub fn suggest_cluster_break_with_offset(
@@ -310,6 +326,8 @@ impl CTTypesetter {
     }
 
     /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettersuggestclusterbreak(_:_:_:)?language=objc)
     #[doc(alias = "CTTypesetterSuggestClusterBreak")]
     #[inline]
     pub fn suggest_cluster_break(&self, start_index: CFIndex, width: c_double) -> CFIndex {

@@ -15,15 +15,23 @@ pub struct CKRecordZoneCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl CKRecordZoneCapabilities: NSUInteger {
 /// This zone supports `CKFetchRecordZoneChangesOperation`
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/capabilities-swift.struct/fetchchanges?language=objc)
         #[doc(alias = "CKRecordZoneCapabilityFetchChanges")]
         const FetchChanges = 1<<0;
 /// Batched changes to this zone happen atomically
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/capabilities-swift.struct/atomic?language=objc)
         #[doc(alias = "CKRecordZoneCapabilityAtomic")]
         const Atomic = 1<<1;
 /// Records in this zone can be shared
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/capabilities-swift.struct/sharing?language=objc)
         #[doc(alias = "CKRecordZoneCapabilitySharing")]
         const Sharing = 1<<2;
 /// This zone supports a single `CKShare` record that shares all records in the zone
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/capabilities-swift.struct/zonewidesharing?language=objc)
         #[doc(alias = "CKRecordZoneCapabilityZoneWideSharing")]
         const ZoneWideSharing = 1<<3;
     }
@@ -46,6 +54,8 @@ impl CKRecordZoneEncryptionScope {
     /// Zone uses per-record encryption keys for any encrypted values on a record or share.
     ///
     /// This is the default encryption scope for a record zone.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/encryptionscope-swift.enum/perrecord?language=objc)
     #[doc(alias = "CKRecordZoneEncryptionScopePerRecord")]
     pub const PerRecord: Self = Self(0);
     /// Zone uses per-zone encryption keys for encrypted values across all records and the zone-wide share, if present.
@@ -58,6 +68,8 @@ impl CKRecordZoneEncryptionScope {
     /// - An older OS trying to overwrite an existing zone using per-zone encryption due to a naming collision will result in a `.serverRejectedRequest` error.
     /// - On device OS upgrade, your application is responsible for fetching database changes via `CKFetchDatabaseChangesOperation` with a nil sync token to ensure it has
     /// received all the zones available to it from the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/encryptionscope-swift.enum/perzone?language=objc)
     #[doc(alias = "CKRecordZoneEncryptionScopePerZone")]
     pub const PerZone: Self = Self(1);
 }

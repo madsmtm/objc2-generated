@@ -34,8 +34,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARSegmentationClass(pub u8);
 impl ARSegmentationClass {
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/segmentationclass/none?language=objc)
     #[doc(alias = "ARSegmentationClassNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/segmentationclass/person?language=objc)
     #[doc(alias = "ARSegmentationClassPerson")]
     pub const Person: Self = Self(255);
 }
@@ -61,18 +63,26 @@ pub struct ARWorldMappingStatus(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARWorldMappingStatus {
     /// World mapping is not available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/notavailable?language=objc)
     #[doc(alias = "ARWorldMappingStatusNotAvailable")]
     pub const NotAvailable: Self = Self(0);
     /// World mapping is available but has limited features.
     /// For the device's current position, the session’s world map is not recommended for relocalization.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/limited?language=objc)
     #[doc(alias = "ARWorldMappingStatusLimited")]
     pub const Limited: Self = Self(1);
     /// World mapping is actively extending the map with the user's motion.
     /// The world map will be relocalizable for previously visited areas but is still being updated for the current space.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/extending?language=objc)
     #[doc(alias = "ARWorldMappingStatusExtending")]
     pub const Extending: Self = Self(2);
     /// World mapping has adequately mapped the visible area.
     /// The map can be used to relocalize for the device's current position.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/mapped?language=objc)
     #[doc(alias = "ARWorldMappingStatusMapped")]
     pub const Mapped: Self = Self(3);
 }

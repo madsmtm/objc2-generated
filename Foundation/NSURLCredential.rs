@@ -19,12 +19,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLCredentialPersistence(pub NSUInteger);
 impl NSURLCredentialPersistence {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum/none?language=objc)
     #[doc(alias = "NSURLCredentialPersistenceNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum/forsession?language=objc)
     #[doc(alias = "NSURLCredentialPersistenceForSession")]
     pub const ForSession: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum/permanent?language=objc)
     #[doc(alias = "NSURLCredentialPersistencePermanent")]
     pub const Permanent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum/synchronizable?language=objc)
     #[doc(alias = "NSURLCredentialPersistenceSynchronizable")]
     pub const Synchronizable: Self = Self(3);
 }

@@ -17,26 +17,38 @@ impl HKMedicationDoseEventLogStatus {
     /// The person doesn't interact with a scheduled medication reminder.
     ///
     /// The system generates this to represent an untouched reminder slot.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/logstatus-swift.enum/notinteracted?language=objc)
     #[doc(alias = "HKMedicationDoseEventLogStatusNotInteracted")]
     pub const NotInteracted: Self = Self(1);
     /// The system assigns this status when it fails to deliver a scheduled medication notification.
     ///
     /// The system can generate this status because of a person's notification
     /// restrictions or issues with notification delivery.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/logstatus-swift.enum/notificationnotsent?language=objc)
     #[doc(alias = "HKMedicationDoseEventLogStatusNotificationNotSent")]
     pub const NotificationNotSent: Self = Self(2);
     /// The person snoozes a scheduled medication notification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/logstatus-swift.enum/snoozed?language=objc)
     #[doc(alias = "HKMedicationDoseEventLogStatusSnoozed")]
     pub const Snoozed: Self = Self(3);
     /// The person logs that they took the medication dose.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/logstatus-swift.enum/taken?language=objc)
     #[doc(alias = "HKMedicationDoseEventLogStatusTaken")]
     pub const Taken: Self = Self(4);
     /// The person logs that they skipped the medication dose.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/logstatus-swift.enum/skipped?language=objc)
     #[doc(alias = "HKMedicationDoseEventLogStatusSkipped")]
     pub const Skipped: Self = Self(5);
     /// The person undoes a previously logged medication status.
     ///
     /// The system clears the prior status.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/logstatus-swift.enum/notlogged?language=objc)
     #[doc(alias = "HKMedicationDoseEventLogStatusNotLogged")]
     pub const NotLogged: Self = Self(6);
 }
@@ -61,9 +73,13 @@ unsafe impl RefEncode for HKMedicationDoseEventLogStatus {
 pub struct HKMedicationDoseEventScheduleType(pub NSInteger);
 impl HKMedicationDoseEventScheduleType {
     /// The person logged this dose event ad-hoc, outside of any scheduled reminder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduletype-swift.enum/asneeded?language=objc)
     #[doc(alias = "HKMedicationDoseEventScheduleTypeAsNeeded")]
     pub const AsNeeded: Self = Self(1);
     /// The person logged this dose event in response to a scheduled medication reminder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduletype-swift.enum/schedule?language=objc)
     #[doc(alias = "HKMedicationDoseEventScheduleTypeSchedule")]
     pub const Schedule: Self = Self(2);
 }

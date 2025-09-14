@@ -13,15 +13,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVImageType(pub NSInteger);
 impl TVImageType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvimagetype/image?language=objc)
     #[doc(alias = "TVImageTypeImage")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Image: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvimagetype/fullscreen?language=objc)
     #[doc(alias = "TVImageTypeFullscreen")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Fullscreen: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvimagetype/decoration?language=objc)
     #[doc(alias = "TVImageTypeDecoration")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Decoration: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvimagetype/hero?language=objc)
     #[doc(alias = "TVImageTypeHero")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Hero: Self = Self(3);

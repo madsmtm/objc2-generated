@@ -18,10 +18,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialIdentityStoreErrorCode(pub NSInteger);
 impl ASCredentialIdentityStoreErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerror/code/internalerror?language=objc)
     #[doc(alias = "ASCredentialIdentityStoreErrorCodeInternalError")]
     pub const InternalError: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerror/code/storedisabled?language=objc)
     #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreDisabled")]
     pub const StoreDisabled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerror/code/storebusy?language=objc)
     #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreBusy")]
     pub const StoreBusy: Self = Self(2);
 }
@@ -41,12 +44,16 @@ unsafe impl RefEncode for ASCredentialIdentityStoreErrorCode {
 pub struct ASCredentialIdentityTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl ASCredentialIdentityTypes: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitytypes/ascredentialidentitytypesall?language=objc)
         #[doc(alias = "ASCredentialIdentityTypesAll")]
         const All = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/identitytypes/password?language=objc)
         #[doc(alias = "ASCredentialIdentityTypesPassword")]
         const Password = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/identitytypes/passkey?language=objc)
         #[doc(alias = "ASCredentialIdentityTypesPasskey")]
         const Passkey = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/identitytypes/onetimecode?language=objc)
         #[doc(alias = "ASCredentialIdentityTypesOneTimeCode")]
         const OneTimeCode = 1<<2;
     }

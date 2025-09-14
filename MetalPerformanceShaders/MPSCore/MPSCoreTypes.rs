@@ -15,6 +15,8 @@ pub struct MPSKernelOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSKernelOptions: NSUInteger {
 /// Use default options
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskerneloptions/none?language=objc)
         #[doc(alias = "MPSKernelOptionsNone")]
         const None = 0;
 /// Most MPS functions will sanity check their arguments. This has a small but
@@ -24,6 +26,8 @@ bitflags::bitflags! {
 /// if the requested operation can not be completed for some reason. Most error states
 /// will be passed through to Metal which may do nothing or abort the program if Metal
 /// API validation is turned on.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskerneloptions/skipapivalidation?language=objc)
         #[doc(alias = "MPSKernelOptionsSkipAPIValidation")]
         const SkipAPIValidation = 1<<0;
 /// When possible, MPSKernels use a higher precision data representation internally than
@@ -34,6 +38,8 @@ bitflags::bitflags! {
 /// internally when it feels that a less precise result would yield better performance.
 /// The expected performance win is often small, perhaps 0-20%. When enabled, the
 /// precision of the result may vary by hardware and operating system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskerneloptions/allowreducedprecision?language=objc)
         #[doc(alias = "MPSKernelOptionsAllowReducedPrecision")]
         const AllowReducedPrecision = 1<<1;
 /// Some MPSKernels may automatically split up the work internally into multiple tiles.
@@ -43,11 +49,15 @@ bitflags::bitflags! {
 /// one another causing MPS to subdivide your tiles for its own use inefficiently. Pass
 /// MPSKernelOptionsDisableInternalTiling to force MPS to process your data tile as a
 /// single chunk.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskerneloptions/disableinternaltiling?language=objc)
         #[doc(alias = "MPSKernelOptionsDisableInternalTiling")]
         const DisableInternalTiling = 1<<2;
 /// Enabling this bit will cause various -encode... methods to call MTLCommandEncoder
 /// push/popDebugGroup.  The debug string will be drawn from MPSKernel.label, if any
 /// or the name of the class otherwise.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskerneloptions/insertdebuggroups?language=objc)
         #[doc(alias = "MPSKernelOptionsInsertDebugGroups")]
         const InsertDebugGroups = 1<<3;
 /// Some parts of MPS can provide debug commentary and tuning advice when run.
@@ -60,6 +70,8 @@ bitflags::bitflags! {
 /// ```text
 ///     llvm>  po  <MPS object pointer>
 /// ```
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskerneloptions/verbose?language=objc)
         #[doc(alias = "MPSKernelOptionsVerbose")]
         const Verbose = 1<<4;
     }
@@ -81,24 +93,34 @@ pub struct MPSImageEdgeMode(pub NSUInteger);
 impl MPSImageEdgeMode {
     /// Out of bound pixels are (0,0,0,1) for image with pixel format without alpha channel
     /// and (0,0,0,0) for image with pixel format that has an alpha channel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/zero?language=objc)
     #[doc(alias = "MPSImageEdgeModeZero")]
     pub const Zero: Self = Self(0);
     /// Out of bound pixels are clamped to nearest edge pixel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/clamp?language=objc)
     #[doc(alias = "MPSImageEdgeModeClamp")]
     pub const Clamp: Self = Self(1);
     /// Out of bound pixels are mirrored wrt. the nearest edge pixel center - ie. the edge of the image is not repeated.
     /// NOTE: The only filter that currently supports this mode is
     /// MPSNNPad- using this with other filters results in undefined behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/mirror?language=objc)
     #[doc(alias = "MPSImageEdgeModeMirror")]
     pub const Mirror: Self = Self(2);
     /// Out of bound pixels are mirrored wrt. the nearest edge pixel nearest border - ie. the edge of the image is repeated.
     /// NOTE: The only filter that currently supports this mode is
     /// MPSNNPad- using this with other filters results in undefined behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/mirrorwithedge?language=objc)
     #[doc(alias = "MPSImageEdgeModeMirrorWithEdge")]
     pub const MirrorWithEdge: Self = Self(3);
     /// Out of bound pixels are filled with a constant value defined by the filter.
     /// NOTE: The only filter that currently supports this mode is
     /// MPSNNPad- using this with other filters results in undefined behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/constant?language=objc)
     #[doc(alias = "MPSImageEdgeModeConstant")]
     pub const Constant: Self = Self(4);
 }
@@ -119,24 +141,38 @@ pub struct MPSImageFeatureChannelFormat(pub NSUInteger);
 impl MPSImageFeatureChannelFormat {
     /// No format. This can mean  according to context invalid format or any format.  In the
     /// latter case, it is an invitation to MPS to pick a format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefeaturechannelformat/none?language=objc)
     #[doc(alias = "MPSImageFeatureChannelFormatNone")]
     pub const None: Self = Self(0);
     /// uint8_t with value [0,255] encoding [0,1.0]
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefeaturechannelformat/unorm8?language=objc)
     #[doc(alias = "MPSImageFeatureChannelFormatUnorm8")]
     pub const Unorm8: Self = Self(1);
     /// uint16_t with value [0,65535] encoding [0,1.0]
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefeaturechannelformat/unorm16?language=objc)
     #[doc(alias = "MPSImageFeatureChannelFormatUnorm16")]
     pub const Unorm16: Self = Self(2);
     /// IEEE-754 16-bit floating-point value. "half precision" Representable normal range is +-[2**-14, 65504], 0, Infinity, NaN. 11 bits of precision + exponent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefeaturechannelformat/float16?language=objc)
     #[doc(alias = "MPSImageFeatureChannelFormatFloat16")]
     pub const Float16: Self = Self(3);
     /// IEEE-754 32-bit floating-point value.  "single precision" (standard float type in C) 24 bits of precision + exponent
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefeaturechannelformat/float32?language=objc)
     #[doc(alias = "MPSImageFeatureChannelFormatFloat32")]
     pub const Float32: Self = Self(4);
     /// Reserved for later expansion
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefeaturechannelformat/mpsimagefeaturechannelformat_reserved0?language=objc)
     #[doc(alias = "MPSImageFeatureChannelFormat_reserved0")]
     pub const _reserved0: Self = Self(5);
     /// Reserved for later expansion
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefeaturechannelformat/count?language=objc)
     #[doc(alias = "MPSImageFeatureChannelFormatCount")]
     pub const Count: Self = Self(6);
 }
@@ -155,10 +191,13 @@ unsafe impl RefEncode for MPSImageFeatureChannelFormat {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSFloatDataTypeBit(pub u32);
 impl MPSFloatDataTypeBit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfloatdatatypebit/signbit?language=objc)
     #[doc(alias = "MPSFloatDataTypeSignBit")]
     pub const SignBit: Self = Self(0x00800000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfloatdatatypebit/exponentbit?language=objc)
     #[doc(alias = "MPSFloatDataTypeExponentBit")]
     pub const ExponentBit: Self = Self(0x007C0000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfloatdatatypebit/mantissabit?language=objc)
     #[doc(alias = "MPSFloatDataTypeMantissaBit")]
     pub const MantissaBit: Self = Self(0x0003FC00);
 }
@@ -177,10 +216,13 @@ unsafe impl RefEncode for MPSFloatDataTypeBit {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSFloatDataTypeShift(pub u32);
 impl MPSFloatDataTypeShift {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfloatdatatypeshift/signshift?language=objc)
     #[doc(alias = "MPSFloatDataTypeSignShift")]
     pub const SignShift: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfloatdatatypeshift/exponentshift?language=objc)
     #[doc(alias = "MPSFloatDataTypeExponentShift")]
     pub const ExponentShift: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfloatdatatypeshift/mantissashift?language=objc)
     #[doc(alias = "MPSFloatDataTypeMantissaShift")]
     pub const MantissaShift: Self = Self(10);
 }
@@ -199,59 +241,86 @@ unsafe impl RefEncode for MPSFloatDataTypeShift {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSDataType(pub u32);
 impl MPSDataType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/invalid?language=objc)
     #[doc(alias = "MPSDataTypeInvalid")]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/floatbit?language=objc)
     #[doc(alias = "MPSDataTypeFloatBit")]
     pub const FloatBit: Self = Self(0x10000000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/float32?language=objc)
     #[doc(alias = "MPSDataTypeFloat32")]
     pub const Float32: Self = Self(MPSDataType::FloatBit.0 | 32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/float16?language=objc)
     #[doc(alias = "MPSDataTypeFloat16")]
     pub const Float16: Self = Self(MPSDataType::FloatBit.0 | 16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/complexbit?language=objc)
     #[doc(alias = "MPSDataTypeComplexBit")]
     pub const ComplexBit: Self = Self(0x01000000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/complexfloat32?language=objc)
     #[doc(alias = "MPSDataTypeComplexFloat32")]
     pub const ComplexFloat32: Self = Self(MPSDataType::FloatBit.0 | MPSDataType::ComplexBit.0 | 64);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/complexfloat16?language=objc)
     #[doc(alias = "MPSDataTypeComplexFloat16")]
     pub const ComplexFloat16: Self = Self(MPSDataType::FloatBit.0 | MPSDataType::ComplexBit.0 | 32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/signedbit?language=objc)
     #[doc(alias = "MPSDataTypeSignedBit")]
     pub const SignedBit: Self = Self(0x20000000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/intbit?language=objc)
     #[doc(alias = "MPSDataTypeIntBit")]
     #[deprecated]
     pub const IntBit: Self = Self(MPSDataType::SignedBit.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/int2?language=objc)
     #[doc(alias = "MPSDataTypeInt2")]
     pub const Int2: Self = Self(MPSDataType::SignedBit.0 | 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/int4?language=objc)
     #[doc(alias = "MPSDataTypeInt4")]
     pub const Int4: Self = Self(MPSDataType::SignedBit.0 | 4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/int8?language=objc)
     #[doc(alias = "MPSDataTypeInt8")]
     pub const Int8: Self = Self(MPSDataType::SignedBit.0 | 8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/int16?language=objc)
     #[doc(alias = "MPSDataTypeInt16")]
     pub const Int16: Self = Self(MPSDataType::SignedBit.0 | 16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/int32?language=objc)
     #[doc(alias = "MPSDataTypeInt32")]
     pub const Int32: Self = Self(MPSDataType::SignedBit.0 | 32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/int64?language=objc)
     #[doc(alias = "MPSDataTypeInt64")]
     pub const Int64: Self = Self(MPSDataType::SignedBit.0 | 64);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/uint2?language=objc)
     #[doc(alias = "MPSDataTypeUInt2")]
     pub const UInt2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/uint4?language=objc)
     #[doc(alias = "MPSDataTypeUInt4")]
     pub const UInt4: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/uint8?language=objc)
     #[doc(alias = "MPSDataTypeUInt8")]
     pub const UInt8: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/uint16?language=objc)
     #[doc(alias = "MPSDataTypeUInt16")]
     pub const UInt16: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/uint32?language=objc)
     #[doc(alias = "MPSDataTypeUInt32")]
     pub const UInt32: Self = Self(32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/uint64?language=objc)
     #[doc(alias = "MPSDataTypeUInt64")]
     pub const UInt64: Self = Self(64);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/alternateencodingbit?language=objc)
     #[doc(alias = "MPSDataTypeAlternateEncodingBit")]
     pub const AlternateEncodingBit: Self = Self(0x80000000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/bool?language=objc)
     #[doc(alias = "MPSDataTypeBool")]
     pub const Bool: Self = Self(MPSDataType::AlternateEncodingBit.0 | 8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/bfloat16?language=objc)
     #[doc(alias = "MPSDataTypeBFloat16")]
     pub const BFloat16: Self = Self(MPSDataType::AlternateEncodingBit.0 | MPSDataType::Float16.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/normalizedbit?language=objc)
     #[doc(alias = "MPSDataTypeNormalizedBit")]
     pub const NormalizedBit: Self = Self(0x40000000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/unorm1?language=objc)
     #[doc(alias = "MPSDataTypeUnorm1")]
     pub const Unorm1: Self = Self(MPSDataType::NormalizedBit.0 | 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype/unorm8?language=objc)
     #[doc(alias = "MPSDataTypeUnorm8")]
     pub const Unorm8: Self = Self(MPSDataType::NormalizedBit.0 | 8);
 }
@@ -271,20 +340,29 @@ unsafe impl RefEncode for MPSDataType {
 pub struct MPSAliasingStrategy(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSAliasingStrategy: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy/default?language=objc)
         #[doc(alias = "MPSAliasingStrategyDefault")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy/mpsaliasingstrategydontcare?language=objc)
         #[doc(alias = "MPSAliasingStrategyDontCare")]
         const DontCare = MPSAliasingStrategy::Default.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy/shallalias?language=objc)
         #[doc(alias = "MPSAliasingStrategyShallAlias")]
         const ShallAlias = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy/shallnotalias?language=objc)
         #[doc(alias = "MPSAliasingStrategyShallNotAlias")]
         const ShallNotAlias = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy/aliasingreserved?language=objc)
         #[doc(alias = "MPSAliasingStrategyAliasingReserved")]
         const AliasingReserved = MPSAliasingStrategy::ShallAlias.0|MPSAliasingStrategy::ShallNotAlias.0;
 /// The view must alias the original.  Typical usage for views used for destination slicing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy/prefertemporarymemory?language=objc)
         #[doc(alias = "MPSAliasingStrategyPreferTemporaryMemory")]
         const PreferTemporaryMemory = 1<<2;
 /// The view must alias the original.  Typical usage for views used for destination slicing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy/prefernontemporarymemory?language=objc)
         #[doc(alias = "MPSAliasingStrategyPreferNonTemporaryMemory")]
         const PreferNonTemporaryMemory = 1<<3;
     }

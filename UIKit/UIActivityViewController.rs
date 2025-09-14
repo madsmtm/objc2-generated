@@ -14,8 +14,10 @@ use crate::*;
 pub struct UIActivitySectionTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl UIActivitySectionTypes: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitysectiontypes/uiactivitysectiontypesnone?language=objc)
         #[doc(alias = "UIActivitySectionTypesNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitysectiontypes/peoplesuggestions?language=objc)
         #[doc(alias = "UIActivitySectionTypesPeopleSuggestions")]
         const PeopleSuggestions = 1<<0;
     }

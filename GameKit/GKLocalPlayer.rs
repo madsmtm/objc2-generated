@@ -316,12 +316,16 @@ impl GKLocalPlayer {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKFriendsAuthorizationStatus(pub NSInteger);
 impl GKFriendsAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "GKFriendsAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus/restricted?language=objc)
     #[doc(alias = "GKFriendsAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus/denied?language=objc)
     #[doc(alias = "GKFriendsAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus/authorized?language=objc)
     #[doc(alias = "GKFriendsAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }

@@ -13,12 +13,18 @@ use crate::*;
 pub struct VSAutoSignInAuthorization(pub NSInteger);
 impl VSAutoSignInAuthorization {
     /// Consent to auto sign in hasn't been granted nor denied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsautosigninauthorization/vsautosigninauthorizationnotdetermined?language=objc)
     #[doc(alias = "VSAutoSignInAuthorizationNotDetermined")]
     pub const NotDetermined: Self = Self(0);
     /// Authorized to store and use auto sign in tokens.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsautosigninauthorization/vsautosigninauthorizationgranted?language=objc)
     #[doc(alias = "VSAutoSignInAuthorizationGranted")]
     pub const Granted: Self = Self(1);
     /// Consent to use auto sign in has been denied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsautosigninauthorization/vsautosigninauthorizationdenied?language=objc)
     #[doc(alias = "VSAutoSignInAuthorizationDenied")]
     pub const Denied: Self = Self(2);
 }

@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTaskTerminationReason(pub NSInteger);
 impl NSTaskTerminationReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/process/terminationreason-swift.enum/exit?language=objc)
     #[doc(alias = "NSTaskTerminationReasonExit")]
     pub const Exit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/process/terminationreason-swift.enum/uncaughtsignal?language=objc)
     #[doc(alias = "NSTaskTerminationReasonUncaughtSignal")]
     pub const UncaughtSignal: Self = Self(2);
 }

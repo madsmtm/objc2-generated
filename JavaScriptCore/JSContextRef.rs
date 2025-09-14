@@ -20,6 +20,8 @@ impl JSContext {
     /// JSContextGroup's run loop once it has been created.
     ///
     /// Returns: The created JSContextGroup.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgroupcreate()?language=objc)
     #[doc(alias = "JSContextGroupCreate")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -39,6 +41,8 @@ impl JSContext {
     /// # Safety
     ///
     /// `group` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgroupretain(_:)?language=objc)
     #[doc(alias = "JSContextGroupRetain")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -56,6 +60,8 @@ impl JSContext {
     /// # Safety
     ///
     /// `group` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgrouprelease(_:)?language=objc)
     #[doc(alias = "JSContextGroupRelease")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -85,6 +91,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `global_object_class` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextcreate(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextCreate(global_object_class: JSClassRef) -> JSGlobalContextRef;
 }
@@ -108,6 +116,8 @@ extern "C-unwind" {
     ///
     /// - `group` must be a valid pointer.
     /// - `global_object_class` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextcreateingroup(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextCreateInGroup(
         group: JSContextGroupRef,
@@ -125,6 +135,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextretain(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextRetain(ctx: JSGlobalContextRef) -> JSGlobalContextRef;
 }
@@ -137,6 +149,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextrelease(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextRelease(ctx: JSGlobalContextRef);
 }
@@ -152,6 +166,8 @@ impl JSContext {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgetglobalobject(_:)?language=objc)
     #[doc(alias = "JSContextGetGlobalObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -171,6 +187,8 @@ impl JSContext {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgetgroup(_:)?language=objc)
     #[doc(alias = "JSContextGetGroup")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -190,6 +208,8 @@ impl JSContext {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgetglobalcontext(_:)?language=objc)
     #[doc(alias = "JSContextGetGlobalContext")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -213,6 +233,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextcopyname(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextCopyName(ctx: JSGlobalContextRef) -> JSStringRef;
 }
@@ -228,6 +250,8 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `name` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextsetname(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextSetName(ctx: JSGlobalContextRef, name: JSStringRef);
 }
@@ -242,6 +266,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextisinspectable(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextIsInspectable(ctx: JSGlobalContextRef) -> bool;
 }
@@ -256,6 +282,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextsetinspectable(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextSetInspectable(ctx: JSGlobalContextRef, inspectable: bool);
 }

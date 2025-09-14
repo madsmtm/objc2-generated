@@ -21,14 +21,19 @@ pub type VNDegrees = c_float;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNImageCropAndScaleOption(pub NSUInteger);
 impl VNImageCropAndScaleOption {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption/centercrop?language=objc)
     #[doc(alias = "VNImageCropAndScaleOptionCenterCrop")]
     pub const CenterCrop: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption/scalefit?language=objc)
     #[doc(alias = "VNImageCropAndScaleOptionScaleFit")]
     pub const ScaleFit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption/scalefill?language=objc)
     #[doc(alias = "VNImageCropAndScaleOptionScaleFill")]
     pub const ScaleFill: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption/scalefitrotate90ccw?language=objc)
     #[doc(alias = "VNImageCropAndScaleOptionScaleFitRotate90CCW")]
     pub const ScaleFitRotate90CCW: Self = Self(0x100 + VNImageCropAndScaleOption::ScaleFit.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption/scalefillrotate90ccw?language=objc)
     #[doc(alias = "VNImageCropAndScaleOptionScaleFillRotate90CCW")]
     pub const ScaleFillRotate90CCW: Self = Self(0x100 + VNImageCropAndScaleOption::ScaleFill.0);
 }
@@ -198,10 +203,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNElementType(pub NSUInteger);
 impl VNElementType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnelementtype/unknown?language=objc)
     #[doc(alias = "VNElementTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnelementtype/float?language=objc)
     #[doc(alias = "VNElementTypeFloat")]
     pub const Float: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnelementtype/double?language=objc)
     #[doc(alias = "VNElementTypeDouble")]
     pub const Double: Self = Self(2);
 }
@@ -236,11 +244,14 @@ extern "C" {
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum VNChirality {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnchirality/unknown?language=objc)
     #[doc(alias = "VNChiralityUnknown")]
     #[default]
     Unknown = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnchirality/left?language=objc)
     #[doc(alias = "VNChiralityLeft")]
     Left = -1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnchirality/right?language=objc)
     #[doc(alias = "VNChiralityRight")]
     Right = 1,
 }
@@ -258,11 +269,14 @@ unsafe impl RefEncode for VNChirality {
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum VNPointsClassification {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpointsclassification/disconnected?language=objc)
     #[doc(alias = "VNPointsClassificationDisconnected")]
     #[default]
     Disconnected = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpointsclassification/openpath?language=objc)
     #[doc(alias = "VNPointsClassificationOpenPath")]
     OpenPath = 1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpointsclassification/closedpath?language=objc)
     #[doc(alias = "VNPointsClassificationClosedPath")]
     ClosedPath = 2,
 }
@@ -280,15 +294,20 @@ unsafe impl RefEncode for VNPointsClassification {
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum VNBarcodeCompositeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype/none?language=objc)
     #[doc(alias = "VNBarcodeCompositeTypeNone")]
     #[default]
     None = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype/linked?language=objc)
     #[doc(alias = "VNBarcodeCompositeTypeLinked")]
     Linked = 1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype/gs1typea?language=objc)
     #[doc(alias = "VNBarcodeCompositeTypeGS1TypeA")]
     GS1TypeA = 2,
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype/gs1typeb?language=objc)
     #[doc(alias = "VNBarcodeCompositeTypeGS1TypeB")]
     GS1TypeB = 3,
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype/gs1typec?language=objc)
     #[doc(alias = "VNBarcodeCompositeTypeGS1TypeC")]
     GS1TypeC = 4,
 }

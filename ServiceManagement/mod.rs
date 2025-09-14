@@ -75,8 +75,10 @@ use objc2_security::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmrightblessprivilegedhelper?language=objc)
 pub const kSMRightBlessPrivilegedHelper: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.ServiceManagement.blesshelper\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmrightmodifysystemdaemons?language=objc)
 pub const kSMRightModifySystemDaemons: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.ServiceManagement.daemons.modify\0") };
 extern "C" {
@@ -133,6 +135,8 @@ extern "C" {
 ///
 /// - `domain` might not allow `None`.
 /// - `job_label` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smjobcopydictionary(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -180,6 +184,8 @@ pub unsafe extern "C-unwind" fn SMJobCopyDictionary(
 /// # Safety
 ///
 /// `domain` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smcopyalljobdictionaries(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -232,6 +238,8 @@ pub unsafe extern "C-unwind" fn SMCopyAllJobDictionaries(
 /// - `job` might not allow `None`.
 /// - `auth` must be a valid pointer.
 /// - `out_error` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smjobsubmit(_:_:_:_:)?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated]
 #[inline]
@@ -295,6 +303,8 @@ pub unsafe extern "C-unwind" fn SMJobSubmit(
 /// - `job_label` might not allow `None`.
 /// - `auth` must be a valid pointer.
 /// - `out_error` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smjobremove(_:_:_:_:_:)?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated]
 #[inline]
@@ -397,6 +407,8 @@ pub unsafe extern "C-unwind" fn SMJobRemove(
 /// - `executable_label` might not allow `None`.
 /// - `auth` must be a valid pointer.
 /// - `out_error` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smjobbless(_:_:_:_:)?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated = "Please use SMAppService instead"]
 #[inline]

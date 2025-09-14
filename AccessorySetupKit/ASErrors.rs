@@ -22,39 +22,63 @@ extern "C" {
 pub struct ASErrorCode(pub NSInteger);
 impl ASErrorCode {
     /// A code that represents a successful action.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/success?language=objc)
     #[doc(alias = "ASErrorCodeSuccess")]
     pub const Success: Self = Self(0);
     /// An underlying failure with an unknown cause.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/unknown?language=objc)
     #[doc(alias = "ASErrorCodeUnknown")]
     pub const Unknown: Self = Self(1);
     /// Session activation failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/activationfailed?language=objc)
     #[doc(alias = "ASErrorCodeActivationFailed")]
     pub const ActivationFailed: Self = Self(100);
     /// The session was unable to establish a connection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/connectionfailed?language=objc)
     #[doc(alias = "ASErrorCodeConnectionFailed")]
     pub const ConnectionFailed: Self = Self(150);
     /// Accessory discovery timed out.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/discoverytimeout?language=objc)
     #[doc(alias = "ASErrorCodeDiscoveryTimeout")]
     pub const DiscoveryTimeout: Self = Self(200);
     /// The framework couldn't find the app extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/extensionnotfound?language=objc)
     #[doc(alias = "ASErrorCodeExtensionNotFound")]
     pub const ExtensionNotFound: Self = Self(300);
     /// The session invalidated prior to completing the operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/invalidated?language=objc)
     #[doc(alias = "ASErrorCodeInvalidated")]
     pub const Invalidated: Self = Self(400);
     /// The session received an invalid request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/invalidrequest?language=objc)
     #[doc(alias = "ASErrorCodeInvalidRequest")]
     pub const InvalidRequest: Self = Self(450);
     /// The picker received a show request when it was already active.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/pickeralreadyactive?language=objc)
     #[doc(alias = "ASErrorCodePickerAlreadyActive")]
     pub const PickerAlreadyActive: Self = Self(500);
     /// The picker can't be used because the app is in the background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/pickerrestricted?language=objc)
     #[doc(alias = "ASErrorCodePickerRestricted")]
     pub const PickerRestricted: Self = Self(550);
     /// The person using the app canceled the operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/usercancelled?language=objc)
     #[doc(alias = "ASErrorCodeUserCancelled")]
     pub const UserCancelled: Self = Self(700);
     /// The person using the app restricted access.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/userrestricted?language=objc)
     #[doc(alias = "ASErrorCodeUserRestricted")]
     pub const UserRestricted: Self = Self(750);
 }

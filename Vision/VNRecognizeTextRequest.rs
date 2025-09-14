@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNRequestTextRecognitionLevel(pub NSInteger);
 impl VNRequestTextRecognitionLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttextrecognitionlevel/accurate?language=objc)
     #[doc(alias = "VNRequestTextRecognitionLevelAccurate")]
     pub const Accurate: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttextrecognitionlevel/fast?language=objc)
     #[doc(alias = "VNRequestTextRecognitionLevelFast")]
     pub const Fast: Self = Self(1);
 }

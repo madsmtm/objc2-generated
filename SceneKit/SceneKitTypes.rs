@@ -23,12 +23,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNActionTimingMode(pub NSInteger);
 impl SCNActionTimingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingmode/linear?language=objc)
     #[doc(alias = "SCNActionTimingModeLinear")]
     pub const Linear: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingmode/easein?language=objc)
     #[doc(alias = "SCNActionTimingModeEaseIn")]
     pub const EaseIn: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingmode/easeout?language=objc)
     #[doc(alias = "SCNActionTimingModeEaseOut")]
     pub const EaseOut: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingmode/easeineaseout?language=objc)
     #[doc(alias = "SCNActionTimingModeEaseInEaseOut")]
     pub const EaseInEaseOut: Self = Self(3);
 }
@@ -50,16 +54,22 @@ unsafe impl RefEncode for SCNActionTimingMode {
 pub struct SCNColorMask(pub NSInteger);
 bitflags::bitflags! {
     impl SCNColorMask: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/scncolormasknone?language=objc)
         #[doc(alias = "SCNColorMaskNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/red?language=objc)
         #[doc(alias = "SCNColorMaskRed")]
         const Red = 0x1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/green?language=objc)
         #[doc(alias = "SCNColorMaskGreen")]
         const Green = 0x1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/blue?language=objc)
         #[doc(alias = "SCNColorMaskBlue")]
         const Blue = 0x1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/alpha?language=objc)
         #[doc(alias = "SCNColorMaskAlpha")]
         const Alpha = 0x1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/all?language=objc)
         #[doc(alias = "SCNColorMaskAll")]
         const All = 0xf;
     }
@@ -143,6 +153,7 @@ extern "C" {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl SCNVector3 {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnvector3equaltovector3(_:_:)?language=objc)
     #[doc(alias = "SCNVector3EqualToVector3")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -156,6 +167,7 @@ impl SCNVector3 {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl SCNVector4 {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnvector4equaltovector4(_:_:)?language=objc)
     #[doc(alias = "SCNVector4EqualToVector4")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -194,12 +206,14 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4isidentity(_:)?language=objc)
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4IsIdentity(m: SCNMatrix4) -> bool;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4equaltomatrix4(_:_:)?language=objc)
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4) -> bool;
@@ -210,6 +224,7 @@ extern "C-unwind" {
 // TODO: pub fn SCNMatrix4MakeScale(sx: CGFloat,sy: CGFloat,sz: CGFloat,) -> SCNMatrix4;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4makerotation(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4MakeRotation(angle: CGFloat, x: CGFloat, y: CGFloat, z: CGFloat)
@@ -219,12 +234,14 @@ extern "C-unwind" {
 // TODO: pub fn SCNMatrix4Translate(m: SCNMatrix4,tx: CGFloat,ty: CGFloat,tz: CGFloat,) -> SCNMatrix4;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4scale(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Scale(m: SCNMatrix4, sx: CGFloat, sy: CGFloat, sz: CGFloat) -> SCNMatrix4;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4rotate(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Rotate(
@@ -237,12 +254,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4invert(_:)?language=objc)
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Invert(m: SCNMatrix4) -> SCNMatrix4;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4mult(_:_:)?language=objc)
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4;
@@ -263,6 +282,8 @@ impl SCNVector4 {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4toglkmatrix4(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// The returned must be correctly initialized.
@@ -272,6 +293,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4fromglkmatrix4(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `mat` must be correctly initialized.

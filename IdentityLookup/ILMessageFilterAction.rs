@@ -13,22 +13,34 @@ use crate::*;
 pub struct ILMessageFilterAction(pub NSInteger);
 impl ILMessageFilterAction {
     /// Insufficient information to determine an action to take. In a query response, has the effect of allowing the message to be shown normally.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilteraction/none?language=objc)
     #[doc(alias = "ILMessageFilterActionNone")]
     pub const None: Self = Self(0);
     /// Allow the message to be shown normally.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilteraction/allow?language=objc)
     #[doc(alias = "ILMessageFilterActionAllow")]
     pub const Allow: Self = Self(1);
     /// Prevent the message from being shown normally, filtered as Junk message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilteraction/junk?language=objc)
     #[doc(alias = "ILMessageFilterActionJunk")]
     pub const Junk: Self = Self(2);
     /// Prevent the message from being shown normally, filtered as Junk message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilteraction/filter?language=objc)
     #[doc(alias = "ILMessageFilterActionFilter")]
     #[deprecated]
     pub const Filter: Self = Self(ILMessageFilterAction::Junk.0);
     /// Prevent the message from being shown normally, filtered as Promotional message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilteraction/promotion?language=objc)
     #[doc(alias = "ILMessageFilterActionPromotion")]
     pub const Promotion: Self = Self(3);
     /// Prevent the message from being shown normally, filtered as Transactional message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilteraction/transaction?language=objc)
     #[doc(alias = "ILMessageFilterActionTransaction")]
     pub const Transaction: Self = Self(4);
 }
@@ -48,42 +60,68 @@ unsafe impl RefEncode for ILMessageFilterAction {
 pub struct ILMessageFilterSubAction(pub NSInteger);
 impl ILMessageFilterSubAction {
     /// Insufficient information to determine an action to take. In a query response, has the effect of allowing the message to be shown normally.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/none?language=objc)
     #[doc(alias = "ILMessageFilterSubActionNone")]
     pub const None: Self = Self(0);
     /// Prevent the message from being shown normally, filtered as Other message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/transactionalothers?language=objc)
     #[doc(alias = "ILMessageFilterSubActionTransactionalOthers")]
     pub const TransactionalOthers: Self = Self(10000);
     /// Prevent the message from being shown normally, filtered as Finance message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/transactionalfinance?language=objc)
     #[doc(alias = "ILMessageFilterSubActionTransactionalFinance")]
     pub const TransactionalFinance: Self = Self(10001);
     /// Prevent the message from being shown normally, filtered as Orders (eCommerce) message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/transactionalorders?language=objc)
     #[doc(alias = "ILMessageFilterSubActionTransactionalOrders")]
     pub const TransactionalOrders: Self = Self(10002);
     /// Prevent the message from being shown normally, filtered as Reminder message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/transactionalreminders?language=objc)
     #[doc(alias = "ILMessageFilterSubActionTransactionalReminders")]
     pub const TransactionalReminders: Self = Self(10003);
     /// Prevent the message from being shown normally, filtered as Health message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/transactionalhealth?language=objc)
     #[doc(alias = "ILMessageFilterSubActionTransactionalHealth")]
     pub const TransactionalHealth: Self = Self(10004);
     /// Prevent the message from being shown normally, filtered as Weather message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/transactionalweather?language=objc)
     #[doc(alias = "ILMessageFilterSubActionTransactionalWeather")]
     pub const TransactionalWeather: Self = Self(10005);
     /// Prevent the message from being shown normally, filtered as Carrier message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/transactionalcarrier?language=objc)
     #[doc(alias = "ILMessageFilterSubActionTransactionalCarrier")]
     pub const TransactionalCarrier: Self = Self(10006);
     /// Prevent the message from being shown normally, filtered as Rewards message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/transactionalrewards?language=objc)
     #[doc(alias = "ILMessageFilterSubActionTransactionalRewards")]
     pub const TransactionalRewards: Self = Self(10007);
     /// Prevent the message from being shown normally, filtered as Government message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/transactionalpublicservices?language=objc)
     #[doc(alias = "ILMessageFilterSubActionTransactionalPublicServices")]
     pub const TransactionalPublicServices: Self = Self(10008);
     /// Prevent the message from being shown normally, filtered as Others message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/promotionalothers?language=objc)
     #[doc(alias = "ILMessageFilterSubActionPromotionalOthers")]
     pub const PromotionalOthers: Self = Self(20000);
     /// Prevent the message from being shown normally, filtered as Offers message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/promotionaloffers?language=objc)
     #[doc(alias = "ILMessageFilterSubActionPromotionalOffers")]
     pub const PromotionalOffers: Self = Self(20001);
     /// Prevent the message from being shown normally, filtered as Coupons message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction/promotionalcoupons?language=objc)
     #[doc(alias = "ILMessageFilterSubActionPromotionalCoupons")]
     pub const PromotionalCoupons: Self = Self(20002);
 }

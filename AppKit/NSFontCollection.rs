@@ -17,10 +17,13 @@ use crate::*;
 pub struct NSFontCollectionVisibility(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontCollectionVisibility: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/visibility/process?language=objc)
         #[doc(alias = "NSFontCollectionVisibilityProcess")]
         const Process = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/visibility/user?language=objc)
         #[doc(alias = "NSFontCollectionVisibilityUser")]
         const User = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/visibility/computer?language=objc)
         #[doc(alias = "NSFontCollectionVisibilityComputer")]
         const Computer = 1<<2;
     }

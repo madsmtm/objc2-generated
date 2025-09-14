@@ -14,18 +14,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKVoiceChatPlayerState(pub NSInteger);
 impl GKVoiceChatPlayerState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate/connected?language=objc)
     #[doc(alias = "GKVoiceChatPlayerConnected")]
     #[deprecated = "No longer supported"]
     pub const Connected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate/disconnected?language=objc)
     #[doc(alias = "GKVoiceChatPlayerDisconnected")]
     #[deprecated = "No longer supported"]
     pub const Disconnected: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate/speaking?language=objc)
     #[doc(alias = "GKVoiceChatPlayerSpeaking")]
     #[deprecated = "No longer supported"]
     pub const Speaking: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate/silent?language=objc)
     #[doc(alias = "GKVoiceChatPlayerSilent")]
     #[deprecated = "No longer supported"]
     pub const Silent: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate/connecting?language=objc)
     #[doc(alias = "GKVoiceChatPlayerConnecting")]
     #[deprecated = "No longer supported"]
     pub const Connecting: Self = Self(4);

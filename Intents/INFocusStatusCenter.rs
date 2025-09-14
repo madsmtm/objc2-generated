@@ -12,12 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INFocusStatusAuthorizationStatus(pub NSInteger);
 impl INFocusStatusAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatusauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "INFocusStatusAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatusauthorizationstatus/restricted?language=objc)
     #[doc(alias = "INFocusStatusAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatusauthorizationstatus/denied?language=objc)
     #[doc(alias = "INFocusStatusAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatusauthorizationstatus/authorized?language=objc)
     #[doc(alias = "INFocusStatusAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }

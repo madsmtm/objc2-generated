@@ -310,14 +310,19 @@ impl NSLocale {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLocaleLanguageDirection(pub NSUInteger);
 impl NSLocaleLanguageDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/languagedirection/unknown?language=objc)
     #[doc(alias = "NSLocaleLanguageDirectionUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/languagedirection/lefttoright?language=objc)
     #[doc(alias = "NSLocaleLanguageDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/languagedirection/righttoleft?language=objc)
     #[doc(alias = "NSLocaleLanguageDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/languagedirection/toptobottom?language=objc)
     #[doc(alias = "NSLocaleLanguageDirectionTopToBottom")]
     pub const TopToBottom: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/languagedirection/bottomtotop?language=objc)
     #[doc(alias = "NSLocaleLanguageDirectionBottomToTop")]
     pub const BottomToTop: Self = Self(4);
 }

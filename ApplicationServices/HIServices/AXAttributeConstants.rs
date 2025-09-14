@@ -20,14 +20,19 @@ use crate::*;
 pub struct AXMenuItemModifiers(pub u32);
 bitflags::bitflags! {
     impl AXMenuItemModifiers: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers/kaxmenuitemmodifiernone?language=objc)
         #[doc(alias = "kAXMenuItemModifierNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers/kaxmenuitemmodifiershift?language=objc)
         #[doc(alias = "kAXMenuItemModifierShift")]
         const Shift = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers/kaxmenuitemmodifieroption?language=objc)
         #[doc(alias = "kAXMenuItemModifierOption")]
         const Option = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers/kaxmenuitemmodifiercontrol?language=objc)
         #[doc(alias = "kAXMenuItemModifierControl")]
         const Control = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers/kaxmenuitemmodifiernocommand?language=objc)
         #[doc(alias = "kAXMenuItemModifierNoCommand")]
         const NoCommand = 1<<3;
     }

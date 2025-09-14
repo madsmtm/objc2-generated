@@ -11,12 +11,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRelativeReference(pub NSInteger);
 impl INRelativeReference {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativereference/unknown?language=objc)
     #[doc(alias = "INRelativeReferenceUnknown")]
     #[deprecated = "INRelativeReference is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativereference/next?language=objc)
     #[doc(alias = "INRelativeReferenceNext")]
     #[deprecated = "INRelativeReference is deprecated. There is no replacement."]
     pub const Next: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativereference/previous?language=objc)
     #[doc(alias = "INRelativeReferencePrevious")]
     #[deprecated = "INRelativeReference is deprecated. There is no replacement."]
     pub const Previous: Self = Self(2);

@@ -47,6 +47,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for CFAttributedString {
     /// Returns the type identifier of all CFAttributedString instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgettypeid()?language=objc)
     #[doc(alias = "CFAttributedStringGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -67,6 +69,8 @@ impl CFAttributedString {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringcreate(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringCreate")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -92,6 +96,8 @@ impl CFAttributedString {
     ///
     /// - `alloc` might not allow `None`.
     /// - `a_str` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringcreatewithsubstring(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringCreateWithSubstring")]
     #[inline]
     pub unsafe fn with_substring(
@@ -111,6 +117,8 @@ impl CFAttributedString {
     }
 
     /// Creates an immutable attributed string copy.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringcreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -128,6 +136,8 @@ impl CFAttributedString {
     }
 
     /// Returns the string for the attributed string. For performance reasons, this will often point at the backing store of the attributed string, and it might change if the attributed string is edited.  However, this is an implementation detail, and definitely not something that should be counted on.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetstring(_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetString")]
     #[inline]
     pub fn string(&self) -> Option<CFRetained<CFString>> {
@@ -140,6 +150,8 @@ impl CFAttributedString {
     }
 
     /// Returns the length of the attributed string in characters; same as CFStringGetLength(CFAttributedStringGetString(aStr))
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetlength(_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetLength")]
     #[inline]
     pub fn length(&self) -> CFIndex {
@@ -156,6 +168,8 @@ impl CFAttributedString {
     /// # Safety
     ///
     /// `effective_range` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetattributes(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetAttributes")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -181,6 +195,8 @@ impl CFAttributedString {
     ///
     /// - `attr_name` might not allow `None`.
     /// - `effective_range` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetattribute(_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetAttribute")]
     #[inline]
     pub unsafe fn attribute(
@@ -206,6 +222,8 @@ impl CFAttributedString {
     /// # Safety
     ///
     /// `longest_effective_range` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetattributesandlongesteffectiverange(_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetAttributesAndLongestEffectiveRange")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -240,6 +258,8 @@ impl CFAttributedString {
     ///
     /// - `attr_name` might not allow `None`.
     /// - `longest_effective_range` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetattributeandlongesteffectiverange(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetAttributeAndLongestEffectiveRange")]
     #[inline]
     pub unsafe fn attribute_and_longest_effective_range(
@@ -273,6 +293,8 @@ impl CFAttributedString {
 
 impl CFMutableAttributedString {
     /// Creates a mutable attributed string copy. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringcreatemutablecopy(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringCreateMutableCopy")]
     #[inline]
     pub fn new_copy(
@@ -292,6 +314,8 @@ impl CFMutableAttributedString {
     }
 
     /// Creates a mutable empty attributed string. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringcreatemutable(_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringCreateMutable")]
     #[inline]
     pub fn new(
@@ -316,6 +340,8 @@ impl CFMutableAttributedString {
     ///
     /// - `a_str` might not allow `None`.
     /// - `replacement` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringreplacestring(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringReplaceString")]
     #[inline]
     pub unsafe fn replace_string(
@@ -336,6 +362,8 @@ impl CFMutableAttributedString {
     /// Gets the string for the attributed string as a mutable string, allowing editing the character contents of the string as if it were an CFMutableString. Attributes corresponding to the edited range are appropriately modified. If, as a result of the edit, new characters are introduced into the string, they inherit the attributes of the first replaced character from range. If no existing characters are replaced by the edit, the new characters inherit the attributes of the character preceding range if it has any, otherwise of the character following range. If the initial string is empty, the attributes for the new characters are also empty.
     ///
     /// (Note: This function is not yet implemented and will return NULL except for toll-free bridged instances.)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetmutablestring(_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetMutableString")]
     #[inline]
     pub fn mutable_string(
@@ -358,6 +386,8 @@ impl CFMutableAttributedString {
     /// - `replacement` generic must be of the correct type.
     /// - `replacement` generic must be of the correct type.
     /// - `replacement` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringsetattributes(_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringSetAttributes")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -388,6 +418,8 @@ impl CFMutableAttributedString {
     /// - `attr_name` might not allow `None`.
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringsetattribute(_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringSetAttribute")]
     #[inline]
     pub unsafe fn set_attribute(
@@ -413,6 +445,8 @@ impl CFMutableAttributedString {
     ///
     /// - `a_str` might not allow `None`.
     /// - `attr_name` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringremoveattribute(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringRemoveAttribute")]
     #[inline]
     pub unsafe fn remove_attribute(
@@ -436,6 +470,8 @@ impl CFMutableAttributedString {
     ///
     /// - `a_str` might not allow `None`.
     /// - `replacement` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringreplaceattributedstring(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringReplaceAttributedString")]
     #[inline]
     pub unsafe fn replace_attributed_string(
@@ -454,6 +490,8 @@ impl CFMutableAttributedString {
     }
 
     /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringbeginediting(_:)?language=objc)
     #[doc(alias = "CFAttributedStringBeginEditing")]
     #[inline]
     pub fn begin_editing(a_str: Option<&CFMutableAttributedString>) {
@@ -464,6 +502,8 @@ impl CFMutableAttributedString {
     }
 
     /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringendediting(_:)?language=objc)
     #[doc(alias = "CFAttributedStringEndEditing")]
     #[inline]
     pub fn end_editing(a_str: Option<&CFMutableAttributedString>) {
@@ -481,6 +521,8 @@ impl CFAttributedString {
     ///
     /// - `bidi_levels` must be a valid pointer.
     /// - `base_directions` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetbidilevelsandresolveddirections(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetBidiLevelsAndResolvedDirections")]
     #[inline]
     pub unsafe fn bidi_levels_and_resolved_directions(
@@ -516,6 +558,8 @@ impl CFAttributedString {
     ///
     /// - `bidi_levels` must be a valid pointer.
     /// - `base_directions` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetstatisticalwritingdirections(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetStatisticalWritingDirections")]
     #[inline]
     pub unsafe fn statistical_writing_directions(

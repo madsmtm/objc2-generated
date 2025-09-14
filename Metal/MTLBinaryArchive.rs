@@ -18,14 +18,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBinaryArchiveError(pub NSUInteger);
 impl MTLBinaryArchiveError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code/none?language=objc)
     #[doc(alias = "MTLBinaryArchiveErrorNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code/invalidfile?language=objc)
     #[doc(alias = "MTLBinaryArchiveErrorInvalidFile")]
     pub const InvalidFile: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code/unexpectedelement?language=objc)
     #[doc(alias = "MTLBinaryArchiveErrorUnexpectedElement")]
     pub const UnexpectedElement: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code/compilationfailure?language=objc)
     #[doc(alias = "MTLBinaryArchiveErrorCompilationFailure")]
     pub const CompilationFailure: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code/internalerror?language=objc)
     #[doc(alias = "MTLBinaryArchiveErrorInternalError")]
     pub const InternalError: Self = Self(4);
 }

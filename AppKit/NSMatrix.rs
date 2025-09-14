@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMatrixMode(pub NSUInteger);
 impl NSMatrixMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrix/mode-swift.enum/radiomodematrix?language=objc)
     #[doc(alias = "NSRadioModeMatrix")]
     pub const RadioModeMatrix: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrix/mode-swift.enum/highlightmodematrix?language=objc)
     #[doc(alias = "NSHighlightModeMatrix")]
     pub const HighlightModeMatrix: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrix/mode-swift.enum/listmodematrix?language=objc)
     #[doc(alias = "NSListModeMatrix")]
     pub const ListModeMatrix: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrix/mode-swift.enum/trackmodematrix?language=objc)
     #[doc(alias = "NSTrackModeMatrix")]
     pub const TrackModeMatrix: Self = Self(3);
 }

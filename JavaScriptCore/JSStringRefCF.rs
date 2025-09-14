@@ -15,6 +15,8 @@ extern "C-unwind" {
     /// Parameter `string`: The CFString to copy into the new JSString.
     ///
     /// Returns: A JSString containing string. Ownership follows the Create Rule.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringcreatewithcfstring(_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "objc2-core-foundation"))]
     pub fn JSStringCreateWithCFString(string: &CFString) -> JSStringRef;
 }
@@ -31,6 +33,8 @@ extern "C-unwind" {
 ///
 /// - `alloc` might not allow `None`.
 /// - `string` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringcopycfstring(_:_:)?language=objc)
 #[cfg(all(feature = "JSBase", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn JSStringCopyCFString(

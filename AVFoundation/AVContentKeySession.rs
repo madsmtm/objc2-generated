@@ -496,21 +496,33 @@ extern_protocol!(
 pub struct AVContentKeyRequestStatus(pub NSInteger);
 impl AVContentKeyRequestStatus {
     /// Indicates that the request has just been created.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/requestingresponse?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusRequestingResponse")]
     pub const RequestingResponse: Self = Self(0);
     /// Indicates that a response to a key reequest was received and key is in use. This does not indicate that the key is valid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/receivedresponse?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusReceivedResponse")]
     pub const ReceivedResponse: Self = Self(1);
     /// Indicates that the key request was renewed. This does not indicate that the key is valid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/renewed?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusRenewed")]
     pub const Renewed: Self = Self(2);
     /// Indicates that the key request was retried.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/retried?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusRetried")]
     pub const Retried: Self = Self(3);
     /// Indicates that the key request was cancelled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/cancelled?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusCancelled")]
     pub const Cancelled: Self = Self(4);
     /// Indicates that the request has encountered an error. See also the error property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/failed?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusFailed")]
     pub const Failed: Self = Self(5);
 }
@@ -1007,12 +1019,18 @@ impl AVContentKeySpecifier {
 pub struct AVExternalContentProtectionStatus(pub NSInteger);
 impl AVExternalContentProtectionStatus {
     /// Indicates that the current protection status has not yet been discovered for the attached display(s).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalcontentprotectionstatus/pending?language=objc)
     #[doc(alias = "AVExternalContentProtectionStatusPending")]
     pub const Pending: Self = Self(0);
     /// Indicates that sufficient protection with the attached display(s) has been established, content protected by the associated AVContentKey will be eligible to be displayed on the display(s).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalcontentprotectionstatus/sufficient?language=objc)
     #[doc(alias = "AVExternalContentProtectionStatusSufficient")]
     pub const Sufficient: Self = Self(1);
     /// Indicates that sufficient protection with the attached display(s) has failed to be established, content protected by the associated AVContentKey will not be displayed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalcontentprotectionstatus/insufficient?language=objc)
     #[doc(alias = "AVExternalContentProtectionStatusInsufficient")]
     pub const Insufficient: Self = Self(2);
 }
@@ -1091,6 +1109,8 @@ impl AVContentKey {
 /// # Safety
 ///
 /// `out_error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferattachcontentkey(_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe extern "C-unwind" fn AVSampleBufferAttachContentKey(

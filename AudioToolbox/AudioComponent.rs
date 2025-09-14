@@ -10,12 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentconfigurationinfo_validationresult?language=objc)
 pub const kAudioComponentConfigurationInfo_ValidationResult: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ValidationResult\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentvalidationparameter_timeout?language=objc)
 pub const kAudioComponentValidationParameter_TimeOut: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"TimeOut\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentvalidationparameter_forcevalidation?language=objc)
 pub const kAudioComponentValidationParameter_ForceValidation: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ForceValidation\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentvalidationparameter_loadoutofprocess?language=objc)
 pub const kAudioComponentValidationParameter_LoadOutOfProcess: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"LoadOutOfProcess\0") };
 /// Flags found in AudioComponentDescription.componentFlags.
@@ -50,14 +54,19 @@ pub const kAudioComponentValidationParameter_LoadOutOfProcess: &CStr =
 pub struct AudioComponentFlags(pub u32);
 bitflags::bitflags! {
     impl AudioComponentFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentflags/unsearchable?language=objc)
         #[doc(alias = "kAudioComponentFlag_Unsearchable")]
         const Unsearchable = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentflags/sandboxsafe?language=objc)
         #[doc(alias = "kAudioComponentFlag_SandboxSafe")]
         const SandboxSafe = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentflags/isv3audiounit?language=objc)
         #[doc(alias = "kAudioComponentFlag_IsV3AudioUnit")]
         const IsV3AudioUnit = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentflags/requiresasyncinstantiation?language=objc)
         #[doc(alias = "kAudioComponentFlag_RequiresAsyncInstantiation")]
         const RequiresAsyncInstantiation = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentflags/canloadinprocess?language=objc)
         #[doc(alias = "kAudioComponentFlag_CanLoadInProcess")]
         const CanLoadInProcess = 0x10;
     }
@@ -101,10 +110,13 @@ unsafe impl RefEncode for AudioComponentFlags {
 pub struct AudioComponentInstantiationOptions(pub u32);
 bitflags::bitflags! {
     impl AudioComponentInstantiationOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstantiationoptions/loadoutofprocess?language=objc)
         #[doc(alias = "kAudioComponentInstantiation_LoadOutOfProcess")]
         const LoadOutOfProcess = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstantiationoptions/loadinprocess?language=objc)
         #[doc(alias = "kAudioComponentInstantiation_LoadInProcess")]
         const LoadInProcess = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstantiationoptions/loadedremotely?language=objc)
         #[doc(alias = "kAudioComponentInstantiation_LoadedRemotely")]
         const LoadedRemotely = 1<<31;
     }
@@ -287,6 +299,8 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer or null.
     /// - `in_desc` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentfindnext(_:_:)?language=objc)
     pub fn AudioComponentFindNext(
         in_component: AudioComponent,
         in_desc: NonNull<AudioComponentDescription>,
@@ -309,6 +323,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_desc` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentcount(_:)?language=objc)
     pub fn AudioComponentCount(in_desc: NonNull<AudioComponentDescription>) -> u32;
 }
 
@@ -328,6 +344,8 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `out_name` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentcopyname(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyName(
         in_component: AudioComponent,
@@ -351,6 +369,8 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `out_desc` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentgetdescription(_:_:)?language=objc)
     pub fn AudioComponentGetDescription(
         in_component: AudioComponent,
         out_desc: NonNull<AudioComponentDescription>,
@@ -370,6 +390,8 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `out_version` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentgetversion(_:_:)?language=objc)
     pub fn AudioComponentGetVersion(
         in_component: AudioComponent,
         out_version: NonNull<u32>,
@@ -398,6 +420,8 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `out_instance` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstancenew(_:_:)?language=objc)
     pub fn AudioComponentInstanceNew(
         in_component: AudioComponent,
         out_instance: NonNull<AudioComponentInstance>,
@@ -423,6 +447,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_component` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstantiate(_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn AudioComponentInstantiate(
         in_component: AudioComponent,
@@ -444,6 +470,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_instance` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstancedispose(_:)?language=objc)
     pub fn AudioComponentInstanceDispose(in_instance: AudioComponentInstance) -> OSStatus;
 }
 
@@ -464,6 +492,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_instance` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstancegetcomponent(_:)?language=objc)
     pub fn AudioComponentInstanceGetComponent(
         in_instance: AudioComponentInstance,
     ) -> AudioComponent;
@@ -481,6 +511,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `in_instance` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstancecando(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioComponentInstanceCanDo(
     in_instance: AudioComponentInstance,
@@ -522,6 +554,8 @@ extern "C-unwind" {
     ///
     /// - `in_desc` must be a valid pointer.
     /// - `in_factory` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentregister(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentRegister(
         in_desc: NonNull<AudioComponentDescription>,
@@ -549,6 +583,8 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `out_configuration_info` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentcopyconfigurationinfo(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyConfigurationInfo(
         in_component: AudioComponent,
@@ -574,16 +610,22 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioComponentValidationResult(pub u32);
 impl AudioComponentValidationResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidationresult/unknown?language=objc)
     #[doc(alias = "kAudioComponentValidationResult_Unknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidationresult/passed?language=objc)
     #[doc(alias = "kAudioComponentValidationResult_Passed")]
     pub const Passed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidationresult/failed?language=objc)
     #[doc(alias = "kAudioComponentValidationResult_Failed")]
     pub const Failed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidationresult/timedout?language=objc)
     #[doc(alias = "kAudioComponentValidationResult_TimedOut")]
     pub const TimedOut: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidationresult/unauthorizederror_open?language=objc)
     #[doc(alias = "kAudioComponentValidationResult_UnauthorizedError_Open")]
     pub const UnauthorizedError_Open: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidationresult/unauthorizederror_init?language=objc)
     #[doc(alias = "kAudioComponentValidationResult_UnauthorizedError_Init")]
     pub const UnauthorizedError_Init: Self = Self(5);
 }
@@ -597,6 +639,8 @@ unsafe impl RefEncode for AudioComponentValidationResult {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_component` must be a valid pointer.
@@ -653,6 +697,8 @@ extern "C-unwind" {
     /// - `in_component` must be a valid pointer.
     /// - `in_validation_parameters` generic must be of the correct type.
     /// - `in_validation_parameters` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidatewithresults(_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioComponentValidateWithResults(
         in_component: AudioComponent,

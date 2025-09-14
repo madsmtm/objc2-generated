@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKSubscriptionType(pub NSInteger);
 impl CKSubscriptionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptiontype-swift.enum/query?language=objc)
     #[doc(alias = "CKSubscriptionTypeQuery")]
     pub const Query: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptiontype-swift.enum/recordzone?language=objc)
     #[doc(alias = "CKSubscriptionTypeRecordZone")]
     pub const RecordZone: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptiontype-swift.enum/database?language=objc)
     #[doc(alias = "CKSubscriptionTypeDatabase")]
     pub const Database: Self = Self(3);
 }
@@ -102,12 +105,16 @@ impl CKSubscription {
 pub struct CKQuerySubscriptionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl CKQuerySubscriptionOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/options/firesonrecordcreation?language=objc)
         #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordCreation")]
         const FiresOnRecordCreation = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/options/firesonrecordupdate?language=objc)
         #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordUpdate")]
         const FiresOnRecordUpdate = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/options/firesonrecorddeletion?language=objc)
         #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordDeletion")]
         const FiresOnRecordDeletion = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/options/firesonce?language=objc)
         #[doc(alias = "CKQuerySubscriptionOptionsFiresOnce")]
         const FiresOnce = 1<<3;
     }

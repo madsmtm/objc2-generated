@@ -18,15 +18,23 @@ impl SFSpeechRecognizerAuthorizationStatus {
     /// The app's authorization status has not yet been determined.
     ///
     /// When your app's status is not determined, calling the ``SFSpeechRecognizer/requestAuthorization(_:)`` method prompts the user to grant or deny authorization.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "SFSpeechRecognizerAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
     /// The user denied your app's request to perform speech recognition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerauthorizationstatus/denied?language=objc)
     #[doc(alias = "SFSpeechRecognizerAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
     /// The device prevents your app from performing speech recognition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerauthorizationstatus/restricted?language=objc)
     #[doc(alias = "SFSpeechRecognizerAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(2);
     /// The user granted your app's request to perform speech recognition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerauthorizationstatus/authorized?language=objc)
     #[doc(alias = "SFSpeechRecognizerAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }

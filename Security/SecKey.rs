@@ -101,12 +101,15 @@ pub const kSecKeyUnwrap: c_int = 26;
 pub struct SecCredentialType(pub uint32);
 #[cfg(feature = "cssmconfig")]
 impl SecCredentialType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccredentialtype/default?language=objc)
     #[doc(alias = "kSecCredentialTypeDefault")]
     #[deprecated = "No longer supported"]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccredentialtype/withui?language=objc)
     #[doc(alias = "kSecCredentialTypeWithUI")]
     #[deprecated = "No longer supported"]
     pub const WithUI: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccredentialtype/noui?language=objc)
     #[doc(alias = "kSecCredentialTypeNoUI")]
     #[deprecated = "No longer supported"]
     pub const NoUI: Self = Self(2);
@@ -132,36 +135,47 @@ unsafe impl RefEncode for SecCredentialType {
 pub struct SecPadding(pub u32);
 bitflags::bitflags! {
     impl SecPadding: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/ksecpaddingnone?language=objc)
         #[doc(alias = "kSecPaddingNone")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1?language=objc)
         #[doc(alias = "kSecPaddingPKCS1")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1 = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/oaep?language=objc)
         #[doc(alias = "kSecPaddingOAEP")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const OAEP = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/sigraw?language=objc)
         #[doc(alias = "kSecPaddingSigRaw")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const SigRaw = 0x4000;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1md2?language=objc)
         #[doc(alias = "kSecPaddingPKCS1MD2")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1MD2 = 0x8000;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1md5?language=objc)
         #[doc(alias = "kSecPaddingPKCS1MD5")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1MD5 = 0x8001;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1sha1?language=objc)
         #[doc(alias = "kSecPaddingPKCS1SHA1")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA1 = 0x8002;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1sha224?language=objc)
         #[doc(alias = "kSecPaddingPKCS1SHA224")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA224 = 0x8003;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1sha256?language=objc)
         #[doc(alias = "kSecPaddingPKCS1SHA256")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA256 = 0x8004;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1sha384?language=objc)
         #[doc(alias = "kSecPaddingPKCS1SHA384")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA384 = 0x8005;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1sha512?language=objc)
         #[doc(alias = "kSecPaddingPKCS1SHA512")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA512 = 0x8006;
@@ -187,36 +201,47 @@ unsafe impl RefEncode for SecPadding {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeySizes(pub u32);
 impl SecKeySizes {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secdefaultkeysize?language=objc)
     #[doc(alias = "kSecDefaultKeySize")]
     #[deprecated = "No longer supported"]
     pub const SecDefaultKeySize: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/sec3des192?language=objc)
     #[doc(alias = "kSec3DES192")]
     #[deprecated = "No longer supported"]
     pub const Sec3DES192: Self = Self(192);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secaes128?language=objc)
     #[doc(alias = "kSecAES128")]
     #[deprecated = "No longer supported"]
     pub const SecAES128: Self = Self(128);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secaes192?language=objc)
     #[doc(alias = "kSecAES192")]
     #[deprecated = "No longer supported"]
     pub const SecAES192: Self = Self(192);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secaes256?language=objc)
     #[doc(alias = "kSecAES256")]
     #[deprecated = "No longer supported"]
     pub const SecAES256: Self = Self(256);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secp192r1?language=objc)
     #[doc(alias = "kSecp192r1")]
     #[deprecated = "No longer supported"]
     pub const Secp192r1: Self = Self(192);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secp256r1?language=objc)
     #[doc(alias = "kSecp256r1")]
     #[deprecated = "No longer supported"]
     pub const Secp256r1: Self = Self(256);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secp384r1?language=objc)
     #[doc(alias = "kSecp384r1")]
     #[deprecated = "No longer supported"]
     pub const Secp384r1: Self = Self(384);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secp521r1?language=objc)
     #[doc(alias = "kSecp521r1")]
     #[deprecated = "No longer supported"]
     pub const Secp521r1: Self = Self(521);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secrsamin?language=objc)
     #[doc(alias = "kSecRSAMin")]
     #[deprecated = "No longer supported"]
     pub const SecRSAMin: Self = Self(1024);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secrsamax?language=objc)
     #[doc(alias = "kSecRSAMax")]
     #[deprecated = "No longer supported"]
     pub const SecRSAMax: Self = Self(4096);
@@ -256,6 +281,8 @@ unsafe impl ConcreteType for SecKey {
     /// Returns the type identifier of SecKey instances.
     ///
     /// Returns: The CFTypeID of SecKey instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygettypeid()?language=objc)
     #[doc(alias = "SecKeyGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -300,6 +327,8 @@ impl SecKey {
     ///
     /// - `public_key` must be a valid pointer or null.
     /// - `private_key` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreatepair?language=objc)
     #[doc(alias = "SecKeyCreatePair")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -374,6 +403,8 @@ impl SecKey {
     /// # Safety
     ///
     /// `key_ref` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygenerate?language=objc)
     #[doc(alias = "SecKeyGenerate")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -427,6 +458,8 @@ impl SecKey {
     /// # Safety
     ///
     /// `cssm_key` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygetcssmkey?language=objc)
     #[doc(alias = "SecKeyGetCSSMKey")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -456,6 +489,8 @@ impl SecKey {
     /// # Safety
     ///
     /// `csp_handle` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygetcsphandle?language=objc)
     #[doc(alias = "SecKeyGetCSPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -485,6 +520,8 @@ impl SecKey {
     /// # Safety
     ///
     /// `out_credentials` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygetcredentials?language=objc)
     #[doc(alias = "SecKeyGetCredentials")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -559,6 +596,8 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygeneratesymmetric(_:_:)?language=objc)
     #[doc(alias = "SecKeyGenerateSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -606,6 +645,8 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreatefromdata(_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateFromData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -678,6 +719,8 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyderivefrompassword(_:_:_:)?language=objc)
     #[doc(alias = "SecKeyDeriveFromPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -722,6 +765,8 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeywrapsymmetric(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyWrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -769,6 +814,8 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyunwrapsymmetric(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyUnwrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -851,6 +898,8 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `public_key` must be a valid pointer or null.
     /// - `private_key` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygeneratepair(_:_:_:)?language=objc)
     #[doc(alias = "SecKeyGeneratePair")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "Use SecKeyCreateRandomKey"]
@@ -917,6 +966,8 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreaterandomkey(_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateRandomKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -959,6 +1010,8 @@ impl SecKey {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreatewithdata(_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateWithData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -986,6 +1039,8 @@ impl SecKey {
     ///
     /// If for example key is an RSA key the value returned by
     /// this function is the size of the modulus.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygetblocksize(_:)?language=objc)
     #[doc(alias = "SecKeyGetBlockSize")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1013,6 +1068,8 @@ impl SecKey {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycopyexternalrepresentation(_:_:)?language=objc)
     #[doc(alias = "SecKeyCopyExternalRepresentation")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1049,6 +1106,8 @@ impl SecKey {
     /// kSecAttrTokenID
     /// kSecAttrApplicationLabel
     /// The set of values is not fixed. Future versions may return more values in this dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycopyattributes(_:)?language=objc)
     #[doc(alias = "SecKeyCopyAttributes")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1067,6 +1126,8 @@ impl SecKey {
     /// Returns: The public key or NULL if public key is not available for specified key.
     ///
     /// Fails if key does not contain a public key or no public key can be computed from it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycopypublickey(_:)?language=objc)
     #[doc(alias = "SecKeyCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1977,6 +2038,8 @@ impl SecKey {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreatesignature(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateSignature")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2019,6 +2082,8 @@ impl SecKey {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyverifysignature(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyVerifySignature")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2062,6 +2127,8 @@ impl SecKey {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreateencrypteddata(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateEncryptedData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2103,6 +2170,8 @@ impl SecKey {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreatedecrypteddata(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateDecryptedData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2162,6 +2231,8 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycopykeyexchangeresult(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCopyKeyExchangeResult")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2210,14 +2281,19 @@ impl SecKey {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeyOperationType(pub CFIndex);
 impl SecKeyOperationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype/sign?language=objc)
     #[doc(alias = "kSecKeyOperationTypeSign")]
     pub const Sign: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype/verify?language=objc)
     #[doc(alias = "kSecKeyOperationTypeVerify")]
     pub const Verify: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype/encrypt?language=objc)
     #[doc(alias = "kSecKeyOperationTypeEncrypt")]
     pub const Encrypt: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype/decrypt?language=objc)
     #[doc(alias = "kSecKeyOperationTypeDecrypt")]
     pub const Decrypt: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype/keyexchange?language=objc)
     #[doc(alias = "kSecKeyOperationTypeKeyExchange")]
     pub const KeyExchange: Self = Self(4);
 }
@@ -2243,6 +2319,8 @@ impl SecKey {
     /// Parameter `algorithm`: Algorithm which is queried
     ///
     /// Returns: True if key supports specified algorithm for specified operation, False otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyisalgorithmsupported(_:_:_:)?language=objc)
     #[doc(alias = "SecKeyIsAlgorithmSupported")]
     #[cfg(feature = "SecBase")]
     #[inline]

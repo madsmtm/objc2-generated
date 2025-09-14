@@ -18,10 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISwitchStyle(pub NSInteger);
 impl UISwitchStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswitch/style-swift.enum/automatic?language=objc)
     #[doc(alias = "UISwitchStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswitch/style-swift.enum/checkbox?language=objc)
     #[doc(alias = "UISwitchStyleCheckbox")]
     pub const Checkbox: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswitch/style-swift.enum/sliding?language=objc)
     #[doc(alias = "UISwitchStyleSliding")]
     pub const Sliding: Self = Self(2);
 }

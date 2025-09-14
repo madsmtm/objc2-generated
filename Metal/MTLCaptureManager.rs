@@ -19,12 +19,18 @@ extern "C" {
 pub struct MTLCaptureError(pub NSInteger);
 impl MTLCaptureError {
     /// Capturing is not supported, maybe the destination is not supported.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcaptureerror/notsupported?language=objc)
     #[doc(alias = "MTLCaptureErrorNotSupported")]
     pub const NotSupported: Self = Self(1);
     /// A capture is already in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcaptureerror/alreadycapturing?language=objc)
     #[doc(alias = "MTLCaptureErrorAlreadyCapturing")]
     pub const AlreadyCapturing: Self = Self(2);
     /// The MTLCaptureDescriptor contains an invalid parameters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcaptureerror/invaliddescriptor?language=objc)
     #[doc(alias = "MTLCaptureErrorInvalidDescriptor")]
     pub const InvalidDescriptor: Self = Self(3);
 }
@@ -46,9 +52,13 @@ unsafe impl RefEncode for MTLCaptureError {
 pub struct MTLCaptureDestination(pub NSInteger);
 impl MTLCaptureDestination {
     /// Capture to Developer Tools (Xcode) and stop the execution after capturing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturedestination/developertools?language=objc)
     #[doc(alias = "MTLCaptureDestinationDeveloperTools")]
     pub const DeveloperTools: Self = Self(1);
     /// Capture to a GPU Trace document and continue execution after capturing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturedestination/gputracedocument?language=objc)
     #[doc(alias = "MTLCaptureDestinationGPUTraceDocument")]
     pub const GPUTraceDocument: Self = Self(2);
 }

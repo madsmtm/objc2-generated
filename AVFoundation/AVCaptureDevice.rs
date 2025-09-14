@@ -457,10 +457,13 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureDevicePosition(pub NSInteger);
 impl AVCaptureDevicePosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/position-swift.enum/unspecified?language=objc)
     #[doc(alias = "AVCaptureDevicePositionUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/position-swift.enum/back?language=objc)
     #[doc(alias = "AVCaptureDevicePositionBack")]
     pub const Back: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/position-swift.enum/front?language=objc)
     #[doc(alias = "AVCaptureDevicePositionFront")]
     pub const Front: Self = Self(2);
 }
@@ -768,12 +771,16 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCapturePrimaryConstituentDeviceSwitchingBehavior(pub NSInteger);
 impl AVCapturePrimaryConstituentDeviceSwitchingBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/primaryconstituentdeviceswitchingbehavior-swift.enum/unsupported?language=objc)
     #[doc(alias = "AVCapturePrimaryConstituentDeviceSwitchingBehaviorUnsupported")]
     pub const Unsupported: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/primaryconstituentdeviceswitchingbehavior-swift.enum/auto?language=objc)
     #[doc(alias = "AVCapturePrimaryConstituentDeviceSwitchingBehaviorAuto")]
     pub const Auto: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/primaryconstituentdeviceswitchingbehavior-swift.enum/restricted?language=objc)
     #[doc(alias = "AVCapturePrimaryConstituentDeviceSwitchingBehaviorRestricted")]
     pub const Restricted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/primaryconstituentdeviceswitchingbehavior-swift.enum/locked?language=objc)
     #[doc(alias = "AVCapturePrimaryConstituentDeviceSwitchingBehaviorLocked")]
     pub const Locked: Self = Self(3);
 }
@@ -809,12 +816,16 @@ unsafe impl RefEncode for AVCapturePrimaryConstituentDeviceSwitchingBehavior {
 pub struct AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureprimaryconstituentdevicerestrictedswitchingbehaviorconditions/avcaptureprimaryconstituentdevicerestrictedswitchingbehaviorconditionnone?language=objc)
         #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/primaryconstituentdevicerestrictedswitchingbehaviorconditions-swift.struct/videozoomchanged?language=objc)
         #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionVideoZoomChanged")]
         const VideoZoomChanged = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/primaryconstituentdevicerestrictedswitchingbehaviorconditions-swift.struct/focusmodechanged?language=objc)
         #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionFocusModeChanged")]
         const FocusModeChanged = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/primaryconstituentdevicerestrictedswitchingbehaviorconditions-swift.struct/exposuremodechanged?language=objc)
         #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionExposureModeChanged")]
         const ExposureModeChanged = 1<<2;
     }
@@ -967,10 +978,13 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureFlashMode(pub NSInteger);
 impl AVCaptureFlashMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/flashmode-swift.enum/off?language=objc)
     #[doc(alias = "AVCaptureFlashModeOff")]
     pub const Off: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/flashmode-swift.enum/on?language=objc)
     #[doc(alias = "AVCaptureFlashModeOn")]
     pub const On: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/flashmode-swift.enum/auto?language=objc)
     #[doc(alias = "AVCaptureFlashModeAuto")]
     pub const Auto: Self = Self(2);
 }
@@ -1059,10 +1073,13 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureTorchMode(pub NSInteger);
 impl AVCaptureTorchMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/torchmode-swift.enum/off?language=objc)
     #[doc(alias = "AVCaptureTorchModeOff")]
     pub const Off: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/torchmode-swift.enum/on?language=objc)
     #[doc(alias = "AVCaptureTorchModeOn")]
     pub const On: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/torchmode-swift.enum/auto?language=objc)
     #[doc(alias = "AVCaptureTorchModeAuto")]
     pub const Auto: Self = Self(2);
 }
@@ -1171,10 +1188,13 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureFocusMode(pub NSInteger);
 impl AVCaptureFocusMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/focusmode-swift.enum/locked?language=objc)
     #[doc(alias = "AVCaptureFocusModeLocked")]
     pub const Locked: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/focusmode-swift.enum/autofocus?language=objc)
     #[doc(alias = "AVCaptureFocusModeAutoFocus")]
     pub const AutoFocus: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/focusmode-swift.enum/continuousautofocus?language=objc)
     #[doc(alias = "AVCaptureFocusModeContinuousAutoFocus")]
     pub const ContinuousAutoFocus: Self = Self(2);
 }
@@ -1202,10 +1222,13 @@ unsafe impl RefEncode for AVCaptureFocusMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureAutoFocusRangeRestriction(pub NSInteger);
 impl AVCaptureAutoFocusRangeRestriction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/autofocusrangerestriction-swift.enum/none?language=objc)
     #[doc(alias = "AVCaptureAutoFocusRangeRestrictionNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/autofocusrangerestriction-swift.enum/near?language=objc)
     #[doc(alias = "AVCaptureAutoFocusRangeRestrictionNear")]
     pub const Near: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/autofocusrangerestriction-swift.enum/far?language=objc)
     #[doc(alias = "AVCaptureAutoFocusRangeRestrictionFar")]
     pub const Far: Self = Self(2);
 }
@@ -1234,12 +1257,18 @@ extern "C" {
 pub struct AVCaptureCinematicVideoFocusMode(pub NSInteger);
 impl AVCaptureCinematicVideoFocusMode {
     /// Indicates that no focus mode is specified, in which case weak focus is used as default.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/cinematicvideofocusmode/none?language=objc)
     #[doc(alias = "AVCaptureCinematicVideoFocusModeNone")]
     pub const None: Self = Self(0);
     /// Indicates that the subject should remain in focus until it exits the scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/cinematicvideofocusmode/strong?language=objc)
     #[doc(alias = "AVCaptureCinematicVideoFocusModeStrong")]
     pub const Strong: Self = Self(1);
     /// Indicates that the Cinematic Video algorithm should automatically adjust focus according to the prominence of the subjects in the scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/cinematicvideofocusmode/weak?language=objc)
     #[doc(alias = "AVCaptureCinematicVideoFocusModeWeak")]
     pub const Weak: Self = Self(2);
 }
@@ -1539,12 +1568,16 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureExposureMode(pub NSInteger);
 impl AVCaptureExposureMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/exposuremode-swift.enum/locked?language=objc)
     #[doc(alias = "AVCaptureExposureModeLocked")]
     pub const Locked: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/exposuremode-swift.enum/autoexpose?language=objc)
     #[doc(alias = "AVCaptureExposureModeAutoExpose")]
     pub const AutoExpose: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/exposuremode-swift.enum/continuousautoexposure?language=objc)
     #[doc(alias = "AVCaptureExposureModeContinuousAutoExposure")]
     pub const ContinuousAutoExposure: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/exposuremode-swift.enum/custom?language=objc)
     #[doc(alias = "AVCaptureExposureModeCustom")]
     pub const Custom: Self = Self(3);
 }
@@ -1878,10 +1911,13 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureWhiteBalanceMode(pub NSInteger);
 impl AVCaptureWhiteBalanceMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancemode-swift.enum/locked?language=objc)
     #[doc(alias = "AVCaptureWhiteBalanceModeLocked")]
     pub const Locked: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancemode-swift.enum/autowhitebalance?language=objc)
     #[doc(alias = "AVCaptureWhiteBalanceModeAutoWhiteBalance")]
     pub const AutoWhiteBalance: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancemode-swift.enum/continuousautowhitebalance?language=objc)
     #[doc(alias = "AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance")]
     pub const ContinuousAutoWhiteBalance: Self = Self(2);
 }
@@ -2329,12 +2365,16 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAuthorizationStatus(pub NSInteger);
 impl AVAuthorizationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "AVAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avauthorizationstatus/restricted?language=objc)
     #[doc(alias = "AVAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avauthorizationstatus/denied?language=objc)
     #[doc(alias = "AVAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avauthorizationstatus/authorized?language=objc)
     #[doc(alias = "AVAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -2411,8 +2451,10 @@ pub type AVCaptureDeviceTransportControlsSpeed = c_float;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureDeviceTransportControlsPlaybackMode(pub NSInteger);
 impl AVCaptureDeviceTransportControlsPlaybackMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/transportcontrolsplaybackmode-swift.enum/notplaying?language=objc)
     #[doc(alias = "AVCaptureDeviceTransportControlsNotPlayingMode")]
     pub const NotPlayingMode: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/transportcontrolsplaybackmode-swift.enum/playing?language=objc)
     #[doc(alias = "AVCaptureDeviceTransportControlsPlayingMode")]
     pub const PlayingMode: Self = Self(1);
 }
@@ -2523,18 +2565,28 @@ impl AVCaptureDevice {
 pub struct AVCaptureColorSpace(pub NSInteger);
 impl AVCaptureColorSpace {
     /// The sRGB color space ( https://www.w3.org/Graphics/Color/srgb ).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecolorspace/srgb?language=objc)
     #[doc(alias = "AVCaptureColorSpace_sRGB")]
     pub const sRGB: Self = Self(0);
     /// The P3 D65 wide color space which uses Illuminant D65 as the white point.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecolorspace/p3_d65?language=objc)
     #[doc(alias = "AVCaptureColorSpace_P3_D65")]
     pub const P3_D65: Self = Self(1);
     /// The BT2020 wide color space which uses Illuminant D65 as the white point and Hybrid Log-Gamma as the transfer function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecolorspace/hlg_bt2020?language=objc)
     #[doc(alias = "AVCaptureColorSpace_HLG_BT2020")]
     pub const HLG_BT2020: Self = Self(2);
     /// The Apple Log Color space, which uses BT2020 as the color primaries, and an Apple defined Log curve as a transfer function. When you set this as the active color space on an ``AVCaptureDevice``, any ``AVCapturePhotoOutput`` or ``AVCaptureStillImageOutput`` connected to the same ``AVCaptureDevice`` is made inactive (its ``AVCaptureConnection/active`` property returns `false`).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecolorspace/applelog?language=objc)
     #[doc(alias = "AVCaptureColorSpace_AppleLog")]
     pub const AppleLog: Self = Self(3);
     /// The Apple Log 2 Color space, which uses Apple Gamut as the color primaries, and an Apple defined Log curve as a transfer function. When you set this as the active color space on an ``AVCaptureDevice``, any ``AVCapturePhotoOutput`` or ``AVCaptureStillImageOutput`` connected to the same ``AVCaptureDevice`` is made inactive (its ``AVCaptureConnection/active`` property returns `false`).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecolorspace/applelog2?language=objc)
     #[doc(alias = "AVCaptureColorSpace_AppleLog2")]
     pub const AppleLog2: Self = Self(4);
 }
@@ -2720,10 +2772,13 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureCenterStageControlMode(pub NSInteger);
 impl AVCaptureCenterStageControlMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/centerstagecontrolmode-swift.enum/user?language=objc)
     #[doc(alias = "AVCaptureCenterStageControlModeUser")]
     pub const User: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/centerstagecontrolmode-swift.enum/app?language=objc)
     #[doc(alias = "AVCaptureCenterStageControlModeApp")]
     pub const App: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/centerstagecontrolmode-swift.enum/cooperative?language=objc)
     #[doc(alias = "AVCaptureCenterStageControlModeCooperative")]
     pub const Cooperative: Self = Self(2);
 }
@@ -2978,10 +3033,13 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureMicrophoneMode(pub NSInteger);
 impl AVCaptureMicrophoneMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/microphonemode/standard?language=objc)
     #[doc(alias = "AVCaptureMicrophoneModeStandard")]
     pub const Standard: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/microphonemode/widespectrum?language=objc)
     #[doc(alias = "AVCaptureMicrophoneModeWideSpectrum")]
     pub const WideSpectrum: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/microphonemode/voiceisolation?language=objc)
     #[doc(alias = "AVCaptureMicrophoneModeVoiceIsolation")]
     pub const VoiceIsolation: Self = Self(2);
 }
@@ -3028,8 +3086,10 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCaptureSystemUserInterface(pub NSInteger);
 impl AVCaptureSystemUserInterface {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systemuserinterface/videoeffects?language=objc)
     #[doc(alias = "AVCaptureSystemUserInterfaceVideoEffects")]
     pub const VideoEffects: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systemuserinterface/microphonemodes?language=objc)
     #[doc(alias = "AVCaptureSystemUserInterfaceMicrophoneModes")]
     pub const MicrophoneModes: Self = Self(2);
 }
@@ -3679,27 +3739,43 @@ impl AVZoomRange {
 pub struct AVCaptureVideoStabilizationMode(pub NSInteger);
 impl AVCaptureVideoStabilizationMode {
     /// Indicates that video should not be stabilized.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode/off?language=objc)
     #[doc(alias = "AVCaptureVideoStabilizationModeOff")]
     pub const Off: Self = Self(0);
     /// Indicates that video should be stabilized using the standard video stabilization algorithm introduced with iOS 5.0. Standard video stabilization has a reduced field of view. Enabling video stabilization may introduce additional latency into the video capture pipeline.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode/standard?language=objc)
     #[doc(alias = "AVCaptureVideoStabilizationModeStandard")]
     pub const Standard: Self = Self(1);
     /// Indicates that video should be stabilized using the cinematic stabilization algorithm for more dramatic results. Cinematic video stabilization has a reduced field of view compared to standard video stabilization. Enabling cinematic video stabilization introduces much more latency into the video capture pipeline than standard video stabilization and consumes significantly more system memory. Use narrow or identical min and max frame durations in conjunction with this mode.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode/cinematic?language=objc)
     #[doc(alias = "AVCaptureVideoStabilizationModeCinematic")]
     pub const Cinematic: Self = Self(2);
     /// Indicates that the video should be stabilized using the extended cinematic stabilization algorithm. Enabling extended cinematic stabilization introduces longer latency into the video capture pipeline compared to the ``AVCaptureVideoStabilizationModeCinematic`` and consumes more memory, but yields improved stability. It is recommended to use identical or similar min and max frame durations in conjunction with this mode. Cinematic extended mode is face aware when enabled on a front-facing ultra wide camera on iPhone, and prioritizes stabilization of the subject of the frame rather than the background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode/cinematicextended?language=objc)
     #[doc(alias = "AVCaptureVideoStabilizationModeCinematicExtended")]
     pub const CinematicExtended: Self = Self(3);
     /// Indicates that video should be stabilized using the preview optimized stabilization algorithm. Preview stabilization is a low latency and low power algorithm which is supported only on connections which either have an associated preview layer or have a preview-sized ``AVCaptureVideoDataOutput``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode/previewoptimized?language=objc)
     #[doc(alias = "AVCaptureVideoStabilizationModePreviewOptimized")]
     pub const PreviewOptimized: Self = Self(4);
     /// Indicates that the video should be stabilized using the enhanced extended cinematic stabilization algorithm. Enhanced extended cinematic has a reduced field of view compared to extended cinematic, without any noticeable increase in latency, and it yields improved stability. It is recommended to use identical or similar min and max frame durations in conjunction with this mode. Cinematic extended enhanced mode is face aware when enabled on a front-facing ultra wide camera on iPhone, and prioritizes stabilization of the subject of the frame rather than the background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode/cinematicextendedenhanced?language=objc)
     #[doc(alias = "AVCaptureVideoStabilizationModeCinematicExtendedEnhanced")]
     pub const CinematicExtendedEnhanced: Self = Self(5);
     /// Indicates that video should be stabilized using the low latency stabilization algorithm. Low Latency stabilization has a reduced field of view. Enabling low latency stabilization introduces no additional latency into the video capture pipeline.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode/lowlatency?language=objc)
     #[doc(alias = "AVCaptureVideoStabilizationModeLowLatency")]
     pub const LowLatency: Self = Self(6);
     /// Indicates that the most appropriate video stabilization mode for the device and format should be chosen.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode/auto?language=objc)
     #[doc(alias = "AVCaptureVideoStabilizationModeAuto")]
     pub const Auto: Self = Self(-1);
 }
@@ -3727,10 +3803,13 @@ unsafe impl RefEncode for AVCaptureVideoStabilizationMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureAutoFocusSystem(pub NSInteger);
 impl AVCaptureAutoFocusSystem {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/autofocussystem-swift.enum/none?language=objc)
     #[doc(alias = "AVCaptureAutoFocusSystemNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/autofocussystem-swift.enum/contrastdetection?language=objc)
     #[doc(alias = "AVCaptureAutoFocusSystemContrastDetection")]
     pub const ContrastDetection: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/autofocussystem-swift.enum/phasedetection?language=objc)
     #[doc(alias = "AVCaptureAutoFocusSystemPhaseDetection")]
     pub const PhaseDetection: Self = Self(2);
 }
@@ -4385,15 +4464,23 @@ impl AVCaptureDeviceFormat {
 pub struct AVCaptureCameraLensSmudgeDetectionStatus(pub NSInteger);
 impl AVCaptureCameraLensSmudgeDetectionStatus {
     /// Indicates that the detection is not enabled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecameralenssmudgedetectionstatus/disabled?language=objc)
     #[doc(alias = "AVCaptureCameraLensSmudgeDetectionStatusDisabled")]
     pub const Disabled: Self = Self(0);
     /// Indicates that the most recent detection found no smudge on the camera lens.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecameralenssmudgedetectionstatus/smudgenotdetected?language=objc)
     #[doc(alias = "AVCaptureCameraLensSmudgeDetectionStatusSmudgeNotDetected")]
     pub const SmudgeNotDetected: Self = Self(1);
     /// Indicates that the most recent detection found the camera lens to be smudged.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecameralenssmudgedetectionstatus/smudged?language=objc)
     #[doc(alias = "AVCaptureCameraLensSmudgeDetectionStatusSmudged")]
     pub const Smudged: Self = Self(2);
     /// Indicates that the detection result has not settled, commonly caused by excessive camera movement or the content of the scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecameralenssmudgedetectionstatus/unknown?language=objc)
     #[doc(alias = "AVCaptureCameraLensSmudgeDetectionStatusUnknown")]
     pub const Unknown: Self = Self(3);
 }

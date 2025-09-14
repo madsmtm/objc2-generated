@@ -18,12 +18,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellStyle(pub NSInteger);
 impl UITableViewCellStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle/default?language=objc)
     #[doc(alias = "UITableViewCellStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle/value1?language=objc)
     #[doc(alias = "UITableViewCellStyleValue1")]
     pub const Value1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle/value2?language=objc)
     #[doc(alias = "UITableViewCellStyleValue2")]
     pub const Value2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle/subtitle?language=objc)
     #[doc(alias = "UITableViewCellStyleSubtitle")]
     pub const Subtitle: Self = Self(3);
 }
@@ -42,10 +46,13 @@ unsafe impl RefEncode for UITableViewCellStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellSeparatorStyle(pub NSInteger);
 impl UITableViewCellSeparatorStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/separatorstyle/none?language=objc)
     #[doc(alias = "UITableViewCellSeparatorStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/separatorstyle/singleline?language=objc)
     #[doc(alias = "UITableViewCellSeparatorStyleSingleLine")]
     pub const SingleLine: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/separatorstyle/singlelineetched?language=objc)
     #[doc(alias = "UITableViewCellSeparatorStyleSingleLineEtched")]
     #[deprecated = "Use UITableViewCellSeparatorStyleSingleLine for a single line separator."]
     pub const SingleLineEtched: Self = Self(2);
@@ -65,12 +72,16 @@ unsafe impl RefEncode for UITableViewCellSeparatorStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellSelectionStyle(pub NSInteger);
 impl UITableViewCellSelectionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum/none?language=objc)
     #[doc(alias = "UITableViewCellSelectionStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum/blue?language=objc)
     #[doc(alias = "UITableViewCellSelectionStyleBlue")]
     pub const Blue: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum/gray?language=objc)
     #[doc(alias = "UITableViewCellSelectionStyleGray")]
     pub const Gray: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum/default?language=objc)
     #[doc(alias = "UITableViewCellSelectionStyleDefault")]
     pub const Default: Self = Self(3);
 }
@@ -89,8 +100,10 @@ unsafe impl RefEncode for UITableViewCellSelectionStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellFocusStyle(pub NSInteger);
 impl UITableViewCellFocusStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/focusstyle-swift.enum/default?language=objc)
     #[doc(alias = "UITableViewCellFocusStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/focusstyle-swift.enum/custom?language=objc)
     #[doc(alias = "UITableViewCellFocusStyleCustom")]
     pub const Custom: Self = Self(1);
 }
@@ -109,10 +122,13 @@ unsafe impl RefEncode for UITableViewCellFocusStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellEditingStyle(pub NSInteger);
 impl UITableViewCellEditingStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/editingstyle-swift.enum/none?language=objc)
     #[doc(alias = "UITableViewCellEditingStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/editingstyle-swift.enum/delete?language=objc)
     #[doc(alias = "UITableViewCellEditingStyleDelete")]
     pub const Delete: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/editingstyle-swift.enum/insert?language=objc)
     #[doc(alias = "UITableViewCellEditingStyleInsert")]
     pub const Insert: Self = Self(2);
 }
@@ -131,14 +147,19 @@ unsafe impl RefEncode for UITableViewCellEditingStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellAccessoryType(pub NSInteger);
 impl UITableViewCellAccessoryType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/none?language=objc)
     #[doc(alias = "UITableViewCellAccessoryNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/disclosureindicator?language=objc)
     #[doc(alias = "UITableViewCellAccessoryDisclosureIndicator")]
     pub const DisclosureIndicator: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/detaildisclosurebutton?language=objc)
     #[doc(alias = "UITableViewCellAccessoryDetailDisclosureButton")]
     pub const DetailDisclosureButton: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/checkmark?language=objc)
     #[doc(alias = "UITableViewCellAccessoryCheckmark")]
     pub const Checkmark: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/detailbutton?language=objc)
     #[doc(alias = "UITableViewCellAccessoryDetailButton")]
     pub const DetailButton: Self = Self(4);
 }
@@ -158,10 +179,13 @@ unsafe impl RefEncode for UITableViewCellAccessoryType {
 pub struct UITableViewCellStateMask(pub NSUInteger);
 bitflags::bitflags! {
     impl UITableViewCellStateMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellstatemask/uitableviewcellstatedefaultmask?language=objc)
         #[doc(alias = "UITableViewCellStateDefaultMask")]
         const DefaultMask = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/statemask/showingeditcontrol?language=objc)
         #[doc(alias = "UITableViewCellStateShowingEditControlMask")]
         const ShowingEditControlMask = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/statemask/showingdeleteconfirmation?language=objc)
         #[doc(alias = "UITableViewCellStateShowingDeleteConfirmationMask")]
         const ShowingDeleteConfirmationMask = 1<<1;
     }
@@ -181,10 +205,13 @@ unsafe impl RefEncode for UITableViewCellStateMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellDragState(pub NSInteger);
 impl UITableViewCellDragState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/dragstate/none?language=objc)
     #[doc(alias = "UITableViewCellDragStateNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/dragstate/lifting?language=objc)
     #[doc(alias = "UITableViewCellDragStateLifting")]
     pub const Lifting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/dragstate/dragging?language=objc)
     #[doc(alias = "UITableViewCellDragStateDragging")]
     pub const Dragging: Self = Self(2);
 }

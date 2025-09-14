@@ -11,12 +11,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITimingCurveType(pub NSInteger);
 impl UITimingCurveType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurvetype/builtin?language=objc)
     #[doc(alias = "UITimingCurveTypeBuiltin")]
     pub const Builtin: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurvetype/cubic?language=objc)
     #[doc(alias = "UITimingCurveTypeCubic")]
     pub const Cubic: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurvetype/spring?language=objc)
     #[doc(alias = "UITimingCurveTypeSpring")]
     pub const Spring: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurvetype/composed?language=objc)
     #[doc(alias = "UITimingCurveTypeComposed")]
     pub const Composed: Self = Self(3);
 }

@@ -24,16 +24,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MXErrorCode(pub NSInteger);
 impl MXErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskinvalidid?language=objc)
     #[doc(alias = "MXErrorLaunchTaskInvalidID")]
     pub const LaunchTaskInvalidID: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskmaxcount?language=objc)
     #[doc(alias = "MXErrorLaunchTaskMaxCount")]
     pub const LaunchTaskMaxCount: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskpastdeadline?language=objc)
     #[doc(alias = "MXErrorLaunchTaskPastDeadline")]
     pub const LaunchTaskPastDeadline: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskduplicated?language=objc)
     #[doc(alias = "MXErrorLaunchTaskDuplicated")]
     pub const LaunchTaskDuplicated: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskunknown?language=objc)
     #[doc(alias = "MXErrorLaunchTaskUnknown")]
     pub const LaunchTaskUnknown: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskinternalfailure?language=objc)
     #[doc(alias = "MXErrorLaunchTaskInternalFailure")]
     pub const LaunchTaskInternalFailure: Self = Self(5);
 }

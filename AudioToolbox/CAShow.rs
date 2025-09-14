@@ -11,6 +11,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_object` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cashow(_:)?language=objc)
     pub fn CAShow(in_object: NonNull<c_void>);
 }
 
@@ -21,6 +23,8 @@ extern "C-unwind" {
     ///
     /// - `in_object` must be a valid pointer.
     /// - `in_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cashowfile(_:_:)?language=objc)
     #[cfg(feature = "libc")]
     pub fn CAShowFile(in_object: NonNull<c_void>, in_file: NonNull<libc::FILE>);
 }

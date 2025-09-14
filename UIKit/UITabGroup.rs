@@ -15,12 +15,18 @@ pub struct UITabGroupSidebarAppearance(pub NSUInteger);
 impl UITabGroupSidebarAppearance {
     /// The default appearance showing the group and its children appropriately depending
     /// on the group level it is in.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabgroup/sidebarappearance-swift.enum/automatic?language=objc)
     #[doc(alias = "UITabGroupSidebarAppearanceAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Displays only the children alongside the group's siblings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabgroup/sidebarappearance-swift.enum/inline?language=objc)
     #[doc(alias = "UITabGroupSidebarAppearanceInline")]
     pub const Inline: Self = Self(1);
     /// Displays the group and its children as a top-level group of the sidebar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabgroup/sidebarappearance-swift.enum/rootsection?language=objc)
     #[doc(alias = "UITabGroupSidebarAppearanceRootSection")]
     pub const RootSection: Self = Self(2);
 }

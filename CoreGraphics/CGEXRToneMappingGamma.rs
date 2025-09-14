@@ -25,6 +25,7 @@ extern "C" {
     pub static kCGEXRToneMappingGammaKneeHigh: &'static CFString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgexrtonemappinggammagetdefaultoptions?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGEXRToneMappingGammaGetDefaultOptions() -> CFRetained<CFDictionary> {
     extern "C-unwind" {

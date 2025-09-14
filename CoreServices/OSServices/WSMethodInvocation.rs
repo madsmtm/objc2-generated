@@ -195,6 +195,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for WSMethodInvocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576434-wsmethodinvocationgettypeid?language=objc)
     #[doc(alias = "WSMethodInvocationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -206,6 +207,8 @@ unsafe impl ConcreteType for WSMethodInvocation {
 }
 
 impl WSMethodInvocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576406-wsmethodinvocationcreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `url` might not allow `None`.
@@ -230,6 +233,8 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576400-wsmethodinvocationcreatefromseri?language=objc)
+    ///
     /// # Safety
     ///
     /// `contract` might not allow `None`.
@@ -248,6 +253,7 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576441-wsmethodinvocationcopyserializat?language=objc)
     #[doc(alias = "WSMethodInvocationCopySerialization")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -261,6 +267,8 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576420-wsmethodinvocationsetparameters?language=objc)
+    ///
     /// # Safety
     ///
     /// - `parameters` generic must be of the correct type.
@@ -286,6 +294,8 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationSetParameters(self, parameters, parameter_order) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576399-wsmethodinvocationcopyparameters?language=objc)
+    ///
     /// # Safety
     ///
     /// `parameter_order` must be a valid pointer.
@@ -306,6 +316,8 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576407-wsmethodinvocationsetproperty?language=objc)
+    ///
     /// # Safety
     ///
     /// - `property_name` might not allow `None`.
@@ -329,6 +341,8 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationSetProperty(self, property_name, property_value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576432-wsmethodinvocationcopyproperty?language=objc)
+    ///
     /// # Safety
     ///
     /// `property_name` might not allow `None`.
@@ -346,6 +360,7 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576428-wsmethodinvocationinvoke?language=objc)
     #[doc(alias = "WSMethodInvocationInvoke")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -366,6 +381,8 @@ pub type WSMethodInvocationCallBackProcPtr =
     Option<unsafe extern "C-unwind" fn(*mut WSMethodInvocation, *mut c_void, *const CFDictionary)>;
 
 impl WSMethodInvocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576439-wsmethodinvocationsetcallback?language=objc)
+    ///
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
@@ -389,6 +406,8 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationSetCallBack(self, client_cb, context) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576408-wsmethodinvocationschedulewithru?language=objc)
+    ///
     /// # Safety
     ///
     /// - `run_loop` possibly has additional threading requirements.
@@ -412,6 +431,8 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576409-wsmethodinvocationunschedulefrom?language=objc)
+    ///
     /// # Safety
     ///
     /// - `run_loop` possibly has additional threading requirements.
@@ -436,6 +457,8 @@ impl WSMethodInvocation {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576401-wsmethodresultisfault?language=objc)
+///
 /// # Safety
 ///
 /// - `method_result` generic must be of the correct type.
@@ -464,6 +487,8 @@ pub type WSMethodInvocationSerializationProcPtr = Option<
 >;
 
 impl WSMethodInvocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576435-wsmethodinvocationaddserializati?language=objc)
+    ///
     /// # Safety
     ///
     /// - `serialization_proc` must be implemented correctly.
@@ -504,6 +529,8 @@ pub type WSMethodInvocationDeserializationProcPtr = Option<
 >;
 
 impl WSMethodInvocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576436-wsmethodinvocationadddeserializa?language=objc)
+    ///
     /// # Safety
     ///
     /// - `type_namespace` might not allow `None`.

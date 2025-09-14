@@ -27,6 +27,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CGShading {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/typeid?language=objc)
     #[doc(alias = "CGShadingGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,6 +39,7 @@ unsafe impl ConcreteType for CGShading {
 }
 
 impl CGShading {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/init(axialspace:start:end:function:extendstart:extendend:)?language=objc)
     #[doc(alias = "CGShadingCreateAxial")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
@@ -64,6 +66,7 @@ impl CGShading {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/init(axialheadroom:space:start:end:function:extendstart:extendend:)?language=objc)
     #[doc(alias = "CGShadingCreateAxialWithContentHeadroom")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
@@ -101,6 +104,7 @@ impl CGShading {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/init(radialspace:start:startradius:end:endradius:function:extendstart:extendend:)?language=objc)
     #[doc(alias = "CGShadingCreateRadial")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
@@ -141,6 +145,7 @@ impl CGShading {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/init(radialheadroom:space:start:startradius:end:endradius:function:extendstart:extendend:)?language=objc)
     #[doc(alias = "CGShadingCreateRadialWithContentHeadroom")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
@@ -184,6 +189,7 @@ impl CGShading {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/contentheadroom?language=objc)
     #[doc(alias = "CGShadingGetContentHeadroom")]
     #[inline]
     pub fn content_headroom(shading: Option<&CGShading>) -> c_float {

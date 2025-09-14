@@ -20,6 +20,8 @@ extern "C-unwind" {
     ///
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextdescriptor(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -44,6 +46,8 @@ extern "C-unwind" {
     ///
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextdescriptorwithtype(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextDescriptorWithType(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -70,6 +74,8 @@ extern "C-unwind" {
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `parent_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextassociateddescriptor(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextAssociatedDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -98,6 +104,8 @@ extern "C-unwind" {
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `parent_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextassociateddescriptorwithtype(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextAssociatedDescriptorWithType(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -122,6 +130,8 @@ extern "C-unwind" {
     ///
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextinterfaceassociationdescriptor(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextInterfaceAssociationDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -144,6 +154,8 @@ extern "C-unwind" {
     ///
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextinterfacedescriptor(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextInterfaceDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -169,6 +181,8 @@ extern "C-unwind" {
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `interface_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextendpointdescriptor(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextEndpointDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -192,6 +206,8 @@ extern "C-unwind" {
     ///
     /// - `bos_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextcapabilitydescriptor(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -216,6 +232,8 @@ extern "C-unwind" {
     ///
     /// - `bos_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextcapabilitydescriptorwithtype(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextCapabilityDescriptorWithType(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -236,6 +254,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetusb20extensiondevicecapabilitydescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetUSB20ExtensionDeviceCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -254,6 +274,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetsuperspeeddevicecapabilitydescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetSuperSpeedDeviceCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -272,6 +294,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetsuperspeedplusdevicecapabilitydescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetSuperSpeedPlusDeviceCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -290,6 +314,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetcontaineriddescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetContainerIDDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -308,6 +334,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetplatformcapabilitydescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetPlatformCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -329,6 +357,8 @@ extern "C-unwind" {
     ///
     /// - `bos_descriptor` must be a valid pointer.
     /// - `uuid` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetplatformcapabilitydescriptorwithuuid(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetPlatformCapabilityDescriptorWithUUID(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -348,6 +378,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetbillboarddescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetBillboardDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -366,6 +398,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointdirection(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointDirection(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -382,6 +416,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointaddress(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointAddress(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -398,6 +434,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointnumber(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointNumber(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -414,6 +452,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointtype(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointType(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -430,6 +470,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointusagetype(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointUsageType(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -446,6 +488,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointsynchronizationtype(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointSynchronizationType(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -464,6 +508,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointmaxpacketsize(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMaxPacketSize(
         usb_device_speed: u32,
@@ -491,6 +537,8 @@ extern "C-unwind" {
     /// - `descriptor` must be a valid pointer.
     /// - `companion_descriptor` must be a valid pointer.
     /// - `ssp_companion_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointburstsize(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointBurstSize(
         usb_device_speed: u32,
@@ -520,6 +568,8 @@ extern "C-unwind" {
     /// - `descriptor` must be a valid pointer.
     /// - `companion_descriptor` must be a valid pointer.
     /// - `ssp_companion_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointmult(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMult(
         usb_device_speed: u32,
@@ -543,6 +593,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointintervalencodedmicroframes(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointIntervalEncodedMicroframes(
         usb_device_speed: u32,
@@ -564,6 +616,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointintervalmicroframes(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointIntervalMicroframes(
         usb_device_speed: u32,
@@ -585,6 +639,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointintervalframes(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointIntervalFrames(
         usb_device_speed: u32,
@@ -609,6 +665,8 @@ extern "C-unwind" {
     ///
     /// - `descriptor` must be a valid pointer.
     /// - `companion_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointmaxstreamsencoded(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMaxStreamsEncoded(
         usb_device_speed: u32,
@@ -634,6 +692,8 @@ extern "C-unwind" {
     ///
     /// - `descriptor` must be a valid pointer.
     /// - `companion_descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointmaxstreams(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMaxStreams(
         usb_device_speed: u32,
@@ -656,6 +716,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetconfigurationmaxpowermilliamps(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetConfigurationMaxPowerMilliAmps(
         usb_device_speed: u32,

@@ -16,22 +16,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKUniformType(pub NSInteger);
 impl SKUniformType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/none?language=objc)
     #[doc(alias = "SKUniformTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/float?language=objc)
     #[doc(alias = "SKUniformTypeFloat")]
     pub const Float: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatvector2?language=objc)
     #[doc(alias = "SKUniformTypeFloatVector2")]
     pub const FloatVector2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatvector3?language=objc)
     #[doc(alias = "SKUniformTypeFloatVector3")]
     pub const FloatVector3: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatvector4?language=objc)
     #[doc(alias = "SKUniformTypeFloatVector4")]
     pub const FloatVector4: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatmatrix2?language=objc)
     #[doc(alias = "SKUniformTypeFloatMatrix2")]
     pub const FloatMatrix2: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatmatrix3?language=objc)
     #[doc(alias = "SKUniformTypeFloatMatrix3")]
     pub const FloatMatrix3: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatmatrix4?language=objc)
     #[doc(alias = "SKUniformTypeFloatMatrix4")]
     pub const FloatMatrix4: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/texture?language=objc)
     #[doc(alias = "SKUniformTypeTexture")]
     pub const Texture: Self = Self(8);
 }

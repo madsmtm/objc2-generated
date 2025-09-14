@@ -26,12 +26,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionConversionValidatorStatus(pub NSInteger);
 impl AVCaptionConversionValidatorStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator/status-swift.enum/unknown?language=objc)
     #[doc(alias = "AVCaptionConversionValidatorStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator/status-swift.enum/validating?language=objc)
     #[doc(alias = "AVCaptionConversionValidatorStatusValidating")]
     pub const Validating: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator/status-swift.enum/completed?language=objc)
     #[doc(alias = "AVCaptionConversionValidatorStatusCompleted")]
     pub const Completed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator/status-swift.enum/stopped?language=objc)
     #[doc(alias = "AVCaptionConversionValidatorStatusStopped")]
     pub const Stopped: Self = Self(3);
 }

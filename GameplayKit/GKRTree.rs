@@ -14,12 +14,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKRTreeSplitStrategy(pub NSInteger);
 impl GKRTreeSplitStrategy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrtreesplitstrategy/halve?language=objc)
     #[doc(alias = "GKRTreeSplitStrategyHalve")]
     pub const Halve: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrtreesplitstrategy/linear?language=objc)
     #[doc(alias = "GKRTreeSplitStrategyLinear")]
     pub const Linear: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrtreesplitstrategy/quadratic?language=objc)
     #[doc(alias = "GKRTreeSplitStrategyQuadratic")]
     pub const Quadratic: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrtreesplitstrategy/reduceoverlap?language=objc)
     #[doc(alias = "GKRTreeSplitStrategyReduceOverlap")]
     pub const ReduceOverlap: Self = Self(3);
 }

@@ -55,6 +55,8 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/frameindex?language=objc)
     #[doc(alias = "cp_frame_get_frame_index")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -89,6 +91,8 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_predict_timing?language=objc)
     #[doc(alias = "cp_frame_predict_timing")]
     #[cfg(feature = "frame_timing")]
     #[inline]
@@ -118,6 +122,8 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_query_drawable?language=objc)
     #[doc(alias = "cp_frame_query_drawable")]
     #[cfg(feature = "drawable")]
     #[deprecated = "Use cp_frame_query_drawables instead"]
@@ -153,6 +159,8 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_query_drawables?language=objc)
     #[doc(alias = "cp_frame_query_drawables")]
     #[cfg(feature = "drawable")]
     #[inline]
@@ -185,6 +193,8 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/startupdate()?language=objc)
     #[doc(alias = "cp_frame_start_update")]
     #[inline]
     pub unsafe fn start_update(frame: cp_frame_t) {
@@ -216,6 +226,8 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/endupdate()?language=objc)
     #[doc(alias = "cp_frame_end_update")]
     #[inline]
     pub unsafe fn end_update(frame: cp_frame_t) {
@@ -243,6 +255,8 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/startsubmission()?language=objc)
     #[doc(alias = "cp_frame_start_submission")]
     #[inline]
     pub unsafe fn start_submission(frame: cp_frame_t) {
@@ -270,6 +284,8 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/endsubmission()?language=objc)
     #[doc(alias = "cp_frame_end_submission")]
     #[inline]
     pub unsafe fn end_submission(frame: cp_frame_t) {
@@ -295,6 +311,8 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/drawabletargetviewcount(target:)?language=objc)
     #[doc(alias = "cp_frame_get_drawable_target_view_count")]
     #[cfg(feature = "drawable")]
     #[inline]

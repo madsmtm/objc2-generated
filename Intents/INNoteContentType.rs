@@ -11,12 +11,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INNoteContentType(pub NSInteger);
 impl INNoteContentType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotecontenttype/unknown?language=objc)
     #[doc(alias = "INNoteContentTypeUnknown")]
     #[deprecated = "This enum is no longer used"]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotecontenttype/text?language=objc)
     #[doc(alias = "INNoteContentTypeText")]
     #[deprecated = "This enum is no longer used"]
     pub const Text: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotecontenttype/image?language=objc)
     #[doc(alias = "INNoteContentTypeImage")]
     #[deprecated = "This enum is no longer used"]
     pub const Image: Self = Self(2);

@@ -14,27 +14,35 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForBillsIntentResponseCode(pub NSInteger);
 impl INSearchForBillsIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSearchForBillsIntentResponseCodeUnspecified")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/ready?language=objc)
     #[doc(alias = "INSearchForBillsIntentResponseCodeReady")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSearchForBillsIntentResponseCodeInProgress")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/success?language=objc)
     #[doc(alias = "INSearchForBillsIntentResponseCodeSuccess")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/failure?language=objc)
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailure")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/failurecredentialsunverified?language=objc)
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailureCredentialsUnverified")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureCredentialsUnverified: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/failurebillnotfound?language=objc)
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailureBillNotFound")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureBillNotFound: Self = Self(7);

@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOCompressionStatus(pub NSInteger);
 impl MTLIOCompressionStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionstatus/complete?language=objc)
     #[doc(alias = "MTLIOCompressionStatusComplete")]
     pub const Complete: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionstatus/error?language=objc)
     #[doc(alias = "MTLIOCompressionStatusError")]
     pub const Error: Self = Self(1);
 }
@@ -29,6 +31,7 @@ unsafe impl RefEncode for MTLIOCompressionStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressioncontext?language=objc)
 pub type MTLIOCompressionContext = *mut c_void;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressioncontextdefaultchunksize()?language=objc)
 #[inline]
 pub extern "C-unwind" fn MTLIOCompressionContextDefaultChunkSize() -> usize {
     extern "C-unwind" {
@@ -38,6 +41,8 @@ pub extern "C-unwind" fn MTLIOCompressionContextDefaultChunkSize() -> usize {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocreatecompressioncontext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `path` must be a valid pointer.
@@ -51,6 +56,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressioncontextappenddata(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `context` must be a valid pointer.
@@ -64,6 +71,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioflushanddestroycompressioncontext(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.

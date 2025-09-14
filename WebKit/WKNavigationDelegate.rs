@@ -16,10 +16,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKNavigationActionPolicy(pub NSInteger);
 impl WKNavigationActionPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationactionpolicy/cancel?language=objc)
     #[doc(alias = "WKNavigationActionPolicyCancel")]
     pub const Cancel: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationactionpolicy/allow?language=objc)
     #[doc(alias = "WKNavigationActionPolicyAllow")]
     pub const Allow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationactionpolicy/download?language=objc)
     #[doc(alias = "WKNavigationActionPolicyDownload")]
     pub const Download: Self = Self(2);
 }
@@ -40,10 +43,13 @@ unsafe impl RefEncode for WKNavigationActionPolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKNavigationResponsePolicy(pub NSInteger);
 impl WKNavigationResponsePolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponsepolicy/cancel?language=objc)
     #[doc(alias = "WKNavigationResponsePolicyCancel")]
     pub const Cancel: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponsepolicy/allow?language=objc)
     #[doc(alias = "WKNavigationResponsePolicyAllow")]
     pub const Allow: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponsepolicy/download?language=objc)
     #[doc(alias = "WKNavigationResponsePolicyDownload")]
     pub const Download: Self = Self(2);
 }

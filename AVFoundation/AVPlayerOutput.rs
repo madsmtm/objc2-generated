@@ -103,8 +103,10 @@ impl AVPlayerVideoOutput {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTagCollectionVideoOutputPreset(pub u32);
 impl CMTagCollectionVideoOutputPreset {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectionvideooutputpreset/kcmtagcollectionvideooutputpreset_monoscopic?language=objc)
     #[doc(alias = "kCMTagCollectionVideoOutputPreset_Monoscopic")]
     pub const Monoscopic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectionvideooutputpreset/kcmtagcollectionvideooutputpreset_stereoscopic?language=objc)
     #[doc(alias = "kCMTagCollectionVideoOutputPreset_Stereoscopic")]
     pub const Stereoscopic: Self = Self(1);
 }
@@ -133,6 +135,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `new_collection_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectioncreatewithvideooutputpreset?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMTagCollectionCreateWithVideoOutputPreset(
         allocator: Option<&CFAllocator>,

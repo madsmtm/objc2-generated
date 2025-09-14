@@ -8,6 +8,8 @@ use crate::*;
 #[cfg(feature = "CSCommon")]
 unsafe impl ConcreteType for SecCode {
     /// Returns the type identifier of all SecCode instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodegettypeid()?language=objc)
     #[doc(alias = "SecCodeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -37,6 +39,8 @@ impl SecCode {
     /// # Safety
     ///
     /// `self` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopyself(_:_:)?language=objc)
     #[doc(alias = "SecCodeCopySelf")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -53,6 +57,8 @@ pub const kSecCSUseAllArchitectures: u32 = 1;
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopystaticcode(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `static_code` must be a valid pointer.
@@ -94,6 +100,8 @@ impl SecCode {
     /// # Safety
     ///
     /// `host` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopyhost(_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCopyHost")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -218,6 +226,8 @@ impl SecCode {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `guest` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopyguestwithattributes(_:_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCopyGuestWithAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -260,6 +270,8 @@ impl SecCode {
     ///
     /// Returns: If validation passes, errSecSuccess. If validation fails, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecheckvalidity(_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCheckValidity")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -309,6 +321,8 @@ impl SecCode {
     /// # Safety
     ///
     /// `errors` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecheckvaliditywitherrors(_:_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCheckValidityWithErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -347,6 +361,8 @@ impl SecCode {
     /// Returns: noErr if fileData is the exact content of the file at relativePath at the
     /// time it was signed. Various error codes if it is different, there was no such file,
     /// it was not a plain file, or anything is irregular.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodevalidatefileresource(_:_:_:_:)?language=objc)
     #[doc(alias = "SecCodeValidateFileResource")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -386,6 +402,8 @@ impl SecCode {
     /// # Safety
     ///
     /// `path` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopypath(_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCopyPath")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -430,6 +448,8 @@ impl SecCode {
     /// # Safety
     ///
     /// `requirement` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopydesignatedrequirement(_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCopyDesignatedRequirement")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -606,6 +626,8 @@ extern "C" {
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `information` must be a valid pointer.
@@ -627,6 +649,7 @@ impl SecCode {
         unsafe { SecCodeCopySigningInformation(code, flags, information) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccodemapmemory(_:_:)?language=objc)
     #[doc(alias = "SecCodeMapMemory")]
     #[cfg(feature = "CSCommon")]
     #[inline]

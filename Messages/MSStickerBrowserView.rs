@@ -21,10 +21,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MSStickerSize(pub NSInteger);
 impl MSStickerSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msstickersize/small?language=objc)
     #[doc(alias = "MSStickerSizeSmall")]
     pub const Small: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msstickersize/regular?language=objc)
     #[doc(alias = "MSStickerSizeRegular")]
     pub const Regular: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msstickersize/large?language=objc)
     #[doc(alias = "MSStickerSizeLarge")]
     pub const Large: Self = Self(2);
 }

@@ -140,6 +140,7 @@ impl MKOverlayRenderer {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkroadwidthatzoomscale(_:)?language=objc)
     #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
     pub fn MKRoadWidthAtZoomScale(zoom_scale: MKZoomScale) -> CGFloat;
 }

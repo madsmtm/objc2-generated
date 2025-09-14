@@ -20,10 +20,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNFilterMode(pub NSInteger);
 impl SCNFilterMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfiltermode/none?language=objc)
     #[doc(alias = "SCNFilterModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfiltermode/nearest?language=objc)
     #[doc(alias = "SCNFilterModeNearest")]
     pub const Nearest: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfiltermode/linear?language=objc)
     #[doc(alias = "SCNFilterModeLinear")]
     pub const Linear: Self = Self(2);
 }
@@ -44,12 +47,16 @@ unsafe impl RefEncode for SCNFilterMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCNWrapMode(pub NSInteger);
 impl SCNWrapMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnwrapmode/clamp?language=objc)
     #[doc(alias = "SCNWrapModeClamp")]
     pub const Clamp: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnwrapmode/repeat?language=objc)
     #[doc(alias = "SCNWrapModeRepeat")]
     pub const Repeat: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnwrapmode/clamptoborder?language=objc)
     #[doc(alias = "SCNWrapModeClampToBorder")]
     pub const ClampToBorder: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnwrapmode/mirror?language=objc)
     #[doc(alias = "SCNWrapModeMirror")]
     pub const Mirror: Self = Self(4);
 }

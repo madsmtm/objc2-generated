@@ -36,21 +36,27 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILineBreakMode(pub NSInteger);
 impl UILineBreakMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodewordwrap?language=objc)
     #[doc(alias = "UILineBreakModeWordWrap")]
     #[deprecated]
     pub const WordWrap: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodecharacterwrap?language=objc)
     #[doc(alias = "UILineBreakModeCharacterWrap")]
     #[deprecated]
     pub const CharacterWrap: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodeclip?language=objc)
     #[doc(alias = "UILineBreakModeClip")]
     #[deprecated]
     pub const Clip: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodeheadtruncation?language=objc)
     #[doc(alias = "UILineBreakModeHeadTruncation")]
     #[deprecated]
     pub const HeadTruncation: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodetailtruncation?language=objc)
     #[doc(alias = "UILineBreakModeTailTruncation")]
     #[deprecated]
     pub const TailTruncation: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodemiddletruncation?language=objc)
     #[doc(alias = "UILineBreakModeMiddleTruncation")]
     #[deprecated]
     pub const MiddleTruncation: Self = Self(5);
@@ -71,12 +77,15 @@ unsafe impl RefEncode for UILineBreakMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAlignment(pub NSInteger);
 impl UITextAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalignment/uitextalignmentleft?language=objc)
     #[doc(alias = "UITextAlignmentLeft")]
     #[deprecated]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalignment/uitextalignmentcenter?language=objc)
     #[doc(alias = "UITextAlignmentCenter")]
     #[deprecated]
     pub const Center: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalignment/uitextalignmentright?language=objc)
     #[doc(alias = "UITextAlignmentRight")]
     #[deprecated]
     pub const Right: Self = Self(2);
@@ -96,10 +105,13 @@ unsafe impl RefEncode for UITextAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBaselineAdjustment(pub NSInteger);
 impl UIBaselineAdjustment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibaselineadjustment/alignbaselines?language=objc)
     #[doc(alias = "UIBaselineAdjustmentAlignBaselines")]
     pub const AlignBaselines: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibaselineadjustment/aligncenters?language=objc)
     #[doc(alias = "UIBaselineAdjustmentAlignCenters")]
     pub const AlignCenters: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibaselineadjustment/none?language=objc)
     #[doc(alias = "UIBaselineAdjustmentNone")]
     pub const None: Self = Self(2);
 }

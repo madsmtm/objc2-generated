@@ -18,8 +18,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DOMXPathExceptionCode(pub c_uint);
 impl DOMXPathExceptionCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_invalid_expression_err?language=objc)
     #[deprecated]
     pub const DOM_INVALID_EXPRESSION_ERR: Self = Self(51);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_type_err?language=objc)
     #[deprecated]
     pub const DOM_TYPE_ERR: Self = Self(52);
 }

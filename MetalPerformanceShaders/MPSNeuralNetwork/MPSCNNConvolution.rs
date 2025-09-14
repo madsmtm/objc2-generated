@@ -756,6 +756,7 @@ impl MPSCNNDepthWiseConvolutionDescriptor {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNConvolutionWeightsLayout(pub u32);
 impl MPSCNNConvolutionWeightsLayout {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionweightslayout/ohwi?language=objc)
     #[doc(alias = "MPSCNNConvolutionWeightsLayoutOHWI")]
     pub const OHWI: Self = Self(0);
 }
@@ -774,10 +775,13 @@ unsafe impl RefEncode for MPSCNNConvolutionWeightsLayout {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNWeightsQuantizationType(pub u32);
 impl MPSCNNWeightsQuantizationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnweightsquantizationtype/none-41te1?language=objc)
     #[doc(alias = "MPSCNNWeightsQuantizationTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnweightsquantizationtype/none-29myw?language=objc)
     #[doc(alias = "MPSCNNWeightsQuantizationTypeLinear")]
     pub const Linear: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnweightsquantizationtype/none-3wocm?language=objc)
     #[doc(alias = "MPSCNNWeightsQuantizationTypeLookupTable")]
     pub const LookupTable: Self = Self(2);
 }
@@ -2178,10 +2182,13 @@ impl MPSCNNConvolution {
 pub struct MPSCNNConvolutionGradientOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSCNNConvolutionGradientOption: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption/gradientwithdata?language=objc)
         #[doc(alias = "MPSCNNConvolutionGradientOptionGradientWithData")]
         const GradientWithData = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption/gradientwithweightsandbias?language=objc)
         #[doc(alias = "MPSCNNConvolutionGradientOptionGradientWithWeightsAndBias")]
         const GradientWithWeightsAndBias = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption/all?language=objc)
         #[doc(alias = "MPSCNNConvolutionGradientOptionAll")]
         const All = MPSCNNConvolutionGradientOption::GradientWithData.0|MPSCNNConvolutionGradientOption::GradientWithWeightsAndBias.0;
     }

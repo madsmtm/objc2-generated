@@ -13,21 +13,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetSeatSettingsInCarIntentResponseCode(pub NSInteger);
 impl INSetSeatSettingsInCarIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetseatsettingsincarintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeUnspecified")]
     #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetseatsettingsincarintentresponsecode/ready?language=objc)
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeReady")]
     #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetseatsettingsincarintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeInProgress")]
     #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetseatsettingsincarintentresponsecode/success?language=objc)
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeSuccess")]
     #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetseatsettingsincarintentresponsecode/failure?language=objc)
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeFailure")]
     #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetseatsettingsincarintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INSetSeatSettingsInCarIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSetSeatSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);

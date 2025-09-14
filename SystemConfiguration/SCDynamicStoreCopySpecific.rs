@@ -24,6 +24,8 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// `name_encoding` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopycomputername(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyComputerName")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
@@ -69,6 +71,8 @@ impl SCDynamicStore {
     ///
     /// - `uid` must be a valid pointer or null.
     /// - `gid` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopyconsoleuser(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyConsoleUser")]
     #[cfg(all(feature = "SCDynamicStore", feature = "libc"))]
     #[inline]
@@ -97,6 +101,8 @@ impl SCDynamicStore {
     /// Returns: Returns the current local host name;
     /// NULL if the name has not been set or if an error was encountered.
     /// You must release the returned value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopylocalhostname(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyLocalHostName")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
@@ -120,6 +126,8 @@ impl SCDynamicStore {
     /// NULL if no location identifier has been defined or if an error
     /// was encountered.
     /// You must release the returned value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopylocation(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyLocation")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
@@ -346,6 +354,8 @@ impl SCDynamicStore {
     /// NULL if no proxy settings have been defined or if an error
     /// was encountered.
     /// You must release the returned value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopyproxies(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyProxies")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]

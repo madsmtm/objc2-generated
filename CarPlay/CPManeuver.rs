@@ -15,112 +15,166 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPManeuverType(pub NSUInteger);
 impl CPManeuverType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/noturn?language=objc)
     #[doc(alias = "CPManeuverTypeNoTurn")]
     pub const NoTurn: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/leftturn?language=objc)
     #[doc(alias = "CPManeuverTypeLeftTurn")]
     pub const LeftTurn: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/rightturn?language=objc)
     #[doc(alias = "CPManeuverTypeRightTurn")]
     pub const RightTurn: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/straightahead?language=objc)
     #[doc(alias = "CPManeuverTypeStraightAhead")]
     pub const StraightAhead: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/uturn?language=objc)
     #[doc(alias = "CPManeuverTypeUTurn")]
     pub const UTurn: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/followroad?language=objc)
     #[doc(alias = "CPManeuverTypeFollowRoad")]
     pub const FollowRoad: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/enterroundabout?language=objc)
     #[doc(alias = "CPManeuverTypeEnterRoundabout")]
     pub const EnterRoundabout: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/exitroundabout?language=objc)
     #[doc(alias = "CPManeuverTypeExitRoundabout")]
     pub const ExitRoundabout: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/offramp?language=objc)
     #[doc(alias = "CPManeuverTypeOffRamp")]
     pub const OffRamp: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/onramp?language=objc)
     #[doc(alias = "CPManeuverTypeOnRamp")]
     pub const OnRamp: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/arriveendofnavigation?language=objc)
     #[doc(alias = "CPManeuverTypeArriveEndOfNavigation")]
     pub const ArriveEndOfNavigation: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/startroute?language=objc)
     #[doc(alias = "CPManeuverTypeStartRoute")]
     pub const StartRoute: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/arriveatdestination?language=objc)
     #[doc(alias = "CPManeuverTypeArriveAtDestination")]
     pub const ArriveAtDestination: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/keepleft?language=objc)
     #[doc(alias = "CPManeuverTypeKeepLeft")]
     pub const KeepLeft: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/keepright?language=objc)
     #[doc(alias = "CPManeuverTypeKeepRight")]
     pub const KeepRight: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/enter_ferry?language=objc)
     #[doc(alias = "CPManeuverTypeEnter_Ferry")]
     pub const Enter_Ferry: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/exitferry?language=objc)
     #[doc(alias = "CPManeuverTypeExitFerry")]
     pub const ExitFerry: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/changeferry?language=objc)
     #[doc(alias = "CPManeuverTypeChangeFerry")]
     pub const ChangeFerry: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/startroutewithuturn?language=objc)
     #[doc(alias = "CPManeuverTypeStartRouteWithUTurn")]
     pub const StartRouteWithUTurn: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/uturnatroundabout?language=objc)
     #[doc(alias = "CPManeuverTypeUTurnAtRoundabout")]
     pub const UTurnAtRoundabout: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/leftturnatend?language=objc)
     #[doc(alias = "CPManeuverTypeLeftTurnAtEnd")]
     pub const LeftTurnAtEnd: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/rightturnatend?language=objc)
     #[doc(alias = "CPManeuverTypeRightTurnAtEnd")]
     pub const RightTurnAtEnd: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/highwayofframpleft?language=objc)
     #[doc(alias = "CPManeuverTypeHighwayOffRampLeft")]
     pub const HighwayOffRampLeft: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/highwayofframpright?language=objc)
     #[doc(alias = "CPManeuverTypeHighwayOffRampRight")]
     pub const HighwayOffRampRight: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/arriveatdestinationleft?language=objc)
     #[doc(alias = "CPManeuverTypeArriveAtDestinationLeft")]
     pub const ArriveAtDestinationLeft: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/arriveatdestinationright?language=objc)
     #[doc(alias = "CPManeuverTypeArriveAtDestinationRight")]
     pub const ArriveAtDestinationRight: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/uturnwhenpossible?language=objc)
     #[doc(alias = "CPManeuverTypeUTurnWhenPossible")]
     pub const UTurnWhenPossible: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/arriveendofdirections?language=objc)
     #[doc(alias = "CPManeuverTypeArriveEndOfDirections")]
     pub const ArriveEndOfDirections: Self = Self(27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit1?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit1")]
     pub const RoundaboutExit1: Self = Self(28);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit2?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit2")]
     pub const RoundaboutExit2: Self = Self(29);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit3?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit3")]
     pub const RoundaboutExit3: Self = Self(30);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit4?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit4")]
     pub const RoundaboutExit4: Self = Self(31);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit5?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit5")]
     pub const RoundaboutExit5: Self = Self(32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit6?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit6")]
     pub const RoundaboutExit6: Self = Self(33);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit7?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit7")]
     pub const RoundaboutExit7: Self = Self(34);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit8?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit8")]
     pub const RoundaboutExit8: Self = Self(35);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit9?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit9")]
     pub const RoundaboutExit9: Self = Self(36);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit10?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit10")]
     pub const RoundaboutExit10: Self = Self(37);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit11?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit11")]
     pub const RoundaboutExit11: Self = Self(38);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit12?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit12")]
     pub const RoundaboutExit12: Self = Self(39);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit13?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit13")]
     pub const RoundaboutExit13: Self = Self(40);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit14?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit14")]
     pub const RoundaboutExit14: Self = Self(41);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit15?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit15")]
     pub const RoundaboutExit15: Self = Self(42);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit16?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit16")]
     pub const RoundaboutExit16: Self = Self(43);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit17?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit17")]
     pub const RoundaboutExit17: Self = Self(44);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit18?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit18")]
     pub const RoundaboutExit18: Self = Self(45);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/roundaboutexit19?language=objc)
     #[doc(alias = "CPManeuverTypeRoundaboutExit19")]
     pub const RoundaboutExit19: Self = Self(46);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/sharpleftturn?language=objc)
     #[doc(alias = "CPManeuverTypeSharpLeftTurn")]
     pub const SharpLeftTurn: Self = Self(47);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/sharprightturn?language=objc)
     #[doc(alias = "CPManeuverTypeSharpRightTurn")]
     pub const SharpRightTurn: Self = Self(48);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/slightleftturn?language=objc)
     #[doc(alias = "CPManeuverTypeSlightLeftTurn")]
     pub const SlightLeftTurn: Self = Self(49);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/slightrightturn?language=objc)
     #[doc(alias = "CPManeuverTypeSlightRightTurn")]
     pub const SlightRightTurn: Self = Self(50);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/changehighway?language=objc)
     #[doc(alias = "CPManeuverTypeChangeHighway")]
     pub const ChangeHighway: Self = Self(51);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/changehighwayleft?language=objc)
     #[doc(alias = "CPManeuverTypeChangeHighwayLeft")]
     pub const ChangeHighwayLeft: Self = Self(52);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype/changehighwayright?language=objc)
     #[doc(alias = "CPManeuverTypeChangeHighwayRight")]
     pub const ChangeHighwayRight: Self = Self(53);
 }
@@ -139,8 +193,10 @@ unsafe impl RefEncode for CPManeuverType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPJunctionType(pub NSUInteger);
 impl CPJunctionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpjunctiontype/intersection?language=objc)
     #[doc(alias = "CPJunctionTypeIntersection")]
     pub const Intersection: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpjunctiontype/roundabout?language=objc)
     #[doc(alias = "CPJunctionTypeRoundabout")]
     pub const Roundabout: Self = Self(1);
 }
@@ -159,8 +215,10 @@ unsafe impl RefEncode for CPJunctionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPTrafficSide(pub NSUInteger);
 impl CPTrafficSide {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptrafficside/right?language=objc)
     #[doc(alias = "CPTrafficSideRight")]
     pub const Right: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptrafficside/left?language=objc)
     #[doc(alias = "CPTrafficSideLeft")]
     pub const Left: Self = Self(1);
 }
@@ -179,12 +237,16 @@ unsafe impl RefEncode for CPTrafficSide {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPManeuverState(pub NSInteger);
 impl CPManeuverState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverstate/continue?language=objc)
     #[doc(alias = "CPManeuverStateContinue")]
     pub const Continue: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverstate/initial?language=objc)
     #[doc(alias = "CPManeuverStateInitial")]
     pub const Initial: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverstate/prepare?language=objc)
     #[doc(alias = "CPManeuverStatePrepare")]
     pub const Prepare: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverstate/execute?language=objc)
     #[doc(alias = "CPManeuverStateExecute")]
     pub const Execute: Self = Self(3);
 }

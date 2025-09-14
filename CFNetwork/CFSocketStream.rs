@@ -177,6 +177,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamcreatepairwithsockettocfhost(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `read_stream` must be a valid pointer or null.
@@ -193,6 +195,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamcreatepairwithsockettonetservice(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `read_stream` must be a valid pointer or null.

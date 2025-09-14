@@ -17,10 +17,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventViewAction(pub NSInteger);
 impl EKEventViewAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewaction/done?language=objc)
     #[doc(alias = "EKEventViewActionDone")]
     pub const Done: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewaction/responded?language=objc)
     #[doc(alias = "EKEventViewActionResponded")]
     pub const Responded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewaction/deleted?language=objc)
     #[doc(alias = "EKEventViewActionDeleted")]
     pub const Deleted: Self = Self(2);
 }

@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKDirectionsRoutePreference(pub NSInteger);
 impl MKDirectionsRoutePreference {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/routepreference/any?language=objc)
     #[doc(alias = "MKDirectionsRoutePreferenceAny")]
     pub const Any: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/routepreference/avoid?language=objc)
     #[doc(alias = "MKDirectionsRoutePreferenceAvoid")]
     pub const Avoid: Self = Self(1);
 }

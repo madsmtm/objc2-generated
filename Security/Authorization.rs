@@ -9,6 +9,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationexternalformlength?language=objc)
 pub const kAuthorizationExternalFormLength: c_uint = 32;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationsuccess?language=objc)
 pub const errAuthorizationSuccess: OSStatus = 0;
@@ -51,20 +52,28 @@ pub const errAuthorizationBadAddress: OSStatus = -60033;
 pub struct AuthorizationFlags(pub u32);
 bitflags::bitflags! {
     impl AuthorizationFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/kauthorizationflagdefaults?language=objc)
         #[doc(alias = "kAuthorizationFlagDefaults")]
         const Defaults = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed?language=objc)
         #[doc(alias = "kAuthorizationFlagInteractionAllowed")]
         const InteractionAllowed = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/extendrights?language=objc)
         #[doc(alias = "kAuthorizationFlagExtendRights")]
         const ExtendRights = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/partialrights?language=objc)
         #[doc(alias = "kAuthorizationFlagPartialRights")]
         const PartialRights = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/destroyrights?language=objc)
         #[doc(alias = "kAuthorizationFlagDestroyRights")]
         const DestroyRights = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/preauthorize?language=objc)
         #[doc(alias = "kAuthorizationFlagPreAuthorize")]
         const PreAuthorize = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/skipinternalauth?language=objc)
         #[doc(alias = "kAuthorizationFlagSkipInternalAuth")]
         const SkipInternalAuth = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/nodata?language=objc)
         #[doc(alias = "kAuthorizationFlagNoData")]
         const NoData = 1<<20;
     }
@@ -245,6 +254,8 @@ extern "C-unwind" {
     /// - `rights` must be a valid pointer or null.
     /// - `environment` must be a valid pointer or null.
     /// - `authorization` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcreate(_:_:_:_:)?language=objc)
     pub fn AuthorizationCreate(
         rights: *const AuthorizationRights,
         environment: *const AuthorizationEnvironment,
@@ -274,6 +285,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `authorization` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationfree(_:_:)?language=objc)
     pub fn AuthorizationFree(
         authorization: AuthorizationRef,
         flags: AuthorizationFlags,
@@ -322,6 +335,8 @@ extern "C-unwind" {
     /// - `rights` must be a valid pointer.
     /// - `environment` must be a valid pointer or null.
     /// - `authorized_rights` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcopyrights(_:_:_:_:_:)?language=objc)
     pub fn AuthorizationCopyRights(
         authorization: AuthorizationRef,
         rights: NonNull<AuthorizationRights>,
@@ -355,6 +370,8 @@ extern "C-unwind" {
     /// - `rights` must be a valid pointer.
     /// - `environment` must be a valid pointer or null.
     /// - `callback_block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcopyrightsasync(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn AuthorizationCopyRightsAsync(
         authorization: AuthorizationRef,
@@ -389,6 +406,8 @@ extern "C-unwind" {
     /// - `authorization` must be a valid pointer.
     /// - `tag` must be a valid pointer or null.
     /// - `info` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcopyinfo(_:_:_:)?language=objc)
     pub fn AuthorizationCopyInfo(
         authorization: AuthorizationRef,
         tag: AuthorizationString,
@@ -419,6 +438,8 @@ extern "C-unwind" {
     ///
     /// - `authorization` must be a valid pointer.
     /// - `ext_form` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationmakeexternalform(_:_:)?language=objc)
     pub fn AuthorizationMakeExternalForm(
         authorization: AuthorizationRef,
         ext_form: NonNull<AuthorizationExternalForm>,
@@ -440,6 +461,8 @@ extern "C-unwind" {
     ///
     /// - `ext_form` must be a valid pointer.
     /// - `authorization` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcreatefromexternalform(_:_:)?language=objc)
     pub fn AuthorizationCreateFromExternalForm(
         ext_form: NonNull<AuthorizationExternalForm>,
         authorization: NonNull<AuthorizationRef>,
@@ -461,6 +484,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `set` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationfreeitemset(_:)?language=objc)
     pub fn AuthorizationFreeItemSet(set: NonNull<AuthorizationItemSet>) -> OSStatus;
 }
 
@@ -479,6 +504,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `authorization` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcopyprivilegedreference?language=objc)
     #[deprecated]
     pub fn AuthorizationCopyPrivilegedReference(
         authorization: NonNull<AuthorizationRef>,

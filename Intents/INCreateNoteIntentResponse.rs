@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCreateNoteIntentResponseCode(pub NSInteger);
 impl INCreateNoteIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INCreateNoteIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/ready?language=objc)
     #[doc(alias = "INCreateNoteIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INCreateNoteIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/success?language=objc)
     #[doc(alias = "INCreateNoteIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/failure?language=objc)
     #[doc(alias = "INCreateNoteIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INCreateNoteIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }

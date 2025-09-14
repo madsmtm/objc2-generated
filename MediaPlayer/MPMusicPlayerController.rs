@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMusicPlaybackState(pub NSInteger);
 impl MPMusicPlaybackState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/stopped?language=objc)
     #[doc(alias = "MPMusicPlaybackStateStopped")]
     pub const Stopped: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/playing?language=objc)
     #[doc(alias = "MPMusicPlaybackStatePlaying")]
     pub const Playing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/paused?language=objc)
     #[doc(alias = "MPMusicPlaybackStatePaused")]
     pub const Paused: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/interrupted?language=objc)
     #[doc(alias = "MPMusicPlaybackStateInterrupted")]
     pub const Interrupted: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/seekingforward?language=objc)
     #[doc(alias = "MPMusicPlaybackStateSeekingForward")]
     pub const SeekingForward: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/seekingbackward?language=objc)
     #[doc(alias = "MPMusicPlaybackStateSeekingBackward")]
     pub const SeekingBackward: Self = Self(5);
 }
@@ -41,12 +47,16 @@ unsafe impl RefEncode for MPMusicPlaybackState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMusicRepeatMode(pub NSInteger);
 impl MPMusicRepeatMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode/default?language=objc)
     #[doc(alias = "MPMusicRepeatModeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode/none?language=objc)
     #[doc(alias = "MPMusicRepeatModeNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode/one?language=objc)
     #[doc(alias = "MPMusicRepeatModeOne")]
     pub const One: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode/all?language=objc)
     #[doc(alias = "MPMusicRepeatModeAll")]
     pub const All: Self = Self(3);
 }
@@ -65,12 +75,16 @@ unsafe impl RefEncode for MPMusicRepeatMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMusicShuffleMode(pub NSInteger);
 impl MPMusicShuffleMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode/default?language=objc)
     #[doc(alias = "MPMusicShuffleModeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode/off?language=objc)
     #[doc(alias = "MPMusicShuffleModeOff")]
     pub const Off: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode/songs?language=objc)
     #[doc(alias = "MPMusicShuffleModeSongs")]
     pub const Songs: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode/albums?language=objc)
     #[doc(alias = "MPMusicShuffleModeAlbums")]
     pub const Albums: Self = Self(3);
 }

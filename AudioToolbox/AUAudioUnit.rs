@@ -47,8 +47,10 @@ pub type AUAudioChannelCount = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUAudioUnitBusType(pub NSInteger);
 impl AUAudioUnitBusType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbustype/input?language=objc)
     #[doc(alias = "AUAudioUnitBusTypeInput")]
     pub const Input: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbustype/output?language=objc)
     #[doc(alias = "AUAudioUnitBusTypeOutput")]
     pub const Output: Self = Self(2);
 }
@@ -301,12 +303,16 @@ pub type AUMIDICIProfileChangedBlock =
 pub struct AUHostTransportStateFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl AUHostTransportStateFlags: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags/changed?language=objc)
         #[doc(alias = "AUHostTransportStateChanged")]
         const Changed = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags/moving?language=objc)
         #[doc(alias = "AUHostTransportStateMoving")]
         const Moving = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags/recording?language=objc)
         #[doc(alias = "AUHostTransportStateRecording")]
         const Recording = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags/cycling?language=objc)
         #[doc(alias = "AUHostTransportStateCycling")]
         const Cycling = 8;
     }

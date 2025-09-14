@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCallCapability(pub NSInteger);
 impl INCallCapability {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapability/unknown?language=objc)
     #[doc(alias = "INCallCapabilityUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapability/audiocall?language=objc)
     #[doc(alias = "INCallCapabilityAudioCall")]
     pub const AudioCall: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapability/videocall?language=objc)
     #[doc(alias = "INCallCapabilityVideoCall")]
     pub const VideoCall: Self = Self(2);
 }

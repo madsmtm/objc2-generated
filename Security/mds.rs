@@ -156,6 +156,8 @@ pub type MDS_FUNCS = mds_funcs;
 pub type MDS_FUNCS_PTR = *mut mds_funcs;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_initialize?language=objc)
+    ///
     /// # Safety
     ///
     /// - `p_caller_guid` must be a valid pointer.
@@ -173,18 +175,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_terminate?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn MDS_Terminate(mds_handle: MDS_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_install?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn MDS_Install(mds_handle: MDS_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_uninstall?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn MDS_Uninstall(mds_handle: MDS_HANDLE) -> CSSM_RETURN;

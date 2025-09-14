@@ -147,10 +147,13 @@ impl<ObjectType: Message> DefaultRetained for NSArray<ObjectType> {
 pub struct NSBinarySearchingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSBinarySearchingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbinarysearchingoptions/firstequal?language=objc)
         #[doc(alias = "NSBinarySearchingFirstEqual")]
         const FirstEqual = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbinarysearchingoptions/lastequal?language=objc)
         #[doc(alias = "NSBinarySearchingLastEqual")]
         const LastEqual = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbinarysearchingoptions/insertionindex?language=objc)
         #[doc(alias = "NSBinarySearchingInsertionIndex")]
         const InsertionIndex = 1<<10;
     }

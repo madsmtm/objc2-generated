@@ -14,8 +14,10 @@ use crate::*;
 pub struct VSUserAccountQueryOptions(pub NSInteger);
 bitflags::bitflags! {
     impl VSUserAccountQueryOptions: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountqueryoptions/vsuseraccountquerynone?language=objc)
         #[doc(alias = "VSUserAccountQueryNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/queryoptions/alldevices?language=objc)
         #[doc(alias = "VSUserAccountQueryAllDevices")]
         const AllDevices = 1;
     }

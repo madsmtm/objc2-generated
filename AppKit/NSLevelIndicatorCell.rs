@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLevelIndicatorStyle(pub NSUInteger);
 impl NSLevelIndicatorStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/style/relevancy?language=objc)
     #[doc(alias = "NSLevelIndicatorStyleRelevancy")]
     pub const Relevancy: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/style/continuouscapacity?language=objc)
     #[doc(alias = "NSLevelIndicatorStyleContinuousCapacity")]
     pub const ContinuousCapacity: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/style/discretecapacity?language=objc)
     #[doc(alias = "NSLevelIndicatorStyleDiscreteCapacity")]
     pub const DiscreteCapacity: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/style/rating?language=objc)
     #[doc(alias = "NSLevelIndicatorStyleRating")]
     pub const Rating: Self = Self(3);
 }

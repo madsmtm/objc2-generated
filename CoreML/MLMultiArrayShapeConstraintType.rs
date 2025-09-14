@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLMultiArrayShapeConstraintType(pub NSInteger);
 impl MLMultiArrayShapeConstraintType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstrainttype/unspecified?language=objc)
     #[doc(alias = "MLMultiArrayShapeConstraintTypeUnspecified")]
     pub const Unspecified: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstrainttype/enumerated?language=objc)
     #[doc(alias = "MLMultiArrayShapeConstraintTypeEnumerated")]
     pub const Enumerated: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstrainttype/range?language=objc)
     #[doc(alias = "MLMultiArrayShapeConstraintTypeRange")]
     pub const Range: Self = Self(3);
 }

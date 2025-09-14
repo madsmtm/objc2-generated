@@ -14,8 +14,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSparseTextureMappingMode(pub NSUInteger);
 impl MTLSparseTextureMappingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetexturemappingmode/map?language=objc)
     #[doc(alias = "MTLSparseTextureMappingModeMap")]
     pub const Map: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetexturemappingmode/unmap?language=objc)
     #[doc(alias = "MTLSparseTextureMappingModeUnmap")]
     pub const Unmap: Self = Self(1);
 }

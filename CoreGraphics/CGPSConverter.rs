@@ -88,6 +88,8 @@ unsafe impl RefEncode for CGPSConverterCallbacks {
 }
 
 impl CGPSConverter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter/init(info:callbacks:options:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
@@ -112,6 +114,8 @@ impl CGPSConverter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter/convert(_:consumer:options:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -136,6 +140,7 @@ impl CGPSConverter {
         unsafe { CGPSConverterConvert(self, provider, consumer, options) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter/abort()?language=objc)
     #[doc(alias = "CGPSConverterAbort")]
     #[inline]
     pub fn abort(&self) -> bool {
@@ -145,6 +150,7 @@ impl CGPSConverter {
         unsafe { CGPSConverterAbort(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter/isconverting?language=objc)
     #[doc(alias = "CGPSConverterIsConverting")]
     #[inline]
     pub fn is_converting(&self) -> bool {
@@ -156,6 +162,7 @@ impl CGPSConverter {
 }
 
 unsafe impl ConcreteType for CGPSConverter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter/typeid?language=objc)
     #[doc(alias = "CGPSConverterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {

@@ -100,9 +100,11 @@ extern_protocol!(
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKScannerDeviceViewTransferMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewtransfermode/filebased?language=objc)
     #[doc(alias = "IKScannerDeviceViewTransferModeFileBased")]
     #[default]
     FileBased = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewtransfermode/memorybased?language=objc)
     #[doc(alias = "IKScannerDeviceViewTransferModeMemoryBased")]
     MemoryBased = 1,
 }
@@ -120,11 +122,14 @@ unsafe impl RefEncode for IKScannerDeviceViewTransferMode {
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKScannerDeviceViewDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewdisplaymode/none?language=objc)
     #[doc(alias = "IKScannerDeviceViewDisplayModeNone")]
     None = -1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewdisplaymode/simple?language=objc)
     #[doc(alias = "IKScannerDeviceViewDisplayModeSimple")]
     #[default]
     Simple = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewdisplaymode/advanced?language=objc)
     #[doc(alias = "IKScannerDeviceViewDisplayModeAdvanced")]
     Advanced = 1,
 }

@@ -17,18 +17,25 @@ pub static NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0 as 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabViewType(pub NSUInteger);
 impl NSTabViewType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/toptabsbezelborder?language=objc)
     #[doc(alias = "NSTopTabsBezelBorder")]
     pub const TopTabsBezelBorder: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/lefttabsbezelborder?language=objc)
     #[doc(alias = "NSLeftTabsBezelBorder")]
     pub const LeftTabsBezelBorder: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/bottomtabsbezelborder?language=objc)
     #[doc(alias = "NSBottomTabsBezelBorder")]
     pub const BottomTabsBezelBorder: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/righttabsbezelborder?language=objc)
     #[doc(alias = "NSRightTabsBezelBorder")]
     pub const RightTabsBezelBorder: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/notabsbezelborder?language=objc)
     #[doc(alias = "NSNoTabsBezelBorder")]
     pub const NoTabsBezelBorder: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/notabslineborder?language=objc)
     #[doc(alias = "NSNoTabsLineBorder")]
     pub const NoTabsLineBorder: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/notabsnoborder?language=objc)
     #[doc(alias = "NSNoTabsNoBorder")]
     pub const NoTabsNoBorder: Self = Self(6);
 }
@@ -47,14 +54,19 @@ unsafe impl RefEncode for NSTabViewType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabPosition(pub NSUInteger);
 impl NSTabPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum/none?language=objc)
     #[doc(alias = "NSTabPositionNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum/top?language=objc)
     #[doc(alias = "NSTabPositionTop")]
     pub const Top: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum/left?language=objc)
     #[doc(alias = "NSTabPositionLeft")]
     pub const Left: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum/bottom?language=objc)
     #[doc(alias = "NSTabPositionBottom")]
     pub const Bottom: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum/right?language=objc)
     #[doc(alias = "NSTabPositionRight")]
     pub const Right: Self = Self(4);
 }
@@ -73,10 +85,13 @@ unsafe impl RefEncode for NSTabPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabViewBorderType(pub NSUInteger);
 impl NSTabViewBorderType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabviewbordertype-swift.enum/none?language=objc)
     #[doc(alias = "NSTabViewBorderTypeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabviewbordertype-swift.enum/line?language=objc)
     #[doc(alias = "NSTabViewBorderTypeLine")]
     pub const Line: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabviewbordertype-swift.enum/bezel?language=objc)
     #[doc(alias = "NSTabViewBorderTypeBezel")]
     pub const Bezel: Self = Self(2);
 }

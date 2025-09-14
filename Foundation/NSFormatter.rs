@@ -11,16 +11,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFormattingContext(pub NSInteger);
 impl NSFormattingContext {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/unknown?language=objc)
     #[doc(alias = "NSFormattingContextUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/dynamic?language=objc)
     #[doc(alias = "NSFormattingContextDynamic")]
     pub const Dynamic: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/standalone?language=objc)
     #[doc(alias = "NSFormattingContextStandalone")]
     pub const Standalone: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/listitem?language=objc)
     #[doc(alias = "NSFormattingContextListItem")]
     pub const ListItem: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/beginningofsentence?language=objc)
     #[doc(alias = "NSFormattingContextBeginningOfSentence")]
     pub const BeginningOfSentence: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/middleofsentence?language=objc)
     #[doc(alias = "NSFormattingContextMiddleOfSentence")]
     pub const MiddleOfSentence: Self = Self(5);
 }
@@ -39,10 +45,13 @@ unsafe impl RefEncode for NSFormattingContext {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFormattingUnitStyle(pub NSInteger);
 impl NSFormattingUnitStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/unitstyle/short?language=objc)
     #[doc(alias = "NSFormattingUnitStyleShort")]
     pub const Short: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/unitstyle/medium?language=objc)
     #[doc(alias = "NSFormattingUnitStyleMedium")]
     pub const Medium: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/unitstyle/long?language=objc)
     #[doc(alias = "NSFormattingUnitStyleLong")]
     pub const Long: Self = Self(3);
 }

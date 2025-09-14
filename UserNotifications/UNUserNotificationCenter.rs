@@ -14,23 +14,32 @@ use crate::*;
 pub struct UNAuthorizationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNAuthorizationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/badge?language=objc)
         #[doc(alias = "UNAuthorizationOptionBadge")]
         const Badge = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/sound?language=objc)
         #[doc(alias = "UNAuthorizationOptionSound")]
         const Sound = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/alert?language=objc)
         #[doc(alias = "UNAuthorizationOptionAlert")]
         const Alert = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/carplay?language=objc)
         #[doc(alias = "UNAuthorizationOptionCarPlay")]
         const CarPlay = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/criticalalert?language=objc)
         #[doc(alias = "UNAuthorizationOptionCriticalAlert")]
         const CriticalAlert = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/providesappnotificationsettings?language=objc)
         #[doc(alias = "UNAuthorizationOptionProvidesAppNotificationSettings")]
         const ProvidesAppNotificationSettings = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/provisional?language=objc)
         #[doc(alias = "UNAuthorizationOptionProvisional")]
         const Provisional = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/announcement?language=objc)
         #[doc(alias = "UNAuthorizationOptionAnnouncement")]
 #[deprecated = "Announcement authorization is always included"]
         const Announcement = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/timesensitive?language=objc)
         #[doc(alias = "UNAuthorizationOptionTimeSensitive")]
 #[deprecated = "Use time-sensitive entitlement"]
         const TimeSensitive = 1<<8;
@@ -190,15 +199,20 @@ impl UNUserNotificationCenter {
 pub struct UNNotificationPresentationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNNotificationPresentationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions/badge?language=objc)
         #[doc(alias = "UNNotificationPresentationOptionBadge")]
         const Badge = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions/sound?language=objc)
         #[doc(alias = "UNNotificationPresentationOptionSound")]
         const Sound = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions/alert?language=objc)
         #[doc(alias = "UNNotificationPresentationOptionAlert")]
 #[deprecated]
         const Alert = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions/list?language=objc)
         #[doc(alias = "UNNotificationPresentationOptionList")]
         const List = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions/banner?language=objc)
         #[doc(alias = "UNNotificationPresentationOptionBanner")]
         const Banner = 1<<4;
     }

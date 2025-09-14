@@ -14,10 +14,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VZDiskImageCachingMode(pub NSInteger);
 impl VZDiskImageCachingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagecachingmode/automatic?language=objc)
     #[doc(alias = "VZDiskImageCachingModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagecachingmode/uncached?language=objc)
     #[doc(alias = "VZDiskImageCachingModeUncached")]
     pub const Uncached: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagecachingmode/cached?language=objc)
     #[doc(alias = "VZDiskImageCachingModeCached")]
     pub const Cached: Self = Self(2);
 }
@@ -38,6 +41,8 @@ pub struct VZDiskImageSynchronizationMode(pub NSInteger);
 impl VZDiskImageSynchronizationMode {
     /// The data is synchronized to the permanent storage holding the disk image.
     /// No synchronized data is lost on panic or loss of power.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagesynchronizationmode/full?language=objc)
     #[doc(alias = "VZDiskImageSynchronizationModeFull")]
     pub const Full: Self = Self(1);
     /// Synchronize the data to the drive.
@@ -46,6 +51,8 @@ impl VZDiskImageSynchronizationMode {
     /// to permanent storage.
     ///
     /// This is a best-effort mode with the same guarantees as the fsync() system call.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagesynchronizationmode/fsync?language=objc)
     #[doc(alias = "VZDiskImageSynchronizationModeFsync")]
     pub const Fsync: Self = Self(2);
     /// Do not synchronize the data with the permanent storage.
@@ -56,6 +63,8 @@ impl VZDiskImageSynchronizationMode {
     /// In that case, the disk image cannot safely be reused on failure.
     ///
     /// Using this mode may result in improved performance since no synchronization with the underlying storage is necessary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagesynchronizationmode/none?language=objc)
     #[doc(alias = "VZDiskImageSynchronizationModeNone")]
     pub const None: Self = Self(3);
 }

@@ -14,16 +14,22 @@ use crate::*;
 pub struct BETextDocumentRequestOptions(pub NSInteger);
 bitflags::bitflags! {
     impl BETextDocumentRequestOptions: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextdocumentrequestoptions/betextdocumentoptionnone?language=objc)
         #[doc(alias = "BETextDocumentOptionNone")]
         const OptionNone = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextdocumentrequest/options-swift.struct/text?language=objc)
         #[doc(alias = "BETextDocumentOptionText")]
         const OptionText = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextdocumentrequest/options-swift.struct/attributedtext?language=objc)
         #[doc(alias = "BETextDocumentOptionAttributedText")]
         const OptionAttributedText = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextdocumentrequest/options-swift.struct/textrects?language=objc)
         #[doc(alias = "BETextDocumentOptionTextRects")]
         const OptionTextRects = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextdocumentrequest/options-swift.struct/markedtextrects?language=objc)
         #[doc(alias = "BETextDocumentOptionMarkedTextRects")]
         const OptionMarkedTextRects = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextdocumentrequest/options-swift.struct/autocorrectedranges?language=objc)
         #[doc(alias = "BETextDocumentOptionAutocorrectedRanges")]
         const OptionAutocorrectedRanges = 1<<7;
     }

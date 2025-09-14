@@ -18,10 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewCellDragState(pub NSInteger);
 impl UICollectionViewCellDragState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcell/dragstate/none?language=objc)
     #[doc(alias = "UICollectionViewCellDragStateNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcell/dragstate/lifting?language=objc)
     #[doc(alias = "UICollectionViewCellDragStateLifting")]
     pub const Lifting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcell/dragstate/dragging?language=objc)
     #[doc(alias = "UICollectionViewCellDragStateDragging")]
     pub const Dragging: Self = Self(2);
 }

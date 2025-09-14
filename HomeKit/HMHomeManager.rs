@@ -16,10 +16,13 @@ use crate::*;
 pub struct HMHomeManagerAuthorizationStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl HMHomeManagerAuthorizationStatus: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomemanagerauthorizationstatus/determined?language=objc)
         #[doc(alias = "HMHomeManagerAuthorizationStatusDetermined")]
         const Determined = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomemanagerauthorizationstatus/restricted?language=objc)
         #[doc(alias = "HMHomeManagerAuthorizationStatusRestricted")]
         const Restricted = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomemanagerauthorizationstatus/authorized?language=objc)
         #[doc(alias = "HMHomeManagerAuthorizationStatusAuthorized")]
         const Authorized = 1<<2;
     }

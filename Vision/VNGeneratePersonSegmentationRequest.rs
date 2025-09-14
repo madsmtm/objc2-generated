@@ -23,10 +23,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNGeneratePersonSegmentationRequestQualityLevel(pub NSUInteger);
 impl VNGeneratePersonSegmentationRequestQualityLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.enum/accurate?language=objc)
     #[doc(alias = "VNGeneratePersonSegmentationRequestQualityLevelAccurate")]
     pub const Accurate: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.enum/balanced?language=objc)
     #[doc(alias = "VNGeneratePersonSegmentationRequestQualityLevelBalanced")]
     pub const Balanced: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.enum/fast?language=objc)
     #[doc(alias = "VNGeneratePersonSegmentationRequestQualityLevelFast")]
     pub const Fast: Self = Self(2);
 }

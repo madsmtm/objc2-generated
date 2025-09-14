@@ -28,10 +28,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCStreamOutputType(pub NSInteger);
 impl SCStreamOutputType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutputtype/screen?language=objc)
     #[doc(alias = "SCStreamOutputTypeScreen")]
     pub const Screen: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutputtype/audio?language=objc)
     #[doc(alias = "SCStreamOutputTypeAudio")]
     pub const Audio: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutputtype/microphone?language=objc)
     #[doc(alias = "SCStreamOutputTypeMicrophone")]
     pub const Microphone: Self = Self(2);
 }
@@ -52,16 +55,22 @@ unsafe impl RefEncode for SCStreamOutputType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCFrameStatus(pub NSInteger);
 impl SCFrameStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/complete?language=objc)
     #[doc(alias = "SCFrameStatusComplete")]
     pub const Complete: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/idle?language=objc)
     #[doc(alias = "SCFrameStatusIdle")]
     pub const Idle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/blank?language=objc)
     #[doc(alias = "SCFrameStatusBlank")]
     pub const Blank: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/suspended?language=objc)
     #[doc(alias = "SCFrameStatusSuspended")]
     pub const Suspended: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/started?language=objc)
     #[doc(alias = "SCFrameStatusStarted")]
     pub const Started: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/stopped?language=objc)
     #[doc(alias = "SCFrameStatusStopped")]
     pub const Stopped: Self = Self(5);
 }
@@ -82,10 +91,13 @@ unsafe impl RefEncode for SCFrameStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCPresenterOverlayAlertSetting(pub NSInteger);
 impl SCPresenterOverlayAlertSetting {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scpresenteroverlayalertsetting/system?language=objc)
     #[doc(alias = "SCPresenterOverlayAlertSettingSystem")]
     pub const System: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scpresenteroverlayalertsetting/never?language=objc)
     #[doc(alias = "SCPresenterOverlayAlertSettingNever")]
     pub const Never: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scpresenteroverlayalertsetting/always?language=objc)
     #[doc(alias = "SCPresenterOverlayAlertSettingAlways")]
     pub const Always: Self = Self(2);
 }
@@ -107,9 +119,11 @@ unsafe impl RefEncode for SCPresenterOverlayAlertSetting {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCStreamType(pub NSInteger);
 impl SCStreamType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamtype/window?language=objc)
     #[doc(alias = "SCStreamTypeWindow")]
     #[deprecated = "Use SCShareableContentStyle instead"]
     pub const Window: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamtype/display?language=objc)
     #[doc(alias = "SCStreamTypeDisplay")]
     #[deprecated = "Use SCShareableContentStyle instead"]
     pub const Display: Self = Self(1);
@@ -129,10 +143,13 @@ unsafe impl RefEncode for SCStreamType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCCaptureResolutionType(pub NSInteger);
 impl SCCaptureResolutionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccaptureresolutiontype/automatic?language=objc)
     #[doc(alias = "SCCaptureResolutionAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccaptureresolutiontype/best?language=objc)
     #[doc(alias = "SCCaptureResolutionBest")]
     pub const Best: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccaptureresolutiontype/nominal?language=objc)
     #[doc(alias = "SCCaptureResolutionNominal")]
     pub const Nominal: Self = Self(2);
 }
@@ -153,10 +170,13 @@ unsafe impl RefEncode for SCCaptureResolutionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCCaptureDynamicRange(pub NSInteger);
 impl SCCaptureDynamicRange {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccapturedynamicrange/sdr?language=objc)
     #[doc(alias = "SCCaptureDynamicRangeSDR")]
     pub const SDR: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccapturedynamicrange/hdrlocaldisplay?language=objc)
     #[doc(alias = "SCCaptureDynamicRangeHDRLocalDisplay")]
     pub const HDRLocalDisplay: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccapturedynamicrange/hdrcanonicaldisplay?language=objc)
     #[doc(alias = "SCCaptureDynamicRangeHDRCanonicalDisplay")]
     pub const HDRCanonicalDisplay: Self = Self(2);
 }
@@ -343,14 +363,19 @@ impl SCContentFilter {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCStreamConfigurationPreset(pub NSInteger);
 impl SCStreamConfigurationPreset {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset/capturehdrstreamlocaldisplay?language=objc)
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRStreamLocalDisplay")]
     pub const CaptureHDRStreamLocalDisplay: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset/capturehdrstreamcanonicaldisplay?language=objc)
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRStreamCanonicalDisplay")]
     pub const CaptureHDRStreamCanonicalDisplay: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset/capturehdrscreenshotlocaldisplay?language=objc)
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRScreenshotLocalDisplay")]
     pub const CaptureHDRScreenshotLocalDisplay: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset/capturehdrscreenshotcanonicaldisplay?language=objc)
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRScreenshotCanonicalDisplay")]
     pub const CaptureHDRScreenshotCanonicalDisplay: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset/capturehdrrecordingpreservedsdrhdr10?language=objc)
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRRecordingPreservedSDRHDR10")]
     pub const CaptureHDRRecordingPreservedSDRHDR10: Self = Self(4);
 }

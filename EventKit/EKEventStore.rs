@@ -19,8 +19,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKSpan(pub NSInteger);
 impl EKSpan {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekspan/thisevent?language=objc)
     #[doc(alias = "EKSpanThisEvent")]
     pub const ThisEvent: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekspan/futureevents?language=objc)
     #[doc(alias = "EKSpanFutureEvents")]
     pub const FutureEvents: Self = Self(1);
 }

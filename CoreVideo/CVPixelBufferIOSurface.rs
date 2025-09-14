@@ -36,6 +36,8 @@ extern "C" {
 /// Returns the IOSurface backing the pixel buffer, or NULL if it is not backed by an IOSurface.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetiosurface(_:)?language=objc)
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -80,6 +82,8 @@ extern "C-unwind" {
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithiosurface(_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",

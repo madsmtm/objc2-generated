@@ -33,11 +33,15 @@ impl BAManagedErrorCode {
     /// An error code that indicates the system can’t find an asset pack with the given identifier.
     ///
     /// Refer to the value in `-[NSError userInfo]` for the key `BAAssetPackIdentifierErrorKey` for the asset pack’s identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bamanagederrorcode/bamanagederrorcodeassetpacknotfound?language=objc)
     #[doc(alias = "BAManagedErrorCodeAssetPackNotFound")]
     pub const AssetPackNotFound: Self = Self(0);
     /// An error code that indicates the system can’t find a file at the specified path.
     ///
     /// Refer to the value in `-[NSError userInfo]` for the key `NSFilePathErrorKey` for the file path.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bamanagederrorcode/bamanagederrorcodefilenotfound?language=objc)
     #[doc(alias = "BAManagedErrorCodeFileNotFound")]
     pub const FileNotFound: Self = Self(1);
 }

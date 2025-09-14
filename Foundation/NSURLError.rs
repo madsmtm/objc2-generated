@@ -83,12 +83,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLErrorNetworkUnavailableReason(pub NSInteger);
 impl NSURLErrorNetworkUnavailableReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasoncellular?language=objc)
     #[doc(alias = "NSURLErrorNetworkUnavailableReasonCellular")]
     pub const Cellular: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasonexpensive?language=objc)
     #[doc(alias = "NSURLErrorNetworkUnavailableReasonExpensive")]
     pub const Expensive: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasonconstrained?language=objc)
     #[doc(alias = "NSURLErrorNetworkUnavailableReasonConstrained")]
     pub const Constrained: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasonultraconstrained?language=objc)
     #[doc(alias = "NSURLErrorNetworkUnavailableReasonUltraConstrained")]
     pub const UltraConstrained: Self = Self(3);
 }

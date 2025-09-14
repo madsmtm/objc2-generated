@@ -12,6 +12,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INAddTasksTargetTaskListConfirmationReason(pub NSInteger);
 impl INAddTasksTargetTaskListConfirmationReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtaskstargettasklistconfirmationreason/listshouldbecreated?language=objc)
     #[doc(alias = "INAddTasksTargetTaskListConfirmationReasonListShouldBeCreated")]
     pub const ListShouldBeCreated: Self = Self(1);
 }

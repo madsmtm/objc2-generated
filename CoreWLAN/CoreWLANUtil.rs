@@ -33,6 +33,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `password` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychainfindwifipassword(_:_:_:)?language=objc)
     #[cfg(feature = "CoreWLANTypes")]
     pub fn CWKeychainFindWiFiPassword(
         domain: CWKeychainDomain,
@@ -59,6 +61,8 @@ extern "C-unwind" {
     ///
     ///
     /// Sets the Wi-Fi network keychain password for the specified SSID and keychain domain.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychainsetwifipassword(_:_:_:)?language=objc)
     #[cfg(feature = "CoreWLANTypes")]
     pub fn CWKeychainSetWiFiPassword(
         domain: CWKeychainDomain,
@@ -82,6 +86,8 @@ extern "C-unwind" {
     ///
     ///
     /// Deletes the password for the specified SSID and keychain domain.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaindeletewifipassword(_:_:)?language=objc)
     #[cfg(feature = "CoreWLANTypes")]
     pub fn CWKeychainDeleteWiFiPassword(domain: CWKeychainDomain, ssid: &NSData) -> OSStatus;
 }
@@ -114,6 +120,8 @@ extern "C-unwind" {
     ///
     /// - `username` must be a valid pointer or null.
     /// - `password` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychainfindwifieapusernameandpassword(_:_:_:_:)?language=objc)
     #[cfg(feature = "CoreWLANTypes")]
     pub fn CWKeychainFindWiFiEAPUsernameAndPassword(
         domain: CWKeychainDomain,
@@ -144,6 +152,8 @@ extern "C-unwind" {
     ///
     ///
     /// Sets the 802.1X username and password for the specified SSID and keychain domain.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychainsetwifieapusernameandpassword(_:_:_:_:)?language=objc)
     #[cfg(feature = "CoreWLANTypes")]
     pub fn CWKeychainSetWiFiEAPUsernameAndPassword(
         domain: CWKeychainDomain,
@@ -168,6 +178,8 @@ extern "C-unwind" {
     ///
     ///
     /// Deletes the 802.1X username and password for the specified SSID and keychain domain.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaindeletewifieapusernameandpassword(_:_:)?language=objc)
     #[cfg(feature = "CoreWLANTypes")]
     pub fn CWKeychainDeleteWiFiEAPUsernameAndPassword(
         domain: CWKeychainDomain,
@@ -198,6 +210,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `identity` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaincopywifieapidentity(_:_:_:)?language=objc)
     #[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
     pub fn CWKeychainCopyWiFiEAPIdentity(
         domain: CWKeychainDomain,
@@ -225,6 +239,8 @@ extern "C-unwind" {
     ///
     ///
     /// Associates an identity to the specified SSID and keychain domain.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychainsetwifieapidentity(_:_:_:)?language=objc)
     #[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
     pub fn CWKeychainSetWiFiEAPIdentity(
         domain: CWKeychainDomain,
@@ -250,6 +266,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `list` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaincopyeapidentitylist(_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CWKeychainCopyEAPIdentityList(list: *mut *const CFArray) -> OSStatus;
 }
@@ -280,6 +298,8 @@ extern "C-unwind" {
     ///
     /// - `username` must be a valid pointer or null.
     /// - `password` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaincopyeapusernameandpassword?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainFindWiFiEAPUsernameAndPassword() instead"]
     pub fn CWKeychainCopyEAPUsernameAndPassword(
@@ -308,6 +328,8 @@ extern "C-unwind" {
     ///
     /// Sets the 802.1X username and password for the specified SSID.
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychainseteapusernameandpassword?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainSetWiFiEAPUsernameAndPassword() instead"]
     pub fn CWKeychainSetEAPUsernameAndPassword(
@@ -330,6 +352,8 @@ extern "C-unwind" {
     ///
     /// Deletes the 802.1X username and password for the specified SSID.
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaindeleteeapusernameandpassword?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainDeleteWiFiEAPUsernameAndPassword() instead"]
     pub fn CWKeychainDeleteEAPUsernameAndPassword(ssid_data: &CFData) -> OSStatus;
@@ -356,6 +380,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `identity` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaincopyeapidentity?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
     #[deprecated = "Use CWKeychainCopyWiFiEAPIdentity() instead"]
     pub fn CWKeychainCopyEAPIdentity(
@@ -381,6 +407,8 @@ extern "C-unwind" {
     ///
     /// Associates an identity to the specified SSID.
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychainseteapidentity?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
     #[deprecated = "Use CWKeychainSetWiFiEAPIdentity() instead"]
     pub fn CWKeychainSetEAPIdentity(ssid_data: &CFData, identity: Option<&SecIdentity>)
@@ -403,6 +431,8 @@ extern "C-unwind" {
     ///
     /// Sets the Wi-Fi network keychain password for the specified SSID.
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychainsetpassword?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainSetWiFiPassword() instead"]
     pub fn CWKeychainSetPassword(ssid_data: &CFData, password: &CFString) -> OSStatus;
@@ -429,6 +459,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `password` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaincopypassword?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainFindWiFiPassword() instead"]
     pub fn CWKeychainCopyPassword(ssid_data: &CFData, password: *mut *const CFString) -> OSStatus;
@@ -447,6 +479,8 @@ extern "C-unwind" {
     ///
     /// Deletes the password for the specified SSID and keychain domain.
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaindeletepassword?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainDeleteWiFiPassword() instead"]
     pub fn CWKeychainDeletePassword(ssid_data: &CFData) -> OSStatus;
@@ -460,6 +494,8 @@ extern "C-unwind" {
 ///
 /// Duplicate networks are defined as networks with the same SSID, security type, and BSS type (IBSS or Infrastructure).
 /// When duplicate networks exist, the network with the best RSSI value will be chosen.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmergenetworks(_:)?language=objc)
 #[cfg(feature = "CWNetwork")]
 #[inline]
 pub unsafe extern "C-unwind" fn CWMergeNetworks(

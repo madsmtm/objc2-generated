@@ -35,10 +35,13 @@ extern "C" {
 pub struct MIDINetworkConnectionPolicy(pub NSUInteger);
 #[cfg(feature = "objc2")]
 impl MIDINetworkConnectionPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkconnectionpolicy/noone?language=objc)
     #[doc(alias = "MIDINetworkConnectionPolicy_NoOne")]
     pub const NoOne: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkconnectionpolicy/hostsincontactlist?language=objc)
     #[doc(alias = "MIDINetworkConnectionPolicy_HostsInContactList")]
     pub const HostsInContactList: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkconnectionpolicy/anyone?language=objc)
     #[doc(alias = "MIDINetworkConnectionPolicy_Anyone")]
     pub const Anyone: Self = Self(2);
 }

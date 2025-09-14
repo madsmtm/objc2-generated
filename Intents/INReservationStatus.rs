@@ -10,14 +10,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INReservationStatus(pub NSInteger);
 impl INReservationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus/unknown?language=objc)
     #[doc(alias = "INReservationStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus/canceled?language=objc)
     #[doc(alias = "INReservationStatusCanceled")]
     pub const Canceled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus/pending?language=objc)
     #[doc(alias = "INReservationStatusPending")]
     pub const Pending: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus/hold?language=objc)
     #[doc(alias = "INReservationStatusHold")]
     pub const Hold: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus/confirmed?language=objc)
     #[doc(alias = "INReservationStatusConfirmed")]
     pub const Confirmed: Self = Self(4);
 }

@@ -35,6 +35,7 @@ extern "C" {
     pub static kCFPreferencesCurrentUser: &'static CFString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencescopyappvalue(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyAppValue(
     key: &CFString,
@@ -50,6 +51,8 @@ pub extern "C-unwind" fn CFPreferencesCopyAppValue(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesgetappbooleanvalue(_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// `key_exists_and_has_valid_format` must be a valid pointer or null.
@@ -73,6 +76,8 @@ pub unsafe extern "C-unwind" fn CFPreferencesGetAppBooleanValue(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesgetappintegervalue(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `key_exists_and_has_valid_format` must be a valid pointer or null.
@@ -84,6 +89,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencessetappvalue(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `value` should be of the correct type.
@@ -94,6 +101,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesaddsuitepreferencestoapp(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFPreferencesAddSuitePreferencesToApp(
     application_id: &CFString,
@@ -105,6 +113,7 @@ pub extern "C-unwind" fn CFPreferencesAddSuitePreferencesToApp(
     unsafe { CFPreferencesAddSuitePreferencesToApp(application_id, suite_id) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesremovesuitepreferencesfromapp(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFPreferencesRemoveSuitePreferencesFromApp(
     application_id: &CFString,
@@ -119,6 +128,7 @@ pub extern "C-unwind" fn CFPreferencesRemoveSuitePreferencesFromApp(
     unsafe { CFPreferencesRemoveSuitePreferencesFromApp(application_id, suite_id) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesappsynchronize(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFPreferencesAppSynchronize(application_id: &CFString) -> bool {
     extern "C-unwind" {
@@ -128,6 +138,7 @@ pub extern "C-unwind" fn CFPreferencesAppSynchronize(application_id: &CFString) 
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencescopyvalue(_:_:_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyValue(
     key: &CFString,
@@ -147,6 +158,7 @@ pub extern "C-unwind" fn CFPreferencesCopyValue(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencescopymultiple(_:_:_:_:)?language=objc)
 #[cfg(all(feature = "CFArray", feature = "CFDictionary"))]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyMultiple(
@@ -170,6 +182,8 @@ pub extern "C-unwind" fn CFPreferencesCopyMultiple(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencessetvalue(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `value` should be of the correct type.
@@ -183,6 +197,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencessetmultiple(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `keys_to_set` generic must be of the correct type.
@@ -198,6 +214,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencessynchronize(_:_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFPreferencesSynchronize(
     application_id: &CFString,
@@ -215,6 +232,7 @@ pub extern "C-unwind" fn CFPreferencesSynchronize(
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencescopyapplicationlist(_:_:)?language=objc)
 #[cfg(feature = "CFArray")]
 #[deprecated = "Unsupported API"]
 #[inline]
@@ -232,6 +250,7 @@ pub extern "C-unwind" fn CFPreferencesCopyApplicationList(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencescopykeylist(_:_:_:)?language=objc)
 #[cfg(feature = "CFArray")]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyKeyList(
@@ -250,6 +269,7 @@ pub extern "C-unwind" fn CFPreferencesCopyKeyList(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesappvalueisforced(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CFPreferencesAppValueIsForced(
     key: &CFString,

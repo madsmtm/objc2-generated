@@ -213,8 +213,10 @@ extern "C" {
 pub struct MEDecodeFrameStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl MEDecodeFrameStatus: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/medecodeframestatus/medecodeframenostatus?language=objc)
         #[doc(alias = "MEDecodeFrameNoStatus")]
         const NoStatus = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/medecodeframestatus/framedropped?language=objc)
         #[doc(alias = "MEDecodeFrameFrameDropped")]
         const FrameDropped = 1<<0;
     }

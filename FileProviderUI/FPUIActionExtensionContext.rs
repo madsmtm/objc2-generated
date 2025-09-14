@@ -28,9 +28,13 @@ pub type FPUIActionIdentifier = NSString;
 pub struct FPUIExtensionErrorCode(pub NSUInteger);
 impl FPUIExtensionErrorCode {
     /// An error indicating that the action was canceled by the user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiextensionerrorcode/usercancelled?language=objc)
     #[doc(alias = "FPUIExtensionErrorCodeUserCancelled")]
     pub const UserCancelled: Self = Self(0);
     /// An error indicating that the action has failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiextensionerrorcode/failed?language=objc)
     #[doc(alias = "FPUIExtensionErrorCodeFailed")]
     pub const Failed: Self = Self(1);
 }

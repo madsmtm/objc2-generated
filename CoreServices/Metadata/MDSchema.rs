@@ -16,6 +16,8 @@ use crate::*;
 /// # Safety
 ///
 /// `content_type_uti` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444459-mdschemacopyattributesforcontent?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyAttributesForContentType(
     content_type_uti: Option<&CFString>,
@@ -38,6 +40,8 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyAttributesForContentType(
 /// # Safety
 ///
 /// `name` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450052-mdschemacopymetaattributesforatt?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyMetaAttributesForAttribute(
     name: Option<&CFString>,
@@ -54,6 +58,8 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyMetaAttributesForAttribute(
 /// Returns an array of all of the attributes defined in the schema
 ///
 /// Returns: A CFArray of the attribute names.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445665-mdschemacopyallattributes?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyAllAttributes() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -73,6 +79,8 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyAllAttributes() -> Option<CFRetained
 /// # Safety
 ///
 /// `name` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450203-mdschemacopydisplaynameforattrib?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayNameForAttribute(
     name: Option<&CFString>,
@@ -96,6 +104,8 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayNameForAttribute(
 /// # Safety
 ///
 /// `name` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442582-mdschemacopydisplaydescriptionfo?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayDescriptionForAttribute(
     name: Option<&CFString>,

@@ -10,18 +10,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRidePhase(pub NSInteger);
 impl INRidePhase {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/unknown?language=objc)
     #[doc(alias = "INRidePhaseUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/received?language=objc)
     #[doc(alias = "INRidePhaseReceived")]
     pub const Received: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/confirmed?language=objc)
     #[doc(alias = "INRidePhaseConfirmed")]
     pub const Confirmed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/ongoing?language=objc)
     #[doc(alias = "INRidePhaseOngoing")]
     pub const Ongoing: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/completed?language=objc)
     #[doc(alias = "INRidePhaseCompleted")]
     pub const Completed: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/approachingpickup?language=objc)
     #[doc(alias = "INRidePhaseApproachingPickup")]
     pub const ApproachingPickup: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/pickup?language=objc)
     #[doc(alias = "INRidePhasePickup")]
     pub const Pickup: Self = Self(6);
 }

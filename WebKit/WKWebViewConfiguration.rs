@@ -24,8 +24,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKUserInterfaceDirectionPolicy(pub NSInteger);
 impl WKUserInterfaceDirectionPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserinterfacedirectionpolicy/content?language=objc)
     #[doc(alias = "WKUserInterfaceDirectionPolicyContent")]
     pub const Content: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserinterfacedirectionpolicy/system?language=objc)
     #[doc(alias = "WKUserInterfaceDirectionPolicySystem")]
     pub const System: Self = Self(1);
 }
@@ -47,12 +49,16 @@ unsafe impl RefEncode for WKUserInterfaceDirectionPolicy {
 pub struct WKAudiovisualMediaTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl WKAudiovisualMediaTypes: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes/wkaudiovisualmediatypenone?language=objc)
         #[doc(alias = "WKAudiovisualMediaTypeNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes/audio?language=objc)
         #[doc(alias = "WKAudiovisualMediaTypeAudio")]
         const Audio = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes/video?language=objc)
         #[doc(alias = "WKAudiovisualMediaTypeVideo")]
         const Video = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes/all?language=objc)
         #[doc(alias = "WKAudiovisualMediaTypeAll")]
         const All = NSUIntegerMax as _;
     }

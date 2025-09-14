@@ -14,6 +14,8 @@ impl VZDiskSynchronizationMode {
     ///
     /// With VZDiskSynchronizationModeFull, "flush" and "barrier" commands from the guest
     /// result in their counterpart synchronization commands being sent to the disk implementation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdisksynchronizationmode/full?language=objc)
     #[doc(alias = "VZDiskSynchronizationModeFull")]
     pub const Full: Self = Self(0);
     /// Do not synchronize the data with the permanent storage.
@@ -24,6 +26,8 @@ impl VZDiskSynchronizationMode {
     /// In case of failure, the state of blocks on disk and their order is undefined.
     ///
     /// Using this mode may result in improved performance since no synchronization with the underlying storage is necessary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdisksynchronizationmode/none?language=objc)
     #[doc(alias = "VZDiskSynchronizationModeNone")]
     pub const None: Self = Self(1);
 }

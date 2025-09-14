@@ -69,6 +69,8 @@ impl DADissenter {
     /// Parameter `string`: The return code string.  Pass NULL for no reason.
     ///
     /// Returns: A reference to a new DADissenter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadissentercreate(_:_:_:)?language=objc)
     #[doc(alias = "DADissenterCreate")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -95,6 +97,8 @@ impl DADissenter {
     /// Parameter `dissenter`: The DADissenter for which to obtain the return code.
     ///
     /// Returns: The return code.  A BSD return code, if applicable, is encoded with unix_err().
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadissentergetstatus(_:)?language=objc)
     #[doc(alias = "DADissenterGetStatus")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -110,6 +114,8 @@ impl DADissenter {
     /// Parameter `dissenter`: The DADissenter for which to obtain the return code string.
     ///
     /// Returns: The return code string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadissentergetstatusstring(_:)?language=objc)
     #[doc(alias = "DADissenterGetStatusString")]
     #[inline]
     pub unsafe fn status_string(&self) -> Option<CFRetained<CFString>> {

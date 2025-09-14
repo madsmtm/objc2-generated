@@ -14,12 +14,18 @@ use crate::*;
 pub struct AVCustomRoutingEventReason(pub NSInteger);
 impl AVCustomRoutingEventReason {
     /// A value that indicates that a user selects a route in the picker.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingeventreason/activate?language=objc)
     #[doc(alias = "AVCustomRoutingEventReasonActivate")]
     pub const Activate: Self = Self(0);
     /// A value that indicates that a user deselects a route in the picker.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingeventreason/deactivate?language=objc)
     #[doc(alias = "AVCustomRoutingEventReasonDeactivate")]
     pub const Deactivate: Self = Self(1);
     /// A value that indicates to reactivate a route a user authorized previously.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingeventreason/reactivate?language=objc)
     #[doc(alias = "AVCustomRoutingEventReasonReactivate")]
     pub const Reactivate: Self = Self(2);
 }

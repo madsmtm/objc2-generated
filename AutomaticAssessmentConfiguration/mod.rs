@@ -123,12 +123,17 @@ impl AEAssessmentApplication {
 pub struct AEAutocorrectMode(pub NSUInteger);
 bitflags::bitflags! {
     impl AEAutocorrectMode: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeautocorrectmode/aeautocorrectmodenone?language=objc)
         #[doc(alias = "AEAutocorrectModeNone")]
         const None = 0;
 /// A mode in which autocorrect checks for spelling as the user types.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct/spelling?language=objc)
         #[doc(alias = "AEAutocorrectModeSpelling")]
         const Spelling = 1<<0;
 /// A mode in which autocorrect checks punctuation as the user types.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct/punctuation?language=objc)
         #[doc(alias = "AEAutocorrectModePunctuation")]
         const Punctuation = 1<<1;
     }
@@ -687,14 +692,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AEAssessmentErrorCode(pub NSInteger);
 impl AEAssessmentErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code/unknown?language=objc)
     #[doc(alias = "AEAssessmentErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code/unsupportedplatform?language=objc)
     #[doc(alias = "AEAssessmentErrorUnsupportedPlatform")]
     pub const UnsupportedPlatform: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code/multipleparticipantsnotsupported?language=objc)
     #[doc(alias = "AEAssessmentErrorMultipleParticipantsNotSupported")]
     pub const MultipleParticipantsNotSupported: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code/configurationupdatesnotsupported?language=objc)
     #[doc(alias = "AEAssessmentErrorConfigurationUpdatesNotSupported")]
     pub const ConfigurationUpdatesNotSupported: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code/requiredparticipantsnotavailable?language=objc)
     #[doc(alias = "AEAssessmentErrorRequiredParticipantsNotAvailable")]
     pub const RequiredParticipantsNotAvailable: Self = Self(5);
 }

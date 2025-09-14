@@ -106,6 +106,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_ext_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofileopenurl(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn ExtAudioFileOpenURL(
         in_url: &CFURL,
@@ -134,6 +136,8 @@ extern "C-unwind" {
 ///
 /// - `in_file_id` must be a valid pointer.
 /// - `out_ext_audio_file` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilewrapaudiofileid(_:_:_:)?language=objc)
 #[cfg(feature = "AudioFile")]
 #[inline]
 pub unsafe extern "C-unwind" fn ExtAudioFileWrapAudioFileID(
@@ -184,6 +188,8 @@ extern "C-unwind" {
     /// - `in_stream_desc` must be a valid pointer.
     /// - `in_channel_layout` must be a valid pointer or null.
     /// - `out_ext_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilecreatewithurl(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "AudioFile",
         feature = "objc2-core-audio-types",
@@ -212,6 +218,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_ext_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofiledispose(_:)?language=objc)
     pub fn ExtAudioFileDispose(in_ext_audio_file: ExtAudioFileRef) -> OSStatus;
 }
 
@@ -245,6 +253,8 @@ extern "C-unwind" {
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `io_number_frames` must be a valid pointer.
     /// - `io_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofileread(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn ExtAudioFileRead(
         in_ext_audio_file: ExtAudioFileRef,
@@ -274,6 +284,8 @@ extern "C-unwind" {
     ///
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `io_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilewrite(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn ExtAudioFileWrite(
         in_ext_audio_file: ExtAudioFileRef,
@@ -314,6 +326,8 @@ extern "C-unwind" {
     ///
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `io_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilewriteasync(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn ExtAudioFileWriteAsync(
         in_ext_audio_file: ExtAudioFileRef,
@@ -344,6 +358,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_ext_audio_file` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofileseek(_:_:)?language=objc)
     pub fn ExtAudioFileSeek(in_ext_audio_file: ExtAudioFileRef, in_frame_offset: i64) -> OSStatus;
 }
 
@@ -362,6 +378,8 @@ extern "C-unwind" {
     ///
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `out_frame_offset` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofiletell(_:_:)?language=objc)
     pub fn ExtAudioFileTell(
         in_ext_audio_file: ExtAudioFileRef,
         out_frame_offset: NonNull<i64>,
@@ -387,6 +405,8 @@ extern "C-unwind" {
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `out_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilegetpropertyinfo(_:_:_:_:)?language=objc)
     pub fn ExtAudioFileGetPropertyInfo(
         in_ext_audio_file: ExtAudioFileRef,
         in_property_id: ExtAudioFilePropertyID,
@@ -415,6 +435,8 @@ extern "C-unwind" {
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilegetproperty(_:_:_:_:)?language=objc)
     pub fn ExtAudioFileGetProperty(
         in_ext_audio_file: ExtAudioFileRef,
         in_property_id: ExtAudioFilePropertyID,
@@ -441,6 +463,8 @@ extern "C-unwind" {
     ///
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilesetproperty(_:_:_:_:)?language=objc)
     pub fn ExtAudioFileSetProperty(
         in_ext_audio_file: ExtAudioFileRef,
         in_property_id: ExtAudioFilePropertyID,

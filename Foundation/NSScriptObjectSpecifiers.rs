@@ -27,14 +27,19 @@ pub const NSOperationNotSupportedForKeySpecifierError: NSInteger = 6;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSInsertionPosition(pub NSUInteger);
 impl NSInsertionPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition/after?language=objc)
     #[doc(alias = "NSPositionAfter")]
     pub const PositionAfter: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition/before?language=objc)
     #[doc(alias = "NSPositionBefore")]
     pub const PositionBefore: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition/beginning?language=objc)
     #[doc(alias = "NSPositionBeginning")]
     pub const PositionBeginning: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition/end?language=objc)
     #[doc(alias = "NSPositionEnd")]
     pub const PositionEnd: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition/replace?language=objc)
     #[doc(alias = "NSPositionReplace")]
     pub const PositionReplace: Self = Self(4);
 }
@@ -53,8 +58,10 @@ unsafe impl RefEncode for NSInsertionPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRelativePosition(pub NSUInteger);
 impl NSRelativePosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.enum/after?language=objc)
     #[doc(alias = "NSRelativeAfter")]
     pub const After: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.enum/before?language=objc)
     #[doc(alias = "NSRelativeBefore")]
     pub const Before: Self = Self(1);
 }
@@ -73,14 +80,19 @@ unsafe impl RefEncode for NSRelativePosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWhoseSubelementIdentifier(pub NSUInteger);
 impl NSWhoseSubelementIdentifier {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier/indexsubelement?language=objc)
     #[doc(alias = "NSIndexSubelement")]
     pub const IndexSubelement: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier/everysubelement?language=objc)
     #[doc(alias = "NSEverySubelement")]
     pub const EverySubelement: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier/middlesubelement?language=objc)
     #[doc(alias = "NSMiddleSubelement")]
     pub const MiddleSubelement: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier/randomsubelement?language=objc)
     #[doc(alias = "NSRandomSubelement")]
     pub const RandomSubelement: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier/nosubelement?language=objc)
     #[doc(alias = "NSNoSubelement")]
     pub const NoSubelement: Self = Self(4);
 }

@@ -8,6 +8,8 @@ use crate::*;
 #[cfg(feature = "CSCommon")]
 unsafe impl ConcreteType for SecRequirement {
     /// Returns the type identifier of all SecRequirement instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementgettypeid()?language=objc)
     #[doc(alias = "SecRequirementGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -39,6 +41,8 @@ impl SecRequirement {
     /// # Safety
     ///
     /// `requirement` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementcreatewithdata(_:_:_:)?language=objc)
     #[doc(alias = "SecRequirementCreateWithData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -74,6 +78,8 @@ impl SecRequirement {
     /// # Safety
     ///
     /// `requirement` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)?language=objc)
     #[doc(alias = "SecRequirementCreateWithString")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -92,6 +98,8 @@ impl SecRequirement {
         unsafe { SecRequirementCreateWithString(text, flags, requirement) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementcreatewithstringanderrors(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `errors` must be a valid pointer or null.
@@ -134,6 +142,8 @@ impl SecRequirement {
     /// # Safety
     ///
     /// `data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementcopydata(_:_:_:)?language=objc)
     #[doc(alias = "SecRequirementCopyData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -171,6 +181,8 @@ impl SecRequirement {
     /// # Safety
     ///
     /// `text` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementcopystring(_:_:_:)?language=objc)
     #[doc(alias = "SecRequirementCopyString")]
     #[cfg(feature = "CSCommon")]
     #[inline]

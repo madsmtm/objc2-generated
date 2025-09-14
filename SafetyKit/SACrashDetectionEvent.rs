@@ -19,9 +19,13 @@ use crate::*;
 pub struct SACrashDetectionEventResponse(pub NSInteger);
 impl SACrashDetectionEventResponse {
     /// Emergency SOS response for the crash event was attempted
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/sacrashdetectionevent/response-swift.enum/attempted?language=objc)
     #[doc(alias = "SACrashDetectionEventResponseAttempted")]
     pub const Attempted: Self = Self(0);
     /// Emergency SOS response for crash events is disabled
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/sacrashdetectionevent/response-swift.enum/disabled?language=objc)
     #[doc(alias = "SACrashDetectionEventResponseDisabled")]
     pub const Disabled: Self = Self(1);
 }

@@ -99,20 +99,28 @@ unsafe impl Sync for CVSMPTETime {}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVSMPTETimeType(pub u32);
 impl CVSMPTETimeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type24?language=objc)
     #[doc(alias = "kCVSMPTETimeType24")]
     pub const Type24: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type25?language=objc)
     #[doc(alias = "kCVSMPTETimeType25")]
     pub const Type25: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type30drop?language=objc)
     #[doc(alias = "kCVSMPTETimeType30Drop")]
     pub const Type30Drop: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type30?language=objc)
     #[doc(alias = "kCVSMPTETimeType30")]
     pub const Type30: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type2997?language=objc)
     #[doc(alias = "kCVSMPTETimeType2997")]
     pub const Type2997: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type2997drop?language=objc)
     #[doc(alias = "kCVSMPTETimeType2997Drop")]
     pub const Type2997Drop: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type60?language=objc)
     #[doc(alias = "kCVSMPTETimeType60")]
     pub const Type60: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type5994?language=objc)
     #[doc(alias = "kCVSMPTETimeType5994")]
     pub const Type5994: Self = Self(7);
 }
@@ -144,8 +152,10 @@ unsafe impl Sync for CVSMPTETimeType {}
 pub struct CVSMPTETimeFlags(pub u32);
 bitflags::bitflags! {
     impl CVSMPTETimeFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimeflags/valid?language=objc)
         #[doc(alias = "kCVSMPTETimeValid")]
         const Valid = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimeflags/running?language=objc)
         #[doc(alias = "kCVSMPTETimeRunning")]
         const Running = 1<<1;
     }
@@ -172,6 +182,7 @@ unsafe impl Sync for CVSMPTETimeFlags {}
 pub struct CVTimeFlags(pub i32);
 bitflags::bitflags! {
     impl CVTimeFlags: i32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimeflags/isindefinite?language=objc)
         #[doc(alias = "kCVTimeIsIndefinite")]
         const IsIndefinite = 1<<0;
     }
@@ -291,22 +302,31 @@ unsafe impl RefEncode for CVTimeStamp {
 pub struct CVTimeStampFlags(pub u64);
 bitflags::bitflags! {
     impl CVTimeStampFlags: u64 {
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/videotimevalid?language=objc)
         #[doc(alias = "kCVTimeStampVideoTimeValid")]
         const VideoTimeValid = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/hosttimevalid?language=objc)
         #[doc(alias = "kCVTimeStampHostTimeValid")]
         const HostTimeValid = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/smptetimevalid?language=objc)
         #[doc(alias = "kCVTimeStampSMPTETimeValid")]
         const SMPTETimeValid = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/videorefreshperiodvalid?language=objc)
         #[doc(alias = "kCVTimeStampVideoRefreshPeriodValid")]
         const VideoRefreshPeriodValid = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/ratescalarvalid?language=objc)
         #[doc(alias = "kCVTimeStampRateScalarValid")]
         const RateScalarValid = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/topfield?language=objc)
         #[doc(alias = "kCVTimeStampTopField")]
         const TopField = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/bottomfield?language=objc)
         #[doc(alias = "kCVTimeStampBottomField")]
         const BottomField = 1<<17;
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/videohosttimevalid?language=objc)
         #[doc(alias = "kCVTimeStampVideoHostTimeValid")]
         const VideoHostTimeValid = CVTimeStampFlags::VideoTimeValid.0|CVTimeStampFlags::HostTimeValid.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/isinterlaced?language=objc)
         #[doc(alias = "kCVTimeStampIsInterlaced")]
         const IsInterlaced = CVTimeStampFlags::TopField.0|CVTimeStampFlags::BottomField.0;
     }

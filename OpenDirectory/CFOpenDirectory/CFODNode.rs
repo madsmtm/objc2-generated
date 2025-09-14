@@ -13,6 +13,8 @@ unsafe impl ConcreteType for ODNodeRef {
     /// Returns the typeID for the ODNode objects
     ///
     /// Returns: a valid CFTypeID for the ODNode object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodegettypeid()?language=objc)
     #[doc(alias = "ODNodeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -44,6 +46,8 @@ impl ODNodeRef {
     /// - `allocator` might not allow `None`.
     /// - `session` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecreatewithnodetype(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -89,6 +93,8 @@ impl ODNodeRef {
     /// - `session` might not allow `None`.
     /// - `node_name` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecreatewithname(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCreateWithName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -128,6 +134,8 @@ impl ODNodeRef {
     /// - `allocator` might not allow `None`.
     /// - `node` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecreatecopy(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCreateCopy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -161,6 +169,8 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopysubnodenames(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopySubnodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -190,6 +200,8 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopyunreachablesubnodenames(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopyUnreachableSubnodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -214,6 +226,8 @@ impl ODNodeRef {
     /// Parameter `node`: an ODNodeRef to use
     ///
     /// Returns: a CFStringRef of the node name that is current or NULL if no open node
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodegetname(_:)?language=objc)
     #[doc(alias = "ODNodeGetName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -243,6 +257,8 @@ impl ODNodeRef {
     /// - `keys` generic must be of the correct type.
     /// - `keys` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopydetails(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCopyDetails")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -276,6 +292,8 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopysupportedrecordtypes(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopySupportedRecordTypes")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -311,6 +329,8 @@ impl ODNodeRef {
     ///
     /// - `record_type` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopysupportedattributes(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCopySupportedAttributes")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -359,6 +379,8 @@ impl ODNodeRef {
     /// - `record_name` might not allow `None`.
     /// - `password` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetcredentials(_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeSetCredentials")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -418,6 +440,8 @@ impl ODNodeRef {
     /// - `out_auth_items` must be a valid pointer.
     /// - `out_context` must be a valid pointer.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetcredentialsextended(_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeSetCredentialsExtended")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -465,6 +489,8 @@ impl ODNodeRef {
     ///
     /// - `cache_name` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetcredentialsusingkerberoscache?language=objc)
     #[doc(alias = "ODNodeSetCredentialsUsingKerberosCache")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -514,6 +540,8 @@ impl ODNodeRef {
     /// - `attribute_dict` generic must be of the correct type.
     /// - `attribute_dict` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecreaterecord(_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCreateRecord")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -568,6 +596,8 @@ impl ODNodeRef {
     /// - `attributes` should be of the correct type.
     /// - `attributes` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopyrecord(_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCopyRecord")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -612,6 +642,8 @@ impl ODNodeRef {
     ///
     /// - `data` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecustomcall(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCustomCall")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -660,6 +692,8 @@ impl ODNodeRef {
     /// - `payload` should be of the correct type.
     /// - `payload` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecustomfunction(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCustomFunction")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -694,6 +728,8 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopypolicies(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopyPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODNodeCopyAccountPolicies"]
@@ -724,6 +760,8 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopysupportedpolicies(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopySupportedPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -760,6 +798,8 @@ impl ODNodeRef {
     /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetpolicies(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeSetPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODNodeSetAccountPolicies"]
@@ -799,6 +839,8 @@ impl ODNodeRef {
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetpolicy(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeSetPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -839,6 +881,8 @@ impl ODNodeRef {
     ///
     /// - `policy_type` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnoderemovepolicy(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeRemovePolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -892,6 +936,8 @@ impl ODNodeRef {
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodeaddaccountpolicy(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeAddAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -937,6 +983,8 @@ impl ODNodeRef {
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnoderemoveaccountpolicy(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeRemoveAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -989,6 +1037,8 @@ impl ODNodeRef {
     /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetaccountpolicies(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeSetAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1022,6 +1072,8 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopyaccountpolicies(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopyAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1067,6 +1119,8 @@ impl ODNodeRef {
     /// - `password` might not allow `None`.
     /// - `record_name` might not allow `None`.
     /// - `error` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodepasswordcontentcheck(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodePasswordContentCheck")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

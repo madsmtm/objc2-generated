@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothKeyboardReturnType(pub c_uint);
 impl BluetoothKeyboardReturnType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kbluetoothkeyboardansireturn?language=objc)
     #[doc(alias = "kBluetoothKeyboardANSIReturn")]
     pub const ANSIReturn: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kbluetoothkeyboardisoreturn?language=objc)
     #[doc(alias = "kBluetoothKeyboardISOReturn")]
     pub const ISOReturn: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kbluetoothkeyboardjisreturn?language=objc)
     #[doc(alias = "kBluetoothKeyboardJISReturn")]
     pub const JISReturn: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kbluetoothkeyboardnoreturn?language=objc)
     #[doc(alias = "kBluetoothKeyboardNoReturn")]
     pub const NoReturn: Self = Self(3);
 }

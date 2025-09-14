@@ -17,15 +17,21 @@ pub struct MTL4VisibilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTL4VisibilityOptions: NSUInteger {
 /// Don't flush caches. When you use this option on a barrier, it turns it into an execution barrier.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4visibilityoptions/mtl4visibilityoptionnone?language=objc)
         #[doc(alias = "MTL4VisibilityOptionNone")]
         const None = 0;
 /// Flushes caches to the GPU (device) memory coherence point.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4visibilityoptions/device?language=objc)
         #[doc(alias = "MTL4VisibilityOptionDevice")]
         const Device = 1<<0;
 /// Flushes caches to ensure that aliased virtual addresses are memory consistent.
 ///
 /// On some systems this may be the GPU+CPU (system) memory coherence point
 /// and on other systems it may be the GPU (device) memory coherence point.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4visibilityoptions/resourcealias?language=objc)
         #[doc(alias = "MTL4VisibilityOptionResourceAlias")]
         const ResourceAlias = 1<<1;
     }

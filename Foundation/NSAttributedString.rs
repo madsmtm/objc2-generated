@@ -129,8 +129,10 @@ impl DefaultRetained for NSAttributedString {
 pub struct NSAttributedStringEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAttributedStringEnumerationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/enumerationoptions/reverse?language=objc)
         #[doc(alias = "NSAttributedStringEnumerationReverse")]
         const Reverse = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/enumerationoptions/longesteffectiverangenotrequired?language=objc)
         #[doc(alias = "NSAttributedStringEnumerationLongestEffectiveRangeNotRequired")]
         const LongestEffectiveRangeNotRequired = 1<<20;
     }
@@ -472,20 +474,28 @@ impl NSMutableAttributedString {
 pub struct NSInlinePresentationIntent(pub NSUInteger);
 bitflags::bitflags! {
     impl NSInlinePresentationIntent: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/inlinepresentationintent/emphasized?language=objc)
         #[doc(alias = "NSInlinePresentationIntentEmphasized")]
         const Emphasized = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/inlinepresentationintent/stronglyemphasized?language=objc)
         #[doc(alias = "NSInlinePresentationIntentStronglyEmphasized")]
         const StronglyEmphasized = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/inlinepresentationintent/code?language=objc)
         #[doc(alias = "NSInlinePresentationIntentCode")]
         const Code = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/inlinepresentationintent/strikethrough?language=objc)
         #[doc(alias = "NSInlinePresentationIntentStrikethrough")]
         const Strikethrough = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/inlinepresentationintent/softbreak?language=objc)
         #[doc(alias = "NSInlinePresentationIntentSoftBreak")]
         const SoftBreak = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/inlinepresentationintent/linebreak?language=objc)
         #[doc(alias = "NSInlinePresentationIntentLineBreak")]
         const LineBreak = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/inlinepresentationintent/inlinehtml?language=objc)
         #[doc(alias = "NSInlinePresentationIntentInlineHTML")]
         const InlineHTML = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/inlinepresentationintent/blockhtml?language=objc)
         #[doc(alias = "NSInlinePresentationIntentBlockHTML")]
         const BlockHTML = 1<<9;
     }
@@ -535,8 +545,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributedStringMarkdownParsingFailurePolicy(pub NSInteger);
 impl NSAttributedStringMarkdownParsingFailurePolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingfailurepolicy/nsattributedstringmarkdownparsingfailurereturnerror?language=objc)
     #[doc(alias = "NSAttributedStringMarkdownParsingFailureReturnError")]
     pub const ReturnError: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingfailurepolicy/nsattributedstringmarkdownparsingfailurereturnpartiallyparsedifpossible?language=objc)
     #[doc(alias = "NSAttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible")]
     pub const ReturnPartiallyParsedIfPossible: Self = Self(1);
 }
@@ -555,10 +567,13 @@ unsafe impl RefEncode for NSAttributedStringMarkdownParsingFailurePolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributedStringMarkdownInterpretedSyntax(pub NSInteger);
 impl NSAttributedStringMarkdownInterpretedSyntax {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdowninterpretedsyntax/nsattributedstringmarkdowninterpretedsyntaxfull?language=objc)
     #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxFull")]
     pub const Full: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdowninterpretedsyntax/nsattributedstringmarkdowninterpretedsyntaxinlineonly?language=objc)
     #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxInlineOnly")]
     pub const InlineOnly: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdowninterpretedsyntax/nsattributedstringmarkdowninterpretedsyntaxinlineonlypreservingwhitespace?language=objc)
     #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace")]
     pub const InlineOnlyPreservingWhitespace: Self = Self(2);
 }
@@ -836,8 +851,10 @@ impl NSMutableAttributedString {
 pub struct NSAttributedStringFormattingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAttributedStringFormattingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingoptions/nsattributedstringformattinginsertargumentattributeswithoutmerging?language=objc)
         #[doc(alias = "NSAttributedStringFormattingInsertArgumentAttributesWithoutMerging")]
         const InsertArgumentAttributesWithoutMerging = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingoptions/nsattributedstringformattingapplyreplacementindexattribute?language=objc)
         #[doc(alias = "NSAttributedStringFormattingApplyReplacementIndexAttribute")]
         const ApplyReplacementIndexAttribute = 1<<1;
     }
@@ -939,28 +956,40 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPresentationIntentKind(pub NSInteger);
 impl NSPresentationIntentKind {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindparagraph?language=objc)
     #[doc(alias = "NSPresentationIntentKindParagraph")]
     pub const Paragraph: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindheader?language=objc)
     #[doc(alias = "NSPresentationIntentKindHeader")]
     pub const Header: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindorderedlist?language=objc)
     #[doc(alias = "NSPresentationIntentKindOrderedList")]
     pub const OrderedList: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindunorderedlist?language=objc)
     #[doc(alias = "NSPresentationIntentKindUnorderedList")]
     pub const UnorderedList: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindlistitem?language=objc)
     #[doc(alias = "NSPresentationIntentKindListItem")]
     pub const ListItem: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindcodeblock?language=objc)
     #[doc(alias = "NSPresentationIntentKindCodeBlock")]
     pub const CodeBlock: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindblockquote?language=objc)
     #[doc(alias = "NSPresentationIntentKindBlockQuote")]
     pub const BlockQuote: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindthematicbreak?language=objc)
     #[doc(alias = "NSPresentationIntentKindThematicBreak")]
     pub const ThematicBreak: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindtable?language=objc)
     #[doc(alias = "NSPresentationIntentKindTable")]
     pub const Table: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindtableheaderrow?language=objc)
     #[doc(alias = "NSPresentationIntentKindTableHeaderRow")]
     pub const TableHeaderRow: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindtablerow?language=objc)
     #[doc(alias = "NSPresentationIntentKindTableRow")]
     pub const TableRow: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind/nspresentationintentkindtablecell?language=objc)
     #[doc(alias = "NSPresentationIntentKindTableCell")]
     pub const TableCell: Self = Self(11);
 }
@@ -979,10 +1008,13 @@ unsafe impl RefEncode for NSPresentationIntentKind {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPresentationIntentTableColumnAlignment(pub NSInteger);
 impl NSPresentationIntentTableColumnAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintenttablecolumnalignment/nspresentationintenttablecolumnalignmentleft?language=objc)
     #[doc(alias = "NSPresentationIntentTableColumnAlignmentLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintenttablecolumnalignment/nspresentationintenttablecolumnalignmentcenter?language=objc)
     #[doc(alias = "NSPresentationIntentTableColumnAlignmentCenter")]
     pub const Center: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintenttablecolumnalignment/nspresentationintenttablecolumnalignmentright?language=objc)
     #[doc(alias = "NSPresentationIntentTableColumnAlignmentRight")]
     pub const Right: Self = Self(2);
 }

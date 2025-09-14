@@ -299,6 +299,8 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskappearedcallback(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskAppearedCallback(
         session: &DASession,
@@ -341,6 +343,8 @@ extern "C-unwind" {
     /// - `watch` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskdescriptionchangedcallback(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskDescriptionChangedCallback(
         session: &DASession,
@@ -379,6 +383,8 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskdisappearedcallback(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskDisappearedCallback(
         session: &DASession,
@@ -421,6 +427,8 @@ impl DADisk {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskmount(_:_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskMount")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -462,6 +470,8 @@ impl DADisk {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     /// - `arguments` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskmountwitharguments(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskMountWithArguments")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -521,6 +531,8 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskmountapprovalcallback(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
     pub fn DARegisterDiskMountApprovalCallback(
         session: &DASession,
@@ -559,6 +571,8 @@ impl DADisk {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskrename(_:_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskRename")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -611,6 +625,8 @@ impl DADisk {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskunmount(_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskUnmount")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -666,6 +682,8 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskunmountapprovalcallback(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
     pub fn DARegisterDiskUnmountApprovalCallback(
         session: &DASession,
@@ -704,6 +722,8 @@ impl DADisk {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskeject(_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskEject")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -759,6 +779,8 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskejectapprovalcallback(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
     pub fn DARegisterDiskEjectApprovalCallback(
         session: &DASession,
@@ -820,6 +842,8 @@ impl DADisk {
     /// - `release_context` must be a valid pointer or null.
     /// - `callback` must be implemented correctly.
     /// - `callback_context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskclaim(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskClaim")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -858,6 +882,8 @@ impl DADisk {
     /// Parameter `disk`: The disk object.
     ///
     /// Returns: TRUE if the disk is claimed, otherwise FALSE.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskisclaimed(_:)?language=objc)
     #[doc(alias = "DADiskIsClaimed")]
     #[cfg(feature = "DADisk")]
     #[inline]
@@ -872,6 +898,8 @@ impl DADisk {
     /// Unclaims the specified disk object.
     ///
     /// Parameter `disk`: The disk object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskunclaim(_:)?language=objc)
     #[doc(alias = "DADiskUnclaim")]
     #[cfg(feature = "DADisk")]
     #[inline]
@@ -916,6 +944,8 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskpeekcallback(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskPeekCallback(
         session: &DASession,
@@ -933,6 +963,8 @@ impl DADisk {
     /// Parameter `disk`: The disk object for which to obtain the options.
     ///
     /// Returns: The options.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskgetoptions(_:)?language=objc)
     #[doc(alias = "DADiskGetOptions")]
     #[cfg(feature = "DADisk")]
     #[inline]
@@ -952,6 +984,8 @@ impl DADisk {
     /// Parameter `value`: Pass TRUE to set options; otherwise pass FALSE to clear options.
     ///
     /// Returns: A result code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadisksetoptions(_:_:_:)?language=objc)
     #[doc(alias = "DADiskSetOptions")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "libc"))]
     #[inline]
@@ -976,6 +1010,8 @@ extern "C-unwind" {
     ///
     /// - `callback` must be a valid pointer.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daunregistercallback(_:_:_:)?language=objc)
     #[cfg(feature = "DASession")]
     pub fn DAUnregisterCallback(
         session: &DASession,
@@ -985,6 +1021,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daunregisterapprovalcallback?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be a valid pointer.

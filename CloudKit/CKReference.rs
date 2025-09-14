@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKReferenceAction(pub NSUInteger);
 impl CKReferenceAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecord/referenceaction/none?language=objc)
     #[doc(alias = "CKReferenceActionNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecord/referenceaction/deleteself?language=objc)
     #[doc(alias = "CKReferenceActionDeleteSelf")]
     pub const DeleteSelf: Self = Self(1);
 }

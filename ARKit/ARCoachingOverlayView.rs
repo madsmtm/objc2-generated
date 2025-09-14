@@ -26,18 +26,28 @@ pub struct ARCoachingGoal(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARCoachingGoal {
     /// Session requires normal tracking
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum/tracking?language=objc)
     #[doc(alias = "ARCoachingGoalTracking")]
     pub const Tracking: Self = Self(0);
     /// Session requires a horizontal plane
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum/horizontalplane?language=objc)
     #[doc(alias = "ARCoachingGoalHorizontalPlane")]
     pub const HorizontalPlane: Self = Self(1);
     /// Session requires a vertical plane
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum/verticalplane?language=objc)
     #[doc(alias = "ARCoachingGoalVerticalPlane")]
     pub const VerticalPlane: Self = Self(2);
     /// Session requires one plane of any type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum/anyplane?language=objc)
     #[doc(alias = "ARCoachingGoalAnyPlane")]
     pub const AnyPlane: Self = Self(3);
     /// Session requires geo tracking
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum/geotracking?language=objc)
     #[doc(alias = "ARCoachingGoalGeoTracking")]
     pub const GeoTracking: Self = Self(4);
 }

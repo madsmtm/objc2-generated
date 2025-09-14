@@ -27,6 +27,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for ColorSyncCMM {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmgettypeid()?language=objc)
     #[doc(alias = "ColorSyncCMMGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,6 +39,7 @@ unsafe impl ConcreteType for ColorSyncCMM {
 }
 
 impl ColorSyncCMM {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmcreate(_:)?language=objc)
     #[doc(alias = "ColorSyncCMMCreate")]
     #[inline]
     pub unsafe fn new(cmm_bundle: &CFBundle) -> Option<CFRetained<ColorSyncCMM>> {
@@ -48,6 +50,7 @@ impl ColorSyncCMM {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmgetbundle(_:)?language=objc)
     #[doc(alias = "ColorSyncCMMGetBundle")]
     #[inline]
     pub unsafe fn bundle(&self) -> Option<CFRetained<CFBundle>> {
@@ -58,6 +61,7 @@ impl ColorSyncCMM {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmcopylocalizedname(_:)?language=objc)
     #[doc(alias = "ColorSyncCMMCopyLocalizedName")]
     #[inline]
     pub unsafe fn localized_name(&self) -> Option<CFRetained<CFString>> {
@@ -68,6 +72,7 @@ impl ColorSyncCMM {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmcopycmmidentifier(_:)?language=objc)
     #[doc(alias = "ColorSyncCMMCopyCMMIdentifier")]
     #[inline]
     pub unsafe fn cmm_identifier(&self) -> Option<CFRetained<CFString>> {
@@ -84,6 +89,8 @@ pub type ColorSyncCMMIterateCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<ColorSyncCMM>, NonNull<c_void>) -> bool>;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynciterateinstalledcmms(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `call_back` must be implemented correctly.

@@ -31,15 +31,23 @@ pub struct ARSessionRunOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ARSessionRunOptions: NSUInteger {
 /// The session will reset tracking.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/runoptions/resettracking?language=objc)
         #[doc(alias = "ARSessionRunOptionResetTracking")]
         const ResetTracking = 1<<0;
 /// The session will remove existing anchors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/runoptions/removeexistinganchors?language=objc)
         #[doc(alias = "ARSessionRunOptionRemoveExistingAnchors")]
         const RemoveExistingAnchors = 1<<1;
 /// The session will stop currently active tracked raycasts.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/runoptions/stoptrackedraycasts?language=objc)
         #[doc(alias = "ARSessionRunOptionStopTrackedRaycasts")]
         const StopTrackedRaycasts = 1<<2;
 /// The session will reset scene reconstruction.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/runoptions/resetscenereconstruction?language=objc)
         #[doc(alias = "ARSessionRunOptionResetSceneReconstruction")]
         const ResetSceneReconstruction = 1<<3;
     }

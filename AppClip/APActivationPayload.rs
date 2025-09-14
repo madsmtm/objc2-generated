@@ -26,9 +26,13 @@ pub struct APActivationPayloadErrorCode(pub NSInteger);
 impl APActivationPayloadErrorCode {
     /// The user denied location access, or the source of the App Clip
     /// invocation wasn’t from an NFC tag or visual code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appclip/apactivationpayloaderror/code/disallowed?language=objc)
     #[doc(alias = "APActivationPayloadErrorCodeDisallowed")]
     pub const Disallowed: Self = Self(1);
     /// The provided URL doesn’t match the registered App Clip URL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appclip/apactivationpayloaderror/code/doesnotmatch?language=objc)
     #[doc(alias = "APActivationPayloadErrorCodeDoesNotMatch")]
     pub const DoesNotMatch: Self = Self(2);
 }

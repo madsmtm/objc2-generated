@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateFormatterStyle(pub NSUInteger);
 impl NSDateFormatterStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style/none?language=objc)
     #[doc(alias = "NSDateFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style/short?language=objc)
     #[doc(alias = "NSDateFormatterShortStyle")]
     pub const ShortStyle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style/medium?language=objc)
     #[doc(alias = "NSDateFormatterMediumStyle")]
     pub const MediumStyle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style/long?language=objc)
     #[doc(alias = "NSDateFormatterLongStyle")]
     pub const LongStyle: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style/full?language=objc)
     #[doc(alias = "NSDateFormatterFullStyle")]
     pub const FullStyle: Self = Self(4);
 }
@@ -38,10 +43,13 @@ unsafe impl RefEncode for NSDateFormatterStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateFormatterBehavior(pub NSUInteger);
 impl NSDateFormatterBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/behavior/default?language=objc)
     #[doc(alias = "NSDateFormatterBehaviorDefault")]
     pub const BehaviorDefault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/behavior/behavior10_0?language=objc)
     #[doc(alias = "NSDateFormatterBehavior10_0")]
     pub const Behavior10_0: Self = Self(1000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/behavior/behavior10_4?language=objc)
     #[doc(alias = "NSDateFormatterBehavior10_4")]
     pub const Behavior10_4: Self = Self(1040);
 }

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaccessibilityisvoiceoverrunning()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn WKAccessibilityIsVoiceOverRunning() -> bool {
     extern "C-unwind" {
@@ -19,6 +20,7 @@ extern "C" {
     pub static WKAccessibilityVoiceOverStatusChanged: &'static NSString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaccessibilityisreducemotionenabled()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn WKAccessibilityIsReduceMotionEnabled() -> bool {
     extern "C-unwind" {

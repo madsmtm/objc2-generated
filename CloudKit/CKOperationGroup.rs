@@ -15,20 +15,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKOperationGroupTransferSize(pub NSInteger);
 impl CKOperationGroupTransferSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/unknown?language=objc)
     #[doc(alias = "CKOperationGroupTransferSizeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/kilobytes?language=objc)
     #[doc(alias = "CKOperationGroupTransferSizeKilobytes")]
     pub const Kilobytes: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/megabytes?language=objc)
     #[doc(alias = "CKOperationGroupTransferSizeMegabytes")]
     pub const Megabytes: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/tensofmegabytes?language=objc)
     #[doc(alias = "CKOperationGroupTransferSizeTensOfMegabytes")]
     pub const TensOfMegabytes: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/hundredsofmegabytes?language=objc)
     #[doc(alias = "CKOperationGroupTransferSizeHundredsOfMegabytes")]
     pub const HundredsOfMegabytes: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/gigabytes?language=objc)
     #[doc(alias = "CKOperationGroupTransferSizeGigabytes")]
     pub const Gigabytes: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/tensofgigabytes?language=objc)
     #[doc(alias = "CKOperationGroupTransferSizeTensOfGigabytes")]
     pub const TensOfGigabytes: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/hundredsofgigabytes?language=objc)
     #[doc(alias = "CKOperationGroupTransferSizeHundredsOfGigabytes")]
     pub const HundredsOfGigabytes: Self = Self(7);
 }

@@ -37,12 +37,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebCacheModel(pub NSUInteger);
 impl WebCacheModel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webcachemodel/documentviewer?language=objc)
     #[doc(alias = "WebCacheModelDocumentViewer")]
     #[deprecated]
     pub const DocumentViewer: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webcachemodel/documentbrowser?language=objc)
     #[doc(alias = "WebCacheModelDocumentBrowser")]
     #[deprecated]
     pub const DocumentBrowser: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webcachemodel/primarywebbrowser?language=objc)
     #[doc(alias = "WebCacheModelPrimaryWebBrowser")]
     #[deprecated]
     pub const PrimaryWebBrowser: Self = Self(2);

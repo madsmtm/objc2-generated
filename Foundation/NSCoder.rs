@@ -14,8 +14,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDecodingFailurePolicy(pub NSInteger);
 impl NSDecodingFailurePolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoder/decodingfailurepolicy-swift.enum/raiseexception?language=objc)
     #[doc(alias = "NSDecodingFailurePolicyRaiseException")]
     pub const RaiseException: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoder/decodingfailurepolicy-swift.enum/seterrorandreturn?language=objc)
     #[doc(alias = "NSDecodingFailurePolicySetErrorAndReturn")]
     pub const SetErrorAndReturn: Self = Self(1);
 }
@@ -604,6 +606,8 @@ impl NSCoder {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nxreadnsobjectfromcoder?language=objc)
+///
 /// # Safety
 ///
 /// `decoder` possibly has further requirements.

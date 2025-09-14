@@ -393,6 +393,8 @@ extern "C-unwind" {
     /// Get the current SRAbsoluteTime for this device.
     ///
     /// This timestamp ticks across sleeps and reboots.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetime/current()?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn SRAbsoluteTimeGetCurrent() -> SRAbsoluteTime;
 }
@@ -405,6 +407,8 @@ extern "C-unwind" {
     /// that SRAbsoluteTimeFromContinuousTime() is called from.
     /// The return value for mach_continuous_times spanning boot sessions or devices
     /// is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetimefromcontinuoustime?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn SRAbsoluteTimeFromContinuousTime(cont: u64) -> SRAbsoluteTime;
 }
@@ -415,6 +419,8 @@ extern "C-unwind" {
     /// The CFAbsoluteTime returned is based on calculations relative to the current
     /// wall clock. This means that if the system time is 5 seconds fast against UTC,
     /// the result will be 5 seconds fast to when the event happened relative to UTC.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetime/tocfabsolutetime()?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn SRAbsoluteTimeToCFAbsoluteTime(sr: SRAbsoluteTime) -> CFAbsoluteTime;
 }
@@ -425,6 +431,8 @@ extern "C-unwind" {
     /// The SRAbsoluteTime returned is based on calculations relative to the current
     /// wall clock. This means that if the system time is 5 seconds fast against UTC,
     /// the result will be 5 seconds fast to when the event happened relative to UTC.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetimefromcfabsolutetime?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn SRAbsoluteTimeFromCFAbsoluteTime(cf: CFAbsoluteTime) -> SRAbsoluteTime;
 }
@@ -674,13 +682,19 @@ impl SRFetchRequest {
 pub struct SRAuthorizationStatus(pub NSInteger);
 impl SRAuthorizationStatus {
     /// User has not yet made a choice regarding this application
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "SRAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
     /// User has granted authorization to this application
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srauthorizationstatus/authorized?language=objc)
     #[doc(alias = "SRAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(1);
     /// User has denied authorization to this application or
     /// data collection is disabled in Settings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srauthorizationstatus/denied?language=objc)
     #[doc(alias = "SRAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
 }
@@ -982,18 +996,28 @@ extern "C" {
 pub struct SRErrorCode(pub NSInteger);
 impl SRErrorCode {
     /// No valid entitlement found
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code/invalidentitlement?language=objc)
     #[doc(alias = "SRErrorInvalidEntitlement")]
     pub const InvalidEntitlement: Self = Self(0);
     /// Insufficient authorization to perform the action.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code/noauthorization?language=objc)
     #[doc(alias = "SRErrorNoAuthorization")]
     pub const NoAuthorization: Self = Self(1);
     /// Data is not accessible at this time
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code/datainaccessible?language=objc)
     #[doc(alias = "SRErrorDataInaccessible")]
     pub const DataInaccessible: Self = Self(2);
     /// Fetch request contained invalid values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code/fetchrequestinvalid?language=objc)
     #[doc(alias = "SRErrorFetchRequestInvalid")]
     pub const FetchRequestInvalid: Self = Self(3);
     /// Authorization request not completed
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code/promptdeclined?language=objc)
     #[doc(alias = "SRErrorPromptDeclined")]
     pub const PromptDeclined: Self = Self(4);
 }
@@ -1012,22 +1036,31 @@ unsafe impl RefEncode for SRErrorCode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRAmbientLightSensorPlacement(pub NSInteger);
 impl SRAmbientLightSensorPlacement {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/unknown?language=objc)
     #[doc(alias = "SRAmbientLightSensorPlacementUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/fronttop?language=objc)
     #[doc(alias = "SRAmbientLightSensorPlacementFrontTop")]
     pub const FrontTop: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/frontbottom?language=objc)
     #[doc(alias = "SRAmbientLightSensorPlacementFrontBottom")]
     pub const FrontBottom: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/frontright?language=objc)
     #[doc(alias = "SRAmbientLightSensorPlacementFrontRight")]
     pub const FrontRight: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/frontleft?language=objc)
     #[doc(alias = "SRAmbientLightSensorPlacementFrontLeft")]
     pub const FrontLeft: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/fronttopright?language=objc)
     #[doc(alias = "SRAmbientLightSensorPlacementFrontTopRight")]
     pub const FrontTopRight: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/fronttopleft?language=objc)
     #[doc(alias = "SRAmbientLightSensorPlacementFrontTopLeft")]
     pub const FrontTopLeft: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/frontbottomright?language=objc)
     #[doc(alias = "SRAmbientLightSensorPlacementFrontBottomRight")]
     pub const FrontBottomRight: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/frontbottomleft?language=objc)
     #[doc(alias = "SRAmbientLightSensorPlacementFrontBottomLeft")]
     pub const FrontBottomLeft: Self = Self(8);
 }
@@ -1104,14 +1137,19 @@ impl SRAmbientLightSample {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRLocationCategory(pub NSInteger);
 impl SRLocationCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum/unknown?language=objc)
     #[doc(alias = "SRLocationCategoryUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum/home?language=objc)
     #[doc(alias = "SRLocationCategoryHome")]
     pub const Home: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum/work?language=objc)
     #[doc(alias = "SRLocationCategoryWork")]
     pub const Work: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum/school?language=objc)
     #[doc(alias = "SRLocationCategorySchool")]
     pub const School: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum/gym?language=objc)
     #[doc(alias = "SRLocationCategoryGym")]
     pub const Gym: Self = Self(4);
 }
@@ -1480,12 +1518,16 @@ impl SRDeviceUsageReport {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRTextInputSessionType(pub NSInteger);
 impl SRTextInputSessionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.enum/keyboard?language=objc)
     #[doc(alias = "SRTextInputSessionTypeKeyboard")]
     pub const Keyboard: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.enum/thirdpartykeyboard?language=objc)
     #[doc(alias = "SRTextInputSessionTypeThirdPartyKeyboard")]
     pub const ThirdPartyKeyboard: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.enum/pencil?language=objc)
     #[doc(alias = "SRTextInputSessionTypePencil")]
     pub const Pencil: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.enum/dictation?language=objc)
     #[doc(alias = "SRTextInputSessionTypeDictation")]
     pub const Dictation: Self = Self(4);
 }
@@ -1617,38 +1659,55 @@ impl SRApplicationUsage {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRNotificationEvent(pub NSInteger);
 impl SRNotificationEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/unknown?language=objc)
     #[doc(alias = "SRNotificationEventUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/received?language=objc)
     #[doc(alias = "SRNotificationEventReceived")]
     pub const Received: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/defaultaction?language=objc)
     #[doc(alias = "SRNotificationEventDefaultAction")]
     pub const DefaultAction: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/supplementaryaction?language=objc)
     #[doc(alias = "SRNotificationEventSupplementaryAction")]
     pub const SupplementaryAction: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/clear?language=objc)
     #[doc(alias = "SRNotificationEventClear")]
     pub const Clear: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/notificationcenterclearall?language=objc)
     #[doc(alias = "SRNotificationEventNotificationCenterClearAll")]
     pub const NotificationCenterClearAll: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/removed?language=objc)
     #[doc(alias = "SRNotificationEventRemoved")]
     pub const Removed: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/hide?language=objc)
     #[doc(alias = "SRNotificationEventHide")]
     pub const Hide: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/longlook?language=objc)
     #[doc(alias = "SRNotificationEventLongLook")]
     pub const LongLook: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/silence?language=objc)
     #[doc(alias = "SRNotificationEventSilence")]
     pub const Silence: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/applaunch?language=objc)
     #[doc(alias = "SRNotificationEventAppLaunch")]
     pub const AppLaunch: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/expired?language=objc)
     #[doc(alias = "SRNotificationEventExpired")]
     pub const Expired: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/bannerpulldown?language=objc)
     #[doc(alias = "SRNotificationEventBannerPulldown")]
     pub const BannerPulldown: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/tapcoalesce?language=objc)
     #[doc(alias = "SRNotificationEventTapCoalesce")]
     pub const TapCoalesce: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/deduped?language=objc)
     #[doc(alias = "SRNotificationEventDeduped")]
     pub const Deduped: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/deviceactivated?language=objc)
     #[doc(alias = "SRNotificationEventDeviceActivated")]
     pub const DeviceActivated: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/deviceunlocked?language=objc)
     #[doc(alias = "SRNotificationEventDeviceUnlocked")]
     pub const DeviceUnlocked: Self = Self(16);
 }
@@ -2397,24 +2456,34 @@ impl SRKeyboardMetrics {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRKeyboardMetricsSentimentCategory(pub NSInteger);
 impl SRKeyboardMetricsSentimentCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/absolutist?language=objc)
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryAbsolutist")]
     pub const Absolutist: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/down?language=objc)
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryDown")]
     pub const Down: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/death?language=objc)
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryDeath")]
     pub const Death: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/anxiety?language=objc)
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryAnxiety")]
     pub const Anxiety: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/anger?language=objc)
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryAnger")]
     pub const Anger: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/health?language=objc)
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryHealth")]
     pub const Health: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/positive?language=objc)
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryPositive")]
     pub const Positive: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/sad?language=objc)
     #[doc(alias = "SRKeyboardMetricsSentimentCategorySad")]
     pub const Sad: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/lowenergy?language=objc)
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryLowEnergy")]
     pub const LowEnergy: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/confused?language=objc)
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryConfused")]
     pub const Confused: Self = Self(9);
 }
@@ -2458,18 +2527,28 @@ impl SRKeyboardMetrics {
 pub struct SRDeletionReason(pub NSInteger);
 impl SRDeletionReason {
     /// The user initiated deletion
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason/userinitiated?language=objc)
     #[doc(alias = "SRDeletionReasonUserInitiated")]
     pub const UserInitiated: Self = Self(0);
     /// Samples were removed due to low disk conditions
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason/lowdiskspace?language=objc)
     #[doc(alias = "SRDeletionReasonLowDiskSpace")]
     pub const LowDiskSpace: Self = Self(1);
     /// Samples were removed because they were recorded beyond our retention limit
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason/agelimit?language=objc)
     #[doc(alias = "SRDeletionReasonAgeLimit")]
     pub const AgeLimit: Self = Self(2);
     /// Samples were removed because there are no longer any interested clients
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason/nointerestedclients?language=objc)
     #[doc(alias = "SRDeletionReasonNoInterestedClients")]
     pub const NoInterestedClients: Self = Self(3);
     /// Samples were removed because the system was in an invalid state
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason/systeminitiated?language=objc)
     #[doc(alias = "SRDeletionReasonSystemInitiated")]
     pub const SystemInitiated: Self = Self(4);
 }
@@ -2566,8 +2645,10 @@ unsafe impl NSStringSRDeletionRecord for NSString {}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRWristLocation(pub NSInteger);
 impl SRWristLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/wristlocation-swift.enum/left?language=objc)
     #[doc(alias = "SRWristLocationLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/wristlocation-swift.enum/right?language=objc)
     #[doc(alias = "SRWristLocationRight")]
     pub const Right: Self = Self(1);
 }
@@ -2586,8 +2667,10 @@ unsafe impl RefEncode for SRWristLocation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRCrownOrientation(pub NSInteger);
 impl SRCrownOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/crownorientation-swift.enum/left?language=objc)
     #[doc(alias = "SRCrownOrientationLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/crownorientation-swift.enum/right?language=objc)
     #[doc(alias = "SRCrownOrientationRight")]
     pub const Right: Self = Self(1);
 }
@@ -2665,12 +2748,16 @@ impl SRWristDetection {
 pub struct SRWristTemperatureCondition(pub NSUInteger);
 bitflags::bitflags! {
     impl SRWristTemperatureCondition: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperaturecondition/srwristtemperatureconditionnone?language=objc)
         #[doc(alias = "SRWristTemperatureConditionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperature/condition-swift.struct/offwrist?language=objc)
         #[doc(alias = "SRWristTemperatureConditionOffWrist")]
         const OffWrist = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperature/condition-swift.struct/oncharger?language=objc)
         #[doc(alias = "SRWristTemperatureConditionOnCharger")]
         const OnCharger = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperature/condition-swift.struct/inmotion?language=objc)
         #[doc(alias = "SRWristTemperatureConditionInMotion")]
         const InMotion = 1<<2;
     }
@@ -2866,8 +2953,10 @@ impl SRWristTemperatureSession {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRMediaEventType(pub NSInteger);
 impl SRMediaEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srmediaeventtype/onscreen?language=objc)
     #[doc(alias = "SRMediaEventOnScreen")]
     pub const OnScreen: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srmediaeventtype/offscreen?language=objc)
     #[doc(alias = "SRMediaEventOffScreen")]
     pub const OffScreen: Self = Self(2);
 }
@@ -3180,8 +3269,10 @@ impl SRAudioLevel {
 pub struct SRSpeechMetricsSessionFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl SRSpeechMetricsSessionFlags: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechmetricssessionflags/srspeechmetricssessionflagsdefault?language=objc)
         #[doc(alias = "SRSpeechMetricsSessionFlagsDefault")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechmetrics/sessionflags-swift.struct/bypassvoiceprocessing?language=objc)
         #[doc(alias = "SRSpeechMetricsSessionFlagsBypassVoiceProcessing")]
         const BypassVoiceProcessing = 1<<0;
     }
@@ -3330,8 +3421,10 @@ impl SRSpeechMetrics {
 pub struct SRFaceMetricsContext(pub NSUInteger);
 bitflags::bitflags! {
     impl SRFaceMetricsContext: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfacemetrics/context-swift.struct/deviceunlock?language=objc)
         #[doc(alias = "SRFaceMetricsContextDeviceUnlock")]
         const DeviceUnlock = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfacemetrics/context-swift.struct/messagingappusage?language=objc)
         #[doc(alias = "SRFaceMetricsContextMessagingAppUsage")]
         const MessagingAppUsage = 1<<1;
     }
@@ -3528,10 +3621,13 @@ impl SRFaceMetrics {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRElectrocardiogramSessionState(pub NSInteger);
 impl SRElectrocardiogramSessionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/state-swift.enum/begin?language=objc)
     #[doc(alias = "SRElectrocardiogramSessionStateBegin")]
     pub const Begin: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/state-swift.enum/active?language=objc)
     #[doc(alias = "SRElectrocardiogramSessionStateActive")]
     pub const Active: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/state-swift.enum/end?language=objc)
     #[doc(alias = "SRElectrocardiogramSessionStateEnd")]
     pub const End: Self = Self(3);
 }
@@ -3560,8 +3656,10 @@ unsafe impl RefEncode for SRElectrocardiogramSessionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRElectrocardiogramSessionGuidance(pub NSInteger);
 impl SRElectrocardiogramSessionGuidance {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/sessionguidance-swift.enum/guided?language=objc)
     #[doc(alias = "SRElectrocardiogramSessionGuidanceGuided")]
     pub const Guided: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/sessionguidance-swift.enum/unguided?language=objc)
     #[doc(alias = "SRElectrocardiogramSessionGuidanceUnguided")]
     pub const Unguided: Self = Self(2);
 }
@@ -3665,12 +3763,17 @@ impl SRElectrocardiogramSession {
 pub struct SRElectrocardiogramDataFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl SRElectrocardiogramDataFlags: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdataflags/srelectrocardiogramdataflagsnone?language=objc)
         #[doc(alias = "SRElectrocardiogramDataFlagsNone")]
         const None = 0;
 /// Indicates an invalid sensor signal in the ECG data
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdata/flags-swift.struct/signalinvalid?language=objc)
         #[doc(alias = "SRElectrocardiogramDataFlagsSignalInvalid")]
         const SignalInvalid = 1<<0;
 /// Indicates ECG data was recorded when the crown was being touched
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdata/flags-swift.struct/crowntouched?language=objc)
         #[doc(alias = "SRElectrocardiogramDataFlagsCrownTouched")]
         const CrownTouched = 1<<1;
     }
@@ -3755,8 +3858,10 @@ impl SRElectrocardiogramData {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRElectrocardiogramLead(pub NSInteger);
 impl SRElectrocardiogramLead {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsample/lead-swift.enum/rightarmminusleftarm?language=objc)
     #[doc(alias = "SRElectrocardiogramLeadRightArmMinusLeftArm")]
     pub const RightArmMinusLeftArm: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsample/lead-swift.enum/leftarmminusrightarm?language=objc)
     #[doc(alias = "SRElectrocardiogramLeadLeftArmMinusRightArm")]
     pub const LeftArmMinusRightArm: Self = Self(2);
 }
@@ -4376,8 +4481,10 @@ impl SRPhotoplethysmogramSample {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRAcousticSettingsSampleLifetime(pub NSInteger);
 impl SRAcousticSettingsSampleLifetime {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/samplelifetime/eightdays?language=objc)
     #[doc(alias = "SRAcousticSettingsSampleLifetimeEightDays")]
     pub const EightDays: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/samplelifetime/untiluserdeletes?language=objc)
     #[doc(alias = "SRAcousticSettingsSampleLifetimeUntilUserDeletes")]
     pub const UntilUserDeletes: Self = Self(2);
 }
@@ -4396,36 +4503,52 @@ unsafe impl RefEncode for SRAcousticSettingsSampleLifetime {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRAcousticSettingsAccessibilityBackgroundSoundsName(pub NSInteger);
 impl SRAcousticSettingsAccessibilityBackgroundSoundsName {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/balancednoise?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBalancedNoise")]
     pub const BalancedNoise: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/brightnoise?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBrightNoise")]
     pub const BrightNoise: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/darknoise?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameDarkNoise")]
     pub const DarkNoise: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/ocean?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameOcean")]
     pub const Ocean: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/rain?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameRain")]
     pub const Rain: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/stream?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameStream")]
     pub const Stream: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/night?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameNight")]
     pub const Night: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/fire?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameFire")]
     pub const Fire: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/babble?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBabble")]
     pub const Babble: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/steam?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameSteam")]
     pub const Steam: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/airplane?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameAirplane")]
     pub const Airplane: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/boat?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBoat")]
     pub const Boat: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/bus?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBus")]
     pub const Bus: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/train?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameTrain")]
     pub const Train: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/rainonroof?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameRainOnRoof")]
     pub const RainOnRoof: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/quietnight?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameQuietNight")]
     pub const QuietNight: Self = Self(16);
 }
@@ -4444,14 +4567,17 @@ unsafe impl RefEncode for SRAcousticSettingsAccessibilityBackgroundSoundsName {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning(pub NSInteger);
 impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhancetuning-swift.enum/balancedtone?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningBalancedTone"
     )]
     pub const BalancedTone: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhancetuning-swift.enum/vocalrange?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningVocalRange"
     )]
     pub const VocalRange: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhancetuning-swift.enum/brightness?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningBrightness"
     )]
@@ -4474,14 +4600,17 @@ pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoo
     pub NSInteger,
 );
 impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceboosting-swift.enum/slight?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingSlight"
     )]
     pub const Slight: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceboosting-swift.enum/moderate?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingModerate"
     )]
     pub const Moderate: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceboosting-swift.enum/strong?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingStrong"
     )]
@@ -4506,18 +4635,22 @@ pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApp
     pub NSInteger,
 );
 impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplication {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceapplication-swift.enum/none?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationNone"
     )]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceapplication-swift.enum/phone?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationPhone"
     )]
     pub const Phone: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceapplication-swift.enum/media?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationMedia"
     )]
     pub const Media: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceapplication-swift.enum/phoneandmedia?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationPhoneAndMedia"
     )]

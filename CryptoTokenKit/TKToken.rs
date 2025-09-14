@@ -37,18 +37,27 @@ pub type TKTokenDriverClassID = NSString;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKTokenOperation(pub NSInteger);
 impl TKTokenOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation/none?language=objc)
     #[doc(alias = "TKTokenOperationNone")]
     pub const None: Self = Self(0);
     /// Reading of raw data of certificate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation/readdata?language=objc)
     #[doc(alias = "TKTokenOperationReadData")]
     pub const ReadData: Self = Self(1);
     /// Cryptographic signature using private key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation/signdata?language=objc)
     #[doc(alias = "TKTokenOperationSignData")]
     pub const SignData: Self = Self(2);
     /// Decrypting data using private key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation/decryptdata?language=objc)
     #[doc(alias = "TKTokenOperationDecryptData")]
     pub const DecryptData: Self = Self(3);
     /// Performing Diffie-Hellman style of cryptographic key exchange using private key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation/performkeyexchange?language=objc)
     #[doc(alias = "TKTokenOperationPerformKeyExchange")]
     pub const PerformKeyExchange: Self = Self(4);
 }

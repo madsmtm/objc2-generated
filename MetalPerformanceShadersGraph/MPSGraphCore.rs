@@ -176,36 +176,58 @@ impl MPSGraphShapedType {
 pub struct MPSGraphTensorNamedDataLayout(pub NSUInteger);
 impl MPSGraphTensorNamedDataLayout {
     /// LayoutNCHW
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/nchw?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutNCHW")]
     pub const NCHW: Self = Self(0);
     /// LayoutNHWC
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/nhwc?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutNHWC")]
     pub const NHWC: Self = Self(1);
     /// LayoutOIHW
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/oihw?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutOIHW")]
     pub const OIHW: Self = Self(2);
     /// LayoutHWIO
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/hwio?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutHWIO")]
     pub const HWIO: Self = Self(3);
     /// LayoutCHW
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/chw?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutCHW")]
     pub const CHW: Self = Self(4);
     /// LayoutHWC
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/hwc?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutHWC")]
     pub const HWC: Self = Self(5);
     /// LayoutHW
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/hw?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutHW")]
     pub const HW: Self = Self(6);
     /// LayoutNCDHW
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/ncdhw?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutNCDHW")]
     pub const NCDHW: Self = Self(7);
     /// LayoutNDHWC
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/ndhwc?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutNDHWC")]
     pub const NDHWC: Self = Self(8);
     /// LayoutOIDHW
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/oidhw?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutOIDHW")]
     pub const OIDHW: Self = Self(9);
     /// LayoutDHWIO
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout/dhwio?language=objc)
     #[doc(alias = "MPSGraphTensorNamedDataLayoutDHWIO")]
     pub const DHWIO: Self = Self(10);
 }
@@ -227,18 +249,28 @@ unsafe impl RefEncode for MPSGraphTensorNamedDataLayout {
 pub struct MPSGraphPaddingStyle(pub NSUInteger);
 impl MPSGraphPaddingStyle {
     /// Explicit
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingstyle/explicit?language=objc)
     #[doc(alias = "MPSGraphPaddingStyleExplicit")]
     pub const Explicit: Self = Self(0);
     /// ONNX_SAME_LOWER
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingstyle/tf_valid?language=objc)
     #[doc(alias = "MPSGraphPaddingStyleTF_VALID")]
     pub const TF_VALID: Self = Self(1);
     /// TF_SAME
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingstyle/tf_same?language=objc)
     #[doc(alias = "MPSGraphPaddingStyleTF_SAME")]
     pub const TF_SAME: Self = Self(2);
     /// TF_VALID
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingstyle/explicitoffset?language=objc)
     #[doc(alias = "MPSGraphPaddingStyleExplicitOffset")]
     pub const ExplicitOffset: Self = Self(3);
     /// Explicit offsets
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingstyle/onnx_same_lower?language=objc)
     #[doc(alias = "MPSGraphPaddingStyleONNX_SAME_LOWER")]
     pub const ONNX_SAME_LOWER: Self = Self(4);
 }
@@ -260,24 +292,38 @@ unsafe impl RefEncode for MPSGraphPaddingStyle {
 pub struct MPSGraphPaddingMode(pub NSInteger);
 impl MPSGraphPaddingMode {
     /// Constant
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingmode/constant?language=objc)
     #[doc(alias = "MPSGraphPaddingModeConstant")]
     pub const Constant: Self = Self(0);
     /// Reflect
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingmode/reflect?language=objc)
     #[doc(alias = "MPSGraphPaddingModeReflect")]
     pub const Reflect: Self = Self(1);
     /// Symmetric
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingmode/symmetric?language=objc)
     #[doc(alias = "MPSGraphPaddingModeSymmetric")]
     pub const Symmetric: Self = Self(2);
     /// ClampToEdge (PyTorch ReplicationPad)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingmode/clamptoedge?language=objc)
     #[doc(alias = "MPSGraphPaddingModeClampToEdge")]
     pub const ClampToEdge: Self = Self(3);
     /// Zero
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingmode/zero?language=objc)
     #[doc(alias = "MPSGraphPaddingModeZero")]
     pub const Zero: Self = Self(4);
     /// Periodic `x[-2] -> x[L-3], where L is size of x.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingmode/periodic?language=objc)
     #[doc(alias = "MPSGraphPaddingModePeriodic")]
     pub const Periodic: Self = Self(5);
     /// Anti Periodic `x[-2] -> -x[L-3]`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingmode/antiperiodic?language=objc)
     #[doc(alias = "MPSGraphPaddingModeAntiPeriodic")]
     pub const AntiPeriodic: Self = Self(6);
 }
@@ -299,21 +345,33 @@ unsafe impl RefEncode for MPSGraphPaddingMode {
 pub struct MPSGraphReductionMode(pub NSUInteger);
 impl MPSGraphReductionMode {
     /// Min
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreductionmode/min?language=objc)
     #[doc(alias = "MPSGraphReductionModeMin")]
     pub const Min: Self = Self(0);
     /// Max
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreductionmode/max?language=objc)
     #[doc(alias = "MPSGraphReductionModeMax")]
     pub const Max: Self = Self(1);
     /// Sum
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreductionmode/sum?language=objc)
     #[doc(alias = "MPSGraphReductionModeSum")]
     pub const Sum: Self = Self(2);
     /// Product
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreductionmode/product?language=objc)
     #[doc(alias = "MPSGraphReductionModeProduct")]
     pub const Product: Self = Self(3);
     /// Argument Min
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreductionmode/argumentmin?language=objc)
     #[doc(alias = "MPSGraphReductionModeArgumentMin")]
     pub const ArgumentMin: Self = Self(4);
     /// Argument Max
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreductionmode/argumentmax?language=objc)
     #[doc(alias = "MPSGraphReductionModeArgumentMax")]
     pub const ArgumentMax: Self = Self(5);
 }

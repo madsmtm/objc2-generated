@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetRestaurantGuestIntentResponseCode(pub NSInteger);
 impl INGetRestaurantGuestIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponsecode/success?language=objc)
     #[doc(alias = "INGetRestaurantGuestIntentResponseCodeSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponsecode/failure?language=objc)
     #[doc(alias = "INGetRestaurantGuestIntentResponseCodeFailure")]
     pub const Failure: Self = Self(1);
 }

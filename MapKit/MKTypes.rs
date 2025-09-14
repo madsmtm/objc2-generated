@@ -12,16 +12,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKMapType(pub NSUInteger);
 impl MKMapType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/standard?language=objc)
     #[doc(alias = "MKMapTypeStandard")]
     pub const Standard: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/satellite?language=objc)
     #[doc(alias = "MKMapTypeSatellite")]
     pub const Satellite: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/hybrid?language=objc)
     #[doc(alias = "MKMapTypeHybrid")]
     pub const Hybrid: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/satelliteflyover?language=objc)
     #[doc(alias = "MKMapTypeSatelliteFlyover")]
     pub const SatelliteFlyover: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/hybridflyover?language=objc)
     #[doc(alias = "MKMapTypeHybridFlyover")]
     pub const HybridFlyover: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/mutedstandard?language=objc)
     #[doc(alias = "MKMapTypeMutedStandard")]
     pub const MutedStandard: Self = Self(5);
 }
@@ -45,16 +51,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MKErrorCode(pub NSUInteger);
 impl MKErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/unknown?language=objc)
     #[doc(alias = "MKErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/serverfailure?language=objc)
     #[doc(alias = "MKErrorServerFailure")]
     pub const ServerFailure: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/loadingthrottled?language=objc)
     #[doc(alias = "MKErrorLoadingThrottled")]
     pub const LoadingThrottled: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/placemarknotfound?language=objc)
     #[doc(alias = "MKErrorPlacemarkNotFound")]
     pub const PlacemarkNotFound: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/directionsnotfound?language=objc)
     #[doc(alias = "MKErrorDirectionsNotFound")]
     pub const DirectionsNotFound: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/decodingfailed?language=objc)
     #[doc(alias = "MKErrorDecodingFailed")]
     pub const DecodingFailed: Self = Self(6);
 }
@@ -73,10 +85,13 @@ unsafe impl RefEncode for MKErrorCode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKFeatureVisibility(pub NSInteger);
 impl MKFeatureVisibility {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturevisibility/adaptive?language=objc)
     #[doc(alias = "MKFeatureVisibilityAdaptive")]
     pub const Adaptive: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturevisibility/hidden?language=objc)
     #[doc(alias = "MKFeatureVisibilityHidden")]
     pub const Hidden: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturevisibility/visible?language=objc)
     #[doc(alias = "MKFeatureVisibilityVisible")]
     pub const Visible: Self = Self(2);
 }
@@ -95,8 +110,10 @@ unsafe impl RefEncode for MKFeatureVisibility {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKLocalSearchRegionPriority(pub NSInteger);
 impl MKLocalSearchRegionPriority {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchregionpriority/default?language=objc)
     #[doc(alias = "MKLocalSearchRegionPriorityDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchregionpriority/required?language=objc)
     #[doc(alias = "MKLocalSearchRegionPriorityRequired")]
     pub const Required: Self = Self(1);
 }

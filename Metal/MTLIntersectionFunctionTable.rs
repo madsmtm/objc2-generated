@@ -46,44 +46,66 @@ pub struct MTLIntersectionFunctionSignature(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLIntersectionFunctionSignature: NSUInteger {
 /// No signature
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/mtlintersectionfunctionsignaturenone?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureNone")]
         const None = 0;
 /// The intersection functions can read the built-in instance_id as described in
 /// the Metal Shading Language Guide.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/instancing?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureInstancing")]
         const Instancing = 1<<0;
 /// The triangle intersection functions can read the built-in barycentric_coord
 /// and front_facing as described in the Metal Shading Language Guide.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/triangledata?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureTriangleData")]
         const TriangleData = 1<<1;
 /// The intersection functions can query world_space_origin and
 /// world_space_direction as described in the Metal Shading Language Guide.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/worldspacedata?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureWorldSpaceData")]
         const WorldSpaceData = 1<<2;
 /// The intersection functions may be called from intersectors using the
 /// instance_motion intersection tag as described in the Metal Shading Language Guide.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/instancemotion?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureInstanceMotion")]
         const InstanceMotion = 1<<3;
 /// The intersection functions can query time, motion_start_time,
 /// motion_end_time and key_frame_count as described in the Metal Shading Language Guide.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/primitivemotion?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignaturePrimitiveMotion")]
         const PrimitiveMotion = 1<<4;
 /// The intersection functions may be called from intersectors using the
 /// extended_limits intersection tag as described in the Metal Shading Language Guide.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/extendedlimits?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureExtendedLimits")]
         const ExtendedLimits = 1<<5;
 /// The intersection functions may be called from intersectors using the
 /// max_levels intersection tag as described in the Metal Shading Language Guide.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/maxlevels?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureMaxLevels")]
         const MaxLevels = 1<<6;
 /// The curve intersection functions can read the built-in curve_parameter
 /// as described in the Metal Shading Language Guide.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/curvedata?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureCurveData")]
         const CurveData = 1<<7;
 /// The intersection function will be used with intersection function buffers
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/intersectionfunctionbuffer?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureIntersectionFunctionBuffer")]
         const IntersectionFunctionBuffer = 1<<8;
 /// The intersection function uses the intersection function buffer user_data pointer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/userdata?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureUserData")]
         const UserData = 1<<9;
     }

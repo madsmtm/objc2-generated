@@ -18,16 +18,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDynamicLibraryError(pub NSUInteger);
 impl MTLDynamicLibraryError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/none?language=objc)
     #[doc(alias = "MTLDynamicLibraryErrorNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/invalidfile?language=objc)
     #[doc(alias = "MTLDynamicLibraryErrorInvalidFile")]
     pub const InvalidFile: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/compilationfailure?language=objc)
     #[doc(alias = "MTLDynamicLibraryErrorCompilationFailure")]
     pub const CompilationFailure: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/unresolvedinstallname?language=objc)
     #[doc(alias = "MTLDynamicLibraryErrorUnresolvedInstallName")]
     pub const UnresolvedInstallName: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/dependencyloadfailure?language=objc)
     #[doc(alias = "MTLDynamicLibraryErrorDependencyLoadFailure")]
     pub const DependencyLoadFailure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/unsupported?language=objc)
     #[doc(alias = "MTLDynamicLibraryErrorUnsupported")]
     pub const Unsupported: Self = Self(5);
 }

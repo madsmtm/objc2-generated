@@ -75,12 +75,18 @@ extern "C" {
 pub struct AVPlayerItemStatus(pub NSInteger);
 impl AVPlayerItemStatus {
     /// Indicates that the status of the player item is not yet known because it has not tried to load new media resources for playback.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/status-swift.enum/unknown?language=objc)
     #[doc(alias = "AVPlayerItemStatusUnknown")]
     pub const Unknown: Self = Self(0);
     /// Indicates that the player item is ready to be played.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/status-swift.enum/readytoplay?language=objc)
     #[doc(alias = "AVPlayerItemStatusReadyToPlay")]
     pub const ReadyToPlay: Self = Self(1);
     /// Indicates that the player item can no longer be played because of an error. The error is described by the value of the player item's error property. The player item's errorLog property might contain additional information about the error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/status-swift.enum/failed?language=objc)
     #[doc(alias = "AVPlayerItemStatusFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -866,9 +872,13 @@ pub struct AVVariantPreferences(pub NSUInteger);
 bitflags::bitflags! {
     impl AVVariantPreferences: NSUInteger {
 /// Indicates that only the basic behaviors of the player for choosing among variants should be applied, including considerations of available bandwidth, compatibility of the indicated codec or codecs, the dimensions of visual output, and the number of available audio output channels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvariantpreferences/avvariantpreferencenone?language=objc)
         #[doc(alias = "AVVariantPreferenceNone")]
         const None = 0;
 /// Directs the item to permit the use of variants with lossless audio encodings, if sufficient bandwidth is available for their use.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvariantpreferences/scalabilitytolosslessaudio?language=objc)
         #[doc(alias = "AVVariantPreferenceScalabilityToLosslessAudio")]
         const ScalabilityToLosslessAudio = 1<<0;
     }

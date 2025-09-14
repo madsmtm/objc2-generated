@@ -221,6 +221,7 @@ unsafe impl RefEncode for AudioConverterPrimeInfo {
 pub struct AudioConverterOptions(pub u32);
 bitflags::bitflags! {
     impl AudioConverterOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverteroptions/unbuffered?language=objc)
         #[doc(alias = "kAudioConverterOption_Unbuffered")]
         const Unbuffered = 1<<16;
     }
@@ -274,6 +275,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `io_reserved` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterprepare(_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn AudioConverterPrepare(
         in_flags: u32,
@@ -345,6 +348,8 @@ extern "C-unwind" {
     /// - `in_source_format` must be a valid pointer.
     /// - `in_destination_format` must be a valid pointer.
     /// - `out_audio_converter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverternew(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNew(
         in_source_format: NonNull<AudioStreamBasicDescription>,
@@ -378,6 +383,8 @@ extern "C-unwind" {
     /// - `in_destination_format` must be a valid pointer.
     /// - `in_class_descriptions` must be a valid pointer.
     /// - `out_audio_converter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverternewspecific(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNewSpecific(
         in_source_format: NonNull<AudioStreamBasicDescription>,
@@ -410,6 +417,8 @@ extern "C-unwind" {
     /// - `in_source_format` must be a valid pointer.
     /// - `in_destination_format` must be a valid pointer.
     /// - `out_audio_converter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverternewwithoptions(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNewWithOptions(
         in_source_format: NonNull<AudioStreamBasicDescription>,
@@ -430,6 +439,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_converter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterdispose(_:)?language=objc)
     pub fn AudioConverterDispose(in_audio_converter: AudioConverterRef) -> OSStatus;
 }
 
@@ -448,6 +459,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_converter` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterreset(_:)?language=objc)
     pub fn AudioConverterReset(in_audio_converter: AudioConverterRef) -> OSStatus;
 }
 
@@ -470,6 +483,8 @@ extern "C-unwind" {
     /// - `in_audio_converter` must be a valid pointer.
     /// - `out_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertergetpropertyinfo(_:_:_:_:)?language=objc)
     pub fn AudioConverterGetPropertyInfo(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
@@ -498,6 +513,8 @@ extern "C-unwind" {
     /// - `in_audio_converter` must be a valid pointer.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertergetproperty(_:_:_:_:)?language=objc)
     pub fn AudioConverterGetProperty(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
@@ -524,6 +541,8 @@ extern "C-unwind" {
     ///
     /// - `in_audio_converter` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertersetproperty(_:_:_:_:)?language=objc)
     pub fn AudioConverterSetProperty(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
@@ -562,6 +581,8 @@ extern "C-unwind" {
     /// - `in_input_data` must be a valid pointer.
     /// - `io_output_data_size` must be a valid pointer.
     /// - `out_output_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterconvertbuffer(_:_:_:_:_:)?language=objc)
     pub fn AudioConverterConvertBuffer(
         in_audio_converter: AudioConverterRef,
         in_input_data_size: u32,
@@ -700,6 +721,8 @@ extern "C-unwind" {
     /// - `io_output_data_packet_size` must be a valid pointer.
     /// - `out_output_data` must be a valid pointer.
     /// - `out_packet_description` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterFillComplexBuffer(
         in_audio_converter: AudioConverterRef,
@@ -730,6 +753,8 @@ extern "C-unwind" {
     /// - `io_output_data_packet_size` must be a valid pointer.
     /// - `out_output_data` must be a valid pointer.
     /// - `out_packet_description` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbufferrealtimesafe(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterFillComplexBufferRealtimeSafe(
         in_audio_converter: AudioConverterRef,
@@ -793,6 +818,8 @@ extern "C-unwind" {
     /// - `out_output_data` must be a valid pointer.
     /// - `out_packet_descriptions` must be a valid pointer or null.
     /// - `out_packet_dependencies` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbufferwithpacketdependencies(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterFillComplexBufferWithPacketDependencies(
         in_audio_converter: AudioConverterRef,
@@ -831,6 +858,8 @@ extern "C-unwind" {
     /// - `in_audio_converter` must be a valid pointer.
     /// - `in_input_data` must be a valid pointer.
     /// - `out_output_data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterconvertcomplexbuffer(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterConvertComplexBuffer(
         in_audio_converter: AudioConverterRef,
@@ -888,6 +917,8 @@ pub type AudioConverterInputDataProc = Option<
 >;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillbuffer?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_audio_converter` must be a valid pointer.

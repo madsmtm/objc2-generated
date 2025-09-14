@@ -21,10 +21,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewFlowLayoutSectionInsetReference(pub NSInteger);
 impl UICollectionViewFlowLayoutSectionInsetReference {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/sectioninsetreference-swift.enum/fromcontentinset?language=objc)
     #[doc(alias = "UICollectionViewFlowLayoutSectionInsetFromContentInset")]
     pub const FromContentInset: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/sectioninsetreference-swift.enum/fromsafearea?language=objc)
     #[doc(alias = "UICollectionViewFlowLayoutSectionInsetFromSafeArea")]
     pub const FromSafeArea: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/sectioninsetreference-swift.enum/fromlayoutmargins?language=objc)
     #[doc(alias = "UICollectionViewFlowLayoutSectionInsetFromLayoutMargins")]
     pub const FromLayoutMargins: Self = Self(2);
 }

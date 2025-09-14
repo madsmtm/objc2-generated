@@ -4,9 +4,13 @@ use core::ffi::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayfadereservationinvalidtoken?language=objc)
 pub const kCGDisplayFadeReservationInvalidToken: c_uint = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayblendnormal?language=objc)
 pub const kCGDisplayBlendNormal: c_float = 0.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayblendsolidcolor?language=objc)
 pub const kCGDisplayBlendSolidColor: c_float = 1.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgmaxdisplayreservationinterval?language=objc)
 pub const kCGMaxDisplayReservationInterval: CGDisplayReservationInterval = 15.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayfadereservationtoken?language=objc)
 pub type CGDisplayFadeReservationToken = u32;
@@ -18,6 +22,8 @@ pub type CGDisplayBlendFraction = c_float;
 pub type CGDisplayFadeInterval = c_float;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplayfadeeffect(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `config` must be a valid pointer or null.
@@ -36,6 +42,8 @@ extern "C-unwind" {
 pub type CGDisplayReservationInterval = c_float;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgacquiredisplayfadereservation(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `token` must be a valid pointer or null.
@@ -46,6 +54,7 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgreleasedisplayfadereservation(_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGReleaseDisplayFadeReservation(
@@ -57,6 +66,7 @@ pub extern "C-unwind" fn CGReleaseDisplayFadeReservation(
     unsafe { CGReleaseDisplayFadeReservation(token) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayfade(_:_:_:_:_:_:_:_:)?language=objc)
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayFade(
@@ -95,6 +105,7 @@ pub extern "C-unwind" fn CGDisplayFade(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayfadeoperationinprogress()?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]

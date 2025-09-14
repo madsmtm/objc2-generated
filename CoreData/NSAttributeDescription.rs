@@ -13,36 +13,52 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributeType(pub NSUInteger);
 impl NSAttributeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/undefinedattributetype?language=objc)
     #[doc(alias = "NSUndefinedAttributeType")]
     pub const UndefinedAttributeType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/integer16attributetype?language=objc)
     #[doc(alias = "NSInteger16AttributeType")]
     pub const Integer16AttributeType: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/integer32attributetype?language=objc)
     #[doc(alias = "NSInteger32AttributeType")]
     pub const Integer32AttributeType: Self = Self(200);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/integer64attributetype?language=objc)
     #[doc(alias = "NSInteger64AttributeType")]
     pub const Integer64AttributeType: Self = Self(300);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/decimalattributetype?language=objc)
     #[doc(alias = "NSDecimalAttributeType")]
     pub const DecimalAttributeType: Self = Self(400);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/doubleattributetype?language=objc)
     #[doc(alias = "NSDoubleAttributeType")]
     pub const DoubleAttributeType: Self = Self(500);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/floatattributetype?language=objc)
     #[doc(alias = "NSFloatAttributeType")]
     pub const FloatAttributeType: Self = Self(600);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/stringattributetype?language=objc)
     #[doc(alias = "NSStringAttributeType")]
     pub const StringAttributeType: Self = Self(700);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/booleanattributetype?language=objc)
     #[doc(alias = "NSBooleanAttributeType")]
     pub const BooleanAttributeType: Self = Self(800);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/dateattributetype?language=objc)
     #[doc(alias = "NSDateAttributeType")]
     pub const DateAttributeType: Self = Self(900);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/binarydataattributetype?language=objc)
     #[doc(alias = "NSBinaryDataAttributeType")]
     pub const BinaryDataAttributeType: Self = Self(1000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/uuidattributetype?language=objc)
     #[doc(alias = "NSUUIDAttributeType")]
     pub const UUIDAttributeType: Self = Self(1100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/uriattributetype?language=objc)
     #[doc(alias = "NSURIAttributeType")]
     pub const URIAttributeType: Self = Self(1200);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/transformableattributetype?language=objc)
     #[doc(alias = "NSTransformableAttributeType")]
     pub const TransformableAttributeType: Self = Self(1800);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/objectidattributetype?language=objc)
     #[doc(alias = "NSObjectIDAttributeType")]
     pub const ObjectIDAttributeType: Self = Self(2000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/compositeattributetype?language=objc)
     #[doc(alias = "NSCompositeAttributeType")]
     pub const CompositeAttributeType: Self = Self(2100);
 }

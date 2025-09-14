@@ -185,12 +185,16 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFetchedResultsChangeType(pub NSUInteger);
 impl NSFetchedResultsChangeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultschangetype/insert?language=objc)
     #[doc(alias = "NSFetchedResultsChangeInsert")]
     pub const Insert: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultschangetype/delete?language=objc)
     #[doc(alias = "NSFetchedResultsChangeDelete")]
     pub const Delete: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultschangetype/move?language=objc)
     #[doc(alias = "NSFetchedResultsChangeMove")]
     pub const Move: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultschangetype/update?language=objc)
     #[doc(alias = "NSFetchedResultsChangeUpdate")]
     pub const Update: Self = Self(4);
 }

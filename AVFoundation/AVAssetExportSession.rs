@@ -170,16 +170,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetExportSessionStatus(pub NSInteger);
 impl AVAssetExportSessionStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/unknown?language=objc)
     #[doc(alias = "AVAssetExportSessionStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/waiting?language=objc)
     #[doc(alias = "AVAssetExportSessionStatusWaiting")]
     pub const Waiting: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/exporting?language=objc)
     #[doc(alias = "AVAssetExportSessionStatusExporting")]
     pub const Exporting: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/completed?language=objc)
     #[doc(alias = "AVAssetExportSessionStatusCompleted")]
     pub const Completed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/failed?language=objc)
     #[doc(alias = "AVAssetExportSessionStatusFailed")]
     pub const Failed: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/cancelled?language=objc)
     #[doc(alias = "AVAssetExportSessionStatusCancelled")]
     pub const Cancelled: Self = Self(5);
 }
@@ -208,10 +214,13 @@ unsafe impl RefEncode for AVAssetExportSessionStatus {
 pub struct AVAssetTrackGroupOutputHandling(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAssetTrackGroupOutputHandling: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling/avassettrackgroupoutputhandlingnone?language=objc)
         #[doc(alias = "AVAssetTrackGroupOutputHandlingNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling/preservealternatetracks?language=objc)
         #[doc(alias = "AVAssetTrackGroupOutputHandlingPreserveAlternateTracks")]
         const PreserveAlternateTracks = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling/avassettrackgroupoutputhandlingdefaultpolicy?language=objc)
         #[doc(alias = "AVAssetTrackGroupOutputHandlingDefaultPolicy")]
         const DefaultPolicy = AVAssetTrackGroupOutputHandling::None.0;
     }

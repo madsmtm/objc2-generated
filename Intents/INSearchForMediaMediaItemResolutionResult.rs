@@ -12,20 +12,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSearchForMediaMediaItemUnsupportedReason(pub NSInteger);
 impl INSearchForMediaMediaItemUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/loginrequired?language=objc)
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonLoginRequired")]
     pub const LoginRequired: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/subscriptionrequired?language=objc)
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonSubscriptionRequired")]
     pub const SubscriptionRequired: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/unsupportedmediatype?language=objc)
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonUnsupportedMediaType")]
     pub const UnsupportedMediaType: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/explicitcontentsettings?language=objc)
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonExplicitContentSettings")]
     pub const ExplicitContentSettings: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/cellulardatasettings?language=objc)
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonCellularDataSettings")]
     pub const CellularDataSettings: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/restrictedcontent?language=objc)
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonRestrictedContent")]
     pub const RestrictedContent: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/serviceunavailable?language=objc)
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonServiceUnavailable")]
     pub const ServiceUnavailable: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/regionrestriction?language=objc)
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonRegionRestriction")]
     pub const RegionRestriction: Self = Self(8);
 }

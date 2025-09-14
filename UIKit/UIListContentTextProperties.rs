@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIListContentTextAlignment(pub NSInteger);
 impl UIListContentTextAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttextalignment/uilistcontenttextalignmentnatural?language=objc)
     #[doc(alias = "UIListContentTextAlignmentNatural")]
     pub const Natural: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttextalignment/uilistcontenttextalignmentcenter?language=objc)
     #[doc(alias = "UIListContentTextAlignmentCenter")]
     pub const Center: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttextalignment/uilistcontenttextalignmentjustified?language=objc)
     #[doc(alias = "UIListContentTextAlignmentJustified")]
     pub const Justified: Self = Self(2);
 }
@@ -37,12 +40,16 @@ unsafe impl RefEncode for UIListContentTextAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIListContentTextTransform(pub NSInteger);
 impl UIListContentTextTransform {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttexttransform/uilistcontenttexttransformnone?language=objc)
     #[doc(alias = "UIListContentTextTransformNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttexttransform/uilistcontenttexttransformuppercase?language=objc)
     #[doc(alias = "UIListContentTextTransformUppercase")]
     pub const Uppercase: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttexttransform/uilistcontenttexttransformlowercase?language=objc)
     #[doc(alias = "UIListContentTextTransformLowercase")]
     pub const Lowercase: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttexttransform/uilistcontenttexttransformcapitalized?language=objc)
     #[doc(alias = "UIListContentTextTransformCapitalized")]
     pub const Capitalized: Self = Self(3);
 }

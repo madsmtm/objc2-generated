@@ -45,6 +45,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFBitVector {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgettypeid()?language=objc)
     #[doc(alias = "CFBitVectorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -56,6 +57,8 @@ unsafe impl ConcreteType for CFBitVector {
 }
 
 impl CFBitVector {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorcreate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -78,6 +81,8 @@ impl CFBitVector {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorcreatecopy(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -100,6 +105,8 @@ impl CFBitVector {
 }
 
 impl CFMutableBitVector {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorcreatemutable(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `allocator` might not allow `None`.
@@ -119,6 +126,8 @@ impl CFMutableBitVector {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorcreatemutablecopy(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -143,6 +152,7 @@ impl CFMutableBitVector {
 }
 
 impl CFBitVector {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetcount(_:)?language=objc)
     #[doc(alias = "CFBitVectorGetCount")]
     #[inline]
     pub fn count(&self) -> CFIndex {
@@ -152,6 +162,7 @@ impl CFBitVector {
         unsafe { CFBitVectorGetCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetcountofbit(_:_:_:)?language=objc)
     #[doc(alias = "CFBitVectorGetCountOfBit")]
     #[inline]
     pub fn count_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
@@ -161,6 +172,7 @@ impl CFBitVector {
         unsafe { CFBitVectorGetCountOfBit(self, range, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorcontainsbit(_:_:_:)?language=objc)
     #[doc(alias = "CFBitVectorContainsBit")]
     #[inline]
     pub fn contains_bit(&self, range: CFRange, value: CFBit) -> bool {
@@ -171,6 +183,7 @@ impl CFBitVector {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetbitatindex(_:_:)?language=objc)
     #[doc(alias = "CFBitVectorGetBitAtIndex")]
     #[inline]
     pub fn bit_at_index(&self, idx: CFIndex) -> CFBit {
@@ -180,6 +193,8 @@ impl CFBitVector {
         unsafe { CFBitVectorGetBitAtIndex(self, idx) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetbits(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `bytes` must be a valid pointer.
@@ -192,6 +207,7 @@ impl CFBitVector {
         unsafe { CFBitVectorGetBits(self, range, bytes) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetfirstindexofbit(_:_:_:)?language=objc)
     #[doc(alias = "CFBitVectorGetFirstIndexOfBit")]
     #[inline]
     pub fn first_index_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
@@ -205,6 +221,7 @@ impl CFBitVector {
         unsafe { CFBitVectorGetFirstIndexOfBit(self, range, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetlastindexofbit(_:_:_:)?language=objc)
     #[doc(alias = "CFBitVectorGetLastIndexOfBit")]
     #[inline]
     pub fn last_index_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
@@ -220,6 +237,8 @@ impl CFBitVector {
 }
 
 impl CFMutableBitVector {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorsetcount(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `bv` might not allow `None`.
@@ -232,6 +251,8 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorSetCount(bv, count) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorflipbitatindex(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `bv` might not allow `None`.
@@ -244,6 +265,8 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorFlipBitAtIndex(bv, idx) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorflipbits(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `bv` might not allow `None`.
@@ -256,6 +279,8 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorFlipBits(bv, range) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorsetbitatindex(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `bv` might not allow `None`.
@@ -272,6 +297,8 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorSetBitAtIndex(bv, idx, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorsetbits(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `bv` might not allow `None`.
@@ -284,6 +311,8 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorSetBits(bv, range, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorsetallbits(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `bv` might not allow `None`.

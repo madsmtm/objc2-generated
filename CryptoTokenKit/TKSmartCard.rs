@@ -110,18 +110,28 @@ impl TKSmartCardSlotManager {
 pub struct TKSmartCardSlotState(pub NSInteger);
 impl TKSmartCardSlotState {
     /// Slot is no longer known to the system.  This is terminal state for TKSmartCardSlot instance, once reached, the slot instance can never be revived.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum/missing?language=objc)
     #[doc(alias = "TKSmartCardSlotStateMissing")]
     pub const Missing: Self = Self(0);
     /// The slot is empty, no card is inserted.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum/empty?language=objc)
     #[doc(alias = "TKSmartCardSlotStateEmpty")]
     pub const Empty: Self = Self(1);
     /// The card was inserted into the slot and an initial probe is in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum/probing?language=objc)
     #[doc(alias = "TKSmartCardSlotStateProbing")]
     pub const Probing: Self = Self(2);
     /// The card inserted in the slot does not answer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum/mutecard?language=objc)
     #[doc(alias = "TKSmartCardSlotStateMuteCard")]
     pub const MuteCard: Self = Self(3);
     /// Card properly answered to reset.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum/validcard?language=objc)
     #[doc(alias = "TKSmartCardSlotStateValidCard")]
     pub const ValidCard: Self = Self(4);
 }
@@ -143,12 +153,18 @@ unsafe impl RefEncode for TKSmartCardSlotState {
 pub struct TKSmartCardPINCharset(pub NSInteger);
 impl TKSmartCardPINCharset {
     /// PIN is only composed of digits.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/charset-swift.enum/numeric?language=objc)
     #[doc(alias = "TKSmartCardPINCharsetNumeric")]
     pub const Numeric: Self = Self(0);
     /// PIN can be composed of digits and letters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/charset-swift.enum/alphanumeric?language=objc)
     #[doc(alias = "TKSmartCardPINCharsetAlphanumeric")]
     pub const Alphanumeric: Self = Self(1);
     /// PIN can be composed of digits and uppercase letters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/charset-swift.enum/upperalphanumeric?language=objc)
     #[doc(alias = "TKSmartCardPINCharsetUpperAlphanumeric")]
     pub const UpperAlphanumeric: Self = Self(2);
 }
@@ -170,12 +186,18 @@ unsafe impl RefEncode for TKSmartCardPINCharset {
 pub struct TKSmartCardPINEncoding(pub NSInteger);
 impl TKSmartCardPINEncoding {
     /// Characters are encoded in Binary format (1234 => 01h 02h 03h 04h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/encoding-swift.enum/binary?language=objc)
     #[doc(alias = "TKSmartCardPINEncodingBinary")]
     pub const Binary: Self = Self(0);
     /// Characters are encoded in ASCII format (1234 => 31h 32h 33h 34h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/encoding-swift.enum/ascii?language=objc)
     #[doc(alias = "TKSmartCardPINEncodingASCII")]
     pub const ASCII: Self = Self(1);
     /// Characters (only digits) are encoded in BCD format (1234 => 12h 34h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/encoding-swift.enum/bcd?language=objc)
     #[doc(alias = "TKSmartCardPINEncodingBCD")]
     pub const BCD: Self = Self(2);
 }
@@ -197,9 +219,13 @@ unsafe impl RefEncode for TKSmartCardPINEncoding {
 pub struct TKSmartCardPINJustification(pub NSInteger);
 impl TKSmartCardPINJustification {
     /// Justify to the left.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/justification/left?language=objc)
     #[doc(alias = "TKSmartCardPINJustificationLeft")]
     pub const Left: Self = Self(0);
     /// Justify to the right.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/justification/right?language=objc)
     #[doc(alias = "TKSmartCardPINJustificationRight")]
     pub const Right: Self = Self(1);
 }
@@ -222,12 +248,18 @@ pub struct TKSmartCardPINCompletion(pub NSUInteger);
 bitflags::bitflags! {
     impl TKSmartCardPINCompletion: NSUInteger {
 /// Completion by reaching the maximum PIN length.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation/completion/maxlength?language=objc)
         #[doc(alias = "TKSmartCardPINCompletionMaxLength")]
         const MaxLength = 1<<0;
 /// Completion by pressing the validation key.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation/completion/key?language=objc)
         #[doc(alias = "TKSmartCardPINCompletionKey")]
         const Key = 1<<1;
 /// Completion by timeout expiration.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation/completion/timeout?language=objc)
         #[doc(alias = "TKSmartCardPINCompletionTimeout")]
         const Timeout = 1<<2;
     }
@@ -251,12 +283,18 @@ pub struct TKSmartCardPINConfirmation(pub NSUInteger);
 bitflags::bitflags! {
     impl TKSmartCardPINConfirmation: NSUInteger {
 /// No confirmation requested.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinconfirmation/tksmartcardpinconfirmationnone?language=objc)
         #[doc(alias = "TKSmartCardPINConfirmationNone")]
         const None = 0;
 /// Confirmation (entry) of the new PIN requested.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinchange/confirmation/new?language=objc)
         #[doc(alias = "TKSmartCardPINConfirmationNew")]
         const New = 1<<0;
 /// Confirmation (entry) of the current PIN requested.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinchange/confirmation/current?language=objc)
         #[doc(alias = "TKSmartCardPINConfirmationCurrent")]
         const Current = 1<<1;
     }

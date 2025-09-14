@@ -17,15 +17,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKChallengeState(pub NSInteger);
 impl GKChallengeState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate/invalid?language=objc)
     #[doc(alias = "GKChallengeStateInvalid")]
     #[deprecated]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate/pending?language=objc)
     #[doc(alias = "GKChallengeStatePending")]
     #[deprecated]
     pub const Pending: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate/completed?language=objc)
     #[doc(alias = "GKChallengeStateCompleted")]
     #[deprecated]
     pub const Completed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate/declined?language=objc)
     #[doc(alias = "GKChallengeStateDeclined")]
     #[deprecated]
     pub const Declined: Self = Self(3);

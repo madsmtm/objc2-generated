@@ -12,12 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SWHighlightPersistenceEventTrigger(pub NSInteger);
 impl SWHighlightPersistenceEventTrigger {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightpersistenceeventtrigger/created?language=objc)
     #[doc(alias = "SWHighlightPersistenceEventTriggerCreated")]
     pub const Created: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightpersistenceeventtrigger/deleted?language=objc)
     #[doc(alias = "SWHighlightPersistenceEventTriggerDeleted")]
     pub const Deleted: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightpersistenceeventtrigger/renamed?language=objc)
     #[doc(alias = "SWHighlightPersistenceEventTriggerRenamed")]
     pub const Renamed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightpersistenceeventtrigger/moved?language=objc)
     #[doc(alias = "SWHighlightPersistenceEventTriggerMoved")]
     pub const Moved: Self = Self(4);
 }

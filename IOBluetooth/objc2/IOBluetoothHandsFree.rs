@@ -19,22 +19,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothHandsFreeDeviceFeatures(pub u32);
 impl IOBluetoothHandsFreeDeviceFeatures {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/none?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/ecandornrfunction?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureECAndOrNRFunction")]
     pub const ECAndOrNRFunction: Self = Self(1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/threewaycalling?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureThreeWayCalling")]
     pub const ThreeWayCalling: Self = Self(1 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/clipresentation?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureCLIPresentation")]
     pub const CLIPresentation: Self = Self(1 << 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/voicerecognition?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureVoiceRecognition")]
     pub const VoiceRecognition: Self = Self(1 << 3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/remotevolumecontrol?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureRemoteVolumeControl")]
     pub const RemoteVolumeControl: Self = Self(1 << 4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/enhancedcallstatus?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureEnhancedCallStatus")]
     pub const EnhancedCallStatus: Self = Self(1 << 5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/enhancedcallcontrol?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureEnhancedCallControl")]
     pub const EnhancedCallControl: Self = Self(1 << 6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/codecnegotiation?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureCodecNegotiation")]
     pub const CodecNegotiation: Self = Self(1 << 7);
 }
@@ -53,26 +62,37 @@ unsafe impl RefEncode for IOBluetoothHandsFreeDeviceFeatures {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothHandsFreeAudioGatewayFeatures(pub u32);
 impl IOBluetoothHandsFreeAudioGatewayFeatures {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/none?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/threewaycalling?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureThreeWayCalling")]
     pub const ThreeWayCalling: Self = Self(1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/ecandornrfunction?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureECAndOrNRFunction")]
     pub const ECAndOrNRFunction: Self = Self(1 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/voicerecognition?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureVoiceRecognition")]
     pub const VoiceRecognition: Self = Self(1 << 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/inbandringtone?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureInBandRingTone")]
     pub const InBandRingTone: Self = Self(1 << 3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/attachednumbertovoicetag?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureAttachedNumberToVoiceTag")]
     pub const AttachedNumberToVoiceTag: Self = Self(1 << 4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/rejectcallcapability?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureRejectCallCapability")]
     pub const RejectCallCapability: Self = Self(1 << 5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/enhancedcallstatus?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureEnhancedCallStatus")]
     pub const EnhancedCallStatus: Self = Self(1 << 6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/enhancedcallcontrol?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureEnhancedCallControl")]
     pub const EnhancedCallControl: Self = Self(1 << 7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/extendederrorresultcodes?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureExtendedErrorResultCodes")]
     pub const ExtendedErrorResultCodes: Self = Self(1 << 8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/codecnegotiation?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureCodecNegotiation")]
     pub const CodecNegotiation: Self = Self(1 << 9);
 }
@@ -91,18 +111,25 @@ unsafe impl RefEncode for IOBluetoothHandsFreeAudioGatewayFeatures {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothHandsFreeCallHoldModes(pub NSUInteger);
 impl IOBluetoothHandsFreeCallHoldModes {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode0?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode0")]
     pub const Mode0: Self = Self(1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode1?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode1")]
     pub const Mode1: Self = Self(1 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode1idx?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode1idx")]
     pub const Mode1idx: Self = Self(1 << 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode2?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode2")]
     pub const Mode2: Self = Self(1 << 3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode2idx?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode2idx")]
     pub const Mode2idx: Self = Self(1 << 4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode3?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode3")]
     pub const Mode3: Self = Self(1 << 5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode4?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode4")]
     pub const Mode4: Self = Self(1 << 6);
 }
@@ -121,10 +148,13 @@ unsafe impl RefEncode for IOBluetoothHandsFreeCallHoldModes {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothHandsFreeCodecID(pub u8);
 impl IOBluetoothHandsFreeCodecID {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecodecid/idcvsd?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCodecIDCVSD")]
     pub const IDCVSD: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecodecid/idmsbc?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCodecIDmSBC")]
     pub const IDmSBC: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecodecid/idaaceld?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCodecIDAACELD")]
     pub const IDAACELD: Self = Self(0x80);
 }
@@ -233,8 +263,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothSMSMode(pub NSUInteger);
 impl IOBluetoothSMSMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsmsmode/pdu?language=objc)
     #[doc(alias = "IOBluetoothSMSModePDU")]
     pub const PDU: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsmsmode/text?language=objc)
     #[doc(alias = "IOBluetoothSMSModeText")]
     pub const Text: Self = Self(1);
 }
@@ -253,10 +285,13 @@ unsafe impl RefEncode for IOBluetoothSMSMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothHandsFreeSMSSupport(pub NSUInteger);
 impl IOBluetoothHandsFreeSMSSupport {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreesmssupport/phase2smssupport?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePhase2SMSSupport")]
     pub const Phase2SMSSupport: Self = Self(1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreesmssupport/phase2psmssupport?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePhase2pSMSSupport")]
     pub const Phase2pSMSSupport: Self = Self(1 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreesmssupport/manufacturespecificsmssupport?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeManufactureSpecificSMSSupport")]
     pub const ManufactureSpecificSMSSupport: Self = Self(1 << 2);
 }
@@ -275,14 +310,19 @@ unsafe impl RefEncode for IOBluetoothHandsFreeSMSSupport {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothHandsFreePDUMessageStatus(pub NSUInteger);
 impl IOBluetoothHandsFreePDUMessageStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus/statusrecunread?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePDUStatusRecUnread")]
     pub const StatusRecUnread: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus/statusrecread?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePDUStatusRecRead")]
     pub const StatusRecRead: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus/statusstounsent?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePDUStatusStoUnsent")]
     pub const StatusStoUnsent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus/statusstosent?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePDUStatusStoSent")]
     pub const StatusStoSent: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus/statusall?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePDUStatusAll")]
     pub const StatusAll: Self = Self(4);
 }

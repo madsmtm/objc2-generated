@@ -15,11 +15,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUsableScrollerParts(pub NSUInteger);
 impl NSUsableScrollerParts {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.enum/noscrollerparts?language=objc)
     #[doc(alias = "NSNoScrollerParts")]
     pub const NoScrollerParts: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.enum/onlyscrollerarrows?language=objc)
     #[doc(alias = "NSOnlyScrollerArrows")]
     #[deprecated = "Scroller arrows are not used anymore."]
     pub const OnlyScrollerArrows: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.enum/allscrollerparts?language=objc)
     #[doc(alias = "NSAllScrollerParts")]
     pub const AllScrollerParts: Self = Self(2);
 }
@@ -38,20 +41,27 @@ unsafe impl RefEncode for NSUsableScrollerParts {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerPart(pub NSUInteger);
 impl NSScrollerPart {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/nopart?language=objc)
     #[doc(alias = "NSScrollerNoPart")]
     pub const NoPart: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/decrementpage?language=objc)
     #[doc(alias = "NSScrollerDecrementPage")]
     pub const DecrementPage: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/knob?language=objc)
     #[doc(alias = "NSScrollerKnob")]
     pub const Knob: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/incrementpage?language=objc)
     #[doc(alias = "NSScrollerIncrementPage")]
     pub const IncrementPage: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/decrementline?language=objc)
     #[doc(alias = "NSScrollerDecrementLine")]
     #[deprecated = "Scroller arrows are not used anymore."]
     pub const DecrementLine: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/incrementline?language=objc)
     #[doc(alias = "NSScrollerIncrementLine")]
     #[deprecated = "Scroller arrows are not used anymore."]
     pub const IncrementLine: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/knobslot?language=objc)
     #[doc(alias = "NSScrollerKnobSlot")]
     pub const KnobSlot: Self = Self(6);
 }
@@ -70,8 +80,10 @@ unsafe impl RefEncode for NSScrollerPart {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerStyle(pub NSInteger);
 impl NSScrollerStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/style/legacy?language=objc)
     #[doc(alias = "NSScrollerStyleLegacy")]
     pub const Legacy: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/style/overlay?language=objc)
     #[doc(alias = "NSScrollerStyleOverlay")]
     pub const Overlay: Self = Self(1);
 }
@@ -90,10 +102,13 @@ unsafe impl RefEncode for NSScrollerStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerKnobStyle(pub NSInteger);
 impl NSScrollerKnobStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.enum/default?language=objc)
     #[doc(alias = "NSScrollerKnobStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.enum/dark?language=objc)
     #[doc(alias = "NSScrollerKnobStyleDark")]
     pub const Dark: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.enum/light?language=objc)
     #[doc(alias = "NSScrollerKnobStyleLight")]
     pub const Light: Self = Self(2);
 }
@@ -331,12 +346,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollArrowPosition(pub NSUInteger);
 impl NSScrollArrowPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrowposition/scrollerarrowsmaxend?language=objc)
     #[doc(alias = "NSScrollerArrowsMaxEnd")]
     pub const ScrollerArrowsMaxEnd: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrowposition/scrollerarrowsminend?language=objc)
     #[doc(alias = "NSScrollerArrowsMinEnd")]
     pub const ScrollerArrowsMinEnd: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrowposition/scrollerarrowsdefaultsetting?language=objc)
     #[doc(alias = "NSScrollerArrowsDefaultSetting")]
     pub const ScrollerArrowsDefaultSetting: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrowposition/scrollerarrowsnone?language=objc)
     #[doc(alias = "NSScrollerArrowsNone")]
     pub const ScrollerArrowsNone: Self = Self(2);
 }
@@ -356,8 +375,10 @@ unsafe impl RefEncode for NSScrollArrowPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerArrow(pub NSUInteger);
 impl NSScrollerArrow {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrow/incrementarrow?language=objc)
     #[doc(alias = "NSScrollerIncrementArrow")]
     pub const IncrementArrow: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrow/decrementarrow?language=objc)
     #[doc(alias = "NSScrollerDecrementArrow")]
     pub const DecrementArrow: Self = Self(1);
 }

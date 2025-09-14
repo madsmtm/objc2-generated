@@ -56,19 +56,26 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestCachePolicy(pub NSUInteger);
 impl NSURLRequestCachePolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/useprotocolcachepolicy?language=objc)
     #[doc(alias = "NSURLRequestUseProtocolCachePolicy")]
     pub const UseProtocolCachePolicy: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/reloadignoringlocalcachedata?language=objc)
     #[doc(alias = "NSURLRequestReloadIgnoringLocalCacheData")]
     pub const ReloadIgnoringLocalCacheData: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/reloadignoringlocalandremotecachedata?language=objc)
     #[doc(alias = "NSURLRequestReloadIgnoringLocalAndRemoteCacheData")]
     pub const ReloadIgnoringLocalAndRemoteCacheData: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/reloadignoringcachedata?language=objc)
     #[doc(alias = "NSURLRequestReloadIgnoringCacheData")]
     pub const ReloadIgnoringCacheData: Self =
         Self(NSURLRequestCachePolicy::ReloadIgnoringLocalCacheData.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/returncachedataelseload?language=objc)
     #[doc(alias = "NSURLRequestReturnCacheDataElseLoad")]
     pub const ReturnCacheDataElseLoad: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/returncachedatadontload?language=objc)
     #[doc(alias = "NSURLRequestReturnCacheDataDontLoad")]
     pub const ReturnCacheDataDontLoad: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/reloadrevalidatingcachedata?language=objc)
     #[doc(alias = "NSURLRequestReloadRevalidatingCacheData")]
     pub const ReloadRevalidatingCacheData: Self = Self(5);
 }
@@ -104,23 +111,32 @@ unsafe impl RefEncode for NSURLRequestCachePolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestNetworkServiceType(pub NSUInteger);
 impl NSURLRequestNetworkServiceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/default?language=objc)
     #[doc(alias = "NSURLNetworkServiceTypeDefault")]
     pub const NetworkServiceTypeDefault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/voip?language=objc)
     #[doc(alias = "NSURLNetworkServiceTypeVoIP")]
     #[deprecated = "Use PushKit for VoIP control purposes"]
     pub const NetworkServiceTypeVoIP: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/video?language=objc)
     #[doc(alias = "NSURLNetworkServiceTypeVideo")]
     pub const NetworkServiceTypeVideo: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/background?language=objc)
     #[doc(alias = "NSURLNetworkServiceTypeBackground")]
     pub const NetworkServiceTypeBackground: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/voice?language=objc)
     #[doc(alias = "NSURLNetworkServiceTypeVoice")]
     pub const NetworkServiceTypeVoice: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/responsivedata?language=objc)
     #[doc(alias = "NSURLNetworkServiceTypeResponsiveData")]
     pub const NetworkServiceTypeResponsiveData: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/avstreaming?language=objc)
     #[doc(alias = "NSURLNetworkServiceTypeAVStreaming")]
     pub const NetworkServiceTypeAVStreaming: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/responsiveav?language=objc)
     #[doc(alias = "NSURLNetworkServiceTypeResponsiveAV")]
     pub const NetworkServiceTypeResponsiveAV: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/callsignaling?language=objc)
     #[doc(alias = "NSURLNetworkServiceTypeCallSignaling")]
     pub const NetworkServiceTypeCallSignaling: Self = Self(11);
 }
@@ -148,8 +164,10 @@ unsafe impl RefEncode for NSURLRequestNetworkServiceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestAttribution(pub NSUInteger);
 impl NSURLRequestAttribution {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum/developer?language=objc)
     #[doc(alias = "NSURLRequestAttributionDeveloper")]
     pub const Developer: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum/user?language=objc)
     #[doc(alias = "NSURLRequestAttributionUser")]
     pub const User: Self = Self(1);
 }

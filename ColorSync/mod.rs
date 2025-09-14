@@ -496,7 +496,9 @@ use core::ffi::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_api_version?language=objc)
 pub const COLORSYNC_API_VERSION: c_uint = 0x1A010000;
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncapiversion()?language=objc)
     pub fn ColorSyncAPIVersion() -> u32;
 }

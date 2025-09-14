@@ -16,17 +16,22 @@ use crate::*;
 pub struct MTLStitchedLibraryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLStitchedLibraryOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstitchedlibraryoptions/mtlstitchedlibraryoptionnone?language=objc)
         #[doc(alias = "MTLStitchedLibraryOptionNone")]
         const None = 0;
 /// Library creation fails (i.e nil is returned) if:
 /// - A lookup binary archive has been specified
 /// - The library has not been found in the archive
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstitchedlibraryoptions/failonbinaryarchivemiss?language=objc)
         #[doc(alias = "MTLStitchedLibraryOptionFailOnBinaryArchiveMiss")]
         const FailOnBinaryArchiveMiss = 1<<0;
 /// stores and tracks this library in a Metal Pipelines Script
 /// This flag is optional and only supported in the context of binary archives.
 ///
 /// This flag is required for inspecting and consuming binary archives with stitched libraries via the metal-source tool. It is not required for recompilation, nor for storing stitched libraries in binary archives. Set this flag only if you intend to use metal-source on a serialized binary archive.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstitchedlibraryoptions/storelibraryinmetalpipelinesscript?language=objc)
         #[doc(alias = "MTLStitchedLibraryOptionStoreLibraryInMetalPipelinesScript")]
         const StoreLibraryInMetalPipelinesScript = 1<<1;
     }

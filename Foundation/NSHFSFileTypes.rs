@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletypeforhfstypecode(_:)?language=objc)
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSFileTypeForHFSTypeCode(
@@ -17,6 +18,8 @@ pub extern "C-unwind" fn NSFileTypeForHFSTypeCode(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshfstypecodefromfiletype(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `file_type_string` might not allow `None`.
@@ -24,6 +27,8 @@ extern "C-unwind" {
     pub fn NSHFSTypeCodeFromFileType(file_type_string: Option<&NSString>) -> OSType;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshfstypeoffile(_:)?language=objc)
+///
 /// # Safety
 ///
 /// `full_file_path` might not allow `None`.

@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionUpdateAction(pub NSInteger);
 impl UICollectionUpdateAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action/insert?language=objc)
     #[doc(alias = "UICollectionUpdateActionInsert")]
     pub const Insert: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action/delete?language=objc)
     #[doc(alias = "UICollectionUpdateActionDelete")]
     pub const Delete: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action/reload?language=objc)
     #[doc(alias = "UICollectionUpdateActionReload")]
     pub const Reload: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action/move?language=objc)
     #[doc(alias = "UICollectionUpdateActionMove")]
     pub const Move: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action/none?language=objc)
     #[doc(alias = "UICollectionUpdateActionNone")]
     pub const None: Self = Self(4);
 }

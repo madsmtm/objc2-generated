@@ -15,14 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CPTripPauseReason(pub NSUInteger);
 impl CPTripPauseReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/arrived?language=objc)
     #[doc(alias = "CPTripPauseReasonArrived")]
     pub const Arrived: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/loading?language=objc)
     #[doc(alias = "CPTripPauseReasonLoading")]
     pub const Loading: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/locating?language=objc)
     #[doc(alias = "CPTripPauseReasonLocating")]
     pub const Locating: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/rerouting?language=objc)
     #[doc(alias = "CPTripPauseReasonRerouting")]
     pub const Rerouting: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/proceedtoroute?language=objc)
     #[doc(alias = "CPTripPauseReasonProceedToRoute")]
     pub const ProceedToRoute: Self = Self(5);
 }

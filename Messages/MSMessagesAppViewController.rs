@@ -19,10 +19,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MSMessagesAppPresentationStyle(pub NSUInteger);
 impl MSMessagesAppPresentationStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/compact?language=objc)
     #[doc(alias = "MSMessagesAppPresentationStyleCompact")]
     pub const Compact: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/expanded?language=objc)
     #[doc(alias = "MSMessagesAppPresentationStyleExpanded")]
     pub const Expanded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/transcript?language=objc)
     #[doc(alias = "MSMessagesAppPresentationStyleTranscript")]
     pub const Transcript: Self = Self(2);
 }
@@ -43,8 +46,10 @@ unsafe impl RefEncode for MSMessagesAppPresentationStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MSMessagesAppPresentationContext(pub NSUInteger);
 impl MSMessagesAppPresentationContext {
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationcontext/messages?language=objc)
     #[doc(alias = "MSMessagesAppPresentationContextMessages")]
     pub const Messages: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationcontext/media?language=objc)
     #[doc(alias = "MSMessagesAppPresentationContextMedia")]
     pub const Media: Self = Self(1);
 }

@@ -18,12 +18,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCDeviceBatteryState(pub NSInteger);
 impl GCDeviceBatteryState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery/state/unknown?language=objc)
     #[doc(alias = "GCDeviceBatteryStateUnknown")]
     pub const Unknown: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery/state/discharging?language=objc)
     #[doc(alias = "GCDeviceBatteryStateDischarging")]
     pub const Discharging: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery/state/charging?language=objc)
     #[doc(alias = "GCDeviceBatteryStateCharging")]
     pub const Charging: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery/state/full?language=objc)
     #[doc(alias = "GCDeviceBatteryStateFull")]
     pub const Full: Self = Self(2);
 }

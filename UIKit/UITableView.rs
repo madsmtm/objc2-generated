@@ -18,10 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewStyle(pub NSInteger);
 impl UITableViewStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/style-swift.enum/plain?language=objc)
     #[doc(alias = "UITableViewStylePlain")]
     pub const Plain: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/style-swift.enum/grouped?language=objc)
     #[doc(alias = "UITableViewStyleGrouped")]
     pub const Grouped: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/style-swift.enum/insetgrouped?language=objc)
     #[doc(alias = "UITableViewStyleInsetGrouped")]
     pub const InsetGrouped: Self = Self(2);
 }
@@ -40,12 +43,16 @@ unsafe impl RefEncode for UITableViewStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewScrollPosition(pub NSInteger);
 impl UITableViewScrollPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/scrollposition/none?language=objc)
     #[doc(alias = "UITableViewScrollPositionNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/scrollposition/top?language=objc)
     #[doc(alias = "UITableViewScrollPositionTop")]
     pub const Top: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/scrollposition/middle?language=objc)
     #[doc(alias = "UITableViewScrollPositionMiddle")]
     pub const Middle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/scrollposition/bottom?language=objc)
     #[doc(alias = "UITableViewScrollPositionBottom")]
     pub const Bottom: Self = Self(3);
 }
@@ -64,20 +71,28 @@ unsafe impl RefEncode for UITableViewScrollPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewRowAnimation(pub NSInteger);
 impl UITableViewRowAnimation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/fade?language=objc)
     #[doc(alias = "UITableViewRowAnimationFade")]
     pub const Fade: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/right?language=objc)
     #[doc(alias = "UITableViewRowAnimationRight")]
     pub const Right: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/left?language=objc)
     #[doc(alias = "UITableViewRowAnimationLeft")]
     pub const Left: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/top?language=objc)
     #[doc(alias = "UITableViewRowAnimationTop")]
     pub const Top: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/bottom?language=objc)
     #[doc(alias = "UITableViewRowAnimationBottom")]
     pub const Bottom: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/none?language=objc)
     #[doc(alias = "UITableViewRowAnimationNone")]
     pub const None: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/middle?language=objc)
     #[doc(alias = "UITableViewRowAnimationMiddle")]
     pub const Middle: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/automatic?language=objc)
     #[doc(alias = "UITableViewRowAnimationAutomatic")]
     pub const Automatic: Self = Self(100);
 }
@@ -100,9 +115,13 @@ pub struct UITableViewContentHuggingElements(pub NSInteger);
 bitflags::bitflags! {
     impl UITableViewContentHuggingElements: NSInteger {
 /// A content hugging mode where none of the items in the table view tightly hug their content
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcontenthuggingelements/uitableviewcontenthuggingelementsnone?language=objc)
         #[doc(alias = "UITableViewContentHuggingElementsNone")]
         const None = 0;
 /// A content hugging mode where section headers in the table view tightly hug their content
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcontenthuggingelements/sectionheaders?language=objc)
         #[doc(alias = "UITableViewContentHuggingElementsSectionHeaders")]
         const SectionHeaders = 1<<0;
     }
@@ -134,12 +153,15 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewRowActionStyle(pub NSInteger);
 impl UITableViewRowActionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowaction/style-swift.enum/default?language=objc)
     #[doc(alias = "UITableViewRowActionStyleDefault")]
     #[deprecated = "Use UIContextualAction and related APIs instead."]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowaction/style-swift.enum/destructive?language=objc)
     #[doc(alias = "UITableViewRowActionStyleDestructive")]
     #[deprecated = "Use UIContextualAction and related APIs instead."]
     pub const Destructive: Self = Self(UITableViewRowActionStyle::Default.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowaction/style-swift.enum/normal?language=objc)
     #[doc(alias = "UITableViewRowActionStyleNormal")]
     #[deprecated = "Use UIContextualAction and related APIs instead."]
     pub const Normal: Self = Self(1);
@@ -1035,8 +1057,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewSeparatorInsetReference(pub NSInteger);
 impl UITableViewSeparatorInsetReference {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/separatorinsetreference-swift.enum/fromcelledges?language=objc)
     #[doc(alias = "UITableViewSeparatorInsetFromCellEdges")]
     pub const FromCellEdges: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/separatorinsetreference-swift.enum/fromautomaticinsets?language=objc)
     #[doc(alias = "UITableViewSeparatorInsetFromAutomaticInsets")]
     pub const FromAutomaticInsets: Self = Self(1);
 }
@@ -1056,13 +1080,19 @@ unsafe impl RefEncode for UITableViewSeparatorInsetReference {
 pub struct UITableViewSelfSizingInvalidation(pub NSInteger);
 impl UITableViewSelfSizingInvalidation {
     /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/selfsizinginvalidation-swift.enum/disabled?language=objc)
     #[doc(alias = "UITableViewSelfSizingInvalidationDisabled")]
     pub const Disabled: Self = Self(0);
     /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/selfsizinginvalidation-swift.enum/enabled?language=objc)
     #[doc(alias = "UITableViewSelfSizingInvalidationEnabled")]
     pub const Enabled: Self = Self(1);
     /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary, and
     /// any Auto Layout changes within the contentView of a self-sizing cell will automatically trigger -invalidateIntrinsicContentSize.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/selfsizinginvalidation-swift.enum/enabledincludingconstraints?language=objc)
     #[doc(alias = "UITableViewSelfSizingInvalidationEnabledIncludingConstraints")]
     pub const EnabledIncludingConstraints: Self = Self(2);
 }
@@ -2404,12 +2434,16 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewDropIntent(pub NSInteger);
 impl UITableViewDropIntent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal/intent-swift.enum/unspecified?language=objc)
     #[doc(alias = "UITableViewDropIntentUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal/intent-swift.enum/insertatdestinationindexpath?language=objc)
     #[doc(alias = "UITableViewDropIntentInsertAtDestinationIndexPath")]
     pub const InsertAtDestinationIndexPath: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal/intent-swift.enum/insertintodestinationindexpath?language=objc)
     #[doc(alias = "UITableViewDropIntentInsertIntoDestinationIndexPath")]
     pub const InsertIntoDestinationIndexPath: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal/intent-swift.enum/automatic?language=objc)
     #[doc(alias = "UITableViewDropIntentAutomatic")]
     pub const Automatic: Self = Self(3);
 }

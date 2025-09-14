@@ -20,12 +20,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIColorProminence(pub NSInteger);
 impl UIColorProminence {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolor/prominence-swift.enum/primary?language=objc)
     #[doc(alias = "UIColorProminencePrimary")]
     pub const Primary: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolor/prominence-swift.enum/secondary?language=objc)
     #[doc(alias = "UIColorProminenceSecondary")]
     pub const Secondary: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolor/prominence-swift.enum/tertiary?language=objc)
     #[doc(alias = "UIColorProminenceTertiary")]
     pub const Tertiary: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolor/prominence-swift.enum/quaternary?language=objc)
     #[doc(alias = "UIColorProminenceQuaternary")]
     pub const Quaternary: Self = Self(3);
 }

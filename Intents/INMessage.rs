@@ -13,71 +13,103 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMessageType(pub NSInteger);
 impl INMessageType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/unspecified?language=objc)
     #[doc(alias = "INMessageTypeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/text?language=objc)
     #[doc(alias = "INMessageTypeText")]
     pub const Text: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/audio?language=objc)
     #[doc(alias = "INMessageTypeAudio")]
     pub const Audio: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/digitaltouch?language=objc)
     #[doc(alias = "INMessageTypeDigitalTouch")]
     pub const DigitalTouch: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/handwriting?language=objc)
     #[doc(alias = "INMessageTypeHandwriting")]
     pub const Handwriting: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/sticker?language=objc)
     #[doc(alias = "INMessageTypeSticker")]
     pub const Sticker: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbackliked?language=objc)
     #[doc(alias = "INMessageTypeTapbackLiked")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackLiked: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbackdisliked?language=objc)
     #[doc(alias = "INMessageTypeTapbackDisliked")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackDisliked: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbackemphasized?language=objc)
     #[doc(alias = "INMessageTypeTapbackEmphasized")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackEmphasized: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbackloved?language=objc)
     #[doc(alias = "INMessageTypeTapbackLoved")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackLoved: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbackquestioned?language=objc)
     #[doc(alias = "INMessageTypeTapbackQuestioned")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackQuestioned: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbacklaughed?language=objc)
     #[doc(alias = "INMessageTypeTapbackLaughed")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackLaughed: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediacalendar?language=objc)
     #[doc(alias = "INMessageTypeMediaCalendar")]
     pub const MediaCalendar: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/medialocation?language=objc)
     #[doc(alias = "INMessageTypeMediaLocation")]
     pub const MediaLocation: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediaaddresscard?language=objc)
     #[doc(alias = "INMessageTypeMediaAddressCard")]
     pub const MediaAddressCard: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediaimage?language=objc)
     #[doc(alias = "INMessageTypeMediaImage")]
     pub const MediaImage: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediavideo?language=objc)
     #[doc(alias = "INMessageTypeMediaVideo")]
     pub const MediaVideo: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediapass?language=objc)
     #[doc(alias = "INMessageTypeMediaPass")]
     pub const MediaPass: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediaaudio?language=objc)
     #[doc(alias = "INMessageTypeMediaAudio")]
     pub const MediaAudio: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/paymentsent?language=objc)
     #[doc(alias = "INMessageTypePaymentSent")]
     pub const PaymentSent: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/paymentrequest?language=objc)
     #[doc(alias = "INMessageTypePaymentRequest")]
     pub const PaymentRequest: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/paymentnote?language=objc)
     #[doc(alias = "INMessageTypePaymentNote")]
     pub const PaymentNote: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/animoji?language=objc)
     #[doc(alias = "INMessageTypeAnimoji")]
     pub const Animoji: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/activitysnippet?language=objc)
     #[doc(alias = "INMessageTypeActivitySnippet")]
     pub const ActivitySnippet: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/file?language=objc)
     #[doc(alias = "INMessageTypeFile")]
     pub const File: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/link?language=objc)
     #[doc(alias = "INMessageTypeLink")]
     pub const Link: Self = Self(25);
     /// The message contains a reaction to another message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/reaction?language=objc)
     #[doc(alias = "INMessageTypeReaction")]
     pub const Reaction: Self = Self(26);
     /// Media content containing an animated image, such as a GIF.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediaanimatedimage?language=objc)
     #[doc(alias = "INMessageTypeMediaAnimatedImage")]
     pub const MediaAnimatedImage: Self = Self(27);
     /// The message contains an attachment from a third party application.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/thirdpartyattachment?language=objc)
     #[doc(alias = "INMessageTypeThirdPartyAttachment")]
     pub const ThirdPartyAttachment: Self = Self(28);
 }

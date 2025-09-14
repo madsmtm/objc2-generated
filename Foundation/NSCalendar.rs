@@ -182,74 +182,109 @@ extern "C" {
 pub struct NSCalendarUnit(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCalendarUnit: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/era?language=objc)
         #[doc(alias = "NSCalendarUnitEra")]
         const Era = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/year?language=objc)
         #[doc(alias = "NSCalendarUnitYear")]
         const Year = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/month?language=objc)
         #[doc(alias = "NSCalendarUnitMonth")]
         const Month = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/day?language=objc)
         #[doc(alias = "NSCalendarUnitDay")]
         const Day = 16;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/hour?language=objc)
         #[doc(alias = "NSCalendarUnitHour")]
         const Hour = 32;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/minute?language=objc)
         #[doc(alias = "NSCalendarUnitMinute")]
         const Minute = 64;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/second?language=objc)
         #[doc(alias = "NSCalendarUnitSecond")]
         const Second = 128;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/weekday?language=objc)
         #[doc(alias = "NSCalendarUnitWeekday")]
         const Weekday = 512;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/weekdayordinal?language=objc)
         #[doc(alias = "NSCalendarUnitWeekdayOrdinal")]
         const WeekdayOrdinal = 1024;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/quarter?language=objc)
         #[doc(alias = "NSCalendarUnitQuarter")]
         const Quarter = 2048;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/weekofmonth?language=objc)
         #[doc(alias = "NSCalendarUnitWeekOfMonth")]
         const WeekOfMonth = 4096;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/weekofyear?language=objc)
         #[doc(alias = "NSCalendarUnitWeekOfYear")]
         const WeekOfYear = 8192;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/yearforweekofyear?language=objc)
         #[doc(alias = "NSCalendarUnitYearForWeekOfYear")]
         const YearForWeekOfYear = 16384;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nanosecond?language=objc)
         #[doc(alias = "NSCalendarUnitNanosecond")]
         const Nanosecond = 32768;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/dayofyear?language=objc)
         #[doc(alias = "NSCalendarUnitDayOfYear")]
         const DayOfYear = 65536;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/calendar?language=objc)
         #[doc(alias = "NSCalendarUnitCalendar")]
         const Calendar = 1048576;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/timezone?language=objc)
         #[doc(alias = "NSCalendarUnitTimeZone")]
         const TimeZone = 2097152;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/isleapmonth?language=objc)
         #[doc(alias = "NSCalendarUnitIsLeapMonth")]
         const IsLeapMonth = 1073741824;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/isrepeatedday?language=objc)
         #[doc(alias = "NSCalendarUnitIsRepeatedDay")]
         const IsRepeatedDay = 2147483648;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nseracalendarunit?language=objc)
 #[deprecated]
         const NSEraCalendarUnit = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsyearcalendarunit?language=objc)
 #[deprecated]
         const NSYearCalendarUnit = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsmonthcalendarunit?language=objc)
 #[deprecated]
         const NSMonthCalendarUnit = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsdaycalendarunit?language=objc)
 #[deprecated]
         const NSDayCalendarUnit = 16;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nshourcalendarunit?language=objc)
 #[deprecated]
         const NSHourCalendarUnit = 32;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsminutecalendarunit?language=objc)
 #[deprecated]
         const NSMinuteCalendarUnit = 64;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nssecondcalendarunit?language=objc)
 #[deprecated]
         const NSSecondCalendarUnit = 128;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekcalendarunit?language=objc)
 #[deprecated = "NSCalendarUnitWeekOfMonth or NSCalendarUnitWeekOfYear, depending on which you mean"]
         const NSWeekCalendarUnit = 256;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekdaycalendarunit?language=objc)
 #[deprecated]
         const NSWeekdayCalendarUnit = 512;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekdayordinalcalendarunit?language=objc)
 #[deprecated]
         const NSWeekdayOrdinalCalendarUnit = 1024;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsquartercalendarunit?language=objc)
 #[deprecated]
         const NSQuarterCalendarUnit = 2048;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekofmonthcalendarunit?language=objc)
 #[deprecated]
         const NSWeekOfMonthCalendarUnit = 4096;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekofyearcalendarunit?language=objc)
 #[deprecated]
         const NSWeekOfYearCalendarUnit = 8192;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsyearforweekofyearcalendarunit?language=objc)
 #[deprecated]
         const NSYearForWeekOfYearCalendarUnit = 16384;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nscalendarcalendarunit?language=objc)
 #[deprecated]
         const NSCalendarCalendarUnit = 1048576;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nstimezonecalendarunit?language=objc)
 #[deprecated]
         const NSTimeZoneCalendarUnit = 2097152;
     }
@@ -270,20 +305,28 @@ unsafe impl RefEncode for NSCalendarUnit {
 pub struct NSCalendarOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCalendarOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/wrapcomponents?language=objc)
         #[doc(alias = "NSCalendarWrapComponents")]
         const WrapComponents = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchstrictly?language=objc)
         #[doc(alias = "NSCalendarMatchStrictly")]
         const MatchStrictly = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/searchbackwards?language=objc)
         #[doc(alias = "NSCalendarSearchBackwards")]
         const SearchBackwards = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchprevioustimepreservingsmallerunits?language=objc)
         #[doc(alias = "NSCalendarMatchPreviousTimePreservingSmallerUnits")]
         const MatchPreviousTimePreservingSmallerUnits = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchnexttimepreservingsmallerunits?language=objc)
         #[doc(alias = "NSCalendarMatchNextTimePreservingSmallerUnits")]
         const MatchNextTimePreservingSmallerUnits = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchnexttime?language=objc)
         #[doc(alias = "NSCalendarMatchNextTime")]
         const MatchNextTime = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchfirst?language=objc)
         #[doc(alias = "NSCalendarMatchFirst")]
         const MatchFirst = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchlast?language=objc)
         #[doc(alias = "NSCalendarMatchLast")]
         const MatchLast = 1<<13;
     }

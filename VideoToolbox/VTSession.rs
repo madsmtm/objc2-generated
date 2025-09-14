@@ -38,6 +38,8 @@ extern "C-unwind" {
     ///
     /// - `session` should be of the correct type.
     /// - `supported_property_dictionary_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsessioncopysupportedpropertydictionary(_:supportedpropertydictionaryout:)?language=objc)
     pub fn VTSessionCopySupportedPropertyDictionary(
         session: &VTSession,
         supported_property_dictionary_out: NonNull<*const CFDictionary>,
@@ -113,6 +115,8 @@ extern "C-unwind" {
     ///
     /// - `session` should be of the correct type.
     /// - `property_value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)?language=objc)
     pub fn VTSessionSetProperty(
         session: &VTSession,
         property_key: &CFString,
@@ -146,6 +150,8 @@ extern "C-unwind" {
     ///
     /// - `session` should be of the correct type.
     /// - `property_value_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsessioncopyproperty(_:key:allocator:valueout:)?language=objc)
     pub fn VTSessionCopyProperty(
         session: &VTSession,
         property_key: &CFString,
@@ -164,6 +170,8 @@ extern "C-unwind" {
     /// - `session` should be of the correct type.
     /// - `property_dictionary` generic must be of the correct type.
     /// - `property_dictionary` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperties(_:propertydictionary:)?language=objc)
     pub fn VTSessionSetProperties(
         session: &VTSession,
         property_dictionary: &CFDictionary,
@@ -180,6 +188,8 @@ extern "C-unwind" {
     ///
     /// - `session` should be of the correct type.
     /// - `dictionary_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsessioncopyserializableproperties(_:allocator:dictionaryout:)?language=objc)
     pub fn VTSessionCopySerializableProperties(
         session: &VTSession,
         allocator: Option<&CFAllocator>,

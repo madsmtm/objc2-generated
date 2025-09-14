@@ -36,10 +36,13 @@ pub const errSecureDownloadInvalidDownload: c_int = -20053;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecureDownloadTrustCallbackResult(pub c_uint);
 impl SecureDownloadTrustCallbackResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustcallbackresult/ksecuredownloaddonotevaluatesigner?language=objc)
     #[doc(alias = "kSecureDownloadDoNotEvaluateSigner")]
     pub const DoNotEvaluateSigner: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustcallbackresult/ksecuredownloadevaluatesigner?language=objc)
     #[doc(alias = "kSecureDownloadEvaluateSigner")]
     pub const EvaluateSigner: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustcallbackresult/ksecuredownloadfailevaluation?language=objc)
     #[doc(alias = "kSecureDownloadFailEvaluation")]
     pub const FailEvaluation: Self = Self(2);
 }
@@ -124,6 +127,8 @@ extern "C-unwind" {
     /// - `evaluate` must be implemented correctly.
     /// - `evaluate_context` must be a valid pointer.
     /// - `download_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadcreatewithticket?language=objc)
     #[cfg(feature = "SecTrust")]
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCreateWithTicket(
@@ -152,6 +157,8 @@ extern "C-unwind" {
     ///
     /// - `download_ref` must be a valid pointer.
     /// - `urls` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadcopyurls?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyURLs(
         download_ref: SecureDownloadRef,
@@ -172,6 +179,8 @@ extern "C-unwind" {
     ///
     /// - `download_ref` must be a valid pointer.
     /// - `name` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadcopyname?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyName(
         download_ref: SecureDownloadRef,
@@ -190,6 +199,8 @@ extern "C-unwind" {
     ///
     /// - `download_ref` must be a valid pointer.
     /// - `date` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadcopycreationdate?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyCreationDate(
         download_ref: SecureDownloadRef,
@@ -210,6 +221,8 @@ extern "C-unwind" {
     ///
     /// - `download_ref` must be a valid pointer.
     /// - `download_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadgetdownloadsize?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadGetDownloadSize(
         download_ref: SecureDownloadRef,
@@ -232,6 +245,8 @@ extern "C-unwind" {
     ///
     /// - `download_ref` must be a valid pointer.
     /// - `data` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadupdatewithdata?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadUpdateWithData(
         download_ref: SecureDownloadRef,
@@ -250,6 +265,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `download_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadfinished?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadFinished(download_ref: SecureDownloadRef) -> OSStatus;
 }
@@ -264,6 +281,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `download_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadrelease?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadRelease(download_ref: SecureDownloadRef) -> OSStatus;
 }
@@ -281,6 +300,8 @@ extern "C-unwind" {
     ///
     /// - `url` might not allow `None`.
     /// - `ticket_location` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadcopyticketlocation?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyTicketLocation(
         url: Option<&CFURL>,

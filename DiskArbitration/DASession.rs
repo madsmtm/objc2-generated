@@ -32,6 +32,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for DASession {
     /// Returns the type identifier of all DASession instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasessiongettypeid()?language=objc)
     #[doc(alias = "DASessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -49,6 +51,8 @@ impl DASession {
     ///
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasessioncreate(_:)?language=objc)
     #[doc(alias = "DASessionCreate")]
     #[inline]
     pub unsafe fn new(allocator: Option<&CFAllocator>) -> Option<CFRetained<DASession>> {
@@ -70,6 +74,8 @@ impl DASession {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasessionschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "DASessionScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -94,6 +100,8 @@ impl DASession {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasessionunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "DASessionUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -116,6 +124,8 @@ impl DASession {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasessionsetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "DASessionSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -144,6 +154,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for DAApprovalSession {
+    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsessiongettypeid?language=objc)
     #[doc(alias = "DAApprovalSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -155,6 +166,7 @@ unsafe impl ConcreteType for DAApprovalSession {
 }
 
 impl DAApprovalSession {
+    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsessioncreate?language=objc)
     #[doc(alias = "DAApprovalSessionCreate")]
     #[inline]
     pub unsafe fn new(allocator: Option<&CFAllocator>) -> Option<CFRetained<DAApprovalSession>> {
@@ -167,6 +179,8 @@ impl DAApprovalSession {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsessionschedulewithrunloop?language=objc)
+    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
@@ -183,6 +197,8 @@ impl DAApprovalSession {
         unsafe { DAApprovalSessionScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsessionunschedulefromrunloop?language=objc)
+    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.

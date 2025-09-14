@@ -21,6 +21,8 @@ impl SCPreferences {
     /// Parameter `nameEncoding`: The encoding associated with the computer name.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessetcomputername(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesSetComputerName")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -55,6 +57,8 @@ impl SCPreferences {
     /// name as specified in RFC 1034 (section 3.5).
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessetlocalhostname(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesSetLocalHostName")]
     #[cfg(feature = "SCPreferences")]
     #[inline]

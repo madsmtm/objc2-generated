@@ -19,12 +19,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFAuthorizationViewState(pub c_uint);
 impl SFAuthorizationViewState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationstartupstate?language=objc)
     #[doc(alias = "SFAuthorizationStartupState")]
     pub const StartupState: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationviewlockedstate?language=objc)
     #[doc(alias = "SFAuthorizationViewLockedState")]
     pub const ViewLockedState: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationviewinprogressstate?language=objc)
     #[doc(alias = "SFAuthorizationViewInProgressState")]
     pub const ViewInProgressState: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationviewunlockedstate?language=objc)
     #[doc(alias = "SFAuthorizationViewUnlockedState")]
     pub const ViewUnlockedState: Self = Self(3);
 }

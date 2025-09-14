@@ -13,31 +13,42 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRequestRideIntentResponseCode(pub NSInteger);
 impl INRequestRideIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INRequestRideIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/ready?language=objc)
     #[doc(alias = "INRequestRideIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INRequestRideIntentResponseCodeInProgress")]
     #[deprecated = "INRequestRideIntentResponseCodeInProgress is deprecated."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/success?language=objc)
     #[doc(alias = "INRequestRideIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failure?language=objc)
     #[doc(alias = "INRequestRideIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunchmustverifycredentials?language=objc)
     #[doc(alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunchMustVerifyCredentials")]
     pub const FailureRequiringAppLaunchMustVerifyCredentials: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunchnoserviceinarea?language=objc)
     #[doc(alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunchNoServiceInArea")]
     pub const FailureRequiringAppLaunchNoServiceInArea: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunchservicetemporarilyunavailable?language=objc)
     #[doc(
         alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunchServiceTemporarilyUnavailable"
     )]
     pub const FailureRequiringAppLaunchServiceTemporarilyUnavailable: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunchpreviousrideneedscompletion?language=objc)
     #[doc(
         alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunchPreviousRideNeedsCompletion"
     )]
     pub const FailureRequiringAppLaunchPreviousRideNeedsCompletion: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunchridescheduledtoofar?language=objc)
     #[doc(alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunchRideScheduledTooFar")]
     pub const FailureRequiringAppLaunchRideScheduledTooFar: Self = Self(10);
 }

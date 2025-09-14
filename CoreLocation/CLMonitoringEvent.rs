@@ -12,12 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLMonitoringState(pub NSUInteger);
 impl CLMonitoringState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringstate/clmonitoringstateunknown?language=objc)
     #[doc(alias = "CLMonitoringStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringstate/clmonitoringstatesatisfied?language=objc)
     #[doc(alias = "CLMonitoringStateSatisfied")]
     pub const Satisfied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringstate/clmonitoringstateunsatisfied?language=objc)
     #[doc(alias = "CLMonitoringStateUnsatisfied")]
     pub const Unsatisfied: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringstate/clmonitoringstateunmonitored?language=objc)
     #[doc(alias = "CLMonitoringStateUnmonitored")]
     pub const Unmonitored: Self = Self(3);
 }

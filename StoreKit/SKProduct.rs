@@ -13,15 +13,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKProductPeriodUnit(pub NSUInteger);
 impl SKProductPeriodUnit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct/periodunit/day?language=objc)
     #[doc(alias = "SKProductPeriodUnitDay")]
     #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Day: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct/periodunit/week?language=objc)
     #[doc(alias = "SKProductPeriodUnitWeek")]
     #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Week: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct/periodunit/month?language=objc)
     #[doc(alias = "SKProductPeriodUnitMonth")]
     #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Month: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct/periodunit/year?language=objc)
     #[doc(alias = "SKProductPeriodUnitYear")]
     #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Year: Self = Self(3);

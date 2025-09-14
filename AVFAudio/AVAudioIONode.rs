@@ -55,8 +55,10 @@ pub type AVAudioIONodeInputBlock =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioVoiceProcessingSpeechActivityEvent(pub NSInteger);
 impl AVAudioVoiceProcessingSpeechActivityEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent/started?language=objc)
     #[doc(alias = "AVAudioVoiceProcessingSpeechActivityStarted")]
     pub const Started: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent/ended?language=objc)
     #[doc(alias = "AVAudioVoiceProcessingSpeechActivityEnded")]
     pub const Ended: Self = Self(1);
 }
@@ -82,12 +84,16 @@ unsafe impl RefEncode for AVAudioVoiceProcessingSpeechActivityEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioVoiceProcessingOtherAudioDuckingLevel(pub NSInteger);
 impl AVAudioVoiceProcessingOtherAudioDuckingLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration/level/default?language=objc)
     #[doc(alias = "AVAudioVoiceProcessingOtherAudioDuckingLevelDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration/level/min?language=objc)
     #[doc(alias = "AVAudioVoiceProcessingOtherAudioDuckingLevelMin")]
     pub const Min: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration/level/mid?language=objc)
     #[doc(alias = "AVAudioVoiceProcessingOtherAudioDuckingLevelMid")]
     pub const Mid: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration/level/max?language=objc)
     #[doc(alias = "AVAudioVoiceProcessingOtherAudioDuckingLevelMax")]
     pub const Max: Self = Self(30);
 }

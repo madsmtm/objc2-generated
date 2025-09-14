@@ -12,16 +12,22 @@ use crate::*;
 pub struct NSJSONReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSJSONReadingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/mutablecontainers?language=objc)
         #[doc(alias = "NSJSONReadingMutableContainers")]
         const MutableContainers = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/mutableleaves?language=objc)
         #[doc(alias = "NSJSONReadingMutableLeaves")]
         const MutableLeaves = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/fragmentsallowed?language=objc)
         #[doc(alias = "NSJSONReadingFragmentsAllowed")]
         const FragmentsAllowed = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/json5allowed?language=objc)
         #[doc(alias = "NSJSONReadingJSON5Allowed")]
         const JSON5Allowed = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/topleveldictionaryassumed?language=objc)
         #[doc(alias = "NSJSONReadingTopLevelDictionaryAssumed")]
         const TopLevelDictionaryAssumed = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/allowfragments?language=objc)
         #[doc(alias = "NSJSONReadingAllowFragments")]
 #[deprecated]
         const AllowFragments = NSJSONReadingOptions::FragmentsAllowed.0;
@@ -43,12 +49,16 @@ unsafe impl RefEncode for NSJSONReadingOptions {
 pub struct NSJSONWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSJSONWritingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/writingoptions/prettyprinted?language=objc)
         #[doc(alias = "NSJSONWritingPrettyPrinted")]
         const PrettyPrinted = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/writingoptions/sortedkeys?language=objc)
         #[doc(alias = "NSJSONWritingSortedKeys")]
         const SortedKeys = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/writingoptions/fragmentsallowed?language=objc)
         #[doc(alias = "NSJSONWritingFragmentsAllowed")]
         const FragmentsAllowed = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/writingoptions/withoutescapingslashes?language=objc)
         #[doc(alias = "NSJSONWritingWithoutEscapingSlashes")]
         const WithoutEscapingSlashes = 1<<3;
     }

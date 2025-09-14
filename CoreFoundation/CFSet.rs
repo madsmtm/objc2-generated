@@ -227,6 +227,8 @@ impl<T: ?Sized> CFMutableSet<T> {
 
 unsafe impl ConcreteType for CFSet {
     /// Returns the type identifier of all CFSet instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgettypeid()?language=objc)
     #[doc(alias = "CFSetGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -292,6 +294,8 @@ impl CFSet {
     /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
     /// - `call_backs` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CFSetCreate")]
     #[inline]
     pub unsafe fn new(
@@ -330,6 +334,8 @@ impl CFSet {
     /// not a valid CFSet, the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFSet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFSetCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -398,6 +404,8 @@ impl CFMutableSet {
     /// - `allocator` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - The returned generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcreatemutable(_:_:_:)?language=objc)
     #[doc(alias = "CFSetCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -451,6 +459,8 @@ impl CFMutableSet {
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - The returned generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcreatemutablecopy(_:_:_:)?language=objc)
     #[doc(alias = "CFSetCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -477,6 +487,8 @@ impl CFSet {
     /// CFSet, the behavior is undefined.
     ///
     /// Returns: The number of values in the set.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgetcount(_:)?language=objc)
     #[doc(alias = "CFSetGetCount")]
     #[inline]
     pub fn count(&self) -> CFIndex {
@@ -506,6 +518,8 @@ impl CFSet {
     ///
     /// - `the_set` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgetcountofvalue(_:_:)?language=objc)
     #[doc(alias = "CFSetGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
@@ -533,6 +547,8 @@ impl CFSet {
     ///
     /// - `the_set` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcontainsvalue(_:_:)?language=objc)
     #[doc(alias = "CFSetContainsValue")]
     #[inline]
     pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
@@ -560,6 +576,8 @@ impl CFSet {
     ///
     /// - `the_set` generic must be of the correct type.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgetvalue(_:_:)?language=objc)
     #[doc(alias = "CFSetGetValue")]
     #[inline]
     pub unsafe fn value(&self, value: *const c_void) -> *const c_void {
@@ -597,6 +615,8 @@ impl CFSet {
     /// - `the_set` generic must be of the correct type.
     /// - `candidate` must be a valid pointer.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgetvalueifpresent(_:_:_:)?language=objc)
     #[doc(alias = "CFSetGetValueIfPresent")]
     #[inline]
     pub unsafe fn value_if_present(
@@ -630,6 +650,8 @@ impl CFSet {
     ///
     /// - `the_set` generic must be of the correct type.
     /// - `values` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgetvalues(_:_:)?language=objc)
     #[doc(alias = "CFSetGetValues")]
     #[inline]
     pub unsafe fn values(&self, values: *mut *const c_void) {
@@ -662,6 +684,8 @@ impl CFSet {
     /// - `the_set` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetapplyfunction(_:_:_:)?language=objc)
     #[doc(alias = "CFSetApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(&self, applier: CFSetApplierFunction, context: *mut c_void) {
@@ -694,6 +718,8 @@ impl CFMutableSet {
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetaddvalue(_:_:)?language=objc)
     #[doc(alias = "CFSetAddValue")]
     #[inline]
     pub unsafe fn add_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -724,6 +750,8 @@ impl CFMutableSet {
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreplacevalue(_:_:)?language=objc)
     #[doc(alias = "CFSetReplaceValue")]
     #[inline]
     pub unsafe fn replace_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -755,6 +783,8 @@ impl CFMutableSet {
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetsetvalue(_:_:)?language=objc)
     #[doc(alias = "CFSetSetValue")]
     #[inline]
     pub unsafe fn set_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -781,6 +811,8 @@ impl CFMutableSet {
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetremovevalue(_:_:)?language=objc)
     #[doc(alias = "CFSetRemoveValue")]
     #[inline]
     pub unsafe fn remove_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -795,6 +827,8 @@ impl CFMutableSet {
     /// Parameter `theSet`: The set from which all of the values are to be
     /// removed. If this parameter is not a valid mutable CFSet,
     /// the behavior is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetremoveallvalues(_:)?language=objc)
     #[doc(alias = "CFSetRemoveAllValues")]
     #[inline]
     pub fn remove_all_values(the_set: Option<&CFMutableSet>) {

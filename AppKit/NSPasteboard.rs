@@ -131,15 +131,23 @@ impl NSPasteboardAccessBehavior {
     /// The default behavior for the General pasteboard is to ask upon programmatic access. All other pasteboards default to always allow access.
     /// If an app has never triggered a pasteboard access alert, its General pasteboard will report `.default` behavior. Such an app is not shown in the corresponding System Settings pane.
     /// Once programmatic pasteboard access triggers the first pasteboard access alert, the state automatically changes to `.ask`. At this point the app starts being shown in System Settings, where the user can toggle the behavior between `.ask`, `.alwaysAllow`, and `.alwaysDeny`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/accessbehavior-swift.enum/default?language=objc)
     #[doc(alias = "NSPasteboardAccessBehaviorDefault")]
     pub const Default: Self = Self(0);
     /// The system will notify the user and ask for permission before granting pasteboard access. However, access that is both user originated and paste related will always be allowed, and will not result in a notification. The app is listed in the corresponding System Settings pane.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/accessbehavior-swift.enum/ask?language=objc)
     #[doc(alias = "NSPasteboardAccessBehaviorAsk")]
     pub const Ask: Self = Self(1);
     /// The system will automatically allow all pasteboard access, without notifying the user.  The app is listed in the corresponding System Settings pane.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/accessbehavior-swift.enum/alwaysallow?language=objc)
     #[doc(alias = "NSPasteboardAccessBehaviorAlwaysAllow")]
     pub const AlwaysAllow: Self = Self(2);
     /// The system will automatically deny all pasteboard access, without notifying the user. However, access that is both user originated and paste related will always be allowed, and will not result in a notification. The app is listed in the corresponding System Settings pane.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/accessbehavior-swift.enum/alwaysdeny?language=objc)
     #[doc(alias = "NSPasteboardAccessBehaviorAlwaysDeny")]
     pub const AlwaysDeny: Self = Self(3);
 }
@@ -280,6 +288,7 @@ extern "C" {
 pub struct NSPasteboardContentsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardContentsOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/contentsoptions/currenthostonly?language=objc)
         #[doc(alias = "NSPasteboardContentsCurrentHostOnly")]
         const CurrentHostOnly = 1<<0;
     }
@@ -719,6 +728,7 @@ extern_protocol!(
 pub struct NSPasteboardWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardWritingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/writingoptions/promised?language=objc)
         #[doc(alias = "NSPasteboardWritingPromised")]
         const Promised = 1<<9;
     }
@@ -767,12 +777,16 @@ extern_protocol!(
 pub struct NSPasteboardReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardReadingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptions/asdata?language=objc)
         #[doc(alias = "NSPasteboardReadingAsData")]
         const AsData = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptions/asstring?language=objc)
         #[doc(alias = "NSPasteboardReadingAsString")]
         const AsString = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptions/aspropertylist?language=objc)
         #[doc(alias = "NSPasteboardReadingAsPropertyList")]
         const AsPropertyList = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptions/askeyedarchive?language=objc)
         #[doc(alias = "NSPasteboardReadingAsKeyedArchive")]
         const AsKeyedArchive = 1<<2;
     }
@@ -888,6 +902,7 @@ extern "C" {
     pub static NSFileContentsPboardType: &'static NSPasteboardType;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/filenametype(forpathextension:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSCreateFilenamePboardType(
     file_type: &NSString,
@@ -899,6 +914,7 @@ pub extern "C-unwind" fn NSCreateFilenamePboardType(
     unsafe { Retained::from_raw(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/filecontentstype(forpathextension:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSCreateFileContentsPboardType(
     file_type: &NSString,
@@ -910,6 +926,7 @@ pub extern "C-unwind" fn NSCreateFileContentsPboardType(
     unsafe { Retained::from_raw(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/representedpathextension?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSGetFileType(
     pboard_type: &NSPasteboardType,
@@ -921,6 +938,7 @@ pub extern "C-unwind" fn NSGetFileType(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/representedpathextensions(from:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSGetFileTypes(
     pboard_types: &NSArray<NSPasteboardType>,

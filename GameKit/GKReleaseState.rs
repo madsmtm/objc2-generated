@@ -14,12 +14,18 @@ pub struct GKReleaseState(pub NSUInteger);
 bitflags::bitflags! {
     impl GKReleaseState: NSUInteger {
 /// The system can't determine the release state of the resource.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkreleasestate/gkreleasestateunknown?language=objc)
         #[doc(alias = "GKReleaseStateUnknown")]
         const Unknown = 0;
 /// The resource is associated with a release in App Store Connect. This has no relationship with the "archived" state of a resource (i.e., A resource can be release _and_ archived).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkreleasestate/released?language=objc)
         #[doc(alias = "GKReleaseStateReleased")]
         const Released = 1;
 /// The resource has been created in App Store Connect but isn't yet associated with a released version of an App.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkreleasestate/prereleased?language=objc)
         #[doc(alias = "GKReleaseStatePrereleased")]
         const Prereleased = 2;
     }

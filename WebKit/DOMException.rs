@@ -18,48 +18,63 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DOMExceptionCode(pub c_uint);
 impl DOMExceptionCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_index_size_err?language=objc)
     #[doc(alias = "DOM_INDEX_SIZE_ERR")]
     #[deprecated]
     pub const INDEX_SIZE_ERR: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_domstring_size_err?language=objc)
     #[doc(alias = "DOM_DOMSTRING_SIZE_ERR")]
     #[deprecated]
     pub const DOMSTRING_SIZE_ERR: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_hierarchy_request_err?language=objc)
     #[doc(alias = "DOM_HIERARCHY_REQUEST_ERR")]
     #[deprecated]
     pub const HIERARCHY_REQUEST_ERR: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_wrong_document_err?language=objc)
     #[doc(alias = "DOM_WRONG_DOCUMENT_ERR")]
     #[deprecated]
     pub const WRONG_DOCUMENT_ERR: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_invalid_character_err?language=objc)
     #[doc(alias = "DOM_INVALID_CHARACTER_ERR")]
     #[deprecated]
     pub const INVALID_CHARACTER_ERR: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_no_data_allowed_err?language=objc)
     #[doc(alias = "DOM_NO_DATA_ALLOWED_ERR")]
     #[deprecated]
     pub const NO_DATA_ALLOWED_ERR: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_no_modification_allowed_err?language=objc)
     #[doc(alias = "DOM_NO_MODIFICATION_ALLOWED_ERR")]
     #[deprecated]
     pub const NO_MODIFICATION_ALLOWED_ERR: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_not_found_err?language=objc)
     #[doc(alias = "DOM_NOT_FOUND_ERR")]
     #[deprecated]
     pub const NOT_FOUND_ERR: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_not_supported_err?language=objc)
     #[doc(alias = "DOM_NOT_SUPPORTED_ERR")]
     #[deprecated]
     pub const NOT_SUPPORTED_ERR: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_inuse_attribute_err?language=objc)
     #[doc(alias = "DOM_INUSE_ATTRIBUTE_ERR")]
     #[deprecated]
     pub const INUSE_ATTRIBUTE_ERR: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_invalid_state_err?language=objc)
     #[doc(alias = "DOM_INVALID_STATE_ERR")]
     #[deprecated]
     pub const INVALID_STATE_ERR: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_syntax_err?language=objc)
     #[doc(alias = "DOM_SYNTAX_ERR")]
     #[deprecated]
     pub const SYNTAX_ERR: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_invalid_modification_err?language=objc)
     #[doc(alias = "DOM_INVALID_MODIFICATION_ERR")]
     #[deprecated]
     pub const INVALID_MODIFICATION_ERR: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_namespace_err?language=objc)
     #[doc(alias = "DOM_NAMESPACE_ERR")]
     #[deprecated]
     pub const NAMESPACE_ERR: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_invalid_access_err?language=objc)
     #[doc(alias = "DOM_INVALID_ACCESS_ERR")]
     #[deprecated]
     pub const INVALID_ACCESS_ERR: Self = Self(15);

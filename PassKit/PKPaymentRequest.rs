@@ -14,14 +14,19 @@ use crate::*;
 pub struct PKMerchantCapability(pub NSUInteger);
 bitflags::bitflags! {
     impl PKMerchantCapability: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability/threedsecure?language=objc)
         #[doc(alias = "PKMerchantCapability3DS")]
         const Capability3DS = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability/emv?language=objc)
         #[doc(alias = "PKMerchantCapabilityEMV")]
         const CapabilityEMV = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability/credit?language=objc)
         #[doc(alias = "PKMerchantCapabilityCredit")]
         const CapabilityCredit = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability/debit?language=objc)
         #[doc(alias = "PKMerchantCapabilityDebit")]
         const CapabilityDebit = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability/instantfundsout?language=objc)
         #[doc(alias = "PKMerchantCapabilityInstantFundsOut")]
         const CapabilityInstantFundsOut = 1<<7;
     }
@@ -52,20 +57,26 @@ extern "C" {
 pub struct PKAddressField(pub NSUInteger);
 bitflags::bitflags! {
     impl PKAddressField: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/pkaddressfieldnone?language=objc)
         #[doc(alias = "PKAddressFieldNone")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/postaladdress?language=objc)
         #[doc(alias = "PKAddressFieldPostalAddress")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const PostalAddress = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/phone?language=objc)
         #[doc(alias = "PKAddressFieldPhone")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const Phone = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/email?language=objc)
         #[doc(alias = "PKAddressFieldEmail")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const Email = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/name?language=objc)
         #[doc(alias = "PKAddressFieldName")]
         const Name = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/all?language=objc)
         #[doc(alias = "PKAddressFieldAll")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const All = PKAddressField::PostalAddress.0|PKAddressField::Phone.0|PKAddressField::Email.0|PKAddressField::Name.0;
@@ -86,12 +97,16 @@ unsafe impl RefEncode for PKAddressField {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKShippingType(pub NSUInteger);
 impl PKShippingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingtype/shipping?language=objc)
     #[doc(alias = "PKShippingTypeShipping")]
     pub const Shipping: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingtype/delivery?language=objc)
     #[doc(alias = "PKShippingTypeDelivery")]
     pub const Delivery: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingtype/storepickup?language=objc)
     #[doc(alias = "PKShippingTypeStorePickup")]
     pub const StorePickup: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingtype/servicepickup?language=objc)
     #[doc(alias = "PKShippingTypeServicePickup")]
     pub const ServicePickup: Self = Self(3);
 }
@@ -110,10 +125,13 @@ unsafe impl RefEncode for PKShippingType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKShippingContactEditingMode(pub NSUInteger);
 impl PKShippingContactEditingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingcontacteditingmode/available?language=objc)
     #[doc(alias = "PKShippingContactEditingModeAvailable")]
     pub const Available: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingcontacteditingmode/storepickup?language=objc)
     #[doc(alias = "PKShippingContactEditingModeStorePickup")]
     pub const StorePickup: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingcontacteditingmode/enabled?language=objc)
     #[doc(alias = "PKShippingContactEditingModeEnabled")]
     #[deprecated]
     pub const Enabled: Self = Self(PKShippingContactEditingMode::Available.0);
@@ -133,12 +151,17 @@ unsafe impl RefEncode for PKShippingContactEditingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKApplePayLaterAvailability(pub NSInteger);
 impl PKApplePayLaterAvailability {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkapplepaylateravailability/available?language=objc)
     #[doc(alias = "PKApplePayLaterAvailable")]
     pub const Available: Self = Self(0);
     /// Default state where Apple Pay Later is available
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkapplepaylateravailability/unavailableitemineligible?language=objc)
     #[doc(alias = "PKApplePayLaterUnavailableItemIneligible")]
     pub const UnavailableItemIneligible: Self = Self(1);
     /// One or more ineligible items are in the basket, such as items with long fulfillment or prohibited MCCs
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkapplepaylateravailability/unavailablerecurringtransaction?language=objc)
     #[doc(alias = "PKApplePayLaterUnavailableRecurringTransaction")]
     pub const UnavailableRecurringTransaction: Self = Self(2);
 }

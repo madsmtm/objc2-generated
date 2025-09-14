@@ -18,10 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKParticleRenderOrder(pub NSUInteger);
 impl SKParticleRenderOrder {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skparticlerenderorder/oldestlast?language=objc)
     #[doc(alias = "SKParticleRenderOrderOldestLast")]
     pub const OldestLast: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skparticlerenderorder/oldestfirst?language=objc)
     #[doc(alias = "SKParticleRenderOrderOldestFirst")]
     pub const OldestFirst: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skparticlerenderorder/dontcare?language=objc)
     #[doc(alias = "SKParticleRenderOrderDontCare")]
     pub const DontCare: Self = Self(2);
 }

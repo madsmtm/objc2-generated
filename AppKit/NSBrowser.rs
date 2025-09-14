@@ -26,10 +26,13 @@ pub type NSBrowserColumnsAutosaveName = NSString;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBrowserColumnResizingType(pub NSUInteger);
 impl NSBrowserColumnResizingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.enum/nocolumnresizing?language=objc)
     #[doc(alias = "NSBrowserNoColumnResizing")]
     pub const NoColumnResizing: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.enum/autocolumnresizing?language=objc)
     #[doc(alias = "NSBrowserAutoColumnResizing")]
     pub const AutoColumnResizing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.enum/usercolumnresizing?language=objc)
     #[doc(alias = "NSBrowserUserColumnResizing")]
     pub const UserColumnResizing: Self = Self(2);
 }
@@ -48,8 +51,10 @@ unsafe impl RefEncode for NSBrowserColumnResizingType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBrowserDropOperation(pub NSUInteger);
 impl NSBrowserDropOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/dropoperation/on?language=objc)
     #[doc(alias = "NSBrowserDropOn")]
     pub const On: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/dropoperation/above?language=objc)
     #[doc(alias = "NSBrowserDropAbove")]
     pub const Above: Self = Self(1);
 }

@@ -16,12 +16,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLComputeUnits(pub NSInteger);
 impl MLComputeUnits {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeunits/cpuonly?language=objc)
     #[doc(alias = "MLComputeUnitsCPUOnly")]
     pub const CPUOnly: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeunits/cpuandgpu?language=objc)
     #[doc(alias = "MLComputeUnitsCPUAndGPU")]
     pub const CPUAndGPU: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeunits/all?language=objc)
     #[doc(alias = "MLComputeUnitsAll")]
     pub const All: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeunits/cpuandneuralengine?language=objc)
     #[doc(alias = "MLComputeUnitsCPUAndNeuralEngine")]
     pub const CPUAndNeuralEngine: Self = Self(3);
 }

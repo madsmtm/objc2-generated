@@ -32,12 +32,16 @@ use crate::*;
 pub struct PHASEPushStreamBufferOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASEPushStreamBufferOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions/default?language=objc)
         #[doc(alias = "PHASEPushStreamBufferDefault")]
         const Default = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions/loops?language=objc)
         #[doc(alias = "PHASEPushStreamBufferLoops")]
         const Loops = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions/interrupts?language=objc)
         #[doc(alias = "PHASEPushStreamBufferInterrupts")]
         const Interrupts = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions/interruptsatloop?language=objc)
         #[doc(alias = "PHASEPushStreamBufferInterruptsAtLoop")]
         const InterruptsAtLoop = 1<<3;
     }
@@ -62,6 +66,7 @@ unsafe impl RefEncode for PHASEPushStreamBufferOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEPushStreamCompletionCallbackCondition(pub NSInteger);
 impl PHASEPushStreamCompletionCallbackCondition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreamcompletioncallbackcondition/datarendered?language=objc)
     #[doc(alias = "PHASEPushStreamCompletionDataRendered")]
     pub const DataRendered: Self = Self(0);
 }

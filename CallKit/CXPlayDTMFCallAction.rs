@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXPlayDTMFCallActionType(pub NSInteger);
 impl CXPlayDTMFCallActionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxplaydtmfcallaction/actiontype/singletone?language=objc)
     #[doc(alias = "CXPlayDTMFCallActionTypeSingleTone")]
     pub const SingleTone: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxplaydtmfcallaction/actiontype/softpause?language=objc)
     #[doc(alias = "CXPlayDTMFCallActionTypeSoftPause")]
     pub const SoftPause: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxplaydtmfcallaction/actiontype/hardpause?language=objc)
     #[doc(alias = "CXPlayDTMFCallActionTypeHardPause")]
     pub const HardPause: Self = Self(3);
 }

@@ -39,20 +39,28 @@ pub type CFStreamPropertyKey = CFString;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStreamStatus(pub CFIndex);
 impl CFStreamStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/notopen?language=objc)
     #[doc(alias = "kCFStreamStatusNotOpen")]
     pub const NotOpen: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/opening?language=objc)
     #[doc(alias = "kCFStreamStatusOpening")]
     pub const Opening: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/open?language=objc)
     #[doc(alias = "kCFStreamStatusOpen")]
     pub const Open: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/reading?language=objc)
     #[doc(alias = "kCFStreamStatusReading")]
     pub const Reading: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/writing?language=objc)
     #[doc(alias = "kCFStreamStatusWriting")]
     pub const Writing: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/atend?language=objc)
     #[doc(alias = "kCFStreamStatusAtEnd")]
     pub const AtEnd: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/closed?language=objc)
     #[doc(alias = "kCFStreamStatusClosed")]
     pub const Closed: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/error?language=objc)
     #[doc(alias = "kCFStreamStatusError")]
     pub const Error: Self = Self(7);
 }
@@ -74,16 +82,22 @@ unsafe impl RefEncode for CFStreamStatus {
 pub struct CFStreamEventType(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFStreamEventType: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/kcfstreameventnone?language=objc)
         #[doc(alias = "kCFStreamEventNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/opencompleted?language=objc)
         #[doc(alias = "kCFStreamEventOpenCompleted")]
         const OpenCompleted = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/hasbytesavailable?language=objc)
         #[doc(alias = "kCFStreamEventHasBytesAvailable")]
         const HasBytesAvailable = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/canacceptbytes?language=objc)
         #[doc(alias = "kCFStreamEventCanAcceptBytes")]
         const CanAcceptBytes = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/erroroccurred?language=objc)
         #[doc(alias = "kCFStreamEventErrorOccurred")]
         const ErrorOccurred = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/endencountered?language=objc)
         #[doc(alias = "kCFStreamEventEndEncountered")]
         const EndEncountered = 16;
     }
@@ -175,6 +189,7 @@ pub type CFWriteStreamClientCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFWriteStream, CFStreamEventType, *mut c_void)>;
 
 unsafe impl ConcreteType for CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamgettypeid()?language=objc)
     #[doc(alias = "CFReadStreamGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -186,6 +201,7 @@ unsafe impl ConcreteType for CFReadStream {
 }
 
 unsafe impl ConcreteType for CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamgettypeid()?language=objc)
     #[doc(alias = "CFWriteStreamGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -202,6 +218,8 @@ extern "C" {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamcreatewithbytesnocopy(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -230,6 +248,8 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcreatewithbuffer(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -252,6 +272,7 @@ impl CFWriteStream {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcreatewithallocatedbuffers(_:_:)?language=objc)
     #[doc(alias = "CFWriteStreamCreateWithAllocatedBuffers")]
     #[inline]
     pub fn with_allocated_buffers(
@@ -270,6 +291,7 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamcreatewithfile(_:_:)?language=objc)
     #[doc(alias = "CFReadStreamCreateWithFile")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -289,6 +311,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcreatewithfile(_:_:)?language=objc)
     #[doc(alias = "CFWriteStreamCreateWithFile")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -308,6 +331,8 @@ impl CFWriteStream {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamcreateboundpair(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -434,6 +459,8 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamcreatepairwithsocket(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -450,6 +477,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamcreatepairwithsockettohost(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -467,6 +496,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamcreatepairwithpeersocketsignature(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
@@ -484,6 +515,7 @@ extern "C-unwind" {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamgetstatus(_:)?language=objc)
     #[doc(alias = "CFReadStreamGetStatus")]
     #[inline]
     pub fn status(&self) -> CFStreamStatus {
@@ -495,6 +527,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamgetstatus(_:)?language=objc)
     #[doc(alias = "CFWriteStreamGetStatus")]
     #[inline]
     pub fn status(&self) -> CFStreamStatus {
@@ -506,6 +539,7 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamcopyerror(_:)?language=objc)
     #[doc(alias = "CFReadStreamCopyError")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -519,6 +553,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcopyerror(_:)?language=objc)
     #[doc(alias = "CFWriteStreamCopyError")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -532,6 +567,7 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamopen(_:)?language=objc)
     #[doc(alias = "CFReadStreamOpen")]
     #[inline]
     pub fn open(&self) -> bool {
@@ -544,6 +580,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamopen(_:)?language=objc)
     #[doc(alias = "CFWriteStreamOpen")]
     #[inline]
     pub fn open(&self) -> bool {
@@ -556,6 +593,7 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamclose(_:)?language=objc)
     #[doc(alias = "CFReadStreamClose")]
     #[inline]
     pub fn close(&self) {
@@ -567,6 +605,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamclose(_:)?language=objc)
     #[doc(alias = "CFWriteStreamClose")]
     #[inline]
     pub fn close(&self) {
@@ -578,6 +617,7 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamhasbytesavailable(_:)?language=objc)
     #[doc(alias = "CFReadStreamHasBytesAvailable")]
     #[inline]
     pub fn has_bytes_available(&self) -> bool {
@@ -588,6 +628,8 @@ impl CFReadStream {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamread(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
@@ -604,6 +646,8 @@ impl CFReadStream {
         unsafe { CFReadStreamRead(self, buffer, buffer_length) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamgetbuffer(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `num_bytes_read` must be a valid pointer.
@@ -626,6 +670,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcanacceptbytes(_:)?language=objc)
     #[doc(alias = "CFWriteStreamCanAcceptBytes")]
     #[inline]
     pub fn can_accept_bytes(&self) -> bool {
@@ -636,6 +681,8 @@ impl CFWriteStream {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamwrite(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
@@ -654,6 +701,7 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamcopyproperty(_:_:)?language=objc)
     #[doc(alias = "CFReadStreamCopyProperty")]
     #[inline]
     pub fn property(
@@ -672,6 +720,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcopyproperty(_:_:)?language=objc)
     #[doc(alias = "CFWriteStreamCopyProperty")]
     #[inline]
     pub fn property(
@@ -690,6 +739,8 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetproperty(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `property_name` might not allow `None`.
@@ -715,6 +766,8 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetproperty(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `property_name` might not allow `None`.
@@ -740,6 +793,8 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetclient(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
@@ -766,6 +821,8 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetclient(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
@@ -792,6 +849,7 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "CFReadStreamScheduleWithRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -812,6 +870,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "CFWriteStreamScheduleWithRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -832,6 +891,7 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "CFReadStreamUnscheduleFromRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -852,6 +912,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "CFWriteStreamUnscheduleFromRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -872,6 +933,8 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetdispatchqueue(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `q` possibly has additional threading requirements.
@@ -888,6 +951,8 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetdispatchqueue(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `q` possibly has additional threading requirements.
@@ -904,6 +969,7 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamcopydispatchqueue(_:)?language=objc)
     #[doc(alias = "CFReadStreamCopyDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -919,6 +985,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcopydispatchqueue(_:)?language=objc)
     #[doc(alias = "CFWriteStreamCopyDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -939,10 +1006,13 @@ impl CFWriteStream {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFStreamErrorDomain(pub CFIndex);
 impl CFStreamErrorDomain {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamerrordomain/custom?language=objc)
     #[doc(alias = "kCFStreamErrorDomainCustom")]
     pub const Custom: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamerrordomain/posix?language=objc)
     #[doc(alias = "kCFStreamErrorDomainPOSIX")]
     pub const POSIX: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamerrordomain/macosstatus?language=objc)
     #[doc(alias = "kCFStreamErrorDomainMacOSStatus")]
     pub const MacOSStatus: Self = Self(2);
 }
@@ -958,6 +1028,7 @@ unsafe impl RefEncode for CFStreamErrorDomain {
 }
 
 impl CFReadStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamgeterror(_:)?language=objc)
     #[doc(alias = "CFReadStreamGetError")]
     #[inline]
     pub fn error(&self) -> CFStreamError {
@@ -969,6 +1040,7 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamgeterror(_:)?language=objc)
     #[doc(alias = "CFWriteStreamGetError")]
     #[inline]
     pub fn error(&self) -> CFStreamError {

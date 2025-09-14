@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASEMaterialPreset(pub NSInteger);
 impl PHASEMaterialPreset {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/cardboard?language=objc)
     #[doc(alias = "PHASEMaterialPresetCardboard")]
     pub const Cardboard: Self = Self(0x6d437264);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/glass?language=objc)
     #[doc(alias = "PHASEMaterialPresetGlass")]
     pub const Glass: Self = Self(0x6d476c73);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/brick?language=objc)
     #[doc(alias = "PHASEMaterialPresetBrick")]
     pub const Brick: Self = Self(0x6d42726b);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/concrete?language=objc)
     #[doc(alias = "PHASEMaterialPresetConcrete")]
     pub const Concrete: Self = Self(0x6d436372);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/drywall?language=objc)
     #[doc(alias = "PHASEMaterialPresetDrywall")]
     pub const Drywall: Self = Self(0x6d447277);
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/wood?language=objc)
     #[doc(alias = "PHASEMaterialPresetWood")]
     pub const Wood: Self = Self(0x6d577564);
 }

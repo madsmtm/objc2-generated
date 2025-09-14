@@ -16,12 +16,18 @@ pub struct ARTrackingState(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARTrackingState {
     /// Tracking is not available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstate/artrackingstatenotavailable?language=objc)
     #[doc(alias = "ARTrackingStateNotAvailable")]
     pub const NotAvailable: Self = Self(0);
     /// Tracking is limited. See tracking reason for details.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstate/artrackingstatelimited?language=objc)
     #[doc(alias = "ARTrackingStateLimited")]
     pub const Limited: Self = Self(1);
     /// Tracking is Normal.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstate/artrackingstatenormal?language=objc)
     #[doc(alias = "ARTrackingStateNormal")]
     pub const Normal: Self = Self(2);
 }
@@ -47,18 +53,28 @@ pub struct ARTrackingStateReason(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARTrackingStateReason {
     /// Tracking is not limited.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasonnone?language=objc)
     #[doc(alias = "ARTrackingStateReasonNone")]
     pub const None: Self = Self(0);
     /// Tracking is limited due to initialization in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasoninitializing?language=objc)
     #[doc(alias = "ARTrackingStateReasonInitializing")]
     pub const Initializing: Self = Self(1);
     /// Tracking is limited due to a excessive motion of the camera.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasonexcessivemotion?language=objc)
     #[doc(alias = "ARTrackingStateReasonExcessiveMotion")]
     pub const ExcessiveMotion: Self = Self(2);
     /// Tracking is limited due to a lack of features visible to the camera.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasoninsufficientfeatures?language=objc)
     #[doc(alias = "ARTrackingStateReasonInsufficientFeatures")]
     pub const InsufficientFeatures: Self = Self(3);
     /// Tracking is limited due to a relocalization in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasonrelocalizing?language=objc)
     #[doc(alias = "ARTrackingStateReasonRelocalizing")]
     pub const Relocalizing: Self = Self(4);
 }

@@ -15,12 +15,18 @@ pub struct CKSharingParticipantAccessOption(pub NSUInteger);
 bitflags::bitflags! {
     impl CKSharingParticipantAccessOption: NSUInteger {
 /// If specified, the system sharing UI will allow the user to share publicly i.e. anyone with the link has access.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantaccessoption/anyonewithlink?language=objc)
         #[doc(alias = "CKSharingParticipantAccessOptionAnyoneWithLink")]
         const AnyoneWithLink = 1<<0;
 /// If specified, the system sharing UI will allow the user to share privately to specified recipients.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantaccessoption/specifiedrecipientsonly?language=objc)
         #[doc(alias = "CKSharingParticipantAccessOptionSpecifiedRecipientsOnly")]
         const SpecifiedRecipientsOnly = 1<<1;
 /// Allow the user to configure the share with either access option.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantaccessoption/any?language=objc)
         #[doc(alias = "CKSharingParticipantAccessOptionAny")]
         const Any = CKSharingParticipantAccessOption::AnyoneWithLink.0|CKSharingParticipantAccessOption::SpecifiedRecipientsOnly.0;
     }
@@ -42,12 +48,18 @@ pub struct CKSharingParticipantPermissionOption(pub NSUInteger);
 bitflags::bitflags! {
     impl CKSharingParticipantPermissionOption: NSUInteger {
 /// If specified, the system sharing UI will allow the user to grant participants read-only permissions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantpermissionoption/readonly?language=objc)
         #[doc(alias = "CKSharingParticipantPermissionOptionReadOnly")]
         const ReadOnly = 1<<0;
 /// If specified, the system sharing UI will allow the user to grant participants read/write permissions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantpermissionoption/readwrite?language=objc)
         #[doc(alias = "CKSharingParticipantPermissionOptionReadWrite")]
         const ReadWrite = 1<<1;
 /// Allow the user to configure added share participants with either permission option.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantpermissionoption/any?language=objc)
         #[doc(alias = "CKSharingParticipantPermissionOptionAny")]
         const Any = CKSharingParticipantPermissionOption::ReadOnly.0|CKSharingParticipantPermissionOption::ReadWrite.0;
     }

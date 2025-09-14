@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTCellularPlanCapability(pub NSInteger);
 impl CTCellularPlanCapability {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplancapability/dataonly?language=objc)
     #[doc(alias = "CTCellularPlanCapabilityDataOnly")]
     pub const DataOnly: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplancapability/dataandvoice?language=objc)
     #[doc(alias = "CTCellularPlanCapabilityDataAndVoice")]
     pub const DataAndVoice: Self = Self(1);
 }

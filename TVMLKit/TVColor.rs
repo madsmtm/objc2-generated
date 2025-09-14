@@ -15,15 +15,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVColorType(pub NSInteger);
 impl TVColorType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvcolortype/none?language=objc)
     #[doc(alias = "TVColorTypeNone")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvcolortype/plain?language=objc)
     #[doc(alias = "TVColorTypePlain")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Plain: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvcolortype/lineargradienttoptobottom?language=objc)
     #[doc(alias = "TVColorTypeLinearGradientTopToBottom")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const LinearGradientTopToBottom: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvcolortype/lineargradientlefttoright?language=objc)
     #[doc(alias = "TVColorTypeLinearGradientLeftToRight")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const LinearGradientLeftToRight: Self = Self(3);

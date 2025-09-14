@@ -47,6 +47,8 @@ extern "C" {
 }
 
 /// Helper methods for getting the localized description of the convergence reason
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasondescription?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn NIAlgorithmConvergenceStatusReasonDescription(
     reason: &NIAlgorithmConvergenceStatusReason,

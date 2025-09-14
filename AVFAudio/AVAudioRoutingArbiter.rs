@@ -24,10 +24,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioRoutingArbitrationCategory(pub NSInteger);
 impl AVAudioRoutingArbitrationCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbiter/category/playback?language=objc)
     #[doc(alias = "AVAudioRoutingArbitrationCategoryPlayback")]
     pub const Playback: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbiter/category/playandrecord?language=objc)
     #[doc(alias = "AVAudioRoutingArbitrationCategoryPlayAndRecord")]
     pub const PlayAndRecord: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbiter/category/playandrecordvoice?language=objc)
     #[doc(alias = "AVAudioRoutingArbitrationCategoryPlayAndRecordVoice")]
     pub const PlayAndRecordVoice: Self = Self(2);
 }

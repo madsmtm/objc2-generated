@@ -14,10 +14,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKEraserType(pub NSInteger);
 impl PKEraserType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkerasertype/pkerasertypevector?language=objc)
     #[doc(alias = "PKEraserTypeVector")]
     pub const Vector: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkerasertype/pkerasertypebitmap?language=objc)
     #[doc(alias = "PKEraserTypeBitmap")]
     pub const Bitmap: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkerasertype/pkerasertypefixedwidthbitmap?language=objc)
     #[doc(alias = "PKEraserTypeFixedWidthBitmap")]
     pub const FixedWidthBitmap: Self = Self(2);
 }

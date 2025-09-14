@@ -133,24 +133,34 @@ extern "C" {
 pub struct NSUnderlineStyle(pub NSInteger);
 bitflags::bitflags! {
     impl NSUnderlineStyle: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/nsunderlinestylenone?language=objc)
         #[doc(alias = "NSUnderlineStyleNone")]
         const None = 0x00;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/single?language=objc)
         #[doc(alias = "NSUnderlineStyleSingle")]
         const Single = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/thick?language=objc)
         #[doc(alias = "NSUnderlineStyleThick")]
         const Thick = 0x02;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/double?language=objc)
         #[doc(alias = "NSUnderlineStyleDouble")]
         const Double = 0x09;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/nsunderlinestylepatternsolid?language=objc)
         #[doc(alias = "NSUnderlineStylePatternSolid")]
         const PatternSolid = 0x0000;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/patterndot?language=objc)
         #[doc(alias = "NSUnderlineStylePatternDot")]
         const PatternDot = 0x0100;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/patterndash?language=objc)
         #[doc(alias = "NSUnderlineStylePatternDash")]
         const PatternDash = 0x0200;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/patterndashdot?language=objc)
         #[doc(alias = "NSUnderlineStylePatternDashDot")]
         const PatternDashDot = 0x0300;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/patterndashdotdot?language=objc)
         #[doc(alias = "NSUnderlineStylePatternDashDotDot")]
         const PatternDashDotDot = 0x0400;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/byword?language=objc)
         #[doc(alias = "NSUnderlineStyleByWord")]
         const ByWord = 0x8000;
     }
@@ -170,8 +180,10 @@ unsafe impl RefEncode for NSUnderlineStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingDirectionFormatType(pub NSInteger);
 impl NSWritingDirectionFormatType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirectionformattype/embedding?language=objc)
     #[doc(alias = "NSWritingDirectionEmbedding")]
     pub const Embedding: Self = Self(0 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirectionformattype/override?language=objc)
     #[doc(alias = "NSWritingDirectionOverride")]
     pub const Override: Self = Self(1 << 1);
 }
@@ -302,8 +314,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextScalingType(pub NSInteger);
 impl NSTextScalingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextscalingtype/standard?language=objc)
     #[doc(alias = "NSTextScalingStandard")]
     pub const ScalingStandard: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextscalingtype/ios?language=objc)
     #[doc(alias = "NSTextScalingiOS")]
     pub const ScalingiOS: Self = Self(1);
 }
@@ -648,9 +662,11 @@ pub static NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineSty
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextWritingDirection(pub NSInteger);
 impl NSTextWritingDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextwritingdirection/embedding?language=objc)
     #[doc(alias = "NSTextWritingDirectionEmbedding")]
     #[deprecated]
     pub const Embedding: Self = Self(0 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextwritingdirection/override?language=objc)
     #[doc(alias = "NSTextWritingDirectionOverride")]
     #[deprecated]
     pub const Override: Self = Self(1 << 1);

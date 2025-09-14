@@ -10,16 +10,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMessageAttribute(pub NSInteger);
 impl INMessageAttribute {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/unknown?language=objc)
     #[doc(alias = "INMessageAttributeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/read?language=objc)
     #[doc(alias = "INMessageAttributeRead")]
     pub const Read: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/unread?language=objc)
     #[doc(alias = "INMessageAttributeUnread")]
     pub const Unread: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/flagged?language=objc)
     #[doc(alias = "INMessageAttributeFlagged")]
     pub const Flagged: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/unflagged?language=objc)
     #[doc(alias = "INMessageAttributeUnflagged")]
     pub const Unflagged: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/played?language=objc)
     #[doc(alias = "INMessageAttributePlayed")]
     pub const Played: Self = Self(5);
 }

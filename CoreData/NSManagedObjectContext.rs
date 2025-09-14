@@ -98,11 +98,14 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSManagedObjectContextConcurrencyType(pub NSUInteger);
 impl NSManagedObjectContextConcurrencyType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextconcurrencytype/confinementconcurrencytype?language=objc)
     #[doc(alias = "NSConfinementConcurrencyType")]
     #[deprecated = "Use another NSManagedObjectContextConcurrencyType"]
     pub const ConfinementConcurrencyType: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextconcurrencytype/privatequeueconcurrencytype?language=objc)
     #[doc(alias = "NSPrivateQueueConcurrencyType")]
     pub const PrivateQueueConcurrencyType: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextconcurrencytype/mainqueueconcurrencytype?language=objc)
     #[doc(alias = "NSMainQueueConcurrencyType")]
     pub const MainQueueConcurrencyType: Self = Self(0x02);
 }

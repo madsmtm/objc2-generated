@@ -13,6 +13,8 @@ unsafe impl ConcreteType for SecCertificate {
     /// Returns the type identifier of SecCertificate instances.
     ///
     /// Returns: The CFTypeID of SecCertificate instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategettypeid()?language=objc)
     #[doc(alias = "SecCertificateGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -33,6 +35,8 @@ impl SecCertificate {
     ///
     /// Returns: Return NULL if the passed-in data is not a valid DER-encoded
     /// X.509 certificate, return a SecCertificateRef otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecreatewithdata(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCreateWithData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -56,6 +60,8 @@ impl SecCertificate {
     /// SecCertificateCreateWithData().
     ///
     /// Returns: DER encoded X.509 certificate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopydata(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -80,6 +86,8 @@ impl SecCertificate {
     ///
     /// Returns: A CFStringRef which the caller should CFRelease() once it's no
     /// longer needed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopysubjectsummary(_:)?language=objc)
     #[doc(alias = "SecCertificateCopySubjectSummary")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -108,6 +116,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `common_name` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopycommonname(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyCommonName")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -133,6 +143,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `email_addresses` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopyemailaddresses(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyEmailAddresses")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -154,6 +166,8 @@ impl SecCertificate {
     /// Parameter `certificate`: The certificate from which to get values
     ///
     /// The issuer is a sequence in the format used by SecItemCopyMatching.  The content returned is a DER-encoded X.509 distinguished name. For a display version of the issuer, call SecCertificateCopyValues. The caller must CFRelease the value returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynormalizedissuersequence(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNormalizedIssuerSequence")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -172,6 +186,8 @@ impl SecCertificate {
     /// Parameter `certificate`: The certificate from which to get values
     ///
     /// The subject is a sequence in the format used by SecItemCopyMatching. The content returned is a DER-encoded X.509 distinguished name. For a display version of the subject, call SecCertificateCopyValues. The caller must CFRelease the value returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynormalizedsubjectsequence(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNormalizedSubjectSequence")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -192,6 +208,8 @@ impl SecCertificate {
     /// Returns: A reference to the public key for the specified certificate. Your code must release this reference by calling the CFRelease function. If the public key has an encoding issue or uses an unsupported algorithm, the returned reference will be null.
     ///
     /// RSA and ECDSA public keys are supported. All other public key algorithms are unsupported.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopykey(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -216,6 +234,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `key` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopypublickey(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -245,6 +265,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopyserialnumberdata(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopySerialNumberData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -268,6 +290,8 @@ impl SecCertificate {
     ///
     /// Returns: Returns the absolute time at which the given certificate becomes valid,
     /// or NULL if this value could not be obtained. The caller must CFRelease the value returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynotvalidbeforedate(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNotValidBeforeDate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -287,6 +311,8 @@ impl SecCertificate {
     ///
     /// Returns: Returns the absolute time at which the given certificate expires,
     /// or NULL if this value could not be obtained. The caller must CFRelease the value returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynotvalidafterdate(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNotValidAfterDate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -311,6 +337,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopyserialnumber(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopySerialNumber")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -366,6 +394,8 @@ impl SecCertificate {
     ///
     /// - `data` must be a valid pointer.
     /// - `certificate` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecreatefromdata?language=objc)
     #[doc(alias = "SecCertificateCreateFromData")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -402,6 +432,8 @@ impl SecCertificate {
     ///
     /// This function is successful only if the certificate was created using the SecCertificateCreateFromData or
     /// SecCertificateCreateWithData functions, and the certificate has not yet been added to the specified keychain.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificateaddtokeychain(_:_:)?language=objc)
     #[doc(alias = "SecCertificateAddToKeychain")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -428,6 +460,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `data` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategetdata?language=objc)
     #[doc(alias = "SecCertificateGetData")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase", feature = "cssmtype"))]
     #[deprecated]
@@ -453,6 +487,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `certificate_type` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategettype?language=objc)
     #[doc(alias = "SecCertificateGetType")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -492,6 +528,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `subject` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategetsubject?language=objc)
     #[doc(alias = "SecCertificateGetSubject")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -536,6 +574,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `issuer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategetissuer?language=objc)
     #[doc(alias = "SecCertificateGetIssuer")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -568,6 +608,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `cl_handle` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategetclhandle?language=objc)
     #[doc(alias = "SecCertificateGetCLHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -594,6 +636,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `algid` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategetalgorithmid?language=objc)
     #[doc(alias = "SecCertificateGetAlgorithmID")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -624,6 +668,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `certificate` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopypreference?language=objc)
     #[doc(alias = "SecCertificateCopyPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated]
@@ -657,6 +703,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `key_usage` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopypreferred(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -688,6 +736,8 @@ impl SecCertificate {
     ///
     /// This function will typically be used to set the preferred encryption certificate for an email recipient, either manually (when encrypting email to a recipient) or automatically upon receipt of encrypted email.
     /// This API is deprecated in 10.7. Plese use the SecCertificateSetPreferred API instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatesetpreference?language=objc)
     #[doc(alias = "SecCertificateSetPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated]
@@ -725,6 +775,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `key_usage` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatesetpreferred(_:_:_:)?language=objc)
     #[doc(alias = "SecCertificateSetPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -753,30 +805,43 @@ impl SecCertificate {
 pub struct SecKeyUsage(pub u32);
 bitflags::bitflags! {
     impl SecKeyUsage: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/kseckeyusageunspecified?language=objc)
         #[doc(alias = "kSecKeyUsageUnspecified")]
         const Unspecified = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/digitalsignature?language=objc)
         #[doc(alias = "kSecKeyUsageDigitalSignature")]
         const DigitalSignature = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/nonrepudiation?language=objc)
         #[doc(alias = "kSecKeyUsageNonRepudiation")]
         const NonRepudiation = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/contentcommitment?language=objc)
         #[doc(alias = "kSecKeyUsageContentCommitment")]
         const ContentCommitment = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/keyencipherment?language=objc)
         #[doc(alias = "kSecKeyUsageKeyEncipherment")]
         const KeyEncipherment = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/dataencipherment?language=objc)
         #[doc(alias = "kSecKeyUsageDataEncipherment")]
         const DataEncipherment = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/keyagreement?language=objc)
         #[doc(alias = "kSecKeyUsageKeyAgreement")]
         const KeyAgreement = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/keycertsign?language=objc)
         #[doc(alias = "kSecKeyUsageKeyCertSign")]
         const KeyCertSign = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/crlsign?language=objc)
         #[doc(alias = "kSecKeyUsageCRLSign")]
         const CRLSign = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/encipheronly?language=objc)
         #[doc(alias = "kSecKeyUsageEncipherOnly")]
         const EncipherOnly = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/decipheronly?language=objc)
         #[doc(alias = "kSecKeyUsageDecipherOnly")]
         const DecipherOnly = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/critical?language=objc)
         #[doc(alias = "kSecKeyUsageCritical")]
         const Critical = 1<<31;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/all?language=objc)
         #[doc(alias = "kSecKeyUsageAll")]
         const All = 0x7FFFFFFF;
     }
@@ -894,6 +959,8 @@ impl SecCertificate {
     ///
     /// - `keys` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopyvalues(_:_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyValues")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -935,6 +1002,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopylongdescription(_:_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyLongDescription")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -976,6 +1045,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopyshortdescription(_:_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyShortDescription")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1012,6 +1083,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynormalizedissuercontent(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNormalizedIssuerContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecCertificateCopyNormalizedIssuerContent is deprecated. Use SecCertificateCopyNormalizedIssuerSequence instead."]
@@ -1047,6 +1120,8 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynormalizedsubjectcontent(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNormalizedSubjectContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecCertificateCopyNormalizedSubjectContent is deprecated. Use SecCertificateCopyNormalizedSubjectSequence instead."]

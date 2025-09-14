@@ -13,18 +13,24 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INBookRestaurantReservationIntentCode(pub NSInteger);
 impl INBookRestaurantReservationIntentCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/success?language=objc)
     #[doc(alias = "INBookRestaurantReservationIntentCodeSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/denied?language=objc)
     #[doc(alias = "INBookRestaurantReservationIntentCodeDenied")]
     pub const Denied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/failure?language=objc)
     #[doc(alias = "INBookRestaurantReservationIntentCodeFailure")]
     pub const Failure: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INBookRestaurantReservationIntentCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/failurerequiringapplaunchmustverifycredentials?language=objc)
     #[doc(
         alias = "INBookRestaurantReservationIntentCodeFailureRequiringAppLaunchMustVerifyCredentials"
     )]
     pub const FailureRequiringAppLaunchMustVerifyCredentials: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/failurerequiringapplaunchservicetemporarilyunavailable?language=objc)
     #[doc(
         alias = "INBookRestaurantReservationIntentCodeFailureRequiringAppLaunchServiceTemporarilyUnavailable"
     )]

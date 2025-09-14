@@ -21,21 +21,32 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTInstantiationError(pub NSInteger);
 impl PTInstantiationError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerror-swift.struct/code/unknown?language=objc)
     #[doc(alias = "PTInstantiationErrorUnknown")]
     pub const Unknown: Self = Self(0);
     /// The PushToTalk API is not available on the simulator or macOS devices
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerror-swift.struct/code/invalidplatform?language=objc)
     #[doc(alias = "PTInstantiationErrorInvalidPlatform")]
     pub const InvalidPlatform: Self = Self(1);
     /// App is lacking the push-to-talk UIBackgroundMode
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerror-swift.struct/code/missingbackgroundmode?language=objc)
     #[doc(alias = "PTInstantiationErrorMissingBackgroundMode")]
     pub const MissingBackgroundMode: Self = Self(2);
     /// App is lacking apns-environment entitlement (Push Notifications Capability)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerror-swift.struct/code/missingpushserverenvironment?language=objc)
     #[doc(alias = "PTInstantiationErrorMissingPushServerEnvironment")]
     pub const MissingPushServerEnvironment: Self = Self(3);
     /// App is lacking the com.apple.developer.push-to-talk entitlement
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerror-swift.struct/code/missingentitlement?language=objc)
     #[doc(alias = "PTInstantiationErrorMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(4);
     /// There is already an in-flight instantiation request
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerror-swift.struct/code/instantiationalreadyinprogress?language=objc)
     #[doc(alias = "PTInstantiationErrorInstantiationAlreadyInProgress")]
     pub const InstantiationAlreadyInProgress: Self = Self(5);
 }
@@ -54,33 +65,52 @@ unsafe impl RefEncode for PTInstantiationError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTChannelError(pub NSInteger);
 impl PTChannelError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code/unknown?language=objc)
     #[doc(alias = "PTChannelErrorUnknown")]
     pub const Unknown: Self = Self(0);
     /// The action cannot be performed because there is no active channel with the supplied UUID
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code/channelnotfound?language=objc)
     #[doc(alias = "PTChannelErrorChannelNotFound")]
     pub const ChannelNotFound: Self = Self(1);
     /// There is a maximum of one active channel at a time, for the whole device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code/channellimitreached?language=objc)
     #[doc(alias = "PTChannelErrorChannelLimitReached")]
     pub const ChannelLimitReached: Self = Self(2);
     /// A traditional call is ongoing, preventing the channel action
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code/callactive?language=objc)
     #[doc(alias = "PTChannelErrorCallActive")]
     pub const CallActive: Self = Self(3);
     /// Setting a nonnil active participant is not posible while transmitting is ongoing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code/transmissioninprogress?language=objc)
     #[doc(alias = "PTChannelErrorTransmissionInProgress")]
     pub const TransmissionInProgress: Self = Self(4);
     /// Error for trying to end a transmission when no transmission is even started
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code/transmissionnotfound?language=objc)
     #[doc(alias = "PTChannelErrorTransmissionNotFound")]
     pub const TransmissionNotFound: Self = Self(5);
     /// Error for trying to join a channel or begin transmitting while app is not foreground
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code/appnotforeground?language=objc)
     #[doc(alias = "PTChannelErrorAppNotForeground")]
     pub const AppNotForeground: Self = Self(6);
     /// A device management policy or profile forbids joining the channel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code/devicemanagementrestriction?language=objc)
     #[doc(alias = "PTChannelErrorDeviceManagementRestriction")]
     pub const DeviceManagementRestriction: Self = Self(7);
     /// A Screen Time restriction prevented the action
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code/screentimerestriction?language=objc)
     #[doc(alias = "PTChannelErrorScreenTimeRestriction")]
     pub const ScreenTimeRestriction: Self = Self(8);
     /// A transmission is not allowed due to the current transmission mode of the channel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code/transmissionnotallowed?language=objc)
     #[doc(alias = "PTChannelErrorTransmissionNotAllowed")]
     pub const TransmissionNotAllowed: Self = Self(9);
 }

@@ -48,10 +48,13 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLineJoin(pub i32);
 impl CGLineJoin {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinejoin/miter?language=objc)
     #[doc(alias = "kCGLineJoinMiter")]
     pub const Miter: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinejoin/round?language=objc)
     #[doc(alias = "kCGLineJoinRound")]
     pub const Round: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinejoin/bevel?language=objc)
     #[doc(alias = "kCGLineJoinBevel")]
     pub const Bevel: Self = Self(2);
 }
@@ -72,10 +75,13 @@ unsafe impl RefEncode for CGLineJoin {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLineCap(pub i32);
 impl CGLineCap {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinecap/butt?language=objc)
     #[doc(alias = "kCGLineCapButt")]
     pub const Butt: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinecap/round?language=objc)
     #[doc(alias = "kCGLineCapRound")]
     pub const Round: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinecap/square?language=objc)
     #[doc(alias = "kCGLineCapSquare")]
     pub const Square: Self = Self(2);
 }
@@ -91,6 +97,7 @@ unsafe impl RefEncode for CGLineCap {
 }
 
 unsafe impl ConcreteType for CGPath {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/typeid?language=objc)
     #[doc(alias = "CGPathGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -102,6 +109,7 @@ unsafe impl ConcreteType for CGPath {
 }
 
 impl CGMutablePath {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmutablepath/init()?language=objc)
     #[doc(alias = "CGPathCreateMutable")]
     #[inline]
     pub fn new() -> CFRetained<CGMutablePath> {
@@ -116,6 +124,7 @@ impl CGMutablePath {
 }
 
 impl CGPath {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/copy()?language=objc)
     #[doc(alias = "CGPathCreateCopy")]
     #[inline]
     pub fn new_copy(path: Option<&CGPath>) -> Option<CFRetained<CGPath>> {
@@ -126,6 +135,8 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/copy(using:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `transform` must be a valid pointer or null.
@@ -147,6 +158,7 @@ impl CGPath {
 }
 
 impl CGMutablePath {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/mutablecopy()?language=objc)
     #[doc(alias = "CGPathCreateMutableCopy")]
     #[inline]
     pub fn new_copy(path: Option<&CGPath>) -> Option<CFRetained<CGMutablePath>> {
@@ -157,6 +169,8 @@ impl CGMutablePath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/mutablecopy(using:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `transform` must be a valid pointer or null.
@@ -178,6 +192,8 @@ impl CGMutablePath {
 }
 
 impl CGPath {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/init(rect:transform:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `transform` must be a valid pointer or null.
@@ -199,6 +215,8 @@ impl CGPath {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/init(ellipsein:transform:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `transform` must be a valid pointer or null.
@@ -220,6 +238,8 @@ impl CGPath {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/init(roundedrect:cornerwidth:cornerheight:transform:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `transform` must be a valid pointer or null.
@@ -248,6 +268,8 @@ impl CGPath {
 }
 
 impl CGMutablePath {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddroundedrect?language=objc)
+    ///
     /// # Safety
     ///
     /// `transform` must be a valid pointer or null.
@@ -274,6 +296,8 @@ impl CGMutablePath {
 }
 
 impl CGPath {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybydashingpath?language=objc)
+    ///
     /// # Safety
     ///
     /// - `transform` must be a valid pointer or null.
@@ -300,6 +324,8 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybystrokingpath?language=objc)
+    ///
     /// # Safety
     ///
     /// `transform` must be a valid pointer or null.
@@ -336,6 +362,7 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathequaltopath?language=objc)
     #[doc(alias = "CGPathEqualToPath")]
     #[inline]
     pub fn equal_to_path(path1: Option<&CGPath>, path2: Option<&CGPath>) -> bool {
@@ -352,6 +379,8 @@ impl CGMutablePath {
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathmovetopoint?language=objc)
     #[doc(alias = "CGPathMoveToPoint")]
     #[inline]
     pub unsafe fn move_to_point(
@@ -371,6 +400,8 @@ impl CGMutablePath {
         unsafe { CGPathMoveToPoint(path, m, x, y) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddlinetopoint?language=objc)
+    ///
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
@@ -393,6 +424,8 @@ impl CGMutablePath {
         unsafe { CGPathAddLineToPoint(path, m, x, y) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddquadcurvetopoint?language=objc)
+    ///
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
@@ -419,6 +452,8 @@ impl CGMutablePath {
         unsafe { CGPathAddQuadCurveToPoint(path, m, cpx, cpy, x, y) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddcurvetopoint?language=objc)
+    ///
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
@@ -449,6 +484,7 @@ impl CGMutablePath {
         unsafe { CGPathAddCurveToPoint(path, m, cp1x, cp1y, cp2x, cp2y, x, y) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmutablepath/closesubpath()?language=objc)
     #[doc(alias = "CGPathCloseSubpath")]
     #[inline]
     pub fn close_subpath(path: Option<&CGMutablePath>) {
@@ -463,6 +499,8 @@ impl CGMutablePath {
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddrect?language=objc)
     #[doc(alias = "CGPathAddRect")]
     #[inline]
     pub unsafe fn add_rect(
@@ -480,6 +518,8 @@ impl CGMutablePath {
         unsafe { CGPathAddRect(path, m, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddrects?language=objc)
+    ///
     /// # Safety
     ///
     /// - `m` must be a valid pointer or null.
@@ -503,6 +543,8 @@ impl CGMutablePath {
         unsafe { CGPathAddRects(path, m, rects, count) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddlines?language=objc)
+    ///
     /// # Safety
     ///
     /// - `m` must be a valid pointer or null.
@@ -526,6 +568,8 @@ impl CGMutablePath {
         unsafe { CGPathAddLines(path, m, points, count) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddellipseinrect?language=objc)
+    ///
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
@@ -546,6 +590,8 @@ impl CGMutablePath {
         unsafe { CGPathAddEllipseInRect(path, m, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddrelativearc?language=objc)
+    ///
     /// # Safety
     ///
     /// `matrix` must be a valid pointer or null.
@@ -574,6 +620,8 @@ impl CGMutablePath {
         unsafe { CGPathAddRelativeArc(path, matrix, x, y, radius, start_angle, delta) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddarc?language=objc)
+    ///
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
@@ -604,6 +652,8 @@ impl CGMutablePath {
         unsafe { CGPathAddArc(path, m, x, y, radius, start_angle, end_angle, clockwise) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddarctopoint?language=objc)
+    ///
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
@@ -632,6 +682,8 @@ impl CGMutablePath {
         unsafe { CGPathAddArcToPoint(path, m, x1, y1, x2, y2, radius) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddpath?language=objc)
+    ///
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
@@ -655,6 +707,8 @@ impl CGMutablePath {
 
 impl CGPath {
     /// * Path information functions. **
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/isempty?language=objc)
     #[doc(alias = "CGPathIsEmpty")]
     #[inline]
     pub fn is_empty(path: Option<&CGPath>) -> bool {
@@ -664,6 +718,8 @@ impl CGPath {
         unsafe { CGPathIsEmpty(path) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/isrect(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `rect` must be a valid pointer or null.
@@ -676,6 +732,7 @@ impl CGPath {
         unsafe { CGPathIsRect(path, rect) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/currentpoint?language=objc)
     #[doc(alias = "CGPathGetCurrentPoint")]
     #[inline]
     pub fn current_point(path: Option<&CGPath>) -> CGPoint {
@@ -685,6 +742,7 @@ impl CGPath {
         unsafe { CGPathGetCurrentPoint(path) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/boundingbox?language=objc)
     #[doc(alias = "CGPathGetBoundingBox")]
     #[inline]
     pub fn bounding_box(path: Option<&CGPath>) -> CGRect {
@@ -694,6 +752,7 @@ impl CGPath {
         unsafe { CGPathGetBoundingBox(path) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/boundingboxofpath?language=objc)
     #[doc(alias = "CGPathGetPathBoundingBox")]
     #[inline]
     pub fn path_bounding_box(path: Option<&CGPath>) -> CGRect {
@@ -703,6 +762,8 @@ impl CGPath {
         unsafe { CGPathGetPathBoundingBox(path) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcontainspoint?language=objc)
+    ///
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
@@ -732,14 +793,19 @@ impl CGPath {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPathElementType(pub i32);
 impl CGPathElementType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype/movetopoint?language=objc)
     #[doc(alias = "kCGPathElementMoveToPoint")]
     pub const MoveToPoint: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype/addlinetopoint?language=objc)
     #[doc(alias = "kCGPathElementAddLineToPoint")]
     pub const AddLineToPoint: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype/addquadcurvetopoint?language=objc)
     #[doc(alias = "kCGPathElementAddQuadCurveToPoint")]
     pub const AddQuadCurveToPoint: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype/addcurvetopoint?language=objc)
     #[doc(alias = "kCGPathElementAddCurveToPoint")]
     pub const AddCurveToPoint: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype/closesubpath?language=objc)
     #[doc(alias = "kCGPathElementCloseSubpath")]
     pub const CloseSubpath: Self = Self(4);
 }
@@ -780,6 +846,8 @@ pub type CGPathApplierFunction =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGPathElement>)>;
 
 impl CGPath {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/apply(info:function:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
@@ -803,6 +871,8 @@ impl CGPath {
 pub type CGPathApplyBlock = *mut block2::DynBlock<dyn Fn(NonNull<CGPathElement>)>;
 
 impl CGPath {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/applywithblock(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `block` must be a valid pointer.
@@ -816,6 +886,7 @@ impl CGPath {
         unsafe { CGPathApplyWithBlock(self, block) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybynormalizing?language=objc)
     #[doc(alias = "CGPathCreateCopyByNormalizing")]
     #[inline]
     pub fn new_copy_by_normalizing(
@@ -832,6 +903,7 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybyunioningpath?language=objc)
     #[doc(alias = "CGPathCreateCopyByUnioningPath")]
     #[inline]
     pub fn new_copy_by_unioning_path(
@@ -850,6 +922,7 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybyintersectingpath?language=objc)
     #[doc(alias = "CGPathCreateCopyByIntersectingPath")]
     #[inline]
     pub fn new_copy_by_intersecting_path(
@@ -869,6 +942,7 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybysubtractingpath?language=objc)
     #[doc(alias = "CGPathCreateCopyBySubtractingPath")]
     #[inline]
     pub fn new_copy_by_subtracting_path(
@@ -887,6 +961,7 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybysymmetricdifferenceofpath?language=objc)
     #[doc(alias = "CGPathCreateCopyBySymmetricDifferenceOfPath")]
     #[inline]
     pub fn new_copy_by_symmetric_difference_of_path(
@@ -907,6 +982,7 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopyoflinebysubtractingpath?language=objc)
     #[doc(alias = "CGPathCreateCopyOfLineBySubtractingPath")]
     #[inline]
     pub fn new_copy_of_line_by_subtracting_path(
@@ -926,6 +1002,7 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopyoflinebyintersectingpath?language=objc)
     #[doc(alias = "CGPathCreateCopyOfLineByIntersectingPath")]
     #[inline]
     pub fn new_copy_of_line_by_intersecting_path(
@@ -946,6 +1023,7 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreateseparatecomponents?language=objc)
     #[doc(alias = "CGPathCreateSeparateComponents")]
     #[inline]
     pub fn new_separate_components(
@@ -962,6 +1040,7 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybyflattening?language=objc)
     #[doc(alias = "CGPathCreateCopyByFlattening")]
     #[inline]
     pub fn new_copy_by_flattening(
@@ -978,6 +1057,7 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathintersectspath?language=objc)
     #[doc(alias = "CGPathIntersectsPath")]
     #[inline]
     pub fn intersects_path(

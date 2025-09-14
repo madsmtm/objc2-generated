@@ -6,6 +6,8 @@ use core::ptr::NonNull;
 use crate::*;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstart(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `ci` must be a valid pointer.
@@ -14,6 +16,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstop(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `ci` must be a valid pointer.

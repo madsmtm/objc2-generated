@@ -16,14 +16,19 @@ use crate::*;
 pub struct SCContentSharingPickerMode(pub NSUInteger);
 bitflags::bitflags! {
     impl SCContentSharingPickerMode: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode/singlewindow?language=objc)
         #[doc(alias = "SCContentSharingPickerModeSingleWindow")]
         const SingleWindow = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode/multiplewindows?language=objc)
         #[doc(alias = "SCContentSharingPickerModeMultipleWindows")]
         const MultipleWindows = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode/singleapplication?language=objc)
         #[doc(alias = "SCContentSharingPickerModeSingleApplication")]
         const SingleApplication = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode/multipleapplications?language=objc)
         #[doc(alias = "SCContentSharingPickerModeMultipleApplications")]
         const MultipleApplications = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode/singledisplay?language=objc)
         #[doc(alias = "SCContentSharingPickerModeSingleDisplay")]
         const SingleDisplay = 1<<4;
     }

@@ -15,15 +15,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageDynamicRange(pub NSInteger);
 impl NSImageDynamicRange {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/dynamicrange/unspecified?language=objc)
     #[doc(alias = "NSImageDynamicRangeUnspecified")]
     pub const Unspecified: Self = Self(-1);
     /// Restrict the image content dynamic range to the standard range regardless of the actual range of the image content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/dynamicrange/standard?language=objc)
     #[doc(alias = "NSImageDynamicRangeStandard")]
     pub const Standard: Self = Self(0);
     /// Allow constrained HDR image content. Useful when mixing HDR and SDR content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/dynamicrange/constrainedhigh?language=objc)
     #[doc(alias = "NSImageDynamicRangeConstrainedHigh")]
     pub const ConstrainedHigh: Self = Self(1);
     /// Allow image content to use extended dynamic range if it has high dynamic range content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/dynamicrange/high?language=objc)
     #[doc(alias = "NSImageDynamicRangeHigh")]
     pub const High: Self = Self(2);
 }

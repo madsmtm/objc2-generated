@@ -34,12 +34,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKActionTimingMode(pub NSInteger);
 impl SKActionTimingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingmode/linear?language=objc)
     #[doc(alias = "SKActionTimingLinear")]
     pub const Linear: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingmode/easein?language=objc)
     #[doc(alias = "SKActionTimingEaseIn")]
     pub const EaseIn: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingmode/easeout?language=objc)
     #[doc(alias = "SKActionTimingEaseOut")]
     pub const EaseOut: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingmode/easeineaseout?language=objc)
     #[doc(alias = "SKActionTimingEaseInEaseOut")]
     pub const EaseInEaseOut: Self = Self(3);
 }

@@ -32,8 +32,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceDomain(pub CFIndex);
 impl MACaptionAppearanceDomain {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/default?language=objc)
     #[doc(alias = "kMACaptionAppearanceDomainDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user?language=objc)
     #[doc(alias = "kMACaptionAppearanceDomainUser")]
     pub const User: Self = Self(1);
 }
@@ -63,10 +65,13 @@ unsafe impl RefEncode for MACaptionAppearanceDomain {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceDisplayType(pub CFIndex);
 impl MACaptionAppearanceDisplayType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype/forcedonly?language=objc)
     #[doc(alias = "kMACaptionAppearanceDisplayTypeForcedOnly")]
     pub const ForcedOnly: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype/automatic?language=objc)
     #[doc(alias = "kMACaptionAppearanceDisplayTypeAutomatic")]
     pub const Automatic: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype/alwayson?language=objc)
     #[doc(alias = "kMACaptionAppearanceDisplayTypeAlwaysOn")]
     pub const AlwaysOn: Self = Self(2);
 }
@@ -94,8 +99,10 @@ unsafe impl RefEncode for MACaptionAppearanceDisplayType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceBehavior(pub CFIndex);
 impl MACaptionAppearanceBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior/usevalue?language=objc)
     #[doc(alias = "kMACaptionAppearanceBehaviorUseValue")]
     pub const UseValue: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior/usecontentifavailable?language=objc)
     #[doc(alias = "kMACaptionAppearanceBehaviorUseContentIfAvailable")]
     pub const UseContentIfAvailable: Self = Self(1);
 }
@@ -135,20 +142,28 @@ unsafe impl RefEncode for MACaptionAppearanceBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceFontStyle(pub CFIndex);
 impl MACaptionAppearanceFontStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/default?language=objc)
     #[doc(alias = "kMACaptionAppearanceFontStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/monospacedwithserif?language=objc)
     #[doc(alias = "kMACaptionAppearanceFontStyleMonospacedWithSerif")]
     pub const MonospacedWithSerif: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/proportionalwithserif?language=objc)
     #[doc(alias = "kMACaptionAppearanceFontStyleProportionalWithSerif")]
     pub const ProportionalWithSerif: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/monospacedwithoutserif?language=objc)
     #[doc(alias = "kMACaptionAppearanceFontStyleMonospacedWithoutSerif")]
     pub const MonospacedWithoutSerif: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/proportionalwithoutserif?language=objc)
     #[doc(alias = "kMACaptionAppearanceFontStyleProportionalWithoutSerif")]
     pub const ProportionalWithoutSerif: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/casual?language=objc)
     #[doc(alias = "kMACaptionAppearanceFontStyleCasual")]
     pub const Casual: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/cursive?language=objc)
     #[doc(alias = "kMACaptionAppearanceFontStyleCursive")]
     pub const Cursive: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/smallcapital?language=objc)
     #[doc(alias = "kMACaptionAppearanceFontStyleSmallCapital")]
     pub const SmallCapital: Self = Self(7);
 }
@@ -184,16 +199,22 @@ unsafe impl RefEncode for MACaptionAppearanceFontStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceTextEdgeStyle(pub CFIndex);
 impl MACaptionAppearanceTextEdgeStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/undefined?language=objc)
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/none?language=objc)
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/raised?language=objc)
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleRaised")]
     pub const Raised: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/depressed?language=objc)
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleDepressed")]
     pub const Depressed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/uniform?language=objc)
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleUniform")]
     pub const Uniform: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/dropshadow?language=objc)
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleDropShadow")]
     pub const DropShadow: Self = Self(5);
 }
@@ -240,6 +261,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `strings` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancediddisplaycaptions(_:)?language=objc)
     pub fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray);
 }
 
@@ -276,6 +299,8 @@ extern "C-unwind" {
     /// // now update system-wide captioning preferences by registering the language of the option selected by the user
     /// MACaptionAppearanceAddSelectedLanguage(kMACaptionAppearanceDomainUser, (CFStringRef)[[legibleOption locale] localeIdentifier]);
     /// </code>
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearanceaddselectedlanguage(_:_:)?language=objc)
     pub fn MACaptionAppearanceAddSelectedLanguage(
         domain: MACaptionAppearanceDomain,
         language: &CFString,
@@ -298,6 +323,8 @@ extern "C-unwind" {
 ///
 ///
 /// Languages added using MACaptionAppearanceAddSelectedLanguage are normalized, and thus the contents of this array may have slightly different strings than those passed into MACaptionAppearanceAddSelectedLanguage.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyselectedlanguages(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopySelectedLanguages(
     domain: MACaptionAppearanceDomain,
@@ -330,6 +357,8 @@ extern "C-unwind" {
     /// ```
     ///
     /// .
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetdisplaytype(_:)?language=objc)
     pub fn MACaptionAppearanceGetDisplayType(
         domain: MACaptionAppearanceDomain,
     ) -> MACaptionAppearanceDisplayType;
@@ -353,6 +382,8 @@ extern "C-unwind" {
     /// ```
     ///
     /// .
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancesetdisplaytype(_:_:)?language=objc)
     pub fn MACaptionAppearanceSetDisplayType(
         domain: MACaptionAppearanceDomain,
         display_type: MACaptionAppearanceDisplayType,
@@ -370,6 +401,8 @@ extern "C-unwind" {
 /// .
 ///
 /// Returns: An array containing the preferred order of media characteristics for captions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopypreferredcaptioningmediacharacteristics(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(
     domain: MACaptionAppearanceDomain,
@@ -396,6 +429,8 @@ extern "C-unwind" {
     /// .
     ///
     /// Returns: A boolean indicating if the currently-active style has been customized by the user
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearanceiscustomized(_:)?language=objc)
     pub fn MACaptionAppearanceIsCustomized(domain: MACaptionAppearanceDomain) -> bool;
 }
 
@@ -422,6 +457,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `behavior` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyforegroundcolor(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyForegroundColor(
@@ -464,6 +501,8 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyForegroundColor(
 /// # Safety
 ///
 /// `behavior` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopybackgroundcolor(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyBackgroundColor(
@@ -506,6 +545,8 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyBackgroundColor(
 /// # Safety
 ///
 /// `behavior` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopywindowcolor(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyWindowColor(
@@ -547,6 +588,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetforegroundopacity(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetForegroundOpacity(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -577,6 +620,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetbackgroundopacity(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetBackgroundOpacity(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -607,6 +652,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetwindowopacity(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetWindowOpacity(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -637,6 +684,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetwindowroundedcornerradius(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetWindowRoundedCornerRadius(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -674,6 +723,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `behavior` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyfontdescriptorforstyle(_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-text")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyFontDescriptorForStyle(
@@ -718,6 +769,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetrelativecharactersize(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetRelativeCharacterSize(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -748,6 +801,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegettextedgestyle(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetTextEdgeStyle(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -757,6 +812,8 @@ extern "C-unwind" {
 /// Copies all system and user defined profiles, each represented by a CFString containing a non-human-readable ID
 ///
 /// Returns: An array of strings where each string represents a unique caption profile ID.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyprofileids()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileIDs() -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -771,12 +828,16 @@ extern "C-unwind" {
     /// Sets the currently-selected caption drawing profileID system wide. Behavior is undefined if NULL or an invalid profileID is provided
     ///
     /// Parameter `profileID`: The profileID to make active.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancesetactiveprofileid(_:)?language=objc)
     pub fn MACaptionAppearanceSetActiveProfileID(profile_id: &CFString);
 }
 
 /// Gets the currently-selected caption drawing profileID system wide.
 ///
 /// Returns: The currently-selected profileID.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyactiveprofileid()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyActiveProfileID() -> CFRetained<CFString> {
     extern "C-unwind" {
@@ -792,6 +853,8 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyActiveProfileID() -> CFRe
 /// Parameter `profileID`: The profileID to copy the name of
 ///
 /// Returns: A human-readable name of the provided profileID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyprofilename(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileName(
     profile_id: &CFString,
@@ -810,6 +873,8 @@ extern "C-unwind" {
     /// Parameter `profileID`: The profileID which will appear active when executing the block
     ///
     /// Parameter `aBlock`: the block of code to execute
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearanceexecuteblockforprofileid(_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn MACaptionAppearanceExecuteBlockForProfileID(
         profile_id: &CFString,

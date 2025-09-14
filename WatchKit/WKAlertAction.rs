@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAlertActionStyle(pub NSInteger);
 impl WKAlertActionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertactionstyle/default?language=objc)
     #[doc(alias = "WKAlertActionStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertactionstyle/cancel?language=objc)
     #[doc(alias = "WKAlertActionStyleCancel")]
     pub const Cancel: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertactionstyle/destructive?language=objc)
     #[doc(alias = "WKAlertActionStyleDestructive")]
     pub const Destructive: Self = Self(2);
 }

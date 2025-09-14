@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedMatchStatus(pub NSInteger);
 impl GKTurnBasedMatchStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.enum/unknown?language=objc)
     #[doc(alias = "GKTurnBasedMatchStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.enum/open?language=objc)
     #[doc(alias = "GKTurnBasedMatchStatusOpen")]
     pub const Open: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.enum/ended?language=objc)
     #[doc(alias = "GKTurnBasedMatchStatusEnded")]
     pub const Ended: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.enum/matching?language=objc)
     #[doc(alias = "GKTurnBasedMatchStatusMatching")]
     pub const Matching: Self = Self(3);
 }
@@ -41,16 +45,22 @@ unsafe impl RefEncode for GKTurnBasedMatchStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedParticipantStatus(pub NSInteger);
 impl GKTurnBasedParticipantStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/unknown?language=objc)
     #[doc(alias = "GKTurnBasedParticipantStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/invited?language=objc)
     #[doc(alias = "GKTurnBasedParticipantStatusInvited")]
     pub const Invited: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/declined?language=objc)
     #[doc(alias = "GKTurnBasedParticipantStatusDeclined")]
     pub const Declined: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/matching?language=objc)
     #[doc(alias = "GKTurnBasedParticipantStatusMatching")]
     pub const Matching: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/active?language=objc)
     #[doc(alias = "GKTurnBasedParticipantStatusActive")]
     pub const Active: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/done?language=objc)
     #[doc(alias = "GKTurnBasedParticipantStatusDone")]
     pub const Done: Self = Self(5);
 }
@@ -71,26 +81,37 @@ unsafe impl RefEncode for GKTurnBasedParticipantStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedMatchOutcome(pub NSInteger);
 impl GKTurnBasedMatchOutcome {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/none?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/quit?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeQuit")]
     pub const Quit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/won?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeWon")]
     pub const Won: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/lost?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeLost")]
     pub const Lost: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/tied?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeTied")]
     pub const Tied: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/timeexpired?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeTimeExpired")]
     pub const TimeExpired: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/first?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeFirst")]
     pub const First: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/second?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeSecond")]
     pub const Second: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/third?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeThird")]
     pub const Third: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/fourth?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeFourth")]
     pub const Fourth: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/customrange?language=objc)
     #[doc(alias = "GKTurnBasedMatchOutcomeCustomRange")]
     pub const CustomRange: Self = Self(0x00FF0000);
 }
@@ -588,14 +609,19 @@ impl GKTurnBasedMatch {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedExchangeStatus(pub i8);
 impl GKTurnBasedExchangeStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/unknown?language=objc)
     #[doc(alias = "GKTurnBasedExchangeStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/active?language=objc)
     #[doc(alias = "GKTurnBasedExchangeStatusActive")]
     pub const Active: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/complete?language=objc)
     #[doc(alias = "GKTurnBasedExchangeStatusComplete")]
     pub const Complete: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/resolved?language=objc)
     #[doc(alias = "GKTurnBasedExchangeStatusResolved")]
     pub const Resolved: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/canceled?language=objc)
     #[doc(alias = "GKTurnBasedExchangeStatusCanceled")]
     pub const Canceled: Self = Self(4);
 }

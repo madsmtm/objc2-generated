@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOPriority(pub NSInteger);
 impl MTLIOPriority {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliopriority/high?language=objc)
     #[doc(alias = "MTLIOPriorityHigh")]
     pub const High: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliopriority/normal?language=objc)
     #[doc(alias = "MTLIOPriorityNormal")]
     pub const Normal: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliopriority/low?language=objc)
     #[doc(alias = "MTLIOPriorityLow")]
     pub const Low: Self = Self(2);
 }
@@ -35,8 +38,10 @@ unsafe impl RefEncode for MTLIOPriority {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOCommandQueueType(pub NSInteger);
 impl MTLIOCommandQueueType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuetype/concurrent?language=objc)
     #[doc(alias = "MTLIOCommandQueueTypeConcurrent")]
     pub const Concurrent: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuetype/serial?language=objc)
     #[doc(alias = "MTLIOCommandQueueTypeSerial")]
     pub const Serial: Self = Self(1);
 }
@@ -60,8 +65,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLIOError(pub NSInteger);
 impl MTLIOError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioerror-swift.struct/code/urlinvalid?language=objc)
     #[doc(alias = "MTLIOErrorURLInvalid")]
     pub const URLInvalid: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioerror-swift.struct/code/internal?language=objc)
     #[doc(alias = "MTLIOErrorInternal")]
     pub const Internal: Self = Self(2);
 }

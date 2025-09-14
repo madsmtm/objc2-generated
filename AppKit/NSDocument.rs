@@ -13,18 +13,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDocumentChangeType(pub NSUInteger);
 impl NSDocumentChangeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changedone?language=objc)
     #[doc(alias = "NSChangeDone")]
     pub const ChangeDone: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changeundone?language=objc)
     #[doc(alias = "NSChangeUndone")]
     pub const ChangeUndone: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changeredone?language=objc)
     #[doc(alias = "NSChangeRedone")]
     pub const ChangeRedone: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changecleared?language=objc)
     #[doc(alias = "NSChangeCleared")]
     pub const ChangeCleared: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changereadothercontents?language=objc)
     #[doc(alias = "NSChangeReadOtherContents")]
     pub const ChangeReadOtherContents: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changeautosaved?language=objc)
     #[doc(alias = "NSChangeAutosaved")]
     pub const ChangeAutosaved: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changediscardable?language=objc)
     #[doc(alias = "NSChangeDiscardable")]
     pub const ChangeDiscardable: Self = Self(256);
 }
@@ -43,18 +50,25 @@ unsafe impl RefEncode for NSDocumentChangeType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSaveOperationType(pub NSUInteger);
 impl NSSaveOperationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/saveoperation?language=objc)
     #[doc(alias = "NSSaveOperation")]
     pub const SaveOperation: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/saveasoperation?language=objc)
     #[doc(alias = "NSSaveAsOperation")]
     pub const SaveAsOperation: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/savetooperation?language=objc)
     #[doc(alias = "NSSaveToOperation")]
     pub const SaveToOperation: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/autosaveinplaceoperation?language=objc)
     #[doc(alias = "NSAutosaveInPlaceOperation")]
     pub const AutosaveInPlaceOperation: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/autosaveelsewhereoperation?language=objc)
     #[doc(alias = "NSAutosaveElsewhereOperation")]
     pub const AutosaveElsewhereOperation: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/autosaveasoperation?language=objc)
     #[doc(alias = "NSAutosaveAsOperation")]
     pub const AutosaveAsOperation: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssaveoperationtype/nsautosaveoperation?language=objc)
     #[doc(alias = "NSAutosaveOperation")]
     #[deprecated = "Use NSAutosaveElsewhereOperation instead"]
     pub const AutosaveOperation: Self = Self(3);

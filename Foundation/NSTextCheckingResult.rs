@@ -12,30 +12,43 @@ use crate::*;
 pub struct NSTextCheckingType(pub u64);
 bitflags::bitflags! {
     impl NSTextCheckingType: u64 {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/orthography?language=objc)
         #[doc(alias = "NSTextCheckingTypeOrthography")]
         const Orthography = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/spelling?language=objc)
         #[doc(alias = "NSTextCheckingTypeSpelling")]
         const Spelling = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/grammar?language=objc)
         #[doc(alias = "NSTextCheckingTypeGrammar")]
         const Grammar = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/date?language=objc)
         #[doc(alias = "NSTextCheckingTypeDate")]
         const Date = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/address?language=objc)
         #[doc(alias = "NSTextCheckingTypeAddress")]
         const Address = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/link?language=objc)
         #[doc(alias = "NSTextCheckingTypeLink")]
         const Link = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/quote?language=objc)
         #[doc(alias = "NSTextCheckingTypeQuote")]
         const Quote = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/dash?language=objc)
         #[doc(alias = "NSTextCheckingTypeDash")]
         const Dash = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/replacement?language=objc)
         #[doc(alias = "NSTextCheckingTypeReplacement")]
         const Replacement = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/correction?language=objc)
         #[doc(alias = "NSTextCheckingTypeCorrection")]
         const Correction = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/regularexpression?language=objc)
         #[doc(alias = "NSTextCheckingTypeRegularExpression")]
         const RegularExpression = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/phonenumber?language=objc)
         #[doc(alias = "NSTextCheckingTypePhoneNumber")]
         const PhoneNumber = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/transitinformation?language=objc)
         #[doc(alias = "NSTextCheckingTypeTransitInformation")]
         const TransitInformation = 1<<12;
     }

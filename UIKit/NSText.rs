@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingDirection(pub NSInteger);
 impl NSWritingDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirection/natural?language=objc)
     #[doc(alias = "NSWritingDirectionNatural")]
     pub const Natural: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirection/lefttoright?language=objc)
     #[doc(alias = "NSWritingDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirection/righttoleft?language=objc)
     #[doc(alias = "NSWritingDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -32,8 +35,10 @@ unsafe impl RefEncode for NSWritingDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextAlignment(pub NSInteger);
 impl NSTextAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextalignment/left?language=objc)
     #[doc(alias = "NSTextAlignmentLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextalignment/justified?language=objc)
     #[doc(alias = "NSTextAlignmentJustified")]
     pub const Justified: Self = Self(3);
     /// Resolved to either ``left`` or ``right`` based on the natural alignment resolution type active in the associated component.
@@ -41,6 +46,8 @@ impl NSTextAlignment {
     /// There are two types of natural alignment resolution behavior. The natural alignment is resolved based on either the UI language or the base writing direction.
     /// The behavior is selected by the ``resolvesNaturalAlignmentWithBaseWritingDirection`` property for ``NSTextLayoutManager``.
     /// ``NSStringDrawingOptions.resolvesNaturalAlignmentWithBaseWritingDirection`` specifies the base writing direction based resolution for ``NSStringDrawing``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextalignment/natural?language=objc)
     #[doc(alias = "NSTextAlignmentNatural")]
     pub const Natural: Self = Self(4);
 }

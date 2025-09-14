@@ -17,6 +17,8 @@ extern "C-unwind" {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `list_of_video_encoders_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcopyvideoencoderlist(_:_:)?language=objc)
     pub fn VTCopyVideoEncoderList(
         options: Option<&CFDictionary>,
         list_of_video_encoders_out: NonNull<*const CFArray>,
@@ -104,6 +106,8 @@ extern "C-unwind" {
     /// - `encoder_specification` generic must be of the correct type.
     /// - `encoder_id_out` must be a valid pointer or null.
     /// - `supported_properties_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcopysupportedpropertydictionaryforencoder(width:height:codectype:encoderspecification:encoderidout:supportedpropertiesout:)?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopySupportedPropertyDictionaryForEncoder(
         width: i32,

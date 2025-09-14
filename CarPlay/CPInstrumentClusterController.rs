@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPInstrumentClusterSetting(pub NSUInteger);
 impl CPInstrumentClusterSetting {
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinstrumentclustersetting/unspecified?language=objc)
     #[doc(alias = "CPInstrumentClusterSettingUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinstrumentclustersetting/enabled?language=objc)
     #[doc(alias = "CPInstrumentClusterSettingEnabled")]
     pub const Enabled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinstrumentclustersetting/disabled?language=objc)
     #[doc(alias = "CPInstrumentClusterSettingDisabled")]
     pub const Disabled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinstrumentclustersetting/userpreference?language=objc)
     #[doc(alias = "CPInstrumentClusterSettingUserPreference")]
     pub const UserPreference: Self = Self(3);
 }

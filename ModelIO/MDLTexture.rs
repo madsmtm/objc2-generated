@@ -19,26 +19,37 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDLTextureChannelEncoding(pub NSInteger);
 impl MDLTextureChannelEncoding {
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint8-swift.enum.case?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingUInt8")]
     pub const UInt8: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint8-swift.type.property?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingUint8")]
     pub const Uint8: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint16-swift.enum.case?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingUInt16")]
     pub const UInt16: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint16-swift.type.property?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingUint16")]
     pub const Uint16: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint24-swift.enum.case?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingUInt24")]
     pub const UInt24: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint24-swift.type.property?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingUint24")]
     pub const Uint24: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint32-swift.enum.case?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingUInt32")]
     pub const UInt32: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint32-swift.type.property?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingUint32")]
     pub const Uint32: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/float16?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingFloat16")]
     pub const Float16: Self = Self(0x102);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/float16sr?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingFloat16SR")]
     pub const Float16SR: Self = Self(0x302);
+    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/float32?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingFloat32")]
     pub const Float32: Self = Self(0x104);
 }

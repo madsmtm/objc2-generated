@@ -15,16 +15,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKWorkoutSessionState(pub NSInteger);
 impl HKWorkoutSessionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/notstarted?language=objc)
     #[doc(alias = "HKWorkoutSessionStateNotStarted")]
     pub const NotStarted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/running?language=objc)
     #[doc(alias = "HKWorkoutSessionStateRunning")]
     pub const Running: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/ended?language=objc)
     #[doc(alias = "HKWorkoutSessionStateEnded")]
     pub const Ended: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/paused?language=objc)
     #[doc(alias = "HKWorkoutSessionStatePaused")]
     pub const Paused: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/prepared?language=objc)
     #[doc(alias = "HKWorkoutSessionStatePrepared")]
     pub const Prepared: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/stopped?language=objc)
     #[doc(alias = "HKWorkoutSessionStateStopped")]
     pub const Stopped: Self = Self(6);
 }
@@ -45,8 +51,10 @@ unsafe impl RefEncode for HKWorkoutSessionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWorkoutSessionType(pub NSInteger);
 impl HKWorkoutSessionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiontype/primary?language=objc)
     #[doc(alias = "HKWorkoutSessionTypePrimary")]
     pub const Primary: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiontype/mirrored?language=objc)
     #[doc(alias = "HKWorkoutSessionTypeMirrored")]
     pub const Mirrored: Self = Self(1);
 }

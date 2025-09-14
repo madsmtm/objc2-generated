@@ -13,22 +13,28 @@ use crate::*;
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SKDownloadState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/waiting?language=objc)
     #[doc(alias = "SKDownloadStateWaiting")]
     #[deprecated = "Hosted content is no longer supported"]
     #[default]
     Waiting = 0,
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/active?language=objc)
     #[doc(alias = "SKDownloadStateActive")]
     #[deprecated = "Hosted content is no longer supported"]
     Active = 1,
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/paused?language=objc)
     #[doc(alias = "SKDownloadStatePaused")]
     #[deprecated = "Hosted content is no longer supported"]
     Paused = 2,
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/finished?language=objc)
     #[doc(alias = "SKDownloadStateFinished")]
     #[deprecated = "Hosted content is no longer supported"]
     Finished = 3,
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/failed?language=objc)
     #[doc(alias = "SKDownloadStateFailed")]
     #[deprecated = "Hosted content is no longer supported"]
     Failed = 4,
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/cancelled?language=objc)
     #[doc(alias = "SKDownloadStateCancelled")]
     #[deprecated = "Hosted content is no longer supported"]
     Cancelled = 5,

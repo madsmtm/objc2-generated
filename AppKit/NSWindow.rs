@@ -27,31 +27,44 @@ pub static NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVersio
 pub struct NSWindowStyleMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowStyleMask: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/borderless?language=objc)
         #[doc(alias = "NSWindowStyleMaskBorderless")]
         const Borderless = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/titled?language=objc)
         #[doc(alias = "NSWindowStyleMaskTitled")]
         const Titled = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/closable?language=objc)
         #[doc(alias = "NSWindowStyleMaskClosable")]
         const Closable = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/miniaturizable?language=objc)
         #[doc(alias = "NSWindowStyleMaskMiniaturizable")]
         const Miniaturizable = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/resizable?language=objc)
         #[doc(alias = "NSWindowStyleMaskResizable")]
         const Resizable = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/texturedbackground?language=objc)
         #[doc(alias = "NSWindowStyleMaskTexturedBackground")]
 #[deprecated = "Textured window style should no longer be used"]
         const TexturedBackground = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/unifiedtitleandtoolbar?language=objc)
         #[doc(alias = "NSWindowStyleMaskUnifiedTitleAndToolbar")]
         const UnifiedTitleAndToolbar = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/fullscreen?language=objc)
         #[doc(alias = "NSWindowStyleMaskFullScreen")]
         const FullScreen = 1<<14;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/fullsizecontentview?language=objc)
         #[doc(alias = "NSWindowStyleMaskFullSizeContentView")]
         const FullSizeContentView = 1<<15;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/utilitywindow?language=objc)
         #[doc(alias = "NSWindowStyleMaskUtilityWindow")]
         const UtilityWindow = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/docmodalwindow?language=objc)
         #[doc(alias = "NSWindowStyleMaskDocModalWindow")]
         const DocModalWindow = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/nonactivatingpanel?language=objc)
         #[doc(alias = "NSWindowStyleMaskNonactivatingPanel")]
         const NonactivatingPanel = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/hudwindow?language=objc)
         #[doc(alias = "NSWindowStyleMaskHUDWindow")]
         const HUDWindow = 1<<13;
     }
@@ -84,8 +97,10 @@ pub const NSResetCursorRectsRunLoopOrdering: c_uint = 700000;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowSharingType(pub NSUInteger);
 impl NSWindowSharingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/sharingtype-swift.enum/none?language=objc)
     #[doc(alias = "NSWindowSharingNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/sharingtype-swift.enum/readonly?language=objc)
     #[doc(alias = "NSWindowSharingReadOnly")]
     pub const ReadOnly: Self = Self(1);
 }
@@ -147,36 +162,52 @@ unsafe impl RefEncode for NSWindowSharingType {
 pub struct NSWindowCollectionBehavior(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowCollectionBehavior: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowcollectionbehavior/nswindowcollectionbehaviordefault?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorDefault")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/canjoinallspaces?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllSpaces")]
         const CanJoinAllSpaces = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/movetoactivespace?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorMoveToActiveSpace")]
         const MoveToActiveSpace = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/managed?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorManaged")]
         const Managed = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/transient?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorTransient")]
         const Transient = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/stationary?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorStationary")]
         const Stationary = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/participatesincycle?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorParticipatesInCycle")]
         const ParticipatesInCycle = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/ignorescycle?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorIgnoresCycle")]
         const IgnoresCycle = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenprimary?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenPrimary")]
         const FullScreenPrimary = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenauxiliary?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenAuxiliary")]
         const FullScreenAuxiliary = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreennone?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenNone")]
         const FullScreenNone = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenallowstiling?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenAllowsTiling")]
         const FullScreenAllowsTiling = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreendisallowstiling?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenDisallowsTiling")]
         const FullScreenDisallowsTiling = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/primary?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorPrimary")]
         const Primary = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/auxiliary?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorAuxiliary")]
         const Auxiliary = 1<<17;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/canjoinallapplications?language=objc)
         #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllApplications")]
         const CanJoinAllApplications = 1<<18;
     }
@@ -196,14 +227,19 @@ unsafe impl RefEncode for NSWindowCollectionBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowAnimationBehavior(pub NSInteger);
 impl NSWindowAnimationBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum/default?language=objc)
     #[doc(alias = "NSWindowAnimationBehaviorDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum/none?language=objc)
     #[doc(alias = "NSWindowAnimationBehaviorNone")]
     pub const None: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum/documentwindow?language=objc)
     #[doc(alias = "NSWindowAnimationBehaviorDocumentWindow")]
     pub const DocumentWindow: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum/utilitywindow?language=objc)
     #[doc(alias = "NSWindowAnimationBehaviorUtilityWindow")]
     pub const UtilityWindow: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum/alertpanel?language=objc)
     #[doc(alias = "NSWindowAnimationBehaviorAlertPanel")]
     pub const AlertPanel: Self = Self(5);
 }
@@ -225,8 +261,10 @@ unsafe impl RefEncode for NSWindowAnimationBehavior {
 pub struct NSWindowNumberListOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowNumberListOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/numberlistoptions/allapplications?language=objc)
         #[doc(alias = "NSWindowNumberListAllApplications")]
         const AllApplications = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/numberlistoptions/allspaces?language=objc)
         #[doc(alias = "NSWindowNumberListAllSpaces")]
         const AllSpaces = 1<<4;
     }
@@ -247,6 +285,7 @@ unsafe impl RefEncode for NSWindowNumberListOptions {
 pub struct NSWindowOcclusionState(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowOcclusionState: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/occlusionstate-swift.struct/visible?language=objc)
         #[doc(alias = "NSWindowOcclusionStateVisible")]
         const Visible = 1<<1;
     }
@@ -297,10 +336,13 @@ pub static NSScreenSaverWindowLevel: NSWindowLevel = 1000;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSelectionDirection(pub NSUInteger);
 impl NSSelectionDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/selectiondirection/directselection?language=objc)
     #[doc(alias = "NSDirectSelection")]
     pub const DirectSelection: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/selectiondirection/selectingnext?language=objc)
     #[doc(alias = "NSSelectingNext")]
     pub const SelectingNext: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/selectiondirection/selectingprevious?language=objc)
     #[doc(alias = "NSSelectingPrevious")]
     pub const SelectingPrevious: Self = Self(2);
 }
@@ -321,16 +363,22 @@ unsafe impl RefEncode for NSSelectionDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowButton(pub NSUInteger);
 impl NSWindowButton {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/closebutton?language=objc)
     #[doc(alias = "NSWindowCloseButton")]
     pub const CloseButton: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/miniaturizebutton?language=objc)
     #[doc(alias = "NSWindowMiniaturizeButton")]
     pub const MiniaturizeButton: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/zoombutton?language=objc)
     #[doc(alias = "NSWindowZoomButton")]
     pub const ZoomButton: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/toolbarbutton?language=objc)
     #[doc(alias = "NSWindowToolbarButton")]
     pub const ToolbarButton: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/documenticonbutton?language=objc)
     #[doc(alias = "NSWindowDocumentIconButton")]
     pub const DocumentIconButton: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/documentversionsbutton?language=objc)
     #[doc(alias = "NSWindowDocumentVersionsButton")]
     pub const DocumentVersionsButton: Self = Self(6);
 }
@@ -349,8 +397,10 @@ unsafe impl RefEncode for NSWindowButton {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowTitleVisibility(pub NSInteger);
 impl NSWindowTitleVisibility {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/titlevisibility-swift.enum/visible?language=objc)
     #[doc(alias = "NSWindowTitleVisible")]
     pub const Visible: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/titlevisibility-swift.enum/hidden?language=objc)
     #[doc(alias = "NSWindowTitleHidden")]
     pub const Hidden: Self = Self(1);
 }
@@ -369,14 +419,19 @@ unsafe impl RefEncode for NSWindowTitleVisibility {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowToolbarStyle(pub NSInteger);
 impl NSWindowToolbarStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum/automatic?language=objc)
     #[doc(alias = "NSWindowToolbarStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum/expanded?language=objc)
     #[doc(alias = "NSWindowToolbarStyleExpanded")]
     pub const Expanded: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum/preference?language=objc)
     #[doc(alias = "NSWindowToolbarStylePreference")]
     pub const Preference: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum/unified?language=objc)
     #[doc(alias = "NSWindowToolbarStyleUnified")]
     pub const Unified: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum/unifiedcompact?language=objc)
     #[doc(alias = "NSWindowToolbarStyleUnifiedCompact")]
     pub const UnifiedCompact: Self = Self(4);
 }
@@ -398,10 +453,13 @@ pub static NSEventDurationForever: NSTimeInterval = c_double::MAX as _;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowUserTabbingPreference(pub NSInteger);
 impl NSWindowUserTabbingPreference {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/usertabbingpreference-swift.enum/manual?language=objc)
     #[doc(alias = "NSWindowUserTabbingPreferenceManual")]
     pub const Manual: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/usertabbingpreference-swift.enum/always?language=objc)
     #[doc(alias = "NSWindowUserTabbingPreferenceAlways")]
     pub const Always: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/usertabbingpreference-swift.enum/infullscreen?language=objc)
     #[doc(alias = "NSWindowUserTabbingPreferenceInFullScreen")]
     pub const InFullScreen: Self = Self(2);
 }
@@ -420,10 +478,13 @@ unsafe impl RefEncode for NSWindowUserTabbingPreference {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowTabbingMode(pub NSInteger);
 impl NSWindowTabbingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/tabbingmode-swift.enum/automatic?language=objc)
     #[doc(alias = "NSWindowTabbingModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/tabbingmode-swift.enum/preferred?language=objc)
     #[doc(alias = "NSWindowTabbingModePreferred")]
     pub const Preferred: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/tabbingmode-swift.enum/disallowed?language=objc)
     #[doc(alias = "NSWindowTabbingModeDisallowed")]
     pub const Disallowed: Self = Self(2);
 }
@@ -442,12 +503,16 @@ unsafe impl RefEncode for NSWindowTabbingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTitlebarSeparatorStyle(pub NSInteger);
 impl NSTitlebarSeparatorStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebarseparatorstyle/automatic?language=objc)
     #[doc(alias = "NSTitlebarSeparatorStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebarseparatorstyle/none?language=objc)
     #[doc(alias = "NSTitlebarSeparatorStyleNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebarseparatorstyle/line?language=objc)
     #[doc(alias = "NSTitlebarSeparatorStyleLine")]
     pub const Line: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebarseparatorstyle/shadow?language=objc)
     #[doc(alias = "NSTitlebarSeparatorStyleShadow")]
     pub const Shadow: Self = Self(3);
 }
@@ -2818,10 +2883,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowBackingLocation(pub NSUInteger);
 impl NSWindowBackingLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backinglocation-swift.enum/default?language=objc)
     #[doc(alias = "NSWindowBackingLocationDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backinglocation-swift.enum/videomemory?language=objc)
     #[doc(alias = "NSWindowBackingLocationVideoMemory")]
     pub const VideoMemory: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backinglocation-swift.enum/mainmemory?language=objc)
     #[doc(alias = "NSWindowBackingLocationMainMemory")]
     pub const MainMemory: Self = Self(2);
 }

@@ -15,15 +15,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDEventType(pub NSInteger);
 impl DDEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum/unknown?language=objc)
     #[doc(alias = "DDEventTypeUnknown")]
     pub const Unknown: Self = Self(0);
     /// Unknown event. Placeholder for initializing event types.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum/devicefound?language=objc)
     #[doc(alias = "DDEventTypeDeviceFound")]
     pub const DeviceFound: Self = Self(40);
     /// [DDDeviceEvent] Device found.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum/devicelost?language=objc)
     #[doc(alias = "DDEventTypeDeviceLost")]
     pub const DeviceLost: Self = Self(41);
     /// [DDDeviceEvent] Device lost.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum/devicechanged?language=objc)
     #[doc(alias = "DDEventTypeDeviceChanged")]
     pub const DeviceChanged: Self = Self(42);
 }
@@ -38,6 +45,8 @@ unsafe impl RefEncode for DDEventType {
 
 impl DDEventType {
     /// Converts an event to a string for logging, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/ddeventtypetostring(_:)?language=objc)
     #[doc(alias = "DDEventTypeToString")]
     #[inline]
     pub unsafe fn to_string(self) -> Retained<NSString> {

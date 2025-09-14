@@ -30,6 +30,8 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for CTRunDelegate {
     /// Returns the CFType of CTRunDelegate objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategettypeid()?language=objc)
     #[doc(alias = "CTRunDelegateGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -177,6 +179,8 @@ impl CTRunDelegate {
     ///
     /// - `callbacks` must be a valid pointer.
     /// - `ref_con` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegatecreate(_:_:)?language=objc)
     #[doc(alias = "CTRunDelegateCreate")]
     #[inline]
     pub unsafe fn new(
@@ -204,6 +208,8 @@ impl CTRunDelegate {
     ///
     ///
     /// Returns: The refCon value of the supplied run delegate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetrefcon(_:)?language=objc)
     #[doc(alias = "CTRunDelegateGetRefCon")]
     #[inline]
     pub unsafe fn ref_con(&self) -> NonNull<c_void> {

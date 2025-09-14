@@ -17,14 +17,20 @@ use crate::*;
 pub struct MTLFXSpatialScalerColorProcessingMode(pub NSInteger);
 impl MTLFXSpatialScalerColorProcessingMode {
     /// Indicates your input and output textures use a perceptual color space (sRGB).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalercolorprocessingmode/perceptual?language=objc)
     #[doc(alias = "MTLFXSpatialScalerColorProcessingModePerceptual")]
     pub const Perceptual: Self = Self(0);
     /// Indicates your input and output textures use a linear color space in the `[0,1]` range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalercolorprocessingmode/linear?language=objc)
     #[doc(alias = "MTLFXSpatialScalerColorProcessingModeLinear")]
     pub const Linear: Self = Self(1);
     /// Indicates your input and output textures use a high dynamic range color space, beyond the `[0,1]` range.
     ///
     /// When you configure this mode, MetalFX performs a reversible tone mapping operation to convert your data to the `[0,1]` range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalercolorprocessingmode/hdr?language=objc)
     #[doc(alias = "MTLFXSpatialScalerColorProcessingModeHDR")]
     pub const HDR: Self = Self(2);
 }

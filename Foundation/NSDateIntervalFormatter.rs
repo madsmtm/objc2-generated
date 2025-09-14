@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateIntervalFormatterStyle(pub NSUInteger);
 impl NSDateIntervalFormatterStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style/none?language=objc)
     #[doc(alias = "NSDateIntervalFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style/short?language=objc)
     #[doc(alias = "NSDateIntervalFormatterShortStyle")]
     pub const ShortStyle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style/medium?language=objc)
     #[doc(alias = "NSDateIntervalFormatterMediumStyle")]
     pub const MediumStyle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style/long?language=objc)
     #[doc(alias = "NSDateIntervalFormatterLongStyle")]
     pub const LongStyle: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style/full?language=objc)
     #[doc(alias = "NSDateIntervalFormatterFullStyle")]
     pub const FullStyle: Self = Self(4);
 }

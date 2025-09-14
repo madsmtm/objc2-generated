@@ -34,6 +34,8 @@ unsafe impl ConcreteType for CTFont {
     /// Returns the type identifier for Core Text font references.
     ///
     /// Returns: The identifier for the opaque type CTFontRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgettypeid()?language=objc)
     #[doc(alias = "CTFontGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -230,6 +232,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `matrix` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreatewithname(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateWithName")]
     #[inline]
     pub unsafe fn with_name(
@@ -267,6 +271,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `matrix` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreatewithfontdescriptor(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateWithFontDescriptor")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
@@ -305,12 +311,16 @@ impl CTFont {
 pub struct CTFontOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CTFontOptions: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontoptions/kctfontoptionsdefault?language=objc)
         #[doc(alias = "kCTFontOptionsDefault")]
         const Default = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontoptions/preventautoactivation?language=objc)
         #[doc(alias = "kCTFontOptionsPreventAutoActivation")]
         const PreventAutoActivation = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontoptions/preventautodownload?language=objc)
         #[doc(alias = "kCTFontOptionsPreventAutoDownload")]
         const PreventAutoDownload = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontoptions/prefersystemfont?language=objc)
         #[doc(alias = "kCTFontOptionsPreferSystemFont")]
         const PreferSystemFont = 1<<2;
     }
@@ -350,6 +360,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `matrix` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreatewithnameandoptions(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateWithNameAndOptions")]
     #[inline]
     pub unsafe fn with_name_and_options(
@@ -392,6 +404,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `matrix` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreatewithfontdescriptorandoptions(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateWithFontDescriptorAndOptions")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
@@ -427,120 +441,176 @@ impl CTFont {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontUIFontType(pub u32);
 impl CTFontUIFontType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/none?language=objc)
     #[doc(alias = "kCTFontUIFontNone")]
     pub const None: Self = Self(4294967295);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/user?language=objc)
     #[doc(alias = "kCTFontUIFontUser")]
     pub const User: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/userfixedpitch?language=objc)
     #[doc(alias = "kCTFontUIFontUserFixedPitch")]
     pub const UserFixedPitch: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/system?language=objc)
     #[doc(alias = "kCTFontUIFontSystem")]
     pub const System: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/emphasizedsystem?language=objc)
     #[doc(alias = "kCTFontUIFontEmphasizedSystem")]
     pub const EmphasizedSystem: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/smallsystem?language=objc)
     #[doc(alias = "kCTFontUIFontSmallSystem")]
     pub const SmallSystem: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/smallemphasizedsystem?language=objc)
     #[doc(alias = "kCTFontUIFontSmallEmphasizedSystem")]
     pub const SmallEmphasizedSystem: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/minisystem?language=objc)
     #[doc(alias = "kCTFontUIFontMiniSystem")]
     pub const MiniSystem: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/miniemphasizedsystem?language=objc)
     #[doc(alias = "kCTFontUIFontMiniEmphasizedSystem")]
     pub const MiniEmphasizedSystem: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/views?language=objc)
     #[doc(alias = "kCTFontUIFontViews")]
     pub const Views: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/application?language=objc)
     #[doc(alias = "kCTFontUIFontApplication")]
     pub const Application: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/label?language=objc)
     #[doc(alias = "kCTFontUIFontLabel")]
     pub const Label: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/menutitle?language=objc)
     #[doc(alias = "kCTFontUIFontMenuTitle")]
     pub const MenuTitle: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/menuitem?language=objc)
     #[doc(alias = "kCTFontUIFontMenuItem")]
     pub const MenuItem: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/menuitemmark?language=objc)
     #[doc(alias = "kCTFontUIFontMenuItemMark")]
     pub const MenuItemMark: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/menuitemcmdkey?language=objc)
     #[doc(alias = "kCTFontUIFontMenuItemCmdKey")]
     pub const MenuItemCmdKey: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/windowtitle?language=objc)
     #[doc(alias = "kCTFontUIFontWindowTitle")]
     pub const WindowTitle: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/pushbutton?language=objc)
     #[doc(alias = "kCTFontUIFontPushButton")]
     pub const PushButton: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/utilitywindowtitle?language=objc)
     #[doc(alias = "kCTFontUIFontUtilityWindowTitle")]
     pub const UtilityWindowTitle: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/alertheader?language=objc)
     #[doc(alias = "kCTFontUIFontAlertHeader")]
     pub const AlertHeader: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/systemdetail?language=objc)
     #[doc(alias = "kCTFontUIFontSystemDetail")]
     pub const SystemDetail: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/emphasizedsystemdetail?language=objc)
     #[doc(alias = "kCTFontUIFontEmphasizedSystemDetail")]
     pub const EmphasizedSystemDetail: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/toolbar?language=objc)
     #[doc(alias = "kCTFontUIFontToolbar")]
     pub const Toolbar: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/smalltoolbar?language=objc)
     #[doc(alias = "kCTFontUIFontSmallToolbar")]
     pub const SmallToolbar: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/message?language=objc)
     #[doc(alias = "kCTFontUIFontMessage")]
     pub const Message: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/palette?language=objc)
     #[doc(alias = "kCTFontUIFontPalette")]
     pub const Palette: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/tooltip?language=objc)
     #[doc(alias = "kCTFontUIFontToolTip")]
     pub const ToolTip: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/controlcontent?language=objc)
     #[doc(alias = "kCTFontUIFontControlContent")]
     pub const ControlContent: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontnofonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontNoFontType: Self = Self(CTFontUIFontType::None.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontuserfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontUserFontType: Self = Self(CTFontUIFontType::User.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontuserfixedpitchfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontUserFixedPitchFontType: Self = Self(CTFontUIFontType::UserFixedPitch.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontsystemfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontSystemFontType: Self = Self(CTFontUIFontType::System.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontemphasizedsystemfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontEmphasizedSystemFontType: Self = Self(CTFontUIFontType::EmphasizedSystem.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontsmallsystemfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontSmallSystemFontType: Self = Self(CTFontUIFontType::SmallSystem.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontsmallemphasizedsystemfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontSmallEmphasizedSystemFontType: Self =
         Self(CTFontUIFontType::SmallEmphasizedSystem.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontminisystemfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontMiniSystemFontType: Self = Self(CTFontUIFontType::MiniSystem.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontminiemphasizedsystemfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontMiniEmphasizedSystemFontType: Self =
         Self(CTFontUIFontType::MiniEmphasizedSystem.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontviewsfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontViewsFontType: Self = Self(CTFontUIFontType::Views.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontapplicationfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontApplicationFontType: Self = Self(CTFontUIFontType::Application.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontlabelfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontLabelFontType: Self = Self(CTFontUIFontType::Label.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontmenutitlefonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontMenuTitleFontType: Self = Self(CTFontUIFontType::MenuTitle.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontmenuitemfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontMenuItemFontType: Self = Self(CTFontUIFontType::MenuItem.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontmenuitemmarkfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontMenuItemMarkFontType: Self = Self(CTFontUIFontType::MenuItemMark.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontmenuitemcmdkeyfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontMenuItemCmdKeyFontType: Self = Self(CTFontUIFontType::MenuItemCmdKey.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontwindowtitlefonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontWindowTitleFontType: Self = Self(CTFontUIFontType::WindowTitle.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontpushbuttonfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontPushButtonFontType: Self = Self(CTFontUIFontType::PushButton.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontutilitywindowtitlefonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontUtilityWindowTitleFontType: Self =
         Self(CTFontUIFontType::UtilityWindowTitle.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontalertheaderfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontAlertHeaderFontType: Self = Self(CTFontUIFontType::AlertHeader.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontsystemdetailfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontSystemDetailFontType: Self = Self(CTFontUIFontType::SystemDetail.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontemphasizedsystemdetailfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontEmphasizedSystemDetailFontType: Self =
         Self(CTFontUIFontType::EmphasizedSystemDetail.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfonttoolbarfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontToolbarFontType: Self = Self(CTFontUIFontType::Toolbar.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontsmalltoolbarfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontSmallToolbarFontType: Self = Self(CTFontUIFontType::SmallToolbar.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontmessagefonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontMessageFontType: Self = Self(CTFontUIFontType::Message.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontpalettefonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontPaletteFontType: Self = Self(CTFontUIFontType::Palette.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfonttooltipfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontToolTipFontType: Self = Self(CTFontUIFontType::ToolTip.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype/kctfontcontrolcontentfonttype?language=objc)
     #[deprecated = "Deprecated"]
     pub const kCTFontControlContentFontType: Self = Self(CTFontUIFontType::ControlContent.0);
 }
@@ -569,6 +639,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the correct font for various UI uses. The only required parameter is the uiType selector, unspecified optional parameters will use default values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreateuifontforlanguage(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateUIFontForLanguage")]
     #[inline]
     pub fn new_ui_font_for_language(
@@ -610,6 +682,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `matrix` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreatecopywithattributes(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateCopyWithAttributes")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
@@ -656,6 +730,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `matrix` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreatecopywithsymbolictraits(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateCopyWithSymbolicTraits")]
     #[cfg(feature = "CTFontTraits")]
     #[inline]
@@ -701,6 +777,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `matrix` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreatecopywithfamily(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateCopyWithFamily")]
     #[inline]
     pub unsafe fn copy_with_family(
@@ -744,6 +822,8 @@ impl CTFont {
     /// See also: CTFontGetGlyphsForCharacters
     ///
     /// See also: kCTFontCascadeListAttribute
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreateforstring(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateForString")]
     #[inline]
     pub fn for_string(&self, string: &CFString, range: CFRange) -> CFRetained<CTFont> {
@@ -786,6 +866,8 @@ impl CTFont {
     /// See also: CTFontGetGlyphsForCharacters
     ///
     /// See also: kCTFontCascadeListAttribute
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreateforstringwithlanguage(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateForStringWithLanguage")]
     #[inline]
     pub fn for_string_with_language(
@@ -815,6 +897,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a normalized font descriptor for a font. The font descriptor contains enough information to recreate this font at a later time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopyfontdescriptor(_:)?language=objc)
     #[doc(alias = "CTFontCopyFontDescriptor")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
@@ -838,6 +922,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a retained reference to an arbitrary attribute. If the requested attribute is not present, NULL is returned. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopyattribute(_:_:)?language=objc)
     #[doc(alias = "CTFontCopyAttribute")]
     #[inline]
     pub fn attribute(&self, attribute: &CFString) -> Option<CFRetained<CFType>> {
@@ -855,6 +941,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the point size of the given font reference. This is the point size provided when the font was created.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetsize(_:)?language=objc)
     #[doc(alias = "CTFontGetSize")]
     #[inline]
     pub fn size(&self) -> CGFloat {
@@ -871,6 +959,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the transformation matrix for this given font reference. This is the matrix that was provided when the font was created.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetmatrix(_:)?language=objc)
     #[doc(alias = "CTFontGetMatrix")]
     #[inline]
     pub fn matrix(&self) -> CGAffineTransform {
@@ -887,6 +977,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the symbolic traits of the font. This is equivalent to the kCTFontSymbolicTrait of traits dictionary. See CTFontTraits.h for a definition of the font traits.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetsymbolictraits(_:)?language=objc)
     #[doc(alias = "CTFontGetSymbolicTraits")]
     #[cfg(feature = "CTFontTraits")]
     #[inline]
@@ -904,6 +996,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a retained reference to the font traits dictionary. Individual traits can be accessed with the trait key constants. See CTFontTraits.h for a definition of the font traits.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopytraits(_:)?language=objc)
     #[doc(alias = "CTFontCopyTraits")]
     #[inline]
     pub fn traits(&self) -> CFRetained<CFDictionary> {
@@ -930,6 +1024,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `language_pref_list` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopydefaultcascadelistforlanguages(_:_:)?language=objc)
     #[doc(alias = "CTFontCopyDefaultCascadeListForLanguages")]
     #[inline]
     pub unsafe fn default_cascade_list_for_languages(
@@ -953,6 +1049,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a retained reference to the PostScript name of the font.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopypostscriptname(_:)?language=objc)
     #[doc(alias = "CTFontCopyPostScriptName")]
     #[inline]
     pub fn post_script_name(&self) -> CFRetained<CFString> {
@@ -972,6 +1070,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a retained reference to the family name of the font.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopyfamilyname(_:)?language=objc)
     #[doc(alias = "CTFontCopyFamilyName")]
     #[inline]
     pub fn family_name(&self) -> CFRetained<CFString> {
@@ -991,6 +1091,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a retained reference to the full name of the font.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopyfullname(_:)?language=objc)
     #[doc(alias = "CTFontCopyFullName")]
     #[inline]
     pub fn full_name(&self) -> CFRetained<CFString> {
@@ -1010,6 +1112,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a retained reference to the localized display name of the font.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopydisplayname(_:)?language=objc)
     #[doc(alias = "CTFontCopyDisplayName")]
     #[inline]
     pub fn display_name(&self) -> CFRetained<CFString> {
@@ -1032,6 +1136,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function creates the requested name for the font, or NULL if the font does not have an entry for the requested name. The Unicode version of the name will be preferred, otherwise the first available will be used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopyname(_:_:)?language=objc)
     #[doc(alias = "CTFontCopyName")]
     #[inline]
     pub fn name(&self, name_key: &CFString) -> Option<CFRetained<CFString>> {
@@ -1068,6 +1174,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `actual_language` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopylocalizedname(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCopyLocalizedName")]
     #[inline]
     pub unsafe fn localized_name(
@@ -1093,6 +1201,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a retained reference to the font's character set. This character set covers the nominal referenced by the font's Unicode cmap table (or equivalent).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopycharacterset(_:)?language=objc)
     #[doc(alias = "CTFontCopyCharacterSet")]
     #[inline]
     pub fn character_set(&self) -> CFRetained<CFCharacterSet> {
@@ -1112,6 +1222,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the best string encoding for the font.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetstringencoding(_:)?language=objc)
     #[doc(alias = "CTFontGetStringEncoding")]
     #[inline]
     pub fn string_encoding(&self) -> CFStringEncoding {
@@ -1128,6 +1240,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a retained reference to an array of languages supported by the font. The array contains language identifier strings as CFStringRefs. The format of the language identifier will conform to UTS #35.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopysupportedlanguages(_:)?language=objc)
     #[doc(alias = "CTFontCopySupportedLanguages")]
     #[inline]
     pub fn supported_languages(&self) -> CFRetained<CFArray> {
@@ -1167,6 +1281,8 @@ impl CTFont {
     ///
     /// - `characters` must be a valid pointer.
     /// - `glyphs` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetglyphsforcharacters(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontGetGlyphsForCharacters")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -1194,6 +1310,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the font ascent metric scaled based on the point size and matrix of the font reference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetascent(_:)?language=objc)
     #[doc(alias = "CTFontGetAscent")]
     #[inline]
     pub fn ascent(&self) -> CGFloat {
@@ -1210,6 +1328,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the font descent metric scaled based on the point size and matrix of the font reference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetdescent(_:)?language=objc)
     #[doc(alias = "CTFontGetDescent")]
     #[inline]
     pub fn descent(&self) -> CGFloat {
@@ -1226,6 +1346,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the font leading metric scaled based on the point size and matrix of the font reference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetleading(_:)?language=objc)
     #[doc(alias = "CTFontGetLeading")]
     #[inline]
     pub fn leading(&self) -> CGFloat {
@@ -1242,6 +1364,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the units per em of the font.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetunitsperem(_:)?language=objc)
     #[doc(alias = "CTFontGetUnitsPerEm")]
     #[inline]
     pub fn units_per_em(&self) -> c_uint {
@@ -1258,6 +1382,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the number of glyphs in the font.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetglyphcount(_:)?language=objc)
     #[doc(alias = "CTFontGetGlyphCount")]
     #[inline]
     pub fn glyph_count(&self) -> CFIndex {
@@ -1274,6 +1400,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This will return the design bounding box of the font, which is the rectangle defined by xMin, yMin, xMax, and yMax values for the font.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetboundingbox(_:)?language=objc)
     #[doc(alias = "CTFontGetBoundingBox")]
     #[inline]
     pub fn bounding_box(&self) -> CGRect {
@@ -1290,6 +1418,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the font underline position metric scaled based on the point size and matrix of the font reference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetunderlineposition(_:)?language=objc)
     #[doc(alias = "CTFontGetUnderlinePosition")]
     #[inline]
     pub fn underline_position(&self) -> CGFloat {
@@ -1306,6 +1436,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the font underline thickness metric scaled based on the point size and matrix of the font reference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetunderlinethickness(_:)?language=objc)
     #[doc(alias = "CTFontGetUnderlineThickness")]
     #[inline]
     pub fn underline_thickness(&self) -> CGFloat {
@@ -1322,6 +1454,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the transformed slant angle of the font. This is equivalent to the italic or caret angle with any skew from the transformation matrix applied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetslantangle(_:)?language=objc)
     #[doc(alias = "CTFontGetSlantAngle")]
     #[inline]
     pub fn slant_angle(&self) -> CGFloat {
@@ -1338,6 +1472,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the font cap height metric scaled based on the point size and matrix of the font reference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetcapheight(_:)?language=objc)
     #[doc(alias = "CTFontGetCapHeight")]
     #[inline]
     pub fn cap_height(&self) -> CGFloat {
@@ -1354,6 +1490,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the font X height metric scaled based on the point size and matrix of the font reference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetxheight(_:)?language=objc)
     #[doc(alias = "CTFontGetXHeight")]
     #[inline]
     pub fn x_height(&self) -> CGFloat {
@@ -1373,6 +1511,8 @@ impl CTFont {
     ///
     ///
     /// Returns: The glyph with the specified name or 0 if the name is not recognized; this glyph can be used with other Core Text glyph data accessors or with Quartz.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetglyphwithname(_:_:)?language=objc)
     #[doc(alias = "CTFontGetGlyphWithName")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -1396,6 +1536,8 @@ impl CTFont {
     ///
     ///
     /// See also: CTFontGetGlyphWithName
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopynameforglyph(_:_:)?language=objc)
     #[doc(alias = "CTFontCopyNameForGlyph")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -1431,6 +1573,8 @@ impl CTFont {
     ///
     /// - `glyphs` must be a valid pointer.
     /// - `bounding_rects` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetboundingrectsforglyphs(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontGetBoundingRectsForGlyphs")]
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
@@ -1480,6 +1624,8 @@ impl CTFont {
     ///
     /// - `glyphs` must be a valid pointer.
     /// - `bounding_rects` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetopticalboundsforglyphs(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontGetOpticalBoundsForGlyphs")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -1526,6 +1672,8 @@ impl CTFont {
     ///
     /// - `glyphs` must be a valid pointer.
     /// - `advances` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetadvancesforglyphs(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontGetAdvancesForGlyphs")]
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
@@ -1566,6 +1714,8 @@ impl CTFont {
     ///
     /// - `glyphs` must be a valid pointer.
     /// - `translations` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetverticaltranslationsforglyphs(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontGetVerticalTranslationsForGlyphs")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -1606,6 +1756,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `matrix` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreatepathforglyph(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreatePathForGlyph")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -1705,6 +1857,8 @@ impl CTFont {
     ///
     ///
     /// See also: kCTFontVariationAxesAttribute
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopyvariationaxes(_:)?language=objc)
     #[doc(alias = "CTFontCopyVariationAxes")]
     #[inline]
     pub fn variation_axes(&self) -> Option<CFRetained<CFArray>> {
@@ -1729,6 +1883,8 @@ impl CTFont {
     /// See also: kCTFontVariationAxisIdentifierKey
     ///
     /// See also: kCTFontVariationAxisDefaultValueKey
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopyvariation(_:)?language=objc)
     #[doc(alias = "CTFontCopyVariation")]
     #[inline]
     pub fn variation(&self) -> Option<CFRetained<CFDictionary>> {
@@ -1885,6 +2041,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns an array of font feature dictionaries for the font reference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopyfeatures(_:)?language=objc)
     #[doc(alias = "CTFontCopyFeatures")]
     #[inline]
     pub fn features(&self) -> Option<CFRetained<CFArray>> {
@@ -1905,6 +2063,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a normalized array of font feature setting dictionaries. The array will only contain the non-default settings that should be applied to the font, or NULL if the default settings should be used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopyfeaturesettings(_:)?language=objc)
     #[doc(alias = "CTFontCopyFeatureSettings")]
     #[inline]
     pub fn feature_settings(&self) -> Option<CFRetained<CFArray>> {
@@ -1929,6 +2089,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `attributes` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopygraphicsfont(_:_:)?language=objc)
     #[doc(alias = "CTFontCopyGraphicsFont")]
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
@@ -1968,6 +2130,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `matrix` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreatewithgraphicsfont(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateWithGraphicsFont")]
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
@@ -2019,6 +2183,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `name` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcreatewithquickdrawinstance(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontCreateWithQuickdrawInstance")]
     #[deprecated = "Quickdraw font references are deprecated"]
     #[inline]
@@ -2202,8 +2368,10 @@ pub type CTFontTableTag = FourCharCode;
 pub struct CTFontTableOptions(pub u32);
 bitflags::bitflags! {
     impl CTFontTableOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfonttableoptions/kctfonttableoptionnooptions?language=objc)
         #[doc(alias = "kCTFontTableOptionNoOptions")]
         const NoOptions = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfonttableoptions/excludesynthetic?language=objc)
         #[doc(alias = "kCTFontTableOptionExcludeSynthetic")]
 #[deprecated = "Unsupported"]
         const ExcludeSynthetic = 1<<0;
@@ -2234,6 +2402,8 @@ impl CTFont {
     /// <code>
     /// CTFontTableTag tag = (CTFontTableTag)(uintptr_t)CFArrayGetValueAtIndex(tags, index);
     /// </code>
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopyavailabletables(_:_:)?language=objc)
     #[doc(alias = "CTFontCopyAvailableTables")]
     #[inline]
     pub fn available_tables(&self, options: CTFontTableOptions) -> Option<CFRetained<CFArray>> {
@@ -2259,6 +2429,8 @@ impl CTFont {
     ///
     ///
     /// Returns: Returns true if the call was successful and the requested table is present.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfonthastable(_:_:)?language=objc)
     #[doc(alias = "CTFontHasTable")]
     #[inline]
     pub fn has_table(&self, tag: CTFontTableTag) -> bool {
@@ -2281,6 +2453,8 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a retained reference to the font table data as CFDataRef or NULL if the table is not present.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcopytable(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCopyTable")]
     #[inline]
     pub fn table(
@@ -2323,6 +2497,8 @@ impl CTFont {
     ///
     /// - `glyphs` must be a valid pointer.
     /// - `positions` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdrawglyphs(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontDrawGlyphs")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -2372,6 +2548,8 @@ impl CTFont {
     /// # Safety
     ///
     /// `positions` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgetligaturecaretpositions(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontGetLigatureCaretPositions")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -2498,6 +2676,7 @@ extern "C" {
 }
 
 impl CTFont {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontgettypographicboundsforadaptiveimageprovider(_:_:)?language=objc)
     #[doc(alias = "CTFontGetTypographicBoundsForAdaptiveImageProvider")]
     #[cfg(all(feature = "CTRunDelegate", feature = "objc2"))]
     #[inline]
@@ -2514,6 +2693,7 @@ impl CTFont {
         unsafe { CTFontGetTypographicBoundsForAdaptiveImageProvider(self, provider) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdrawimagefromadaptiveimageprovideratpoint(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFontDrawImageFromAdaptiveImageProviderAtPoint")]
     #[cfg(all(
         feature = "CTRunDelegate",

@@ -19,6 +19,7 @@ use crate::*;
 pub struct VTSuperResolutionScalerConfigurationQualityPrioritization(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerConfigurationQualityPrioritization {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/qualityprioritization-swift.enum/normal?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationQualityPrioritizationNormal")]
     pub const Normal: Self = Self(1);
 }
@@ -46,6 +47,7 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationQualityPrioritizat
 pub struct VTSuperResolutionScalerConfigurationRevision(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerConfigurationRevision {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/revision-swift.enum/revision1?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationRevision1")]
     pub const Revision1: Self = Self(1);
 }
@@ -70,8 +72,10 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationRevision {
 pub struct VTSuperResolutionScalerConfigurationInputType(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerConfigurationInputType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/inputtype-swift.enum/video?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationInputTypeVideo")]
     pub const Video: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/inputtype-swift.enum/image?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationInputTypeImage")]
     pub const Image: Self = Self(2);
 }
@@ -96,10 +100,13 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationInputType {
 pub struct VTSuperResolutionScalerConfigurationModelStatus(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerConfigurationModelStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/modelstatus/downloadrequired?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationModelStatusDownloadRequired")]
     pub const DownloadRequired: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/modelstatus/downloading?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationModelStatusDownloading")]
     pub const Downloading: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/modelstatus/ready?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationModelStatusReady")]
     pub const Ready: Self = Self(2);
 }
@@ -135,8 +142,10 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationModelStatus {
 pub struct VTSuperResolutionScalerParametersSubmissionMode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerParametersSubmissionMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters/submissionmode-swift.enum/random?language=objc)
     #[doc(alias = "VTSuperResolutionScalerParametersSubmissionModeRandom")]
     pub const Random: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters/submissionmode-swift.enum/sequential?language=objc)
     #[doc(alias = "VTSuperResolutionScalerParametersSubmissionModeSequential")]
     pub const Sequential: Self = Self(2);
 }

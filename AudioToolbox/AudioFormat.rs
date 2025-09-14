@@ -25,8 +25,10 @@ pub type AudioFormatPropertyID = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioPanningMode(pub u32);
 impl AudioPanningMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopanningmode/panningmode_soundfield?language=objc)
     #[doc(alias = "kPanningMode_SoundField")]
     pub const PanningMode_SoundField: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopanningmode/panningmode_vectorbasedpanning?language=objc)
     #[doc(alias = "kPanningMode_VectorBasedPanning")]
     pub const PanningMode_VectorBasedPanning: Self = Self(4);
 }
@@ -98,8 +100,10 @@ unsafe impl RefEncode for AudioPanningInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioBalanceFadeType(pub u32);
 impl AudioBalanceFadeType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobalancefadetype/maxunitygain?language=objc)
     #[doc(alias = "kAudioBalanceFadeType_MaxUnityGain")]
     pub const MaxUnityGain: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobalancefadetype/equalpower?language=objc)
     #[doc(alias = "kAudioBalanceFadeType_EqualPower")]
     pub const EqualPower: Self = Self(1);
 }
@@ -324,6 +328,8 @@ extern "C-unwind" {
     ///
     /// - `in_specifier` must be a valid pointer or null.
     /// - `out_property_data_size` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioformatgetpropertyinfo(_:_:_:_:)?language=objc)
     pub fn AudioFormatGetPropertyInfo(
         in_property_id: AudioFormatPropertyID,
         in_specifier_size: u32,
@@ -353,6 +359,8 @@ extern "C-unwind" {
     /// - `in_specifier` must be a valid pointer or null.
     /// - `io_property_data_size` must be a valid pointer or null.
     /// - `out_property_data` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioformatgetproperty(_:_:_:_:_:)?language=objc)
     pub fn AudioFormatGetProperty(
         in_property_id: AudioFormatPropertyID,
         in_specifier_size: u32,

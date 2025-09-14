@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAttachmentBehaviorType(pub NSInteger);
 impl UIAttachmentBehaviorType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehavior/attachmenttype/items?language=objc)
     #[doc(alias = "UIAttachmentBehaviorTypeItems")]
     pub const Items: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehavior/attachmenttype/anchor?language=objc)
     #[doc(alias = "UIAttachmentBehaviorTypeAnchor")]
     pub const Anchor: Self = Self(1);
 }
@@ -68,6 +70,7 @@ extern "C" {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl UIFloatRange {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrange/isinfinite?language=objc)
     #[doc(alias = "UIFloatRangeIsInfinite")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

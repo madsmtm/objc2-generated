@@ -27,14 +27,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioCommonFormat(pub NSUInteger);
 impl AVAudioCommonFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat/otherformat?language=objc)
     #[doc(alias = "AVAudioOtherFormat")]
     pub const OtherFormat: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat/pcmformatfloat32?language=objc)
     #[doc(alias = "AVAudioPCMFormatFloat32")]
     pub const PCMFormatFloat32: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat/pcmformatfloat64?language=objc)
     #[doc(alias = "AVAudioPCMFormatFloat64")]
     pub const PCMFormatFloat64: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat/pcmformatint16?language=objc)
     #[doc(alias = "AVAudioPCMFormatInt16")]
     pub const PCMFormatInt16: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat/pcmformatint32?language=objc)
     #[doc(alias = "AVAudioPCMFormatInt32")]
     pub const PCMFormatInt32: Self = Self(4);
 }

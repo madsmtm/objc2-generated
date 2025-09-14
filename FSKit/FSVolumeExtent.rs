@@ -31,9 +31,13 @@ pub struct FSBlockmapFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl FSBlockmapFlags: NSUInteger {
 /// A flag that describes a read operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsblockmapflags/read?language=objc)
         #[doc(alias = "FSBlockmapFlagsRead")]
         const Read = 0x000100;
 /// A flag that describes a write operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsblockmapflags/write?language=objc)
         #[doc(alias = "FSBlockmapFlagsWrite")]
         const Write = 0x000200;
     }
@@ -60,12 +64,18 @@ pub struct FSCompleteIOFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl FSCompleteIOFlags: NSUInteger {
 /// A flag that describes a read operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscompleteioflags/read?language=objc)
         #[doc(alias = "FSCompleteIOFlagsRead")]
         const Read = FSBlockmapFlags::Read.0;
 /// A flag that describes a write operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscompleteioflags/write?language=objc)
         #[doc(alias = "FSCompleteIOFlagsWrite")]
         const Write = FSBlockmapFlags::Write.0;
 /// A flag that requests that the file system module flush metadata I/O asynchronously.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscompleteioflags/async?language=objc)
         #[doc(alias = "FSCompleteIOFlagsAsync")]
         const Async = 0x000400;
     }
@@ -92,11 +102,15 @@ impl FSExtentType {
     /// Use this type for all extents on a file system that doesn't support sparse files.
     ///
     /// > Tip: The kernel keeps track of the end of file, so it knows a range of `[EOF, allocated space]` is uninitialized. Because of this behavior, it's valid to pass the data extent type for such a range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsextenttype/data?language=objc)
     #[doc(alias = "FSExtentTypeData")]
     pub const Data: Self = Self(0);
     /// An extent type to indicate uninitialized data.
     ///
     /// Only use this extent type in file systems that support sparse files, and only then to represent ranges in the file that aren't allocated yet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsextenttype/zerofill?language=objc)
     #[doc(alias = "FSExtentTypeZeroFill")]
     pub const ZeroFill: Self = Self(1);
 }

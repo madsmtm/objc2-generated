@@ -12,20 +12,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INEndWorkoutIntentResponseCode(pub NSInteger);
 impl INEndWorkoutIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INEndWorkoutIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintentresponsecode/ready?language=objc)
     #[doc(alias = "INEndWorkoutIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INEndWorkoutIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintentresponsecode/failure?language=objc)
     #[doc(alias = "INEndWorkoutIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INEndWorkoutIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintentresponsecode/failurenomatchingworkout?language=objc)
     #[doc(alias = "INEndWorkoutIntentResponseCodeFailureNoMatchingWorkout")]
     pub const FailureNoMatchingWorkout: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintentresponsecode/handleinapp?language=objc)
     #[doc(alias = "INEndWorkoutIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintentresponsecode/success?language=objc)
     #[doc(alias = "INEndWorkoutIntentResponseCodeSuccess")]
     pub const Success: Self = Self(7);
 }

@@ -20,21 +20,33 @@ extern "C" {
 pub struct SFSpeechErrorCode(pub NSInteger);
 impl SFSpeechErrorCode {
     /// There was an internal error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/internalserviceerror?language=objc)
     #[doc(alias = "SFSpeechErrorCodeInternalServiceError")]
     pub const InternalServiceError: Self = Self(1);
     /// The audio file could not be read.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/audioreadfailed?language=objc)
     #[doc(alias = "SFSpeechErrorCodeAudioReadFailed")]
     pub const AudioReadFailed: Self = Self(2);
     /// The custom language model templates were malformed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/undefinedtemplateclassname?language=objc)
     #[doc(alias = "SFSpeechErrorCodeUndefinedTemplateClassName")]
     pub const UndefinedTemplateClassName: Self = Self(7);
     /// The custom language model file was malformed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/malformedsupplementalmodel?language=objc)
     #[doc(alias = "SFSpeechErrorCodeMalformedSupplementalModel")]
     pub const MalformedSupplementalModel: Self = Self(8);
     /// The operation timed out.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/timeout?language=objc)
     #[doc(alias = "SFSpeechErrorCodeTimeout")]
     pub const Timeout: Self = Self(12);
     /// A required parameter is missing/nil.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/missingparameter?language=objc)
     #[doc(alias = "SFSpeechErrorCodeMissingParameter")]
     pub const MissingParameter: Self = Self(13);
 }

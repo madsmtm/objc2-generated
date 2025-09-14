@@ -13,18 +13,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INIntentHandlingStatus(pub NSInteger);
 impl INIntentHandlingStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/unspecified?language=objc)
     #[doc(alias = "INIntentHandlingStatusUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/ready?language=objc)
     #[doc(alias = "INIntentHandlingStatusReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/inprogress?language=objc)
     #[doc(alias = "INIntentHandlingStatusInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/success?language=objc)
     #[doc(alias = "INIntentHandlingStatusSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/failure?language=objc)
     #[doc(alias = "INIntentHandlingStatusFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/deferredtoapplication?language=objc)
     #[doc(alias = "INIntentHandlingStatusDeferredToApplication")]
     pub const DeferredToApplication: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/userconfirmationrequired?language=objc)
     #[doc(alias = "INIntentHandlingStatusUserConfirmationRequired")]
     pub const UserConfirmationRequired: Self = Self(6);
 }
@@ -43,10 +50,13 @@ unsafe impl RefEncode for INIntentHandlingStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INInteractionDirection(pub NSInteger);
 impl INInteractionDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ininteractiondirection/unspecified?language=objc)
     #[doc(alias = "INInteractionDirectionUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ininteractiondirection/outgoing?language=objc)
     #[doc(alias = "INInteractionDirectionOutgoing")]
     pub const Outgoing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ininteractiondirection/incoming?language=objc)
     #[doc(alias = "INInteractionDirectionIncoming")]
     pub const Incoming: Self = Self(2);
 }

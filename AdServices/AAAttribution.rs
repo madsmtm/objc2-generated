@@ -25,12 +25,18 @@ impl AAAttributionErrorCode {
     ///
     /// To receive an attribution token, you must have unimpeded internet access. Make sure
     /// you’re not using a simulator when generating a token.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/adservices/aaattributionerror/code/networkerror?language=objc)
     #[doc(alias = "AAAttributionErrorCodeNetworkError")]
     pub const NetworkError: Self = Self(1);
     /// attributionTokenWithError: is unable to provide a token because of an internal error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/adservices/aaattributionerror/code/internalerror?language=objc)
     #[doc(alias = "AAAttributionErrorCodeInternalError")]
     pub const InternalError: Self = Self(2);
     /// attributionTokenWithError: is unable to provide a token because of an unsupported operating system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/adservices/aaattributionerror/code/platformnotsupported?language=objc)
     #[doc(alias = "AAAttributionErrorCodePlatformNotSupported")]
     pub const PlatformNotSupported: Self = Self(3);
 }

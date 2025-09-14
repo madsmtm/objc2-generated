@@ -13,14 +13,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVKeyValueStatus(pub NSInteger);
 impl AVKeyValueStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/unknown?language=objc)
     #[doc(alias = "AVKeyValueStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/loading?language=objc)
     #[doc(alias = "AVKeyValueStatusLoading")]
     pub const Loading: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/loaded?language=objc)
     #[doc(alias = "AVKeyValueStatusLoaded")]
     pub const Loaded: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/failed?language=objc)
     #[doc(alias = "AVKeyValueStatusFailed")]
     pub const Failed: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/cancelled?language=objc)
     #[doc(alias = "AVKeyValueStatusCancelled")]
     pub const Cancelled: Self = Self(4);
 }

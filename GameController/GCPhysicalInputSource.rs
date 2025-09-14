@@ -16,14 +16,19 @@ use crate::*;
 pub struct GCPhysicalInputSourceDirection(pub NSUInteger);
 bitflags::bitflags! {
     impl GCPhysicalInputSourceDirection: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection/gcphysicalinputsourcedirectionnotapplicable?language=objc)
         #[doc(alias = "GCPhysicalInputSourceDirectionNotApplicable")]
         const NotApplicable = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection/up?language=objc)
         #[doc(alias = "GCPhysicalInputSourceDirectionUp")]
         const Up = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection/right?language=objc)
         #[doc(alias = "GCPhysicalInputSourceDirectionRight")]
         const Right = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection/down?language=objc)
         #[doc(alias = "GCPhysicalInputSourceDirectionDown")]
         const Down = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection/left?language=objc)
         #[doc(alias = "GCPhysicalInputSourceDirectionLeft")]
         const Left = 1<<3;
     }

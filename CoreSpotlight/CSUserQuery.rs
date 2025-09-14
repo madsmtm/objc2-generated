@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CSUserInteraction(pub NSInteger);
 impl CSUserInteraction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csuserquery/userinteractionkind/select?language=objc)
     #[doc(alias = "CSUserInteractionSelect")]
     pub const Select: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csuserquery/userinteractionkind/default?language=objc)
     #[doc(alias = "CSUserInteractionDefault")]
     pub const Default: Self = Self(CSUserInteraction::Select.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csuserquery/userinteractionkind/focus?language=objc)
     #[doc(alias = "CSUserInteractionFocus")]
     pub const Focus: Self = Self(1);
 }

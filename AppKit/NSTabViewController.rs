@@ -14,16 +14,24 @@ use crate::*;
 pub struct NSTabViewControllerTabStyle(pub NSInteger);
 impl NSTabViewControllerTabStyle {
     /// Uses an NSSegmentedControl to show the UI for the tabs. The control is on the top of the view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.enum/segmentedcontrolontop?language=objc)
     #[doc(alias = "NSTabViewControllerTabStyleSegmentedControlOnTop")]
     pub const SegmentedControlOnTop: Self = Self(0);
     /// Uses an NSSegmentedControl to show the UI for the tabs. The control is on the bottom of the view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.enum/segmentedcontrolonbottom?language=objc)
     #[doc(alias = "NSTabViewControllerTabStyleSegmentedControlOnBottom")]
     pub const SegmentedControlOnBottom: Self = Self(1);
     /// Automatically pushes the tabs into the window's toolbar as toolbar items, if non-nil. This style will cause the TabViewController to set its containing window's toolbar to its own and become that toolbar's delegate. The toolbar items can be customized or supplemented by overriding the relevant NSToolbarDelegate methods.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.enum/toolbar?language=objc)
     #[doc(alias = "NSTabViewControllerTabStyleToolbar")]
     pub const Toolbar: Self = Self(2);
     /// NSTabViewController will not provide any of its own tab control UI. Separate UI, such as a NSSegmentedControl or NSPopupButton, can be easily bound to the TabViewController. Or
     /// `tabView.tabViewType`can be changed for the TabView itself to draw the UI.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.enum/unspecified?language=objc)
     #[doc(alias = "NSTabViewControllerTabStyleUnspecified")]
     pub const Unspecified: Self = Self(-1);
 }

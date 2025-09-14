@@ -57,8 +57,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNMovabilityHint(pub NSInteger);
 impl SCNMovabilityHint {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmovabilityhint/fixed?language=objc)
     #[doc(alias = "SCNMovabilityHintFixed")]
     pub const Fixed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmovabilityhint/movable?language=objc)
     #[doc(alias = "SCNMovabilityHintMovable")]
     pub const Movable: Self = Self(1);
 }
@@ -79,10 +81,13 @@ unsafe impl RefEncode for SCNMovabilityHint {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNNodeFocusBehavior(pub NSInteger);
 impl SCNNodeFocusBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnodefocusbehavior/none?language=objc)
     #[doc(alias = "SCNNodeFocusBehaviorNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnodefocusbehavior/occluding?language=objc)
     #[doc(alias = "SCNNodeFocusBehaviorOccluding")]
     pub const Occluding: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnodefocusbehavior/focusable?language=objc)
     #[doc(alias = "SCNNodeFocusBehaviorFocusable")]
     pub const Focusable: Self = Self(2);
 }

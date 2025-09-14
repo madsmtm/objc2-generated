@@ -74,48 +74,70 @@ unsafe impl Sync for NSEdgeInsets {}
 pub struct NSAlignmentOptions(pub c_ulonglong);
 bitflags::bitflags! {
     impl NSAlignmentOptions: c_ulonglong {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminxinward?language=objc)
         #[doc(alias = "NSAlignMinXInward")]
         const AlignMinXInward = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminyinward?language=objc)
         #[doc(alias = "NSAlignMinYInward")]
         const AlignMinYInward = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxxinward?language=objc)
         #[doc(alias = "NSAlignMaxXInward")]
         const AlignMaxXInward = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxyinward?language=objc)
         #[doc(alias = "NSAlignMaxYInward")]
         const AlignMaxYInward = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignwidthinward?language=objc)
         #[doc(alias = "NSAlignWidthInward")]
         const AlignWidthInward = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignheightinward?language=objc)
         #[doc(alias = "NSAlignHeightInward")]
         const AlignHeightInward = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminxoutward?language=objc)
         #[doc(alias = "NSAlignMinXOutward")]
         const AlignMinXOutward = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminyoutward?language=objc)
         #[doc(alias = "NSAlignMinYOutward")]
         const AlignMinYOutward = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxxoutward?language=objc)
         #[doc(alias = "NSAlignMaxXOutward")]
         const AlignMaxXOutward = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxyoutward?language=objc)
         #[doc(alias = "NSAlignMaxYOutward")]
         const AlignMaxYOutward = 1<<11;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignwidthoutward?language=objc)
         #[doc(alias = "NSAlignWidthOutward")]
         const AlignWidthOutward = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignheightoutward?language=objc)
         #[doc(alias = "NSAlignHeightOutward")]
         const AlignHeightOutward = 1<<13;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminxnearest?language=objc)
         #[doc(alias = "NSAlignMinXNearest")]
         const AlignMinXNearest = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminynearest?language=objc)
         #[doc(alias = "NSAlignMinYNearest")]
         const AlignMinYNearest = 1<<17;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxxnearest?language=objc)
         #[doc(alias = "NSAlignMaxXNearest")]
         const AlignMaxXNearest = 1<<18;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxynearest?language=objc)
         #[doc(alias = "NSAlignMaxYNearest")]
         const AlignMaxYNearest = 1<<19;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignwidthnearest?language=objc)
         #[doc(alias = "NSAlignWidthNearest")]
         const AlignWidthNearest = 1<<20;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignheightnearest?language=objc)
         #[doc(alias = "NSAlignHeightNearest")]
         const AlignHeightNearest = 1<<21;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignrectflipped?language=objc)
         #[doc(alias = "NSAlignRectFlipped")]
         const AlignRectFlipped = 1<<63;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignalledgesinward?language=objc)
         #[doc(alias = "NSAlignAllEdgesInward")]
         const AlignAllEdgesInward = NSAlignmentOptions::AlignMinXInward.0|NSAlignmentOptions::AlignMaxXInward.0|NSAlignmentOptions::AlignMinYInward.0|NSAlignmentOptions::AlignMaxYInward.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignalledgesoutward?language=objc)
         #[doc(alias = "NSAlignAllEdgesOutward")]
         const AlignAllEdgesOutward = NSAlignmentOptions::AlignMinXOutward.0|NSAlignmentOptions::AlignMaxXOutward.0|NSAlignmentOptions::AlignMinYOutward.0|NSAlignmentOptions::AlignMaxYOutward.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignalledgesnearest?language=objc)
         #[doc(alias = "NSAlignAllEdgesNearest")]
         const AlignAllEdgesNearest = NSAlignmentOptions::AlignMinXNearest.0|NSAlignmentOptions::AlignMaxXNearest.0|NSAlignmentOptions::AlignMinYNearest.0|NSAlignmentOptions::AlignMaxYNearest.0;
     }
@@ -192,6 +214,7 @@ impl NSEdgeInsets {
     // TODO: pub fn NSEdgeInsetsMake(top: CGFloat,left: CGFloat,bottom: CGFloat,right: CGFloat,) -> NSEdgeInsets;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsequalpoints(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> bool {
@@ -201,6 +224,7 @@ pub extern "C-unwind" fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> bo
     unsafe { NSEqualPoints(a_point, b_point) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsequalsizes(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> bool {
@@ -210,6 +234,7 @@ pub extern "C-unwind" fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> bool {
     unsafe { NSEqualSizes(a_size, b_size) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsequalrects(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> bool {
@@ -219,6 +244,7 @@ pub extern "C-unwind" fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> bool {
     unsafe { NSEqualRects(a_rect, b_rect) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisemptyrect(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSIsEmptyRect(a_rect: NSRect) -> bool {
@@ -230,6 +256,7 @@ pub extern "C-unwind" fn NSIsEmptyRect(a_rect: NSRect) -> bool {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl NSEdgeInsets {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsedgeinsetsequal(_:_:)?language=objc)
     #[doc(alias = "NSEdgeInsetsEqual")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -241,6 +268,7 @@ impl NSEdgeInsets {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinsetrect(_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSInsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect {
@@ -250,6 +278,7 @@ pub extern "C-unwind" fn NSInsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat)
     unsafe { NSInsetRect(a_rect, d_x, d_y) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegralrect(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSIntegralRect(a_rect: NSRect) -> NSRect {
@@ -259,6 +288,7 @@ pub extern "C-unwind" fn NSIntegralRect(a_rect: NSRect) -> NSRect {
     unsafe { NSIntegralRect(a_rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegralrectwithoptions(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSIntegralRectWithOptions(
@@ -271,6 +301,7 @@ pub extern "C-unwind" fn NSIntegralRectWithOptions(
     unsafe { NSIntegralRectWithOptions(a_rect, opts) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionrect(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSUnionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect {
@@ -280,6 +311,7 @@ pub extern "C-unwind" fn NSUnionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect {
     unsafe { NSUnionRect(a_rect, b_rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintersectionrect(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSIntersectionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect {
@@ -289,6 +321,7 @@ pub extern "C-unwind" fn NSIntersectionRect(a_rect: NSRect, b_rect: NSRect) -> N
     unsafe { NSIntersectionRect(a_rect, b_rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoffsetrect(_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSOffsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect {
@@ -299,6 +332,8 @@ pub extern "C-unwind" fn NSOffsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdividerect(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `slice` must be a valid pointer.
@@ -313,6 +348,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointinrect(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> bool {
@@ -322,6 +358,7 @@ pub extern "C-unwind" fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> bool
     unsafe { NSPointInRect(a_point, a_rect) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmouseinrect(_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped: bool) -> bool {
@@ -331,6 +368,7 @@ pub extern "C-unwind" fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped
     unsafe { NSMouseInRect(a_point, a_rect, Bool::new(flipped)) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscontainsrect(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> bool {
@@ -340,6 +378,7 @@ pub extern "C-unwind" fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> bool 
     unsafe { NSContainsRect(a_rect, b_rect) }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintersectsrect(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> bool {
@@ -351,6 +390,7 @@ pub extern "C-unwind" fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> boo
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfrompoint(_:)?language=objc)
     #[doc(alias = "NSStringFromPoint")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
@@ -363,6 +403,7 @@ impl NSString {
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromsize(_:)?language=objc)
     #[doc(alias = "NSStringFromSize")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
@@ -375,6 +416,7 @@ impl NSString {
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromrect(_:)?language=objc)
     #[doc(alias = "NSStringFromRect")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
@@ -388,6 +430,7 @@ impl NSString {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointfromstring(_:)?language=objc)
 #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
 #[inline]
 pub extern "C-unwind" fn NSPointFromString(a_string: &NSString) -> NSPoint {
@@ -397,6 +440,7 @@ pub extern "C-unwind" fn NSPointFromString(a_string: &NSString) -> NSPoint {
     unsafe { NSPointFromString(a_string) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssizefromstring(_:)?language=objc)
 #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
 #[inline]
 pub extern "C-unwind" fn NSSizeFromString(a_string: &NSString) -> NSSize {
@@ -406,6 +450,7 @@ pub extern "C-unwind" fn NSSizeFromString(a_string: &NSString) -> NSSize {
     unsafe { NSSizeFromString(a_string) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrectfromstring(_:)?language=objc)
 #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
 #[inline]
 pub extern "C-unwind" fn NSRectFromString(a_string: &NSString) -> NSRect {

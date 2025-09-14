@@ -20,6 +20,7 @@ use crate::*;
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVMetalTexture = CVImageBuffer;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturegettypeid()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVMetalTextureGetTypeID() -> CFTypeID {
     extern "C-unwind" {
@@ -33,6 +34,8 @@ pub extern "C-unwind" fn CVMetalTextureGetTypeID() -> CFTypeID {
 /// Parameter `image`: Target CVMetalTexture
 ///
 /// Returns: Metal texture
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturegettexture(_:)?language=objc)
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -56,6 +59,8 @@ pub extern "C-unwind" fn CVMetalTextureGetTexture(
 /// Parameter `image`: Target CVMetalTexture
 ///
 /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltextureisflipped(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVMetalTextureIsFlipped(image: &CVMetalTexture) -> bool {

@@ -68,30 +68,39 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVPlaybackState(pub NSInteger);
 impl TVPlaybackState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/undefined?language=objc)
     #[doc(alias = "TVPlaybackStateUndefined")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/begin?language=objc)
     #[doc(alias = "TVPlaybackStateBegin")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Begin: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/loading?language=objc)
     #[doc(alias = "TVPlaybackStateLoading")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Loading: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/playing?language=objc)
     #[doc(alias = "TVPlaybackStatePlaying")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Playing: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/paused?language=objc)
     #[doc(alias = "TVPlaybackStatePaused")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Paused: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/scanning?language=objc)
     #[doc(alias = "TVPlaybackStateScanning")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Scanning: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/fastforwarding?language=objc)
     #[doc(alias = "TVPlaybackStateFastForwarding")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const FastForwarding: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/rewinding?language=objc)
     #[doc(alias = "TVPlaybackStateRewinding")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Rewinding: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/end?language=objc)
     #[doc(alias = "TVPlaybackStateEnd")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const End: Self = Self(8);
@@ -112,12 +121,15 @@ unsafe impl RefEncode for TVPlaybackState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVPlaylistRepeatMode(pub NSInteger);
 impl TVPlaylistRepeatMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/repeatmode-swift.enum/none?language=objc)
     #[doc(alias = "TVPlaylistRepeatModeNone")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/repeatmode-swift.enum/all?language=objc)
     #[doc(alias = "TVPlaylistRepeatModeAll")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const All: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/repeatmode-swift.enum/one?language=objc)
     #[doc(alias = "TVPlaylistRepeatModeOne")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const One: Self = Self(2);
@@ -138,12 +150,15 @@ unsafe impl RefEncode for TVPlaylistRepeatMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVPlaylistEndAction(pub NSInteger);
 impl TVPlaylistEndAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/endaction-swift.enum/stop?language=objc)
     #[doc(alias = "TVPlaylistEndActionStop")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Stop: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/endaction-swift.enum/pause?language=objc)
     #[doc(alias = "TVPlaylistEndActionPause")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Pause: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/endaction-swift.enum/waitformoreitems?language=objc)
     #[doc(alias = "TVPlaylistEndActionWaitForMoreItems")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const WaitForMoreItems: Self = Self(2);

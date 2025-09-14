@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKConnectionState(pub NSInteger);
 impl GKConnectionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkconnectionstate/notconnected?language=objc)
     #[doc(alias = "GKConnectionStateNotConnected")]
     pub const NotConnected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkconnectionstate/connected?language=objc)
     #[doc(alias = "GKConnectionStateConnected")]
     pub const Connected: Self = Self(1);
 }
@@ -33,8 +35,10 @@ unsafe impl RefEncode for GKConnectionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTransportType(pub NSInteger);
 impl GKTransportType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gktransporttype/unreliable?language=objc)
     #[doc(alias = "GKTransportTypeUnreliable")]
     pub const Unreliable: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gktransporttype/reliable?language=objc)
     #[doc(alias = "GKTransportTypeReliable")]
     pub const Reliable: Self = Self(1);
 }

@@ -130,6 +130,7 @@ extern "C" {
     pub static kCFFTPResourceModDate: &'static CFString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfreadstreamcreatewithftpurl(_:_:)?language=objc)
 #[deprecated = "Use NSURLSessionAPI for ftp requests"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFReadStreamCreateWithFTPURL(
@@ -148,6 +149,8 @@ pub unsafe extern "C-unwind" fn CFReadStreamCreateWithFTPURL(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfftpcreateparsedresourcelisting(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `buffer` must be a valid pointer.
@@ -161,6 +164,7 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfwritestreamcreatewithftpurl(_:_:)?language=objc)
 #[deprecated = "Use NSURLSessionAPI for ftp requests"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithFTPURL(

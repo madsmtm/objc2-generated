@@ -10,18 +10,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRecurrenceFrequency(pub NSInteger);
 impl INRecurrenceFrequency {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/unknown?language=objc)
     #[doc(alias = "INRecurrenceFrequencyUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/minute?language=objc)
     #[doc(alias = "INRecurrenceFrequencyMinute")]
     pub const Minute: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/hourly?language=objc)
     #[doc(alias = "INRecurrenceFrequencyHourly")]
     pub const Hourly: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/daily?language=objc)
     #[doc(alias = "INRecurrenceFrequencyDaily")]
     pub const Daily: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/weekly?language=objc)
     #[doc(alias = "INRecurrenceFrequencyWeekly")]
     pub const Weekly: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/monthly?language=objc)
     #[doc(alias = "INRecurrenceFrequencyMonthly")]
     pub const Monthly: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/yearly?language=objc)
     #[doc(alias = "INRecurrenceFrequencyYearly")]
     pub const Yearly: Self = Self(6);
 }

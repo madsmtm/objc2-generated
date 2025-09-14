@@ -382,6 +382,8 @@ extern "C-unwind" {
     /// Parameter `streamID`: The CMIOStream to start.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicestartstream(_:_:)?language=objc)
     #[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
     pub fn CMIODeviceStartStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus;
 }
@@ -394,6 +396,8 @@ extern "C-unwind" {
     /// Parameter `streamID`: The CMIOStream to stop.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicestopstream(_:_:)?language=objc)
     #[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
     pub fn CMIODeviceStopStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus;
 }
@@ -412,6 +416,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `io_avc_command` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodeviceprocessavccommand(_:_:)?language=objc)
     #[cfg(feature = "CMIOHardwareObject")]
     pub fn CMIODeviceProcessAVCCommand(
         device_id: CMIODeviceID,
@@ -432,6 +438,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `io_rs422_command` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodeviceprocessrs422command(_:_:)?language=objc)
     #[cfg(feature = "CMIOHardwareObject")]
     pub fn CMIODeviceProcessRS422Command(
         device_id: CMIODeviceID,

@@ -27,6 +27,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CGColorConversionInfo {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo/typeid?language=objc)
     #[doc(alias = "CGColorConversionInfoGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -43,10 +44,13 @@ unsafe impl ConcreteType for CGColorConversionInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGColorConversionInfoTransformType(pub u32);
 impl CGColorConversionInfoTransformType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfotransformtype/transformfromspace?language=objc)
     #[doc(alias = "kCGColorConversionTransformFromSpace")]
     pub const TransformFromSpace: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfotransformtype/transformtospace?language=objc)
     #[doc(alias = "kCGColorConversionTransformToSpace")]
     pub const TransformToSpace: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfotransformtype/transformapplyspace?language=objc)
     #[doc(alias = "kCGColorConversionTransformApplySpace")]
     pub const TransformApplySpace: Self = Self(2);
 }
@@ -62,6 +66,7 @@ unsafe impl RefEncode for CGColorConversionInfoTransformType {
 }
 
 impl CGColorConversionInfo {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo/init(src:dst:)?language=objc)
     #[doc(alias = "CGColorConversionInfoCreate")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -79,6 +84,8 @@ impl CGColorConversionInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo/init(optionssrc:dst:options:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -102,6 +109,8 @@ impl CGColorConversionInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo/init(src:srcheadroom:dst:dstheadroom:tonemapping:options:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -177,6 +186,8 @@ unsafe impl RefEncode for CGColorBufferFormat {
 }
 
 impl CGColorConversionInfo {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo/convert(width:height:to:format:from:format:options:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dst_data` must be a valid pointer.

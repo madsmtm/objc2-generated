@@ -208,6 +208,7 @@ impl NSException {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuncaughtexceptionhandler?language=objc)
 pub type NSUncaughtExceptionHandler = core::ffi::c_void;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgetuncaughtexceptionhandler()?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler {
     extern "C-unwind" {
@@ -217,6 +218,8 @@ pub extern "C-unwind" fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExcep
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssetuncaughtexceptionhandler(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `_` must be a valid pointer or null.

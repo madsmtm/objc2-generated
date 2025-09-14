@@ -14,12 +14,16 @@ use crate::*;
 pub struct MPMediaPlaylistAttribute(pub NSUInteger);
 bitflags::bitflags! {
     impl MPMediaPlaylistAttribute: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute/mpmediaplaylistattributenone?language=objc)
         #[doc(alias = "MPMediaPlaylistAttributeNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute/onthego?language=objc)
         #[doc(alias = "MPMediaPlaylistAttributeOnTheGo")]
         const OnTheGo = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute/smart?language=objc)
         #[doc(alias = "MPMediaPlaylistAttributeSmart")]
         const Smart = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute/genius?language=objc)
         #[doc(alias = "MPMediaPlaylistAttributeGenius")]
         const Genius = 1<<2;
     }

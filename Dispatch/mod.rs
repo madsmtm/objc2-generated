@@ -24,6 +24,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_api_version?language=objc)
 pub const DISPATCH_API_VERSION: c_uint = 20181008;
 impl DispatchTime {
     /// Create a dispatch_time_t relative to the current value of the default or
@@ -45,6 +46,8 @@ impl DispatchTime {
     ///
     ///
     /// Returns: A new dispatch_time_t.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_time?language=objc)
     #[doc(alias = "dispatch_time")]
     #[must_use]
     #[inline]
@@ -75,6 +78,8 @@ impl DispatchTime {
     /// # Safety
     ///
     /// `when` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_walltime?language=objc)
     #[doc(alias = "dispatch_walltime")]
     #[cfg(feature = "libc")]
     #[must_use]
@@ -146,6 +151,8 @@ extern "C" {
     /// # Safety
     ///
     /// `object` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_retain?language=objc)
     pub fn dispatch_retain(object: NonNull<dispatch_object_s>);
 }
 
@@ -165,6 +172,8 @@ extern "C" {
     /// # Safety
     ///
     /// `object` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_release?language=objc)
     pub fn dispatch_release(object: NonNull<dispatch_object_s>);
 }
 
@@ -175,6 +184,8 @@ extern "C" {
 ///
 ///
 /// Returns: The context of the object; may be NULL.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_get_context?language=objc)
 #[must_use]
 #[inline]
 pub extern "C" fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void {
@@ -197,6 +208,8 @@ extern "C" {
     ///
     /// - `object` must be a valid pointer.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_set_context?language=objc)
     pub fn dispatch_set_context(object: NonNull<dispatch_object_s>, context: *mut c_void);
 }
 
@@ -222,6 +235,8 @@ extern "C" {
     ///
     /// - `object` must be a valid pointer.
     /// - `finalizer` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_set_finalizer_f?language=objc)
     pub fn dispatch_set_finalizer_f(
         object: NonNull<dispatch_object_s>,
         finalizer: dispatch_function_t,
@@ -245,6 +260,8 @@ extern "C" {
 ///
 /// Parameter `object`: The object to be activated.
 /// The result of passing NULL in this parameter is undefined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchobject/activate()?language=objc)
 #[inline]
 pub extern "C" fn dispatch_activate(object: NonNull<dispatch_object_s>) {
     extern "C" {
@@ -266,6 +283,8 @@ pub extern "C" fn dispatch_activate(object: NonNull<dispatch_object_s>) {
 ///
 /// Parameter `object`: The object to be suspended.
 /// The result of passing NULL in this parameter is undefined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchobject/suspend()?language=objc)
 #[inline]
 pub extern "C" fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
     extern "C" {
@@ -293,6 +312,8 @@ pub extern "C" fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
 ///
 /// Parameter `object`: The object to be resumed.
 /// The result of passing NULL in this parameter is undefined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchobject/resume()?language=objc)
 #[inline]
 pub extern "C" fn dispatch_resume(object: NonNull<dispatch_object_s>) {
     extern "C" {
@@ -338,6 +359,8 @@ extern "C" {
     /// # Safety
     ///
     /// `object` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_set_qos_class_floor?language=objc)
     pub fn dispatch_set_qos_class_floor(
         object: NonNull<dispatch_object_s>,
         qos_class: DispatchQoS,
@@ -346,6 +369,8 @@ extern "C" {
 }
 
 impl DispatchQueue {
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_async?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -385,6 +410,8 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_async_f?language=objc)
     #[doc(alias = "dispatch_async_f")]
     #[inline]
     pub unsafe fn exec_async_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -398,6 +425,8 @@ impl DispatchQueue {
         unsafe { dispatch_async_f(self, context, work) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchqueue/sync(execute:)-3segw?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -435,6 +464,8 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_sync_f?language=objc)
     #[doc(alias = "dispatch_sync_f")]
     #[inline]
     pub unsafe fn exec_sync_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -448,6 +479,8 @@ impl DispatchQueue {
         unsafe { dispatch_sync_f(self, context, work) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchqueue/asyncandwait(execute:)-1udeu?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -485,6 +518,8 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_async_and_wait_f?language=objc)
     #[doc(alias = "dispatch_async_and_wait_f")]
     #[inline]
     pub unsafe fn exec_sync_and_wait_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -498,6 +533,7 @@ impl DispatchQueue {
         unsafe { dispatch_async_and_wait_f(self, context, work) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_apply?language=objc)
     #[doc(alias = "dispatch_apply")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -544,6 +580,8 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_apply_f?language=objc)
     #[doc(alias = "dispatch_apply_f")]
     #[inline]
     pub unsafe fn apply_f(
@@ -587,6 +625,8 @@ impl DispatchQueue {
     ///
     ///
     /// Returns: Returns the current queue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_get_current_queue()?language=objc)
     #[doc(alias = "dispatch_get_current_queue")]
     #[deprecated = "unsupported interface"]
     #[must_use]
@@ -638,6 +678,8 @@ extern "C" {
 ///
 /// Returns: Returns the requested global queue or NULL if the requested global queue
 /// does not exist.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_get_global_queue?language=objc)
 #[must_use]
 #[inline]
 pub extern "C" fn dispatch_get_global_queue(
@@ -684,6 +726,8 @@ impl DispatchQueueAttr {
     /// and dispatch_queue_create_with_target().
     /// The new value combines the attributes specified by the 'attr' parameter with
     /// the initially inactive attribute.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_attr_make_initially_inactive?language=objc)
     #[doc(alias = "dispatch_queue_attr_make_initially_inactive")]
     #[must_use]
     #[inline]
@@ -746,6 +790,8 @@ impl DispatchAutoReleaseFrequency {
     /// Dispatch queues with this autorelease frequency never set up an individual
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t/dispatch_autorelease_frequency_inherit?language=objc)
     #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_INHERIT")]
     pub const INHERIT: Self = Self(0);
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
@@ -766,6 +812,8 @@ impl DispatchAutoReleaseFrequency {
     /// Dispatch queues with this autorelease frequency never set up an individual
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t/dispatch_autorelease_frequency_work_item?language=objc)
     #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM")]
     pub const WORK_ITEM: Self = Self(1);
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
@@ -786,6 +834,8 @@ impl DispatchAutoReleaseFrequency {
     /// Dispatch queues with this autorelease frequency never set up an individual
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t/dispatch_autorelease_frequency_never?language=objc)
     #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_NEVER")]
     pub const NEVER: Self = Self(2);
 }
@@ -836,6 +886,8 @@ impl DispatchQueueAttr {
     /// or NULL if an invalid autorelease frequency was requested.
     /// This new value combines the attributes specified by the 'attr' parameter and
     /// the chosen autorelease frequency.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_attr_make_with_autorelease_frequency?language=objc)
     #[doc(alias = "dispatch_queue_attr_make_with_autorelease_frequency")]
     #[must_use]
     #[inline]
@@ -907,6 +959,8 @@ impl DispatchQueueAttr {
     /// requested.
     /// The new value combines the attributes specified by the 'attr' parameter and
     /// the new QOS class and relative priority.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_attr_make_with_qos_class?language=objc)
     #[doc(alias = "dispatch_queue_attr_make_with_qos_class")]
     #[must_use]
     #[inline]
@@ -982,6 +1036,8 @@ impl DispatchQueue {
     /// # Safety
     ///
     /// `target` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_create_with_target?language=objc)
     #[doc(alias = "dispatch_queue_create_with_target")]
     #[must_use]
     #[inline]
@@ -1055,6 +1111,8 @@ impl DispatchQueue {
     ///
     ///
     /// Returns: The newly created dispatch queue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_create?language=objc)
     #[doc(alias = "dispatch_queue_create")]
     #[must_use]
     #[inline]
@@ -1092,6 +1150,8 @@ impl DispatchQueue {
     ///
     ///
     /// Returns: The label of the queue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_get_label?language=objc)
     #[doc(alias = "dispatch_queue_get_label")]
     #[must_use]
     #[inline]
@@ -1137,6 +1197,8 @@ impl DispatchQueue {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `relative_priority_ptr` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_get_qos_class?language=objc)
     #[doc(alias = "dispatch_queue_get_qos_class")]
     #[must_use]
     #[inline]
@@ -1213,6 +1275,8 @@ extern "C" {
     ///
     /// - `object` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchobject/settarget(queue:)?language=objc)
     pub fn dispatch_set_target_queue(
         object: NonNull<dispatch_object_s>,
         queue: Option<&DispatchQueue>,
@@ -1220,6 +1284,8 @@ extern "C" {
 }
 
 impl DispatchQueue {
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_after?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -1264,6 +1330,8 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_after_f?language=objc)
     #[doc(alias = "dispatch_after_f")]
     #[inline]
     pub unsafe fn exec_after_f(
@@ -1283,6 +1351,8 @@ impl DispatchQueue {
         unsafe { dispatch_after_f(when, queue, context, work) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -1327,6 +1397,8 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async_f?language=objc)
     #[doc(alias = "dispatch_barrier_async_f")]
     #[inline]
     pub unsafe fn barrier_async_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -1340,6 +1412,8 @@ impl DispatchQueue {
         unsafe { dispatch_barrier_async_f(self, context, work) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_sync?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -1380,6 +1454,8 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_sync_f?language=objc)
     #[doc(alias = "dispatch_barrier_sync_f")]
     #[inline]
     pub unsafe fn barrier_sync_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -1393,6 +1469,8 @@ impl DispatchQueue {
         unsafe { dispatch_barrier_sync_f(self, context, work) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async_and_wait?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -1434,6 +1512,8 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async_and_wait_f?language=objc)
     #[doc(alias = "dispatch_barrier_async_and_wait_f")]
     #[inline]
     pub unsafe fn barrier_async_and_wait_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -1480,6 +1560,8 @@ extern "C" {
     /// - `key` must be a valid pointer.
     /// - `context` must be a valid pointer or null.
     /// - `destructor` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_set_specific?language=objc)
     pub fn dispatch_queue_set_specific(
         queue: &DispatchQueue,
         key: NonNull<c_void>,
@@ -1512,6 +1594,8 @@ impl DispatchQueue {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `key` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_get_specific?language=objc)
     #[doc(alias = "dispatch_queue_get_specific")]
     #[must_use]
     #[inline]
@@ -1547,6 +1631,8 @@ extern "C" {
     /// # Safety
     ///
     /// `key` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_get_specific?language=objc)
     #[must_use]
     pub fn dispatch_get_specific(key: NonNull<c_void>) -> *mut c_void;
 }
@@ -1586,6 +1672,8 @@ impl DispatchQueue {
     ///
     /// Parameter `queue`: The dispatch queue that the current block is expected to run on.
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_assert_queue?language=objc)
     #[doc(alias = "dispatch_assert_queue")]
     #[inline]
     pub fn assert(&self) {
@@ -1611,6 +1699,8 @@ impl DispatchQueue {
     ///
     /// Parameter `queue`: The dispatch queue that the current block is expected to run as a barrier on.
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_assert_queue_barrier?language=objc)
     #[doc(alias = "dispatch_assert_queue_barrier")]
     #[inline]
     pub fn assert_barrier(&self) {
@@ -1633,6 +1723,8 @@ impl DispatchQueue {
     ///
     /// Parameter `queue`: The dispatch queue that the current block is expected not to run on.
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_assert_queue_not?language=objc)
     #[doc(alias = "dispatch_assert_queue_not")]
     #[inline]
     pub fn assert_not(&self) {
@@ -1645,6 +1737,7 @@ impl DispatchQueue {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_allow_send_signals(_:)?language=objc)
     pub fn dispatch_allow_send_signals(preserve_signum: c_int) -> c_int;
 }
 
@@ -1778,6 +1871,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_barrier?language=objc)
         const DISPATCH_BLOCK_BARRIER = 0x1;
 /// Flags to pass to the dispatch_block_create* functions.
 ///
@@ -1840,6 +1935,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_detached?language=objc)
         const DISPATCH_BLOCK_DETACHED = 0x2;
 /// Flags to pass to the dispatch_block_create* functions.
 ///
@@ -1902,6 +1999,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_assign_current?language=objc)
         const DISPATCH_BLOCK_ASSIGN_CURRENT = 0x4;
 /// Flags to pass to the dispatch_block_create* functions.
 ///
@@ -1964,6 +2063,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_no_qos_class?language=objc)
         const DISPATCH_BLOCK_NO_QOS_CLASS = 0x8;
 /// Flags to pass to the dispatch_block_create* functions.
 ///
@@ -2026,6 +2127,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_inherit_qos_class?language=objc)
         const DISPATCH_BLOCK_INHERIT_QOS_CLASS = 0x10;
 /// Flags to pass to the dispatch_block_create* functions.
 ///
@@ -2088,6 +2191,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_enforce_qos_class?language=objc)
         const DISPATCH_BLOCK_ENFORCE_QOS_CLASS = 0x20;
     }
 }
@@ -2152,6 +2257,8 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_create?language=objc)
     #[cfg(feature = "block2")]
     #[must_use]
     pub fn dispatch_block_create(
@@ -2226,6 +2333,8 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_create_with_qos_class?language=objc)
     #[cfg(feature = "block2")]
     #[must_use]
     pub fn dispatch_block_create_with_qos_class(
@@ -2261,6 +2370,8 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_perform?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_block_perform(flags: dispatch_block_flags_t, block: dispatch_block_t);
 }
@@ -2310,6 +2421,8 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_wait?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_block_wait(block: dispatch_block_t, timeout: DispatchTime) -> isize;
 }
@@ -2352,6 +2465,8 @@ extern "C" {
     /// - `block` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
     /// - `notification_block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_notify?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_block_notify(
         block: dispatch_block_t,
@@ -2386,6 +2501,8 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_cancel?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_block_cancel(block: dispatch_block_t);
 }
@@ -2404,6 +2521,8 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_testcancel?language=objc)
     #[cfg(feature = "block2")]
     #[must_use]
     pub fn dispatch_block_testcancel(block: dispatch_block_t) -> isize;
@@ -2504,6 +2623,8 @@ impl DispatchSource {
     ///
     /// - `type` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_create?language=objc)
     #[doc(alias = "dispatch_source_create")]
     #[must_use]
     #[inline]
@@ -2527,6 +2648,8 @@ impl DispatchSource {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_event_handler?language=objc)
+    ///
     /// # Safety
     ///
     /// `handler` must be a valid pointer or null.
@@ -2553,6 +2676,8 @@ impl DispatchSource {
     /// Parameter `handler`: The event handler function to submit to the source's target queue.
     /// The context parameter passed to the event handler function is the context of
     /// the dispatch source current at the time the event handler was set.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_event_handler_f?language=objc)
     #[doc(alias = "dispatch_source_set_event_handler_f")]
     #[inline]
     pub fn set_event_handler_f(&self, handler: dispatch_function_t) {
@@ -2565,6 +2690,8 @@ impl DispatchSource {
         unsafe { dispatch_source_set_event_handler_f(self, handler) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_cancel_handler?language=objc)
+    ///
     /// # Safety
     ///
     /// `handler` must be a valid pointer or null.
@@ -2594,6 +2721,8 @@ impl DispatchSource {
     /// Parameter `handler`: The cancellation handler function to submit to the source's target queue.
     /// The context parameter passed to the event handler function is the current
     /// context of the dispatch source at the time the handler call is made.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_cancel_handler_f?language=objc)
     #[doc(alias = "dispatch_source_set_cancel_handler_f")]
     #[inline]
     pub fn set_cancel_handler_f(&self, handler: dispatch_function_t) {
@@ -2623,6 +2752,8 @@ impl DispatchSource {
     ///
     /// Parameter `source`: The dispatch source to be canceled.
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_cancel?language=objc)
     #[doc(alias = "dispatch_source_cancel")]
     #[inline]
     pub fn cancel(&self) {
@@ -2640,6 +2771,8 @@ impl DispatchSource {
     ///
     ///
     /// Returns: Non-zero if canceled and zero if not canceled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_testcancel?language=objc)
     #[doc(alias = "dispatch_source_testcancel")]
     #[must_use]
     #[inline]
@@ -2671,6 +2804,8 @@ impl DispatchSource {
     /// DISPATCH_SOURCE_TYPE_TIMER:           n/a
     /// DISPATCH_SOURCE_TYPE_VNODE:           file descriptor (int)
     /// DISPATCH_SOURCE_TYPE_WRITE:           file descriptor (int)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_get_handle?language=objc)
     #[doc(alias = "dispatch_source_get_handle")]
     #[must_use]
     #[inline]
@@ -2702,6 +2837,8 @@ impl DispatchSource {
     /// DISPATCH_SOURCE_TYPE_TIMER:           dispatch_source_timer_flags_t
     /// DISPATCH_SOURCE_TYPE_VNODE:           dispatch_source_vnode_flags_t
     /// DISPATCH_SOURCE_TYPE_WRITE:           n/a
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_get_mask?language=objc)
     #[doc(alias = "dispatch_source_get_mask")]
     #[must_use]
     #[inline]
@@ -2740,6 +2877,8 @@ impl DispatchSource {
     /// since the last handler invocation
     /// DISPATCH_SOURCE_TYPE_VNODE:           dispatch_source_vnode_flags_t
     /// DISPATCH_SOURCE_TYPE_WRITE:           estimated buffer space available
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_get_data?language=objc)
     #[doc(alias = "dispatch_source_get_data")]
     #[must_use]
     #[inline]
@@ -2761,6 +2900,8 @@ impl DispatchSource {
     /// Parameter `value`: The value to coalesce with the pending data using a logical OR or an ADD
     /// as specified by the dispatch source type. A value of zero has no effect
     /// and will not result in the submission of the event handler block.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_merge_data?language=objc)
     #[doc(alias = "dispatch_source_merge_data")]
     #[inline]
     pub fn merge_data(&self, value: usize) {
@@ -2813,6 +2954,8 @@ impl DispatchSource {
     ///
     ///
     /// Parameter `leeway`: The nanosecond leeway for the timer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_timer?language=objc)
     #[doc(alias = "dispatch_source_set_timer")]
     #[inline]
     pub fn set_timer(&self, start: DispatchTime, interval: u64, leeway: u64) {
@@ -2827,6 +2970,8 @@ impl DispatchSource {
         unsafe { dispatch_source_set_timer(self, start, interval, leeway) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_registration_handler?language=objc)
+    ///
     /// # Safety
     ///
     /// `handler` must be a valid pointer or null.
@@ -2856,6 +3001,8 @@ impl DispatchSource {
     /// Parameter `handler`: The registration handler function to submit to the source's target queue.
     /// The context parameter passed to the registration handler function is the
     /// current context of the dispatch source at the time the handler call is made.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_registration_handler_f?language=objc)
     #[doc(alias = "dispatch_source_set_registration_handler_f")]
     #[inline]
     pub fn set_registration_handler_f(&self, handler: dispatch_function_t) {
@@ -2879,6 +3026,8 @@ impl DispatchGroup {
     ///
     ///
     /// Returns: The newly created group, or NULL on failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchgroup/init()?language=objc)
     #[doc(alias = "dispatch_group_create")]
     #[must_use]
     #[inline]
@@ -2892,6 +3041,8 @@ impl DispatchGroup {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_group_async?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -2937,6 +3088,8 @@ impl DispatchGroup {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_group_async_f?language=objc)
     #[doc(alias = "dispatch_group_async_f")]
     #[inline]
     pub unsafe fn exec_async_f(
@@ -2986,6 +3139,8 @@ impl DispatchGroup {
 ///
 /// Returns: Returns zero on success (all blocks associated with the group completed
 /// within the specified timeout) or non-zero on error (i.e. timed out).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_group_wait?language=objc)
 #[inline]
 pub extern "C" fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTime) -> isize {
     extern "C" {
@@ -2995,6 +3150,8 @@ pub extern "C" fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTi
 }
 
 impl DispatchGroup {
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_group_notify?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -3036,6 +3193,8 @@ impl DispatchGroup {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_group_notify_f?language=objc)
     #[doc(alias = "dispatch_group_notify_f")]
     #[inline]
     pub unsafe fn notify_f(
@@ -3067,6 +3226,8 @@ extern "C" {
     ///
     /// Parameter `group`: The dispatch group to update.
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchgroup/enter()?language=objc)
     pub fn dispatch_group_enter(group: &DispatchGroup);
 }
 
@@ -3080,6 +3241,8 @@ impl DispatchGroup {
     ///
     /// Parameter `group`: The dispatch group to update.
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchgroup/leave()?language=objc)
     #[doc(alias = "dispatch_group_leave")]
     #[inline]
     pub unsafe fn leave(&self) {
@@ -3105,6 +3268,8 @@ impl DispatchSemaphore {
     ///
     ///
     /// Returns: The newly created semaphore, or NULL on failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchsemaphore/init(value:)?language=objc)
     #[doc(alias = "dispatch_semaphore_create")]
     #[must_use]
     #[inline]
@@ -3135,6 +3300,8 @@ impl DispatchSemaphore {
     ///
     ///
     /// Returns: Returns zero on success, or non-zero if the timeout occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_semaphore_wait?language=objc)
     #[doc(alias = "dispatch_semaphore_wait")]
     #[inline]
     pub fn wait(&self, timeout: DispatchTime) -> isize {
@@ -3157,6 +3324,8 @@ impl DispatchSemaphore {
     ///
     /// Returns: This function returns non-zero if a thread is woken. Otherwise, zero is
     /// returned.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_semaphore_signal?language=objc)
     #[doc(alias = "dispatch_semaphore_signal")]
     #[inline]
     pub fn signal(&self) -> isize {
@@ -3174,6 +3343,8 @@ impl DispatchSemaphore {
 pub type dispatch_once_t = isize;
 
 impl DispatchOnce {
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_once-c.func?language=objc)
+    ///
     /// # Safety
     ///
     /// - `predicate` must be a valid pointer.
@@ -3188,6 +3359,8 @@ impl DispatchOnce {
         unsafe { dispatch_once(predicate, block) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_once_f-c.func?language=objc)
+    ///
     /// # Safety
     ///
     /// - `predicate` must be a valid pointer.
@@ -3255,6 +3428,8 @@ impl DispatchData {
     /// - `buffer` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
     /// - `destructor` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_create?language=objc)
     #[doc(alias = "dispatch_data_create")]
     #[cfg(feature = "block2")]
     #[must_use]
@@ -3286,6 +3461,8 @@ impl DispatchData {
     /// Parameter `data`: The dispatch data object to query.
     ///
     /// Returns: The number of bytes represented by the data object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_get_size?language=objc)
     #[doc(alias = "dispatch_data_get_size")]
     #[inline]
     pub fn size(&self) -> usize {
@@ -3320,6 +3497,8 @@ impl DispatchData {
     ///
     /// - `buffer_ptr` must be a valid pointer or null.
     /// - `size_ptr` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_create_map?language=objc)
     #[doc(alias = "dispatch_data_create_map")]
     #[must_use]
     #[inline]
@@ -3356,6 +3535,8 @@ impl DispatchData {
     ///
     /// Returns: A newly created object representing the concatenation of the
     /// data1 and data2 objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_create_concat?language=objc)
     #[doc(alias = "dispatch_data_create_concat")]
     #[must_use]
     #[inline]
@@ -3388,6 +3569,8 @@ impl DispatchData {
     ///
     /// Returns: A newly created object representing the specified
     /// subrange of the data object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_create_subrange?language=objc)
     #[doc(alias = "dispatch_data_create_subrange")]
     #[must_use]
     #[inline]
@@ -3450,6 +3633,8 @@ impl DispatchData {
     /// # Safety
     ///
     /// `applier` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_apply?language=objc)
     #[doc(alias = "dispatch_data_apply")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -3479,6 +3664,8 @@ impl DispatchData {
     /// # Safety
     ///
     /// `offset_ptr` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_copy_region?language=objc)
     #[doc(alias = "dispatch_data_copy_region")]
     #[must_use]
     #[inline]
@@ -3550,6 +3737,8 @@ extern "C" {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_read?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_read(
         fd: dispatch_fd_t,
@@ -3595,6 +3784,8 @@ extern "C" {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_write?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_write(
         fd: dispatch_fd_t,
@@ -3636,6 +3827,8 @@ impl DispatchIO {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_create?language=objc)
     #[doc(alias = "dispatch_io_create")]
     #[cfg(feature = "block2")]
     #[must_use]
@@ -3696,6 +3889,8 @@ impl DispatchIO {
     ///
     /// - `path` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_create_with_path?language=objc)
     #[doc(alias = "dispatch_io_create_with_path")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[must_use]
@@ -3759,6 +3954,8 @@ impl DispatchIO {
     ///
     /// Returns: The newly created dispatch I/O channel or NULL if an error
     /// occurred (invalid type specified).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_create_with_io?language=objc)
     #[doc(alias = "dispatch_io_create_with_io")]
     #[cfg(feature = "block2")]
     #[must_use]
@@ -3847,6 +4044,8 @@ impl DispatchIO {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `io_handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_read?language=objc)
     #[doc(alias = "dispatch_io_read")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
@@ -3919,6 +4118,8 @@ impl DispatchIO {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `io_handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_write?language=objc)
     #[doc(alias = "dispatch_io_write")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
@@ -3957,6 +4158,8 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel to close.
     ///
     /// Parameter `flags`: The flags for the close operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_close?language=objc)
     #[doc(alias = "dispatch_io_close")]
     #[inline]
     pub fn close(&self, flags: DispatchIOCloseFlags) {
@@ -3990,6 +4193,8 @@ impl DispatchIO {
     /// # Safety
     ///
     /// `barrier` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchio/barrier(execute:)?language=objc)
     #[doc(alias = "dispatch_io_barrier")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -4013,6 +4218,8 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel to query.
     ///
     /// Returns: The file descriptor underlying the channel, or -1.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchio/filedescriptor?language=objc)
     #[doc(alias = "dispatch_io_get_descriptor")]
     #[must_use]
     #[inline]
@@ -4038,6 +4245,8 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel on which to set the policy.
     ///
     /// Parameter `high_water`: The number of bytes to use as a high water mark.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchio/setlimit(highwater:)?language=objc)
     #[doc(alias = "dispatch_io_set_high_water")]
     #[inline]
     pub fn set_high_water(&self, high_water: usize) {
@@ -4072,6 +4281,8 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel on which to set the policy.
     ///
     /// Parameter `low_water`: The number of bytes to use as a low water mark.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchio/setlimit(lowwater:)?language=objc)
     #[doc(alias = "dispatch_io_set_low_water")]
     #[inline]
     pub fn set_low_water(&self, low_water: usize) {
@@ -4103,6 +4314,8 @@ impl DispatchIO {
     ///
     /// Parameter `flags`: Flags indicating desired data delivery behavior at
     /// interval time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_set_interval?language=objc)
     #[doc(alias = "dispatch_io_set_interval")]
     #[inline]
     pub fn set_interval(&self, interval: u64, flags: DispatchIOIntervalFlags) {
@@ -4125,6 +4338,8 @@ impl DispatchWorkloop {
     ///
     ///
     /// Returns: The newly created dispatch workloop.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_workloop_create?language=objc)
     #[doc(alias = "dispatch_workloop_create")]
     #[must_use]
     #[inline]
@@ -4159,6 +4374,8 @@ impl DispatchWorkloop {
     ///
     ///
     /// Returns: The newly created dispatch workloop.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_workloop_create_inactive?language=objc)
     #[doc(alias = "dispatch_workloop_create_inactive")]
     #[must_use]
     #[inline]
@@ -4195,6 +4412,8 @@ impl DispatchWorkloop {
     ///
     ///
     /// Parameter `frequency`: The requested autorelease frequency.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_workloop_set_autorelease_frequency?language=objc)
     #[doc(alias = "dispatch_workloop_set_autorelease_frequency")]
     #[inline]
     pub fn set_autorelease_frequency(&self, frequency: DispatchAutoReleaseFrequency) {

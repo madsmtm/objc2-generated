@@ -62,20 +62,28 @@ unsafe impl RefEncode for MIDIValueMap {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDITransformType(pub u16);
 impl MIDITransformType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/none?language=objc)
     #[doc(alias = "kMIDITransform_None")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/filterout?language=objc)
     #[doc(alias = "kMIDITransform_FilterOut")]
     pub const FilterOut: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/mapcontrol?language=objc)
     #[doc(alias = "kMIDITransform_MapControl")]
     pub const MapControl: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/add?language=objc)
     #[doc(alias = "kMIDITransform_Add")]
     pub const Add: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/scale?language=objc)
     #[doc(alias = "kMIDITransform_Scale")]
     pub const Scale: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/minvalue?language=objc)
     #[doc(alias = "kMIDITransform_MinValue")]
     pub const MinValue: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/maxvalue?language=objc)
     #[doc(alias = "kMIDITransform_MaxValue")]
     pub const MaxValue: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/mapvalue?language=objc)
     #[doc(alias = "kMIDITransform_MapValue")]
     pub const MapValue: Self = Self(12);
 }
@@ -108,16 +116,22 @@ pub const kMIDIThruConnection_MaxEndpoints: c_uint = 8;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDITransformControlType(pub u8);
 impl MIDITransformControlType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_7bit?language=objc)
     #[doc(alias = "kMIDIControlType_7Bit")]
     pub const ControlType_7Bit: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_14bit?language=objc)
     #[doc(alias = "kMIDIControlType_14Bit")]
     pub const ControlType_14Bit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_7bitrpn?language=objc)
     #[doc(alias = "kMIDIControlType_7BitRPN")]
     pub const ControlType_7BitRPN: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_14bitrpn?language=objc)
     #[doc(alias = "kMIDIControlType_14BitRPN")]
     pub const ControlType_14BitRPN: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_7bitnrpn?language=objc)
     #[doc(alias = "kMIDIControlType_7BitNRPN")]
     pub const ControlType_7BitNRPN: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_14bitnrpn?language=objc)
     #[doc(alias = "kMIDIControlType_14BitNRPN")]
     pub const ControlType_14BitNRPN: Self = Self(5);
 }
@@ -378,6 +392,8 @@ impl MIDIThruConnectionParams {
     /// # Safety
     ///
     /// `in_connection_params` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionparamsinitialize(_:)?language=objc)
     #[doc(alias = "MIDIThruConnectionParamsInitialize")]
     #[cfg(feature = "MIDIServices")]
     #[inline]
@@ -407,6 +423,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_connection` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectioncreate(_:_:_:)?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIThruConnectionCreate(
         in_persistent_owner_id: Option<&CFString>,
@@ -421,6 +439,8 @@ extern "C-unwind" {
     /// Parameter `connection`: The connection to be disposed
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectiondispose(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIThruConnectionDispose(connection: MIDIThruConnectionRef) -> OSStatus;
 }
@@ -440,6 +460,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_connection_params` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectiongetparams(_:_:)?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIThruConnectionGetParams(
         connection: MIDIThruConnectionRef,
@@ -455,6 +477,8 @@ extern "C-unwind" {
     /// Parameter `inConnectionParams`: The connection's new MIDIThruConnectionParams in a CFDataRef
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionsetparams(_:_:)?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIThruConnectionSetParams(
         connection: MIDIThruConnectionRef,
@@ -474,6 +498,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_connection_list` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionfind(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIThruConnectionFind(
         in_persistent_owner_id: &CFString,

@@ -26,10 +26,13 @@ pub type SCNShaderModifierEntryPoint = NSString;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNBufferFrequency(pub NSInteger);
 impl SCNBufferFrequency {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferfrequency/perframe?language=objc)
     #[doc(alias = "SCNBufferFrequencyPerFrame")]
     pub const PerFrame: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferfrequency/pernode?language=objc)
     #[doc(alias = "SCNBufferFrequencyPerNode")]
     pub const PerNode: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferfrequency/pershadable?language=objc)
     #[doc(alias = "SCNBufferFrequencyPerShadable")]
     pub const PerShadable: Self = Self(2);
 }

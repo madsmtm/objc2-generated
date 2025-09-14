@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageContentMode(pub NSInteger);
 impl PHImageContentMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagecontentmode/aspectfit?language=objc)
     #[doc(alias = "PHImageContentModeAspectFit")]
     pub const AspectFit: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagecontentmode/aspectfill?language=objc)
     #[doc(alias = "PHImageContentModeAspectFill")]
     pub const AspectFill: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagecontentmode/default?language=objc)
     #[doc(alias = "PHImageContentModeDefault")]
     pub const Default: Self = Self(PHImageContentMode::AspectFit.0);
 }
@@ -32,11 +35,14 @@ unsafe impl RefEncode for PHImageContentMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHCollectionListType(pub NSInteger);
 impl PHCollectionListType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlisttype/momentlist?language=objc)
     #[doc(alias = "PHCollectionListTypeMomentList")]
     #[deprecated = "Will be removed in a future release"]
     pub const MomentList: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlisttype/folder?language=objc)
     #[doc(alias = "PHCollectionListTypeFolder")]
     pub const Folder: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlisttype/smartfolder?language=objc)
     #[doc(alias = "PHCollectionListTypeSmartFolder")]
     pub const SmartFolder: Self = Self(3);
 }
@@ -55,18 +61,24 @@ unsafe impl RefEncode for PHCollectionListType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHCollectionListSubtype(pub NSInteger);
 impl PHCollectionListSubtype {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/momentlistcluster?language=objc)
     #[doc(alias = "PHCollectionListSubtypeMomentListCluster")]
     #[deprecated = "Will be removed in a future release"]
     pub const MomentListCluster: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/momentlistyear?language=objc)
     #[doc(alias = "PHCollectionListSubtypeMomentListYear")]
     #[deprecated = "Will be removed in a future release"]
     pub const MomentListYear: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/regularfolder?language=objc)
     #[doc(alias = "PHCollectionListSubtypeRegularFolder")]
     pub const RegularFolder: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/smartfolderevents?language=objc)
     #[doc(alias = "PHCollectionListSubtypeSmartFolderEvents")]
     pub const SmartFolderEvents: Self = Self(200);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/smartfolderfaces?language=objc)
     #[doc(alias = "PHCollectionListSubtypeSmartFolderFaces")]
     pub const SmartFolderFaces: Self = Self(201);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/any?language=objc)
     #[doc(alias = "PHCollectionListSubtypeAny")]
     pub const Any: Self = Self(NSIntegerMax as _);
 }
@@ -85,18 +97,25 @@ unsafe impl RefEncode for PHCollectionListSubtype {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHCollectionEditOperation(pub NSInteger);
 impl PHCollectionEditOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/deletecontent?language=objc)
     #[doc(alias = "PHCollectionEditOperationDeleteContent")]
     pub const DeleteContent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/removecontent?language=objc)
     #[doc(alias = "PHCollectionEditOperationRemoveContent")]
     pub const RemoveContent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/addcontent?language=objc)
     #[doc(alias = "PHCollectionEditOperationAddContent")]
     pub const AddContent: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/createcontent?language=objc)
     #[doc(alias = "PHCollectionEditOperationCreateContent")]
     pub const CreateContent: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/rearrangecontent?language=objc)
     #[doc(alias = "PHCollectionEditOperationRearrangeContent")]
     pub const RearrangeContent: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/delete?language=objc)
     #[doc(alias = "PHCollectionEditOperationDelete")]
     pub const Delete: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/rename?language=objc)
     #[doc(alias = "PHCollectionEditOperationRename")]
     pub const Rename: Self = Self(7);
 }
@@ -115,10 +134,13 @@ unsafe impl RefEncode for PHCollectionEditOperation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetCollectionType(pub NSInteger);
 impl PHAssetCollectionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectiontype/album?language=objc)
     #[doc(alias = "PHAssetCollectionTypeAlbum")]
     pub const Album: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectiontype/smartalbum?language=objc)
     #[doc(alias = "PHAssetCollectionTypeSmartAlbum")]
     pub const SmartAlbum: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectiontype/moment?language=objc)
     #[doc(alias = "PHAssetCollectionTypeMoment")]
     #[deprecated = "Will be removed in a future release"]
     pub const Moment: Self = Self(3);
@@ -138,62 +160,91 @@ unsafe impl RefEncode for PHAssetCollectionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetCollectionSubtype(pub NSInteger);
 impl PHAssetCollectionSubtype {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumregular?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeAlbumRegular")]
     pub const AlbumRegular: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumsyncedevent?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedEvent")]
     pub const AlbumSyncedEvent: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumsyncedfaces?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedFaces")]
     pub const AlbumSyncedFaces: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumsyncedalbum?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedAlbum")]
     pub const AlbumSyncedAlbum: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumimported?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeAlbumImported")]
     pub const AlbumImported: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albummyphotostream?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeAlbumMyPhotoStream")]
     pub const AlbumMyPhotoStream: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumcloudshared?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeAlbumCloudShared")]
     pub const AlbumCloudShared: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumgeneric?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumGeneric")]
     pub const SmartAlbumGeneric: Self = Self(200);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumpanoramas?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumPanoramas")]
     pub const SmartAlbumPanoramas: Self = Self(201);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumvideos?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumVideos")]
     pub const SmartAlbumVideos: Self = Self(202);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumfavorites?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumFavorites")]
     pub const SmartAlbumFavorites: Self = Self(203);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumtimelapses?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumTimelapses")]
     pub const SmartAlbumTimelapses: Self = Self(204);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumallhidden?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumAllHidden")]
     pub const SmartAlbumAllHidden: Self = Self(205);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumrecentlyadded?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumRecentlyAdded")]
     pub const SmartAlbumRecentlyAdded: Self = Self(206);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumbursts?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumBursts")]
     pub const SmartAlbumBursts: Self = Self(207);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumslomovideos?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSlomoVideos")]
     pub const SmartAlbumSlomoVideos: Self = Self(208);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumuserlibrary?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumUserLibrary")]
     pub const SmartAlbumUserLibrary: Self = Self(209);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumselfportraits?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSelfPortraits")]
     pub const SmartAlbumSelfPortraits: Self = Self(210);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumscreenshots?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumScreenshots")]
     pub const SmartAlbumScreenshots: Self = Self(211);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumdeptheffect?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumDepthEffect")]
     pub const SmartAlbumDepthEffect: Self = Self(212);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumlivephotos?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumLivePhotos")]
     pub const SmartAlbumLivePhotos: Self = Self(213);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumanimated?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumAnimated")]
     pub const SmartAlbumAnimated: Self = Self(214);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumlongexposures?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumLongExposures")]
     pub const SmartAlbumLongExposures: Self = Self(215);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumunabletoupload?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumUnableToUpload")]
     pub const SmartAlbumUnableToUpload: Self = Self(216);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumraw?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumRAW")]
     pub const SmartAlbumRAW: Self = Self(217);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumcinematic?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumCinematic")]
     pub const SmartAlbumCinematic: Self = Self(218);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumspatial?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSpatial")]
     pub const SmartAlbumSpatial: Self = Self(219);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumscreenrecordings?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumScreenRecordings")]
     pub const SmartAlbumScreenRecordings: Self = Self(220);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/any?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeAny")]
     pub const Any: Self = Self(NSIntegerMax as _);
 }
@@ -212,10 +263,13 @@ unsafe impl RefEncode for PHAssetCollectionSubtype {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetEditOperation(pub NSInteger);
 impl PHAssetEditOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasseteditoperation/delete?language=objc)
     #[doc(alias = "PHAssetEditOperationDelete")]
     pub const Delete: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasseteditoperation/content?language=objc)
     #[doc(alias = "PHAssetEditOperationContent")]
     pub const Content: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasseteditoperation/properties?language=objc)
     #[doc(alias = "PHAssetEditOperationProperties")]
     pub const Properties: Self = Self(3);
 }
@@ -234,16 +288,22 @@ unsafe impl RefEncode for PHAssetEditOperation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetPlaybackStyle(pub NSInteger);
 impl PHAssetPlaybackStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/unsupported?language=objc)
     #[doc(alias = "PHAssetPlaybackStyleUnsupported")]
     pub const Unsupported: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/image?language=objc)
     #[doc(alias = "PHAssetPlaybackStyleImage")]
     pub const Image: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/imageanimated?language=objc)
     #[doc(alias = "PHAssetPlaybackStyleImageAnimated")]
     pub const ImageAnimated: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/livephoto?language=objc)
     #[doc(alias = "PHAssetPlaybackStyleLivePhoto")]
     pub const LivePhoto: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/video?language=objc)
     #[doc(alias = "PHAssetPlaybackStyleVideo")]
     pub const Video: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/videolooping?language=objc)
     #[doc(alias = "PHAssetPlaybackStyleVideoLooping")]
     pub const VideoLooping: Self = Self(5);
 }
@@ -262,12 +322,16 @@ unsafe impl RefEncode for PHAssetPlaybackStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetMediaType(pub NSInteger);
 impl PHAssetMediaType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype/unknown?language=objc)
     #[doc(alias = "PHAssetMediaTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype/image?language=objc)
     #[doc(alias = "PHAssetMediaTypeImage")]
     pub const Image: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype/video?language=objc)
     #[doc(alias = "PHAssetMediaTypeVideo")]
     pub const Video: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype/audio?language=objc)
     #[doc(alias = "PHAssetMediaTypeAudio")]
     pub const Audio: Self = Self(3);
 }
@@ -287,28 +351,40 @@ unsafe impl RefEncode for PHAssetMediaType {
 pub struct PHAssetMediaSubtype(pub NSUInteger);
 bitflags::bitflags! {
     impl PHAssetMediaSubtype: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/phassetmediasubtypenone?language=objc)
         #[doc(alias = "PHAssetMediaSubtypeNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/photopanorama?language=objc)
         #[doc(alias = "PHAssetMediaSubtypePhotoPanorama")]
         const PhotoPanorama = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/photohdr?language=objc)
         #[doc(alias = "PHAssetMediaSubtypePhotoHDR")]
         const PhotoHDR = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/photoscreenshot?language=objc)
         #[doc(alias = "PHAssetMediaSubtypePhotoScreenshot")]
         const PhotoScreenshot = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/photolive?language=objc)
         #[doc(alias = "PHAssetMediaSubtypePhotoLive")]
         const PhotoLive = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/photodeptheffect?language=objc)
         #[doc(alias = "PHAssetMediaSubtypePhotoDepthEffect")]
         const PhotoDepthEffect = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/spatialmedia?language=objc)
         #[doc(alias = "PHAssetMediaSubtypeSpatialMedia")]
         const SpatialMedia = 1<<10;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/videostreamed?language=objc)
         #[doc(alias = "PHAssetMediaSubtypeVideoStreamed")]
         const VideoStreamed = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/videohighframerate?language=objc)
         #[doc(alias = "PHAssetMediaSubtypeVideoHighFrameRate")]
         const VideoHighFrameRate = 1<<17;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/videotimelapse?language=objc)
         #[doc(alias = "PHAssetMediaSubtypeVideoTimelapse")]
         const VideoTimelapse = 1<<18;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/videoscreenrecording?language=objc)
         #[doc(alias = "PHAssetMediaSubtypeVideoScreenRecording")]
         const VideoScreenRecording = 1<<19;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/videocinematic?language=objc)
         #[doc(alias = "PHAssetMediaSubtypeVideoCinematic")]
         const VideoCinematic = 1<<21;
     }
@@ -329,10 +405,13 @@ unsafe impl RefEncode for PHAssetMediaSubtype {
 pub struct PHAssetBurstSelectionType(pub NSUInteger);
 bitflags::bitflags! {
     impl PHAssetBurstSelectionType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetburstselectiontype/phassetburstselectiontypenone?language=objc)
         #[doc(alias = "PHAssetBurstSelectionTypeNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetburstselectiontype/autopick?language=objc)
         #[doc(alias = "PHAssetBurstSelectionTypeAutoPick")]
         const AutoPick = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetburstselectiontype/userpick?language=objc)
         #[doc(alias = "PHAssetBurstSelectionTypeUserPick")]
         const UserPick = 1<<1;
     }
@@ -353,12 +432,16 @@ unsafe impl RefEncode for PHAssetBurstSelectionType {
 pub struct PHAssetSourceType(pub NSUInteger);
 bitflags::bitflags! {
     impl PHAssetSourceType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype/phassetsourcetypenone?language=objc)
         #[doc(alias = "PHAssetSourceTypeNone")]
         const TypeNone = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype/typeuserlibrary?language=objc)
         #[doc(alias = "PHAssetSourceTypeUserLibrary")]
         const TypeUserLibrary = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype/typecloudshared?language=objc)
         #[doc(alias = "PHAssetSourceTypeCloudShared")]
         const TypeCloudShared = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype/typeitunessynced?language=objc)
         #[doc(alias = "PHAssetSourceTypeiTunesSynced")]
         const TypeiTunesSynced = 1<<2;
     }
@@ -378,30 +461,43 @@ unsafe impl RefEncode for PHAssetSourceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetResourceType(pub NSInteger);
 impl PHAssetResourceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/photo?language=objc)
     #[doc(alias = "PHAssetResourceTypePhoto")]
     pub const Photo: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/video?language=objc)
     #[doc(alias = "PHAssetResourceTypeVideo")]
     pub const Video: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/audio?language=objc)
     #[doc(alias = "PHAssetResourceTypeAudio")]
     pub const Audio: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/alternatephoto?language=objc)
     #[doc(alias = "PHAssetResourceTypeAlternatePhoto")]
     pub const AlternatePhoto: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/fullsizephoto?language=objc)
     #[doc(alias = "PHAssetResourceTypeFullSizePhoto")]
     pub const FullSizePhoto: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/fullsizevideo?language=objc)
     #[doc(alias = "PHAssetResourceTypeFullSizeVideo")]
     pub const FullSizeVideo: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/adjustmentdata?language=objc)
     #[doc(alias = "PHAssetResourceTypeAdjustmentData")]
     pub const AdjustmentData: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/adjustmentbasephoto?language=objc)
     #[doc(alias = "PHAssetResourceTypeAdjustmentBasePhoto")]
     pub const AdjustmentBasePhoto: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/pairedvideo?language=objc)
     #[doc(alias = "PHAssetResourceTypePairedVideo")]
     pub const PairedVideo: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/fullsizepairedvideo?language=objc)
     #[doc(alias = "PHAssetResourceTypeFullSizePairedVideo")]
     pub const FullSizePairedVideo: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/adjustmentbasepairedvideo?language=objc)
     #[doc(alias = "PHAssetResourceTypeAdjustmentBasePairedVideo")]
     pub const AdjustmentBasePairedVideo: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/adjustmentbasevideo?language=objc)
     #[doc(alias = "PHAssetResourceTypeAdjustmentBaseVideo")]
     pub const AdjustmentBaseVideo: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/photoproxy?language=objc)
     #[doc(alias = "PHAssetResourceTypePhotoProxy")]
     pub const PhotoProxy: Self = Self(19);
 }
@@ -422,15 +518,22 @@ unsafe impl RefEncode for PHAssetResourceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetResourceUploadJobState(pub NSInteger);
 impl PHAssetResourceUploadJobState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/state-swift.enum/registered?language=objc)
     #[doc(alias = "PHAssetResourceUploadJobStateRegistered")]
     pub const Registered: Self = Self(1);
     /// The job has been registered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/state-swift.enum/pending?language=objc)
     #[doc(alias = "PHAssetResourceUploadJobStatePending")]
     pub const Pending: Self = Self(2);
     /// A request has been made to send the asset resource to the destination, but has not yet been fulfilled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/state-swift.enum/failed?language=objc)
     #[doc(alias = "PHAssetResourceUploadJobStateFailed")]
     pub const Failed: Self = Self(3);
     /// The job has failed to send over.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/state-swift.enum/succeeded?language=objc)
     #[doc(alias = "PHAssetResourceUploadJobStateSucceeded")]
     pub const Succeeded: Self = Self(4);
 }
@@ -451,9 +554,12 @@ unsafe impl RefEncode for PHAssetResourceUploadJobState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetResourceUploadJobAction(pub NSInteger);
 impl PHAssetResourceUploadJobAction {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/action/acknowledge?language=objc)
     #[doc(alias = "PHAssetResourceUploadJobActionAcknowledge")]
     pub const Acknowledge: Self = Self(1);
     /// Where PHAssetResourceUploadJobState = (success OR fail).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/action/retry?language=objc)
     #[doc(alias = "PHAssetResourceUploadJobActionRetry")]
     pub const Retry: Self = Self(2);
 }
@@ -472,10 +578,13 @@ unsafe impl RefEncode for PHAssetResourceUploadJobAction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHObjectType(pub NSInteger);
 impl PHObjectType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjecttype/asset?language=objc)
     #[doc(alias = "PHObjectTypeAsset")]
     pub const Asset: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjecttype/assetcollection?language=objc)
     #[doc(alias = "PHObjectTypeAssetCollection")]
     pub const AssetCollection: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjecttype/collectionlist?language=objc)
     #[doc(alias = "PHObjectTypeCollectionList")]
     pub const CollectionList: Self = Self(3);
 }

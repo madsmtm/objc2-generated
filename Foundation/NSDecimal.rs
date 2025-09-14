@@ -14,12 +14,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRoundingMode(pub NSUInteger);
 impl NSRoundingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/plain?language=objc)
     #[doc(alias = "NSRoundPlain")]
     pub const RoundPlain: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/down?language=objc)
     #[doc(alias = "NSRoundDown")]
     pub const RoundDown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/up?language=objc)
     #[doc(alias = "NSRoundUp")]
     pub const RoundUp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/bankers?language=objc)
     #[doc(alias = "NSRoundBankers")]
     pub const RoundBankers: Self = Self(3);
 }
@@ -38,14 +42,19 @@ unsafe impl RefEncode for NSRoundingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCalculationError(pub NSUInteger);
 impl NSCalculationError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror/noerror?language=objc)
     #[doc(alias = "NSCalculationNoError")]
     pub const NoError: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror/lossofprecision?language=objc)
     #[doc(alias = "NSCalculationLossOfPrecision")]
     pub const LossOfPrecision: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror/underflow?language=objc)
     #[doc(alias = "NSCalculationUnderflow")]
     pub const Underflow: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror/overflow?language=objc)
     #[doc(alias = "NSCalculationOverflow")]
     pub const Overflow: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror/dividebyzero?language=objc)
     #[doc(alias = "NSCalculationDivideByZero")]
     pub const DivideByZero: Self = Self(4);
 }
@@ -67,6 +76,8 @@ impl NSDecimal {
     ///
     /// - `destination` must be a valid pointer.
     /// - `source` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalcopy(_:_:)?language=objc)
     #[doc(alias = "NSDecimalCopy")]
     #[inline]
     pub unsafe fn copy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>) {
@@ -76,6 +87,8 @@ impl NSDecimal {
         unsafe { NSDecimalCopy(destination, source) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalcompact(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `number` must be a valid pointer.
@@ -88,6 +101,8 @@ impl NSDecimal {
         unsafe { NSDecimalCompact(number) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalcompare(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `left_operand` must be a valid pointer.
@@ -108,6 +123,8 @@ impl NSDecimal {
         unsafe { NSDecimalCompare(left_operand, right_operand) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalround(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `result` must be a valid pointer.
@@ -131,6 +148,8 @@ impl NSDecimal {
         unsafe { NSDecimalRound(result, number, scale, rounding_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnormalize(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `number1` must be a valid pointer.
@@ -152,6 +171,8 @@ impl NSDecimal {
         unsafe { NSDecimalNormalize(number1, number2, rounding_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimaladd(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `result` must be a valid pointer.
@@ -176,6 +197,8 @@ impl NSDecimal {
         unsafe { NSDecimalAdd(result, left_operand, right_operand, rounding_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalsubtract(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `result` must be a valid pointer.
@@ -200,6 +223,8 @@ impl NSDecimal {
         unsafe { NSDecimalSubtract(result, left_operand, right_operand, rounding_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalmultiply(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `result` must be a valid pointer.
@@ -224,6 +249,8 @@ impl NSDecimal {
         unsafe { NSDecimalMultiply(result, left_operand, right_operand, rounding_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimaldivide(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `result` must be a valid pointer.
@@ -248,6 +275,8 @@ impl NSDecimal {
         unsafe { NSDecimalDivide(result, left_operand, right_operand, rounding_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalpower(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `result` must be a valid pointer.
@@ -271,6 +300,8 @@ impl NSDecimal {
         unsafe { NSDecimalPower(result, number, power, rounding_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalmultiplybypowerof10(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `result` must be a valid pointer.
@@ -294,6 +325,8 @@ impl NSDecimal {
         unsafe { NSDecimalMultiplyByPowerOf10(result, number, power, rounding_mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalstring(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dcm` must be a valid pointer.

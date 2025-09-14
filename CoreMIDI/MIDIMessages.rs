@@ -12,24 +12,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIMessageType(pub c_uint);
 impl MIDIMessageType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype/utility?language=objc)
     #[doc(alias = "kMIDIMessageTypeUtility")]
     pub const Utility: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype/system?language=objc)
     #[doc(alias = "kMIDIMessageTypeSystem")]
     pub const System: Self = Self(0x1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype/channelvoice1?language=objc)
     #[doc(alias = "kMIDIMessageTypeChannelVoice1")]
     pub const ChannelVoice1: Self = Self(0x2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype/sysex?language=objc)
     #[doc(alias = "kMIDIMessageTypeSysEx")]
     pub const SysEx: Self = Self(0x3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype/channelvoice2?language=objc)
     #[doc(alias = "kMIDIMessageTypeChannelVoice2")]
     pub const ChannelVoice2: Self = Self(0x4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype/data128?language=objc)
     #[doc(alias = "kMIDIMessageTypeData128")]
     pub const Data128: Self = Self(0x5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype/flexdata?language=objc)
     #[doc(alias = "kMIDIMessageTypeFlexData")]
     pub const FlexData: Self = Self(0xD);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype/unknownf?language=objc)
     #[doc(alias = "kMIDIMessageTypeUnknownF")]
     pub const UnknownF: Self = Self(0xF);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype/stream?language=objc)
     #[doc(alias = "kMIDIMessageTypeStream")]
     pub const Stream: Self = Self(0xF);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype/invalid?language=objc)
     #[doc(alias = "kMIDIMessageTypeInvalid")]
     pub const Invalid: Self = Self(0xFF);
 }
@@ -50,34 +60,49 @@ unsafe impl RefEncode for MIDIMessageType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDICVStatus(pub c_uint);
 impl MIDICVStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/noteoff?language=objc)
     #[doc(alias = "kMIDICVStatusNoteOff")]
     pub const NoteOff: Self = Self(0x8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/noteon?language=objc)
     #[doc(alias = "kMIDICVStatusNoteOn")]
     pub const NoteOn: Self = Self(0x9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/polypressure?language=objc)
     #[doc(alias = "kMIDICVStatusPolyPressure")]
     pub const PolyPressure: Self = Self(0xA);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/controlchange?language=objc)
     #[doc(alias = "kMIDICVStatusControlChange")]
     pub const ControlChange: Self = Self(0xB);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/programchange?language=objc)
     #[doc(alias = "kMIDICVStatusProgramChange")]
     pub const ProgramChange: Self = Self(0xC);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/channelpressure?language=objc)
     #[doc(alias = "kMIDICVStatusChannelPressure")]
     pub const ChannelPressure: Self = Self(0xD);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/pitchbend?language=objc)
     #[doc(alias = "kMIDICVStatusPitchBend")]
     pub const PitchBend: Self = Self(0xE);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/registeredpnc?language=objc)
     #[doc(alias = "kMIDICVStatusRegisteredPNC")]
     pub const RegisteredPNC: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/assignablepnc?language=objc)
     #[doc(alias = "kMIDICVStatusAssignablePNC")]
     pub const AssignablePNC: Self = Self(0x1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/registeredcontrol?language=objc)
     #[doc(alias = "kMIDICVStatusRegisteredControl")]
     pub const RegisteredControl: Self = Self(0x2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/assignablecontrol?language=objc)
     #[doc(alias = "kMIDICVStatusAssignableControl")]
     pub const AssignableControl: Self = Self(0x3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/relregisteredcontrol?language=objc)
     #[doc(alias = "kMIDICVStatusRelRegisteredControl")]
     pub const RelRegisteredControl: Self = Self(0x4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/relassignablecontrol?language=objc)
     #[doc(alias = "kMIDICVStatusRelAssignableControl")]
     pub const RelAssignableControl: Self = Self(0x5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/pernotepitchbend?language=objc)
     #[doc(alias = "kMIDICVStatusPerNotePitchBend")]
     pub const PerNotePitchBend: Self = Self(0x6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus/pernotemgmt?language=objc)
     #[doc(alias = "kMIDICVStatusPerNoteMgmt")]
     pub const PerNoteMgmt: Self = Self(0xF);
 }
@@ -98,30 +123,43 @@ unsafe impl RefEncode for MIDICVStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MIDISystemStatus(pub c_uint);
 impl MIDISystemStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statusstartofexclusive?language=objc)
     #[doc(alias = "kMIDIStatusStartOfExclusive")]
     pub const StatusStartOfExclusive: Self = Self(0xF0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statusendofexclusive?language=objc)
     #[doc(alias = "kMIDIStatusEndOfExclusive")]
     pub const StatusEndOfExclusive: Self = Self(0xF7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statusmtc?language=objc)
     #[doc(alias = "kMIDIStatusMTC")]
     pub const StatusMTC: Self = Self(0xF1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statussongpospointer?language=objc)
     #[doc(alias = "kMIDIStatusSongPosPointer")]
     pub const StatusSongPosPointer: Self = Self(0xF2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statussongselect?language=objc)
     #[doc(alias = "kMIDIStatusSongSelect")]
     pub const StatusSongSelect: Self = Self(0xF3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statustunerequest?language=objc)
     #[doc(alias = "kMIDIStatusTuneRequest")]
     pub const StatusTuneRequest: Self = Self(0xF6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statustimingclock?language=objc)
     #[doc(alias = "kMIDIStatusTimingClock")]
     pub const StatusTimingClock: Self = Self(0xF8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statusstart?language=objc)
     #[doc(alias = "kMIDIStatusStart")]
     pub const StatusStart: Self = Self(0xFA);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statuscontinue?language=objc)
     #[doc(alias = "kMIDIStatusContinue")]
     pub const StatusContinue: Self = Self(0xFB);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statusstop?language=objc)
     #[doc(alias = "kMIDIStatusStop")]
     pub const StatusStop: Self = Self(0xFC);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statusactivesending?language=objc)
     #[doc(alias = "kMIDIStatusActiveSending")]
     pub const StatusActiveSending: Self = Self(0xFE);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statusactivesensing?language=objc)
     #[doc(alias = "kMIDIStatusActiveSensing")]
     pub const StatusActiveSensing: Self = Self(MIDISystemStatus::StatusActiveSending.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisystemstatus/statussystemreset?language=objc)
     #[doc(alias = "kMIDIStatusSystemReset")]
     pub const StatusSystemReset: Self = Self(0xFF);
 }
@@ -142,16 +180,22 @@ unsafe impl RefEncode for MIDISystemStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDISysExStatus(pub c_uint);
 impl MIDISysExStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexstatus/complete?language=objc)
     #[doc(alias = "kMIDISysExStatusComplete")]
     pub const Complete: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexstatus/start?language=objc)
     #[doc(alias = "kMIDISysExStatusStart")]
     pub const Start: Self = Self(0x1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexstatus/continue?language=objc)
     #[doc(alias = "kMIDISysExStatusContinue")]
     pub const Continue: Self = Self(0x2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexstatus/end?language=objc)
     #[doc(alias = "kMIDISysExStatusEnd")]
     pub const End: Self = Self(0x3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexstatus/mixeddatasetheader?language=objc)
     #[doc(alias = "kMIDISysExStatusMixedDataSetHeader")]
     pub const MixedDataSetHeader: Self = Self(0x8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexstatus/mixeddatasetpayload?language=objc)
     #[doc(alias = "kMIDISysExStatusMixedDataSetPayload")]
     pub const MixedDataSetPayload: Self = Self(0x9);
 }
@@ -172,14 +216,19 @@ unsafe impl RefEncode for MIDISysExStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUtilityStatus(pub c_uint);
 impl MIDIUtilityStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiutilitystatus/noop?language=objc)
     #[doc(alias = "kMIDIUtilityStatusNOOP")]
     pub const NOOP: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiutilitystatus/jitterreductionclock?language=objc)
     #[doc(alias = "kMIDIUtilityStatusJitterReductionClock")]
     pub const JitterReductionClock: Self = Self(0x1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiutilitystatus/jitterreductiontimestamp?language=objc)
     #[doc(alias = "kMIDIUtilityStatusJitterReductionTimestamp")]
     pub const JitterReductionTimestamp: Self = Self(0x2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiutilitystatus/deltaclockstampticksperquarternote?language=objc)
     #[doc(alias = "kMIDIUtilityStatusDeltaClockstampTicksPerQuarterNote")]
     pub const DeltaClockstampTicksPerQuarterNote: Self = Self(0x3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiutilitystatus/tickssincelastevent?language=objc)
     #[doc(alias = "kMIDIUtilityStatusTicksSinceLastEvent")]
     pub const TicksSinceLastEvent: Self = Self(0x4);
 }
@@ -200,28 +249,40 @@ unsafe impl RefEncode for MIDIUtilityStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UMPStreamMessageStatus(pub c_uint);
 impl UMPStreamMessageStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/endpointdiscovery?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusEndpointDiscovery")]
     pub const EndpointDiscovery: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/endpointinfonotification?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusEndpointInfoNotification")]
     pub const EndpointInfoNotification: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/deviceidentitynotification?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusDeviceIdentityNotification")]
     pub const DeviceIdentityNotification: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/endpointnamenotification?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusEndpointNameNotification")]
     pub const EndpointNameNotification: Self = Self(0x03);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/productinstanceidnotification?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusProductInstanceIDNotification")]
     pub const ProductInstanceIDNotification: Self = Self(0x04);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/streamconfigurationrequest?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusStreamConfigurationRequest")]
     pub const StreamConfigurationRequest: Self = Self(0x05);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/streamconfigurationnotification?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusStreamConfigurationNotification")]
     pub const StreamConfigurationNotification: Self = Self(0x06);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/functionblockdiscovery?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusFunctionBlockDiscovery")]
     pub const FunctionBlockDiscovery: Self = Self(0x10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/functionblockinfonotification?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusFunctionBlockInfoNotification")]
     pub const FunctionBlockInfoNotification: Self = Self(0x11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/functionblocknamenotification?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusFunctionBlockNameNotification")]
     pub const FunctionBlockNameNotification: Self = Self(0x12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/startofclip?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusStartOfClip")]
     pub const StartOfClip: Self = Self(0x20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus/endofclip?language=objc)
     #[doc(alias = "kUMPStreamMessageStatusEndOfClip")]
     pub const EndOfClip: Self = Self(0x21);
 }
@@ -242,12 +303,16 @@ unsafe impl RefEncode for UMPStreamMessageStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDINoteAttribute(pub u8);
 impl MIDINoteAttribute {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinoteattribute/none?language=objc)
     #[doc(alias = "kMIDINoteAttributeNone")]
     pub const None: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinoteattribute/manufacturerspecific?language=objc)
     #[doc(alias = "kMIDINoteAttributeManufacturerSpecific")]
     pub const ManufacturerSpecific: Self = Self(0x1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinoteattribute/profilespecific?language=objc)
     #[doc(alias = "kMIDINoteAttributeProfileSpecific")]
     pub const ProfileSpecific: Self = Self(0x2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinoteattribute/pitch?language=objc)
     #[doc(alias = "kMIDINoteAttributePitch")]
     pub const Pitch: Self = Self(0x3);
 }
@@ -269,6 +334,7 @@ unsafe impl RefEncode for MIDINoteAttribute {
 pub struct MIDIProgramChangeOptions(pub u8);
 bitflags::bitflags! {
     impl MIDIProgramChangeOptions: u8 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiprogramchangeoptions/bankvalid?language=objc)
         #[doc(alias = "kMIDIProgramChangeBankValid")]
         const BankValid = 0x1;
     }
@@ -291,8 +357,10 @@ unsafe impl RefEncode for MIDIProgramChangeOptions {
 pub struct MIDIPerNoteManagementOptions(pub u8);
 bitflags::bitflags! {
     impl MIDIPerNoteManagementOptions: u8 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipernotemanagementoptions/reset?language=objc)
         #[doc(alias = "kMIDIPerNoteManagementReset")]
         const Reset = 0x1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipernotemanagementoptions/detach?language=objc)
         #[doc(alias = "kMIDIPerNoteManagementDetach")]
         const Detach = 0x2;
     }
@@ -316,10 +384,13 @@ unsafe impl RefEncode for MIDIPerNoteManagementOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUMPFunctionBlockMIDI1Info(pub i32);
 impl MIDIUMPFunctionBlockMIDI1Info {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockmidi1info/notmidi1?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockMIDI1InfoNotMIDI1")]
     pub const NotMIDI1: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockmidi1info/unrestrictedbandwidth?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockMIDI1InfoUnrestrictedBandwidth")]
     pub const UnrestrictedBandwidth: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockmidi1info/restrictedbandwidth?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockMIDI1InfoRestrictedBandwidth")]
     pub const RestrictedBandwidth: Self = Self(2);
 }
@@ -342,12 +413,16 @@ unsafe impl RefEncode for MIDIUMPFunctionBlockMIDI1Info {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUMPFunctionBlockUIHint(pub i32);
 impl MIDIUMPFunctionBlockUIHint {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockuihint/unknown?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockUIHintUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockuihint/receiver?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockUIHintReceiver")]
     pub const Receiver: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockuihint/sender?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockUIHintSender")]
     pub const Sender: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockuihint/senderreceiver?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockUIHintSenderReceiver")]
     pub const SenderReceiver: Self = Self(3);
 }
@@ -370,12 +445,16 @@ unsafe impl RefEncode for MIDIUMPFunctionBlockUIHint {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUMPFunctionBlockDirection(pub i32);
 impl MIDIUMPFunctionBlockDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockdirection/unknown?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockDirectionUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockdirection/input?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockDirectionInput")]
     pub const Input: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockdirection/output?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockDirectionOutput")]
     pub const Output: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockdirection/bidirectional?language=objc)
     #[doc(alias = "kMIDIUMPFunctionBlockDirectionBidirectional")]
     pub const Bidirectional: Self = Self(3);
 }
@@ -398,12 +477,16 @@ unsafe impl RefEncode for MIDIUMPFunctionBlockDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UMPStreamMessageFormat(pub u8);
 impl UMPStreamMessageFormat {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessageformat/complete?language=objc)
     #[doc(alias = "kUMPStreamMessageFormatComplete")]
     pub const Complete: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessageformat/start?language=objc)
     #[doc(alias = "kUMPStreamMessageFormatStart")]
     pub const Start: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessageformat/continuing?language=objc)
     #[doc(alias = "kUMPStreamMessageFormatContinuing")]
     pub const Continuing: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessageformat/end?language=objc)
     #[doc(alias = "kUMPStreamMessageFormatEnd")]
     pub const End: Self = Self(0x03);
 }
@@ -733,6 +816,8 @@ impl MIDIEventList {
     /// - `evtlist` must be a valid pointer.
     /// - `visitor` must be implemented correctly.
     /// - `visitor_context` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventlistforeachevent(_:_:_:)?language=objc)
     #[doc(alias = "MIDIEventListForEachEvent")]
     #[cfg(feature = "MIDIServices")]
     #[inline]

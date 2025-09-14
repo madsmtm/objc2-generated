@@ -22,10 +22,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionMessagePortError(pub NSInteger);
 impl WKWebExtensionMessagePortError {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport/error/code/unknown?language=objc)
     #[doc(alias = "WKWebExtensionMessagePortErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport/error/code/notconnected?language=objc)
     #[doc(alias = "WKWebExtensionMessagePortErrorNotConnected")]
     pub const NotConnected: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport/error/code/messageinvalid?language=objc)
     #[doc(alias = "WKWebExtensionMessagePortErrorMessageInvalid")]
     pub const MessageInvalid: Self = Self(3);
 }

@@ -89,6 +89,7 @@ pub type CFMessagePortInvalidationCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFMessagePort, *mut c_void)>;
 
 unsafe impl ConcreteType for CFMessagePort {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportgettypeid()?language=objc)
     #[doc(alias = "CFMessagePortGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -100,6 +101,8 @@ unsafe impl ConcreteType for CFMessagePort {
 }
 
 impl CFMessagePort {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcreatelocal(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -132,6 +135,7 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcreateremote(_:_:)?language=objc)
     #[doc(alias = "CFMessagePortCreateRemote")]
     #[inline]
     pub fn new_remote(
@@ -148,6 +152,7 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportisremote(_:)?language=objc)
     #[doc(alias = "CFMessagePortIsRemote")]
     #[inline]
     pub fn is_remote(&self) -> bool {
@@ -158,6 +163,7 @@ impl CFMessagePort {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportgetname(_:)?language=objc)
     #[doc(alias = "CFMessagePortGetName")]
     #[inline]
     pub fn name(&self) -> Option<CFRetained<CFString>> {
@@ -168,6 +174,7 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportsetname(_:_:)?language=objc)
     #[doc(alias = "CFMessagePortSetName")]
     #[inline]
     pub fn set_name(&self, new_name: Option<&CFString>) -> bool {
@@ -178,6 +185,8 @@ impl CFMessagePort {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportgetcontext(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `context` must be a valid pointer.
@@ -190,6 +199,7 @@ impl CFMessagePort {
         unsafe { CFMessagePortGetContext(self, context) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportinvalidate(_:)?language=objc)
     #[doc(alias = "CFMessagePortInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -199,6 +209,7 @@ impl CFMessagePort {
         unsafe { CFMessagePortInvalidate(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportisvalid(_:)?language=objc)
     #[doc(alias = "CFMessagePortIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -209,6 +220,7 @@ impl CFMessagePort {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportgetinvalidationcallback(_:)?language=objc)
     #[doc(alias = "CFMessagePortGetInvalidationCallBack")]
     #[inline]
     pub fn invalidation_call_back(&self) -> CFMessagePortInvalidationCallBack {
@@ -220,6 +232,8 @@ impl CFMessagePort {
         unsafe { CFMessagePortGetInvalidationCallBack(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportsetinvalidationcallback(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `callout` must be implemented correctly.
@@ -235,6 +249,8 @@ impl CFMessagePort {
         unsafe { CFMessagePortSetInvalidationCallBack(self, callout) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportsendrequest(_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `data` might not allow `None`.
@@ -276,6 +292,7 @@ impl CFMessagePort {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcreaterunloopsource(_:_:_:)?language=objc)
     #[doc(alias = "CFMessagePortCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -295,6 +312,8 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportsetdispatchqueue(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.

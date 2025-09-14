@@ -16,12 +16,18 @@ use crate::*;
 pub struct MPSGraphFFTScalingMode(pub NSUInteger);
 impl MPSGraphFFTScalingMode {
     /// Computes the FFT result with no scaling.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftscalingmode/none?language=objc)
     #[doc(alias = "MPSGraphFFTScalingModeNone")]
     pub const None: Self = Self(0);
     /// Scales the FFT result with reciprocal of the total FFT size over all transformed dimensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftscalingmode/size?language=objc)
     #[doc(alias = "MPSGraphFFTScalingModeSize")]
     pub const Size: Self = Self(1);
     /// Scales the FFT result with reciprocal square root of the total FFT size over all transformed dimensions, resulting in signal strength conserving transformation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftscalingmode/unitary?language=objc)
     #[doc(alias = "MPSGraphFFTScalingModeUnitary")]
     pub const Unitary: Self = Self(2);
 }

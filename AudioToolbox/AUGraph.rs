@@ -49,6 +49,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/newaugraph(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn NewAUGraph(out_graph: NonNull<AUGraph>) -> OSStatus;
 }
@@ -64,6 +66,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/disposeaugraph(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn DisposeAUGraph(in_graph: AUGraph) -> OSStatus;
 }
@@ -86,6 +90,8 @@ extern "C-unwind" {
     /// - `in_graph` must be a valid pointer.
     /// - `in_description` must be a valid pointer.
     /// - `out_node` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphaddnode(_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphAddNode(
@@ -109,6 +115,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphremovenode(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphRemoveNode(in_graph: AUGraph, in_node: AUNode) -> OSStatus;
 }
@@ -125,6 +133,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_number_of_nodes` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetnodecount(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetNodeCount(in_graph: AUGraph, out_number_of_nodes: NonNull<u32>) -> OSStatus;
 }
@@ -146,6 +156,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_node` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetindnode(_:_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetIndNode(
         in_graph: AUGraph,
@@ -174,6 +186,8 @@ extern "C-unwind" {
     /// - `in_graph` must be a valid pointer.
     /// - `out_description` must be a valid pointer or null.
     /// - `out_audio_unit` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphnodeinfo(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphNodeInfo(
@@ -203,6 +217,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_node` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphnewnodesubgraph(_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AUGraphNewNodeSubGraph(in_graph: AUGraph, out_node: NonNull<AUNode>) -> OSStatus;
 }
@@ -223,6 +239,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_sub_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetnodeinfosubgraph(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AUGraphGetNodeInfoSubGraph(
         in_graph: AUGraph,
@@ -247,6 +265,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_flag` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphisnodesubgraph(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AUGraphIsNodeSubGraph(
         in_graph: AUGraph,
@@ -341,6 +361,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphconnectnodeinput(_:_:_:_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphConnectNodeInput(
         in_graph: AUGraph,
@@ -360,6 +382,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `in_input_callback` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphsetnodeinputcallback(_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "AUComponent",
         feature = "AudioUnitProperties",
@@ -383,6 +407,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphdisconnectnodeinput(_:_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphDisconnectNodeInput(
         in_graph: AUGraph,
@@ -399,6 +425,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphclearconnections(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphClearConnections(in_graph: AUGraph) -> OSStatus;
 }
@@ -412,6 +440,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_num_interactions` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetnumberofinteractions(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetNumberOfInteractions(
         in_graph: AUGraph,
@@ -428,6 +458,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_num_interactions` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphcountnodeinteractions(_:_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphCountNodeInteractions(
         in_graph: AUGraph,
@@ -479,6 +511,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_is_updated` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphupdate(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphUpdate(in_graph: AUGraph, out_is_updated: *mut Boolean) -> OSStatus;
 }
@@ -491,6 +525,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphopen(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphOpen(in_graph: AUGraph) -> OSStatus;
 }
@@ -503,6 +539,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphclose(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphClose(in_graph: AUGraph) -> OSStatus;
 }
@@ -520,6 +558,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphinitialize(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphInitialize(in_graph: AUGraph) -> OSStatus;
 }
@@ -532,6 +572,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphuninitialize(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphUninitialize(in_graph: AUGraph) -> OSStatus;
 }
@@ -546,6 +588,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphstart(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphStart(in_graph: AUGraph) -> OSStatus;
 }
@@ -558,6 +602,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphstop(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphStop(in_graph: AUGraph) -> OSStatus;
 }
@@ -569,6 +615,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_is_open` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphisopen(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphIsOpen(in_graph: AUGraph, out_is_open: NonNull<Boolean>) -> OSStatus;
 }
@@ -580,6 +628,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_is_initialized` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphisinitialized(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphIsInitialized(
         in_graph: AUGraph,
@@ -594,6 +644,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_is_running` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphisrunning(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphIsRunning(in_graph: AUGraph, out_is_running: NonNull<Boolean>) -> OSStatus;
 }
@@ -607,6 +659,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_average_cpu_load` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetcpuload(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetCPULoad(in_graph: AUGraph, out_average_cpu_load: NonNull<f32>) -> OSStatus;
 }
@@ -621,6 +675,8 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_max_load` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetmaxcpuload(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetMaxCPULoad(in_graph: AUGraph, out_max_load: NonNull<f32>) -> OSStatus;
 }
@@ -637,6 +693,8 @@ extern "C-unwind" {
     /// - `in_graph` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_ref_con` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphaddrendernotify(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphAddRenderNotify(
@@ -657,6 +715,8 @@ extern "C-unwind" {
     /// - `in_graph` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_ref_con` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphremoverendernotify(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphRemoveRenderNotify(
@@ -667,6 +727,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetnumberofconnections?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_graph` must be a valid pointer.
@@ -679,6 +741,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetconnectioninfo?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_graph` must be a valid pointer.
@@ -698,6 +762,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphcountnodeconnections?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_graph` must be a valid pointer.
@@ -711,6 +777,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetnodeconnections?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_graph` must be a valid pointer.

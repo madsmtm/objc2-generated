@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPaperOrientation(pub NSInteger);
 impl NSPaperOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paperorientation/portrait?language=objc)
     #[doc(alias = "NSPaperOrientationPortrait")]
     pub const Portrait: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paperorientation/landscape?language=objc)
     #[doc(alias = "NSPaperOrientationLandscape")]
     pub const Landscape: Self = Self(1);
 }
@@ -35,10 +37,13 @@ unsafe impl RefEncode for NSPaperOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintingPaginationMode(pub NSUInteger);
 impl NSPrintingPaginationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paginationmode/automatic?language=objc)
     #[doc(alias = "NSPrintingPaginationModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paginationmode/fit?language=objc)
     #[doc(alias = "NSPrintingPaginationModeFit")]
     pub const Fit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paginationmode/clip?language=objc)
     #[doc(alias = "NSPrintingPaginationModeClip")]
     pub const Clip: Self = Self(2);
 }
@@ -580,9 +585,11 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintingOrientation(pub NSUInteger);
 impl NSPrintingOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/orientation-swift.enum/portraitorientation?language=objc)
     #[doc(alias = "NSPortraitOrientation")]
     #[deprecated]
     pub const PortraitOrientation: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/orientation-swift.enum/landscapeorientation?language=objc)
     #[doc(alias = "NSLandscapeOrientation")]
     #[deprecated]
     pub const LandscapeOrientation: Self = Self(1);

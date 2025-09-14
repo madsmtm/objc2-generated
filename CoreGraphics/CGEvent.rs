@@ -8,6 +8,7 @@ use crate::*;
 
 #[cfg(feature = "CGEventTypes")]
 unsafe impl ConcreteType for CGEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/typeid?language=objc)
     #[doc(alias = "CGEventGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -20,6 +21,7 @@ unsafe impl ConcreteType for CGEvent {
 
 #[cfg(feature = "CGEventTypes")]
 impl CGEvent {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/init(source:)?language=objc)
     #[doc(alias = "CGEventCreate")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -31,6 +33,7 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventcreatedata?language=objc)
     #[doc(alias = "CGEventCreateData")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -48,6 +51,7 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/init(withdataallocator:data:)?language=objc)
     #[doc(alias = "CGEventCreateFromData")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -65,6 +69,7 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/init(mouseeventsource:mousetype:mousecursorposition:mousebutton:)?language=objc)
     #[doc(alias = "CGEventCreateMouseEvent")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -88,6 +93,7 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/init(keyboardeventsource:virtualkey:keydown:)?language=objc)
     #[doc(alias = "CGEventCreateKeyboardEvent")]
     #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
     #[inline]
@@ -107,6 +113,7 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/init(scrollwheelevent2source:units:wheelcount:wheel1:wheel2:wheel3:)?language=objc)
     #[doc(alias = "CGEventCreateScrollWheelEvent2")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -134,6 +141,7 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/copy()?language=objc)
     #[doc(alias = "CGEventCreateCopy")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -145,6 +153,7 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/init(event:)?language=objc)
     #[doc(alias = "CGEventCreateSourceFromEvent")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -158,6 +167,7 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/setsource(_:)?language=objc)
     #[doc(alias = "CGEventSetSource")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -168,6 +178,7 @@ impl CGEvent {
         unsafe { CGEventSetSource(event, source) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/type?language=objc)
     #[doc(alias = "CGEventGetType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -178,6 +189,7 @@ impl CGEvent {
         unsafe { CGEventGetType(event) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsettype?language=objc)
     #[doc(alias = "CGEventSetType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -188,6 +200,7 @@ impl CGEvent {
         unsafe { CGEventSetType(event, r#type) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/timestamp?language=objc)
     #[doc(alias = "CGEventGetTimestamp")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -198,6 +211,7 @@ impl CGEvent {
         unsafe { CGEventGetTimestamp(event) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsettimestamp?language=objc)
     #[doc(alias = "CGEventSetTimestamp")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -208,6 +222,7 @@ impl CGEvent {
         unsafe { CGEventSetTimestamp(event, timestamp) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/location?language=objc)
     #[doc(alias = "CGEventGetLocation")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -218,6 +233,7 @@ impl CGEvent {
         unsafe { CGEventGetLocation(event) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/unflippedlocation?language=objc)
     #[doc(alias = "CGEventGetUnflippedLocation")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -228,6 +244,7 @@ impl CGEvent {
         unsafe { CGEventGetUnflippedLocation(event) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsetlocation?language=objc)
     #[doc(alias = "CGEventSetLocation")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -238,6 +255,7 @@ impl CGEvent {
         unsafe { CGEventSetLocation(event, location) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/flags?language=objc)
     #[doc(alias = "CGEventGetFlags")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -248,6 +266,7 @@ impl CGEvent {
         unsafe { CGEventGetFlags(event) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsetflags?language=objc)
     #[doc(alias = "CGEventSetFlags")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -258,6 +277,8 @@ impl CGEvent {
         unsafe { CGEventSetFlags(event, flags) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/keyboardgetunicodestring(maxstringlength:actualstringlength:unicodestring:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `actual_string_length` must be a valid pointer or null.
@@ -289,6 +310,8 @@ impl CGEvent {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/keyboardsetunicodestring(stringlength:unicodestring:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `unicode_string` must be a valid pointer or null.
@@ -310,6 +333,7 @@ impl CGEvent {
         unsafe { CGEventKeyboardSetUnicodeString(event, string_length, unicode_string) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/getintegervaluefield(_:)?language=objc)
     #[doc(alias = "CGEventGetIntegerValueField")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -320,6 +344,7 @@ impl CGEvent {
         unsafe { CGEventGetIntegerValueField(event, field) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/setintegervaluefield(_:value:)?language=objc)
     #[doc(alias = "CGEventSetIntegerValueField")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -334,6 +359,7 @@ impl CGEvent {
         unsafe { CGEventSetIntegerValueField(event, field, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/getdoublevaluefield(_:)?language=objc)
     #[doc(alias = "CGEventGetDoubleValueField")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -345,6 +371,7 @@ impl CGEvent {
         unsafe { CGEventGetDoubleValueField(event, field) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/setdoublevaluefield(_:value:)?language=objc)
     #[doc(alias = "CGEventSetDoubleValueField")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -359,6 +386,8 @@ impl CGEvent {
         unsafe { CGEventSetDoubleValueField(event, field, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreate(tap:place:options:eventsofinterest:callback:userinfo:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -390,6 +419,8 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreateforpsn(processserialnumber:place:options:eventsofinterest:callback:userinfo:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `process_serial_number` must be a valid pointer.
@@ -429,6 +460,8 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreateforpid(pid:place:options:eventsofinterest:callback:userinfo:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -460,6 +493,7 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tapenable(tap:enable:)?language=objc)
     #[doc(alias = "CGEventTapEnable")]
     #[inline]
     pub fn tap_enable(tap: &CFMachPort, enable: bool) {
@@ -469,6 +503,7 @@ impl CGEvent {
         unsafe { CGEventTapEnable(tap, enable) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tapisenabled(tap:)?language=objc)
     #[doc(alias = "CGEventTapIsEnabled")]
     #[inline]
     pub fn tap_is_enabled(tap: &CFMachPort) -> bool {
@@ -478,6 +513,8 @@ impl CGEvent {
         unsafe { CGEventTapIsEnabled(tap) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tappostevent(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `proxy` must be a valid pointer or null.
@@ -491,6 +528,7 @@ impl CGEvent {
         unsafe { CGEventTapPostEvent(proxy, event) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/post(tap:)?language=objc)
     #[doc(alias = "CGEventPost")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -501,6 +539,8 @@ impl CGEvent {
         unsafe { CGEventPost(tap, event) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/posttopsn(processserialnumber:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `process_serial_number` must be a valid pointer or null.
@@ -514,6 +554,7 @@ impl CGEvent {
         unsafe { CGEventPostToPSN(process_serial_number, event) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/posttopid(_:)?language=objc)
     #[doc(alias = "CGEventPostToPid")]
     #[cfg(all(feature = "CGEventTypes", feature = "libc"))]
     #[inline]
@@ -526,6 +567,8 @@ impl CGEvent {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggeteventtaplist(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `tap_list` must be a valid pointer or null.
@@ -538,6 +581,7 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpreflightlisteneventaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGPreflightListenEventAccess() -> bool {
     extern "C-unwind" {
@@ -546,6 +590,7 @@ pub extern "C-unwind" fn CGPreflightListenEventAccess() -> bool {
     unsafe { CGPreflightListenEventAccess() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrequestlisteneventaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRequestListenEventAccess() -> bool {
     extern "C-unwind" {
@@ -554,6 +599,7 @@ pub extern "C-unwind" fn CGRequestListenEventAccess() -> bool {
     unsafe { CGRequestListenEventAccess() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpreflightposteventaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGPreflightPostEventAccess() -> bool {
     extern "C-unwind" {
@@ -562,6 +608,7 @@ pub extern "C-unwind" fn CGPreflightPostEventAccess() -> bool {
     unsafe { CGPreflightPostEventAccess() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrequestposteventaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRequestPostEventAccess() -> bool {
     extern "C-unwind" {

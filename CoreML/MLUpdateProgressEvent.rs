@@ -17,10 +17,13 @@ use crate::*;
 pub struct MLUpdateProgressEvent(pub NSInteger);
 bitflags::bitflags! {
     impl MLUpdateProgressEvent: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdateprogressevent/trainingbegin?language=objc)
         #[doc(alias = "MLUpdateProgressEventTrainingBegin")]
         const TrainingBegin = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdateprogressevent/epochend?language=objc)
         #[doc(alias = "MLUpdateProgressEventEpochEnd")]
         const EpochEnd = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdateprogressevent/minibatchend?language=objc)
         #[doc(alias = "MLUpdateProgressEventMiniBatchEnd")]
         const MiniBatchEnd = 1<<2;
     }

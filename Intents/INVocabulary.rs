@@ -14,57 +14,89 @@ use crate::*;
 pub struct INVocabularyStringType(pub NSInteger);
 impl INVocabularyStringType {
     /// The name of a contact as a person will say it, for example “Jon Smith”, “Apple”.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/contactname?language=objc)
     #[doc(alias = "INVocabularyStringTypeContactName")]
     pub const ContactName: Self = Self(1);
     /// The name of a group of contacts as a person will say it, for example "Tahoe Trip".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/contactgroupname?language=objc)
     #[doc(alias = "INVocabularyStringTypeContactGroupName")]
     pub const ContactGroupName: Self = Self(2);
     /// A keyword associated with an image or images, for example "food", "Vacation".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/phototag?language=objc)
     #[doc(alias = "INVocabularyStringTypePhotoTag")]
     pub const PhotoTag: Self = Self(100);
     /// The name for a photograph album, for example "WWDC 2015 Karaoke".
     /// You may find that INVocabularyStringTypePhotoTag is a better match for concepts that are similar to, but not exactly, albums.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/photoalbumname?language=objc)
     #[doc(alias = "INVocabularyStringTypePhotoAlbumName")]
     pub const PhotoAlbumName: Self = Self(101);
     /// The name a user has created for a workout, for example  “Half Marathon”, “Kettlebell exercise”
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/workoutactivityname?language=objc)
     #[doc(alias = "INVocabularyStringTypeWorkoutActivityName")]
     pub const WorkoutActivityName: Self = Self(200);
     /// The name of a vehicle configuration profile, for example "Roadtrip", "Rally", "Good Weather".
     /// For use by automaker apps that are enabled to work with CarPlay
     /// <https
     /// ://developer.apple.com/carplay/>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/carprofilename?language=objc)
     #[doc(alias = "INVocabularyStringTypeCarProfileName")]
     pub const CarProfileName: Self = Self(300);
     /// The name of a vehicle as a person will say it, for example “BMW”, “My Convertible”.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/carname?language=objc)
     #[doc(alias = "INVocabularyStringTypeCarName")]
     pub const CarName: Self = Self(301);
     /// The name of an organization to pay as a person will say it, for example “PG
     /// &E
     /// ”, “Comcast”.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/paymentsorganizationname?language=objc)
     #[doc(alias = "INVocabularyStringTypePaymentsOrganizationName")]
     pub const PaymentsOrganizationName: Self = Self(400);
     /// The name of an account nick name as a person will say it, for example “Checking”, “Rainy day savings”.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/paymentsaccountnickname?language=objc)
     #[doc(alias = "INVocabularyStringTypePaymentsAccountNickname")]
     pub const PaymentsAccountNickname: Self = Self(401);
     /// The title of a note, task, or task list as a person will say it; for example, "Grocery list" or "Weekly meeting minutes".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/notebookitemtitle?language=objc)
     #[doc(alias = "INVocabularyStringTypeNotebookItemTitle")]
     pub const NotebookItemTitle: Self = Self(500);
     /// The name of the note or task list's group (folder, directory, account); for example, "iCloud" or "Shopping"
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/notebookitemgroupname?language=objc)
     #[doc(alias = "INVocabularyStringTypeNotebookItemGroupName")]
     pub const NotebookItemGroupName: Self = Self(501);
     /// The title of a playlist as a person will say it, for example "Today's Hits".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/mediaplaylisttitle?language=objc)
     #[doc(alias = "INVocabularyStringTypeMediaPlaylistTitle")]
     pub const MediaPlaylistTitle: Self = Self(700);
     /// The name of a music artist as a person will say it, for example "The Beatles".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/mediamusicartistname?language=objc)
     #[doc(alias = "INVocabularyStringTypeMediaMusicArtistName")]
     pub const MediaMusicArtistName: Self = Self(701);
     /// The title of an audiobook as a person will say it, for example "The Time Machine".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/mediaaudiobooktitle?language=objc)
     #[doc(alias = "INVocabularyStringTypeMediaAudiobookTitle")]
     pub const MediaAudiobookTitle: Self = Self(702);
     /// The name of an audiobook author as a person will say it, for example "Mary Shelley".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/mediaaudiobookauthorname?language=objc)
     #[doc(alias = "INVocabularyStringTypeMediaAudiobookAuthorName")]
     pub const MediaAudiobookAuthorName: Self = Self(703);
     /// The name of a Podcast or Radio show title as a person will say it, for example "Fresh Air".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/mediashowtitle?language=objc)
     #[doc(alias = "INVocabularyStringTypeMediaShowTitle")]
     pub const MediaShowTitle: Self = Self(704);
 }

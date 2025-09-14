@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPushBehaviorMode(pub NSInteger);
 impl UIPushBehaviorMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipushbehavior/mode-swift.enum/continuous?language=objc)
     #[doc(alias = "UIPushBehaviorModeContinuous")]
     pub const Continuous: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipushbehavior/mode-swift.enum/instantaneous?language=objc)
     #[doc(alias = "UIPushBehaviorModeInstantaneous")]
     pub const Instantaneous: Self = Self(1);
 }

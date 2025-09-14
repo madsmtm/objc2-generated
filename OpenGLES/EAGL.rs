@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/opengles/eagl_major_version?language=objc)
 pub const EAGL_MAJOR_VERSION: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/opengles/eagl_minor_version?language=objc)
 pub const EAGL_MINOR_VERSION: c_uint = 0;
 /// *********************************************************************
 ///
@@ -17,10 +19,13 @@ pub const EAGL_MINOR_VERSION: c_uint = 0;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct EAGLRenderingAPI(pub NSUInteger);
 impl EAGLRenderingAPI {
+    /// [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglrenderingapi/opengles1?language=objc)
     #[doc(alias = "kEAGLRenderingAPIOpenGLES1")]
     pub const OpenGLES1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglrenderingapi/opengles2?language=objc)
     #[doc(alias = "kEAGLRenderingAPIOpenGLES2")]
     pub const OpenGLES2: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglrenderingapi/opengles3?language=objc)
     #[doc(alias = "kEAGLRenderingAPIOpenGLES3")]
     pub const OpenGLES3: Self = Self(3);
 }
@@ -40,6 +45,8 @@ extern "C-unwind" {
     ///
     /// - `major` must be a valid pointer.
     /// - `minor` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglgetversion(_:_:)?language=objc)
     pub fn EAGLGetVersion(major: NonNull<c_uint>, minor: NonNull<c_uint>);
 }
 

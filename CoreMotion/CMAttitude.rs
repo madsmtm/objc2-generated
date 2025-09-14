@@ -76,12 +76,16 @@ unsafe impl RefEncode for CMQuaternion {
 pub struct CMAttitudeReferenceFrame(pub NSUInteger);
 bitflags::bitflags! {
     impl CMAttitudeReferenceFrame: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/xarbitraryzvertical?language=objc)
         #[doc(alias = "CMAttitudeReferenceFrameXArbitraryZVertical")]
         const XArbitraryZVertical = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/xarbitrarycorrectedzvertical?language=objc)
         #[doc(alias = "CMAttitudeReferenceFrameXArbitraryCorrectedZVertical")]
         const XArbitraryCorrectedZVertical = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/xmagneticnorthzvertical?language=objc)
         #[doc(alias = "CMAttitudeReferenceFrameXMagneticNorthZVertical")]
         const XMagneticNorthZVertical = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/xtruenorthzvertical?language=objc)
         #[doc(alias = "CMAttitudeReferenceFrameXTrueNorthZVertical")]
         const XTrueNorthZVertical = 1<<3;
     }

@@ -4,4 +4,5 @@ use core::ffi::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gk_version?language=objc)
 pub const GK_VERSION: c_uint = 101001001;

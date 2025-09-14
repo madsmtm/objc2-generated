@@ -16,10 +16,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKLeaderboardTimeScope(pub NSInteger);
 impl GKLeaderboardTimeScope {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/timescope-swift.enum/today?language=objc)
     #[doc(alias = "GKLeaderboardTimeScopeToday")]
     pub const Today: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/timescope-swift.enum/week?language=objc)
     #[doc(alias = "GKLeaderboardTimeScopeWeek")]
     pub const Week: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/timescope-swift.enum/alltime?language=objc)
     #[doc(alias = "GKLeaderboardTimeScopeAllTime")]
     pub const AllTime: Self = Self(2);
 }
@@ -38,8 +41,10 @@ unsafe impl RefEncode for GKLeaderboardTimeScope {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKLeaderboardPlayerScope(pub NSInteger);
 impl GKLeaderboardPlayerScope {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/playerscope-swift.enum/global?language=objc)
     #[doc(alias = "GKLeaderboardPlayerScopeGlobal")]
     pub const Global: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/playerscope-swift.enum/friendsonly?language=objc)
     #[doc(alias = "GKLeaderboardPlayerScopeFriendsOnly")]
     pub const FriendsOnly: Self = Self(1);
 }
@@ -58,8 +63,10 @@ unsafe impl RefEncode for GKLeaderboardPlayerScope {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKLeaderboardType(pub NSInteger);
 impl GKLeaderboardType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboardtype/classic?language=objc)
     #[doc(alias = "GKLeaderboardTypeClassic")]
     pub const Classic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboardtype/recurring?language=objc)
     #[doc(alias = "GKLeaderboardTypeRecurring")]
     pub const Recurring: Self = Self(1);
 }

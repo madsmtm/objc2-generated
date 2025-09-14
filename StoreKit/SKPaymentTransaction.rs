@@ -13,18 +13,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKPaymentTransactionState(pub NSInteger);
 impl SKPaymentTransactionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate/purchasing?language=objc)
     #[doc(alias = "SKPaymentTransactionStatePurchasing")]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Purchasing: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate/purchased?language=objc)
     #[doc(alias = "SKPaymentTransactionStatePurchased")]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Purchased: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate/failed?language=objc)
     #[doc(alias = "SKPaymentTransactionStateFailed")]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Failed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate/restored?language=objc)
     #[doc(alias = "SKPaymentTransactionStateRestored")]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Restored: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate/deferred?language=objc)
     #[doc(alias = "SKPaymentTransactionStateDeferred")]
     #[deprecated = "Use PurchaseResult.pending from Product.purchase(confirmIn:options:)"]
     pub const Deferred: Self = Self(4);

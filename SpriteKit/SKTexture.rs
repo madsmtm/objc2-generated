@@ -23,8 +23,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTextureFilteringMode(pub NSInteger);
 impl SKTextureFilteringMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktexturefilteringmode/nearest?language=objc)
     #[doc(alias = "SKTextureFilteringNearest")]
     pub const Nearest: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktexturefilteringmode/linear?language=objc)
     #[doc(alias = "SKTextureFilteringLinear")]
     pub const Linear: Self = Self(1);
 }

@@ -304,12 +304,16 @@ extern "C" {
 pub struct CTUnderlineStyle(pub i32);
 bitflags::bitflags! {
     impl CTUnderlineStyle: i32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestyle/kctunderlinestylenone?language=objc)
         #[doc(alias = "kCTUnderlineStyleNone")]
         const None = 0x00;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestyle/single?language=objc)
         #[doc(alias = "kCTUnderlineStyleSingle")]
         const Single = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestyle/thick?language=objc)
         #[doc(alias = "kCTUnderlineStyleThick")]
         const Thick = 0x02;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestyle/double?language=objc)
         #[doc(alias = "kCTUnderlineStyleDouble")]
         const Double = 0x09;
     }
@@ -339,14 +343,19 @@ unsafe impl RefEncode for CTUnderlineStyle {
 pub struct CTUnderlineStyleModifiers(pub i32);
 bitflags::bitflags! {
     impl CTUnderlineStyleModifiers: i32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers/patternsolid?language=objc)
         #[doc(alias = "kCTUnderlinePatternSolid")]
         const PatternSolid = 0x0000;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers/patterndot?language=objc)
         #[doc(alias = "kCTUnderlinePatternDot")]
         const PatternDot = 0x0100;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers/patterndash?language=objc)
         #[doc(alias = "kCTUnderlinePatternDash")]
         const PatternDash = 0x0200;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers/patterndashdot?language=objc)
         #[doc(alias = "kCTUnderlinePatternDashDot")]
         const PatternDashDot = 0x0300;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers/patterndashdotdot?language=objc)
         #[doc(alias = "kCTUnderlinePatternDashDotDot")]
         const PatternDashDotDot = 0x0400;
     }

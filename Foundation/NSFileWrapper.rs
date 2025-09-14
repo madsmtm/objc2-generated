@@ -13,8 +13,10 @@ use crate::*;
 pub struct NSFileWrapperReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileWrapperReadingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/readingoptions/immediate?language=objc)
         #[doc(alias = "NSFileWrapperReadingImmediate")]
         const Immediate = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/readingoptions/withoutmapping?language=objc)
         #[doc(alias = "NSFileWrapperReadingWithoutMapping")]
         const WithoutMapping = 1<<1;
     }
@@ -35,8 +37,10 @@ unsafe impl RefEncode for NSFileWrapperReadingOptions {
 pub struct NSFileWrapperWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileWrapperWritingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/writingoptions/atomic?language=objc)
         #[doc(alias = "NSFileWrapperWritingAtomic")]
         const Atomic = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/writingoptions/withnameupdating?language=objc)
         #[doc(alias = "NSFileWrapperWritingWithNameUpdating")]
         const WithNameUpdating = 1<<1;
     }

@@ -14,9 +14,13 @@ pub struct MLReshapeFrequencyHint(pub NSInteger);
 impl MLReshapeFrequencyHint {
     /// The input shape is expected to change frequently on each prediction sent to this loaded model instance. Core ML will try to minimize the latency associated with shape changes and avoid expensive shape-specific optimizations prior to prediction computation. While prediction computation may be slower for each specific shape, switching between shapes should be faster.
     /// This is the default.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlreshapefrequencyhint/mlreshapefrequencyhintfrequent?language=objc)
     #[doc(alias = "MLReshapeFrequencyHintFrequent")]
     pub const Frequent: Self = Self(0);
     /// The input shape is expected to be stable and many/all predictions sent to this loaded model instance would use the same input shapes repeatedly. On the shape change, Core ML re-optimizes the internal engine for the new shape if possible. The re-optimization takes some time, but the subsequent predictions for the shape should run faster.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlreshapefrequencyhint/mlreshapefrequencyhintinfrequent?language=objc)
     #[doc(alias = "MLReshapeFrequencyHintInfrequent")]
     pub const Infrequent: Self = Self(1);
 }

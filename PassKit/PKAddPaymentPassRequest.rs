@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddPaymentPassStyle(pub NSInteger);
 impl PKAddPaymentPassStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpassstyle/payment?language=objc)
     #[doc(alias = "PKAddPaymentPassStylePayment")]
     pub const Payment: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpassstyle/access?language=objc)
     #[doc(alias = "PKAddPaymentPassStyleAccess")]
     pub const Access: Self = Self(1);
 }

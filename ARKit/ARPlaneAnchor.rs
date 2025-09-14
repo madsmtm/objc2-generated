@@ -20,9 +20,13 @@ pub struct ARPlaneAnchorAlignment(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARPlaneAnchorAlignment {
     /// A plane that is horizontal with respect to gravity.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneanchor/alignment-swift.enum/horizontal?language=objc)
     #[doc(alias = "ARPlaneAnchorAlignmentHorizontal")]
     pub const Horizontal: Self = Self(0);
     /// A plane that is vertical with respect to gravity.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneanchor/alignment-swift.enum/vertical?language=objc)
     #[doc(alias = "ARPlaneAnchorAlignmentVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -48,15 +52,23 @@ pub struct ARPlaneClassificationStatus(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARPlaneClassificationStatus {
     /// Plane classification is currently unavailable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusnotavailable?language=objc)
     #[doc(alias = "ARPlaneClassificationStatusNotAvailable")]
     pub const NotAvailable: Self = Self(0);
     /// ARKit has not yet determined the classification of this plane.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusundetermined?language=objc)
     #[doc(alias = "ARPlaneClassificationStatusUndetermined")]
     pub const Undetermined: Self = Self(1);
     /// ARKit is confident the plane is not any of the known classes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusunknown?language=objc)
     #[doc(alias = "ARPlaneClassificationStatusUnknown")]
     pub const Unknown: Self = Self(2);
     /// ARKit has a classification for the plane it is confident in.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusknown?language=objc)
     #[doc(alias = "ARPlaneClassificationStatusKnown")]
     pub const Known: Self = Self(3);
 }
@@ -82,27 +94,43 @@ pub struct ARPlaneClassification(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARPlaneClassification {
     /// The classification is not any of the known classes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationnone?language=objc)
     #[doc(alias = "ARPlaneClassificationNone")]
     pub const None: Self = Self(0);
     /// The classification is not any of the known classes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationwall?language=objc)
     #[doc(alias = "ARPlaneClassificationWall")]
     pub const Wall: Self = Self(1);
     /// The classification is not any of the known classes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationfloor?language=objc)
     #[doc(alias = "ARPlaneClassificationFloor")]
     pub const Floor: Self = Self(2);
     /// The classification is not any of the known classes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationceiling?language=objc)
     #[doc(alias = "ARPlaneClassificationCeiling")]
     pub const Ceiling: Self = Self(3);
     /// The classification is not any of the known classes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationtable?language=objc)
     #[doc(alias = "ARPlaneClassificationTable")]
     pub const Table: Self = Self(4);
     /// The classification is not any of the known classes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationseat?language=objc)
     #[doc(alias = "ARPlaneClassificationSeat")]
     pub const Seat: Self = Self(5);
     /// The classification is not any of the known classes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationwindow?language=objc)
     #[doc(alias = "ARPlaneClassificationWindow")]
     pub const Window: Self = Self(6);
     /// The classification is not any of the known classes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationdoor?language=objc)
     #[doc(alias = "ARPlaneClassificationDoor")]
     pub const Door: Self = Self(7);
 }

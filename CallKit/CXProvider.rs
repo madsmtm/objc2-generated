@@ -17,14 +17,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXCallEndedReason(pub NSInteger);
 impl CXCallEndedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason/failed?language=objc)
     #[doc(alias = "CXCallEndedReasonFailed")]
     pub const Failed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason/remoteended?language=objc)
     #[doc(alias = "CXCallEndedReasonRemoteEnded")]
     pub const RemoteEnded: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason/unanswered?language=objc)
     #[doc(alias = "CXCallEndedReasonUnanswered")]
     pub const Unanswered: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason/answeredelsewhere?language=objc)
     #[doc(alias = "CXCallEndedReasonAnsweredElsewhere")]
     pub const AnsweredElsewhere: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason/declinedelsewhere?language=objc)
     #[doc(alias = "CXCallEndedReasonDeclinedElsewhere")]
     pub const DeclinedElsewhere: Self = Self(5);
 }

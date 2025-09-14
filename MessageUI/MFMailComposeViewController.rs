@@ -41,12 +41,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MFMailComposeResult(pub NSInteger);
 impl MFMailComposeResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeresult/cancelled?language=objc)
     #[doc(alias = "MFMailComposeResultCancelled")]
     pub const Cancelled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeresult/saved?language=objc)
     #[doc(alias = "MFMailComposeResultSaved")]
     pub const Saved: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeresult/sent?language=objc)
     #[doc(alias = "MFMailComposeResultSent")]
     pub const Sent: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeresult/failed?language=objc)
     #[doc(alias = "MFMailComposeResultFailed")]
     pub const Failed: Self = Self(3);
 }
@@ -88,8 +92,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MFMailComposeErrorCode(pub NSInteger);
 impl MFMailComposeErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeerror/code/savefailed?language=objc)
     #[doc(alias = "MFMailComposeErrorCodeSaveFailed")]
     pub const SaveFailed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeerror/code/sendfailed?language=objc)
     #[doc(alias = "MFMailComposeErrorCodeSendFailed")]
     pub const SendFailed: Self = Self(1);
 }

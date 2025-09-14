@@ -15,15 +15,23 @@ use crate::*;
 pub struct UIWindowSceneResizingRestrictions(pub NSInteger);
 impl UIWindowSceneResizingRestrictions {
     /// App has no preference on user resize
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneresizingrestrictions/unspecified?language=objc)
     #[doc(alias = "UIWindowSceneResizingRestrictionsUnspecified")]
     pub const Unspecified: Self = Self(0);
     /// The user cannot resize the scene
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneresizingrestrictions/none?language=objc)
     #[doc(alias = "UIWindowSceneResizingRestrictionsNone")]
     pub const None: Self = Self(1);
     /// User resizes are restricted to the current aspect ratio
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneresizingrestrictions/uniform?language=objc)
     #[doc(alias = "UIWindowSceneResizingRestrictionsUniform")]
     pub const Uniform: Self = Self(2);
     /// User resizes are only restricted by the system and other restrictions put in place
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneresizingrestrictions/freeform?language=objc)
     #[doc(alias = "UIWindowSceneResizingRestrictionsFreeform")]
     pub const Freeform: Self = Self(3);
 }

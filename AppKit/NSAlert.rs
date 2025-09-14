@@ -18,15 +18,21 @@ impl NSAlertStyle {
     /// An alert style to be used to warn the user about a current or impending event.
     /// This style should be used when the alert’s content is more severe than `NSAlertStyleInformational` but less than `NSAlertStyleCritical`.
     /// This is the default alert style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalert/style/warning?language=objc)
     #[doc(alias = "NSAlertStyleWarning")]
     pub const Warning: Self = Self(0);
     /// An alert style to be used to inform the user about a current or impending event.
     /// - Note: Currently, there is no visual difference between informational and warning alerts.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalert/style/informational?language=objc)
     #[doc(alias = "NSAlertStyleInformational")]
     pub const Informational: Self = Self(1);
     /// An alert style to be used to inform the user about a critical event.
     /// Causes the alert’s icon to be badged with a caution icon.
     /// The critical (or “caution”) style should be used sparingly. Using it too frequently diminishes its significance. Use the symbol only when extra attention is really needed, as when confirming an action that might result in unexpected loss of data. Don’t use the symbol for tasks whose only purpose is to overwrite or remove data, such as a save or empty trash.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalert/style/critical?language=objc)
     #[doc(alias = "NSAlertStyleCritical")]
     pub const Critical: Self = Self(2);
 }

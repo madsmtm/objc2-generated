@@ -13,28 +13,40 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabBarSystemItem(pub NSInteger);
 impl UITabBarSystemItem {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/more?language=objc)
     #[doc(alias = "UITabBarSystemItemMore")]
     pub const More: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/favorites?language=objc)
     #[doc(alias = "UITabBarSystemItemFavorites")]
     pub const Favorites: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/featured?language=objc)
     #[doc(alias = "UITabBarSystemItemFeatured")]
     pub const Featured: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/toprated?language=objc)
     #[doc(alias = "UITabBarSystemItemTopRated")]
     pub const TopRated: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/recents?language=objc)
     #[doc(alias = "UITabBarSystemItemRecents")]
     pub const Recents: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/contacts?language=objc)
     #[doc(alias = "UITabBarSystemItemContacts")]
     pub const Contacts: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/history?language=objc)
     #[doc(alias = "UITabBarSystemItemHistory")]
     pub const History: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/bookmarks?language=objc)
     #[doc(alias = "UITabBarSystemItemBookmarks")]
     pub const Bookmarks: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/search?language=objc)
     #[doc(alias = "UITabBarSystemItemSearch")]
     pub const Search: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/downloads?language=objc)
     #[doc(alias = "UITabBarSystemItemDownloads")]
     pub const Downloads: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/mostrecent?language=objc)
     #[doc(alias = "UITabBarSystemItemMostRecent")]
     pub const MostRecent: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/mostviewed?language=objc)
     #[doc(alias = "UITabBarSystemItemMostViewed")]
     pub const MostViewed: Self = Self(11);
 }

@@ -11,18 +11,28 @@ use crate::*;
 pub struct LABiometryType(pub NSInteger);
 impl LABiometryType {
     /// The device does not support biometry.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype/none?language=objc)
     #[doc(alias = "LABiometryTypeNone")]
     pub const None: Self = Self(0);
     /// The device does not support biometry.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype/labiometrynone?language=objc)
     #[deprecated]
     pub const LABiometryNone: Self = Self(LABiometryType::None.0);
     /// The device supports Touch ID.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype/touchid?language=objc)
     #[doc(alias = "LABiometryTypeTouchID")]
     pub const TouchID: Self = Self(1);
     /// The device supports Face ID.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype/faceid?language=objc)
     #[doc(alias = "LABiometryTypeFaceID")]
     pub const FaceID: Self = Self(2);
     /// The device supports Optic ID
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype/opticid?language=objc)
     #[doc(alias = "LABiometryTypeOpticID")]
     pub const OpticID: Self = Self(4);
 }

@@ -14,16 +14,22 @@ use crate::*;
 pub struct NSSnapshotEventType(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSnapshotEventType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssnapshoteventtype/undoinsertion?language=objc)
         #[doc(alias = "NSSnapshotEventUndoInsertion")]
         const UndoInsertion = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssnapshoteventtype/undodeletion?language=objc)
         #[doc(alias = "NSSnapshotEventUndoDeletion")]
         const UndoDeletion = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssnapshoteventtype/undoupdate?language=objc)
         #[doc(alias = "NSSnapshotEventUndoUpdate")]
         const UndoUpdate = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssnapshoteventtype/rollback?language=objc)
         #[doc(alias = "NSSnapshotEventRollback")]
         const Rollback = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssnapshoteventtype/refresh?language=objc)
         #[doc(alias = "NSSnapshotEventRefresh")]
         const Refresh = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssnapshoteventtype/mergepolicy?language=objc)
         #[doc(alias = "NSSnapshotEventMergePolicy")]
         const MergePolicy = 1<<6;
     }

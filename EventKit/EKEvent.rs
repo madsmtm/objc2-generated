@@ -13,14 +13,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventAvailability(pub NSInteger);
 impl EKEventAvailability {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability/notsupported?language=objc)
     #[doc(alias = "EKEventAvailabilityNotSupported")]
     pub const NotSupported: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability/busy?language=objc)
     #[doc(alias = "EKEventAvailabilityBusy")]
     pub const Busy: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability/free?language=objc)
     #[doc(alias = "EKEventAvailabilityFree")]
     pub const Free: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability/tentative?language=objc)
     #[doc(alias = "EKEventAvailabilityTentative")]
     pub const Tentative: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability/unavailable?language=objc)
     #[doc(alias = "EKEventAvailabilityUnavailable")]
     pub const Unavailable: Self = Self(3);
 }
@@ -39,12 +44,16 @@ unsafe impl RefEncode for EKEventAvailability {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventStatus(pub NSInteger);
 impl EKEventStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstatus/none?language=objc)
     #[doc(alias = "EKEventStatusNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstatus/confirmed?language=objc)
     #[doc(alias = "EKEventStatusConfirmed")]
     pub const Confirmed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstatus/tentative?language=objc)
     #[doc(alias = "EKEventStatusTentative")]
     pub const Tentative: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstatus/canceled?language=objc)
     #[doc(alias = "EKEventStatusCanceled")]
     pub const Canceled: Self = Self(3);
 }

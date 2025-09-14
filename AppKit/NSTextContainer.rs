@@ -229,12 +229,16 @@ extern_conformance!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineSweepDirection(pub NSUInteger);
 impl NSLineSweepDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection/nslinesweepleft?language=objc)
     #[doc(alias = "NSLineSweepLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection/nslinesweepright?language=objc)
     #[doc(alias = "NSLineSweepRight")]
     pub const Right: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection/nslinesweepdown?language=objc)
     #[doc(alias = "NSLineSweepDown")]
     pub const Down: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection/nslinesweepup?language=objc)
     #[doc(alias = "NSLineSweepUp")]
     pub const Up: Self = Self(3);
 }
@@ -253,14 +257,19 @@ unsafe impl RefEncode for NSLineSweepDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineMovementDirection(pub NSUInteger);
 impl NSLineMovementDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection/nslinedoesntmove?language=objc)
     #[doc(alias = "NSLineDoesntMove")]
     pub const DoesntMove: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection/nslinemovesleft?language=objc)
     #[doc(alias = "NSLineMovesLeft")]
     pub const MovesLeft: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection/nslinemovesright?language=objc)
     #[doc(alias = "NSLineMovesRight")]
     pub const MovesRight: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection/nslinemovesdown?language=objc)
     #[doc(alias = "NSLineMovesDown")]
     pub const MovesDown: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection/nslinemovesup?language=objc)
     #[doc(alias = "NSLineMovesUp")]
     pub const MovesUp: Self = Self(4);
 }

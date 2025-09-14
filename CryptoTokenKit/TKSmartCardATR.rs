@@ -16,14 +16,19 @@ use crate::*;
 pub struct TKSmartCardProtocol(pub NSUInteger);
 bitflags::bitflags! {
     impl TKSmartCardProtocol: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol/tksmartcardprotocolnone?language=objc)
         #[doc(alias = "TKSmartCardProtocolNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol/t0?language=objc)
         #[doc(alias = "TKSmartCardProtocolT0")]
         const T0 = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol/t1?language=objc)
         #[doc(alias = "TKSmartCardProtocolT1")]
         const T1 = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol/t15?language=objc)
         #[doc(alias = "TKSmartCardProtocolT15")]
         const T15 = 1<<15;
+/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol/any?language=objc)
         #[doc(alias = "TKSmartCardProtocolAny")]
         const Any = (1<<16)-1;
     }

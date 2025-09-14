@@ -1132,6 +1132,8 @@ extern "C" {
 /// as the result of calling a System Configuration framework API.
 ///
 /// Returns: Returns the last error encountered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/sccopylasterror()?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCCopyLastError() -> CFRetained<CFError> {
     extern "C-unwind" {
@@ -1146,6 +1148,8 @@ pub extern "C-unwind" fn SCCopyLastError() -> CFRetained<CFError> {
 /// as the result of calling a System Configuration framework API.
 ///
 /// Returns: Returns the last error encountered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scerror()?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCError() -> c_int {
     extern "C-unwind" {
@@ -1161,6 +1165,8 @@ pub extern "C-unwind" fn SCError() -> c_int {
 /// Parameter `status`: The status or error number.
 ///
 /// Returns: Returns a pointer to the error message string.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scerrorstring(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCErrorString(status: c_int) -> NonNull<c_char> {
     extern "C-unwind" {

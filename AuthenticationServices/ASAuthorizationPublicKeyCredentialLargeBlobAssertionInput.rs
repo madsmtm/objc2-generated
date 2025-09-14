@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation(pub NSInteger);
 impl ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentiallargeblobassertionoperation/asauthorizationpublickeycredentiallargeblobassertionoperationread?language=objc)
     #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperationRead")]
     pub const Read: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentiallargeblobassertionoperation/asauthorizationpublickeycredentiallargeblobassertionoperationwrite?language=objc)
     #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperationWrite")]
     pub const Write: Self = Self(1);
 }

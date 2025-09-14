@@ -19,10 +19,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFStreamErrorHTTP(pub c_int);
 impl CFStreamErrorHTTP {
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttp/parsefailure?language=objc)
     #[doc(alias = "kCFStreamErrorHTTPParseFailure")]
     pub const ParseFailure: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttp/redirectionloop?language=objc)
     #[doc(alias = "kCFStreamErrorHTTPRedirectionLoop")]
     pub const RedirectionLoop: Self = Self(-2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttp/badurl?language=objc)
     #[doc(alias = "kCFStreamErrorHTTPBadURL")]
     pub const BadURL: Self = Self(-3);
 }
@@ -103,6 +106,7 @@ extern "C" {
     pub static kCFStreamPropertyHTTPRequestBytesWrittenCount: &'static CFString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfreadstreamcreateforhttprequest(_:_:)?language=objc)
 #[cfg(feature = "CFHTTPMessage")]
 #[deprecated = "Use NSURLSession API for http requests"]
 #[inline]
@@ -121,6 +125,7 @@ pub unsafe extern "C-unwind" fn CFReadStreamCreateForHTTPRequest(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfreadstreamcreateforstreamedhttprequest(_:_:_:)?language=objc)
 #[cfg(feature = "CFHTTPMessage")]
 #[deprecated = "Use NSURLSession API for http requests"]
 #[inline]

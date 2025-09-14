@@ -14,8 +14,10 @@ use crate::*;
 pub struct UITextDragOptions(pub NSInteger);
 bitflags::bitflags! {
     impl UITextDragOptions: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragoptions/uitextdragoptionsnone?language=objc)
         #[doc(alias = "UITextDragOptionsNone")]
         const OptionsNone = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragoptions/striptextcolorfrompreviews?language=objc)
         #[doc(alias = "UITextDragOptionStripTextColorFromPreviews")]
         const OptionStripTextColorFromPreviews = 1<<0;
     }

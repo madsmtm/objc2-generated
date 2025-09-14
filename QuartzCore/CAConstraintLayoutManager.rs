@@ -15,20 +15,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CAConstraintAttribute(pub c_int);
 impl CAConstraintAttribute {
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/minx?language=objc)
     #[doc(alias = "kCAConstraintMinX")]
     pub const MinX: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/midx?language=objc)
     #[doc(alias = "kCAConstraintMidX")]
     pub const MidX: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/maxx?language=objc)
     #[doc(alias = "kCAConstraintMaxX")]
     pub const MaxX: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/width?language=objc)
     #[doc(alias = "kCAConstraintWidth")]
     pub const Width: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/miny?language=objc)
     #[doc(alias = "kCAConstraintMinY")]
     pub const MinY: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/midy?language=objc)
     #[doc(alias = "kCAConstraintMidY")]
     pub const MidY: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/maxy?language=objc)
     #[doc(alias = "kCAConstraintMaxY")]
     pub const MaxY: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/height?language=objc)
     #[doc(alias = "kCAConstraintHeight")]
     pub const Height: Self = Self(7);
 }

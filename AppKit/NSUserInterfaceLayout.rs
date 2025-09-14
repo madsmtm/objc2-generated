@@ -10,8 +10,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUserInterfaceLayoutDirection(pub NSInteger);
 impl NSUserInterfaceLayoutDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutdirection/lefttoright?language=objc)
     #[doc(alias = "NSUserInterfaceLayoutDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutdirection/righttoleft?language=objc)
     #[doc(alias = "NSUserInterfaceLayoutDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -30,8 +32,10 @@ unsafe impl RefEncode for NSUserInterfaceLayoutDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUserInterfaceLayoutOrientation(pub NSInteger);
 impl NSUserInterfaceLayoutOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation/horizontal?language=objc)
     #[doc(alias = "NSUserInterfaceLayoutOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation/vertical?language=objc)
     #[doc(alias = "NSUserInterfaceLayoutOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }

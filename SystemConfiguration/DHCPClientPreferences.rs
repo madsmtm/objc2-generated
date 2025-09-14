@@ -23,6 +23,8 @@ use crate::*;
 /// # Safety
 ///
 /// `options` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/dhcpclientpreferencessetapplicationoptions?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPClientPreferencesSetApplicationOptions(
     application_id: &CFString,
@@ -57,6 +59,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `count` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/dhcpclientpreferencescopyapplicationoptions?language=objc)
     pub fn DHCPClientPreferencesCopyApplicationOptions(
         application_id: &CFString,
         count: NonNull<CFIndex>,

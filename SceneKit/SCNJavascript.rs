@@ -9,6 +9,7 @@ use objc2_javascript_core::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnexportjavascriptmodule(_:)?language=objc)
     #[cfg(feature = "objc2-javascript-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNExportJavaScriptModule(context: &JSContext);

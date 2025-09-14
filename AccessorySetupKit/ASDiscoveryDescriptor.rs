@@ -18,11 +18,15 @@ use crate::*;
 pub struct ASDiscoveryDescriptorRange(pub NSInteger);
 impl ASDiscoveryDescriptorRange {
     /// The default range in which to discover accessories.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/range/default?language=objc)
     #[doc(alias = "ASDiscoveryDescriptorRangeDefault")]
     pub const Default: Self = Self(0);
     /// A range in the immediate vicinity of the device performing accessory discovery.
     ///
     /// This range means that an accessory is right next to the device running your app.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/range/immediate?language=objc)
     #[doc(alias = "ASDiscoveryDescriptorRangeImmediate")]
     pub const Immediate: Self = Self(10);
 }
@@ -44,9 +48,13 @@ unsafe impl RefEncode for ASDiscoveryDescriptorRange {
 pub struct ASDiscoveryDescriptorWiFiAwareServiceRole(pub NSInteger);
 impl ASDiscoveryDescriptorWiFiAwareServiceRole {
     /// The subscriber service role.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/wifiawareservicerole-swift.enum/subscriber?language=objc)
     #[doc(alias = "ASDiscoveryDescriptorWiFiAwareServiceRoleSubscriber")]
     pub const Subscriber: Self = Self(10);
     /// The publisher service role.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/wifiawareservicerole-swift.enum/publisher?language=objc)
     #[doc(alias = "ASDiscoveryDescriptorWiFiAwareServiceRolePublisher")]
     pub const Publisher: Self = Self(20);
 }

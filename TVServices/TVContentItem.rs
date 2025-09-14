@@ -23,12 +23,16 @@ use crate::*;
 pub struct TVContentItemImageTrait(pub NSUInteger);
 bitflags::bitflags! {
     impl TVContentItemImageTrait: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/userinterfacestylelight?language=objc)
         #[doc(alias = "TVContentItemImageTraitUserInterfaceStyleLight")]
         const UserInterfaceStyleLight = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/userinterfacestyledark?language=objc)
         #[doc(alias = "TVContentItemImageTraitUserInterfaceStyleDark")]
         const UserInterfaceStyleDark = 2<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/screenscale1x?language=objc)
         #[doc(alias = "TVContentItemImageTraitScreenScale1x")]
         const ScreenScale1x = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/screenscale2x?language=objc)
         #[doc(alias = "TVContentItemImageTraitScreenScale2x")]
         const ScreenScale2x = 2<<12;
     }
@@ -50,18 +54,25 @@ unsafe impl RefEncode for TVContentItemImageTrait {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVContentItemImageShape(pub NSInteger);
 impl TVContentItemImageShape {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/none?language=objc)
     #[doc(alias = "TVContentItemImageShapeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/poster?language=objc)
     #[doc(alias = "TVContentItemImageShapePoster")]
     pub const Poster: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/square?language=objc)
     #[doc(alias = "TVContentItemImageShapeSquare")]
     pub const Square: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/sdtv?language=objc)
     #[doc(alias = "TVContentItemImageShapeSDTV")]
     pub const SDTV: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/hdtv?language=objc)
     #[doc(alias = "TVContentItemImageShapeHDTV")]
     pub const HDTV: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/wide?language=objc)
     #[doc(alias = "TVContentItemImageShapeWide")]
     pub const Wide: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/extrawide?language=objc)
     #[doc(alias = "TVContentItemImageShapeExtraWide")]
     pub const ExtraWide: Self = Self(6);
 }

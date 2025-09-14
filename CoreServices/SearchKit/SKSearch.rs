@@ -27,6 +27,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKSearch {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448621-sksearchgettypeid?language=objc)
     #[doc(alias = "SKSearchGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -50,6 +51,8 @@ pub const kSKSearchOptionSpaceMeansOR: c_uint = 1 << 1;
 pub const kSKSearchOptionFindSimilar: c_uint = 1 << 2;
 
 impl SKSearch {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443079-sksearchcreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_index` might not allow `None`.
@@ -73,6 +76,7 @@ impl SKSearch {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442083-sksearchcancel?language=objc)
     #[doc(alias = "SKSearchCancel")]
     #[inline]
     pub unsafe fn cancel(&self) {
@@ -82,6 +86,8 @@ impl SKSearch {
         unsafe { SKSearchCancel(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448608-sksearchfindmatches?language=objc)
+    ///
     /// # Safety
     ///
     /// - `out_document_i_ds_array` must be a valid pointer.
@@ -124,6 +130,8 @@ impl SKSearch {
 
 #[cfg(feature = "SKIndex")]
 impl SKIndex {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445499-skindexcopyinfofordocumentids?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document_i_ds_array` must be a valid pointer.
@@ -159,6 +167,8 @@ impl SKIndex {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445305-skindexcopydocumentrefsfordocume?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document_i_ds_array` must be a valid pointer.
@@ -190,6 +200,8 @@ impl SKIndex {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443501-skindexcopydocumenturlsfordocume?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document_i_ds_array` must be a valid pointer.
@@ -239,6 +251,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKSearchGroup {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448637-sksearchgroupgettypeid?language=objc)
     #[doc(alias = "SKSearchGroupGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -266,6 +279,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKSearchResults {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448603-sksearchresultsgettypeid?language=objc)
     #[doc(alias = "SKSearchResultsGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -281,12 +295,16 @@ unsafe impl ConcreteType for SKSearchResults {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKSearchType(pub c_uint);
 impl SKSearchType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchtype/ksksearchranked?language=objc)
     #[doc(alias = "kSKSearchRanked")]
     pub const Ranked: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchtype/ksksearchbooleanranked?language=objc)
     #[doc(alias = "kSKSearchBooleanRanked")]
     pub const BooleanRanked: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchtype/ksksearchrequiredranked?language=objc)
     #[doc(alias = "kSKSearchRequiredRanked")]
     pub const RequiredRanked: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchtype/ksksearchprefixranked?language=objc)
     #[doc(alias = "kSKSearchPrefixRanked")]
     pub const PrefixRanked: Self = Self(3);
 }
@@ -307,6 +325,8 @@ pub type SKSearchResultsFilterCallBack =
     Option<unsafe extern "C-unwind" fn(*mut SKIndex, *const SKDocument, *mut c_void) -> Boolean>;
 
 impl SKSearchGroup {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448627-sksearchgroupcreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_array_of_in_indexes` generic must be of the correct type.
@@ -326,6 +346,7 @@ impl SKSearchGroup {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448615-sksearchgroupcopyindexes?language=objc)
     #[doc(alias = "SKSearchGroupCopyIndexes")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -341,6 +362,8 @@ impl SKSearchGroup {
 }
 
 impl SKSearchResults {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448610-sksearchresultscreatewithquery?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_search_group` might not allow `None`.
@@ -382,6 +405,8 @@ impl SKSearchResults {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448629-sksearchresultscreatewithdocumen?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_search_group` might not allow `None`.
@@ -421,6 +446,7 @@ impl SKSearchResults {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448598-sksearchresultsgetcount?language=objc)
     #[doc(alias = "SKSearchResultsGetCount")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -431,6 +457,8 @@ impl SKSearchResults {
         unsafe { SKSearchResultsGetCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448618-sksearchresultsgetinfoinrange?language=objc)
+    ///
     /// # Safety
     ///
     /// - `out_documents_array` must be a valid pointer.
@@ -467,6 +495,7 @@ impl SKSearchResults {
         }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448612-sksearchresultscopymatchingterms?language=objc)
     #[doc(alias = "SKSearchResultsCopyMatchingTerms")]
     #[deprecated = "No longer supported"]
     #[inline]

@@ -10,10 +10,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaReference(pub NSInteger);
 impl INMediaReference {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediareference/unknown?language=objc)
     #[doc(alias = "INMediaReferenceUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediareference/currentlyplaying?language=objc)
     #[doc(alias = "INMediaReferenceCurrentlyPlaying")]
     pub const CurrentlyPlaying: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediareference/my?language=objc)
     #[doc(alias = "INMediaReferenceMy")]
     pub const My: Self = Self(2);
 }

@@ -27,12 +27,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLPurgeableState(pub NSUInteger);
 impl MTLPurgeableState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate/keepcurrent?language=objc)
     #[doc(alias = "MTLPurgeableStateKeepCurrent")]
     pub const KeepCurrent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate/nonvolatile?language=objc)
     #[doc(alias = "MTLPurgeableStateNonVolatile")]
     pub const NonVolatile: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate/volatile?language=objc)
     #[doc(alias = "MTLPurgeableStateVolatile")]
     pub const Volatile: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate/empty?language=objc)
     #[doc(alias = "MTLPurgeableStateEmpty")]
     pub const Empty: Self = Self(4);
 }
@@ -61,8 +65,10 @@ unsafe impl RefEncode for MTLPurgeableState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCPUCacheMode(pub NSUInteger);
 impl MTLCPUCacheMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcpucachemode/defaultcache?language=objc)
     #[doc(alias = "MTLCPUCacheModeDefaultCache")]
     pub const DefaultCache: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcpucachemode/writecombined?language=objc)
     #[doc(alias = "MTLCPUCacheModeWriteCombined")]
     pub const WriteCombined: Self = Self(1);
 }
@@ -104,12 +110,16 @@ unsafe impl RefEncode for MTLCPUCacheMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStorageMode(pub NSUInteger);
 impl MTLStorageMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode/shared?language=objc)
     #[doc(alias = "MTLStorageModeShared")]
     pub const Shared: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode/managed?language=objc)
     #[doc(alias = "MTLStorageModeManaged")]
     pub const Managed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode/private?language=objc)
     #[doc(alias = "MTLStorageModePrivate")]
     pub const Private: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode/memoryless?language=objc)
     #[doc(alias = "MTLStorageModeMemoryless")]
     pub const Memoryless: Self = Self(3);
 }
@@ -130,10 +140,13 @@ unsafe impl RefEncode for MTLStorageMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLHazardTrackingMode(pub NSUInteger);
 impl MTLHazardTrackingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode/default?language=objc)
     #[doc(alias = "MTLHazardTrackingModeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode/untracked?language=objc)
     #[doc(alias = "MTLHazardTrackingModeUntracked")]
     pub const Untracked: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode/tracked?language=objc)
     #[doc(alias = "MTLHazardTrackingModeTracked")]
     pub const Tracked: Self = Self(2);
 }
@@ -153,27 +166,38 @@ unsafe impl RefEncode for MTLHazardTrackingMode {
 pub struct MTLResourceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLResourceOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/mtlresourcecpucachemodedefaultcache?language=objc)
         #[doc(alias = "MTLResourceCPUCacheModeDefaultCache")]
         const CPUCacheModeDefaultCache = MTLCPUCacheMode::DefaultCache.0<<MTLResourceCPUCacheModeShift;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/cpucachemodewritecombined?language=objc)
         #[doc(alias = "MTLResourceCPUCacheModeWriteCombined")]
         const CPUCacheModeWriteCombined = MTLCPUCacheMode::WriteCombined.0<<MTLResourceCPUCacheModeShift;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/storagemodeshared?language=objc)
         #[doc(alias = "MTLResourceStorageModeShared")]
         const StorageModeShared = MTLStorageMode::Shared.0<<MTLResourceStorageModeShift;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/storagemodemanaged?language=objc)
         #[doc(alias = "MTLResourceStorageModeManaged")]
         const StorageModeManaged = MTLStorageMode::Managed.0<<MTLResourceStorageModeShift;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/storagemodeprivate?language=objc)
         #[doc(alias = "MTLResourceStorageModePrivate")]
         const StorageModePrivate = MTLStorageMode::Private.0<<MTLResourceStorageModeShift;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/storagemodememoryless?language=objc)
         #[doc(alias = "MTLResourceStorageModeMemoryless")]
         const StorageModeMemoryless = MTLStorageMode::Memoryless.0<<MTLResourceStorageModeShift;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/mtlresourcehazardtrackingmodedefault?language=objc)
         #[doc(alias = "MTLResourceHazardTrackingModeDefault")]
         const HazardTrackingModeDefault = MTLHazardTrackingMode::Default.0<<MTLResourceHazardTrackingModeShift;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/hazardtrackingmodeuntracked?language=objc)
         #[doc(alias = "MTLResourceHazardTrackingModeUntracked")]
         const HazardTrackingModeUntracked = MTLHazardTrackingMode::Untracked.0<<MTLResourceHazardTrackingModeShift;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/hazardtrackingmodetracked?language=objc)
         #[doc(alias = "MTLResourceHazardTrackingModeTracked")]
         const HazardTrackingModeTracked = MTLHazardTrackingMode::Tracked.0<<MTLResourceHazardTrackingModeShift;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/mtlresourceoptioncpucachemodedefault?language=objc)
         #[doc(alias = "MTLResourceOptionCPUCacheModeDefault")]
 #[deprecated]
         const OptionCPUCacheModeDefault = MTLResourceOptions::CPUCacheModeDefaultCache.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/optioncpucachemodewritecombined?language=objc)
         #[doc(alias = "MTLResourceOptionCPUCacheModeWriteCombined")]
 #[deprecated]
         const OptionCPUCacheModeWriteCombined = MTLResourceOptions::CPUCacheModeWriteCombined.0;
@@ -196,10 +220,13 @@ unsafe impl RefEncode for MTLResourceOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLSparsePageSize(pub NSInteger);
 impl MTLSparsePageSize {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize/size16?language=objc)
     #[doc(alias = "MTLSparsePageSize16")]
     pub const Size16: Self = Self(101);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize/size64?language=objc)
     #[doc(alias = "MTLSparsePageSize64")]
     pub const Size64: Self = Self(102);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize/size256?language=objc)
     #[doc(alias = "MTLSparsePageSize256")]
     pub const Size256: Self = Self(103);
 }
@@ -221,6 +248,8 @@ unsafe impl RefEncode for MTLSparsePageSize {
 pub struct MTLBufferSparseTier(pub NSInteger);
 impl MTLBufferSparseTier {
     /// Indicates that the buffer is not sparse.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbuffersparsetier/tiernone?language=objc)
     #[doc(alias = "MTLBufferSparseTierNone")]
     pub const TierNone: Self = Self(0);
     /// Indicates support for sparse buffers tier 1.
@@ -234,6 +263,8 @@ impl MTLBufferSparseTier {
     /// range of a sparse buffer produces the following results:
     /// * Reading return zero.
     /// * Writing produces no result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbuffersparsetier/tier1?language=objc)
     #[doc(alias = "MTLBufferSparseTier1")]
     pub const Tier1: Self = Self(1);
 }
@@ -255,6 +286,8 @@ unsafe impl RefEncode for MTLBufferSparseTier {
 pub struct MTLTextureSparseTier(pub NSInteger);
 impl MTLTextureSparseTier {
     /// Indicates that the texture is not sparse.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturesparsetier/tiernone?language=objc)
     #[doc(alias = "MTLTextureSparseTierNone")]
     pub const TierNone: Self = Self(0);
     /// Indicates support for sparse textures tier 1.
@@ -270,6 +303,8 @@ impl MTLTextureSparseTier {
     /// * Reading returns zero (transparent black) for pixel formats with an alpha (A) channel.
     /// * Reading return zero in RGB and one in alpha (A) channels (opaque black) otherwise.
     /// * Writing produces no result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturesparsetier/tier1?language=objc)
     #[doc(alias = "MTLTextureSparseTier1")]
     pub const Tier1: Self = Self(1);
     /// Indicates support for sparse textures tier 2.
@@ -277,6 +312,8 @@ impl MTLTextureSparseTier {
     /// In addition to the guarantees tier 1 sparse textures provide,
     /// tier 2 sparse textures allow the following:
     /// * Obtain per-tile activity counters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturesparsetier/tier2?language=objc)
     #[doc(alias = "MTLTextureSparseTier2")]
     pub const Tier2: Self = Self(2);
 }

@@ -22,37 +22,57 @@ impl SHErrorCode {
     /// The error code to indicate an unsupported audio format.
     ///
     /// For the list of the supported audio formats, see ``SHSignatureGenerator/append(_:at:)``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code/invalidaudioformat?language=objc)
     #[doc(alias = "SHErrorCodeInvalidAudioFormat")]
     pub const InvalidAudioFormat: Self = Self(100);
     /// The error code to indicate the use of noncontiguous audio to request a match.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code/audiodiscontinuity?language=objc)
     #[doc(alias = "SHErrorCodeAudioDiscontinuity")]
     pub const AudioDiscontinuity: Self = Self(101);
     /// The error code to indicate that the system is unable to generate a signature from the audio.
     ///
     /// The most common cause of this error is silent audio input.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code/signatureinvalid?language=objc)
     #[doc(alias = "SHErrorCodeSignatureInvalid")]
     pub const SignatureInvalid: Self = Self(200);
     /// The error code to indicate that the length of the generated signature is too long or too short to make a match in the catalog.
     ///
     /// This error occurs when the length of the generated signature is less than ``SHCatalog/minimumQuerySignatureDuration`` or greater than ``SHCatalog/maximumQuerySignatureDuration`` for the session ``SHSession/catalog``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code/signaturedurationinvalid?language=objc)
     #[doc(alias = "SHErrorCodeSignatureDurationInvalid")]
     pub const SignatureDurationInvalid: Self = Self(201);
     /// The error code to indicate when a Shazam Music catalog server issue prevents finding a match.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code/matchattemptfailed?language=objc)
     #[doc(alias = "SHErrorCodeMatchAttemptFailed")]
     pub const MatchAttemptFailed: Self = Self(202);
     /// The error code to indicate when the custom catalog fails to load due to an invalid format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code/customcataloginvalid?language=objc)
     #[doc(alias = "SHErrorCodeCustomCatalogInvalid")]
     pub const CustomCatalogInvalid: Self = Self(300);
     /// The error code to indicate that the format for the custom catalog URL is invalid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code/customcataloginvalidurl?language=objc)
     #[doc(alias = "SHErrorCodeCustomCatalogInvalidURL")]
     pub const CustomCatalogInvalidURL: Self = Self(301);
     /// The error code that indicates when the system fails to add media items to or remove items from the user's Shazam library.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code/medialibrarysyncfailed?language=objc)
     #[doc(alias = "SHErrorCodeMediaLibrarySyncFailed")]
     pub const MediaLibrarySyncFailed: Self = Self(400);
     /// The error code to indicate a generic framework error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code/internalerror?language=objc)
     #[doc(alias = "SHErrorCodeInternalError")]
     pub const InternalError: Self = Self(500);
     /// The error code to indicate when the system fails to fetch one or more media items.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code/mediaitemfetchfailed?language=objc)
     #[doc(alias = "SHErrorCodeMediaItemFetchFailed")]
     pub const MediaItemFetchFailed: Self = Self(600);
 }

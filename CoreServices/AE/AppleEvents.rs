@@ -138,6 +138,8 @@ pub const errAEEventNotPermitted: c_int = -1743;
 ///
 /// - `handler` must be implemented correctly.
 /// - `handler_refcon` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448596-aeinstalleventhandler?language=objc)
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEInstallEventHandler(
@@ -167,6 +169,8 @@ pub unsafe extern "C-unwind" fn AEInstallEventHandler(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445239-aeremoveeventhandler?language=objc)
+///
 /// # Safety
 ///
 /// `handler` must be implemented correctly.
@@ -196,6 +200,8 @@ pub unsafe extern "C-unwind" fn AERemoveEventHandler(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445631-aegeteventhandler?language=objc)
+///
 /// # Safety
 ///
 /// - `handler` must be a valid pointer.
@@ -237,6 +243,8 @@ pub unsafe extern "C-unwind" fn AEGetEventHandler(
 /// # Safety
 ///
 /// `handler` must be implemented correctly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler?language=objc)
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEInstallSpecialHandler(
@@ -254,6 +262,8 @@ pub unsafe extern "C-unwind" fn AEInstallSpecialHandler(
     unsafe { AEInstallSpecialHandler(function_class, handler, is_sys_handler as _) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447960-aeremovespecialhandler?language=objc)
+///
 /// # Safety
 ///
 /// `handler` must be implemented correctly.
@@ -274,6 +284,8 @@ pub unsafe extern "C-unwind" fn AERemoveSpecialHandler(
     unsafe { AERemoveSpecialHandler(function_class, handler, is_sys_handler as _) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444274-aegetspecialhandler?language=objc)
+///
 /// # Safety
 ///
 /// `handler` must be a valid pointer.
@@ -305,6 +317,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `result` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449373-aemanagerinfo?language=objc)
     #[cfg(feature = "AEDataModel")]
     pub fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr;
 }
@@ -377,6 +391,8 @@ unsafe impl RefEncode for AERemoteProcessResolver {
 pub type AERemoteProcessResolverRef = *mut AERemoteProcessResolver;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445692-aecreateremoteprocessresolver?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -388,6 +404,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442572-aedisposeremoteprocessresolver?language=objc)
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -395,6 +413,8 @@ extern "C-unwind" {
 }
 
 impl AERemoteProcessResolver {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444456-aeremoteprocessresolvergetproces?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.
@@ -421,6 +441,8 @@ pub type AERemoteProcessResolverCallback =
     Option<unsafe extern "C-unwind" fn(AERemoteProcessResolverRef, *mut c_void)>;
 
 impl AERemoteProcessResolver {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447259-aeremoteprocessresolverschedulew?language=objc)
+    ///
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.
@@ -505,6 +527,8 @@ impl AERemoteProcessResolver {
 /// # Safety
 ///
 /// `target` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3025784-aedeterminepermissiontoautomatet?language=objc)
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEDeterminePermissionToAutomateTarget(

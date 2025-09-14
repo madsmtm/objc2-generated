@@ -288,12 +288,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLinguisticTaggerUnit(pub NSInteger);
 impl NSLinguisticTaggerUnit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit/word?language=objc)
     #[doc(alias = "NSLinguisticTaggerUnitWord")]
     pub const Word: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit/sentence?language=objc)
     #[doc(alias = "NSLinguisticTaggerUnitSentence")]
     pub const Sentence: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit/paragraph?language=objc)
     #[doc(alias = "NSLinguisticTaggerUnitParagraph")]
     pub const Paragraph: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit/document?language=objc)
     #[doc(alias = "NSLinguisticTaggerUnitDocument")]
     pub const Document: Self = Self(3);
 }
@@ -313,14 +317,19 @@ unsafe impl RefEncode for NSLinguisticTaggerUnit {
 pub struct NSLinguisticTaggerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLinguisticTaggerOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options/omitwords?language=objc)
         #[doc(alias = "NSLinguisticTaggerOmitWords")]
         const OmitWords = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options/omitpunctuation?language=objc)
         #[doc(alias = "NSLinguisticTaggerOmitPunctuation")]
         const OmitPunctuation = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options/omitwhitespace?language=objc)
         #[doc(alias = "NSLinguisticTaggerOmitWhitespace")]
         const OmitWhitespace = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options/omitother?language=objc)
         #[doc(alias = "NSLinguisticTaggerOmitOther")]
         const OmitOther = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options/joinnames?language=objc)
         #[doc(alias = "NSLinguisticTaggerJoinNames")]
         const JoinNames = 1<<4;
     }

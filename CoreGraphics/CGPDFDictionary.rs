@@ -25,6 +25,8 @@ unsafe impl RefEncode for CGPDFDictionary {
 pub type CGPDFDictionaryRef = *mut CGPDFDictionary;
 
 impl CGPDFDictionary {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetcount(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `dict` must be a valid pointer or null.
@@ -37,6 +39,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetCount(dict) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetobject(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.
@@ -60,6 +64,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetObject(dict, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetboolean(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.
@@ -83,6 +89,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetBoolean(dict, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetinteger(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.
@@ -106,6 +114,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetInteger(dict, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetnumber(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.
@@ -129,6 +139,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetNumber(dict, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetname(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.
@@ -151,6 +163,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetName(dict, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetstring(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.
@@ -174,6 +188,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetString(dict, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetarray(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.
@@ -197,6 +213,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetArray(dict, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetdictionary(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.
@@ -219,6 +237,8 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetDictionary(dict, key, value) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetstream(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.
@@ -249,6 +269,8 @@ pub type CGPDFDictionaryApplierFunction =
     Option<unsafe extern "C-unwind" fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void)>;
 
 impl CGPDFDictionary {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplyfunction(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.
@@ -279,6 +301,8 @@ pub type CGPDFDictionaryApplierBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
 
 impl CGPDFDictionary {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplyblock(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.

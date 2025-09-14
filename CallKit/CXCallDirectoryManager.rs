@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXCallDirectoryEnabledStatus(pub NSInteger);
 impl CXCallDirectoryEnabledStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectorymanager/enabledstatus/unknown?language=objc)
     #[doc(alias = "CXCallDirectoryEnabledStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectorymanager/enabledstatus/disabled?language=objc)
     #[doc(alias = "CXCallDirectoryEnabledStatusDisabled")]
     pub const Disabled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectorymanager/enabledstatus/enabled?language=objc)
     #[doc(alias = "CXCallDirectoryEnabledStatusEnabled")]
     pub const Enabled: Self = Self(2);
 }

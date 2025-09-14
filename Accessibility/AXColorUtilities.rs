@@ -8,6 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnamefromcolor(_:)?language=objc)
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn AXNameFromColor(color: &CGColor) -> Retained<NSString> {

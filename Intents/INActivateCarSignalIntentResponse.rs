@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INActivateCarSignalIntentResponseCode(pub NSInteger);
 impl INActivateCarSignalIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INActivateCarSignalIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/ready?language=objc)
     #[doc(alias = "INActivateCarSignalIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INActivateCarSignalIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/success?language=objc)
     #[doc(alias = "INActivateCarSignalIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/failure?language=objc)
     #[doc(alias = "INActivateCarSignalIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INActivateCarSignalIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }

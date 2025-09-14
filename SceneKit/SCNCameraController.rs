@@ -15,18 +15,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNInteractionMode(pub NSInteger);
 impl SCNInteractionMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scninteractionmode/fly?language=objc)
     #[doc(alias = "SCNInteractionModeFly")]
     pub const Fly: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scninteractionmode/orbitturntable?language=objc)
     #[doc(alias = "SCNInteractionModeOrbitTurntable")]
     pub const OrbitTurntable: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scninteractionmode/orbitanglemapping?language=objc)
     #[doc(alias = "SCNInteractionModeOrbitAngleMapping")]
     pub const OrbitAngleMapping: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scninteractionmode/orbitcenteredarcball?language=objc)
     #[doc(alias = "SCNInteractionModeOrbitCenteredArcball")]
     pub const OrbitCenteredArcball: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scninteractionmode/orbitarcball?language=objc)
     #[doc(alias = "SCNInteractionModeOrbitArcball")]
     pub const OrbitArcball: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scninteractionmode/pan?language=objc)
     #[doc(alias = "SCNInteractionModePan")]
     pub const Pan: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scninteractionmode/truck?language=objc)
     #[doc(alias = "SCNInteractionModeTruck")]
     pub const Truck: Self = Self(6);
 }

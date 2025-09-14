@@ -12,28 +12,40 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INEditMessageIntentResponseCode(pub NSInteger);
 impl INEditMessageIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/ready?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/success?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/failure?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/failuremessagenotfound?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeFailureMessageNotFound")]
     pub const FailureMessageNotFound: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/failurepastedittimelimit?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeFailurePastEditTimeLimit")]
     pub const FailurePastEditTimeLimit: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/failuremessagetypeunsupported?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeFailureMessageTypeUnsupported")]
     pub const FailureMessageTypeUnsupported: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/failureunsupportedonservice?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeFailureUnsupportedOnService")]
     pub const FailureUnsupportedOnService: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/failuremessageservicenotavailable?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeFailureMessageServiceNotAvailable")]
     pub const FailureMessageServiceNotAvailable: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ineditmessageintentresponsecode/failurerequiringinappauthentication?language=objc)
     #[doc(alias = "INEditMessageIntentResponseCodeFailureRequiringInAppAuthentication")]
     pub const FailureRequiringInAppAuthentication: Self = Self(11);
 }

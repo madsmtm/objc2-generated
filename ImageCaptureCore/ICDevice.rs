@@ -17,8 +17,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceType(pub NSUInteger);
 impl ICDeviceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetype/camera?language=objc)
     #[doc(alias = "ICDeviceTypeCamera")]
     pub const Camera: Self = Self(0x00000001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetype/scanner?language=objc)
     #[doc(alias = "ICDeviceTypeScanner")]
     pub const Scanner: Self = Self(0x00000002);
 }
@@ -39,12 +41,16 @@ unsafe impl RefEncode for ICDeviceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceLocationType(pub NSUInteger);
 impl ICDeviceLocationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtype/local?language=objc)
     #[doc(alias = "ICDeviceLocationTypeLocal")]
     pub const Local: Self = Self(0x00000100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtype/shared?language=objc)
     #[doc(alias = "ICDeviceLocationTypeShared")]
     pub const Shared: Self = Self(0x00000200);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtype/bonjour?language=objc)
     #[doc(alias = "ICDeviceLocationTypeBonjour")]
     pub const Bonjour: Self = Self(0x00000400);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtype/bluetooth?language=objc)
     #[doc(alias = "ICDeviceLocationTypeBluetooth")]
     pub const Bluetooth: Self = Self(0x00000800);
 }
@@ -65,8 +71,10 @@ unsafe impl RefEncode for ICDeviceLocationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceTypeMask(pub NSUInteger);
 impl ICDeviceTypeMask {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetypemask/camera?language=objc)
     #[doc(alias = "ICDeviceTypeMaskCamera")]
     pub const Camera: Self = Self(0x00000001);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetypemask/scanner?language=objc)
     #[doc(alias = "ICDeviceTypeMaskScanner")]
     pub const Scanner: Self = Self(0x00000002);
 }
@@ -87,14 +95,19 @@ unsafe impl RefEncode for ICDeviceTypeMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceLocationTypeMask(pub NSUInteger);
 impl ICDeviceLocationTypeMask {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask/local?language=objc)
     #[doc(alias = "ICDeviceLocationTypeMaskLocal")]
     pub const Local: Self = Self(0x00000100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask/shared?language=objc)
     #[doc(alias = "ICDeviceLocationTypeMaskShared")]
     pub const Shared: Self = Self(0x00000200);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask/bonjour?language=objc)
     #[doc(alias = "ICDeviceLocationTypeMaskBonjour")]
     pub const Bonjour: Self = Self(0x00000400);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask/bluetooth?language=objc)
     #[doc(alias = "ICDeviceLocationTypeMaskBluetooth")]
     pub const Bluetooth: Self = Self(0x00000800);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask/remote?language=objc)
     #[doc(alias = "ICDeviceLocationTypeMaskRemote")]
     pub const Remote: Self = Self(0x0000FE00);
 }

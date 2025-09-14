@@ -20,21 +20,33 @@ pub struct ARHitTestResultType(pub NSUInteger);
 bitflags::bitflags! {
     impl ARHitTestResultType: NSUInteger {
 /// Result type from intersecting the nearest feature point.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/featurepoint?language=objc)
         #[doc(alias = "ARHitTestResultTypeFeaturePoint")]
         const FeaturePoint = 1<<0;
 /// Result type from intersecting a horizontal plane estimate, determined for the current frame.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/estimatedhorizontalplane?language=objc)
         #[doc(alias = "ARHitTestResultTypeEstimatedHorizontalPlane")]
         const EstimatedHorizontalPlane = 1<<1;
 /// Result type from intersecting a vertical plane estimate, determined for the current frame.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/estimatedverticalplane?language=objc)
         #[doc(alias = "ARHitTestResultTypeEstimatedVerticalPlane")]
         const EstimatedVerticalPlane = 1<<2;
 /// Result type from intersecting with an existing plane anchor.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplane?language=objc)
         #[doc(alias = "ARHitTestResultTypeExistingPlane")]
         const ExistingPlane = 1<<3;
 /// Result type from intersecting with an existing plane anchor, taking into account the plane’s extent.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplaneusingextent?language=objc)
         #[doc(alias = "ARHitTestResultTypeExistingPlaneUsingExtent")]
         const ExistingPlaneUsingExtent = 1<<4;
 /// Result type from intersecting with an existing plane anchor, taking into account the plane’s geometry.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplaneusinggeometry?language=objc)
         #[doc(alias = "ARHitTestResultTypeExistingPlaneUsingGeometry")]
         const ExistingPlaneUsingGeometry = 1<<5;
     }

@@ -19,15 +19,23 @@ pub struct AVPlayerInterstitialEventRestrictions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVPlayerInterstitialEventRestrictions: NSUInteger {
 /// Indicates that the user may freely employ playback controls, as available, both within the primary content and in the interstitial content specified for the event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventrestrictions/avplayerinterstitialeventrestrictionnone?language=objc)
         #[doc(alias = "AVPlayerInterstitialEventRestrictionNone")]
         const None = 0;
 /// Indicates that seeking within the primary content from a date prior to the date of the event to a date subsequent to the date of the event is not permitted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/restrictions-swift.struct/constrainsseekingforwardinprimarycontent?language=objc)
         #[doc(alias = "AVPlayerInterstitialEventRestrictionConstrainsSeekingForwardInPrimaryContent")]
         const ConstrainsSeekingForwardInPrimaryContent = 1<<0;
 /// Indicates that advancing the currentTime within an interstitial item, either by seeking ahead or by setting the playback rate to a value greater than the item's asset's preferredRate, is not permitted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/restrictions-swift.struct/requiresplaybackatpreferredrateforadvancement?language=objc)
         #[doc(alias = "AVPlayerInterstitialEventRestrictionRequiresPlaybackAtPreferredRateForAdvancement")]
         const RequiresPlaybackAtPreferredRateForAdvancement = 1<<2;
 /// Indicates that advancing the currentTime within an interstitial item, either by seeking ahead or by setting the playback rate to a value greater than the item's asset's preferredRate, is not permitted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventrestrictions/avplayerinterstitialeventrestrictiondefaultpolicy?language=objc)
         #[doc(alias = "AVPlayerInterstitialEventRestrictionDefaultPolicy")]
         const DefaultPolicy = AVPlayerInterstitialEventRestrictions::None.0;
     }
@@ -77,9 +85,13 @@ extern "C" {
 pub struct AVPlayerInterstitialEventTimelineOccupancy(pub NSInteger);
 impl AVPlayerInterstitialEventTimelineOccupancy {
     /// Indicates this interstitial event occupies a single point on AVPlayerItemIntegratedTimeline.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/timelineoccupancy-swift.enum/singlepoint?language=objc)
     #[doc(alias = "AVPlayerInterstitialEventTimelineOccupancySinglePoint")]
     pub const SinglePoint: Self = Self(0);
     /// Indicates this interstitial event fills AVPlayerItemIntegratedTimeline with the duration of this event.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/timelineoccupancy-swift.enum/fill?language=objc)
     #[doc(alias = "AVPlayerInterstitialEventTimelineOccupancyFill")]
     pub const Fill: Self = Self(1);
 }
@@ -101,12 +113,18 @@ unsafe impl RefEncode for AVPlayerInterstitialEventTimelineOccupancy {
 pub struct AVPlayerInterstitialEventAssetListResponseStatus(pub NSInteger);
 impl AVPlayerInterstitialEventAssetListResponseStatus {
     /// Indicates that the asset list response is now available and non-nil, meaning the asset list read was successful.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventassetlistresponsestatus/available?language=objc)
     #[doc(alias = "AVPlayerInterstitialEventAssetListResponseStatusAvailable")]
     pub const Available: Self = Self(0);
     /// Indicates that asset list response has been cleared and reverted to its original state of nil.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventassetlistresponsestatus/cleared?language=objc)
     #[doc(alias = "AVPlayerInterstitialEventAssetListResponseStatusCleared")]
     pub const Cleared: Self = Self(1);
     /// Indicates that the asset list response is unavailable, meaning the asset list read failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventassetlistresponsestatus/unavailable?language=objc)
     #[doc(alias = "AVPlayerInterstitialEventAssetListResponseStatusUnavailable")]
     pub const Unavailable: Self = Self(2);
 }
@@ -128,15 +146,23 @@ unsafe impl RefEncode for AVPlayerInterstitialEventAssetListResponseStatus {
 pub struct AVPlayerInterstitialEventSkippableEventState(pub NSInteger);
 impl AVPlayerInterstitialEventSkippableEventState {
     /// Indicates that the interstitial event is not skippable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skippableeventstate/notskippable?language=objc)
     #[doc(alias = "AVPlayerInterstitialEventSkippableEventStateNotSkippable")]
     pub const NotSkippable: Self = Self(0);
     /// Indicates that the interstitial event will eventually become eligible to be skipped.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skippableeventstate/notyeteligible?language=objc)
     #[doc(alias = "AVPlayerInterstitialEventSkippableEventStateNotYetEligible")]
     pub const NotYetEligible: Self = Self(1);
     /// Indicates that the interstitial event is currently skippable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skippableeventstate/eligible?language=objc)
     #[doc(alias = "AVPlayerInterstitialEventSkippableEventStateEligible")]
     pub const Eligible: Self = Self(2);
     /// Indicates that the interstitial event is no longer eligible to be skipped.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skippableeventstate/nolongereligible?language=objc)
     #[doc(alias = "AVPlayerInterstitialEventSkippableEventStateNoLongerEligible")]
     pub const NoLongerEligible: Self = Self(3);
 }

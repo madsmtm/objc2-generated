@@ -21,8 +21,10 @@ pub type UITextAttributesConversionHandler = *mut block2::DynBlock<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEditingInteractionConfiguration(pub NSInteger);
 impl UIEditingInteractionConfiguration {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditinginteractionconfiguration/none?language=objc)
     #[doc(alias = "UIEditingInteractionConfigurationNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditinginteractionconfiguration/default?language=objc)
     #[doc(alias = "UIEditingInteractionConfigurationDefault")]
     pub const Default: Self = Self(1);
 }

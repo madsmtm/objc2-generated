@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollType(pub NSUInteger);
 impl UIScrollType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltype/discrete?language=objc)
     #[doc(alias = "UIScrollTypeDiscrete")]
     pub const Discrete: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltype/continuous?language=objc)
     #[doc(alias = "UIScrollTypeContinuous")]
     pub const Continuous: Self = Self(1);
 }
@@ -36,10 +38,13 @@ unsafe impl RefEncode for UIScrollType {
 pub struct UIScrollTypeMask(pub NSInteger);
 bitflags::bitflags! {
     impl UIScrollTypeMask: NSInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltypemask/discrete?language=objc)
         #[doc(alias = "UIScrollTypeMaskDiscrete")]
         const Discrete = 1<<UIScrollType::Discrete.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltypemask/continuous?language=objc)
         #[doc(alias = "UIScrollTypeMaskContinuous")]
         const Continuous = 1<<UIScrollType::Continuous.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltypemask/all?language=objc)
         #[doc(alias = "UIScrollTypeMaskAll")]
         const All = UIScrollTypeMask::Discrete.0|UIScrollTypeMask::Continuous.0;
     }

@@ -25,6 +25,8 @@ impl SCDynamicStore {
     /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
     ///
     /// Returns: Returns a string containing the formatted key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatenetworkglobalentity(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkGlobalEntity")]
     #[inline]
     pub fn key_create_network_global_entity(
@@ -60,6 +62,8 @@ impl SCDynamicStore {
     /// actual state (kSCDynamicStoreDomainState).
     ///
     /// Returns: Returns a string containing the formatted key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatenetworkinterface(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkInterface")]
     #[inline]
     pub fn key_create_network_interface(
@@ -99,6 +103,8 @@ impl SCDynamicStore {
     /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
     ///
     /// Returns: Returns a string containing the formatted key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatenetworkinterfaceentity(_:_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkInterfaceEntity")]
     #[inline]
     pub fn key_create_network_interface_entity(
@@ -144,6 +150,8 @@ impl SCDynamicStore {
     /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
     ///
     /// Returns: Returns a string containing the formatted key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatenetworkserviceentity(_:_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkServiceEntity")]
     #[inline]
     pub fn key_create_network_service_entity(
@@ -180,6 +188,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns a notification string for the current computer or
     /// host name.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatecomputername(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateComputerName")]
     #[inline]
     pub fn key_create_computer_name(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
@@ -205,6 +215,8 @@ impl SCDynamicStore {
     /// a valid CFAllocator, the behavior is undefined.
     ///
     /// Returns: Returns a notification string for the current console user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreateconsoleuser(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateConsoleUser")]
     #[inline]
     pub fn key_create_console_user(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
@@ -231,6 +243,8 @@ impl SCDynamicStore {
     /// a valid CFAllocator, the behavior is undefined.
     ///
     /// Returns: Returns a notification string for the HostNames entity.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatehostnames(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateHostNames")]
     #[inline]
     pub fn key_create_host_names(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
@@ -257,6 +271,8 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns a notification string for the current location
     /// identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatelocation(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateLocation")]
     #[inline]
     pub fn key_create_location(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
@@ -283,6 +299,8 @@ impl SCDynamicStore {
     /// a valid CFAllocator, the behavior is undefined.
     ///
     /// Returns: Returns a notification string for the current proxy settings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreateproxies(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateProxies")]
     #[inline]
     pub fn key_create_proxies(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {

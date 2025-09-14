@@ -17,12 +17,18 @@ use crate::*;
 pub struct UICornerCurve(pub NSInteger);
 impl UICornerCurve {
     /// Select the corner style automatically.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornercurve/automatic?language=objc)
     #[doc(alias = "UICornerCurveAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Always use a circular corner style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornercurve/circular?language=objc)
     #[doc(alias = "UICornerCurveCircular")]
     pub const Circular: Self = Self(1);
     /// Always use a continuous corner style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornercurve/continuous?language=objc)
     #[doc(alias = "UICornerCurveContinuous")]
     pub const Continuous: Self = Self(2);
 }

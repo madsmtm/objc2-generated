@@ -696,15 +696,23 @@ impl NSControl {
 pub struct NSControlBorderShape(pub NSInteger);
 impl NSControlBorderShape {
     /// The control will resolve this to an appropriate shape for the given control size and context
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/bordershape/automatic?language=objc)
     #[doc(alias = "NSControlBorderShapeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The control will resolve this to an appropriate shape for the given control size and context
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/bordershape/capsule?language=objc)
     #[doc(alias = "NSControlBorderShapeCapsule")]
     pub const Capsule: Self = Self(1);
     /// The control will resolve this to an appropriate shape for the given control size and context
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/bordershape/roundedrectangle?language=objc)
     #[doc(alias = "NSControlBorderShapeRoundedRectangle")]
     pub const RoundedRectangle: Self = Self(2);
     /// The control will resolve this to an appropriate shape for the given control size and context
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/bordershape/circle?language=objc)
     #[doc(alias = "NSControlBorderShapeCircle")]
     pub const Circle: Self = Self(3);
 }

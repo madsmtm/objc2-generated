@@ -54,12 +54,16 @@ cf_objc2_type!(
 pub struct CTRunStatus(pub u32);
 bitflags::bitflags! {
     impl CTRunStatus: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus/kctrunstatusnostatus?language=objc)
         #[doc(alias = "kCTRunStatusNoStatus")]
         const NoStatus = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus/righttoleft?language=objc)
         #[doc(alias = "kCTRunStatusRightToLeft")]
         const RightToLeft = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus/nonmonotonic?language=objc)
         #[doc(alias = "kCTRunStatusNonMonotonic")]
         const NonMonotonic = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus/hasnonidentitymatrix?language=objc)
         #[doc(alias = "kCTRunStatusHasNonIdentityMatrix")]
         const HasNonIdentityMatrix = 1<<2;
     }
@@ -77,6 +81,8 @@ unsafe impl RefEncode for CTRunStatus {
 
 unsafe impl ConcreteType for CTRun {
     /// Returns the CFType of the run object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungettypeid()?language=objc)
     #[doc(alias = "CTRunGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -97,6 +103,8 @@ impl CTRun {
     /// Returns: The number of glyphs that the run contains. It is totally
     /// possible that this function could return a value of zero,
     /// indicating that there are no glyphs in this run.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetglyphcount(_:)?language=objc)
     #[doc(alias = "CTRunGetGlyphCount")]
     #[inline]
     pub fn glyph_count(&self) -> CFIndex {
@@ -121,6 +129,8 @@ impl CTRun {
     ///
     ///
     /// Returns: The attribute dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetattributes(_:)?language=objc)
     #[doc(alias = "CTRunGetAttributes")]
     #[inline]
     pub fn attributes(&self) -> CFRetained<CFDictionary> {
@@ -149,6 +159,8 @@ impl CTRun {
     ///
     ///
     /// Returns: The run's status.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetstatus(_:)?language=objc)
     #[doc(alias = "CTRunGetStatus")]
     #[inline]
     pub fn status(&self) -> CTRunStatus {
@@ -173,6 +185,8 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CGGlyph structures or NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetglyphsptr(_:)?language=objc)
     #[doc(alias = "CTRunGetGlyphsPtr")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -201,6 +215,8 @@ impl CTRun {
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetglyphs(_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetGlyphs")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -228,6 +244,8 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CGPoint structures or NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetpositionsptr(_:)?language=objc)
     #[doc(alias = "CTRunGetPositionsPtr")]
     #[inline]
     pub fn positions_ptr(&self) -> *const CGPoint {
@@ -260,6 +278,8 @@ impl CTRun {
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetpositions(_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetPositions")]
     #[inline]
     pub unsafe fn positions(&self, range: CFRange, buffer: NonNull<CGPoint>) {
@@ -288,6 +308,8 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CGSize structures or NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetadvancesptr(_:)?language=objc)
     #[doc(alias = "CTRunGetAdvancesPtr")]
     #[inline]
     pub fn advances_ptr(&self) -> *const CGSize {
@@ -316,6 +338,8 @@ impl CTRun {
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetadvances(_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetAdvances")]
     #[inline]
     pub unsafe fn advances(&self, range: CFRange, buffer: NonNull<CGSize>) {
@@ -343,6 +367,8 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CFIndex structures or NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetstringindicesptr(_:)?language=objc)
     #[doc(alias = "CTRunGetStringIndicesPtr")]
     #[inline]
     pub fn string_indices_ptr(&self) -> *const CFIndex {
@@ -376,6 +402,8 @@ impl CTRun {
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetstringindices(_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetStringIndices")]
     #[inline]
     pub unsafe fn string_indices(&self, range: CFRange, buffer: NonNull<CFIndex>) {
@@ -394,6 +422,8 @@ impl CTRun {
     ///
     /// Returns: Returns the range of characters that originally spawned the
     /// glyphs. If run is invalid, this will return an empty range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetstringrange(_:)?language=objc)
     #[doc(alias = "CTRunGetStringRange")]
     #[inline]
     pub fn string_range(&self) -> CFRange {
@@ -435,6 +465,8 @@ impl CTRun {
     /// - `ascent` must be a valid pointer or null.
     /// - `descent` must be a valid pointer or null.
     /// - `leading` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungettypographicbounds(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetTypographicBounds")]
     #[inline]
     pub unsafe fn typographic_bounds(
@@ -490,6 +522,8 @@ impl CTRun {
     ///
     ///
     /// See also: CTRunGetTypographicBounds
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetimagebounds(_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetImageBounds")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -516,6 +550,8 @@ impl CTRun {
     ///
     ///
     /// Returns: A CGAffineTransform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungettextmatrix(_:)?language=objc)
     #[doc(alias = "CTRunGetTextMatrix")]
     #[inline]
     pub fn text_matrix(&self) -> CGAffineTransform {
@@ -563,6 +599,8 @@ impl CTRun {
     ///
     /// - `advances_buffer` must be a valid pointer or null.
     /// - `origins_buffer` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetbaseadvancesandorigins(_:_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetBaseAdvancesAndOrigins")]
     #[inline]
     pub unsafe fn base_advances_and_origins(
@@ -606,6 +644,8 @@ impl CTRun {
     /// location of 0 and a length of CTRunGetGlyphCount. If the length
     /// of the range is set to 0, then the operation will continue from
     /// the range's start index to the end of the run.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundraw(_:_:_:)?language=objc)
     #[doc(alias = "CTRunDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]

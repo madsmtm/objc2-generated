@@ -9,6 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/converttoscreencoordinates(_:in:)-9ziiu?language=objc)
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIView",
@@ -25,6 +26,7 @@ pub extern "C-unwind" fn UIAccessibilityConvertFrameToScreenCoordinates(
     unsafe { UIAccessibilityConvertFrameToScreenCoordinates(rect, view) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/converttoscreencoordinates(_:in:)-6dx4a?language=objc)
 #[cfg(all(feature = "UIBezierPath", feature = "UIResponder", feature = "UIView"))]
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityConvertPathToScreenCoordinates(
@@ -1201,6 +1203,7 @@ pub unsafe trait NSObjectUIAccessibility:
 impl private_NSObjectUIAccessibility::Sealed for NSObject {}
 unsafe impl NSObjectUIAccessibility for NSObject {}
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/focusedelement(using:)?language=objc)
 #[cfg(feature = "UIAccessibilityConstants")]
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityFocusedElement(
@@ -1256,16 +1259,22 @@ unsafe impl NSObjectUIAccessibilityFocus for NSObject {}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIAccessibilityScrollDirection(pub NSInteger);
 impl UIAccessibilityScrollDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/right?language=objc)
     #[doc(alias = "UIAccessibilityScrollDirectionRight")]
     pub const Right: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/left?language=objc)
     #[doc(alias = "UIAccessibilityScrollDirectionLeft")]
     pub const Left: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/up?language=objc)
     #[doc(alias = "UIAccessibilityScrollDirectionUp")]
     pub const Up: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/down?language=objc)
     #[doc(alias = "UIAccessibilityScrollDirectionDown")]
     pub const Down: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/next?language=objc)
     #[doc(alias = "UIAccessibilityScrollDirectionNext")]
     pub const Next: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/previous?language=objc)
     #[doc(alias = "UIAccessibilityScrollDirectionPrevious")]
     pub const Previous: Self = Self(6);
 }
@@ -1643,6 +1652,8 @@ impl private_NSObjectUIAccessibilityTextOperations::Sealed for NSObject {}
 unsafe impl NSObjectUIAccessibilityTextOperations for NSObject {}
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/post(notification:argument:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `argument` should be of the correct type.
@@ -1653,6 +1664,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isvoiceoverrunning?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsVoiceOverRunning() -> bool {
     extern "C-unwind" {
@@ -1672,6 +1684,7 @@ extern "C" {
     pub static UIAccessibilityVoiceOverStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/ismonoaudioenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsMonoAudioEnabled() -> bool {
     extern "C-unwind" {
@@ -1685,6 +1698,7 @@ extern "C" {
     pub static UIAccessibilityMonoAudioStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isclosedcaptioningenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsClosedCaptioningEnabled() -> bool {
     extern "C-unwind" {
@@ -1699,6 +1713,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isinvertcolorsenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsInvertColorsEnabled() -> bool {
     extern "C-unwind" {
@@ -1712,6 +1727,7 @@ extern "C" {
     pub static UIAccessibilityInvertColorsStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isguidedaccessenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsGuidedAccessEnabled() -> bool {
     extern "C-unwind" {
@@ -1725,6 +1741,7 @@ extern "C" {
     pub static UIAccessibilityGuidedAccessStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isboldtextenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsBoldTextEnabled() -> bool {
     extern "C-unwind" {
@@ -1738,6 +1755,7 @@ extern "C" {
     pub static UIAccessibilityBoldTextStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/buttonshapesenabled?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityButtonShapesEnabled() -> bool {
@@ -1754,6 +1772,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isgrayscaleenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsGrayscaleEnabled() -> bool {
     extern "C-unwind" {
@@ -1767,6 +1786,7 @@ extern "C" {
     pub static UIAccessibilityGrayscaleStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isreducetransparencyenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsReduceTransparencyEnabled() -> bool {
     extern "C-unwind" {
@@ -1781,6 +1801,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isreducemotionenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsReduceMotionEnabled() -> bool {
     extern "C-unwind" {
@@ -1794,6 +1815,7 @@ extern "C" {
     pub static UIAccessibilityReduceMotionStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/preferscrossfadetransitions?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityPrefersCrossFadeTransitions() -> bool {
     extern "C-unwind" {
@@ -1808,6 +1830,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isvideoautoplayenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsVideoAutoplayEnabled() -> bool {
     extern "C-unwind" {
@@ -1821,6 +1844,7 @@ extern "C" {
     pub static UIAccessibilityVideoAutoplayStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isdarkersystemcolorsenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityDarkerSystemColorsEnabled() -> bool {
     extern "C-unwind" {
@@ -1835,6 +1859,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isswitchcontrolrunning?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsSwitchControlRunning() -> bool {
     extern "C-unwind" {
@@ -1848,6 +1873,7 @@ extern "C" {
     pub static UIAccessibilitySwitchControlStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isspeakselectionenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsSpeakSelectionEnabled() -> bool {
     extern "C-unwind" {
@@ -1862,6 +1888,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isspeakscreenenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsSpeakScreenEnabled() -> bool {
     extern "C-unwind" {
@@ -1875,6 +1902,7 @@ extern "C" {
     pub static UIAccessibilitySpeakScreenStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isshaketoundoenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsShakeToUndoEnabled() -> bool {
     extern "C-unwind" {
@@ -1888,6 +1916,7 @@ extern "C" {
     pub static UIAccessibilityShakeToUndoDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isassistivetouchrunning?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsAssistiveTouchRunning() -> bool {
     extern "C-unwind" {
@@ -1902,6 +1931,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/shoulddifferentiatewithoutcolor?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityShouldDifferentiateWithoutColor() -> bool {
     extern "C-unwind" {
@@ -1916,6 +1946,7 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isonoffswitchlabelsenabled?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> bool {
     extern "C-unwind" {
@@ -1929,6 +1960,7 @@ extern "C" {
     pub static UIAccessibilityOnOffSwitchLabelsDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/requestguidedaccesssession(enabled:completionhandler:)?language=objc)
 #[cfg(feature = "block2")]
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityRequestGuidedAccessSession(
@@ -1951,12 +1983,16 @@ pub extern "C-unwind" fn UIAccessibilityRequestGuidedAccessSession(
 pub struct UIAccessibilityHearingDeviceEar(pub NSUInteger);
 bitflags::bitflags! {
     impl UIAccessibilityHearingDeviceEar: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityhearingdeviceear/uiaccessibilityhearingdeviceearnone?language=objc)
         #[doc(alias = "UIAccessibilityHearingDeviceEarNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdeviceear/left?language=objc)
         #[doc(alias = "UIAccessibilityHearingDeviceEarLeft")]
         const Left = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdeviceear/right?language=objc)
         #[doc(alias = "UIAccessibilityHearingDeviceEarRight")]
         const Right = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdeviceear/both?language=objc)
         #[doc(alias = "UIAccessibilityHearingDeviceEarBoth")]
         const Both = UIAccessibilityHearingDeviceEar::Left.0|UIAccessibilityHearingDeviceEar::Right.0;
     }
@@ -1970,6 +2006,7 @@ unsafe impl RefEncode for UIAccessibilityHearingDeviceEar {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdevicepairedear?language=objc)
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityHearingDevicePairedEar() -> UIAccessibilityHearingDeviceEar
 {

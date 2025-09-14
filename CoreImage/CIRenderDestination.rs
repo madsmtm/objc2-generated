@@ -23,10 +23,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CIRenderDestinationAlphaMode(pub NSUInteger);
 impl CIRenderDestinationAlphaMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderdestinationalphamode/none?language=objc)
     #[doc(alias = "CIRenderDestinationAlphaNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderdestinationalphamode/premultiplied?language=objc)
     #[doc(alias = "CIRenderDestinationAlphaPremultiplied")]
     pub const Premultiplied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderdestinationalphamode/unpremultiplied?language=objc)
     #[doc(alias = "CIRenderDestinationAlphaUnpremultiplied")]
     pub const Unpremultiplied: Self = Self(2);
 }

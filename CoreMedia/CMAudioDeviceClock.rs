@@ -18,6 +18,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `clock_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiodeviceclockcreate(allocator:deviceuid:clockout:)?language=objc)
     #[cfg(feature = "CMSync")]
     pub fn CMAudioDeviceClockCreate(
         allocator: Option<&CFAllocator>,
@@ -32,6 +34,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `clock_out` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiodeviceclockcreatefromaudiodeviceid(allocator:deviceid:clockout:)?language=objc)
     #[cfg(all(feature = "CMSync", feature = "objc2-core-audio"))]
     pub fn CMAudioDeviceClockCreateFromAudioDeviceID(
         allocator: Option<&CFAllocator>,
@@ -44,6 +48,8 @@ extern "C-unwind" {
     /// Changes the CoreAudio device the clock is tracking.
     ///
     /// Pass NULL for deviceUID to make the clock track the default device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiodeviceclocksetaudiodeviceuid(_:deviceuid:)?language=objc)
     #[cfg(feature = "CMSync")]
     pub fn CMAudioDeviceClockSetAudioDeviceUID(
         clock: &CMClock,
@@ -53,6 +59,8 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Changes the CoreAudio device the clock is tracking.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiodeviceclocksetaudiodeviceid(_:deviceid:)?language=objc)
     #[cfg(all(feature = "CMSync", feature = "objc2-core-audio"))]
     pub fn CMAudioDeviceClockSetAudioDeviceID(
         clock: &CMClock,
@@ -75,6 +83,8 @@ extern "C-unwind" {
     /// - `device_uid_out` must be a valid pointer or null.
     /// - `device_id_out` must be a valid pointer or null.
     /// - `tracking_default_device_out` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiodeviceclockgetaudiodevice(_:deviceuidout:deviceidout:trackingdefaultdeviceout:)?language=objc)
     #[cfg(all(feature = "CMSync", feature = "objc2-core-audio"))]
     pub fn CMAudioDeviceClockGetAudioDevice(
         clock: &CMClock,

@@ -15,15 +15,19 @@ use crate::*;
 pub struct UIUserNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl UIUserNotificationType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtype/uiusernotificationtypenone?language=objc)
         #[doc(alias = "UIUserNotificationTypeNone")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtype/badge?language=objc)
         #[doc(alias = "UIUserNotificationTypeBadge")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const Badge = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtype/sound?language=objc)
         #[doc(alias = "UIUserNotificationTypeSound")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const Sound = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtype/alert?language=objc)
         #[doc(alias = "UIUserNotificationTypeAlert")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const Alert = 1<<2;
@@ -45,9 +49,11 @@ unsafe impl RefEncode for UIUserNotificationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserNotificationActionBehavior(pub NSUInteger);
 impl UIUserNotificationActionBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactionbehavior/default?language=objc)
     #[doc(alias = "UIUserNotificationActionBehaviorDefault")]
     #[deprecated = "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction"]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactionbehavior/textinput?language=objc)
     #[doc(alias = "UIUserNotificationActionBehaviorTextInput")]
     #[deprecated = "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction"]
     pub const TextInput: Self = Self(1);
@@ -68,9 +74,11 @@ unsafe impl RefEncode for UIUserNotificationActionBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserNotificationActivationMode(pub NSUInteger);
 impl UIUserNotificationActivationMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactivationmode/foreground?language=objc)
     #[doc(alias = "UIUserNotificationActivationModeForeground")]
     #[deprecated = "Use UserNotifications Framework's UNNotificationActionOptions"]
     pub const Foreground: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactivationmode/background?language=objc)
     #[doc(alias = "UIUserNotificationActivationModeBackground")]
     #[deprecated = "Use UserNotifications Framework's UNNotificationActionOptions"]
     pub const Background: Self = Self(1);
@@ -91,9 +99,11 @@ unsafe impl RefEncode for UIUserNotificationActivationMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserNotificationActionContext(pub NSUInteger);
 impl UIUserNotificationActionContext {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactioncontext/default?language=objc)
     #[doc(alias = "UIUserNotificationActionContextDefault")]
     #[deprecated = "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]"]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactioncontext/minimal?language=objc)
     #[doc(alias = "UIUserNotificationActionContextMinimal")]
     #[deprecated = "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]"]
     pub const Minimal: Self = Self(1);

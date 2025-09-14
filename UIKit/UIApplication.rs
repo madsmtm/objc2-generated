@@ -17,15 +17,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIStatusBarStyle(pub NSInteger);
 impl UIStatusBarStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle/default?language=objc)
     #[doc(alias = "UIStatusBarStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle/lightcontent?language=objc)
     #[doc(alias = "UIStatusBarStyleLightContent")]
     pub const LightContent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle/darkcontent?language=objc)
     #[doc(alias = "UIStatusBarStyleDarkContent")]
     pub const DarkContent: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle/uistatusbarstyleblacktranslucent?language=objc)
     #[doc(alias = "UIStatusBarStyleBlackTranslucent")]
     #[deprecated]
     pub const BlackTranslucent: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle/uistatusbarstyleblackopaque?language=objc)
     #[doc(alias = "UIStatusBarStyleBlackOpaque")]
     #[deprecated]
     pub const BlackOpaque: Self = Self(2);
@@ -45,10 +50,13 @@ unsafe impl RefEncode for UIStatusBarStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIStatusBarAnimation(pub NSInteger);
 impl UIStatusBarAnimation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbaranimation/none?language=objc)
     #[doc(alias = "UIStatusBarAnimationNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbaranimation/fade?language=objc)
     #[doc(alias = "UIStatusBarAnimationFade")]
     pub const Fade: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbaranimation/slide?language=objc)
     #[doc(alias = "UIStatusBarAnimationSlide")]
     pub const Slide: Self = Self(2);
 }
@@ -74,18 +82,23 @@ extern "C" {
 pub struct UIRemoteNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl UIRemoteNotificationType: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype/uiremotenotificationtypenone?language=objc)
         #[doc(alias = "UIRemoteNotificationTypeNone")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype/badge?language=objc)
         #[doc(alias = "UIRemoteNotificationTypeBadge")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const Badge = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype/sound?language=objc)
         #[doc(alias = "UIRemoteNotificationTypeSound")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const Sound = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype/alert?language=objc)
         #[doc(alias = "UIRemoteNotificationTypeAlert")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const Alert = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype/newsstandcontentavailability?language=objc)
         #[doc(alias = "UIRemoteNotificationTypeNewsstandContentAvailability")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const NewsstandContentAvailability = 1<<3;
@@ -106,10 +119,13 @@ unsafe impl RefEncode for UIRemoteNotificationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBackgroundFetchResult(pub NSUInteger);
 impl UIBackgroundFetchResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundfetchresult/newdata?language=objc)
     #[doc(alias = "UIBackgroundFetchResultNewData")]
     pub const NewData: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundfetchresult/nodata?language=objc)
     #[doc(alias = "UIBackgroundFetchResultNoData")]
     pub const NoData: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundfetchresult/failed?language=objc)
     #[doc(alias = "UIBackgroundFetchResultFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -128,10 +144,13 @@ unsafe impl RefEncode for UIBackgroundFetchResult {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBackgroundRefreshStatus(pub NSInteger);
 impl UIBackgroundRefreshStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundrefreshstatus/restricted?language=objc)
     #[doc(alias = "UIBackgroundRefreshStatusRestricted")]
     pub const Restricted: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundrefreshstatus/denied?language=objc)
     #[doc(alias = "UIBackgroundRefreshStatusDenied")]
     pub const Denied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundrefreshstatus/available?language=objc)
     #[doc(alias = "UIBackgroundRefreshStatusAvailable")]
     pub const Available: Self = Self(2);
 }
@@ -150,10 +169,13 @@ unsafe impl RefEncode for UIBackgroundRefreshStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIApplicationState(pub NSInteger);
 impl UIApplicationState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/state/active?language=objc)
     #[doc(alias = "UIApplicationStateActive")]
     pub const Active: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/state/inactive?language=objc)
     #[doc(alias = "UIApplicationStateInactive")]
     pub const Inactive: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/state/background?language=objc)
     #[doc(alias = "UIApplicationStateBackground")]
     pub const Background: Self = Self(2);
 }
@@ -714,6 +736,7 @@ impl UIApplication {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIApplicationCategory(pub NSInteger);
 impl UIApplicationCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/category/webbrowser?language=objc)
     #[doc(alias = "UIApplicationCategoryWebBrowser")]
     pub const WebBrowser: Self = Self(1);
 }
@@ -735,12 +758,18 @@ unsafe impl RefEncode for UIApplicationCategory {
 pub struct UIApplicationCategoryDefaultStatus(pub NSInteger);
 impl UIApplicationCategoryDefaultStatus {
     /// The status was not available. This is an error condition and the returned error object has more information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus/uiapplicationcategorydefaultstatusunavailable?language=objc)
     #[doc(alias = "UIApplicationCategoryDefaultStatusUnavailable")]
     pub const Unavailable: Self = Self(0);
     /// The application is the default for the category.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus/uiapplicationcategorydefaultstatusisdefault?language=objc)
     #[doc(alias = "UIApplicationCategoryDefaultStatusIsDefault")]
     pub const IsDefault: Self = Self(1);
     /// The application is not the default for the category.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus/uiapplicationcategorydefaultstatusnotdefault?language=objc)
     #[doc(alias = "UIApplicationCategoryDefaultStatusNotDefault")]
     pub const NotDefault: Self = Self(2);
 }
@@ -765,6 +794,8 @@ extern "C" {
 pub struct UIApplicationCategoryDefaultErrorCode(pub NSInteger);
 impl UIApplicationCategoryDefaultErrorCode {
     /// The application is rate-limited.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/categorydefaulterror/code/ratelimited?language=objc)
     #[doc(alias = "UIApplicationCategoryDefaultErrorRateLimited")]
     pub const RateLimited: Self = Self(1);
 }
@@ -1539,6 +1570,8 @@ impl UIApplication {
 
 #[cfg(feature = "UIResponder")]
 impl UIApplication {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationmain(_:_:_:_:)-1yub7?language=objc)
+    ///
     /// # Safety
     ///
     /// `argv` must be a valid pointer.

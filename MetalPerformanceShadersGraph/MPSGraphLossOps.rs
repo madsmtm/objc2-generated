@@ -15,15 +15,23 @@ use crate::*;
 pub struct MPSGraphLossReductionType(pub u64);
 impl MPSGraphLossReductionType {
     /// Computes the loss without reduction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype/none?language=objc)
     #[doc(alias = "MPSGraphLossReductionTypeNone")]
     pub const None: Self = Self(0);
     /// Computes the loss without reduction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype/axis?language=objc)
     #[doc(alias = "MPSGraphLossReductionTypeAxis")]
     pub const Axis: Self = Self(MPSGraphLossReductionType::None.0);
     /// Reduces the loss down to a scalar with a sum operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype/sum?language=objc)
     #[doc(alias = "MPSGraphLossReductionTypeSum")]
     pub const Sum: Self = Self(1);
     /// Reduces the loss down to a scalar with a mean operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype/mean?language=objc)
     #[doc(alias = "MPSGraphLossReductionTypeMean")]
     pub const Mean: Self = Self(2);
 }

@@ -90,117 +90,191 @@ extern "C" {
 pub struct CKErrorCode(pub NSInteger);
 impl CKErrorCode {
     /// CloudKit.framework encountered an error.  This is a non-recoverable error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/internalerror?language=objc)
     #[doc(alias = "CKErrorInternalError")]
     pub const InternalError: Self = Self(1);
     /// Some items failed, but the operation succeeded overall. Check CKPartialErrorsByItemIDKey in the userInfo dictionary for more details.
     /// This error is only returned from CKOperation completion blocks, which are deprecated in swift.
     /// It will not be returned from (swift-only) CKOperation result blocks, which are their replacements
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/partialfailure?language=objc)
     #[doc(alias = "CKErrorPartialFailure")]
     pub const PartialFailure: Self = Self(2);
     /// Network not available
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/networkunavailable?language=objc)
     #[doc(alias = "CKErrorNetworkUnavailable")]
     pub const NetworkUnavailable: Self = Self(3);
     /// Network error (available but CFNetwork gave us an error)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/networkfailure?language=objc)
     #[doc(alias = "CKErrorNetworkFailure")]
     pub const NetworkFailure: Self = Self(4);
     /// Un-provisioned or unauthorized container. Try provisioning the container before retrying the operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/badcontainer?language=objc)
     #[doc(alias = "CKErrorBadContainer")]
     pub const BadContainer: Self = Self(5);
     /// Service unavailable
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/serviceunavailable?language=objc)
     #[doc(alias = "CKErrorServiceUnavailable")]
     pub const ServiceUnavailable: Self = Self(6);
     /// Client is being rate limited
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/requestratelimited?language=objc)
     #[doc(alias = "CKErrorRequestRateLimited")]
     pub const RequestRateLimited: Self = Self(7);
     /// Missing entitlement
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/missingentitlement?language=objc)
     #[doc(alias = "CKErrorMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(8);
     /// Not authenticated (writing without being logged in, no user record)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/notauthenticated?language=objc)
     #[doc(alias = "CKErrorNotAuthenticated")]
     pub const NotAuthenticated: Self = Self(9);
     /// Access failure (save, fetch, or shareAccept)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/permissionfailure?language=objc)
     #[doc(alias = "CKErrorPermissionFailure")]
     pub const PermissionFailure: Self = Self(10);
     /// Record does not exist
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/unknownitem?language=objc)
     #[doc(alias = "CKErrorUnknownItem")]
     pub const UnknownItem: Self = Self(11);
     /// Bad client request (bad record graph, malformed predicate)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/invalidarguments?language=objc)
     #[doc(alias = "CKErrorInvalidArguments")]
     pub const InvalidArguments: Self = Self(12);
     /// Bad client request (bad record graph, malformed predicate)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/resultstruncated?language=objc)
     #[doc(alias = "CKErrorResultsTruncated")]
     #[deprecated = "Will not be returned"]
     pub const ResultsTruncated: Self = Self(13);
     /// The record was rejected because the version on the server was different
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/serverrecordchanged?language=objc)
     #[doc(alias = "CKErrorServerRecordChanged")]
     pub const ServerRecordChanged: Self = Self(14);
     /// The server rejected this request. This is a non-recoverable error
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/serverrejectedrequest?language=objc)
     #[doc(alias = "CKErrorServerRejectedRequest")]
     pub const ServerRejectedRequest: Self = Self(15);
     /// Asset file was not found
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/assetfilenotfound?language=objc)
     #[doc(alias = "CKErrorAssetFileNotFound")]
     pub const AssetFileNotFound: Self = Self(16);
     /// Asset file content was modified while being saved
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/assetfilemodified?language=objc)
     #[doc(alias = "CKErrorAssetFileModified")]
     pub const AssetFileModified: Self = Self(17);
     /// App version is less than the minimum allowed version
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/incompatibleversion?language=objc)
     #[doc(alias = "CKErrorIncompatibleVersion")]
     pub const IncompatibleVersion: Self = Self(18);
     /// The server rejected the request because there was a conflict with a unique field.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/constraintviolation?language=objc)
     #[doc(alias = "CKErrorConstraintViolation")]
     pub const ConstraintViolation: Self = Self(19);
     /// A CKOperation was explicitly cancelled
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/operationcancelled?language=objc)
     #[doc(alias = "CKErrorOperationCancelled")]
     pub const OperationCancelled: Self = Self(20);
     /// The previousServerChangeToken value is too old and the client must re-sync from scratch
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/changetokenexpired?language=objc)
     #[doc(alias = "CKErrorChangeTokenExpired")]
     pub const ChangeTokenExpired: Self = Self(21);
     /// One of the items in this batch operation failed in a zone with atomic updates, so the entire batch was rejected.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/batchrequestfailed?language=objc)
     #[doc(alias = "CKErrorBatchRequestFailed")]
     pub const BatchRequestFailed: Self = Self(22);
     /// The server is too busy to handle this zone operation. Try the operation again in a few seconds.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/zonebusy?language=objc)
     #[doc(alias = "CKErrorZoneBusy")]
     pub const ZoneBusy: Self = Self(23);
     /// Operation could not be completed on the given database. Likely caused by attempting to modify zones in the public database.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/baddatabase?language=objc)
     #[doc(alias = "CKErrorBadDatabase")]
     pub const BadDatabase: Self = Self(24);
     /// Saving a record would exceed quota
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/quotaexceeded?language=objc)
     #[doc(alias = "CKErrorQuotaExceeded")]
     pub const QuotaExceeded: Self = Self(25);
     /// The specified zone does not exist on the server
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/zonenotfound?language=objc)
     #[doc(alias = "CKErrorZoneNotFound")]
     pub const ZoneNotFound: Self = Self(26);
     /// The request to the server was too large. Retry this request as a smaller batch.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/limitexceeded?language=objc)
     #[doc(alias = "CKErrorLimitExceeded")]
     pub const LimitExceeded: Self = Self(27);
     /// The user deleted this zone through the settings UI. Your client should either remove its local data or prompt the user before attempting to re-upload any data to this zone.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/userdeletedzone?language=objc)
     #[doc(alias = "CKErrorUserDeletedZone")]
     pub const UserDeletedZone: Self = Self(28);
     /// A share cannot be saved because there are too many participants attached to the share
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/toomanyparticipants?language=objc)
     #[doc(alias = "CKErrorTooManyParticipants")]
     pub const TooManyParticipants: Self = Self(29);
     /// A record/share cannot be saved, doing so would cause a hierarchy of records to exist in multiple shares
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/alreadyshared?language=objc)
     #[doc(alias = "CKErrorAlreadyShared")]
     pub const AlreadyShared: Self = Self(30);
     /// The target of a record's parent or share reference was not found
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/referenceviolation?language=objc)
     #[doc(alias = "CKErrorReferenceViolation")]
     pub const ReferenceViolation: Self = Self(31);
     /// Request was rejected due to a managed account restriction
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/managedaccountrestricted?language=objc)
     #[doc(alias = "CKErrorManagedAccountRestricted")]
     pub const ManagedAccountRestricted: Self = Self(32);
     /// Share Metadata cannot be determined, because the user is not a member of the share.  There are invited participants on the share with email addresses or phone numbers not associated with any iCloud account. The user may be able to join the share if they can associate one of those email addresses or phone numbers with their iCloud account via the system Share Accept UI. Call UIApplication's openURL on this share URL to have the user attempt to verify their information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/participantmayneedverification?language=objc)
     #[doc(alias = "CKErrorParticipantMayNeedVerification")]
     pub const ParticipantMayNeedVerification: Self = Self(33);
     /// The server received and processed this request, but the response was lost due to a network failure.  There is no guarantee that this request succeeded.  Your client should re-issue the request (if it is idempotent), or fetch data from the server to determine if the request succeeded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/serverresponselost?language=objc)
     #[doc(alias = "CKErrorServerResponseLost")]
     pub const ServerResponseLost: Self = Self(34);
     /// The file for this asset could not be accessed. It is likely your application does not have permission to open the file, or the file may be temporarily unavailable due to its data protection class. This operation can be retried after it is able to be opened in your process.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/assetnotavailable?language=objc)
     #[doc(alias = "CKErrorAssetNotAvailable")]
     pub const AssetNotAvailable: Self = Self(35);
     /// The current account is in a state that may need user intervention to recover from. The user should be directed to check the Settings app. Listen for CKAccountChangedNotifications to know when to re-check account status and retry.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/accounttemporarilyunavailable?language=objc)
     #[doc(alias = "CKErrorAccountTemporarilyUnavailable")]
     pub const AccountTemporarilyUnavailable: Self = Self(36);
     /// The user is already an invited participant on this share. They must accept the existing share invitation before continuing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerror/code/participantalreadyinvited?language=objc)
     #[doc(alias = "CKErrorParticipantAlreadyInvited")]
     pub const ParticipantAlreadyInvited: Self = Self(37);
 }

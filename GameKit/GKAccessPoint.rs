@@ -16,12 +16,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKAccessPointLocation(pub NSInteger);
 impl GKAccessPointLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.enum/topleading?language=objc)
     #[doc(alias = "GKAccessPointLocationTopLeading")]
     pub const TopLeading: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.enum/toptrailing?language=objc)
     #[doc(alias = "GKAccessPointLocationTopTrailing")]
     pub const TopTrailing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.enum/bottomleading?language=objc)
     #[doc(alias = "GKAccessPointLocationBottomLeading")]
     pub const BottomLeading: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.enum/bottomtrailing?language=objc)
     #[doc(alias = "GKAccessPointLocationBottomTrailing")]
     pub const BottomTrailing: Self = Self(3);
 }

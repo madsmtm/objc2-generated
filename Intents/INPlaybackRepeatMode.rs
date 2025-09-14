@@ -10,12 +10,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPlaybackRepeatMode(pub NSInteger);
 impl INPlaybackRepeatMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackrepeatmode/unknown?language=objc)
     #[doc(alias = "INPlaybackRepeatModeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackrepeatmode/none?language=objc)
     #[doc(alias = "INPlaybackRepeatModeNone")]
     pub const None: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackrepeatmode/all?language=objc)
     #[doc(alias = "INPlaybackRepeatModeAll")]
     pub const All: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackrepeatmode/one?language=objc)
     #[doc(alias = "INPlaybackRepeatModeOne")]
     pub const One: Self = Self(3);
 }

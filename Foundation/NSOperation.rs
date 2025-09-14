@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSOperationQueuePriority(pub NSInteger);
 impl NSOperationQueuePriority {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.enum/verylow?language=objc)
     #[doc(alias = "NSOperationQueuePriorityVeryLow")]
     pub const VeryLow: Self = Self(-8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.enum/low?language=objc)
     #[doc(alias = "NSOperationQueuePriorityLow")]
     pub const Low: Self = Self(-4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.enum/normal?language=objc)
     #[doc(alias = "NSOperationQueuePriorityNormal")]
     pub const Normal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.enum/high?language=objc)
     #[doc(alias = "NSOperationQueuePriorityHigh")]
     pub const High: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.enum/veryhigh?language=objc)
     #[doc(alias = "NSOperationQueuePriorityVeryHigh")]
     pub const VeryHigh: Self = Self(8);
 }

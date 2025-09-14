@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIndexType(pub NSUInteger);
 impl MTLIndexType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindextype/uint16?language=objc)
     #[doc(alias = "MTLIndexTypeUInt16")]
     pub const UInt16: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindextype/uint32?language=objc)
     #[doc(alias = "MTLIndexTypeUInt32")]
     pub const UInt32: Self = Self(1);
 }
@@ -70,28 +72,40 @@ unsafe impl RefEncode for MTLIndexType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBindingType(pub NSInteger);
 impl MTLBindingType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/buffer?language=objc)
     #[doc(alias = "MTLBindingTypeBuffer")]
     pub const Buffer: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/threadgroupmemory?language=objc)
     #[doc(alias = "MTLBindingTypeThreadgroupMemory")]
     pub const ThreadgroupMemory: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/texture?language=objc)
     #[doc(alias = "MTLBindingTypeTexture")]
     pub const Texture: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/sampler?language=objc)
     #[doc(alias = "MTLBindingTypeSampler")]
     pub const Sampler: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/imageblockdata?language=objc)
     #[doc(alias = "MTLBindingTypeImageblockData")]
     pub const ImageblockData: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/imageblock?language=objc)
     #[doc(alias = "MTLBindingTypeImageblock")]
     pub const Imageblock: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/visiblefunctiontable?language=objc)
     #[doc(alias = "MTLBindingTypeVisibleFunctionTable")]
     pub const VisibleFunctionTable: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/primitiveaccelerationstructure?language=objc)
     #[doc(alias = "MTLBindingTypePrimitiveAccelerationStructure")]
     pub const PrimitiveAccelerationStructure: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/instanceaccelerationstructure?language=objc)
     #[doc(alias = "MTLBindingTypeInstanceAccelerationStructure")]
     pub const InstanceAccelerationStructure: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/intersectionfunctiontable?language=objc)
     #[doc(alias = "MTLBindingTypeIntersectionFunctionTable")]
     pub const IntersectionFunctionTable: Self = Self(27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/objectpayload?language=objc)
     #[doc(alias = "MTLBindingTypeObjectPayload")]
     pub const ObjectPayload: Self = Self(34);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/tensor?language=objc)
     #[doc(alias = "MTLBindingTypeTensor")]
     pub const Tensor: Self = Self(37);
 }
@@ -125,28 +139,38 @@ unsafe impl RefEncode for MTLBindingType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLArgumentType(pub NSUInteger);
 impl MTLArgumentType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/buffer?language=objc)
     #[doc(alias = "MTLArgumentTypeBuffer")]
     #[deprecated]
     pub const Buffer: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/threadgroupmemory?language=objc)
     #[doc(alias = "MTLArgumentTypeThreadgroupMemory")]
     #[deprecated]
     pub const ThreadgroupMemory: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/texture?language=objc)
     #[doc(alias = "MTLArgumentTypeTexture")]
     #[deprecated]
     pub const Texture: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/sampler?language=objc)
     #[doc(alias = "MTLArgumentTypeSampler")]
     #[deprecated]
     pub const Sampler: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/imageblockdata?language=objc)
     #[doc(alias = "MTLArgumentTypeImageblockData")]
     pub const ImageblockData: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/imageblock?language=objc)
     #[doc(alias = "MTLArgumentTypeImageblock")]
     pub const Imageblock: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/visiblefunctiontable?language=objc)
     #[doc(alias = "MTLArgumentTypeVisibleFunctionTable")]
     pub const VisibleFunctionTable: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/primitiveaccelerationstructure?language=objc)
     #[doc(alias = "MTLArgumentTypePrimitiveAccelerationStructure")]
     pub const PrimitiveAccelerationStructure: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/instanceaccelerationstructure?language=objc)
     #[doc(alias = "MTLArgumentTypeInstanceAccelerationStructure")]
     pub const InstanceAccelerationStructure: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/intersectionfunctiontable?language=objc)
     #[doc(alias = "MTLArgumentTypeIntersectionFunctionTable")]
     pub const IntersectionFunctionTable: Self = Self(27);
 }
@@ -165,16 +189,22 @@ unsafe impl RefEncode for MTLArgumentType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBindingAccess(pub NSUInteger);
 impl MTLBindingAccess {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/readonly?language=objc)
     #[doc(alias = "MTLBindingAccessReadOnly")]
     pub const ReadOnly: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/readwrite?language=objc)
     #[doc(alias = "MTLBindingAccessReadWrite")]
     pub const ReadWrite: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/writeonly?language=objc)
     #[doc(alias = "MTLBindingAccessWriteOnly")]
     pub const WriteOnly: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/mtlargumentaccessreadonly?language=objc)
     #[deprecated]
     pub const MTLArgumentAccessReadOnly: Self = Self(MTLBindingAccess::ReadOnly.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/mtlargumentaccessreadwrite?language=objc)
     #[deprecated]
     pub const MTLArgumentAccessReadWrite: Self = Self(MTLBindingAccess::ReadWrite.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/mtlargumentaccesswriteonly?language=objc)
     #[deprecated]
     pub const MTLArgumentAccessWriteOnly: Self = Self(MTLBindingAccess::WriteOnly.0);
 }

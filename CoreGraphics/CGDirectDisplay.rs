@@ -10,6 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnulldirectdisplay?language=objc)
 pub const kCGNullDirectDisplay: CGDirectDisplayID = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdirectdisplayid?language=objc)
 pub type CGDirectDisplayID = u32;
@@ -36,6 +37,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGDisplayMode"> for CGDisplayMode {}
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmaindisplayid()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGMainDisplayID() -> CGDirectDisplayID {
     extern "C-unwind" {
@@ -45,6 +47,8 @@ pub extern "C-unwind" fn CGMainDisplayID() -> CGDirectDisplayID {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetdisplayswithpoint(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `displays` must be a valid pointer or null.
@@ -59,6 +63,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetdisplayswithrect(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `displays` must be a valid pointer or null.
@@ -73,6 +79,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetdisplayswithopengldisplaymask(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `displays` must be a valid pointer or null.
@@ -87,6 +95,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetactivedisplaylist(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `active_displays` must be a valid pointer or null.
@@ -100,6 +110,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetonlinedisplaylist(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `online_displays` must be a valid pointer or null.
@@ -112,6 +124,7 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayidtoopengldisplaymask(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGDisplayIDToOpenGLDisplayMask(
     display: CGDirectDisplayID,
@@ -122,6 +135,7 @@ pub extern "C-unwind" fn CGDisplayIDToOpenGLDisplayMask(
     unsafe { CGDisplayIDToOpenGLDisplayMask(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgopengldisplaymasktodisplayid(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGOpenGLDisplayMaskToDisplayID(
     mask: CGOpenGLDisplayMask,
@@ -132,6 +146,7 @@ pub extern "C-unwind" fn CGOpenGLDisplayMaskToDisplayID(
     unsafe { CGOpenGLDisplayMaskToDisplayID(mask) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaybounds(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGDisplayBounds(display: CGDirectDisplayID) -> CGRect {
     extern "C-unwind" {
@@ -140,6 +155,7 @@ pub extern "C-unwind" fn CGDisplayBounds(display: CGDirectDisplayID) -> CGRect {
     unsafe { CGDisplayBounds(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaypixelswide(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGDisplayPixelsWide(display: CGDirectDisplayID) -> usize {
     extern "C-unwind" {
@@ -148,6 +164,7 @@ pub extern "C-unwind" fn CGDisplayPixelsWide(display: CGDirectDisplayID) -> usiz
     unsafe { CGDisplayPixelsWide(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaypixelshigh(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usize {
     extern "C-unwind" {
@@ -156,6 +173,8 @@ pub extern "C-unwind" fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usiz
     unsafe { CGDisplayPixelsHigh(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycopyalldisplaymodes(_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// - `options` generic must be of the correct type.
@@ -180,6 +199,7 @@ extern "C" {
     pub static kCGDisplayShowDuplicateLowResolutionModes: &'static CFString;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycopydisplaymode(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGDisplayCopyDisplayMode(
     display: CGDirectDisplayID,
@@ -192,6 +212,8 @@ pub extern "C-unwind" fn CGDisplayCopyDisplayMode(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaysetdisplaymode(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -205,6 +227,7 @@ extern "C-unwind" {
 }
 
 impl CGDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/width?language=objc)
     #[doc(alias = "CGDisplayModeGetWidth")]
     #[inline]
     pub fn width(mode: Option<&CGDisplayMode>) -> usize {
@@ -214,6 +237,7 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetWidth(mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/height?language=objc)
     #[doc(alias = "CGDisplayModeGetHeight")]
     #[inline]
     pub fn height(mode: Option<&CGDisplayMode>) -> usize {
@@ -223,6 +247,7 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetHeight(mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/pixelencoding?language=objc)
     #[doc(alias = "CGDisplayModeCopyPixelEncoding")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -236,6 +261,7 @@ impl CGDisplayMode {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/refreshrate?language=objc)
     #[doc(alias = "CGDisplayModeGetRefreshRate")]
     #[inline]
     pub fn refresh_rate(mode: Option<&CGDisplayMode>) -> c_double {
@@ -245,6 +271,7 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetRefreshRate(mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/ioflags?language=objc)
     #[doc(alias = "CGDisplayModeGetIOFlags")]
     #[inline]
     pub fn io_flags(mode: Option<&CGDisplayMode>) -> u32 {
@@ -254,6 +281,7 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetIOFlags(mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/iodisplaymodeid?language=objc)
     #[doc(alias = "CGDisplayModeGetIODisplayModeID")]
     #[inline]
     pub fn io_display_mode_id(mode: Option<&CGDisplayMode>) -> i32 {
@@ -263,6 +291,7 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetIODisplayModeID(mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/isusablefordesktopgui()?language=objc)
     #[doc(alias = "CGDisplayModeIsUsableForDesktopGUI")]
     #[inline]
     pub fn is_usable_for_desktop_gui(mode: Option<&CGDisplayMode>) -> bool {
@@ -274,6 +303,7 @@ impl CGDisplayMode {
 }
 
 unsafe impl ConcreteType for CGDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/typeid?language=objc)
     #[doc(alias = "CGDisplayModeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -285,6 +315,7 @@ unsafe impl ConcreteType for CGDisplayMode {
 }
 
 impl CGDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/pixelwidth?language=objc)
     #[doc(alias = "CGDisplayModeGetPixelWidth")]
     #[inline]
     pub fn pixel_width(mode: Option<&CGDisplayMode>) -> usize {
@@ -294,6 +325,7 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetPixelWidth(mode) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/pixelheight?language=objc)
     #[doc(alias = "CGDisplayModeGetPixelHeight")]
     #[inline]
     pub fn pixel_height(mode: Option<&CGDisplayMode>) -> usize {
@@ -307,6 +339,7 @@ impl CGDisplayMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggammavalue?language=objc)
 pub type CGGammaValue = c_float;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsetdisplaytransferbyformula(_:_:_:_:_:_:_:_:_:_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGSetDisplayTransferByFormula(
@@ -352,6 +385,8 @@ pub extern "C-unwind" fn CGSetDisplayTransferByFormula(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetdisplaytransferbyformula(_:_:_:_:_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `red_min` must be a valid pointer or null.
@@ -378,6 +413,7 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaygammatablecapacity(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGDisplayGammaTableCapacity(display: CGDirectDisplayID) -> u32 {
     extern "C-unwind" {
@@ -387,6 +423,8 @@ pub extern "C-unwind" fn CGDisplayGammaTableCapacity(display: CGDirectDisplayID)
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsetdisplaytransferbytable(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `red_table` must be a valid pointer or null.
@@ -403,6 +441,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetdisplaytransferbytable(_:_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `red_table` must be a valid pointer or null.
@@ -421,6 +461,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsetdisplaytransferbybytetable(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `red_table` must be a valid pointer.
@@ -436,6 +478,7 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayrestorecolorsyncsettings()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGDisplayRestoreColorSyncSettings() {
     extern "C-unwind" {
@@ -451,8 +494,10 @@ pub extern "C-unwind" fn CGDisplayRestoreColorSyncSettings() {
 pub struct CGCaptureOptions(pub u32);
 bitflags::bitflags! {
     impl CGCaptureOptions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcaptureoptions/kcgcapturenooptions?language=objc)
         #[doc(alias = "kCGCaptureNoOptions")]
         const NoOptions = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcaptureoptions/nofill?language=objc)
         #[doc(alias = "kCGCaptureNoFill")]
 #[deprecated]
         const NoFill = 1<<0;
@@ -469,6 +514,7 @@ unsafe impl RefEncode for CGCaptureOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayiscaptured(_:)?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -480,6 +526,7 @@ pub extern "C-unwind" fn CGDisplayIsCaptured(display: CGDirectDisplayID) -> bool
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycapture(_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError {
@@ -489,6 +536,7 @@ pub extern "C-unwind" fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError
     unsafe { CGDisplayCapture(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycapturewithoptions(_:_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayCaptureWithOptions(
@@ -504,6 +552,7 @@ pub extern "C-unwind" fn CGDisplayCaptureWithOptions(
     unsafe { CGDisplayCaptureWithOptions(display, options) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayrelease(_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayRelease(display: CGDirectDisplayID) -> CGError {
@@ -513,6 +562,7 @@ pub extern "C-unwind" fn CGDisplayRelease(display: CGDirectDisplayID) -> CGError
     unsafe { CGDisplayRelease(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcapturealldisplays()?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGCaptureAllDisplays() -> CGError {
@@ -522,6 +572,7 @@ pub extern "C-unwind" fn CGCaptureAllDisplays() -> CGError {
     unsafe { CGCaptureAllDisplays() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcapturealldisplayswithoptions(_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptions) -> CGError {
@@ -531,6 +582,7 @@ pub extern "C-unwind" fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptio
     unsafe { CGCaptureAllDisplaysWithOptions(options) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgreleasealldisplays()?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGReleaseAllDisplays() -> CGError {
@@ -540,6 +592,7 @@ pub extern "C-unwind" fn CGReleaseAllDisplays() -> CGError {
     unsafe { CGReleaseAllDisplays() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshieldingwindowid(_:)?language=objc)
 #[cfg(feature = "CGWindow")]
 #[inline]
 pub extern "C-unwind" fn CGShieldingWindowID(display: CGDirectDisplayID) -> CGWindowID {
@@ -549,6 +602,7 @@ pub extern "C-unwind" fn CGShieldingWindowID(display: CGDirectDisplayID) -> CGWi
     unsafe { CGShieldingWindowID(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshieldingwindowlevel()?language=objc)
 #[cfg(feature = "CGWindowLevel")]
 #[inline]
 pub extern "C-unwind" fn CGShieldingWindowLevel() -> CGWindowLevel {
@@ -558,6 +612,7 @@ pub extern "C-unwind" fn CGShieldingWindowLevel() -> CGWindowLevel {
     unsafe { CGShieldingWindowLevel() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycreateimage(_:)?language=objc)
 #[cfg(feature = "CGImage")]
 #[deprecated = "Please use ScreenCaptureKit instead."]
 #[inline]
@@ -571,6 +626,7 @@ pub extern "C-unwind" fn CGDisplayCreateImage(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycreateimage(_:rect:)?language=objc)
 #[cfg(feature = "CGImage")]
 #[deprecated = "Please use ScreenCaptureKit instead."]
 #[inline]
@@ -588,6 +644,7 @@ pub extern "C-unwind" fn CGDisplayCreateImageForRect(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayhidecursor(_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayHideCursor(display: CGDirectDisplayID) -> CGError {
@@ -597,6 +654,7 @@ pub extern "C-unwind" fn CGDisplayHideCursor(display: CGDirectDisplayID) -> CGEr
     unsafe { CGDisplayHideCursor(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayshowcursor(_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayShowCursor(display: CGDirectDisplayID) -> CGError {
@@ -606,6 +664,7 @@ pub extern "C-unwind" fn CGDisplayShowCursor(display: CGDirectDisplayID) -> CGEr
     unsafe { CGDisplayShowCursor(display) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymovecursortopoint(_:_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayMoveCursorToPoint(
@@ -619,6 +678,8 @@ pub extern "C-unwind" fn CGDisplayMoveCursorToPoint(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetlastmousedelta?language=objc)
+    ///
     /// # Safety
     ///
     /// - `delta_x` must be a valid pointer or null.
@@ -626,6 +687,7 @@ extern "C-unwind" {
     pub fn CGGetLastMouseDelta(delta_x: *mut i32, delta_y: *mut i32);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaygetdrawingcontext(_:)?language=objc)
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayGetDrawingContext(
@@ -645,6 +707,7 @@ pub type CGDisplayCount = u32;
 #[cfg(feature = "CGError")]
 pub type CGDisplayErr = CGError;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayavailablemodes(_:)?language=objc)
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
@@ -657,6 +720,8 @@ pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaybestmodeforparameters(_:_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// `exact_match` must be a valid pointer or null.
@@ -685,6 +750,8 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaybestmodeforparametersandrefreshrate(_:_:_:_:_:_:)?language=objc)
+///
 /// # Safety
 ///
 /// `exact_match` must be a valid pointer or null.
@@ -722,6 +789,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycurrentmode(_:)?language=objc)
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
@@ -735,6 +803,8 @@ pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayswitchtomode(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `mode` generic must be of the correct type.

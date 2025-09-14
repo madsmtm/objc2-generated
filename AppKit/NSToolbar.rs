@@ -36,12 +36,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarDisplayMode(pub NSUInteger);
 impl NSToolbarDisplayMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/displaymode-swift.enum/default?language=objc)
     #[doc(alias = "NSToolbarDisplayModeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/displaymode-swift.enum/iconandlabel?language=objc)
     #[doc(alias = "NSToolbarDisplayModeIconAndLabel")]
     pub const IconAndLabel: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/displaymode-swift.enum/icononly?language=objc)
     #[doc(alias = "NSToolbarDisplayModeIconOnly")]
     pub const IconOnly: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/displaymode-swift.enum/labelonly?language=objc)
     #[doc(alias = "NSToolbarDisplayModeLabelOnly")]
     pub const LabelOnly: Self = Self(3);
 }
@@ -61,12 +65,15 @@ unsafe impl RefEncode for NSToolbarDisplayMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarSizeMode(pub NSUInteger);
 impl NSToolbarSizeMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/sizemode-swift.enum/default?language=objc)
     #[doc(alias = "NSToolbarSizeModeDefault")]
     #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/sizemode-swift.enum/regular?language=objc)
     #[doc(alias = "NSToolbarSizeModeRegular")]
     #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     pub const Regular: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/sizemode-swift.enum/small?language=objc)
     #[doc(alias = "NSToolbarSizeModeSmall")]
     #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     pub const Small: Self = Self(2);

@@ -18,10 +18,13 @@ pub type NSSplitViewAutosaveName = NSString;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSplitViewDividerStyle(pub NSInteger);
 impl NSSplitViewDividerStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/dividerstyle-swift.enum/thick?language=objc)
     #[doc(alias = "NSSplitViewDividerStyleThick")]
     pub const Thick: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/dividerstyle-swift.enum/thin?language=objc)
     #[doc(alias = "NSSplitViewDividerStyleThin")]
     pub const Thin: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/dividerstyle-swift.enum/panesplitter?language=objc)
     #[doc(alias = "NSSplitViewDividerStylePaneSplitter")]
     pub const PaneSplitter: Self = Self(3);
 }

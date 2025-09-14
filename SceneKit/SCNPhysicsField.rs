@@ -17,8 +17,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNPhysicsFieldScope(pub NSInteger);
 impl SCNPhysicsFieldScope {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsfieldscope/insideextent?language=objc)
     #[doc(alias = "SCNPhysicsFieldScopeInsideExtent")]
     pub const InsideExtent: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsfieldscope/outsideextent?language=objc)
     #[doc(alias = "SCNPhysicsFieldScopeOutsideExtent")]
     pub const OutsideExtent: Self = Self(1);
 }

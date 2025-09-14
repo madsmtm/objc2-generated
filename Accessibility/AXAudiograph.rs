@@ -68,10 +68,13 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXNumericDataAxisDescriptorScale(pub NSInteger);
 impl AXNumericDataAxisDescriptorScale {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/scaletype-swift.enum/linear?language=objc)
     #[doc(alias = "AXScaleTypeLinear")]
     pub const ScaleTypeLinear: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/scaletype-swift.enum/log10?language=objc)
     #[doc(alias = "AXScaleTypeLog10")]
     pub const ScaleTypeLog10: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/scaletype-swift.enum/ln?language=objc)
     #[doc(alias = "AXScaleTypeLn")]
     pub const ScaleTypeLn: Self = Self(2);
 }
@@ -575,16 +578,22 @@ impl AXDataSeriesDescriptor {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXChartDescriptorContentDirection(pub NSInteger);
 impl AXChartDescriptorContentDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/lefttoright?language=objc)
     #[doc(alias = "AXChartContentDirectionLeftToRight")]
     pub const ContentDirectionLeftToRight: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/righttoleft?language=objc)
     #[doc(alias = "AXChartContentDirectionRightToLeft")]
     pub const ContentDirectionRightToLeft: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/toptobottom?language=objc)
     #[doc(alias = "AXChartContentDirectionTopToBottom")]
     pub const ContentDirectionTopToBottom: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/bottomtotop?language=objc)
     #[doc(alias = "AXChartContentDirectionBottomToTop")]
     pub const ContentDirectionBottomToTop: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/radialclockwise?language=objc)
     #[doc(alias = "AXChartContentDirectionRadialClockwise")]
     pub const ContentDirectionRadialClockwise: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/radialcounterclockwise?language=objc)
     #[doc(alias = "AXChartContentDirectionRadialCounterClockwise")]
     pub const ContentDirectionRadialCounterClockwise: Self = Self(5);
 }

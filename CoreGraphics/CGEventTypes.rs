@@ -10,9 +10,12 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgeventmaskforallevents?language=objc)
 pub const kCGEventMaskForAllEvents: c_uint = !0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyeventtapadded?language=objc)
 pub const kCGNotifyEventTapAdded: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.eventTapAdded\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyeventtapremoved?language=objc)
 pub const kCGNotifyEventTapRemoved: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.eventTapRemoved\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent?language=objc)
@@ -37,10 +40,13 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGMouseButton(pub u32);
 impl CGMouseButton {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmousebutton/left?language=objc)
     #[doc(alias = "kCGMouseButtonLeft")]
     pub const Left: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmousebutton/right?language=objc)
     #[doc(alias = "kCGMouseButtonRight")]
     pub const Right: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmousebutton/center?language=objc)
     #[doc(alias = "kCGMouseButtonCenter")]
     pub const Center: Self = Self(2);
 }
@@ -61,8 +67,10 @@ unsafe impl RefEncode for CGMouseButton {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGScrollEventUnit(pub u32);
 impl CGScrollEventUnit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrolleventunit/pixel?language=objc)
     #[doc(alias = "kCGScrollEventUnitPixel")]
     pub const Pixel: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrolleventunit/line?language=objc)
     #[doc(alias = "kCGScrollEventUnitLine")]
     pub const Line: Self = Self(1);
 }
@@ -83,12 +91,16 @@ unsafe impl RefEncode for CGScrollEventUnit {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGMomentumScrollPhase(pub u32);
 impl CGMomentumScrollPhase {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmomentumscrollphase/none?language=objc)
     #[doc(alias = "kCGMomentumScrollPhaseNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmomentumscrollphase/begin?language=objc)
     #[doc(alias = "kCGMomentumScrollPhaseBegin")]
     pub const Begin: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmomentumscrollphase/continuous?language=objc)
     #[doc(alias = "kCGMomentumScrollPhaseContinue")]
     pub const Continue: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmomentumscrollphase/end?language=objc)
     #[doc(alias = "kCGMomentumScrollPhaseEnd")]
     pub const End: Self = Self(3);
 }
@@ -109,14 +121,19 @@ unsafe impl RefEncode for CGMomentumScrollPhase {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGScrollPhase(pub u32);
 impl CGScrollPhase {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase/began?language=objc)
     #[doc(alias = "kCGScrollPhaseBegan")]
     pub const Began: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase/changed?language=objc)
     #[doc(alias = "kCGScrollPhaseChanged")]
     pub const Changed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase/ended?language=objc)
     #[doc(alias = "kCGScrollPhaseEnded")]
     pub const Ended: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase/cancelled?language=objc)
     #[doc(alias = "kCGScrollPhaseCancelled")]
     pub const Cancelled: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase/maybegin?language=objc)
     #[doc(alias = "kCGScrollPhaseMayBegin")]
     pub const MayBegin: Self = Self(128);
 }
@@ -137,16 +154,22 @@ unsafe impl RefEncode for CGScrollPhase {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGGesturePhase(pub u32);
 impl CGGesturePhase {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/none?language=objc)
     #[doc(alias = "kCGGesturePhaseNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/began?language=objc)
     #[doc(alias = "kCGGesturePhaseBegan")]
     pub const Began: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/changed?language=objc)
     #[doc(alias = "kCGGesturePhaseChanged")]
     pub const Changed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/ended?language=objc)
     #[doc(alias = "kCGGesturePhaseEnded")]
     pub const Ended: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/cancelled?language=objc)
     #[doc(alias = "kCGGesturePhaseCancelled")]
     pub const Cancelled: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/maybegin?language=objc)
     #[doc(alias = "kCGGesturePhaseMayBegin")]
     pub const MayBegin: Self = Self(128);
 }
@@ -168,22 +191,31 @@ unsafe impl RefEncode for CGGesturePhase {
 pub struct CGEventFlags(pub u64);
 bitflags::bitflags! {
     impl CGEventFlags: u64 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskalphashift?language=objc)
         #[doc(alias = "kCGEventFlagMaskAlphaShift")]
         const MaskAlphaShift = 65536;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskshift?language=objc)
         #[doc(alias = "kCGEventFlagMaskShift")]
         const MaskShift = 131072;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskcontrol?language=objc)
         #[doc(alias = "kCGEventFlagMaskControl")]
         const MaskControl = 262144;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskalternate?language=objc)
         #[doc(alias = "kCGEventFlagMaskAlternate")]
         const MaskAlternate = 524288;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskcommand?language=objc)
         #[doc(alias = "kCGEventFlagMaskCommand")]
         const MaskCommand = 1048576;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskhelp?language=objc)
         #[doc(alias = "kCGEventFlagMaskHelp")]
         const MaskHelp = 4194304;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/masksecondaryfn?language=objc)
         #[doc(alias = "kCGEventFlagMaskSecondaryFn")]
         const MaskSecondaryFn = 8388608;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/masknumericpad?language=objc)
         #[doc(alias = "kCGEventFlagMaskNumericPad")]
         const MaskNumericPad = 2097152;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/masknoncoalesced?language=objc)
         #[doc(alias = "kCGEventFlagMaskNonCoalesced")]
         const MaskNonCoalesced = 256;
     }
@@ -205,42 +237,61 @@ unsafe impl RefEncode for CGEventFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventType(pub u32);
 impl CGEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/null?language=objc)
     #[doc(alias = "kCGEventNull")]
     pub const Null: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/leftmousedown?language=objc)
     #[doc(alias = "kCGEventLeftMouseDown")]
     pub const LeftMouseDown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/leftmouseup?language=objc)
     #[doc(alias = "kCGEventLeftMouseUp")]
     pub const LeftMouseUp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/rightmousedown?language=objc)
     #[doc(alias = "kCGEventRightMouseDown")]
     pub const RightMouseDown: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/rightmouseup?language=objc)
     #[doc(alias = "kCGEventRightMouseUp")]
     pub const RightMouseUp: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/mousemoved?language=objc)
     #[doc(alias = "kCGEventMouseMoved")]
     pub const MouseMoved: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/leftmousedragged?language=objc)
     #[doc(alias = "kCGEventLeftMouseDragged")]
     pub const LeftMouseDragged: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/rightmousedragged?language=objc)
     #[doc(alias = "kCGEventRightMouseDragged")]
     pub const RightMouseDragged: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/keydown?language=objc)
     #[doc(alias = "kCGEventKeyDown")]
     pub const KeyDown: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/keyup?language=objc)
     #[doc(alias = "kCGEventKeyUp")]
     pub const KeyUp: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/flagschanged?language=objc)
     #[doc(alias = "kCGEventFlagsChanged")]
     pub const FlagsChanged: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/scrollwheel?language=objc)
     #[doc(alias = "kCGEventScrollWheel")]
     pub const ScrollWheel: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/tabletpointer?language=objc)
     #[doc(alias = "kCGEventTabletPointer")]
     pub const TabletPointer: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/tabletproximity?language=objc)
     #[doc(alias = "kCGEventTabletProximity")]
     pub const TabletProximity: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/othermousedown?language=objc)
     #[doc(alias = "kCGEventOtherMouseDown")]
     pub const OtherMouseDown: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/othermouseup?language=objc)
     #[doc(alias = "kCGEventOtherMouseUp")]
     pub const OtherMouseUp: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/othermousedragged?language=objc)
     #[doc(alias = "kCGEventOtherMouseDragged")]
     pub const OtherMouseDragged: Self = Self(27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/tapdisabledbytimeout?language=objc)
     #[doc(alias = "kCGEventTapDisabledByTimeout")]
     pub const TapDisabledByTimeout: Self = Self(4294967294);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/tapdisabledbyuserinput?language=objc)
     #[doc(alias = "kCGEventTapDisabledByUserInput")]
     pub const TapDisabledByUserInput: Self = Self(4294967295);
 }
@@ -264,134 +315,199 @@ pub type CGEventTimestamp = u64;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventField(pub u32);
 impl CGEventField {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventnumber?language=objc)
     #[doc(alias = "kCGMouseEventNumber")]
     pub const MouseEventNumber: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventclickstate?language=objc)
     #[doc(alias = "kCGMouseEventClickState")]
     pub const MouseEventClickState: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventpressure?language=objc)
     #[doc(alias = "kCGMouseEventPressure")]
     pub const MouseEventPressure: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventbuttonnumber?language=objc)
     #[doc(alias = "kCGMouseEventButtonNumber")]
     pub const MouseEventButtonNumber: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventdeltax?language=objc)
     #[doc(alias = "kCGMouseEventDeltaX")]
     pub const MouseEventDeltaX: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventdeltay?language=objc)
     #[doc(alias = "kCGMouseEventDeltaY")]
     pub const MouseEventDeltaY: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventinstantmouser?language=objc)
     #[doc(alias = "kCGMouseEventInstantMouser")]
     pub const MouseEventInstantMouser: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventsubtype?language=objc)
     #[doc(alias = "kCGMouseEventSubtype")]
     pub const MouseEventSubtype: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/keyboardeventautorepeat?language=objc)
     #[doc(alias = "kCGKeyboardEventAutorepeat")]
     pub const KeyboardEventAutorepeat: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/keyboardeventkeycode?language=objc)
     #[doc(alias = "kCGKeyboardEventKeycode")]
     pub const KeyboardEventKeycode: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/keyboardeventkeyboardtype?language=objc)
     #[doc(alias = "kCGKeyboardEventKeyboardType")]
     pub const KeyboardEventKeyboardType: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventdeltaaxis1?language=objc)
     #[doc(alias = "kCGScrollWheelEventDeltaAxis1")]
     pub const ScrollWheelEventDeltaAxis1: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventdeltaaxis2?language=objc)
     #[doc(alias = "kCGScrollWheelEventDeltaAxis2")]
     pub const ScrollWheelEventDeltaAxis2: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventdeltaaxis3?language=objc)
     #[doc(alias = "kCGScrollWheelEventDeltaAxis3")]
     pub const ScrollWheelEventDeltaAxis3: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventfixedptdeltaaxis1?language=objc)
     #[doc(alias = "kCGScrollWheelEventFixedPtDeltaAxis1")]
     pub const ScrollWheelEventFixedPtDeltaAxis1: Self = Self(93);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventfixedptdeltaaxis2?language=objc)
     #[doc(alias = "kCGScrollWheelEventFixedPtDeltaAxis2")]
     pub const ScrollWheelEventFixedPtDeltaAxis2: Self = Self(94);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventfixedptdeltaaxis3?language=objc)
     #[doc(alias = "kCGScrollWheelEventFixedPtDeltaAxis3")]
     pub const ScrollWheelEventFixedPtDeltaAxis3: Self = Self(95);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventpointdeltaaxis1?language=objc)
     #[doc(alias = "kCGScrollWheelEventPointDeltaAxis1")]
     pub const ScrollWheelEventPointDeltaAxis1: Self = Self(96);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventpointdeltaaxis2?language=objc)
     #[doc(alias = "kCGScrollWheelEventPointDeltaAxis2")]
     pub const ScrollWheelEventPointDeltaAxis2: Self = Self(97);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventpointdeltaaxis3?language=objc)
     #[doc(alias = "kCGScrollWheelEventPointDeltaAxis3")]
     pub const ScrollWheelEventPointDeltaAxis3: Self = Self(98);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventscrollphase?language=objc)
     #[doc(alias = "kCGScrollWheelEventScrollPhase")]
     pub const ScrollWheelEventScrollPhase: Self = Self(99);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventscrollcount?language=objc)
     #[doc(alias = "kCGScrollWheelEventScrollCount")]
     pub const ScrollWheelEventScrollCount: Self = Self(100);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventmomentumphase?language=objc)
     #[doc(alias = "kCGScrollWheelEventMomentumPhase")]
     pub const ScrollWheelEventMomentumPhase: Self = Self(123);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventinstantmouser?language=objc)
     #[doc(alias = "kCGScrollWheelEventInstantMouser")]
     pub const ScrollWheelEventInstantMouser: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventpointx?language=objc)
     #[doc(alias = "kCGTabletEventPointX")]
     pub const TabletEventPointX: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventpointy?language=objc)
     #[doc(alias = "kCGTabletEventPointY")]
     pub const TabletEventPointY: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventpointz?language=objc)
     #[doc(alias = "kCGTabletEventPointZ")]
     pub const TabletEventPointZ: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventpointbuttons?language=objc)
     #[doc(alias = "kCGTabletEventPointButtons")]
     pub const TabletEventPointButtons: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventpointpressure?language=objc)
     #[doc(alias = "kCGTabletEventPointPressure")]
     pub const TabletEventPointPressure: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventtiltx?language=objc)
     #[doc(alias = "kCGTabletEventTiltX")]
     pub const TabletEventTiltX: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventtilty?language=objc)
     #[doc(alias = "kCGTabletEventTiltY")]
     pub const TabletEventTiltY: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventrotation?language=objc)
     #[doc(alias = "kCGTabletEventRotation")]
     pub const TabletEventRotation: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventtangentialpressure?language=objc)
     #[doc(alias = "kCGTabletEventTangentialPressure")]
     pub const TabletEventTangentialPressure: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventdeviceid?language=objc)
     #[doc(alias = "kCGTabletEventDeviceID")]
     pub const TabletEventDeviceID: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventvendor1?language=objc)
     #[doc(alias = "kCGTabletEventVendor1")]
     pub const TabletEventVendor1: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventvendor2?language=objc)
     #[doc(alias = "kCGTabletEventVendor2")]
     pub const TabletEventVendor2: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventvendor3?language=objc)
     #[doc(alias = "kCGTabletEventVendor3")]
     pub const TabletEventVendor3: Self = Self(27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventvendorid?language=objc)
     #[doc(alias = "kCGTabletProximityEventVendorID")]
     pub const TabletProximityEventVendorID: Self = Self(28);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventtabletid?language=objc)
     #[doc(alias = "kCGTabletProximityEventTabletID")]
     pub const TabletProximityEventTabletID: Self = Self(29);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventpointerid?language=objc)
     #[doc(alias = "kCGTabletProximityEventPointerID")]
     pub const TabletProximityEventPointerID: Self = Self(30);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventdeviceid?language=objc)
     #[doc(alias = "kCGTabletProximityEventDeviceID")]
     pub const TabletProximityEventDeviceID: Self = Self(31);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventsystemtabletid?language=objc)
     #[doc(alias = "kCGTabletProximityEventSystemTabletID")]
     pub const TabletProximityEventSystemTabletID: Self = Self(32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventvendorpointertype?language=objc)
     #[doc(alias = "kCGTabletProximityEventVendorPointerType")]
     pub const TabletProximityEventVendorPointerType: Self = Self(33);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventvendorpointerserialnumber?language=objc)
     #[doc(alias = "kCGTabletProximityEventVendorPointerSerialNumber")]
     pub const TabletProximityEventVendorPointerSerialNumber: Self = Self(34);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventvendoruniqueid?language=objc)
     #[doc(alias = "kCGTabletProximityEventVendorUniqueID")]
     pub const TabletProximityEventVendorUniqueID: Self = Self(35);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventcapabilitymask?language=objc)
     #[doc(alias = "kCGTabletProximityEventCapabilityMask")]
     pub const TabletProximityEventCapabilityMask: Self = Self(36);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventpointertype?language=objc)
     #[doc(alias = "kCGTabletProximityEventPointerType")]
     pub const TabletProximityEventPointerType: Self = Self(37);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityevententerproximity?language=objc)
     #[doc(alias = "kCGTabletProximityEventEnterProximity")]
     pub const TabletProximityEventEnterProximity: Self = Self(38);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventtargetprocessserialnumber?language=objc)
     #[doc(alias = "kCGEventTargetProcessSerialNumber")]
     pub const EventTargetProcessSerialNumber: Self = Self(39);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventtargetunixprocessid?language=objc)
     #[doc(alias = "kCGEventTargetUnixProcessID")]
     pub const EventTargetUnixProcessID: Self = Self(40);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventsourceunixprocessid?language=objc)
     #[doc(alias = "kCGEventSourceUnixProcessID")]
     pub const EventSourceUnixProcessID: Self = Self(41);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventsourceuserdata?language=objc)
     #[doc(alias = "kCGEventSourceUserData")]
     pub const EventSourceUserData: Self = Self(42);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventsourceuserid?language=objc)
     #[doc(alias = "kCGEventSourceUserID")]
     pub const EventSourceUserID: Self = Self(43);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventsourcegroupid?language=objc)
     #[doc(alias = "kCGEventSourceGroupID")]
     pub const EventSourceGroupID: Self = Self(44);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventsourcestateid?language=objc)
     #[doc(alias = "kCGEventSourceStateID")]
     pub const EventSourceStateID: Self = Self(45);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventiscontinuous?language=objc)
     #[doc(alias = "kCGScrollWheelEventIsContinuous")]
     pub const ScrollWheelEventIsContinuous: Self = Self(88);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventwindowundermousepointer?language=objc)
     #[doc(alias = "kCGMouseEventWindowUnderMousePointer")]
     pub const MouseEventWindowUnderMousePointer: Self = Self(91);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventwindowundermousepointerthatcanhandlethisevent?language=objc)
     #[doc(alias = "kCGMouseEventWindowUnderMousePointerThatCanHandleThisEvent")]
     pub const MouseEventWindowUnderMousePointerThatCanHandleThisEvent: Self = Self(92);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventunacceleratedpointermovementx?language=objc)
     #[doc(alias = "kCGEventUnacceleratedPointerMovementX")]
     pub const EventUnacceleratedPointerMovementX: Self = Self(170);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventunacceleratedpointermovementy?language=objc)
     #[doc(alias = "kCGEventUnacceleratedPointerMovementY")]
     pub const EventUnacceleratedPointerMovementY: Self = Self(171);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventmomentumoptionphase?language=objc)
     #[doc(alias = "kCGScrollWheelEventMomentumOptionPhase")]
     pub const ScrollWheelEventMomentumOptionPhase: Self = Self(173);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventaccelerateddeltaaxis1?language=objc)
     #[doc(alias = "kCGScrollWheelEventAcceleratedDeltaAxis1")]
     pub const ScrollWheelEventAcceleratedDeltaAxis1: Self = Self(176);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventaccelerateddeltaaxis2?language=objc)
     #[doc(alias = "kCGScrollWheelEventAcceleratedDeltaAxis2")]
     pub const ScrollWheelEventAcceleratedDeltaAxis2: Self = Self(175);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventrawdeltaaxis1?language=objc)
     #[doc(alias = "kCGScrollWheelEventRawDeltaAxis1")]
     pub const ScrollWheelEventRawDeltaAxis1: Self = Self(178);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventrawdeltaaxis2?language=objc)
     #[doc(alias = "kCGScrollWheelEventRawDeltaAxis2")]
     pub const ScrollWheelEventRawDeltaAxis2: Self = Self(177);
 }
@@ -412,10 +528,13 @@ unsafe impl RefEncode for CGEventField {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventMouseSubtype(pub u32);
 impl CGEventMouseSubtype {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventmousesubtype/defaulttype?language=objc)
     #[doc(alias = "kCGEventMouseSubtypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventmousesubtype/tabletpoint?language=objc)
     #[doc(alias = "kCGEventMouseSubtypeTabletPoint")]
     pub const TabletPoint: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventmousesubtype/tabletproximity?language=objc)
     #[doc(alias = "kCGEventMouseSubtypeTabletProximity")]
     pub const TabletProximity: Self = Self(2);
 }
@@ -436,10 +555,13 @@ unsafe impl RefEncode for CGEventMouseSubtype {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventTapLocation(pub u32);
 impl CGEventTapLocation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtaplocation/cghideventtap?language=objc)
     #[doc(alias = "kCGHIDEventTap")]
     pub const HIDEventTap: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtaplocation/cgsessioneventtap?language=objc)
     #[doc(alias = "kCGSessionEventTap")]
     pub const SessionEventTap: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtaplocation/cgannotatedsessioneventtap?language=objc)
     #[doc(alias = "kCGAnnotatedSessionEventTap")]
     pub const AnnotatedSessionEventTap: Self = Self(2);
 }
@@ -460,8 +582,10 @@ unsafe impl RefEncode for CGEventTapLocation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventTapPlacement(pub u32);
 impl CGEventTapPlacement {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapplacement/headinserteventtap?language=objc)
     #[doc(alias = "kCGHeadInsertEventTap")]
     pub const HeadInsertEventTap: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapplacement/tailappendeventtap?language=objc)
     #[doc(alias = "kCGTailAppendEventTap")]
     pub const TailAppendEventTap: Self = Self(1);
 }
@@ -482,8 +606,10 @@ unsafe impl RefEncode for CGEventTapPlacement {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventTapOptions(pub u32);
 impl CGEventTapOptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapoptions/defaulttap?language=objc)
     #[doc(alias = "kCGEventTapOptionDefault")]
     pub const Default: Self = Self(0x00000000);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapoptions/listenonly?language=objc)
     #[doc(alias = "kCGEventTapOptionListenOnly")]
     pub const ListenOnly: Self = Self(0x00000001);
 }
@@ -588,10 +714,13 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventSourceStateID(pub i32);
 impl CGEventSourceStateID {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid/privatestate?language=objc)
     #[doc(alias = "kCGEventSourceStatePrivate")]
     pub const Private: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid/combinedsessionstate?language=objc)
     #[doc(alias = "kCGEventSourceStateCombinedSessionState")]
     pub const CombinedSessionState: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid/hidsystemstate?language=objc)
     #[doc(alias = "kCGEventSourceStateHIDSystemState")]
     pub const HIDSystemState: Self = Self(1);
 }

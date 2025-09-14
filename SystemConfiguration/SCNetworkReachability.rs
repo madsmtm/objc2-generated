@@ -143,24 +143,34 @@ unsafe impl RefEncode for SCNetworkReachabilityContext {
 pub struct SCNetworkReachabilityFlags(pub u32);
 bitflags::bitflags! {
     impl SCNetworkReachabilityFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/transientconnection?language=objc)
         #[doc(alias = "kSCNetworkReachabilityFlagsTransientConnection")]
         const TransientConnection = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/reachable?language=objc)
         #[doc(alias = "kSCNetworkReachabilityFlagsReachable")]
         const Reachable = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/connectionrequired?language=objc)
         #[doc(alias = "kSCNetworkReachabilityFlagsConnectionRequired")]
         const ConnectionRequired = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/connectionontraffic?language=objc)
         #[doc(alias = "kSCNetworkReachabilityFlagsConnectionOnTraffic")]
         const ConnectionOnTraffic = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/interventionrequired?language=objc)
         #[doc(alias = "kSCNetworkReachabilityFlagsInterventionRequired")]
         const InterventionRequired = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/connectionondemand?language=objc)
         #[doc(alias = "kSCNetworkReachabilityFlagsConnectionOnDemand")]
         const ConnectionOnDemand = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/islocaladdress?language=objc)
         #[doc(alias = "kSCNetworkReachabilityFlagsIsLocalAddress")]
         const IsLocalAddress = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/isdirect?language=objc)
         #[doc(alias = "kSCNetworkReachabilityFlagsIsDirect")]
         const IsDirect = 1<<17;
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/iswwan?language=objc)
         #[doc(alias = "kSCNetworkReachabilityFlagsIsWWAN")]
         const IsWWAN = 1<<18;
+/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/connectionautomatic?language=objc)
         #[doc(alias = "kSCNetworkReachabilityFlagsConnectionAutomatic")]
         const ConnectionAutomatic = SCNetworkReachabilityFlags::ConnectionOnTraffic.0;
     }
@@ -210,6 +220,8 @@ impl SCNetworkReachability {
     /// # Safety
     ///
     /// `address` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycreatewithaddress(_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityCreateWithAddress")]
     #[cfg(feature = "libc")]
     #[deprecated]
@@ -246,6 +258,8 @@ impl SCNetworkReachability {
     ///
     /// - `local_address` must be a valid pointer or null.
     /// - `remote_address` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycreatewithaddresspair(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityCreateWithAddressPair")]
     #[cfg(feature = "libc")]
     #[deprecated]
@@ -283,6 +297,8 @@ impl SCNetworkReachability {
     /// # Safety
     ///
     /// `nodename` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycreatewithname(_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityCreateWithName")]
     #[deprecated]
     #[inline]
@@ -304,6 +320,8 @@ impl SCNetworkReachability {
 unsafe impl ConcreteType for SCNetworkReachability {
     /// Returns the type identifier of all SCNetworkReachability
     /// instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitygettypeid()?language=objc)
     #[doc(alias = "SCNetworkReachabilityGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -331,6 +349,8 @@ impl SCNetworkReachability {
     /// # Safety
     ///
     /// `flags` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitygetflags(_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityGetFlags")]
     #[deprecated]
     #[inline]
@@ -364,6 +384,8 @@ impl SCNetworkReachability {
     ///
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitysetcallback(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilitySetCallback")]
     #[deprecated]
     #[inline]
@@ -396,6 +418,8 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the target is scheduled successfully;
     /// FALSE otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityScheduleWithRunLoop")]
     #[deprecated]
     #[inline]
@@ -426,6 +450,8 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the target is unscheduled successfully;
     /// FALSE otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityUnscheduleFromRunLoop")]
     #[deprecated]
     #[inline]
@@ -457,6 +483,8 @@ impl SCNetworkReachability {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitysetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilitySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[deprecated]

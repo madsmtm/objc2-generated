@@ -15,9 +15,11 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVTopShelfContentStyle(pub NSInteger);
 impl TVTopShelfContentStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcontentstyle/inset?language=objc)
     #[doc(alias = "TVTopShelfContentStyleInset")]
     #[deprecated = "TVTopShelfProvider has been replaced by TVTopShelfContent"]
     pub const Inset: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcontentstyle/sectioned?language=objc)
     #[doc(alias = "TVTopShelfContentStyleSectioned")]
     #[deprecated = "TVTopShelfProvider has been replaced by TVTopShelfContent"]
     pub const Sectioned: Self = Self(2);
@@ -82,6 +84,8 @@ extern "C-unwind" {
     /// current running version of the OS.
     ///
     /// For shapes not supported in the given style, returns CGSizeZero.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfimagesize(shape:style:)?language=objc)
     #[cfg(all(feature = "TVContentItem", feature = "objc2-core-foundation"))]
     #[deprecated = "TVTopShelfImageSizeForShape has been replaced by [TVTopShelfSectionedContent imageSizeForImageShape:] and [TVTopShelfInsetContent imageSize]"]
     pub fn TVTopShelfImageSizeForShape(

@@ -14,10 +14,13 @@ use crate::*;
 pub struct MPSNDArrayQuantizationScheme(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNDArrayQuantizationScheme: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizationscheme/none?language=objc)
         #[doc(alias = "MPSNDArrayQuantizationTypeNone")]
         const TypeNone = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizationscheme/typeaffine?language=objc)
         #[doc(alias = "MPSNDArrayQuantizationTypeAffine")]
         const TypeAffine = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizationscheme/typelut?language=objc)
         #[doc(alias = "MPSNDArrayQuantizationTypeLUT")]
         const TypeLUT = 2;
     }

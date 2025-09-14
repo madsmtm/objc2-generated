@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDeleteRule(pub NSUInteger);
 impl NSDeleteRule {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeleterule/noactiondeleterule?language=objc)
     #[doc(alias = "NSNoActionDeleteRule")]
     pub const NoActionDeleteRule: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeleterule/nullifydeleterule?language=objc)
     #[doc(alias = "NSNullifyDeleteRule")]
     pub const NullifyDeleteRule: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeleterule/cascadedeleterule?language=objc)
     #[doc(alias = "NSCascadeDeleteRule")]
     pub const CascadeDeleteRule: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeleterule/denydeleterule?language=objc)
     #[doc(alias = "NSDenyDeleteRule")]
     pub const DenyDeleteRule: Self = Self(3);
 }

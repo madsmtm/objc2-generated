@@ -155,12 +155,16 @@ impl BEScrollView {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEScrollViewScrollUpdatePhase(pub NSInteger);
 impl BEScrollViewScrollUpdatePhase {
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate/phase-swift.enum/began?language=objc)
     #[doc(alias = "BEScrollViewScrollUpdatePhaseBegan")]
     pub const Began: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate/phase-swift.enum/changed?language=objc)
     #[doc(alias = "BEScrollViewScrollUpdatePhaseChanged")]
     pub const Changed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate/phase-swift.enum/ended?language=objc)
     #[doc(alias = "BEScrollViewScrollUpdatePhaseEnded")]
     pub const Ended: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate/phase-swift.enum/cancelled?language=objc)
     #[doc(alias = "BEScrollViewScrollUpdatePhaseCancelled")]
     pub const Cancelled: Self = Self(3);
 }

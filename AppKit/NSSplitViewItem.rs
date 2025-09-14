@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSplitViewItemBehavior(pub NSInteger);
 impl NSSplitViewItemBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/behavior-swift.enum/default?language=objc)
     #[doc(alias = "NSSplitViewItemBehaviorDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/behavior-swift.enum/sidebar?language=objc)
     #[doc(alias = "NSSplitViewItemBehaviorSidebar")]
     pub const Sidebar: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/behavior-swift.enum/contentlist?language=objc)
     #[doc(alias = "NSSplitViewItemBehaviorContentList")]
     pub const ContentList: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/behavior-swift.enum/inspector?language=objc)
     #[doc(alias = "NSSplitViewItemBehaviorInspector")]
     pub const Inspector: Self = Self(3);
 }
@@ -40,15 +44,23 @@ unsafe impl RefEncode for NSSplitViewItemBehavior {
 pub struct NSSplitViewItemCollapseBehavior(pub NSInteger);
 impl NSSplitViewItemCollapseBehavior {
     /// The item uses the default collapsing behavior for its set `behavior`. The default may change over time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.enum/default?language=objc)
     #[doc(alias = "NSSplitViewItemCollapseBehaviorDefault")]
     pub const Default: Self = Self(0);
     /// The item prefers to keep the other panes at their current size and position on screen, potentially growing or shrinking the window in the direction to best preserve that. But it will break that preference in order to keep the window fully on screen or when in full screen.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.enum/preferresizingsplitviewwithfixedsiblings?language=objc)
     #[doc(alias = "NSSplitViewItemCollapseBehaviorPreferResizingSplitViewWithFixedSiblings")]
     pub const PreferResizingSplitViewWithFixedSiblings: Self = Self(1);
     /// The item prefers to resize the other split panes. This will be broken when uncollapsing if the item can't fully uncollapse before hitting the minimum size of the other panes or the window.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.enum/preferresizingsiblingswithfixedsplitview?language=objc)
     #[doc(alias = "NSSplitViewItemCollapseBehaviorPreferResizingSiblingsWithFixedSplitView")]
     pub const PreferResizingSiblingsWithFixedSplitView: Self = Self(2);
     /// The item will collapse/uncollapse purely from a constraint animation, with a constraint priority of the item’s `holdingPriority`. This could result in a partial internal content resize and window resize, and has no implications for keeping the window on screen. External constraints can be used to tweak exactly how the animation affects item, sibling, and window size and positions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.enum/useconstraints?language=objc)
     #[doc(alias = "NSSplitViewItemCollapseBehaviorUseConstraints")]
     pub const UseConstraints: Self = Self(3);
 }

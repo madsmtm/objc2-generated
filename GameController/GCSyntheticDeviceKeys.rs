@@ -5,5 +5,6 @@ use core::ptr::NonNull;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/kiohidgcsyntheticdevicekey?language=objc)
 pub const kIOHIDGCSyntheticDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"GCSyntheticDevice\0") };

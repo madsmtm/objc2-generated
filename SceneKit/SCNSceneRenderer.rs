@@ -24,14 +24,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNAntialiasingMode(pub NSUInteger);
 impl SCNAntialiasingMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode/none?language=objc)
     #[doc(alias = "SCNAntialiasingModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode/multisampling2x?language=objc)
     #[doc(alias = "SCNAntialiasingModeMultisampling2X")]
     pub const Multisampling2X: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode/multisampling4x?language=objc)
     #[doc(alias = "SCNAntialiasingModeMultisampling4X")]
     pub const Multisampling4X: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode/multisampling8x?language=objc)
     #[doc(alias = "SCNAntialiasingModeMultisampling8X")]
     pub const Multisampling8X: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode/multisampling16x?language=objc)
     #[doc(alias = "SCNAntialiasingModeMultisampling16X")]
     pub const Multisampling16X: Self = Self(4);
 }
@@ -55,12 +60,16 @@ unsafe impl RefEncode for SCNAntialiasingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNRenderingAPI(pub NSUInteger);
 impl SCNRenderingAPI {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderingapi/metal?language=objc)
     #[doc(alias = "SCNRenderingAPIMetal")]
     pub const Metal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderingapi/opengllegacy?language=objc)
     #[doc(alias = "SCNRenderingAPIOpenGLLegacy")]
     pub const OpenGLLegacy: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderingapi/openglcore32?language=objc)
     #[doc(alias = "SCNRenderingAPIOpenGLCore32")]
     pub const OpenGLCore32: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderingapi/openglcore41?language=objc)
     #[doc(alias = "SCNRenderingAPIOpenGLCore41")]
     pub const OpenGLCore41: Self = Self(3);
 }
@@ -82,28 +91,40 @@ unsafe impl RefEncode for SCNRenderingAPI {
 pub struct SCNDebugOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl SCNDebugOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/scndebugoptionnone?language=objc)
         #[doc(alias = "SCNDebugOptionNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showphysicsshapes?language=objc)
         #[doc(alias = "SCNDebugOptionShowPhysicsShapes")]
         const ShowPhysicsShapes = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showboundingboxes?language=objc)
         #[doc(alias = "SCNDebugOptionShowBoundingBoxes")]
         const ShowBoundingBoxes = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showlightinfluences?language=objc)
         #[doc(alias = "SCNDebugOptionShowLightInfluences")]
         const ShowLightInfluences = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showlightextents?language=objc)
         #[doc(alias = "SCNDebugOptionShowLightExtents")]
         const ShowLightExtents = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showphysicsfields?language=objc)
         #[doc(alias = "SCNDebugOptionShowPhysicsFields")]
         const ShowPhysicsFields = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showwireframe?language=objc)
         #[doc(alias = "SCNDebugOptionShowWireframe")]
         const ShowWireframe = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/renderaswireframe?language=objc)
         #[doc(alias = "SCNDebugOptionRenderAsWireframe")]
         const RenderAsWireframe = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showskeletons?language=objc)
         #[doc(alias = "SCNDebugOptionShowSkeletons")]
         const ShowSkeletons = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showcreases?language=objc)
         #[doc(alias = "SCNDebugOptionShowCreases")]
         const ShowCreases = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showconstraints?language=objc)
         #[doc(alias = "SCNDebugOptionShowConstraints")]
         const ShowConstraints = 1<<9;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showcameras?language=objc)
         #[doc(alias = "SCNDebugOptionShowCameras")]
         const ShowCameras = 1<<10;
     }

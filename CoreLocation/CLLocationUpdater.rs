@@ -14,14 +14,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLLiveUpdateConfiguration(pub NSInteger);
 impl CLLiveUpdateConfiguration {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration/clliveupdateconfigurationdefault?language=objc)
     #[doc(alias = "CLLiveUpdateConfigurationDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration/clliveupdateconfigurationautomotivenavigation?language=objc)
     #[doc(alias = "CLLiveUpdateConfigurationAutomotiveNavigation")]
     pub const AutomotiveNavigation: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration/clliveupdateconfigurationothernavigation?language=objc)
     #[doc(alias = "CLLiveUpdateConfigurationOtherNavigation")]
     pub const OtherNavigation: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration/clliveupdateconfigurationfitness?language=objc)
     #[doc(alias = "CLLiveUpdateConfigurationFitness")]
     pub const Fitness: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration/clliveupdateconfigurationairborne?language=objc)
     #[doc(alias = "CLLiveUpdateConfigurationAirborne")]
     pub const Airborne: Self = Self(4);
 }

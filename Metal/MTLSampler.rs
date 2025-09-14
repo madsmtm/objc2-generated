@@ -21,8 +21,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerMinMagFilter(pub NSUInteger);
 impl MTLSamplerMinMagFilter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerminmagfilter/nearest?language=objc)
     #[doc(alias = "MTLSamplerMinMagFilterNearest")]
     pub const Nearest: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerminmagfilter/linear?language=objc)
     #[doc(alias = "MTLSamplerMinMagFilterLinear")]
     pub const Linear: Self = Self(1);
 }
@@ -43,10 +45,13 @@ unsafe impl RefEncode for MTLSamplerMinMagFilter {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerMipFilter(pub NSUInteger);
 impl MTLSamplerMipFilter {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplermipfilter/notmipmapped?language=objc)
     #[doc(alias = "MTLSamplerMipFilterNotMipmapped")]
     pub const NotMipmapped: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplermipfilter/nearest?language=objc)
     #[doc(alias = "MTLSamplerMipFilterNearest")]
     pub const Nearest: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplermipfilter/linear?language=objc)
     #[doc(alias = "MTLSamplerMipFilterLinear")]
     pub const Linear: Self = Self(2);
 }
@@ -85,16 +90,22 @@ unsafe impl RefEncode for MTLSamplerMipFilter {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerAddressMode(pub NSUInteger);
 impl MTLSamplerAddressMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/clamptoedge?language=objc)
     #[doc(alias = "MTLSamplerAddressModeClampToEdge")]
     pub const ClampToEdge: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/mirrorclamptoedge?language=objc)
     #[doc(alias = "MTLSamplerAddressModeMirrorClampToEdge")]
     pub const MirrorClampToEdge: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/repeat?language=objc)
     #[doc(alias = "MTLSamplerAddressModeRepeat")]
     pub const Repeat: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/mirrorrepeat?language=objc)
     #[doc(alias = "MTLSamplerAddressModeMirrorRepeat")]
     pub const MirrorRepeat: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/clamptozero?language=objc)
     #[doc(alias = "MTLSamplerAddressModeClampToZero")]
     pub const ClampToZero: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/clamptobordercolor?language=objc)
     #[doc(alias = "MTLSamplerAddressModeClampToBorderColor")]
     pub const ClampToBorderColor: Self = Self(5);
 }
@@ -124,10 +135,13 @@ unsafe impl RefEncode for MTLSamplerAddressMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerBorderColor(pub NSUInteger);
 impl MTLSamplerBorderColor {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor/transparentblack?language=objc)
     #[doc(alias = "MTLSamplerBorderColorTransparentBlack")]
     pub const TransparentBlack: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor/opaqueblack?language=objc)
     #[doc(alias = "MTLSamplerBorderColorOpaqueBlack")]
     pub const OpaqueBlack: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor/opaquewhite?language=objc)
     #[doc(alias = "MTLSamplerBorderColorOpaqueWhite")]
     pub const OpaqueWhite: Self = Self(2);
 }
@@ -149,12 +163,18 @@ unsafe impl RefEncode for MTLSamplerBorderColor {
 pub struct MTLSamplerReductionMode(pub NSUInteger);
 impl MTLSamplerReductionMode {
     /// A reduction mode that adds together the product of each contributing sample value by its weight.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerreductionmode/weightedaverage?language=objc)
     #[doc(alias = "MTLSamplerReductionModeWeightedAverage")]
     pub const WeightedAverage: Self = Self(0);
     /// A reduction mode that finds the minimum contributing sample value by separately evaluating each channel.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerreductionmode/minimum?language=objc)
     #[doc(alias = "MTLSamplerReductionModeMinimum")]
     pub const Minimum: Self = Self(1);
     /// A reduction mode that finds the maximum contributing sample value by separately evaluating each channel.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerreductionmode/maximum?language=objc)
     #[doc(alias = "MTLSamplerReductionModeMaximum")]
     pub const Maximum: Self = Self(2);
 }

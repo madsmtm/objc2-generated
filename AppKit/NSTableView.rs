@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewDropOperation(pub NSUInteger);
 impl NSTableViewDropOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/dropoperation/on?language=objc)
     #[doc(alias = "NSTableViewDropOn")]
     pub const On: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/dropoperation/above?language=objc)
     #[doc(alias = "NSTableViewDropAbove")]
     pub const Above: Self = Self(1);
 }
@@ -35,16 +37,22 @@ unsafe impl RefEncode for NSTableViewDropOperation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewColumnAutoresizingStyle(pub NSUInteger);
 impl NSTableViewColumnAutoresizingStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/nocolumnautoresizing?language=objc)
     #[doc(alias = "NSTableViewNoColumnAutoresizing")]
     pub const NoColumnAutoresizing: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/uniformcolumnautoresizingstyle?language=objc)
     #[doc(alias = "NSTableViewUniformColumnAutoresizingStyle")]
     pub const UniformColumnAutoresizingStyle: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/sequentialcolumnautoresizingstyle?language=objc)
     #[doc(alias = "NSTableViewSequentialColumnAutoresizingStyle")]
     pub const SequentialColumnAutoresizingStyle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/reversesequentialcolumnautoresizingstyle?language=objc)
     #[doc(alias = "NSTableViewReverseSequentialColumnAutoresizingStyle")]
     pub const ReverseSequentialColumnAutoresizingStyle: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/lastcolumnonlyautoresizingstyle?language=objc)
     #[doc(alias = "NSTableViewLastColumnOnlyAutoresizingStyle")]
     pub const LastColumnOnlyAutoresizingStyle: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/firstcolumnonlyautoresizingstyle?language=objc)
     #[doc(alias = "NSTableViewFirstColumnOnlyAutoresizingStyle")]
     pub const FirstColumnOnlyAutoresizingStyle: Self = Self(5);
 }
@@ -64,12 +72,16 @@ unsafe impl RefEncode for NSTableViewColumnAutoresizingStyle {
 pub struct NSTableViewGridLineStyle(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableViewGridLineStyle: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewgridlinestyle/nstableviewgridnone?language=objc)
         #[doc(alias = "NSTableViewGridNone")]
         const GridNone = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/gridlinestyle/solidverticalgridlinemask?language=objc)
         #[doc(alias = "NSTableViewSolidVerticalGridLineMask")]
         const SolidVerticalGridLineMask = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/gridlinestyle/solidhorizontalgridlinemask?language=objc)
         #[doc(alias = "NSTableViewSolidHorizontalGridLineMask")]
         const SolidHorizontalGridLineMask = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/gridlinestyle/dashedhorizontalgridlinemask?language=objc)
         #[doc(alias = "NSTableViewDashedHorizontalGridLineMask")]
         const DashedHorizontalGridLineMask = 1<<3;
     }
@@ -89,14 +101,19 @@ unsafe impl RefEncode for NSTableViewGridLineStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewRowSizeStyle(pub NSInteger);
 impl NSTableViewRowSizeStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum/default?language=objc)
     #[doc(alias = "NSTableViewRowSizeStyleDefault")]
     pub const Default: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum/custom?language=objc)
     #[doc(alias = "NSTableViewRowSizeStyleCustom")]
     pub const Custom: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum/small?language=objc)
     #[doc(alias = "NSTableViewRowSizeStyleSmall")]
     pub const Small: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum/medium?language=objc)
     #[doc(alias = "NSTableViewRowSizeStyleMedium")]
     pub const Medium: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum/large?language=objc)
     #[doc(alias = "NSTableViewRowSizeStyleLarge")]
     pub const Large: Self = Self(3);
 }
@@ -115,14 +132,19 @@ unsafe impl RefEncode for NSTableViewRowSizeStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewStyle(pub NSInteger);
 impl NSTableViewStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/automatic?language=objc)
     #[doc(alias = "NSTableViewStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/fullwidth?language=objc)
     #[doc(alias = "NSTableViewStyleFullWidth")]
     pub const FullWidth: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/inset?language=objc)
     #[doc(alias = "NSTableViewStyleInset")]
     pub const Inset: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/sourcelist?language=objc)
     #[doc(alias = "NSTableViewStyleSourceList")]
     pub const SourceList: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/plain?language=objc)
     #[doc(alias = "NSTableViewStylePlain")]
     pub const Plain: Self = Self(4);
 }
@@ -141,10 +163,13 @@ unsafe impl RefEncode for NSTableViewStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewSelectionHighlightStyle(pub NSInteger);
 impl NSTableViewSelectionHighlightStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.enum/none?language=objc)
     #[doc(alias = "NSTableViewSelectionHighlightStyleNone")]
     pub const None: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.enum/regular?language=objc)
     #[doc(alias = "NSTableViewSelectionHighlightStyleRegular")]
     pub const Regular: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.enum/sourcelist?language=objc)
     #[doc(alias = "NSTableViewSelectionHighlightStyleSourceList")]
     #[deprecated = "Set the NSTableView.style property to NSTableViewStyleSourceList instead."]
     pub const SourceList: Self = Self(1);
@@ -164,12 +189,16 @@ unsafe impl RefEncode for NSTableViewSelectionHighlightStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewDraggingDestinationFeedbackStyle(pub NSInteger);
 impl NSTableViewDraggingDestinationFeedbackStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum/none?language=objc)
     #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleNone")]
     pub const None: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum/regular?language=objc)
     #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleRegular")]
     pub const Regular: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum/sourcelist?language=objc)
     #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleSourceList")]
     pub const SourceList: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum/gap?language=objc)
     #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleGap")]
     pub const Gap: Self = Self(2);
 }
@@ -188,8 +217,10 @@ unsafe impl RefEncode for NSTableViewDraggingDestinationFeedbackStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableRowActionEdge(pub NSInteger);
 impl NSTableRowActionEdge {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowactionedge/leading?language=objc)
     #[doc(alias = "NSTableRowActionEdgeLeading")]
     pub const Leading: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowactionedge/trailing?language=objc)
     #[doc(alias = "NSTableRowActionEdgeTrailing")]
     pub const Trailing: Self = Self(1);
 }
@@ -212,18 +243,25 @@ pub type NSTableViewAutosaveName = NSString;
 pub struct NSTableViewAnimationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableViewAnimationOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewanimationoptions/nstableviewanimationeffectnone?language=objc)
         #[doc(alias = "NSTableViewAnimationEffectNone")]
         const EffectNone = 0x0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/effectfade?language=objc)
         #[doc(alias = "NSTableViewAnimationEffectFade")]
         const EffectFade = 0x1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/effectgap?language=objc)
         #[doc(alias = "NSTableViewAnimationEffectGap")]
         const EffectGap = 0x2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/slideup?language=objc)
         #[doc(alias = "NSTableViewAnimationSlideUp")]
         const SlideUp = 0x10;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/slidedown?language=objc)
         #[doc(alias = "NSTableViewAnimationSlideDown")]
         const SlideDown = 0x20;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/slideleft?language=objc)
         #[doc(alias = "NSTableViewAnimationSlideLeft")]
         const SlideLeft = 0x30;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/slideright?language=objc)
         #[doc(alias = "NSTableViewAnimationSlideRight")]
         const SlideRight = 0x40;
     }

@@ -165,12 +165,16 @@ impl UISceneOpenExternalURLOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneCollectionJoinBehavior(pub NSInteger);
 impl UISceneCollectionJoinBehavior {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior/automatic?language=objc)
     #[doc(alias = "UISceneCollectionJoinBehaviorAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior/preferred?language=objc)
     #[doc(alias = "UISceneCollectionJoinBehaviorPreferred")]
     pub const Preferred: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior/disallowed?language=objc)
     #[doc(alias = "UISceneCollectionJoinBehaviorDisallowed")]
     pub const Disallowed: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior/preferredwithoutactivating?language=objc)
     #[doc(alias = "UISceneCollectionJoinBehaviorPreferredWithoutActivating")]
     pub const PreferredWithoutActivating: Self = Self(3);
 }

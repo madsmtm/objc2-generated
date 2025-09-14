@@ -766,9 +766,13 @@ impl CKSyncEngineSendChangesScope {
 pub struct CKSyncEngineSyncReason(pub NSInteger);
 impl CKSyncEngineSyncReason {
     /// This sync was scheduled automatically by the sync engine.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesyncreason/scheduled?language=objc)
     #[doc(alias = "CKSyncEngineSyncReasonScheduled")]
     pub const Scheduled: Self = Self(0);
     /// This sync was requested manually by calling ``CKSyncEngine/fetchChanges(_:)`` or ``CKSyncEngine/sendChanges(_:)``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesyncreason/manual?language=objc)
     #[doc(alias = "CKSyncEngineSyncReasonManual")]
     pub const Manual: Self = Self(1);
 }

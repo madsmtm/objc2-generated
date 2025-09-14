@@ -19,8 +19,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKUserNotificationInterfaceType(pub NSInteger);
 impl WKUserNotificationInterfaceType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacetype/default?language=objc)
     #[doc(alias = "WKUserNotificationInterfaceTypeDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacetype/custom?language=objc)
     #[doc(alias = "WKUserNotificationInterfaceTypeCustom")]
     pub const Custom: Self = Self(1);
 }
@@ -40,51 +42,67 @@ unsafe impl RefEncode for WKUserNotificationInterfaceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMenuItemIcon(pub NSInteger);
 impl WKMenuItemIcon {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/accept?language=objc)
     #[doc(alias = "WKMenuItemIconAccept")]
     #[deprecated]
     pub const Accept: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/add?language=objc)
     #[doc(alias = "WKMenuItemIconAdd")]
     #[deprecated]
     pub const Add: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/block?language=objc)
     #[doc(alias = "WKMenuItemIconBlock")]
     #[deprecated]
     pub const Block: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/decline?language=objc)
     #[doc(alias = "WKMenuItemIconDecline")]
     #[deprecated]
     pub const Decline: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/info?language=objc)
     #[doc(alias = "WKMenuItemIconInfo")]
     #[deprecated]
     pub const Info: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/maybe?language=objc)
     #[doc(alias = "WKMenuItemIconMaybe")]
     #[deprecated]
     pub const Maybe: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/more?language=objc)
     #[doc(alias = "WKMenuItemIconMore")]
     #[deprecated]
     pub const More: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/mute?language=objc)
     #[doc(alias = "WKMenuItemIconMute")]
     #[deprecated]
     pub const Mute: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/pause?language=objc)
     #[doc(alias = "WKMenuItemIconPause")]
     #[deprecated]
     pub const Pause: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/play?language=objc)
     #[doc(alias = "WKMenuItemIconPlay")]
     #[deprecated]
     pub const Play: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/repeat?language=objc)
     #[doc(alias = "WKMenuItemIconRepeat")]
     #[deprecated]
     pub const Repeat: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/resume?language=objc)
     #[doc(alias = "WKMenuItemIconResume")]
     #[deprecated]
     pub const Resume: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/share?language=objc)
     #[doc(alias = "WKMenuItemIconShare")]
     #[deprecated]
     pub const Share: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/shuffle?language=objc)
     #[doc(alias = "WKMenuItemIconShuffle")]
     #[deprecated]
     pub const Shuffle: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/speaker?language=objc)
     #[doc(alias = "WKMenuItemIconSpeaker")]
     #[deprecated]
     pub const Speaker: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/trash?language=objc)
     #[doc(alias = "WKMenuItemIconTrash")]
     #[deprecated]
     pub const Trash: Self = Self(15);
@@ -104,10 +122,13 @@ unsafe impl RefEncode for WKMenuItemIcon {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKTextInputMode(pub NSInteger);
 impl WKTextInputMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextinputmode/plain?language=objc)
     #[doc(alias = "WKTextInputModePlain")]
     pub const Plain: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextinputmode/allowemoji?language=objc)
     #[doc(alias = "WKTextInputModeAllowEmoji")]
     pub const AllowEmoji: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextinputmode/allowanimatedemoji?language=objc)
     #[doc(alias = "WKTextInputModeAllowAnimatedEmoji")]
     #[deprecated = "Animated Emojis are no longer supported. Use WKTextInputModeAllowEmoji instead"]
     pub const AllowAnimatedEmoji: Self = Self(2);
@@ -127,10 +148,13 @@ unsafe impl RefEncode for WKTextInputMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAlertControllerStyle(pub NSInteger);
 impl WKAlertControllerStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertcontrollerstyle/alert?language=objc)
     #[doc(alias = "WKAlertControllerStyleAlert")]
     pub const Alert: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertcontrollerstyle/sidebysidebuttonsalert?language=objc)
     #[doc(alias = "WKAlertControllerStyleSideBySideButtonsAlert")]
     pub const SideBySideButtonsAlert: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertcontrollerstyle/actionsheet?language=objc)
     #[doc(alias = "WKAlertControllerStyleActionSheet")]
     pub const ActionSheet: Self = Self(2);
 }
@@ -149,8 +173,10 @@ unsafe impl RefEncode for WKAlertControllerStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKPageOrientation(pub NSInteger);
 impl WKPageOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkpageorientation/horizontal?language=objc)
     #[doc(alias = "WKPageOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkpageorientation/vertical?language=objc)
     #[doc(alias = "WKPageOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -169,10 +195,13 @@ unsafe impl RefEncode for WKPageOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceScrollPosition(pub NSInteger);
 impl WKInterfaceScrollPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacescrollposition/top?language=objc)
     #[doc(alias = "WKInterfaceScrollPositionTop")]
     pub const Top: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacescrollposition/centeredvertically?language=objc)
     #[doc(alias = "WKInterfaceScrollPositionCenteredVertically")]
     pub const CenteredVertically: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacescrollposition/bottom?language=objc)
     #[doc(alias = "WKInterfaceScrollPositionBottom")]
     pub const Bottom: Self = Self(2);
 }
@@ -191,10 +220,13 @@ unsafe impl RefEncode for WKInterfaceScrollPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKVideoGravity(pub NSInteger);
 impl WKVideoGravity {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkvideogravity/resizeaspect?language=objc)
     #[doc(alias = "WKVideoGravityResizeAspect")]
     pub const ResizeAspect: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkvideogravity/resizeaspectfill?language=objc)
     #[doc(alias = "WKVideoGravityResizeAspectFill")]
     pub const ResizeAspectFill: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkvideogravity/resize?language=objc)
     #[doc(alias = "WKVideoGravityResize")]
     pub const Resize: Self = Self(2);
 }
@@ -213,10 +245,13 @@ unsafe impl RefEncode for WKVideoGravity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAudioRecorderPreset(pub NSInteger);
 impl WKAudioRecorderPreset {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecorderpreset/narrowbandspeech?language=objc)
     #[doc(alias = "WKAudioRecorderPresetNarrowBandSpeech")]
     pub const NarrowBandSpeech: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecorderpreset/widebandspeech?language=objc)
     #[doc(alias = "WKAudioRecorderPresetWideBandSpeech")]
     pub const WideBandSpeech: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecorderpreset/highqualityaudio?language=objc)
     #[doc(alias = "WKAudioRecorderPresetHighQualityAudio")]
     pub const HighQualityAudio: Self = Self(2);
 }

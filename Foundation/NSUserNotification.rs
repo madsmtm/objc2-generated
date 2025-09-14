@@ -13,17 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUserNotificationActivationType(pub NSInteger);
 impl NSUserNotificationActivationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum/none?language=objc)
     #[doc(alias = "NSUserNotificationActivationTypeNone")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum/contentsclicked?language=objc)
     #[doc(alias = "NSUserNotificationActivationTypeContentsClicked")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const ContentsClicked: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum/actionbuttonclicked?language=objc)
     #[doc(alias = "NSUserNotificationActivationTypeActionButtonClicked")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const ActionButtonClicked: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum/replied?language=objc)
     #[doc(alias = "NSUserNotificationActivationTypeReplied")]
     pub const Replied: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum/additionalactionclicked?language=objc)
     #[doc(alias = "NSUserNotificationActivationTypeAdditionalActionClicked")]
     pub const AdditionalActionClicked: Self = Self(4);
 }

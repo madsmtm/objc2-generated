@@ -27,6 +27,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKIndex {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450223-skindexgettypeid?language=objc)
     #[doc(alias = "SKIndexGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -54,6 +55,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKIndexDocumentIterator {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443022-skindexdocumentiteratorgettypeid?language=objc)
     #[doc(alias = "SKIndexDocumentIteratorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -69,12 +71,16 @@ unsafe impl ConcreteType for SKIndexDocumentIterator {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKIndexType(pub c_uint);
 impl SKIndexType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindextype/kskindexunknown?language=objc)
     #[doc(alias = "kSKIndexUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindextype/kskindexinverted?language=objc)
     #[doc(alias = "kSKIndexInverted")]
     pub const Inverted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindextype/kskindexvector?language=objc)
     #[doc(alias = "kSKIndexVector")]
     pub const Vector: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindextype/kskindexinvertedvector?language=objc)
     #[doc(alias = "kSKIndexInvertedVector")]
     pub const InvertedVector: Self = Self(3);
 }
@@ -94,12 +100,16 @@ unsafe impl RefEncode for SKIndexType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKDocumentIndexState(pub c_uint);
 impl SKDocumentIndexState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentindexstate/kskdocumentstatenotindexed?language=objc)
     #[doc(alias = "kSKDocumentStateNotIndexed")]
     pub const StateNotIndexed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentindexstate/kskdocumentstateindexed?language=objc)
     #[doc(alias = "kSKDocumentStateIndexed")]
     pub const StateIndexed: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentindexstate/kskdocumentstateaddpending?language=objc)
     #[doc(alias = "kSKDocumentStateAddPending")]
     pub const StateAddPending: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentindexstate/kskdocumentstatedeletepending?language=objc)
     #[doc(alias = "kSKDocumentStateDeletePending")]
     pub const StateDeletePending: Self = Self(3);
 }
@@ -115,6 +125,8 @@ unsafe impl RefEncode for SKDocumentIndexState {
 }
 
 impl SKIndex {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446111-skindexcreatewithurl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_url` might not allow `None`.
@@ -144,6 +156,8 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449017-skindexopenwithurl?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_url` might not allow `None`.
@@ -166,6 +180,8 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447500-skindexcreatewithmutabledata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_data` might not allow `None`.
@@ -200,6 +216,8 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446398-skindexopenwithdata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_data` might not allow `None`.
@@ -220,6 +238,8 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444201-skindexopenwithmutabledata?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_data` might not allow `None`.
@@ -240,6 +260,7 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450667-skindexflush?language=objc)
     #[doc(alias = "SKIndexFlush")]
     #[inline]
     pub unsafe fn flush(&self) -> bool {
@@ -250,6 +271,7 @@ impl SKIndex {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448696-skindexsetmaximumbytesbeforeflus?language=objc)
     #[doc(alias = "SKIndexSetMaximumBytesBeforeFlush")]
     #[inline]
     pub unsafe fn set_maximum_bytes_before_flush(&self, in_bytes_for_update: CFIndex) {
@@ -259,6 +281,7 @@ impl SKIndex {
         unsafe { SKIndexSetMaximumBytesBeforeFlush(self, in_bytes_for_update) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445329-skindexgetmaximumbytesbeforeflus?language=objc)
     #[doc(alias = "SKIndexGetMaximumBytesBeforeFlush")]
     #[inline]
     pub unsafe fn maximum_bytes_before_flush(&self) -> CFIndex {
@@ -268,6 +291,7 @@ impl SKIndex {
         unsafe { SKIndexGetMaximumBytesBeforeFlush(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443628-skindexcompact?language=objc)
     #[doc(alias = "SKIndexCompact")]
     #[inline]
     pub unsafe fn compact(&self) -> bool {
@@ -278,6 +302,7 @@ impl SKIndex {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442236-skindexgetindextype?language=objc)
     #[doc(alias = "SKIndexGetIndexType")]
     #[inline]
     pub unsafe fn index_type(&self) -> SKIndexType {
@@ -287,6 +312,7 @@ impl SKIndex {
         unsafe { SKIndexGetIndexType(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443461-skindexgetanalysisproperties?language=objc)
     #[doc(alias = "SKIndexGetAnalysisProperties")]
     #[inline]
     pub unsafe fn analysis_properties(&self) -> Option<CFRetained<CFDictionary>> {
@@ -297,6 +323,7 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449093-skindexgetdocumentcount?language=objc)
     #[doc(alias = "SKIndexGetDocumentCount")]
     #[inline]
     pub unsafe fn document_count(&self) -> CFIndex {
@@ -306,6 +333,7 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentCount(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442401-skindexclose?language=objc)
     #[doc(alias = "SKIndexClose")]
     #[inline]
     pub unsafe fn close(&self) {
@@ -320,6 +348,8 @@ impl SKIndex {
 pub type SKDocumentID = CFIndex;
 
 impl SKIndex {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444518-skindexadddocumentwithtext?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document` should be of the correct type.
@@ -348,6 +378,8 @@ impl SKIndex {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444897-skindexadddocument?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document` should be of the correct type.
@@ -376,6 +408,8 @@ impl SKIndex {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444375-skindexremovedocument?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document` should be of the correct type.
@@ -394,6 +428,8 @@ impl SKIndex {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449500-skindexcopydocumentproperties?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document` should be of the correct type.
@@ -415,6 +451,8 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444576-skindexsetdocumentproperties?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document` should be of the correct type.
@@ -440,6 +478,8 @@ impl SKIndex {
         unsafe { SKIndexSetDocumentProperties(self, in_document, in_properties) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443396-skindexgetdocumentstate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document` should be of the correct type.
@@ -457,6 +497,8 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentState(self, in_document) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444437-skindexgetdocumentid?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document` should be of the correct type.
@@ -474,6 +516,7 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentID(self, in_document) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442760-skindexcopydocumentfordocumentid?language=objc)
     #[doc(alias = "SKIndexCopyDocumentForDocumentID")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -491,6 +534,8 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448935-skindexrenamedocument?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document` should be of the correct type.
@@ -515,6 +560,8 @@ impl SKIndex {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449899-skindexmovedocument?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_document` should be of the correct type.
@@ -542,6 +589,8 @@ impl SKIndex {
 }
 
 impl SKIndexDocumentIterator {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446189-skindexdocumentiteratorcreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `in_parent_document` should be of the correct type.
@@ -563,6 +612,7 @@ impl SKIndexDocumentIterator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442212-skindexdocumentiteratorcopynext?language=objc)
     #[doc(alias = "SKIndexDocumentIteratorCopyNext")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -578,6 +628,7 @@ impl SKIndexDocumentIterator {
 }
 
 impl SKIndex {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444628-skindexgetmaximumdocumentid?language=objc)
     #[doc(alias = "SKIndexGetMaximumDocumentID")]
     #[inline]
     pub unsafe fn maximum_document_id(&self) -> SKDocumentID {
@@ -587,6 +638,7 @@ impl SKIndex {
         unsafe { SKIndexGetMaximumDocumentID(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448341-skindexgetdocumenttermcount?language=objc)
     #[doc(alias = "SKIndexGetDocumentTermCount")]
     #[inline]
     pub unsafe fn document_term_count(&self, in_document_id: SKDocumentID) -> CFIndex {
@@ -599,6 +651,7 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentTermCount(self, in_document_id) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446868-skindexcopytermidarrayfordocumen?language=objc)
     #[doc(alias = "SKIndexCopyTermIDArrayForDocumentID")]
     #[inline]
     pub unsafe fn term_id_array_for_document_id(
@@ -615,6 +668,7 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447537-skindexgetdocumenttermfrequency?language=objc)
     #[doc(alias = "SKIndexGetDocumentTermFrequency")]
     #[inline]
     pub unsafe fn document_term_frequency(
@@ -632,6 +686,7 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentTermFrequency(self, in_document_id, in_term_id) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444278-skindexgetmaximumtermid?language=objc)
     #[doc(alias = "SKIndexGetMaximumTermID")]
     #[inline]
     pub unsafe fn maximum_term_id(&self) -> CFIndex {
@@ -641,6 +696,7 @@ impl SKIndex {
         unsafe { SKIndexGetMaximumTermID(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444015-skindexgettermdocumentcount?language=objc)
     #[doc(alias = "SKIndexGetTermDocumentCount")]
     #[inline]
     pub unsafe fn term_document_count(&self, in_term_id: CFIndex) -> CFIndex {
@@ -650,6 +706,7 @@ impl SKIndex {
         unsafe { SKIndexGetTermDocumentCount(self, in_term_id) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448003-skindexcopydocumentidarrayforter?language=objc)
     #[doc(alias = "SKIndexCopyDocumentIDArrayForTermID")]
     #[inline]
     pub unsafe fn document_id_array_for_term_id(
@@ -666,6 +723,7 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442802-skindexcopytermstringfortermid?language=objc)
     #[doc(alias = "SKIndexCopyTermStringForTermID")]
     #[inline]
     pub unsafe fn term_string_for_term_id(
@@ -682,6 +740,8 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448558-skindexgettermidfortermstring?language=objc)
+    ///
     /// # Safety
     ///
     /// `in_term_string` might not allow `None`.
@@ -699,6 +759,7 @@ impl SKIndex {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447859-skloaddefaultextractorplugins?language=objc)
     pub fn SKLoadDefaultExtractorPlugIns();
 }
 

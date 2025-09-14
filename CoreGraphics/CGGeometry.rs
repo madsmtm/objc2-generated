@@ -39,6 +39,7 @@ extern "C" {
 
 // TODO: pub fn CGRectMake(x: CGFloat,y: CGFloat,width: CGFloat,height: CGFloat,) -> CGRect;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetminx(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectGetMinX(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -47,6 +48,7 @@ pub extern "C-unwind" fn CGRectGetMinX(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMinX(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetmidx(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectGetMidX(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -55,6 +57,7 @@ pub extern "C-unwind" fn CGRectGetMidX(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMidX(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetmaxx(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectGetMaxX(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -63,6 +66,7 @@ pub extern "C-unwind" fn CGRectGetMaxX(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMaxX(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetminy(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectGetMinY(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -71,6 +75,7 @@ pub extern "C-unwind" fn CGRectGetMinY(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMinY(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetmidy(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectGetMidY(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -79,6 +84,7 @@ pub extern "C-unwind" fn CGRectGetMidY(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMidY(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetmaxy(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectGetMaxY(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -87,6 +93,7 @@ pub extern "C-unwind" fn CGRectGetMaxY(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMaxY(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetwidth(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectGetWidth(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -95,6 +102,7 @@ pub extern "C-unwind" fn CGRectGetWidth(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetWidth(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetheight(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectGetHeight(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -103,6 +111,7 @@ pub extern "C-unwind" fn CGRectGetHeight(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetHeight(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpointequaltopoint(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -> bool {
     extern "C-unwind" {
@@ -111,6 +120,7 @@ pub extern "C-unwind" fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -
     unsafe { CGPointEqualToPoint(point1, point2) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsizeequaltosize(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool {
     extern "C-unwind" {
@@ -119,6 +129,7 @@ pub extern "C-unwind" fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool
     unsafe { CGSizeEqualToSize(size1, size2) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectequaltorect(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool {
     extern "C-unwind" {
@@ -127,6 +138,7 @@ pub extern "C-unwind" fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool
     unsafe { CGRectEqualToRect(rect1, rect2) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectstandardize(_:)?language=objc)
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectStandardize(rect: CGRect) -> CGRect {
@@ -136,6 +148,7 @@ pub extern "C-unwind" fn CGRectStandardize(rect: CGRect) -> CGRect {
     unsafe { CGRectStandardize(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectisempty(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectIsEmpty(rect: CGRect) -> bool {
     extern "C-unwind" {
@@ -144,6 +157,7 @@ pub extern "C-unwind" fn CGRectIsEmpty(rect: CGRect) -> bool {
     unsafe { CGRectIsEmpty(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectisnull(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectIsNull(rect: CGRect) -> bool {
     extern "C-unwind" {
@@ -152,6 +166,7 @@ pub extern "C-unwind" fn CGRectIsNull(rect: CGRect) -> bool {
     unsafe { CGRectIsNull(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectisinfinite(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectIsInfinite(rect: CGRect) -> bool {
     extern "C-unwind" {
@@ -160,6 +175,7 @@ pub extern "C-unwind" fn CGRectIsInfinite(rect: CGRect) -> bool {
     unsafe { CGRectIsInfinite(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectinset(_:_:_:)?language=objc)
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect {
@@ -169,6 +185,7 @@ pub extern "C-unwind" fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> 
     unsafe { CGRectInset(rect, dx, dy) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectintegral(_:)?language=objc)
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectIntegral(rect: CGRect) -> CGRect {
@@ -178,6 +195,7 @@ pub extern "C-unwind" fn CGRectIntegral(rect: CGRect) -> CGRect {
     unsafe { CGRectIntegral(rect) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectunion(_:_:)?language=objc)
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect {
@@ -187,6 +205,7 @@ pub extern "C-unwind" fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect {
     unsafe { CGRectUnion(r1, r2) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectintersection(_:_:)?language=objc)
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect {
@@ -196,6 +215,7 @@ pub extern "C-unwind" fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect {
     unsafe { CGRectIntersection(r1, r2) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectoffset(_:_:_:)?language=objc)
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect {
@@ -206,6 +226,8 @@ pub extern "C-unwind" fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) ->
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectdivide?language=objc)
+    ///
     /// # Safety
     ///
     /// - `slice` must be a valid pointer.
@@ -219,6 +241,7 @@ extern "C-unwind" {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectcontainspoint(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bool {
     extern "C-unwind" {
@@ -227,6 +250,7 @@ pub extern "C-unwind" fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bo
     unsafe { CGRectContainsPoint(rect, point) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectcontainsrect(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> bool {
     extern "C-unwind" {
@@ -235,6 +259,7 @@ pub extern "C-unwind" fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> boo
     unsafe { CGRectContainsRect(rect1, rect2) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectintersectsrect(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> bool {
     extern "C-unwind" {
@@ -244,6 +269,8 @@ pub extern "C-unwind" fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> b
 }
 
 /// * Persistent representations. **
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpointcreatedictionaryrepresentation(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
     point: CGPoint,
@@ -257,6 +284,8 @@ pub extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpointmakewithdictionaryrepresentation(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` generic must be of the correct type.
@@ -268,6 +297,7 @@ extern "C-unwind" {
     ) -> bool;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsizecreatedictionaryrepresentation(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
     size: CGSize,
@@ -281,6 +311,8 @@ pub extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsizemakewithdictionaryrepresentation(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` generic must be of the correct type.
@@ -292,6 +324,7 @@ extern "C-unwind" {
     ) -> bool;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectcreatedictionaryrepresentation(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
     param1: CGRect,
@@ -305,6 +338,8 @@ pub extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectmakewithdictionaryrepresentation(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` generic must be of the correct type.

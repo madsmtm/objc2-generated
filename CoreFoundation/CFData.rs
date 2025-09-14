@@ -46,6 +46,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFData {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatagettypeid()?language=objc)
     #[doc(alias = "CFDataGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -57,6 +58,8 @@ unsafe impl ConcreteType for CFData {
 }
 
 impl CFData {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatacreate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -79,6 +82,8 @@ impl CFData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatacreatewithbytesnocopy(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -105,6 +110,7 @@ impl CFData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatacreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFDataCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -123,6 +129,7 @@ impl CFData {
 }
 
 impl CFMutableData {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatacreatemutable(_:_:)?language=objc)
     #[doc(alias = "CFDataCreateMutable")]
     #[inline]
     pub fn new(
@@ -139,6 +146,8 @@ impl CFMutableData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatacreatemutablecopy(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -163,6 +172,7 @@ impl CFMutableData {
 }
 
 impl CFData {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatagetlength(_:)?language=objc)
     #[doc(alias = "CFDataGetLength")]
     #[inline]
     pub fn length(&self) -> CFIndex {
@@ -172,6 +182,7 @@ impl CFData {
         unsafe { CFDataGetLength(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatagetbyteptr(_:)?language=objc)
     #[doc(alias = "CFDataGetBytePtr")]
     #[inline]
     pub fn byte_ptr(&self) -> *const u8 {
@@ -183,6 +194,7 @@ impl CFData {
 }
 
 impl CFMutableData {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatagetmutablebyteptr(_:)?language=objc)
     #[doc(alias = "CFDataGetMutableBytePtr")]
     #[inline]
     pub fn mutable_byte_ptr(the_data: Option<&CFMutableData>) -> *mut u8 {
@@ -194,6 +206,8 @@ impl CFMutableData {
 }
 
 impl CFData {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatagetbytes(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
@@ -208,6 +222,7 @@ impl CFData {
 }
 
 impl CFMutableData {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatasetlength(_:_:)?language=objc)
     #[doc(alias = "CFDataSetLength")]
     #[inline]
     pub fn set_length(the_data: Option<&CFMutableData>, length: CFIndex) {
@@ -217,6 +232,7 @@ impl CFMutableData {
         unsafe { CFDataSetLength(the_data, length) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdataincreaselength(_:_:)?language=objc)
     #[doc(alias = "CFDataIncreaseLength")]
     #[inline]
     pub fn increase_length(the_data: Option<&CFMutableData>, extra_length: CFIndex) {
@@ -226,6 +242,8 @@ impl CFMutableData {
         unsafe { CFDataIncreaseLength(the_data, extra_length) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdataappendbytes(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_data` might not allow `None`.
@@ -247,6 +265,8 @@ impl CFMutableData {
         unsafe { CFDataAppendBytes(the_data, bytes, length) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatareplacebytes(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `the_data` might not allow `None`.
@@ -270,6 +290,7 @@ impl CFMutableData {
         unsafe { CFDataReplaceBytes(the_data, range, new_bytes, new_length) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatadeletebytes(_:_:)?language=objc)
     #[doc(alias = "CFDataDeleteBytes")]
     #[inline]
     pub fn delete_bytes(the_data: Option<&CFMutableData>, range: CFRange) {
@@ -287,8 +308,10 @@ impl CFMutableData {
 pub struct CFDataSearchFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFDataSearchFlags: CFOptionFlags {
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatasearchflags/backwards?language=objc)
         #[doc(alias = "kCFDataSearchBackwards")]
         const Backwards = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatasearchflags/anchored?language=objc)
         #[doc(alias = "kCFDataSearchAnchored")]
         const Anchored = 1<<1;
     }
@@ -305,6 +328,8 @@ unsafe impl RefEncode for CFDataSearchFlags {
 }
 
 impl CFData {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatafind(_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `data_to_find` might not allow `None`.

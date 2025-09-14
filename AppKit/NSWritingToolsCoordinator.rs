@@ -31,6 +31,8 @@ impl NSWritingToolsCoordinatorTextUpdateReason {
     /// An operation that involved a person editing the text in your view.
     ///
     /// Specify this option when the changes come from the text input system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textupdatereason/typing?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorTextUpdateReasonTyping")]
     pub const Typing: Self = Self(0);
     /// An operation that changed the view’s text as part of an undo or
@@ -38,6 +40,8 @@ impl NSWritingToolsCoordinatorTextUpdateReason {
     ///
     /// Specify this option when an undo or redo command initiated the
     /// change to your view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textupdatereason/undoredo?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorTextUpdateReasonUndoRedo")]
     pub const UndoRedo: Self = Self(1);
 }
@@ -78,6 +82,8 @@ impl NSWritingToolsCoordinatorState {
     /// After the coordinator finishes incorporating any changes for the
     /// current operation, it returns to the `inactive` state and waits
     /// for the person to choose a different option or dismiss the Writing Tools UI.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/state-swift.enum/inactive?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorStateInactive")]
     pub const Inactive: Self = Self(0);
     /// A state that indicates Writing Tools is handling interactions in
@@ -91,6 +97,8 @@ impl NSWritingToolsCoordinatorState {
     /// state. If the person discards the change and selects a tool with
     /// an interactive experience instead, the coordinator transitions
     /// to the ``interactiveResting`` state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/state-swift.enum/noninteractive?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorStateNoninteractive")]
     pub const Noninteractive: Self = Self(1);
     /// A state that indicates Writing Tools is in the resting state
@@ -104,6 +112,8 @@ impl NSWritingToolsCoordinatorState {
     /// to the `interactiveResting` state and awaits further commands. If
     /// the person accepts the changes or dismisses the Writing Tools UI,
     /// the coordinator transitions from this state to the ``inactive`` state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/state-swift.enum/interactiveresting?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorStateInteractiveResting")]
     pub const InteractiveResting: Self = Self(2);
     /// A state that indicates Writing Tools is processing a request and
@@ -114,6 +124,8 @@ impl NSWritingToolsCoordinatorState {
     /// the coordinator submits the request for processing and delivers
     /// the results back to your view. When the coordinator finishes delivering
     /// the results, it transitions back to the ``interactiveResting`` state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/state-swift.enum/interactivestreaming?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorStateInteractiveStreaming")]
     pub const InteractiveStreaming: Self = Self(3);
 }
@@ -150,6 +162,8 @@ impl NSWritingToolsCoordinatorTextReplacementReason {
     /// Update your view’s text storage and use the provided ``NSWritingToolsCoordinator/AnimationParameters``
     /// type to create any view-specific animations you need to support the
     /// animated replacement of the text.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textreplacementreason/interactive?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorTextReplacementReasonInteractive")]
     pub const Interactive: Self = Self(0);
     /// An option to replace the text in your view without animating the change.
@@ -157,6 +171,8 @@ impl NSWritingToolsCoordinatorTextReplacementReason {
     /// When Writing Tools requests a noninteractive change in your delegate’s
     /// ``NSWritingToolsCoordinator/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)``
     /// method, update your view’s text storage without animating the change.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textreplacementreason/noninteractive?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorTextReplacementReasonNoninteractive")]
     pub const Noninteractive: Self = Self(1);
 }
@@ -188,6 +204,8 @@ impl NSWritingToolsCoordinatorContextScope {
     /// along with some additional text before and after the selection. When
     /// performing changes inline with your view’s content, Writing Tools
     /// applies animations only to the selected text.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/contextscope/userselection?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorContextScopeUserSelection")]
     pub const UserSelection: Self = Self(0);
     /// An option to provide all of your view’s text.
@@ -195,6 +213,8 @@ impl NSWritingToolsCoordinatorContextScope {
     /// With this option, include all of the text your view manages. If your
     /// view has multiple text storage objects, create a separate context object
     /// for each one.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/contextscope/fulldocument?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorContextScopeFullDocument")]
     pub const FullDocument: Self = Self(1);
     /// An option to provide only the text in the currently visible portion
@@ -202,6 +222,8 @@ impl NSWritingToolsCoordinatorContextScope {
     ///
     /// With this option, include only the currently visible text, along with
     /// some additional text before and after the visible text.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/contextscope/visiblearea?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorContextScopeVisibleArea")]
     pub const VisibleArea: Self = Self(2);
 }
@@ -236,6 +258,8 @@ impl NSWritingToolsCoordinatorTextAnimation {
     /// the text that Writing Tools is about to evaluate. In the same space
     /// where that text appears, Writing Tools displays a preview image that
     /// you provide and animates changes to that image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textanimation/anticipate?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorTextAnimationAnticipate")]
     pub const Anticipate: Self = Self(0);
     /// The animation that Writing Tools performs when removing text from your view.
@@ -245,6 +269,8 @@ impl NSWritingToolsCoordinatorTextAnimation {
     /// you haven’t already. If you support animating the reflow of your view’s
     /// text, you can also prepare any other animations you need. Writing Tools
     /// uses a preview object you provide to animate the removal of the text.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textanimation/remove?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorTextAnimationRemove")]
     pub const Remove: Self = Self(1);
     /// The animation that Writing Tools performs when inserting text into your view.
@@ -254,6 +280,8 @@ impl NSWritingToolsCoordinatorTextAnimation {
     /// already. If you support animating the reflow of your view’s text, you can
     /// also prepare any other animations you need. Writing Tools uses a preview
     /// object you provide to animate the insertion of the text.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textanimation/insert?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorTextAnimationInsert")]
     pub const Insert: Self = Self(2);
     /// The animation effect that Writing Tools performs when the view is waiting
@@ -262,6 +290,8 @@ impl NSWritingToolsCoordinatorTextAnimation {
     /// When Writing Tools isn’t actively evaluating your text, it creates this animation.
     /// When preparing for this animation, display the text in the specified range
     /// with a foreground color of 50% grey.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textanimation/anticipateinactive?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorTextAnimationAnticipateInactive")]
     pub const AnticipateInactive: Self = Self(8);
     /// The animation effect that Writing Tools performs on text situated after
@@ -271,6 +301,8 @@ impl NSWritingToolsCoordinatorTextAnimation {
     /// to make room for the new text. When preparing for this animation, hide the
     /// text between the insertion point and the end of your text storage. When
     /// finishing the animation, show the text again.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textanimation/translate?language=objc)
     #[doc(alias = "NSWritingToolsCoordinatorTextAnimationTranslate")]
     pub const Translate: Self = Self(9);
 }

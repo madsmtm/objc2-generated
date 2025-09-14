@@ -33,6 +33,8 @@ unsafe impl ConcreteType for SecPolicySearch {
     /// Returns: The CFTypeID of SecPolicySearch instances.
     ///
     /// This API is deprecated in 10.7. The SecPolicySearchRef type is no longer used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysearchgettypeid?language=objc)
     #[doc(alias = "SecPolicySearchGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -63,6 +65,8 @@ impl SecPolicySearch {
     /// - `policy_oid` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     /// - `search_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysearchcreate?language=objc)
     #[doc(alias = "SecPolicySearchCreate")]
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -97,6 +101,8 @@ impl SecPolicySearch {
     /// # Safety
     ///
     /// `policy_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysearchcopynext?language=objc)
     #[doc(alias = "SecPolicySearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated]

@@ -15,16 +15,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineBreakMode(pub NSInteger);
 impl NSLineBreakMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinebreakmode/bywordwrapping?language=objc)
     #[doc(alias = "NSLineBreakByWordWrapping")]
     pub const ByWordWrapping: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinebreakmode/bycharwrapping?language=objc)
     #[doc(alias = "NSLineBreakByCharWrapping")]
     pub const ByCharWrapping: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinebreakmode/byclipping?language=objc)
     #[doc(alias = "NSLineBreakByClipping")]
     pub const ByClipping: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinebreakmode/bytruncatinghead?language=objc)
     #[doc(alias = "NSLineBreakByTruncatingHead")]
     pub const ByTruncatingHead: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinebreakmode/bytruncatingtail?language=objc)
     #[doc(alias = "NSLineBreakByTruncatingTail")]
     pub const ByTruncatingTail: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinebreakmode/bytruncatingmiddle?language=objc)
     #[doc(alias = "NSLineBreakByTruncatingMiddle")]
     pub const ByTruncatingMiddle: Self = Self(5);
 }
@@ -44,12 +50,16 @@ unsafe impl RefEncode for NSLineBreakMode {
 pub struct NSLineBreakStrategy(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLineBreakStrategy: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinebreakstrategy/nslinebreakstrategynone?language=objc)
         #[doc(alias = "NSLineBreakStrategyNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsparagraphstyle/linebreakstrategy-swift.struct/pushout?language=objc)
         #[doc(alias = "NSLineBreakStrategyPushOut")]
         const PushOut = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsparagraphstyle/linebreakstrategy-swift.struct/hangulwordpriority?language=objc)
         #[doc(alias = "NSLineBreakStrategyHangulWordPriority")]
         const HangulWordPriority = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsparagraphstyle/linebreakstrategy-swift.struct/standard?language=objc)
         #[doc(alias = "NSLineBreakStrategyStandard")]
         const Standard = 0xFFFF;
     }

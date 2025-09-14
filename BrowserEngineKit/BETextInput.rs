@@ -34,8 +34,10 @@ unsafe impl RefEncode for BEDirectionalTextRange {
 pub struct BETextReplacementOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl BETextReplacementOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextreplacementoptions/betextreplacementoptionsnone?language=objc)
         #[doc(alias = "BETextReplacementOptionsNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextreplacementoptions/addunderline?language=objc)
         #[doc(alias = "BETextReplacementOptionsAddUnderline")]
         const AddUnderline = 1<<0;
     }
@@ -55,10 +57,13 @@ unsafe impl RefEncode for BETextReplacementOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEKeyModifierFlags(pub NSInteger);
 impl BEKeyModifierFlags {
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeymodifierflags/none?language=objc)
     #[doc(alias = "BEKeyModifierFlagNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeymodifierflags/shift?language=objc)
     #[doc(alias = "BEKeyModifierFlagShift")]
     pub const Shift: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeymodifierflags/capslock?language=objc)
     #[doc(alias = "BEKeyModifierFlagCapsLock")]
     pub const CapsLock: Self = Self(2);
 }

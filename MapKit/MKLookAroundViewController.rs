@@ -16,10 +16,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKLookAroundBadgePosition(pub NSInteger);
 impl MKLookAroundBadgePosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundbadgeposition/topleading?language=objc)
     #[doc(alias = "MKLookAroundBadgePositionTopLeading")]
     pub const TopLeading: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundbadgeposition/toptrailing?language=objc)
     #[doc(alias = "MKLookAroundBadgePositionTopTrailing")]
     pub const TopTrailing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundbadgeposition/bottomtrailing?language=objc)
     #[doc(alias = "MKLookAroundBadgePositionBottomTrailing")]
     pub const BottomTrailing: Self = Self(2);
 }

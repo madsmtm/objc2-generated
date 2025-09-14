@@ -16,14 +16,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGImageAnimationStatus(pub OSStatus);
 impl CGImageAnimationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus/parametererror?language=objc)
     #[doc(alias = "kCGImageAnimationStatus_ParameterError")]
     pub const ParameterError: Self = Self(-22140);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus/corruptinputimage?language=objc)
     #[doc(alias = "kCGImageAnimationStatus_CorruptInputImage")]
     pub const CorruptInputImage: Self = Self(-22141);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus/unsupportedformat?language=objc)
     #[doc(alias = "kCGImageAnimationStatus_UnsupportedFormat")]
     pub const UnsupportedFormat: Self = Self(-22142);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus/incompleteinputimage?language=objc)
     #[doc(alias = "kCGImageAnimationStatus_IncompleteInputImage")]
     pub const IncompleteInputImage: Self = Self(-22143);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus/allocationfailure?language=objc)
     #[doc(alias = "kCGImageAnimationStatus_AllocationFailure")]
     pub const AllocationFailure: Self = Self(-22144);
 }
@@ -70,6 +75,8 @@ extern "C-unwind" {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cganimateimageaturlwithblock(_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
     pub fn CGAnimateImageAtURLWithBlock(
         url: &CFURL,
@@ -90,6 +97,8 @@ extern "C-unwind" {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cganimateimagedatawithblock(_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
     pub fn CGAnimateImageDataWithBlock(
         data: &CFData,

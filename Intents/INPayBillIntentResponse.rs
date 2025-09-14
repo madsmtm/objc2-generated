@@ -14,27 +14,35 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPayBillIntentResponseCode(pub NSInteger);
 impl INPayBillIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INPayBillIntentResponseCodeUnspecified")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/ready?language=objc)
     #[doc(alias = "INPayBillIntentResponseCodeReady")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INPayBillIntentResponseCodeInProgress")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/success?language=objc)
     #[doc(alias = "INPayBillIntentResponseCodeSuccess")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/failure?language=objc)
     #[doc(alias = "INPayBillIntentResponseCodeFailure")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INPayBillIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/failurecredentialsunverified?language=objc)
     #[doc(alias = "INPayBillIntentResponseCodeFailureCredentialsUnverified")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureCredentialsUnverified: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/failureinsufficientfunds?language=objc)
     #[doc(alias = "INPayBillIntentResponseCodeFailureInsufficientFunds")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureInsufficientFunds: Self = Self(7);

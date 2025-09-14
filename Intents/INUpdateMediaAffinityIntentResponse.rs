@@ -12,16 +12,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INUpdateMediaAffinityIntentResponseCode(pub NSInteger);
 impl INUpdateMediaAffinityIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/ready?language=objc)
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/success?language=objc)
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/failure?language=objc)
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }

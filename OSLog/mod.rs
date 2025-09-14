@@ -70,22 +70,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEntryStoreCategory(pub NSInteger);
 impl OSLogEntryStoreCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/undefined?language=objc)
     #[doc(alias = "OSLogEntryStoreCategoryUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/metadata?language=objc)
     #[doc(alias = "OSLogEntryStoreCategoryMetadata")]
     pub const Metadata: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/shortterm?language=objc)
     #[doc(alias = "OSLogEntryStoreCategoryShortTerm")]
     pub const ShortTerm: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longtermauto?language=objc)
     #[doc(alias = "OSLogEntryStoreCategoryLongTermAuto")]
     pub const LongTermAuto: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longterm1?language=objc)
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm1")]
     pub const LongTerm1: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longterm3?language=objc)
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm3")]
     pub const LongTerm3: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longterm7?language=objc)
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm7")]
     pub const LongTerm7: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longterm14?language=objc)
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm14")]
     pub const LongTerm14: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longterm30?language=objc)
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm30")]
     pub const LongTerm30: Self = Self(8);
 }
@@ -297,16 +306,22 @@ impl OSLogEntryBoundary {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEntryLogLevel(pub NSInteger);
 impl OSLogEntryLogLevel {
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/undefined?language=objc)
     #[doc(alias = "OSLogEntryLogLevelUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/debug?language=objc)
     #[doc(alias = "OSLogEntryLogLevelDebug")]
     pub const Debug: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/info?language=objc)
     #[doc(alias = "OSLogEntryLogLevelInfo")]
     pub const Info: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/notice?language=objc)
     #[doc(alias = "OSLogEntryLogLevelNotice")]
     pub const Notice: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/error?language=objc)
     #[doc(alias = "OSLogEntryLogLevelError")]
     pub const Error: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/fault?language=objc)
     #[doc(alias = "OSLogEntryLogLevelFault")]
     pub const Fault: Self = Self(5);
 }
@@ -370,12 +385,16 @@ impl OSLogEntryLog {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEntrySignpostType(pub NSInteger);
 impl OSLogEntrySignpostType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost/signposttype-swift.enum/undefined?language=objc)
     #[doc(alias = "OSLogEntrySignpostTypeUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost/signposttype-swift.enum/intervalbegin?language=objc)
     #[doc(alias = "OSLogEntrySignpostTypeIntervalBegin")]
     pub const IntervalBegin: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost/signposttype-swift.enum/intervalend?language=objc)
     #[doc(alias = "OSLogEntrySignpostTypeIntervalEnd")]
     pub const IntervalEnd: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost/signposttype-swift.enum/event?language=objc)
     #[doc(alias = "OSLogEntrySignpostTypeEvent")]
     pub const Event: Self = Self(3);
 }
@@ -454,6 +473,7 @@ impl OSLogEntrySignpost {
 pub struct OSLogEnumeratorOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl OSLogEnumeratorOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogenumerator/options/reverse?language=objc)
         #[doc(alias = "OSLogEnumeratorReverse")]
         const Reverse = 0x01;
     }
@@ -512,16 +532,22 @@ impl OSLogEnumerator {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogMessageComponentArgumentCategory(pub NSInteger);
 impl OSLogMessageComponentArgumentCategory {
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/undefined?language=objc)
     #[doc(alias = "OSLogMessageComponentArgumentCategoryUndefined")]
     pub const Undefined: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/data?language=objc)
     #[doc(alias = "OSLogMessageComponentArgumentCategoryData")]
     pub const Data: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/double?language=objc)
     #[doc(alias = "OSLogMessageComponentArgumentCategoryDouble")]
     pub const Double: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/int64?language=objc)
     #[doc(alias = "OSLogMessageComponentArgumentCategoryInt64")]
     pub const Int64: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/string?language=objc)
     #[doc(alias = "OSLogMessageComponentArgumentCategoryString")]
     pub const String: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/uint64?language=objc)
     #[doc(alias = "OSLogMessageComponentArgumentCategoryUInt64")]
     pub const UInt64: Self = Self(5);
 }
@@ -681,8 +707,10 @@ impl OSLogPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogStoreScope(pub NSInteger);
 impl OSLogStoreScope {
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogstore/scope/system?language=objc)
     #[doc(alias = "OSLogStoreSystem")]
     pub const System: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogstore/scope/currentprocessidentifier?language=objc)
     #[doc(alias = "OSLogStoreCurrentProcessIdentifier")]
     pub const CurrentProcessIdentifier: Self = Self(1);
 }

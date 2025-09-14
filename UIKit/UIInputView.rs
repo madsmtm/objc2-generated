@@ -18,8 +18,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIInputViewStyle(pub NSInteger);
 impl UIInputViewStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinputview/style/default?language=objc)
     #[doc(alias = "UIInputViewStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinputview/style/keyboard?language=objc)
     #[doc(alias = "UIInputViewStyleKeyboard")]
     pub const Keyboard: Self = Self(1);
 }

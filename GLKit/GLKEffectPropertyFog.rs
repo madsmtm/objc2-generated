@@ -19,10 +19,13 @@ pub struct GLKFogMode(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKFogMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkfogmode/exp?language=objc)
     #[doc(alias = "GLKFogModeExp")]
     pub const Exp: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkfogmode/exp2?language=objc)
     #[doc(alias = "GLKFogModeExp2")]
     pub const Exp2: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkfogmode/linear?language=objc)
     #[doc(alias = "GLKFogModeLinear")]
     pub const Linear: Self = Self(2);
 }

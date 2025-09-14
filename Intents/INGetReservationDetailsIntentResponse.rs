@@ -13,16 +13,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetReservationDetailsIntentResponseCode(pub NSInteger);
 impl INGetReservationDetailsIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/ready?language=objc)
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/success?language=objc)
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/failure?language=objc)
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }

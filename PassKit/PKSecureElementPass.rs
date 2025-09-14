@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKSecureElementPassActivationState(pub NSInteger);
 impl PKSecureElementPassActivationState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum/activated?language=objc)
     #[doc(alias = "PKSecureElementPassActivationStateActivated")]
     pub const Activated: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum/requiresactivation?language=objc)
     #[doc(alias = "PKSecureElementPassActivationStateRequiresActivation")]
     pub const RequiresActivation: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum/activating?language=objc)
     #[doc(alias = "PKSecureElementPassActivationStateActivating")]
     pub const Activating: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum/suspended?language=objc)
     #[doc(alias = "PKSecureElementPassActivationStateSuspended")]
     pub const Suspended: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum/deactivated?language=objc)
     #[doc(alias = "PKSecureElementPassActivationStateDeactivated")]
     pub const Deactivated: Self = Self(4);
 }

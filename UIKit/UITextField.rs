@@ -18,12 +18,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextBorderStyle(pub NSInteger);
 impl UITextBorderStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/borderstyle-swift.enum/none?language=objc)
     #[doc(alias = "UITextBorderStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/borderstyle-swift.enum/line?language=objc)
     #[doc(alias = "UITextBorderStyleLine")]
     pub const Line: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/borderstyle-swift.enum/bezel?language=objc)
     #[doc(alias = "UITextBorderStyleBezel")]
     pub const Bezel: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/borderstyle-swift.enum/roundedrect?language=objc)
     #[doc(alias = "UITextBorderStyleRoundedRect")]
     pub const RoundedRect: Self = Self(3);
 }
@@ -42,12 +46,16 @@ unsafe impl RefEncode for UITextBorderStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextFieldViewMode(pub NSInteger);
 impl UITextFieldViewMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/viewmode/never?language=objc)
     #[doc(alias = "UITextFieldViewModeNever")]
     pub const Never: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/viewmode/whileediting?language=objc)
     #[doc(alias = "UITextFieldViewModeWhileEditing")]
     pub const WhileEditing: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/viewmode/unlessediting?language=objc)
     #[doc(alias = "UITextFieldViewModeUnlessEditing")]
     pub const UnlessEditing: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/viewmode/always?language=objc)
     #[doc(alias = "UITextFieldViewModeAlways")]
     pub const Always: Self = Self(3);
 }
@@ -66,8 +74,10 @@ unsafe impl RefEncode for UITextFieldViewMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextFieldDidEndEditingReason(pub NSInteger);
 impl UITextFieldDidEndEditingReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/didendeditingreason/committed?language=objc)
     #[doc(alias = "UITextFieldDidEndEditingReasonCommitted")]
     pub const Committed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/didendeditingreason/cancelled?language=objc)
     #[doc(alias = "UITextFieldDidEndEditingReasonCancelled")]
     pub const Cancelled: Self = Self(1);
 }

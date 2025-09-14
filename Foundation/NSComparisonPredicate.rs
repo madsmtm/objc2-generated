@@ -12,10 +12,13 @@ use crate::*;
 pub struct NSComparisonPredicateOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSComparisonPredicateOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.struct/caseinsensitive?language=objc)
         #[doc(alias = "NSCaseInsensitivePredicateOption")]
         const CaseInsensitivePredicateOption = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.struct/diacriticinsensitive?language=objc)
         #[doc(alias = "NSDiacriticInsensitivePredicateOption")]
         const DiacriticInsensitivePredicateOption = 0x02;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.struct/normalized?language=objc)
         #[doc(alias = "NSNormalizedPredicateOption")]
         const NormalizedPredicateOption = 0x04;
     }
@@ -35,10 +38,13 @@ unsafe impl RefEncode for NSComparisonPredicateOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSComparisonPredicateModifier(pub NSUInteger);
 impl NSComparisonPredicateModifier {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/modifier/direct?language=objc)
     #[doc(alias = "NSDirectPredicateModifier")]
     pub const DirectPredicateModifier: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/modifier/all?language=objc)
     #[doc(alias = "NSAllPredicateModifier")]
     pub const AllPredicateModifier: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/modifier/any?language=objc)
     #[doc(alias = "NSAnyPredicateModifier")]
     pub const AnyPredicateModifier: Self = Self(2);
 }
@@ -57,32 +63,46 @@ unsafe impl RefEncode for NSComparisonPredicateModifier {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPredicateOperatorType(pub NSUInteger);
 impl NSPredicateOperatorType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/lessthan?language=objc)
     #[doc(alias = "NSLessThanPredicateOperatorType")]
     pub const LessThanPredicateOperatorType: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/lessthanorequalto?language=objc)
     #[doc(alias = "NSLessThanOrEqualToPredicateOperatorType")]
     pub const LessThanOrEqualToPredicateOperatorType: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/greaterthan?language=objc)
     #[doc(alias = "NSGreaterThanPredicateOperatorType")]
     pub const GreaterThanPredicateOperatorType: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/greaterthanorequalto?language=objc)
     #[doc(alias = "NSGreaterThanOrEqualToPredicateOperatorType")]
     pub const GreaterThanOrEqualToPredicateOperatorType: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/equalto?language=objc)
     #[doc(alias = "NSEqualToPredicateOperatorType")]
     pub const EqualToPredicateOperatorType: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/notequalto?language=objc)
     #[doc(alias = "NSNotEqualToPredicateOperatorType")]
     pub const NotEqualToPredicateOperatorType: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/matches?language=objc)
     #[doc(alias = "NSMatchesPredicateOperatorType")]
     pub const MatchesPredicateOperatorType: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/like?language=objc)
     #[doc(alias = "NSLikePredicateOperatorType")]
     pub const LikePredicateOperatorType: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/beginswith?language=objc)
     #[doc(alias = "NSBeginsWithPredicateOperatorType")]
     pub const BeginsWithPredicateOperatorType: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/endswith?language=objc)
     #[doc(alias = "NSEndsWithPredicateOperatorType")]
     pub const EndsWithPredicateOperatorType: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/in?language=objc)
     #[doc(alias = "NSInPredicateOperatorType")]
     pub const InPredicateOperatorType: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/customselector?language=objc)
     #[doc(alias = "NSCustomSelectorPredicateOperatorType")]
     pub const CustomSelectorPredicateOperatorType: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/contains?language=objc)
     #[doc(alias = "NSContainsPredicateOperatorType")]
     pub const ContainsPredicateOperatorType: Self = Self(99);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/between?language=objc)
     #[doc(alias = "NSBetweenPredicateOperatorType")]
     pub const BetweenPredicateOperatorType: Self = Self(100);
 }

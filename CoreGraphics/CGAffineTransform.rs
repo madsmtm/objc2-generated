@@ -9,6 +9,7 @@ extern "C" {
     pub static CGAffineTransformIdentity: CGAffineTransform;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformmake(_:_:_:_:_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformMake(
     a: CGFloat,
@@ -31,6 +32,7 @@ pub extern "C-unwind" fn CGAffineTransformMake(
     unsafe { CGAffineTransformMake(a, b, c, d, tx, ty) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformmaketranslation(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformMakeTranslation(
     tx: CGFloat,
@@ -42,6 +44,7 @@ pub extern "C-unwind" fn CGAffineTransformMakeTranslation(
     unsafe { CGAffineTransformMakeTranslation(tx, ty) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformmakescale(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformMakeScale(sx: CGFloat, sy: CGFloat) -> CGAffineTransform {
     extern "C-unwind" {
@@ -50,6 +53,7 @@ pub extern "C-unwind" fn CGAffineTransformMakeScale(sx: CGFloat, sy: CGFloat) ->
     unsafe { CGAffineTransformMakeScale(sx, sy) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformmakerotation(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformMakeRotation(angle: CGFloat) -> CGAffineTransform {
     extern "C-unwind" {
@@ -58,6 +62,7 @@ pub extern "C-unwind" fn CGAffineTransformMakeRotation(angle: CGFloat) -> CGAffi
     unsafe { CGAffineTransformMakeRotation(angle) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformisidentity(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformIsIdentity(t: CGAffineTransform) -> bool {
     extern "C-unwind" {
@@ -66,6 +71,7 @@ pub extern "C-unwind" fn CGAffineTransformIsIdentity(t: CGAffineTransform) -> bo
     unsafe { CGAffineTransformIsIdentity(t) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformtranslate(_:_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformTranslate(
     t: CGAffineTransform,
@@ -82,6 +88,7 @@ pub extern "C-unwind" fn CGAffineTransformTranslate(
     unsafe { CGAffineTransformTranslate(t, tx, ty) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformscale(_:_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformScale(
     t: CGAffineTransform,
@@ -98,6 +105,7 @@ pub extern "C-unwind" fn CGAffineTransformScale(
     unsafe { CGAffineTransformScale(t, sx, sy) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformrotate(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformRotate(
     t: CGAffineTransform,
@@ -109,6 +117,7 @@ pub extern "C-unwind" fn CGAffineTransformRotate(
     unsafe { CGAffineTransformRotate(t, angle) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransforminvert(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformInvert(t: CGAffineTransform) -> CGAffineTransform {
     extern "C-unwind" {
@@ -117,6 +126,7 @@ pub extern "C-unwind" fn CGAffineTransformInvert(t: CGAffineTransform) -> CGAffi
     unsafe { CGAffineTransformInvert(t) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformconcat(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformConcat(
     t1: CGAffineTransform,
@@ -131,6 +141,7 @@ pub extern "C-unwind" fn CGAffineTransformConcat(
     unsafe { CGAffineTransformConcat(t1, t2) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformequaltotransform(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformEqualToTransform(
     t1: CGAffineTransform,
@@ -142,6 +153,7 @@ pub extern "C-unwind" fn CGAffineTransformEqualToTransform(
     unsafe { CGAffineTransformEqualToTransform(t1, t2) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpointapplyaffinetransform(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGPointApplyAffineTransform(
     point: CGPoint,
@@ -153,6 +165,7 @@ pub extern "C-unwind" fn CGPointApplyAffineTransform(
     unsafe { CGPointApplyAffineTransform(point, t) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsizeapplyaffinetransform(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGSizeApplyAffineTransform(size: CGSize, t: CGAffineTransform) -> CGSize {
     extern "C-unwind" {
@@ -161,6 +174,7 @@ pub extern "C-unwind" fn CGSizeApplyAffineTransform(size: CGSize, t: CGAffineTra
     unsafe { CGSizeApplyAffineTransform(size, t) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectapplyaffinetransform(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRectApplyAffineTransform(rect: CGRect, t: CGAffineTransform) -> CGRect {
     extern "C-unwind" {
@@ -185,6 +199,8 @@ pub extern "C-unwind" fn CGRectApplyAffineTransform(rect: CGRect, t: CGAffineTra
 /// Parameter `transform`: The CGAffineTransform to decompose
 ///
 /// Returns: A decomposed set of geometric operations, the product of which is the CGAffineTransform.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformdecompose?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformDecompose(
     transform: CGAffineTransform,
@@ -200,6 +216,8 @@ pub extern "C-unwind" fn CGAffineTransformDecompose(
 /// Parameter `components`: The set of CGAffineTransformComponents to use to create a new CGAffineTransform
 ///
 /// Returns: A new CGAffineTransform built from the provided components
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformmakewithcomponents?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformMakeWithComponents(
     components: CGAffineTransformComponents,

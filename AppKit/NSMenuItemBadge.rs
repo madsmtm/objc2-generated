@@ -17,15 +17,23 @@ use crate::*;
 pub struct NSMenuItemBadgeType(pub NSInteger);
 impl NSMenuItemBadgeType {
     /// The badge should have no string portion.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype/none?language=objc)
     #[doc(alias = "NSMenuItemBadgeTypeNone")]
     pub const None: Self = Self(0);
     /// The badge represents the number of available updates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype/updates?language=objc)
     #[doc(alias = "NSMenuItemBadgeTypeUpdates")]
     pub const Updates: Self = Self(1);
     /// The badge represents the number of new items.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype/newitems?language=objc)
     #[doc(alias = "NSMenuItemBadgeTypeNewItems")]
     pub const NewItems: Self = Self(2);
     /// The badge represents the number of alerts.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype/alerts?language=objc)
     #[doc(alias = "NSMenuItemBadgeTypeAlerts")]
     pub const Alerts: Self = Self(3);
 }

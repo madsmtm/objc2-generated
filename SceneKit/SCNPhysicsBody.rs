@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNPhysicsBodyType(pub NSInteger);
 impl SCNPhysicsBodyType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsbodytype/static?language=objc)
     #[doc(alias = "SCNPhysicsBodyTypeStatic")]
     pub const Static: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsbodytype/dynamic?language=objc)
     #[doc(alias = "SCNPhysicsBodyTypeDynamic")]
     pub const Dynamic: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsbodytype/kinematic?language=objc)
     #[doc(alias = "SCNPhysicsBodyTypeKinematic")]
     pub const Kinematic: Self = Self(2);
 }
@@ -38,10 +41,13 @@ unsafe impl RefEncode for SCNPhysicsBodyType {
 pub struct SCNPhysicsCollisionCategory(pub NSUInteger);
 bitflags::bitflags! {
     impl SCNPhysicsCollisionCategory: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicscollisioncategory/default?language=objc)
         #[doc(alias = "SCNPhysicsCollisionCategoryDefault")]
         const Default = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicscollisioncategory/static?language=objc)
         #[doc(alias = "SCNPhysicsCollisionCategoryStatic")]
         const Static = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicscollisioncategory/all?language=objc)
         #[doc(alias = "SCNPhysicsCollisionCategoryAll")]
         const All = !0;
     }

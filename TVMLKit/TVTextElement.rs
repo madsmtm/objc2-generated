@@ -15,18 +15,23 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVTextElementStyle(pub NSInteger);
 impl TVTextElementStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle/none?language=objc)
     #[doc(alias = "TVTextElementStyleNone")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle/title?language=objc)
     #[doc(alias = "TVTextElementStyleTitle")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Title: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle/subtitle?language=objc)
     #[doc(alias = "TVTextElementStyleSubtitle")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Subtitle: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle/description?language=objc)
     #[doc(alias = "TVTextElementStyleDescription")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Description: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle/decoration?language=objc)
     #[doc(alias = "TVTextElementStyleDecoration")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Decoration: Self = Self(4);

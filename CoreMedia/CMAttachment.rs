@@ -36,6 +36,8 @@ extern "C-unwind" {
     ///
     /// - `target` should be of the correct type.
     /// - `value` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsetattachment(_:key:value:attachmentmode:)?language=objc)
     pub fn CMSetAttachment(
         target: &CMAttachmentBearer,
         key: &CFString,
@@ -60,6 +62,8 @@ extern "C-unwind" {
 ///
 /// - `target` should be of the correct type.
 /// - `attachment_mode_out` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmgetattachment(_:key:attachmentmodeout:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMGetAttachment(
     target: &CMAttachmentBearer,
@@ -89,6 +93,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `target` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmremoveattachment(_:key:)?language=objc)
     pub fn CMRemoveAttachment(target: &CMAttachmentBearer, key: &CFString);
 }
 
@@ -102,6 +108,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `target` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmremoveallattachments(_:)?language=objc)
     pub fn CMRemoveAllAttachments(target: &CMAttachmentBearer);
 }
 
@@ -119,6 +127,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `target` should be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmcopydictionaryofattachments(allocator:target:attachmentmode:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMCopyDictionaryOfAttachments(
     allocator: Option<&CFAllocator>,
@@ -148,6 +158,8 @@ extern "C-unwind" {
     /// - `target` should be of the correct type.
     /// - `the_attachments` generic must be of the correct type.
     /// - `the_attachments` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsetattachments(_:attachments:attachmentmode:)?language=objc)
     pub fn CMSetAttachments(
         target: &CMAttachmentBearer,
         the_attachments: &CFDictionary,
@@ -169,5 +181,7 @@ extern "C-unwind" {
     ///
     /// - `source` should be of the correct type.
     /// - `destination` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpropagateattachments(_:destination:)?language=objc)
     pub fn CMPropagateAttachments(source: &CMAttachmentBearer, destination: &CMAttachmentBearer);
 }

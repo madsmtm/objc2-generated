@@ -11,13 +11,18 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kcharsetstringiso88591?language=objc)
 pub const kCharsetStringISO88591: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CHARSET=ISO-8859-1\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kcharsetstringutf8?language=objc)
 pub const kCharsetStringUTF8: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"UTF-8\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencodingstringquotedprintable?language=objc)
 pub const kEncodingStringQuotedPrintable: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"QUOTED-PRINTABLE\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencodingstringbase64?language=objc)
 pub const kEncodingStringBase64: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BASE-64\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencodingstring8bit?language=objc)
 pub const kEncodingString8Bit: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"8BIT\0") };
 /// Codes for OBEX errors. If the return value was not in the following range, then it is most likely resulting
 /// from kernel code/IOKit, and you should consult IOReturn.h for those codes.
@@ -30,58 +35,85 @@ pub type OBEXError = i32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXErrorCodes(pub c_int);
 impl OBEXErrorCodes {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexerrorrangemin?language=objc)
     #[doc(alias = "kOBEXErrorRangeMin")]
     pub const ErrorRangeMin: Self = Self(-21850);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexerrorrangemax?language=objc)
     #[doc(alias = "kOBEXErrorRangeMax")]
     pub const ErrorRangeMax: Self = Self(-21899);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsuccess?language=objc)
     #[doc(alias = "kOBEXSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexgeneralerror?language=objc)
     #[doc(alias = "kOBEXGeneralError")]
     pub const GeneralError: Self = Self(-21850);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnoresourceserror?language=objc)
     #[doc(alias = "kOBEXNoResourcesError")]
     pub const NoResourcesError: Self = Self(-21851);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexunsupportederror?language=objc)
     #[doc(alias = "kOBEXUnsupportedError")]
     pub const UnsupportedError: Self = Self(-21852);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexinternalerror?language=objc)
     #[doc(alias = "kOBEXInternalError")]
     pub const InternalError: Self = Self(-21853);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexbadargumenterror?language=objc)
     #[doc(alias = "kOBEXBadArgumentError")]
     pub const BadArgumentError: Self = Self(-21854);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobextimeouterror?language=objc)
     #[doc(alias = "kOBEXTimeoutError")]
     pub const TimeoutError: Self = Self(-21855);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexbadrequesterror?language=objc)
     #[doc(alias = "kOBEXBadRequestError")]
     pub const BadRequestError: Self = Self(-21856);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexcancellederror?language=objc)
     #[doc(alias = "kOBEXCancelledError")]
     pub const CancelledError: Self = Self(-21857);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexforbiddenerror?language=objc)
     #[doc(alias = "kOBEXForbiddenError")]
     pub const ForbiddenError: Self = Self(-21858);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexunauthorizederror?language=objc)
     #[doc(alias = "kOBEXUnauthorizedError")]
     pub const UnauthorizedError: Self = Self(-21859);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnotacceptableerror?language=objc)
     #[doc(alias = "kOBEXNotAcceptableError")]
     pub const NotAcceptableError: Self = Self(-21860);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconflicterror?language=objc)
     #[doc(alias = "kOBEXConflictError")]
     pub const ConflictError: Self = Self(-21861);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexmethodnotallowederror?language=objc)
     #[doc(alias = "kOBEXMethodNotAllowedError")]
     pub const MethodNotAllowedError: Self = Self(-21862);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnotfounderror?language=objc)
     #[doc(alias = "kOBEXNotFoundError")]
     pub const NotFoundError: Self = Self(-21863);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnotimplementederror?language=objc)
     #[doc(alias = "kOBEXNotImplementedError")]
     pub const NotImplementedError: Self = Self(-21864);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexpreconditionfailederror?language=objc)
     #[doc(alias = "kOBEXPreconditionFailedError")]
     pub const PreconditionFailedError: Self = Self(-21865);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionbusyerror?language=objc)
     #[doc(alias = "kOBEXSessionBusyError")]
     pub const SessionBusyError: Self = Self(-21875);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionnotconnectederror?language=objc)
     #[doc(alias = "kOBEXSessionNotConnectedError")]
     pub const SessionNotConnectedError: Self = Self(-21876);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionbadrequesterror?language=objc)
     #[doc(alias = "kOBEXSessionBadRequestError")]
     pub const SessionBadRequestError: Self = Self(-21877);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionbadresponseerror?language=objc)
     #[doc(alias = "kOBEXSessionBadResponseError")]
     pub const SessionBadResponseError: Self = Self(-21878);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionnotransporterror?language=objc)
     #[doc(alias = "kOBEXSessionNoTransportError")]
     pub const SessionNoTransportError: Self = Self(-21879);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessiontransportdiederror?language=objc)
     #[doc(alias = "kOBEXSessionTransportDiedError")]
     pub const SessionTransportDiedError: Self = Self(-21880);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessiontimeouterror?language=objc)
     #[doc(alias = "kOBEXSessionTimeoutError")]
     pub const SessionTimeoutError: Self = Self(-21881);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionalreadyconnectederror?language=objc)
     #[doc(alias = "kOBEXSessionAlreadyConnectedError")]
     pub const SessionAlreadyConnectedError: Self = Self(-21882);
 }
@@ -103,56 +135,82 @@ unsafe impl RefEncode for OBEXErrorCodes {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXHeaderIdentifiers(pub c_uint);
 impl OBEXHeaderIdentifiers {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidname?language=objc)
     #[doc(alias = "kOBEXHeaderIDName")]
     pub const IDName: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderiddescription?language=objc)
     #[doc(alias = "kOBEXHeaderIDDescription")]
     pub const IDDescription: Self = Self(0x05);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidreservedrangestart?language=objc)
     #[doc(alias = "kOBEXHeaderIDReservedRangeStart")]
     pub const IDReservedRangeStart: Self = Self(0x10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidreservedrangeend?language=objc)
     #[doc(alias = "kOBEXHeaderIDReservedRangeEnd")]
     pub const IDReservedRangeEnd: Self = Self(0x2F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderiduserdefinedrangestart?language=objc)
     #[doc(alias = "kOBEXHeaderIDUserDefinedRangeStart")]
     pub const IDUserDefinedRangeStart: Self = Self(0x30);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderiduserdefinedrangeend?language=objc)
     #[doc(alias = "kOBEXHeaderIDUserDefinedRangeEnd")]
     pub const IDUserDefinedRangeEnd: Self = Self(0x3F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidtype?language=objc)
     #[doc(alias = "kOBEXHeaderIDType")]
     pub const IDType: Self = Self(0x42);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidtimeiso?language=objc)
     #[doc(alias = "kOBEXHeaderIDTimeISO")]
     pub const IDTimeISO: Self = Self(0x44);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidtarget?language=objc)
     #[doc(alias = "kOBEXHeaderIDTarget")]
     pub const IDTarget: Self = Self(0x46);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidhttp?language=objc)
     #[doc(alias = "kOBEXHeaderIDHTTP")]
     pub const IDHTTP: Self = Self(0x47);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidbody?language=objc)
     #[doc(alias = "kOBEXHeaderIDBody")]
     pub const IDBody: Self = Self(0x48);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidendofbody?language=objc)
     #[doc(alias = "kOBEXHeaderIDEndOfBody")]
     pub const IDEndOfBody: Self = Self(0x49);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidwho?language=objc)
     #[doc(alias = "kOBEXHeaderIDWho")]
     pub const IDWho: Self = Self(0x4A);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidappparameters?language=objc)
     #[doc(alias = "kOBEXHeaderIDAppParameters")]
     pub const IDAppParameters: Self = Self(0x4C);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidauthorizationchallenge?language=objc)
     #[doc(alias = "kOBEXHeaderIDAuthorizationChallenge")]
     pub const IDAuthorizationChallenge: Self = Self(0x4D);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidauthorizationresponse?language=objc)
     #[doc(alias = "kOBEXHeaderIDAuthorizationResponse")]
     pub const IDAuthorizationResponse: Self = Self(0x4E);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobjectclass?language=objc)
     #[doc(alias = "kOBEXHeaderIDObjectClass")]
     pub const IDObjectClass: Self = Self(0x4F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidcount?language=objc)
     #[doc(alias = "kOBEXHeaderIDCount")]
     pub const IDCount: Self = Self(0xC0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidlength?language=objc)
     #[doc(alias = "kOBEXHeaderIDLength")]
     pub const IDLength: Self = Self(0xC3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidtime4byte?language=objc)
     #[doc(alias = "kOBEXHeaderIDTime4Byte")]
     pub const IDTime4Byte: Self = Self(0xC4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidconnectionid?language=objc)
     #[doc(alias = "kOBEXHeaderIDConnectionID")]
     pub const IDConnectionID: Self = Self(0xCB);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobex13wanuuid?language=objc)
     #[doc(alias = "kOBEXHeaderIDOBEX13WANUUID")]
     pub const IDOBEX13WANUUID: Self = Self(0x50);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobex13objectclass?language=objc)
     #[doc(alias = "kOBEXHeaderIDOBEX13ObjectClass")]
     pub const IDOBEX13ObjectClass: Self = Self(0x51);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobex13sessionparameters?language=objc)
     #[doc(alias = "kOBEXHeaderIDOBEX13SessionParameters")]
     pub const IDOBEX13SessionParameters: Self = Self(0x52);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobex13sessionsequencenumber?language=objc)
     #[doc(alias = "kOBEXHeaderIDOBEX13SessionSequenceNumber")]
     pub const IDOBEX13SessionSequenceNumber: Self = Self(0x93);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobex13creatorid?language=objc)
     #[doc(alias = "kOBEXHeaderIDOBEX13CreatorID")]
     pub const IDOBEX13CreatorID: Self = Self(0xCF);
 }
@@ -174,160 +232,238 @@ unsafe impl RefEncode for OBEXHeaderIdentifiers {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXOpCodeResponseValues(pub c_uint);
 impl OBEXOpCodeResponseValues {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodereservedrangestart?language=objc)
     #[doc(alias = "kOBEXResponseCodeReservedRangeStart")]
     pub const ResponseCodeReservedRangeStart: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodereservedrangeend?language=objc)
     #[doc(alias = "kOBEXResponseCodeReservedRangeEnd")]
     pub const ResponseCodeReservedRangeEnd: Self = Self(0x0F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodecontinue?language=objc)
     #[doc(alias = "kOBEXResponseCodeContinue")]
     pub const ResponseCodeContinue: Self = Self(0x10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodecontinuewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeContinueWithFinalBit")]
     pub const ResponseCodeContinueWithFinalBit: Self = Self(0x90);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodesuccess?language=objc)
     #[doc(alias = "kOBEXResponseCodeSuccess")]
     pub const ResponseCodeSuccess: Self = Self(0x20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodesuccesswithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeSuccessWithFinalBit")]
     pub const ResponseCodeSuccessWithFinalBit: Self = Self(0xA0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodecreated?language=objc)
     #[doc(alias = "kOBEXResponseCodeCreated")]
     pub const ResponseCodeCreated: Self = Self(0x21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodecreatedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeCreatedWithFinalBit")]
     pub const ResponseCodeCreatedWithFinalBit: Self = Self(0xA1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeaccepted?language=objc)
     #[doc(alias = "kOBEXResponseCodeAccepted")]
     pub const ResponseCodeAccepted: Self = Self(0x22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeacceptedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeAcceptedWithFinalBit")]
     pub const ResponseCodeAcceptedWithFinalBit: Self = Self(0xA2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenonauthoritativeinfo?language=objc)
     #[doc(alias = "kOBEXResponseCodeNonAuthoritativeInfo")]
     pub const ResponseCodeNonAuthoritativeInfo: Self = Self(0x23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenonauthoritativeinfowithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNonAuthoritativeInfoWithFinalBit")]
     pub const ResponseCodeNonAuthoritativeInfoWithFinalBit: Self = Self(0xA3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenocontent?language=objc)
     #[doc(alias = "kOBEXResponseCodeNoContent")]
     pub const ResponseCodeNoContent: Self = Self(0x24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenocontentwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNoContentWithFinalBit")]
     pub const ResponseCodeNoContentWithFinalBit: Self = Self(0xA4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderesetcontent?language=objc)
     #[doc(alias = "kOBEXResponseCodeResetContent")]
     pub const ResponseCodeResetContent: Self = Self(0x25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderesetcontentwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeResetContentWithFinalBit")]
     pub const ResponseCodeResetContentWithFinalBit: Self = Self(0xA5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepartialcontent?language=objc)
     #[doc(alias = "kOBEXResponseCodePartialContent")]
     pub const ResponseCodePartialContent: Self = Self(0x26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepartialcontentwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodePartialContentWithFinalBit")]
     pub const ResponseCodePartialContentWithFinalBit: Self = Self(0xA6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemultiplechoices?language=objc)
     #[doc(alias = "kOBEXResponseCodeMultipleChoices")]
     pub const ResponseCodeMultipleChoices: Self = Self(0x30);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemultiplechoiceswithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeMultipleChoicesWithFinalBit")]
     pub const ResponseCodeMultipleChoicesWithFinalBit: Self = Self(0xB0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemovedpermanently?language=objc)
     #[doc(alias = "kOBEXResponseCodeMovedPermanently")]
     pub const ResponseCodeMovedPermanently: Self = Self(0x31);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemovedpermanentlywithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeMovedPermanentlyWithFinalBit")]
     pub const ResponseCodeMovedPermanentlyWithFinalBit: Self = Self(0xB1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemovedtemporarily?language=objc)
     #[doc(alias = "kOBEXResponseCodeMovedTemporarily")]
     pub const ResponseCodeMovedTemporarily: Self = Self(0x32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemovedtemporarilywithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeMovedTemporarilyWithFinalBit")]
     pub const ResponseCodeMovedTemporarilyWithFinalBit: Self = Self(0xB2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeseeother?language=objc)
     #[doc(alias = "kOBEXResponseCodeSeeOther")]
     pub const ResponseCodeSeeOther: Self = Self(0x33);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeseeotherwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeSeeOtherWithFinalBit")]
     pub const ResponseCodeSeeOtherWithFinalBit: Self = Self(0xB3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotmodified?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotModified")]
     pub const ResponseCodeNotModified: Self = Self(0x34);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotmodifiedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotModifiedWithFinalBit")]
     pub const ResponseCodeNotModifiedWithFinalBit: Self = Self(0xB4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeuseproxy?language=objc)
     #[doc(alias = "kOBEXResponseCodeUseProxy")]
     pub const ResponseCodeUseProxy: Self = Self(0x35);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeuseproxywithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeUseProxyWithFinalBit")]
     pub const ResponseCodeUseProxyWithFinalBit: Self = Self(0xB5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodebadrequest?language=objc)
     #[doc(alias = "kOBEXResponseCodeBadRequest")]
     pub const ResponseCodeBadRequest: Self = Self(0x40);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodebadrequestwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeBadRequestWithFinalBit")]
     pub const ResponseCodeBadRequestWithFinalBit: Self = Self(0xC0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeunauthorized?language=objc)
     #[doc(alias = "kOBEXResponseCodeUnauthorized")]
     pub const ResponseCodeUnauthorized: Self = Self(0x41);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeunauthorizedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeUnauthorizedWithFinalBit")]
     pub const ResponseCodeUnauthorizedWithFinalBit: Self = Self(0xC1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepaymentrequired?language=objc)
     #[doc(alias = "kOBEXResponseCodePaymentRequired")]
     pub const ResponseCodePaymentRequired: Self = Self(0x42);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepaymentrequiredwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodePaymentRequiredWithFinalBit")]
     pub const ResponseCodePaymentRequiredWithFinalBit: Self = Self(0xC2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeforbidden?language=objc)
     #[doc(alias = "kOBEXResponseCodeForbidden")]
     pub const ResponseCodeForbidden: Self = Self(0x43);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeforbiddenwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeForbiddenWithFinalBit")]
     pub const ResponseCodeForbiddenWithFinalBit: Self = Self(0xC3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotfound?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotFound")]
     pub const ResponseCodeNotFound: Self = Self(0x44);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotfoundwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotFoundWithFinalBit")]
     pub const ResponseCodeNotFoundWithFinalBit: Self = Self(0xC4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemethodnotallowed?language=objc)
     #[doc(alias = "kOBEXResponseCodeMethodNotAllowed")]
     pub const ResponseCodeMethodNotAllowed: Self = Self(0x45);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemethodnotallowedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeMethodNotAllowedWithFinalBit")]
     pub const ResponseCodeMethodNotAllowedWithFinalBit: Self = Self(0xC5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotacceptable?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotAcceptable")]
     pub const ResponseCodeNotAcceptable: Self = Self(0x46);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotacceptablewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotAcceptableWithFinalBit")]
     pub const ResponseCodeNotAcceptableWithFinalBit: Self = Self(0xC6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeproxyauthenticationrequired?language=objc)
     #[doc(alias = "kOBEXResponseCodeProxyAuthenticationRequired")]
     pub const ResponseCodeProxyAuthenticationRequired: Self = Self(0x47);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeproxyauthenticationrequiredwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeProxyAuthenticationRequiredWithFinalBit")]
     pub const ResponseCodeProxyAuthenticationRequiredWithFinalBit: Self = Self(0xC7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequesttimeout?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestTimeOut")]
     pub const ResponseCodeRequestTimeOut: Self = Self(0x48);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequesttimeoutwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestTimeOutWithFinalBit")]
     pub const ResponseCodeRequestTimeOutWithFinalBit: Self = Self(0xC8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeconflict?language=objc)
     #[doc(alias = "kOBEXResponseCodeConflict")]
     pub const ResponseCodeConflict: Self = Self(0x49);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeconflictwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeConflictWithFinalBit")]
     pub const ResponseCodeConflictWithFinalBit: Self = Self(0xC9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodegone?language=objc)
     #[doc(alias = "kOBEXResponseCodeGone")]
     pub const ResponseCodeGone: Self = Self(0x4A);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodegonewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeGoneWithFinalBit")]
     pub const ResponseCodeGoneWithFinalBit: Self = Self(0xCA);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodelengthrequired?language=objc)
     #[doc(alias = "kOBEXResponseCodeLengthRequired")]
     pub const ResponseCodeLengthRequired: Self = Self(0x4B);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodelengthrequiredfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeLengthRequiredFinalBit")]
     pub const ResponseCodeLengthRequiredFinalBit: Self = Self(0xCB);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepreconditionfailed?language=objc)
     #[doc(alias = "kOBEXResponseCodePreconditionFailed")]
     pub const ResponseCodePreconditionFailed: Self = Self(0x4C);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepreconditionfailedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodePreconditionFailedWithFinalBit")]
     pub const ResponseCodePreconditionFailedWithFinalBit: Self = Self(0xCC);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequestedentitytoolarge?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestedEntityTooLarge")]
     pub const ResponseCodeRequestedEntityTooLarge: Self = Self(0x4D);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequestedentitytoolargewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestedEntityTooLargeWithFinalBit")]
     pub const ResponseCodeRequestedEntityTooLargeWithFinalBit: Self = Self(0xCD);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequesturltoolarge?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestURLTooLarge")]
     pub const ResponseCodeRequestURLTooLarge: Self = Self(0x4E);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequesturltoolargewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestURLTooLargeWithFinalBit")]
     pub const ResponseCodeRequestURLTooLargeWithFinalBit: Self = Self(0xCE);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeunsupportedmediatype?language=objc)
     #[doc(alias = "kOBEXResponseCodeUnsupportedMediaType")]
     pub const ResponseCodeUnsupportedMediaType: Self = Self(0x4F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeunsupportedmediatypewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeUnsupportedMediaTypeWithFinalBit")]
     pub const ResponseCodeUnsupportedMediaTypeWithFinalBit: Self = Self(0xCF);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeinternalservererror?language=objc)
     #[doc(alias = "kOBEXResponseCodeInternalServerError")]
     pub const ResponseCodeInternalServerError: Self = Self(0x50);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeinternalservererrorwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeInternalServerErrorWithFinalBit")]
     pub const ResponseCodeInternalServerErrorWithFinalBit: Self = Self(0xD0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotimplemented?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotImplemented")]
     pub const ResponseCodeNotImplemented: Self = Self(0x51);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotimplementedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotImplementedWithFinalBit")]
     pub const ResponseCodeNotImplementedWithFinalBit: Self = Self(0xD1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodebadgateway?language=objc)
     #[doc(alias = "kOBEXResponseCodeBadGateway")]
     pub const ResponseCodeBadGateway: Self = Self(0x52);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodebadgatewaywithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeBadGatewayWithFinalBit")]
     pub const ResponseCodeBadGatewayWithFinalBit: Self = Self(0xD2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeserviceunavailable?language=objc)
     #[doc(alias = "kOBEXResponseCodeServiceUnavailable")]
     pub const ResponseCodeServiceUnavailable: Self = Self(0x53);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeserviceunavailablewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeServiceUnavailableWithFinalBit")]
     pub const ResponseCodeServiceUnavailableWithFinalBit: Self = Self(0xD3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodegatewaytimeout?language=objc)
     #[doc(alias = "kOBEXResponseCodeGatewayTimeout")]
     pub const ResponseCodeGatewayTimeout: Self = Self(0x54);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodegatewaytimeoutwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeGatewayTimeoutWithFinalBit")]
     pub const ResponseCodeGatewayTimeoutWithFinalBit: Self = Self(0xD4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodehttpversionnotsupported?language=objc)
     #[doc(alias = "kOBEXResponseCodeHTTPVersionNotSupported")]
     pub const ResponseCodeHTTPVersionNotSupported: Self = Self(0x55);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodehttpversionnotsupportedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeHTTPVersionNotSupportedWithFinalBit")]
     pub const ResponseCodeHTTPVersionNotSupportedWithFinalBit: Self = Self(0xD5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodedatabasefull?language=objc)
     #[doc(alias = "kOBEXResponseCodeDatabaseFull")]
     pub const ResponseCodeDatabaseFull: Self = Self(0x60);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodedatabasefullwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeDatabaseFullWithFinalBit")]
     pub const ResponseCodeDatabaseFullWithFinalBit: Self = Self(0xE0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodedatabaselocked?language=objc)
     #[doc(alias = "kOBEXResponseCodeDatabaseLocked")]
     pub const ResponseCodeDatabaseLocked: Self = Self(0x61);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodedatabaselockedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeDatabaseLockedWithFinalBit")]
     pub const ResponseCodeDatabaseLockedWithFinalBit: Self = Self(0xE1);
 }
@@ -349,32 +485,46 @@ unsafe impl RefEncode for OBEXOpCodeResponseValues {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXOpCodeCommandValues(pub c_uint);
 impl OBEXOpCodeCommandValues {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodereserved?language=objc)
     #[doc(alias = "kOBEXOpCodeReserved")]
     pub const Reserved: Self = Self(0x04);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeconnect?language=objc)
     #[doc(alias = "kOBEXOpCodeConnect")]
     pub const Connect: Self = Self(0x80);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodedisconnect?language=objc)
     #[doc(alias = "kOBEXOpCodeDisconnect")]
     pub const Disconnect: Self = Self(0x81);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeput?language=objc)
     #[doc(alias = "kOBEXOpCodePut")]
     pub const Put: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeputwithhighbitset?language=objc)
     #[doc(alias = "kOBEXOpCodePutWithHighBitSet")]
     pub const PutWithHighBitSet: Self = Self(0x82);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeget?language=objc)
     #[doc(alias = "kOBEXOpCodeGet")]
     pub const Get: Self = Self(0x03);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodegetwithhighbitset?language=objc)
     #[doc(alias = "kOBEXOpCodeGetWithHighBitSet")]
     pub const GetWithHighBitSet: Self = Self(0x83);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodereservedwithhighbitset?language=objc)
     #[doc(alias = "kOBEXOpCodeReservedWithHighBitSet")]
     pub const ReservedWithHighBitSet: Self = Self(0x84);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodesetpath?language=objc)
     #[doc(alias = "kOBEXOpCodeSetPath")]
     pub const SetPath: Self = Self(0x85);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeabort?language=objc)
     #[doc(alias = "kOBEXOpCodeAbort")]
     pub const Abort: Self = Self(0xFF);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodereservedrangestart?language=objc)
     #[doc(alias = "kOBEXOpCodeReservedRangeStart")]
     pub const ReservedRangeStart: Self = Self(0x06);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodereservedrangeend?language=objc)
     #[doc(alias = "kOBEXOpCodeReservedRangeEnd")]
     pub const ReservedRangeEnd: Self = Self(0x0F);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeuserdefinedstart?language=objc)
     #[doc(alias = "kOBEXOpCodeUserDefinedStart")]
     pub const UserDefinedStart: Self = Self(0x10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeuserdefinedend?language=objc)
     #[doc(alias = "kOBEXOpCodeUserDefinedEnd")]
     pub const UserDefinedEnd: Self = Self(0x1F);
 }
@@ -396,22 +546,31 @@ unsafe impl RefEncode for OBEXOpCodeCommandValues {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXConnectFlagValues(pub c_uint);
 impl OBEXConnectFlagValues {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflagnone?language=objc)
     #[doc(alias = "kOBEXConnectFlagNone")]
     pub const FlagNone: Self = Self(0 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflagsupportmultipleitlmpconnections?language=objc)
     #[doc(alias = "kOBEXConnectFlagSupportMultipleItLMPConnections")]
     pub const FlagSupportMultipleItLMPConnections: Self = Self(1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag1reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag1Reserved")]
     pub const Flag1Reserved: Self = Self(1 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag2reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag2Reserved")]
     pub const Flag2Reserved: Self = Self(1 << 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag3reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag3Reserved")]
     pub const Flag3Reserved: Self = Self(1 << 3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag4reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag4Reserved")]
     pub const Flag4Reserved: Self = Self(1 << 4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag5reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag5Reserved")]
     pub const Flag5Reserved: Self = Self(1 << 5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag6reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag6Reserved")]
     pub const Flag6Reserved: Self = Self(1 << 6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag7reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag7Reserved")]
     pub const Flag7Reserved: Self = Self(1 << 7);
 }
@@ -434,22 +593,31 @@ unsafe impl RefEncode for OBEXConnectFlagValues {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXPutFlagValues(pub c_uint);
 impl OBEXPutFlagValues {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflagnone?language=objc)
     #[doc(alias = "kOBEXPutFlagNone")]
     pub const FlagNone: Self = Self(0 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflaggotoparentdirfirst?language=objc)
     #[doc(alias = "kOBEXPutFlagGoToParentDirFirst")]
     pub const FlagGoToParentDirFirst: Self = Self(1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflagdontcreatedirectory?language=objc)
     #[doc(alias = "kOBEXPutFlagDontCreateDirectory")]
     pub const FlagDontCreateDirectory: Self = Self(1 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag2reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag2Reserved")]
     pub const Flag2Reserved: Self = Self(1 << 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag3reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag3Reserved")]
     pub const Flag3Reserved: Self = Self(1 << 3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag4reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag4Reserved")]
     pub const Flag4Reserved: Self = Self(1 << 4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag5reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag5Reserved")]
     pub const Flag5Reserved: Self = Self(1 << 5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag6reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag6Reserved")]
     pub const Flag6Reserved: Self = Self(1 << 6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag7reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag7Reserved")]
     pub const Flag7Reserved: Self = Self(1 << 7);
 }
@@ -471,22 +639,31 @@ unsafe impl RefEncode for OBEXPutFlagValues {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXNonceFlagValues(pub c_uint);
 impl OBEXNonceFlagValues {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflagnone?language=objc)
     #[doc(alias = "kOBEXNonceFlagNone")]
     pub const FlagNone: Self = Self(0 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflagsenduseridinresponse?language=objc)
     #[doc(alias = "kOBEXNonceFlagSendUserIDInResponse")]
     pub const FlagSendUserIDInResponse: Self = Self(1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflagaccessmodereadonly?language=objc)
     #[doc(alias = "kOBEXNonceFlagAccessModeReadOnly")]
     pub const FlagAccessModeReadOnly: Self = Self(1 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag2reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag2Reserved")]
     pub const Flag2Reserved: Self = Self(1 << 2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag3reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag3Reserved")]
     pub const Flag3Reserved: Self = Self(1 << 3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag4reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag4Reserved")]
     pub const Flag4Reserved: Self = Self(1 << 4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag5reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag5Reserved")]
     pub const Flag5Reserved: Self = Self(1 << 5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag6reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag6Reserved")]
     pub const Flag6Reserved: Self = Self(1 << 6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag7reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag7Reserved")]
     pub const Flag7Reserved: Self = Self(1 << 7);
 }
@@ -508,26 +685,37 @@ unsafe impl RefEncode for OBEXNonceFlagValues {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXRealmValues(pub c_uint);
 impl OBEXRealmValues {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmascii?language=objc)
     #[doc(alias = "kOBEXRealmASCII")]
     pub const ASCII: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88591?language=objc)
     #[doc(alias = "kOBEXRealmISO88591")]
     pub const ISO88591: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88592?language=objc)
     #[doc(alias = "kOBEXRealmISO88592")]
     pub const ISO88592: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88593?language=objc)
     #[doc(alias = "kOBEXRealmISO88593")]
     pub const ISO88593: Self = Self(0x03);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88594?language=objc)
     #[doc(alias = "kOBEXRealmISO88594")]
     pub const ISO88594: Self = Self(0x04);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88595?language=objc)
     #[doc(alias = "kOBEXRealmISO88595")]
     pub const ISO88595: Self = Self(0x05);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88596?language=objc)
     #[doc(alias = "kOBEXRealmISO88596")]
     pub const ISO88596: Self = Self(0x06);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88597?language=objc)
     #[doc(alias = "kOBEXRealmISO88597")]
     pub const ISO88597: Self = Self(0x07);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88598?language=objc)
     #[doc(alias = "kOBEXRealmISO88598")]
     pub const ISO88598: Self = Self(0x08);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88599?language=objc)
     #[doc(alias = "kOBEXRealmISO88599")]
     pub const ISO88599: Self = Self(0x09);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmunicode?language=objc)
     #[doc(alias = "kOBEXRealmUNICODE")]
     pub const UNICODE: Self = Self(0xFF);
 }
@@ -549,14 +737,19 @@ unsafe impl RefEncode for OBEXRealmValues {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXOpCodeSessionValues(pub c_uint);
 impl OBEXOpCodeSessionValues {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodecreatesession?language=objc)
     #[doc(alias = "kOBEXOpCodeCreateSession")]
     pub const CreateSession: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeclosesession?language=objc)
     #[doc(alias = "kOBEXOpCodeCloseSession")]
     pub const CloseSession: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodesuspendsession?language=objc)
     #[doc(alias = "kOBEXOpCodeSuspendSession")]
     pub const SuspendSession: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcoderesumesession?language=objc)
     #[doc(alias = "kOBEXOpCodeResumeSession")]
     pub const ResumeSession: Self = Self(0x03);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodesettimeout?language=objc)
     #[doc(alias = "kOBEXOpCodeSetTimeout")]
     pub const SetTimeout: Self = Self(0x04);
 }
@@ -578,16 +771,22 @@ unsafe impl RefEncode for OBEXOpCodeSessionValues {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXSessionParameterTags(pub c_uint);
 impl OBEXSessionParameterTags {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagdeviceaddress?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagDeviceAddress")]
     pub const DeviceAddress: Self = Self(0x00);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagnonce?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagNonce")]
     pub const Nonce: Self = Self(0x01);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagsessionid?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagSessionID")]
     pub const SessionID: Self = Self(0x02);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagnextsequencenumber?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagNextSequenceNumber")]
     pub const NextSequenceNumber: Self = Self(0x03);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagtimeout?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagTimeout")]
     pub const Timeout: Self = Self(0x04);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagsessionopcode?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagSessionOpcode")]
     pub const SessionOpcode: Self = Self(0x05);
 }
@@ -609,6 +808,7 @@ unsafe impl RefEncode for OBEXSessionParameterTags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXVersions(pub c_uint);
 impl OBEXVersions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexversion10?language=objc)
     #[doc(alias = "kOBEXVersion10")]
     pub const Version10: Self = Self(0x10);
 }
@@ -1011,30 +1211,43 @@ unsafe impl RefEncode for OBEXErrorData {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXSessionEventTypes(pub c_uint);
 impl OBEXSessionEventTypes {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeconnectcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeConnectCommandResponseReceived")]
     pub const ConnectCommandResponseReceived: Self = Self(0x4f434543);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypedisconnectcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeDisconnectCommandResponseReceived")]
     pub const DisconnectCommandResponseReceived: Self = Self(0x4f434544);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeputcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypePutCommandResponseReceived")]
     pub const PutCommandResponseReceived: Self = Self(0x4f434550);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypegetcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeGetCommandResponseReceived")]
     pub const GetCommandResponseReceived: Self = Self(0x4f434547);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypesetpathcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeSetPathCommandResponseReceived")]
     pub const SetPathCommandResponseReceived: Self = Self(0x4f434553);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeabortcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeAbortCommandResponseReceived")]
     pub const AbortCommandResponseReceived: Self = Self(0x4f434541);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeconnectcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeConnectCommandReceived")]
     pub const ConnectCommandReceived: Self = Self(0x4f534543);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypedisconnectcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeDisconnectCommandReceived")]
     pub const DisconnectCommandReceived: Self = Self(0x4f534544);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeputcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypePutCommandReceived")]
     pub const PutCommandReceived: Self = Self(0x4f534550);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypegetcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeGetCommandReceived")]
     pub const GetCommandReceived: Self = Self(0x4f534547);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypesetpathcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeSetPathCommandReceived")]
     pub const SetPathCommandReceived: Self = Self(0x4f534553);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeabortcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeAbortCommandReceived")]
     pub const AbortCommandReceived: Self = Self(0x4f534541);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeerror?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeError")]
     pub const Error: Self = Self(0x4f474545);
 }
@@ -1148,6 +1361,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_session_ref` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiondelete?language=objc)
     #[deprecated]
     pub fn OBEXSessionDelete(in_session_ref: OBEXSessionRef) -> OBEXError;
 }
@@ -1173,6 +1388,8 @@ extern "C-unwind" {
     ///
     /// - `in_session_ref` must be a valid pointer.
     /// - `out_is_connected` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionhasopenobexconnection?language=objc)
     #[deprecated]
     pub fn OBEXSessionHasOpenOBEXConnection(
         in_session_ref: OBEXSessionRef,
@@ -1200,6 +1417,8 @@ extern "C-unwind" {
     ///
     /// - `in_session_ref` must be a valid pointer.
     /// - `out_length` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiongetmaxpacketlength?language=objc)
     #[deprecated]
     pub fn OBEXSessionGetMaxPacketLength(
         in_session_ref: OBEXSessionRef,
@@ -1234,6 +1453,8 @@ extern "C-unwind" {
     ///
     /// - `in_session_ref` must be a valid pointer.
     /// - `out_length` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiongetavailablecommandpayloadlength?language=objc)
     #[deprecated]
     pub fn OBEXSessionGetAvailableCommandPayloadLength(
         in_session_ref: OBEXSessionRef,
@@ -1271,6 +1492,8 @@ extern "C-unwind" {
     ///
     /// - `in_session_ref` must be a valid pointer.
     /// - `out_length` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiongetavailablecommandresponsepayloadlength?language=objc)
     #[deprecated]
     pub fn OBEXSessionGetAvailableCommandResponsePayloadLength(
         in_session_ref: OBEXSessionRef,
@@ -1316,6 +1539,8 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionconnect?language=objc)
     #[deprecated]
     pub fn OBEXSessionConnect(
         in_session_ref: OBEXSessionRef,
@@ -1358,6 +1583,8 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiondisconnect?language=objc)
     #[deprecated]
     pub fn OBEXSessionDisconnect(
         in_session_ref: OBEXSessionRef,
@@ -1405,6 +1632,8 @@ extern "C-unwind" {
 /// - `in_body_data` must be a valid pointer.
 /// - `in_callback` must be implemented correctly.
 /// - `in_user_ref_con` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionput?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXSessionPut(
@@ -1473,6 +1702,8 @@ pub unsafe extern "C-unwind" fn OBEXSessionPut(
 /// - `in_headers_data` must be a valid pointer.
 /// - `in_callback` must be implemented correctly.
 /// - `in_user_ref_con` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionget?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXSessionGet(
@@ -1535,6 +1766,8 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionabort?language=objc)
     #[deprecated]
     pub fn OBEXSessionAbort(
         in_session_ref: OBEXSessionRef,
@@ -1579,6 +1812,8 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionsetpath?language=objc)
     #[deprecated]
     pub fn OBEXSessionSetPath(
         in_session_ref: OBEXSessionRef,
@@ -1628,6 +1863,8 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionconnectresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionConnectResponse(
         in_session_ref: OBEXSessionRef,
@@ -1673,6 +1910,8 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiondisconnectresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionDisconnectResponse(
         in_session_ref: OBEXSessionRef,
@@ -1716,6 +1955,8 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiongetresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionGetResponse(
         in_session_ref: OBEXSessionRef,
@@ -1759,6 +2000,8 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionputresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionPutResponse(
         in_session_ref: OBEXSessionRef,
@@ -1802,6 +2045,8 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionabortresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionAbortResponse(
         in_session_ref: OBEXSessionRef,
@@ -1845,6 +2090,8 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionsetpathresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionSetPathResponse(
         in_session_ref: OBEXSessionRef,
@@ -1880,6 +2127,8 @@ extern "C-unwind" {
     /// - `in_session_ref` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionsetservercallback?language=objc)
     #[deprecated]
     pub fn OBEXSessionSetServerCallback(
         in_session_ref: OBEXSessionRef,
@@ -1971,6 +2220,8 @@ extern "C-unwind" {
 /// - `in_organization_charset` must be a valid pointer.
 /// - `in_title` must be a valid pointer.
 /// - `in_title_charset` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexcreatevcard?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -2131,6 +2382,8 @@ pub unsafe extern "C-unwind" fn OBEXCreateVCard(
 /// - `in_summary` must be a valid pointer.
 /// - `in_location` must be a valid pointer.
 /// - `in_xirmcluid` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexcreatevevent?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -2386,6 +2639,8 @@ extern "C" {
 /// # Safety
 ///
 /// `in_data` must be a valid pointer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexgetheaders(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXGetHeaders(
@@ -2444,6 +2699,8 @@ pub unsafe extern "C-unwind" fn OBEXGetHeaders(
 /// - `dictionary_of_headers` generic must be of the correct type.
 /// - `dictionary_of_headers` generic must be of the correct type.
 /// - `dictionary_of_headers` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexheaderstobytes(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXHeadersToBytes(
@@ -2475,6 +2732,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddnameheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddNameHeader(
         name: Option<&CFString>,
@@ -2499,6 +2758,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexadddescriptionheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddDescriptionHeader(
         description: Option<&CFString>,
@@ -2522,6 +2783,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddcountheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
 }
@@ -2542,6 +2805,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddtime4byteheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTime4ByteHeader(
         time4_byte: u32,
@@ -2565,6 +2830,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddlengthheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddLengthHeader(length: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
 }
@@ -2586,6 +2853,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddtypeheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTypeHeader(
         r#type: Option<&CFString>,
@@ -2610,6 +2879,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddtimeisoheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTimeISOHeader(
         in_header_data: *const c_void,
@@ -2637,6 +2908,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddtargetheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTargetHeader(
         in_header_data: *const c_void,
@@ -2664,6 +2937,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddhttpheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddHTTPHeader(
         in_header_data: *const c_void,
@@ -2692,6 +2967,8 @@ extern "C-unwind" {
 /// - `dict_ref` generic must be of the correct type.
 /// - `dict_ref` generic must be of the correct type.
 /// - `dict_ref` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddbodyheader(_:_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXAddBodyHeader(
@@ -2737,6 +3014,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddwhoheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddWhoHeader(
         in_header_data: *const c_void,
@@ -2768,6 +3047,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddconnectionidheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddConnectionIDHeader(
         in_header_data: *const c_void,
@@ -2795,6 +3076,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddapplicationparameterheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddApplicationParameterHeader(
         in_header_data: *const c_void,
@@ -2838,6 +3121,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddbytesequenceheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddByteSequenceHeader(
         in_header_data: *const c_void,
@@ -2865,6 +3150,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddobjectclassheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddObjectClassHeader(
         in_header_data: *const c_void,
@@ -2892,6 +3179,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddauthorizationchallengeheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddAuthorizationChallengeHeader(
         in_header_data: *const c_void,
@@ -2919,6 +3208,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddauthorizationresponseheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddAuthorizationResponseHeader(
         in_header_data: *const c_void,
@@ -2946,6 +3237,8 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexadduserdefinedheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddUserDefinedHeader(
         in_header_data: *const c_void,

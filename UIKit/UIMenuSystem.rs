@@ -59,12 +59,18 @@ impl UIMenuSystem {
 pub struct UIMenuSystemElementGroupPreference(pub NSInteger);
 impl UIMenuSystemElementGroupPreference {
     /// The default preference. The element group is automatically included based on the platform and other system behaviors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/elementgrouppreference/automatic?language=objc)
     #[doc(alias = "UIMenuSystemElementGroupPreferenceAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Prefer that the element group is removed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/elementgrouppreference/removed?language=objc)
     #[doc(alias = "UIMenuSystemElementGroupPreferenceRemoved")]
     pub const Removed: Self = Self(1);
     /// Prefer that the element group is included.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/elementgrouppreference/included?language=objc)
     #[doc(alias = "UIMenuSystemElementGroupPreferenceIncluded")]
     pub const Included: Self = Self(2);
 }
@@ -90,15 +96,23 @@ unsafe impl Sync for UIMenuSystemElementGroupPreference {}
 pub struct UIMenuSystemFindElementGroupConfigurationStyle(pub NSInteger);
 impl UIMenuSystemFindElementGroupConfigurationStyle {
     /// The default preference. Find elements are automatically included based on the platform and other system behaviors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration/style-swift.enum/automatic?language=objc)
     #[doc(alias = "UIMenuSystemFindElementGroupConfigurationStyleAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Prefer a minimal set of find elements, only consisting of elements to search content in the app.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration/style-swift.enum/search?language=objc)
     #[doc(alias = "UIMenuSystemFindElementGroupConfigurationStyleSearch")]
     pub const Search: Self = Self(1);
     /// Prefer a set of elements for finding within a non-editable text area
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration/style-swift.enum/noneditabletext?language=objc)
     #[doc(alias = "UIMenuSystemFindElementGroupConfigurationStyleNonEditableText")]
     pub const NonEditableText: Self = Self(2);
     /// Prefer a full set of elements for finding and replacing text, such as Find, Find and Replace, Find Navigation, and so on.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration/style-swift.enum/editabletext?language=objc)
     #[doc(alias = "UIMenuSystemFindElementGroupConfigurationStyleEditableText")]
     pub const EditableText: Self = Self(3);
 }

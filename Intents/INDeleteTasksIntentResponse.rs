@@ -14,21 +14,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INDeleteTasksIntentResponseCode(pub NSInteger);
 impl INDeleteTasksIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INDeleteTasksIntentResponseCodeUnspecified")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/ready?language=objc)
     #[doc(alias = "INDeleteTasksIntentResponseCodeReady")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INDeleteTasksIntentResponseCodeInProgress")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/success?language=objc)
     #[doc(alias = "INDeleteTasksIntentResponseCodeSuccess")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/failure?language=objc)
     #[doc(alias = "INDeleteTasksIntentResponseCodeFailure")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INDeleteTasksIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);

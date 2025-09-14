@@ -40,8 +40,10 @@ pub static NSLayoutPriorityFittingSizeCompression: NSLayoutPriority = 50 as _;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutConstraintOrientation(pub NSInteger);
 impl NSLayoutConstraintOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/orientation/horizontal?language=objc)
     #[doc(alias = "NSLayoutConstraintOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/orientation/vertical?language=objc)
     #[doc(alias = "NSLayoutConstraintOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -60,10 +62,13 @@ unsafe impl RefEncode for NSLayoutConstraintOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutRelation(pub NSInteger);
 impl NSLayoutRelation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/relation-swift.enum/lessthanorequal?language=objc)
     #[doc(alias = "NSLayoutRelationLessThanOrEqual")]
     pub const LessThanOrEqual: Self = Self(-1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/relation-swift.enum/equal?language=objc)
     #[doc(alias = "NSLayoutRelationEqual")]
     pub const Equal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/relation-swift.enum/greaterthanorequal?language=objc)
     #[doc(alias = "NSLayoutRelationGreaterThanOrEqual")]
     pub const GreaterThanOrEqual: Self = Self(1);
 }
@@ -82,32 +87,46 @@ unsafe impl RefEncode for NSLayoutRelation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutAttribute(pub NSInteger);
 impl NSLayoutAttribute {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/left?language=objc)
     #[doc(alias = "NSLayoutAttributeLeft")]
     pub const Left: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/right?language=objc)
     #[doc(alias = "NSLayoutAttributeRight")]
     pub const Right: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/top?language=objc)
     #[doc(alias = "NSLayoutAttributeTop")]
     pub const Top: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/bottom?language=objc)
     #[doc(alias = "NSLayoutAttributeBottom")]
     pub const Bottom: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/leading?language=objc)
     #[doc(alias = "NSLayoutAttributeLeading")]
     pub const Leading: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/trailing?language=objc)
     #[doc(alias = "NSLayoutAttributeTrailing")]
     pub const Trailing: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/width?language=objc)
     #[doc(alias = "NSLayoutAttributeWidth")]
     pub const Width: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/height?language=objc)
     #[doc(alias = "NSLayoutAttributeHeight")]
     pub const Height: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/centerx?language=objc)
     #[doc(alias = "NSLayoutAttributeCenterX")]
     pub const CenterX: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/centery?language=objc)
     #[doc(alias = "NSLayoutAttributeCenterY")]
     pub const CenterY: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/lastbaseline?language=objc)
     #[doc(alias = "NSLayoutAttributeLastBaseline")]
     pub const LastBaseline: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutattribute/nslayoutattributebaseline?language=objc)
     #[doc(alias = "NSLayoutAttributeBaseline")]
     pub const Baseline: Self = Self(NSLayoutAttribute::LastBaseline.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/firstbaseline?language=objc)
     #[doc(alias = "NSLayoutAttributeFirstBaseline")]
     pub const FirstBaseline: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/notanattribute?language=objc)
     #[doc(alias = "NSLayoutAttributeNotAnAttribute")]
     pub const NotAnAttribute: Self = Self(0);
 }
@@ -127,36 +146,52 @@ unsafe impl RefEncode for NSLayoutAttribute {
 pub struct NSLayoutFormatOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLayoutFormatOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallleft?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllLeft")]
         const AlignAllLeft = 1<<NSLayoutAttribute::Left.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallright?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllRight")]
         const AlignAllRight = 1<<NSLayoutAttribute::Right.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignalltop?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllTop")]
         const AlignAllTop = 1<<NSLayoutAttribute::Top.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallbottom?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllBottom")]
         const AlignAllBottom = 1<<NSLayoutAttribute::Bottom.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallleading?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllLeading")]
         const AlignAllLeading = 1<<NSLayoutAttribute::Leading.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignalltrailing?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllTrailing")]
         const AlignAllTrailing = 1<<NSLayoutAttribute::Trailing.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallcenterx?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllCenterX")]
         const AlignAllCenterX = 1<<NSLayoutAttribute::CenterX.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallcentery?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllCenterY")]
         const AlignAllCenterY = 1<<NSLayoutAttribute::CenterY.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignalllastbaseline?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllLastBaseline")]
         const AlignAllLastBaseline = 1<<NSLayoutAttribute::LastBaseline.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallfirstbaseline?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllFirstBaseline")]
         const AlignAllFirstBaseline = 1<<NSLayoutAttribute::FirstBaseline.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutformatoptions/nslayoutformatalignallbaseline?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllBaseline")]
         const AlignAllBaseline = NSLayoutFormatOptions::AlignAllLastBaseline.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignmentmask?language=objc)
         #[doc(alias = "NSLayoutFormatAlignmentMask")]
         const AlignmentMask = 0xFFFF;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/directionleadingtotrailing?language=objc)
         #[doc(alias = "NSLayoutFormatDirectionLeadingToTrailing")]
         const DirectionLeadingToTrailing = 0<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/directionlefttoright?language=objc)
         #[doc(alias = "NSLayoutFormatDirectionLeftToRight")]
         const DirectionLeftToRight = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/directionrighttoleft?language=objc)
         #[doc(alias = "NSLayoutFormatDirectionRightToLeft")]
         const DirectionRightToLeft = 2<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/directionmask?language=objc)
         #[doc(alias = "NSLayoutFormatDirectionMask")]
         const DirectionMask = 0x3<<16;
     }

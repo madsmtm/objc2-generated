@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INRequestPaymentCurrencyAmountUnsupportedReason(pub NSInteger);
 impl INRequestPaymentCurrencyAmountUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentcurrencyamountunsupportedreason/paymentsamountbelowminimum?language=objc)
     #[doc(alias = "INRequestPaymentCurrencyAmountUnsupportedReasonPaymentsAmountBelowMinimum")]
     pub const PaymentsAmountBelowMinimum: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentcurrencyamountunsupportedreason/paymentsamountabovemaximum?language=objc)
     #[doc(alias = "INRequestPaymentCurrencyAmountUnsupportedReasonPaymentsAmountAboveMaximum")]
     pub const PaymentsAmountAboveMaximum: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentcurrencyamountunsupportedreason/paymentscurrencyunsupported?language=objc)
     #[doc(alias = "INRequestPaymentCurrencyAmountUnsupportedReasonPaymentsCurrencyUnsupported")]
     pub const PaymentsCurrencyUnsupported: Self = Self(3);
 }

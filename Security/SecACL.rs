@@ -16,14 +16,19 @@ pub struct SecKeychainPromptSelector(pub uint16);
 #[cfg(feature = "cssmconfig")]
 bitflags::bitflags! {
     impl SecKeychainPromptSelector: uint16 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector/requirepassphase?language=objc)
         #[doc(alias = "kSecKeychainPromptRequirePassphase")]
         const RequirePassphase = 0x0001;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector/unsigned?language=objc)
         #[doc(alias = "kSecKeychainPromptUnsigned")]
         const Unsigned = 0x0010;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector/unsignedact?language=objc)
         #[doc(alias = "kSecKeychainPromptUnsignedAct")]
         const UnsignedAct = 0x0020;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector/invalid?language=objc)
         #[doc(alias = "kSecKeychainPromptInvalid")]
         const Invalid = 0x0040;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector/invalidact?language=objc)
         #[doc(alias = "kSecKeychainPromptInvalidAct")]
         const InvalidAct = 0x0080;
     }
@@ -44,6 +49,8 @@ unsafe impl ConcreteType for SecACL {
     /// Returns the type identifier of SecACL instances.
     ///
     /// Returns: The CFTypeID of SecACL instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclgettypeid()?language=objc)
     #[doc(alias = "SecACLGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -78,6 +85,8 @@ impl SecACL {
     /// - `application_list` generic must be of the correct type.
     /// - `prompt_selector` must be a valid pointer.
     /// - `new_acl` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclcreatefromsimplecontents?language=objc)
     #[doc(alias = "SecACLCreateFromSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -127,6 +136,8 @@ impl SecACL {
     ///
     /// - `application_list` generic must be of the correct type.
     /// - `new_acl` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclcreatewithsimplecontents(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecACLCreateWithSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -163,6 +174,8 @@ impl SecACL {
     /// Parameter `aclRef`: The reference to the access control list entry to remove.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclremove(_:)?language=objc)
     #[doc(alias = "SecACLRemove")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -194,6 +207,8 @@ impl SecACL {
     /// - `application_list` must be a valid pointer.
     /// - `description` must be a valid pointer.
     /// - `prompt_selector` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclcopysimplecontents?language=objc)
     #[doc(alias = "SecACLCopySimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -232,6 +247,8 @@ impl SecACL {
     /// - `application_list` must be a valid pointer.
     /// - `description` must be a valid pointer.
     /// - `prompt_selector` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclcopycontents(_:_:_:_:)?language=objc)
     #[doc(alias = "SecACLCopyContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -272,6 +289,8 @@ impl SecACL {
     ///
     /// - `application_list` generic must be of the correct type.
     /// - `prompt_selector` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclsetsimplecontents?language=objc)
     #[doc(alias = "SecACLSetSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -308,6 +327,8 @@ impl SecACL {
     /// # Safety
     ///
     /// `application_list` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclsetcontents(_:_:_:_:)?language=objc)
     #[doc(alias = "SecACLSetContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -346,6 +367,8 @@ impl SecACL {
     ///
     /// - `tags` must be a valid pointer.
     /// - `tag_count` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclgetauthorizations?language=objc)
     #[doc(alias = "SecACLGetAuthorizations")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -370,6 +393,8 @@ impl SecACL {
     /// Parameter `acl`: An access control list entry reference.
     ///
     /// Returns: On return, a CFArrayRef of the authorizations for this ACL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclcopyauthorizations(_:)?language=objc)
     #[doc(alias = "SecACLCopyAuthorizations")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -400,6 +425,8 @@ impl SecACL {
     /// # Safety
     ///
     /// `tags` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclsetauthorizations?language=objc)
     #[doc(alias = "SecACLSetAuthorizations")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -430,6 +457,8 @@ impl SecACL {
     /// # Safety
     ///
     /// `authorizations` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclupdateauthorizations(_:_:)?language=objc)
     #[doc(alias = "SecACLUpdateAuthorizations")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

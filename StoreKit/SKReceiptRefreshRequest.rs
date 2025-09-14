@@ -59,6 +59,7 @@ impl SKReceiptRefreshRequest {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skterminateforinvalidreceipt()?language=objc)
     pub fn SKTerminateForInvalidReceipt();
 }
 

@@ -14,18 +14,25 @@ use crate::*;
 pub struct SecTrustSettingsKeyUsage(pub u32);
 bitflags::bitflags! {
     impl SecTrustSettingsKeyUsage: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/usesignature?language=objc)
         #[doc(alias = "kSecTrustSettingsKeyUseSignature")]
         const UseSignature = 0x00000001;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/useendecryptdata?language=objc)
         #[doc(alias = "kSecTrustSettingsKeyUseEnDecryptData")]
         const UseEnDecryptData = 0x00000002;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/useendecryptkey?language=objc)
         #[doc(alias = "kSecTrustSettingsKeyUseEnDecryptKey")]
         const UseEnDecryptKey = 0x00000004;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/usesigncert?language=objc)
         #[doc(alias = "kSecTrustSettingsKeyUseSignCert")]
         const UseSignCert = 0x00000008;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/usesignrevocation?language=objc)
         #[doc(alias = "kSecTrustSettingsKeyUseSignRevocation")]
         const UseSignRevocation = 0x00000010;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/usekeyexchange?language=objc)
         #[doc(alias = "kSecTrustSettingsKeyUseKeyExchange")]
         const UseKeyExchange = 0x00000020;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/useany?language=objc)
         #[doc(alias = "kSecTrustSettingsKeyUseAny")]
         const UseAny = 0xffffffff;
     }
@@ -49,14 +56,19 @@ unsafe impl RefEncode for SecTrustSettingsKeyUsage {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustSettingsResult(pub u32);
 impl SecTrustSettingsResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult/invalid?language=objc)
     #[doc(alias = "kSecTrustSettingsResultInvalid")]
     pub const Invalid: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult/trustroot?language=objc)
     #[doc(alias = "kSecTrustSettingsResultTrustRoot")]
     pub const TrustRoot: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult/trustasroot?language=objc)
     #[doc(alias = "kSecTrustSettingsResultTrustAsRoot")]
     pub const TrustAsRoot: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult/deny?language=objc)
     #[doc(alias = "kSecTrustSettingsResultDeny")]
     pub const Deny: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult/unspecified?language=objc)
     #[doc(alias = "kSecTrustSettingsResultUnspecified")]
     pub const Unspecified: Self = Self(4);
 }
@@ -77,10 +89,13 @@ unsafe impl RefEncode for SecTrustSettingsResult {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustSettingsDomain(pub u32);
 impl SecTrustSettingsDomain {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsdomain/user?language=objc)
     #[doc(alias = "kSecTrustSettingsDomainUser")]
     pub const User: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsdomain/admin?language=objc)
     #[doc(alias = "kSecTrustSettingsDomainAdmin")]
     pub const Admin: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsdomain/system?language=objc)
     #[doc(alias = "kSecTrustSettingsDomainSystem")]
     pub const System: Self = Self(2);
 }
@@ -97,6 +112,8 @@ unsafe impl RefEncode for SecTrustSettingsDomain {
 
 #[cfg(feature = "SecTrust")]
 impl SecTrust {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingscopytrustsettings(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `trust_settings` must be a valid pointer.
@@ -118,6 +135,8 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyTrustSettings(cert_ref, domain, trust_settings) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingssettrustsettings(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `trust_settings_dict_or_array` should be of the correct type.
@@ -139,6 +158,7 @@ impl SecTrust {
         unsafe { SecTrustSettingsSetTrustSettings(cert_ref, domain, trust_settings_dict_or_array) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsremovetrustsettings(_:_:)?language=objc)
     #[doc(alias = "SecTrustSettingsRemoveTrustSettings")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -155,6 +175,8 @@ impl SecTrust {
         unsafe { SecTrustSettingsRemoveTrustSettings(cert_ref, domain) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingscopycertificates(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `cert_array` must be a valid pointer or null.
@@ -173,6 +195,8 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyCertificates(domain, cert_array) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingscopymodificationdate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `modification_date` must be a valid pointer.
@@ -194,6 +218,8 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyModificationDate(cert_ref, domain, modification_date) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingscreateexternalrepresentation(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `trust_settings` must be a valid pointer.
@@ -212,6 +238,7 @@ impl SecTrust {
         unsafe { SecTrustSettingsCreateExternalRepresentation(domain, trust_settings) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsimportexternalrepresentation(_:_:)?language=objc)
     #[doc(alias = "SecTrustSettingsImportExternalRepresentation")]
     #[inline]
     pub unsafe fn settings_import_external_representation(

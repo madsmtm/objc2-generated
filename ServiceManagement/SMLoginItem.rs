@@ -25,6 +25,8 @@ use crate::*;
 /// # Safety
 ///
 /// `identifier` might not allow `None`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smloginitemsetenabled(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Please use SMAppService instead"]
 #[inline]

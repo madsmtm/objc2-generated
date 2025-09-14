@@ -47,20 +47,28 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSErrorCode(pub NSInteger);
 impl VSErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/accessnotgranted?language=objc)
     #[doc(alias = "VSErrorCodeAccessNotGranted")]
     pub const AccessNotGranted: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/unsupportedprovider?language=objc)
     #[doc(alias = "VSErrorCodeUnsupportedProvider")]
     pub const UnsupportedProvider: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/usercancelled?language=objc)
     #[doc(alias = "VSErrorCodeUserCancelled")]
     pub const UserCancelled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/servicetemporarilyunavailable?language=objc)
     #[doc(alias = "VSErrorCodeServiceTemporarilyUnavailable")]
     pub const ServiceTemporarilyUnavailable: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/providerrejected?language=objc)
     #[doc(alias = "VSErrorCodeProviderRejected")]
     pub const ProviderRejected: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/invalidverificationtoken?language=objc)
     #[doc(alias = "VSErrorCodeInvalidVerificationToken")]
     pub const InvalidVerificationToken: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/rejected?language=objc)
     #[doc(alias = "VSErrorCodeRejected")]
     pub const Rejected: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/unsupported?language=objc)
     #[doc(alias = "VSErrorCodeUnsupported")]
     pub const Unsupported: Self = Self(7);
 }

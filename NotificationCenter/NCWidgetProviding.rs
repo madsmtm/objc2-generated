@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NCUpdateResult(pub NSUInteger);
 impl NCUpdateResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncupdateresult/newdata?language=objc)
     #[doc(alias = "NCUpdateResultNewData")]
     pub const NewData: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncupdateresult/nodata?language=objc)
     #[doc(alias = "NCUpdateResultNoData")]
     pub const NoData: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncupdateresult/failed?language=objc)
     #[doc(alias = "NCUpdateResultFailed")]
     pub const Failed: Self = Self(2);
 }

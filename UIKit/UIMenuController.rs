@@ -16,15 +16,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuControllerArrowDirection(pub NSInteger);
 impl UIMenuControllerArrowDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum/default?language=objc)
     #[doc(alias = "UIMenuControllerArrowDefault")]
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum/up?language=objc)
     #[doc(alias = "UIMenuControllerArrowUp")]
     pub const Up: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum/down?language=objc)
     #[doc(alias = "UIMenuControllerArrowDown")]
     pub const Down: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum/left?language=objc)
     #[doc(alias = "UIMenuControllerArrowLeft")]
     pub const Left: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum/right?language=objc)
     #[doc(alias = "UIMenuControllerArrowRight")]
     pub const Right: Self = Self(4);
 }

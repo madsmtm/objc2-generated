@@ -17,24 +17,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureType(pub NSUInteger);
 impl MTLTextureType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type1d?language=objc)
     #[doc(alias = "MTLTextureType1D")]
     pub const Type1D: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type1darray?language=objc)
     #[doc(alias = "MTLTextureType1DArray")]
     pub const Type1DArray: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type2d?language=objc)
     #[doc(alias = "MTLTextureType2D")]
     pub const Type2D: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray?language=objc)
     #[doc(alias = "MTLTextureType2DArray")]
     pub const Type2DArray: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type2dmultisample?language=objc)
     #[doc(alias = "MTLTextureType2DMultisample")]
     pub const Type2DMultisample: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/typecube?language=objc)
     #[doc(alias = "MTLTextureTypeCube")]
     pub const TypeCube: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/typecubearray?language=objc)
     #[doc(alias = "MTLTextureTypeCubeArray")]
     pub const TypeCubeArray: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type3d?language=objc)
     #[doc(alias = "MTLTextureType3D")]
     pub const Type3D: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type2dmultisamplearray?language=objc)
     #[doc(alias = "MTLTextureType2DMultisampleArray")]
     pub const Type2DMultisampleArray: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/typetexturebuffer?language=objc)
     #[doc(alias = "MTLTextureTypeTextureBuffer")]
     pub const TypeTextureBuffer: Self = Self(9);
 }
@@ -53,16 +63,22 @@ unsafe impl RefEncode for MTLTextureType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureSwizzle(pub u8);
 impl MTLTextureSwizzle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/zero?language=objc)
     #[doc(alias = "MTLTextureSwizzleZero")]
     pub const Zero: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/one?language=objc)
     #[doc(alias = "MTLTextureSwizzleOne")]
     pub const One: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/red?language=objc)
     #[doc(alias = "MTLTextureSwizzleRed")]
     pub const Red: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/green?language=objc)
     #[doc(alias = "MTLTextureSwizzleGreen")]
     pub const Green: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/blue?language=objc)
     #[doc(alias = "MTLTextureSwizzleBlue")]
     pub const Blue: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/alpha?language=objc)
     #[doc(alias = "MTLTextureSwizzleAlpha")]
     pub const Alpha: Self = Self(5);
 }
@@ -172,16 +188,22 @@ impl DefaultRetained for MTLSharedTextureHandle {
 pub struct MTLTextureUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLTextureUsage: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/unknown?language=objc)
         #[doc(alias = "MTLTextureUsageUnknown")]
         const Unknown = 0x0000;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/shaderread?language=objc)
         #[doc(alias = "MTLTextureUsageShaderRead")]
         const ShaderRead = 0x0001;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/shaderwrite?language=objc)
         #[doc(alias = "MTLTextureUsageShaderWrite")]
         const ShaderWrite = 0x0002;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/rendertarget?language=objc)
         #[doc(alias = "MTLTextureUsageRenderTarget")]
         const RenderTarget = 0x0004;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/pixelformatview?language=objc)
         #[doc(alias = "MTLTextureUsagePixelFormatView")]
         const PixelFormatView = 0x0010;
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/shaderatomic?language=objc)
         #[doc(alias = "MTLTextureUsageShaderAtomic")]
         const ShaderAtomic = 0x0020;
     }
@@ -201,8 +223,10 @@ unsafe impl RefEncode for MTLTextureUsage {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureCompressionType(pub NSInteger);
 impl MTLTextureCompressionType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturecompressiontype/lossless?language=objc)
     #[doc(alias = "MTLTextureCompressionTypeLossless")]
     pub const Lossless: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturecompressiontype/lossy?language=objc)
     #[doc(alias = "MTLTextureCompressionTypeLossy")]
     pub const Lossy: Self = Self(1);
 }

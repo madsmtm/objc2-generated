@@ -290,10 +290,13 @@ impl UIPointerLiftEffect {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPointerEffectTintMode(pub NSInteger);
 impl UIPointerEffectTintMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffecttintmode/uipointereffecttintmodenone?language=objc)
     #[doc(alias = "UIPointerEffectTintModeNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffecttintmode/uipointereffecttintmodeoverlay?language=objc)
     #[doc(alias = "UIPointerEffectTintModeOverlay")]
     pub const Overlay: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffecttintmode/uipointereffecttintmodeunderlay?language=objc)
     #[doc(alias = "UIPointerEffectTintModeUnderlay")]
     pub const Underlay: Self = Self(2);
 }

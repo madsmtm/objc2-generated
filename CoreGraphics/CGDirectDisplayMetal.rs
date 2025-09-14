@@ -8,6 +8,7 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdirectdisplaycopycurrentmetaldevice(_:)?language=objc)
 #[cfg(all(
     feature = "CGDirectDisplay",
     feature = "objc2",

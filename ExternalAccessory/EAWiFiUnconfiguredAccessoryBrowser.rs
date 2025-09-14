@@ -17,12 +17,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EAWiFiUnconfiguredAccessoryBrowserState(pub NSInteger);
 impl EAWiFiUnconfiguredAccessoryBrowserState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate/wifiunavailable?language=objc)
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateWiFiUnavailable")]
     pub const WiFiUnavailable: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate/stopped?language=objc)
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateStopped")]
     pub const Stopped: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate/searching?language=objc)
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateSearching")]
     pub const Searching: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate/configuring?language=objc)
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateConfiguring")]
     pub const Configuring: Self = Self(3);
 }
@@ -43,10 +47,13 @@ unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryBrowserState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EAWiFiUnconfiguredAccessoryConfigurationStatus(pub NSInteger);
 impl EAWiFiUnconfiguredAccessoryConfigurationStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryconfigurationstatus/success?language=objc)
     #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusSuccess")]
     pub const Success: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryconfigurationstatus/usercancelledconfiguration?language=objc)
     #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusUserCancelledConfiguration")]
     pub const UserCancelledConfiguration: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryconfigurationstatus/failed?language=objc)
     #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusFailed")]
     pub const Failed: Self = Self(2);
 }

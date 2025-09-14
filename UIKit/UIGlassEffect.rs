@@ -16,9 +16,13 @@ use crate::*;
 pub struct UIGlassEffectStyle(pub NSInteger);
 impl UIGlassEffectStyle {
     /// Standard glass effect style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiglasseffect/style/regular?language=objc)
     #[doc(alias = "UIGlassEffectStyleRegular")]
     pub const Regular: Self = Self(0);
     /// Clear glass effect style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiglasseffect/style/clear?language=objc)
     #[doc(alias = "UIGlassEffectStyleClear")]
     pub const Clear: Self = Self(1);
 }

@@ -19,46 +19,67 @@ use crate::*;
 pub struct UIControlEvents(pub NSUInteger);
 bitflags::bitflags! {
     impl UIControlEvents: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdown?language=objc)
         #[doc(alias = "UIControlEventTouchDown")]
         const TouchDown = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdownrepeat?language=objc)
         #[doc(alias = "UIControlEventTouchDownRepeat")]
         const TouchDownRepeat = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdraginside?language=objc)
         #[doc(alias = "UIControlEventTouchDragInside")]
         const TouchDragInside = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdragoutside?language=objc)
         #[doc(alias = "UIControlEventTouchDragOutside")]
         const TouchDragOutside = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdragenter?language=objc)
         #[doc(alias = "UIControlEventTouchDragEnter")]
         const TouchDragEnter = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdragexit?language=objc)
         #[doc(alias = "UIControlEventTouchDragExit")]
         const TouchDragExit = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchupinside?language=objc)
         #[doc(alias = "UIControlEventTouchUpInside")]
         const TouchUpInside = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchupoutside?language=objc)
         #[doc(alias = "UIControlEventTouchUpOutside")]
         const TouchUpOutside = 1<<7;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchcancel?language=objc)
         #[doc(alias = "UIControlEventTouchCancel")]
         const TouchCancel = 1<<8;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/valuechanged?language=objc)
         #[doc(alias = "UIControlEventValueChanged")]
         const ValueChanged = 1<<12;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/primaryactiontriggered?language=objc)
         #[doc(alias = "UIControlEventPrimaryActionTriggered")]
         const PrimaryActionTriggered = 1<<13;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/menuactiontriggered?language=objc)
         #[doc(alias = "UIControlEventMenuActionTriggered")]
         const MenuActionTriggered = 1<<14;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/editingdidbegin?language=objc)
         #[doc(alias = "UIControlEventEditingDidBegin")]
         const EditingDidBegin = 1<<16;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/editingchanged?language=objc)
         #[doc(alias = "UIControlEventEditingChanged")]
         const EditingChanged = 1<<17;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/editingdidend?language=objc)
         #[doc(alias = "UIControlEventEditingDidEnd")]
         const EditingDidEnd = 1<<18;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/editingdidendonexit?language=objc)
         #[doc(alias = "UIControlEventEditingDidEndOnExit")]
         const EditingDidEndOnExit = 1<<19;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/alltouchevents?language=objc)
         #[doc(alias = "UIControlEventAllTouchEvents")]
         const AllTouchEvents = 0x00000FFF;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/alleditingevents?language=objc)
         #[doc(alias = "UIControlEventAllEditingEvents")]
         const AllEditingEvents = 0x000F0000;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/applicationreserved?language=objc)
         #[doc(alias = "UIControlEventApplicationReserved")]
         const ApplicationReserved = 0x0F000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/systemreserved?language=objc)
         #[doc(alias = "UIControlEventSystemReserved")]
         const SystemReserved = 0xF0000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/allevents?language=objc)
         #[doc(alias = "UIControlEventAllEvents")]
         const AllEvents = 0xFFFFFFFF;
     }
@@ -78,12 +99,16 @@ unsafe impl RefEncode for UIControlEvents {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIControlContentVerticalAlignment(pub NSInteger);
 impl UIControlContentVerticalAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contentverticalalignment-swift.enum/center?language=objc)
     #[doc(alias = "UIControlContentVerticalAlignmentCenter")]
     pub const Center: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contentverticalalignment-swift.enum/top?language=objc)
     #[doc(alias = "UIControlContentVerticalAlignmentTop")]
     pub const Top: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contentverticalalignment-swift.enum/bottom?language=objc)
     #[doc(alias = "UIControlContentVerticalAlignmentBottom")]
     pub const Bottom: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contentverticalalignment-swift.enum/fill?language=objc)
     #[doc(alias = "UIControlContentVerticalAlignmentFill")]
     pub const Fill: Self = Self(3);
 }
@@ -102,16 +127,22 @@ unsafe impl RefEncode for UIControlContentVerticalAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIControlContentHorizontalAlignment(pub NSInteger);
 impl UIControlContentHorizontalAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/center?language=objc)
     #[doc(alias = "UIControlContentHorizontalAlignmentCenter")]
     pub const Center: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/left?language=objc)
     #[doc(alias = "UIControlContentHorizontalAlignmentLeft")]
     pub const Left: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/right?language=objc)
     #[doc(alias = "UIControlContentHorizontalAlignmentRight")]
     pub const Right: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/fill?language=objc)
     #[doc(alias = "UIControlContentHorizontalAlignmentFill")]
     pub const Fill: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/leading?language=objc)
     #[doc(alias = "UIControlContentHorizontalAlignmentLeading")]
     pub const Leading: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/trailing?language=objc)
     #[doc(alias = "UIControlContentHorizontalAlignmentTrailing")]
     pub const Trailing: Self = Self(5);
 }
@@ -131,18 +162,25 @@ unsafe impl RefEncode for UIControlContentHorizontalAlignment {
 pub struct UIControlState(pub NSUInteger);
 bitflags::bitflags! {
     impl UIControlState: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/normal?language=objc)
         #[doc(alias = "UIControlStateNormal")]
         const Normal = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/highlighted?language=objc)
         #[doc(alias = "UIControlStateHighlighted")]
         const Highlighted = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/disabled?language=objc)
         #[doc(alias = "UIControlStateDisabled")]
         const Disabled = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/selected?language=objc)
         #[doc(alias = "UIControlStateSelected")]
         const Selected = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/focused?language=objc)
         #[doc(alias = "UIControlStateFocused")]
         const Focused = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/application?language=objc)
         #[doc(alias = "UIControlStateApplication")]
         const Application = 0x00FF0000;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/reserved?language=objc)
         #[doc(alias = "UIControlStateReserved")]
         const Reserved = 0xFF000000;
     }

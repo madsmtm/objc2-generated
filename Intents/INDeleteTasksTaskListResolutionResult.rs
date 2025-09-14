@@ -13,6 +13,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INDeleteTasksTaskListUnsupportedReason(pub NSInteger);
 impl INDeleteTasksTaskListUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetaskstasklistunsupportedreason/notasklistfound?language=objc)
     #[doc(alias = "INDeleteTasksTaskListUnsupportedReasonNoTaskListFound")]
     #[deprecated = "INDeleteTasksTaskListUnsupportedReason is deprecated. There is no replacement."]
     pub const NoTaskListFound: Self = Self(1);

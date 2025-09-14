@@ -15,6 +15,7 @@ use crate::*;
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVOpenGLTexture = CVImageBuffer;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturegettypeid()?language=objc)
 #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
 #[inline]
 pub extern "C-unwind" fn CVOpenGLTextureGetTypeID() -> CFTypeID {
@@ -29,6 +30,8 @@ pub extern "C-unwind" fn CVOpenGLTextureGetTypeID() -> CFTypeID {
 /// Parameter `image`: Target CVOpenGLTexture
 ///
 /// Returns: OpenGL texture target
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturegettarget(_:)?language=objc)
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -49,6 +52,8 @@ pub extern "C-unwind" fn CVOpenGLTextureGetTarget(image: &CVOpenGLTexture) -> GL
 /// Parameter `image`: Target CVOpenGLTexture
 ///
 /// Returns: OpenGL texture target name
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturegetname(_:)?language=objc)
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -69,6 +74,8 @@ pub extern "C-unwind" fn CVOpenGLTextureGetName(image: &CVOpenGLTexture) -> GLui
 /// Parameter `image`: Target CVOpenGLTexture
 ///
 /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltextureisflipped(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
 #[inline]

@@ -19,14 +19,20 @@ pub struct ASPickerDisplayItemSetupOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASPickerDisplayItemSetupOptions: NSUInteger {
 /// An option to ask the person using the app to rename the accessory.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/setupoptions-swift.struct/rename?language=objc)
         #[doc(alias = "ASPickerDisplayItemSetupRename")]
         const Rename = 1<<0;
 /// An option to require the app to finish accessory authorization before showing the setup view.
 ///
 /// If the accessory supports ``ASAccessory/SupportOptions/bluetoothPairingLE``, then the app needs to start pairing by accessing a protected GATT characteristic.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/setupoptions-swift.struct/confirmauthorization?language=objc)
         #[doc(alias = "ASPickerDisplayItemSetupConfirmAuthorization")]
         const ConfirmAuthorization = 1<<1;
 /// An option to ask the person setting up the accessory to finish additional setup in the app after the accessory is authorized.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/setupoptions-swift.struct/finishinapp?language=objc)
         #[doc(alias = "ASPickerDisplayItemSetupFinishInApp")]
         const FinishInApp = 1<<2;
     }

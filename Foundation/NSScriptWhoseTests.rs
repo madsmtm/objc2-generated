@@ -11,20 +11,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTestComparisonOperation(pub NSUInteger);
 impl NSTestComparisonOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/equal?language=objc)
     #[doc(alias = "NSEqualToComparison")]
     pub const EqualToComparison: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/lessthanorequal?language=objc)
     #[doc(alias = "NSLessThanOrEqualToComparison")]
     pub const LessThanOrEqualToComparison: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/lessthan?language=objc)
     #[doc(alias = "NSLessThanComparison")]
     pub const LessThanComparison: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/greaterthanorequal?language=objc)
     #[doc(alias = "NSGreaterThanOrEqualToComparison")]
     pub const GreaterThanOrEqualToComparison: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/greaterthan?language=objc)
     #[doc(alias = "NSGreaterThanComparison")]
     pub const GreaterThanComparison: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/beginswith?language=objc)
     #[doc(alias = "NSBeginsWithComparison")]
     pub const BeginsWithComparison: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/endswith?language=objc)
     #[doc(alias = "NSEndsWithComparison")]
     pub const EndsWithComparison: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/contains?language=objc)
     #[doc(alias = "NSContainsComparison")]
     pub const ContainsComparison: Self = Self(7);
 }

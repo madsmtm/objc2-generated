@@ -35,6 +35,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFLocale {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegettypeid()?language=objc)
     #[doc(alias = "CFLocaleGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -46,6 +47,7 @@ unsafe impl ConcreteType for CFLocale {
 }
 
 impl CFLocale {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetsystem()?language=objc)
     #[doc(alias = "CFLocaleGetSystem")]
     #[inline]
     pub fn system() -> Option<CFRetained<CFLocale>> {
@@ -56,6 +58,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopycurrent()?language=objc)
     #[doc(alias = "CFLocaleCopyCurrent")]
     #[inline]
     pub fn current() -> Option<CFRetained<CFLocale>> {
@@ -66,6 +69,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopyavailablelocaleidentifiers()?language=objc)
     #[doc(alias = "CFLocaleCopyAvailableLocaleIdentifiers")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -77,6 +81,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopyisolanguagecodes()?language=objc)
     #[doc(alias = "CFLocaleCopyISOLanguageCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -88,6 +93,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopyisocountrycodes()?language=objc)
     #[doc(alias = "CFLocaleCopyISOCountryCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -99,6 +105,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopyisocurrencycodes()?language=objc)
     #[doc(alias = "CFLocaleCopyISOCurrencyCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -110,6 +117,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopycommonisocurrencycodes()?language=objc)
     #[doc(alias = "CFLocaleCopyCommonISOCurrencyCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -121,6 +129,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopypreferredlanguages()?language=objc)
     #[doc(alias = "CFLocaleCopyPreferredLanguages")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -132,6 +141,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatecanonicallanguageidentifierfromstring(_:_:)?language=objc)
     #[doc(alias = "CFLocaleCreateCanonicalLanguageIdentifierFromString")]
     #[inline]
     pub fn new_canonical_language_identifier_from_string(
@@ -150,6 +160,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatecanonicallocaleidentifierfromstring(_:_:)?language=objc)
     #[doc(alias = "CFLocaleCreateCanonicalLocaleIdentifierFromString")]
     #[inline]
     pub fn new_canonical_locale_identifier_from_string(
@@ -168,6 +179,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatecanonicallocaleidentifierfromscriptmanagercodes(_:_:_:)?language=objc)
     #[doc(alias = "CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes")]
     #[inline]
     pub fn new_canonical_locale_identifier_from_script_manager_codes(
@@ -188,6 +200,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatelocaleidentifierfromwindowslocalecode(_:_:)?language=objc)
     #[doc(alias = "CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode")]
     #[inline]
     pub fn new_locale_identifier_from_windows_locale_code(
@@ -204,6 +217,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetwindowslocalecodefromlocaleidentifier(_:)?language=objc)
     #[doc(alias = "CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier")]
     #[inline]
     pub fn windows_locale_code_from_locale_identifier(
@@ -224,14 +238,19 @@ impl CFLocale {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFLocaleLanguageDirection(pub CFIndex);
 impl CFLocaleLanguageDirection {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/unknown?language=objc)
     #[doc(alias = "kCFLocaleLanguageDirectionUnknown")]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/lefttoright?language=objc)
     #[doc(alias = "kCFLocaleLanguageDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/righttoleft?language=objc)
     #[doc(alias = "kCFLocaleLanguageDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/toptobottom?language=objc)
     #[doc(alias = "kCFLocaleLanguageDirectionTopToBottom")]
     pub const TopToBottom: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/bottomtotop?language=objc)
     #[doc(alias = "kCFLocaleLanguageDirectionBottomToTop")]
     pub const BottomToTop: Self = Self(4);
 }
@@ -247,6 +266,7 @@ unsafe impl RefEncode for CFLocaleLanguageDirection {
 }
 
 impl CFLocale {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetlanguagecharacterdirection(_:)?language=objc)
     #[doc(alias = "CFLocaleGetLanguageCharacterDirection")]
     #[inline]
     pub fn language_character_direction(
@@ -260,6 +280,7 @@ impl CFLocale {
         unsafe { CFLocaleGetLanguageCharacterDirection(iso_lang_code) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetlanguagelinedirection(_:)?language=objc)
     #[doc(alias = "CFLocaleGetLanguageLineDirection")]
     #[inline]
     pub fn language_line_direction(iso_lang_code: Option<&CFString>) -> CFLocaleLanguageDirection {
@@ -271,6 +292,7 @@ impl CFLocale {
         unsafe { CFLocaleGetLanguageLineDirection(iso_lang_code) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatecomponentsfromlocaleidentifier(_:_:)?language=objc)
     #[doc(alias = "CFLocaleCreateComponentsFromLocaleIdentifier")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -288,6 +310,8 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatelocaleidentifierfromcomponents(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -311,6 +335,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreate(_:_:)?language=objc)
     #[doc(alias = "CFLocaleCreate")]
     #[inline]
     pub fn new(
@@ -327,6 +352,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFLocaleCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -343,6 +369,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetidentifier(_:)?language=objc)
     #[doc(alias = "CFLocaleGetIdentifier")]
     #[inline]
     pub fn identifier(&self) -> Option<CFRetained<CFLocaleIdentifier>> {
@@ -353,6 +380,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetvalue(_:_:)?language=objc)
     #[doc(alias = "CFLocaleGetValue")]
     #[inline]
     pub fn value(&self, key: Option<&CFLocaleKey>) -> Option<CFRetained<CFType>> {
@@ -366,6 +394,7 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopydisplaynameforpropertyvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFLocaleCopyDisplayNameForPropertyValue")]
     #[inline]
     pub fn display_name_for_property_value(

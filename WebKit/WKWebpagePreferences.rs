@@ -22,10 +22,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKContentMode(pub NSInteger);
 impl WKContentMode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/contentmode/recommended?language=objc)
     #[doc(alias = "WKContentModeRecommended")]
     pub const Recommended: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/contentmode/mobile?language=objc)
     #[doc(alias = "WKContentModeMobile")]
     pub const Mobile: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/contentmode/desktop?language=objc)
     #[doc(alias = "WKContentModeDesktop")]
     pub const Desktop: Self = Self(2);
 }
@@ -48,12 +51,16 @@ unsafe impl RefEncode for WKContentMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebpagePreferencesUpgradeToHTTPSPolicy(pub NSInteger);
 impl WKWebpagePreferencesUpgradeToHTTPSPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/upgradetohttpspolicy/keepasrequested?language=objc)
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyKeepAsRequested")]
     pub const KeepAsRequested: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/upgradetohttpspolicy/automaticfallbacktohttp?language=objc)
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyAutomaticFallbackToHTTP")]
     pub const AutomaticFallbackToHTTP: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/upgradetohttpspolicy/usermediatedfallbacktohttp?language=objc)
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyUserMediatedFallbackToHTTP")]
     pub const UserMediatedFallbackToHTTP: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/upgradetohttpspolicy/erroronfailure?language=objc)
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyErrorOnFailure")]
     pub const ErrorOnFailure: Self = Self(3);
 }

@@ -13,12 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EABluetoothAccessoryPickerErrorCode(pub NSInteger);
 impl EABluetoothAccessoryPickerErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererror/code/alreadyconnected?language=objc)
     #[doc(alias = "EABluetoothAccessoryPickerAlreadyConnected")]
     pub const AlreadyConnected: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererror/code/resultnotfound?language=objc)
     #[doc(alias = "EABluetoothAccessoryPickerResultNotFound")]
     pub const ResultNotFound: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererror/code/resultcancelled?language=objc)
     #[doc(alias = "EABluetoothAccessoryPickerResultCancelled")]
     pub const ResultCancelled: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererror/code/resultfailed?language=objc)
     #[doc(alias = "EABluetoothAccessoryPickerResultFailed")]
     pub const ResultFailed: Self = Self(3);
 }

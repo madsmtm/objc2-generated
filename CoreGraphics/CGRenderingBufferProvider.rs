@@ -27,6 +27,8 @@ cf_objc2_type!(
 );
 
 impl CGRenderingBufferProvider {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrenderingbufferprovidercreate?language=objc)
+    ///
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
@@ -56,6 +58,7 @@ impl CGRenderingBufferProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrenderingbufferprovidercreatewithcfdata?language=objc)
     #[doc(alias = "CGRenderingBufferProviderCreateWithCFData")]
     #[inline]
     pub fn with_cf_data(data: &CFMutableData) -> Option<CFRetained<CGRenderingBufferProvider>> {
@@ -68,6 +71,7 @@ impl CGRenderingBufferProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrenderingbufferprovidergetsize?language=objc)
     #[doc(alias = "CGRenderingBufferProviderGetSize")]
     #[inline]
     pub fn size(&self) -> usize {
@@ -78,6 +82,7 @@ impl CGRenderingBufferProvider {
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrenderingbufferlockbyteptr?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRenderingBufferLockBytePtr(
     provider: &CGRenderingBufferProvider,
@@ -88,6 +93,7 @@ pub extern "C-unwind" fn CGRenderingBufferLockBytePtr(
     unsafe { CGRenderingBufferLockBytePtr(provider) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrenderingbufferunlockbyteptr?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRenderingBufferUnlockBytePtr(provider: &CGRenderingBufferProvider) {
     extern "C-unwind" {
@@ -97,6 +103,7 @@ pub extern "C-unwind" fn CGRenderingBufferUnlockBytePtr(provider: &CGRenderingBu
 }
 
 unsafe impl ConcreteType for CGRenderingBufferProvider {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrenderingbufferprovidergettypeid?language=objc)
     #[doc(alias = "CGRenderingBufferProviderGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {

@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBatchInsertRequestResultType(pub NSUInteger);
 impl NSBatchInsertRequestResultType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchinsertrequestresulttype/statusonly?language=objc)
     #[doc(alias = "NSBatchInsertRequestResultTypeStatusOnly")]
     pub const StatusOnly: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchinsertrequestresulttype/objectids?language=objc)
     #[doc(alias = "NSBatchInsertRequestResultTypeObjectIDs")]
     pub const ObjectIDs: Self = Self(0x1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchinsertrequestresulttype/count?language=objc)
     #[doc(alias = "NSBatchInsertRequestResultTypeCount")]
     pub const Count: Self = Self(0x2);
 }
@@ -35,10 +38,13 @@ unsafe impl RefEncode for NSBatchInsertRequestResultType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBatchUpdateRequestResultType(pub NSUInteger);
 impl NSBatchUpdateRequestResultType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchupdaterequestresulttype/statusonlyresulttype?language=objc)
     #[doc(alias = "NSStatusOnlyResultType")]
     pub const StatusOnlyResultType: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchupdaterequestresulttype/updatedobjectidsresulttype?language=objc)
     #[doc(alias = "NSUpdatedObjectIDsResultType")]
     pub const UpdatedObjectIDsResultType: Self = Self(0x1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchupdaterequestresulttype/updatedobjectscountresulttype?language=objc)
     #[doc(alias = "NSUpdatedObjectsCountResultType")]
     pub const UpdatedObjectsCountResultType: Self = Self(0x2);
 }
@@ -57,10 +63,13 @@ unsafe impl RefEncode for NSBatchUpdateRequestResultType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBatchDeleteRequestResultType(pub NSUInteger);
 impl NSBatchDeleteRequestResultType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchdeleterequestresulttype/resulttypestatusonly?language=objc)
     #[doc(alias = "NSBatchDeleteResultTypeStatusOnly")]
     pub const ResultTypeStatusOnly: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchdeleterequestresulttype/resulttypeobjectids?language=objc)
     #[doc(alias = "NSBatchDeleteResultTypeObjectIDs")]
     pub const ResultTypeObjectIDs: Self = Self(0x1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchdeleterequestresulttype/resulttypecount?language=objc)
     #[doc(alias = "NSBatchDeleteResultTypeCount")]
     pub const ResultTypeCount: Self = Self(0x2);
 }
@@ -79,16 +88,22 @@ unsafe impl RefEncode for NSBatchDeleteRequestResultType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersistentHistoryResultType(pub NSInteger);
 impl NSPersistentHistoryResultType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistoryresulttype/statusonly?language=objc)
     #[doc(alias = "NSPersistentHistoryResultTypeStatusOnly")]
     pub const StatusOnly: Self = Self(0x0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistoryresulttype/objectids?language=objc)
     #[doc(alias = "NSPersistentHistoryResultTypeObjectIDs")]
     pub const ObjectIDs: Self = Self(0x1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistoryresulttype/count?language=objc)
     #[doc(alias = "NSPersistentHistoryResultTypeCount")]
     pub const Count: Self = Self(0x2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistoryresulttype/transactionsonly?language=objc)
     #[doc(alias = "NSPersistentHistoryResultTypeTransactionsOnly")]
     pub const TransactionsOnly: Self = Self(0x3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistoryresulttype/changesonly?language=objc)
     #[doc(alias = "NSPersistentHistoryResultTypeChangesOnly")]
     pub const ChangesOnly: Self = Self(0x4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistoryresulttype/transactionsandchanges?language=objc)
     #[doc(alias = "NSPersistentHistoryResultTypeTransactionsAndChanges")]
     pub const TransactionsAndChanges: Self = Self(0x5);
 }
@@ -383,8 +398,10 @@ impl NSPersistentHistoryResult {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersistentCloudKitContainerEventResultType(pub NSInteger);
 impl NSPersistentCloudKitContainerEventResultType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainereventresult/resulttype-swift.enum/events?language=objc)
     #[doc(alias = "NSPersistentCloudKitContainerEventResultTypeEvents")]
     pub const Events: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainereventresult/resulttype-swift.enum/countevents?language=objc)
     #[doc(alias = "NSPersistentCloudKitContainerEventResultTypeCountEvents")]
     pub const CountEvents: Self = Self(1);
 }

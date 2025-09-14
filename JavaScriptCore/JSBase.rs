@@ -144,6 +144,8 @@ extern "C-unwind" {
     /// - `this_object` must be a valid pointer.
     /// - `source_url` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsevaluatescript(_:_:_:_:_:_:)?language=objc)
     pub fn JSEvaluateScript(
         ctx: JSContextRef,
         script: JSStringRef,
@@ -175,6 +177,8 @@ extern "C-unwind" {
     /// - `script` must be a valid pointer.
     /// - `source_url` must be a valid pointer.
     /// - `exception` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscheckscriptsyntax(_:_:_:_:_:)?language=objc)
     pub fn JSCheckScriptSyntax(
         ctx: JSContextRef,
         script: JSStringRef,
@@ -201,5 +205,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsgarbagecollect(_:)?language=objc)
     pub fn JSGarbageCollect(ctx: JSContextRef);
 }

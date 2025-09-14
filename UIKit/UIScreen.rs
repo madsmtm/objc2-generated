@@ -50,12 +50,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScreenOverscanCompensation(pub NSInteger);
 impl UIScreenOverscanCompensation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation-swift.enum/scale?language=objc)
     #[doc(alias = "UIScreenOverscanCompensationScale")]
     pub const Scale: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation-swift.enum/insetbounds?language=objc)
     #[doc(alias = "UIScreenOverscanCompensationInsetBounds")]
     pub const InsetBounds: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation-swift.enum/none?language=objc)
     #[doc(alias = "UIScreenOverscanCompensationNone")]
     pub const None: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation-swift.enum/insetapplicationframe?language=objc)
     #[doc(alias = "UIScreenOverscanCompensationInsetApplicationFrame")]
     #[deprecated]
     pub const InsetApplicationFrame: Self = Self(2);
@@ -75,12 +79,16 @@ unsafe impl RefEncode for UIScreenOverscanCompensation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScreenReferenceDisplayModeStatus(pub NSInteger);
 impl UIScreenReferenceDisplayModeStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.enum/notsupported?language=objc)
     #[doc(alias = "UIScreenReferenceDisplayModeStatusNotSupported")]
     pub const NotSupported: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.enum/notenabled?language=objc)
     #[doc(alias = "UIScreenReferenceDisplayModeStatusNotEnabled")]
     pub const NotEnabled: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.enum/limited?language=objc)
     #[doc(alias = "UIScreenReferenceDisplayModeStatusLimited")]
     pub const Limited: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.enum/enabled?language=objc)
     #[doc(alias = "UIScreenReferenceDisplayModeStatusEnabled")]
     pub const Enabled: Self = Self(3);
 }

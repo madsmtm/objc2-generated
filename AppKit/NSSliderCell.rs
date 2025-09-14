@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTickMarkPosition(pub NSUInteger);
 impl NSTickMarkPosition {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.enum/below?language=objc)
     #[doc(alias = "NSTickMarkPositionBelow")]
     pub const Below: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.enum/above?language=objc)
     #[doc(alias = "NSTickMarkPositionAbove")]
     pub const Above: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.enum/leading?language=objc)
     #[doc(alias = "NSTickMarkPositionLeading")]
     pub const Leading: Self = Self(NSTickMarkPosition::Above.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.enum/trailing?language=objc)
     #[doc(alias = "NSTickMarkPositionTrailing")]
     pub const Trailing: Self = Self(NSTickMarkPosition::Below.0);
 }
@@ -39,8 +43,10 @@ unsafe impl RefEncode for NSTickMarkPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSliderType(pub NSUInteger);
 impl NSSliderType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.enum/linear?language=objc)
     #[doc(alias = "NSSliderTypeLinear")]
     pub const Linear: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.enum/circular?language=objc)
     #[doc(alias = "NSSliderTypeCircular")]
     pub const Circular: Self = Self(1);
 }

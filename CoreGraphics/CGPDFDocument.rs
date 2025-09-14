@@ -33,20 +33,28 @@ cf_objc2_type!(
 pub struct CGPDFAccessPermissions(pub u32);
 bitflags::bitflags! {
     impl CGPDFAccessPermissions: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowslowqualityprinting?language=objc)
         #[doc(alias = "kCGPDFAllowsLowQualityPrinting")]
         const AllowsLowQualityPrinting = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowshighqualityprinting?language=objc)
         #[doc(alias = "kCGPDFAllowsHighQualityPrinting")]
         const AllowsHighQualityPrinting = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowsdocumentchanges?language=objc)
         #[doc(alias = "kCGPDFAllowsDocumentChanges")]
         const AllowsDocumentChanges = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowsdocumentassembly?language=objc)
         #[doc(alias = "kCGPDFAllowsDocumentAssembly")]
         const AllowsDocumentAssembly = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowscontentcopying?language=objc)
         #[doc(alias = "kCGPDFAllowsContentCopying")]
         const AllowsContentCopying = 1<<4;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowscontentaccessibility?language=objc)
         #[doc(alias = "kCGPDFAllowsContentAccessibility")]
         const AllowsContentAccessibility = 1<<5;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowscommenting?language=objc)
         #[doc(alias = "kCGPDFAllowsCommenting")]
         const AllowsCommenting = 1<<6;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowsformfieldentry?language=objc)
         #[doc(alias = "kCGPDFAllowsFormFieldEntry")]
         const AllowsFormFieldEntry = 1<<7;
     }
@@ -83,6 +91,7 @@ extern "C" {
 }
 
 impl CGPDFDocument {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/init(_:)-gbq6?language=objc)
     #[doc(alias = "CGPDFDocumentCreateWithProvider")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
@@ -96,6 +105,7 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/init(_:)-2gtsd?language=objc)
     #[doc(alias = "CGPDFDocumentCreateWithURL")]
     #[inline]
     pub fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGPDFDocument>> {
@@ -106,6 +116,8 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/getversion(majorversion:minorversion:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `major_version` must be a valid pointer.
@@ -127,6 +139,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetVersion(document, major_version, minor_version) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/isencrypted?language=objc)
     #[doc(alias = "CGPDFDocumentIsEncrypted")]
     #[inline]
     pub fn is_encrypted(document: Option<&CGPDFDocument>) -> bool {
@@ -136,6 +149,8 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentIsEncrypted(document) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/unlockwithpassword(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `password` must be a valid pointer.
@@ -154,6 +169,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentUnlockWithPassword(document, password) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/isunlocked?language=objc)
     #[doc(alias = "CGPDFDocumentIsUnlocked")]
     #[inline]
     pub fn is_unlocked(document: Option<&CGPDFDocument>) -> bool {
@@ -163,6 +179,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentIsUnlocked(document) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/allowsprinting?language=objc)
     #[doc(alias = "CGPDFDocumentAllowsPrinting")]
     #[inline]
     pub fn allows_printing(document: Option<&CGPDFDocument>) -> bool {
@@ -172,6 +189,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentAllowsPrinting(document) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/allowscopying?language=objc)
     #[doc(alias = "CGPDFDocumentAllowsCopying")]
     #[inline]
     pub fn allows_copying(document: Option<&CGPDFDocument>) -> bool {
@@ -181,6 +199,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentAllowsCopying(document) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/numberofpages?language=objc)
     #[doc(alias = "CGPDFDocumentGetNumberOfPages")]
     #[inline]
     pub fn number_of_pages(document: Option<&CGPDFDocument>) -> usize {
@@ -190,6 +209,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetNumberOfPages(document) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/page(at:)?language=objc)
     #[doc(alias = "CGPDFDocumentGetPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
@@ -207,6 +227,7 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/catalog?language=objc)
     #[doc(alias = "CGPDFDocumentGetCatalog")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
@@ -217,6 +238,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetCatalog(document) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/info?language=objc)
     #[doc(alias = "CGPDFDocumentGetInfo")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
@@ -227,6 +249,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetInfo(document) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/fileidentifier?language=objc)
     #[doc(alias = "CGPDFDocumentGetID")]
     #[cfg(feature = "CGPDFArray")]
     #[inline]
@@ -239,6 +262,7 @@ impl CGPDFDocument {
 }
 
 unsafe impl ConcreteType for CGPDFDocument {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/typeid?language=objc)
     #[doc(alias = "CGPDFDocumentGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -250,6 +274,7 @@ unsafe impl ConcreteType for CGPDFDocument {
 }
 
 impl CGPDFDocument {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/outline?language=objc)
     #[doc(alias = "CGPDFDocumentGetOutline")]
     #[inline]
     pub fn outline(&self) -> Option<CFRetained<CFDictionary>> {
@@ -260,6 +285,7 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/accesspermissions?language=objc)
     #[doc(alias = "CGPDFDocumentGetAccessPermissions")]
     #[inline]
     pub fn access_permissions(&self) -> CGPDFAccessPermissions {
@@ -271,6 +297,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetAccessPermissions(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgetmediabox?language=objc)
     #[doc(alias = "CGPDFDocumentGetMediaBox")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -281,6 +308,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetMediaBox(document, page) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgetcropbox?language=objc)
     #[doc(alias = "CGPDFDocumentGetCropBox")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -291,6 +319,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetCropBox(document, page) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgetbleedbox?language=objc)
     #[doc(alias = "CGPDFDocumentGetBleedBox")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -301,6 +330,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetBleedBox(document, page) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgettrimbox?language=objc)
     #[doc(alias = "CGPDFDocumentGetTrimBox")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -311,6 +341,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetTrimBox(document, page) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgetartbox?language=objc)
     #[doc(alias = "CGPDFDocumentGetArtBox")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -321,6 +352,7 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetArtBox(document, page) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgetrotationangle?language=objc)
     #[doc(alias = "CGPDFDocumentGetRotationAngle")]
     #[deprecated = "No longer supported"]
     #[inline]

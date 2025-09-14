@@ -19,12 +19,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerFunctionalUnitType(pub NSUInteger);
 impl ICScannerFunctionalUnitType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfunctionalunittype/flatbed?language=objc)
     #[doc(alias = "ICScannerFunctionalUnitTypeFlatbed")]
     pub const Flatbed: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfunctionalunittype/positivetransparency?language=objc)
     #[doc(alias = "ICScannerFunctionalUnitTypePositiveTransparency")]
     pub const PositiveTransparency: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfunctionalunittype/negativetransparency?language=objc)
     #[doc(alias = "ICScannerFunctionalUnitTypeNegativeTransparency")]
     pub const NegativeTransparency: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfunctionalunittype/documentfeeder?language=objc)
     #[doc(alias = "ICScannerFunctionalUnitTypeDocumentFeeder")]
     pub const DocumentFeeder: Self = Self(3);
 }
@@ -45,16 +49,22 @@ unsafe impl RefEncode for ICScannerFunctionalUnitType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerMeasurementUnit(pub NSUInteger);
 impl ICScannerMeasurementUnit {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannermeasurementunit/inches?language=objc)
     #[doc(alias = "ICScannerMeasurementUnitInches")]
     pub const Inches: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannermeasurementunit/centimeters?language=objc)
     #[doc(alias = "ICScannerMeasurementUnitCentimeters")]
     pub const Centimeters: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannermeasurementunit/picas?language=objc)
     #[doc(alias = "ICScannerMeasurementUnitPicas")]
     pub const Picas: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannermeasurementunit/points?language=objc)
     #[doc(alias = "ICScannerMeasurementUnitPoints")]
     pub const Points: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannermeasurementunit/twips?language=objc)
     #[doc(alias = "ICScannerMeasurementUnitTwips")]
     pub const Twips: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannermeasurementunit/pixels?language=objc)
     #[doc(alias = "ICScannerMeasurementUnitPixels")]
     pub const Pixels: Self = Self(5);
 }
@@ -75,10 +85,13 @@ unsafe impl RefEncode for ICScannerMeasurementUnit {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICScannerBitDepth(pub NSUInteger);
 impl ICScannerBitDepth {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerbitdepth/depth1bit?language=objc)
     #[doc(alias = "ICScannerBitDepth1Bit")]
     pub const Depth1Bit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerbitdepth/depth8bits?language=objc)
     #[doc(alias = "ICScannerBitDepth8Bits")]
     pub const Depth8Bits: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerbitdepth/depth16bits?language=objc)
     #[doc(alias = "ICScannerBitDepth16Bits")]
     pub const Depth16Bits: Self = Self(16);
 }
@@ -99,8 +112,10 @@ unsafe impl RefEncode for ICScannerBitDepth {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerColorDataFormatType(pub NSUInteger);
 impl ICScannerColorDataFormatType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannercolordataformattype/chunky?language=objc)
     #[doc(alias = "ICScannerColorDataFormatTypeChunky")]
     pub const Chunky: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannercolordataformattype/planar?language=objc)
     #[doc(alias = "ICScannerColorDataFormatTypePlanar")]
     pub const Planar: Self = Self(1);
 }
@@ -121,22 +136,31 @@ unsafe impl RefEncode for ICScannerColorDataFormatType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerPixelDataType(pub NSUInteger);
 impl ICScannerPixelDataType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerpixeldatatype/bw?language=objc)
     #[doc(alias = "ICScannerPixelDataTypeBW")]
     pub const BW: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerpixeldatatype/gray?language=objc)
     #[doc(alias = "ICScannerPixelDataTypeGray")]
     pub const Gray: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerpixeldatatype/rgb?language=objc)
     #[doc(alias = "ICScannerPixelDataTypeRGB")]
     pub const RGB: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerpixeldatatype/palette?language=objc)
     #[doc(alias = "ICScannerPixelDataTypePalette")]
     pub const Palette: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerpixeldatatype/cmy?language=objc)
     #[doc(alias = "ICScannerPixelDataTypeCMY")]
     pub const CMY: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerpixeldatatype/cmyk?language=objc)
     #[doc(alias = "ICScannerPixelDataTypeCMYK")]
     pub const CMYK: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerpixeldatatype/yuv?language=objc)
     #[doc(alias = "ICScannerPixelDataTypeYUV")]
     pub const YUV: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerpixeldatatype/yuvk?language=objc)
     #[doc(alias = "ICScannerPixelDataTypeYUVK")]
     pub const YUVK: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerpixeldatatype/ciexyz?language=objc)
     #[doc(alias = "ICScannerPixelDataTypeCIEXYZ")]
     pub const CIEXYZ: Self = Self(8);
 }
@@ -157,148 +181,220 @@ unsafe impl RefEncode for ICScannerPixelDataType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerDocumentType(pub NSUInteger);
 impl ICScannerDocumentType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typedefault?language=objc)
     #[doc(alias = "ICScannerDocumentTypeDefault")]
     pub const TypeDefault: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typea4?language=objc)
     #[doc(alias = "ICScannerDocumentTypeA4")]
     pub const TypeA4: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeb5?language=objc)
     #[doc(alias = "ICScannerDocumentTypeB5")]
     pub const TypeB5: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeusletter?language=objc)
     #[doc(alias = "ICScannerDocumentTypeUSLetter")]
     pub const TypeUSLetter: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeuslegal?language=objc)
     #[doc(alias = "ICScannerDocumentTypeUSLegal")]
     pub const TypeUSLegal: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typea5?language=objc)
     #[doc(alias = "ICScannerDocumentTypeA5")]
     pub const TypeA5: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob4?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB4")]
     pub const TypeISOB4: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob6?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB6")]
     pub const TypeISOB6: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeusledger?language=objc)
     #[doc(alias = "ICScannerDocumentTypeUSLedger")]
     pub const TypeUSLedger: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeusexecutive?language=objc)
     #[doc(alias = "ICScannerDocumentTypeUSExecutive")]
     pub const TypeUSExecutive: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typea3?language=objc)
     #[doc(alias = "ICScannerDocumentTypeA3")]
     pub const TypeA3: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob3?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB3")]
     pub const TypeISOB3: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typea6?language=objc)
     #[doc(alias = "ICScannerDocumentTypeA6")]
     pub const TypeA6: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec4?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC4")]
     pub const TypeC4: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec5?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC5")]
     pub const TypeC5: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec6?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC6")]
     pub const TypeC6: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type4a0?language=objc)
     #[doc(alias = "ICScannerDocumentType4A0")]
     pub const Type4A0: Self = Self(17);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type2a0?language=objc)
     #[doc(alias = "ICScannerDocumentType2A0")]
     pub const Type2A0: Self = Self(18);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typea0?language=objc)
     #[doc(alias = "ICScannerDocumentTypeA0")]
     pub const TypeA0: Self = Self(19);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typea1?language=objc)
     #[doc(alias = "ICScannerDocumentTypeA1")]
     pub const TypeA1: Self = Self(20);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typea2?language=objc)
     #[doc(alias = "ICScannerDocumentTypeA2")]
     pub const TypeA2: Self = Self(21);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typea7?language=objc)
     #[doc(alias = "ICScannerDocumentTypeA7")]
     pub const TypeA7: Self = Self(22);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typea8?language=objc)
     #[doc(alias = "ICScannerDocumentTypeA8")]
     pub const TypeA8: Self = Self(23);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typea9?language=objc)
     #[doc(alias = "ICScannerDocumentTypeA9")]
     pub const TypeA9: Self = Self(24);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type10?language=objc)
     #[doc(alias = "ICScannerDocumentType10")]
     pub const Type10: Self = Self(25);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob0?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB0")]
     pub const TypeISOB0: Self = Self(26);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob1?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB1")]
     pub const TypeISOB1: Self = Self(27);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob2?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB2")]
     pub const TypeISOB2: Self = Self(28);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob5?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB5")]
     pub const TypeISOB5: Self = Self(29);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob7?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB7")]
     pub const TypeISOB7: Self = Self(30);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob8?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB8")]
     pub const TypeISOB8: Self = Self(31);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob9?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB9")]
     pub const TypeISOB9: Self = Self(32);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeisob10?language=objc)
     #[doc(alias = "ICScannerDocumentTypeISOB10")]
     pub const TypeISOB10: Self = Self(33);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typejisb0?language=objc)
     #[doc(alias = "ICScannerDocumentTypeJISB0")]
     pub const TypeJISB0: Self = Self(34);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typejisb1?language=objc)
     #[doc(alias = "ICScannerDocumentTypeJISB1")]
     pub const TypeJISB1: Self = Self(35);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typejisb2?language=objc)
     #[doc(alias = "ICScannerDocumentTypeJISB2")]
     pub const TypeJISB2: Self = Self(36);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typejisb3?language=objc)
     #[doc(alias = "ICScannerDocumentTypeJISB3")]
     pub const TypeJISB3: Self = Self(37);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typejisb4?language=objc)
     #[doc(alias = "ICScannerDocumentTypeJISB4")]
     pub const TypeJISB4: Self = Self(38);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typejisb6?language=objc)
     #[doc(alias = "ICScannerDocumentTypeJISB6")]
     pub const TypeJISB6: Self = Self(39);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typejisb7?language=objc)
     #[doc(alias = "ICScannerDocumentTypeJISB7")]
     pub const TypeJISB7: Self = Self(40);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typejisb8?language=objc)
     #[doc(alias = "ICScannerDocumentTypeJISB8")]
     pub const TypeJISB8: Self = Self(41);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typejisb9?language=objc)
     #[doc(alias = "ICScannerDocumentTypeJISB9")]
     pub const TypeJISB9: Self = Self(42);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typejisb10?language=objc)
     #[doc(alias = "ICScannerDocumentTypeJISB10")]
     pub const TypeJISB10: Self = Self(43);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec0?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC0")]
     pub const TypeC0: Self = Self(44);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec1?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC1")]
     pub const TypeC1: Self = Self(45);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec2?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC2")]
     pub const TypeC2: Self = Self(46);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec3?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC3")]
     pub const TypeC3: Self = Self(47);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec7?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC7")]
     pub const TypeC7: Self = Self(48);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec8?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC8")]
     pub const TypeC8: Self = Self(49);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec9?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC9")]
     pub const TypeC9: Self = Self(50);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typec10?language=objc)
     #[doc(alias = "ICScannerDocumentTypeC10")]
     pub const TypeC10: Self = Self(51);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeusstatement?language=objc)
     #[doc(alias = "ICScannerDocumentTypeUSStatement")]
     pub const TypeUSStatement: Self = Self(52);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typebusinesscard?language=objc)
     #[doc(alias = "ICScannerDocumentTypeBusinessCard")]
     pub const TypeBusinessCard: Self = Self(53);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typee?language=objc)
     #[doc(alias = "ICScannerDocumentTypeE")]
     pub const TypeE: Self = Self(60);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type3r?language=objc)
     #[doc(alias = "ICScannerDocumentType3R")]
     pub const Type3R: Self = Self(61);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type4r?language=objc)
     #[doc(alias = "ICScannerDocumentType4R")]
     pub const Type4R: Self = Self(62);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type5r?language=objc)
     #[doc(alias = "ICScannerDocumentType5R")]
     pub const Type5R: Self = Self(63);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type6r?language=objc)
     #[doc(alias = "ICScannerDocumentType6R")]
     pub const Type6R: Self = Self(64);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type8r?language=objc)
     #[doc(alias = "ICScannerDocumentType8R")]
     pub const Type8R: Self = Self(65);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/types8r?language=objc)
     #[doc(alias = "ICScannerDocumentTypeS8R")]
     pub const TypeS8R: Self = Self(66);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type10r?language=objc)
     #[doc(alias = "ICScannerDocumentType10R")]
     pub const Type10R: Self = Self(67);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/types10r?language=objc)
     #[doc(alias = "ICScannerDocumentTypeS10R")]
     pub const TypeS10R: Self = Self(68);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type11r?language=objc)
     #[doc(alias = "ICScannerDocumentType11R")]
     pub const Type11R: Self = Self(69);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type12r?language=objc)
     #[doc(alias = "ICScannerDocumentType12R")]
     pub const Type12R: Self = Self(70);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/types12r?language=objc)
     #[doc(alias = "ICScannerDocumentTypeS12R")]
     pub const TypeS12R: Self = Self(71);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type110?language=objc)
     #[doc(alias = "ICScannerDocumentType110")]
     pub const Type110: Self = Self(72);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeapsh?language=objc)
     #[doc(alias = "ICScannerDocumentTypeAPSH")]
     pub const TypeAPSH: Self = Self(73);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeapsc?language=objc)
     #[doc(alias = "ICScannerDocumentTypeAPSC")]
     pub const TypeAPSC: Self = Self(74);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typeapsp?language=objc)
     #[doc(alias = "ICScannerDocumentTypeAPSP")]
     pub const TypeAPSP: Self = Self(75);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/type135?language=objc)
     #[doc(alias = "ICScannerDocumentType135")]
     pub const Type135: Self = Self(76);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typemf?language=objc)
     #[doc(alias = "ICScannerDocumentTypeMF")]
     pub const TypeMF: Self = Self(77);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype/typelf?language=objc)
     #[doc(alias = "ICScannerDocumentTypeLF")]
     pub const TypeLF: Self = Self(78);
 }
@@ -319,10 +415,13 @@ unsafe impl RefEncode for ICScannerDocumentType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICScannerFunctionalUnitState(pub NSUInteger);
 impl ICScannerFunctionalUnitState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfunctionalunitstate/ready?language=objc)
     #[doc(alias = "ICScannerFunctionalUnitStateReady")]
     pub const Ready: Self = Self(1 << 0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfunctionalunitstate/scaninprogress?language=objc)
     #[doc(alias = "ICScannerFunctionalUnitStateScanInProgress")]
     pub const ScanInProgress: Self = Self(1 << 1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfunctionalunitstate/overviewscaninprogress?language=objc)
     #[doc(alias = "ICScannerFunctionalUnitStateOverviewScanInProgress")]
     pub const OverviewScanInProgress: Self = Self(1 << 2);
 }
@@ -343,12 +442,16 @@ unsafe impl RefEncode for ICScannerFunctionalUnitState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerFeatureType(pub NSUInteger);
 impl ICScannerFeatureType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfeaturetype/enumeration?language=objc)
     #[doc(alias = "ICScannerFeatureTypeEnumeration")]
     pub const Enumeration: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfeaturetype/range?language=objc)
     #[doc(alias = "ICScannerFeatureTypeRange")]
     pub const Range: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfeaturetype/boolean?language=objc)
     #[doc(alias = "ICScannerFeatureTypeBoolean")]
     pub const Boolean: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfeaturetype/template?language=objc)
     #[doc(alias = "ICScannerFeatureTypeTemplate")]
     pub const Template: Self = Self(3);
 }

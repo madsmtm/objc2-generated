@@ -19,38 +19,55 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKErrorCode(pub NSInteger);
 impl WKErrorCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/unknown?language=objc)
     #[doc(alias = "WKErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/webcontentprocessterminated?language=objc)
     #[doc(alias = "WKErrorWebContentProcessTerminated")]
     pub const WebContentProcessTerminated: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/webviewinvalidated?language=objc)
     #[doc(alias = "WKErrorWebViewInvalidated")]
     pub const WebViewInvalidated: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/javascriptexceptionoccurred?language=objc)
     #[doc(alias = "WKErrorJavaScriptExceptionOccurred")]
     pub const JavaScriptExceptionOccurred: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/javascriptresulttypeisunsupported?language=objc)
     #[doc(alias = "WKErrorJavaScriptResultTypeIsUnsupported")]
     pub const JavaScriptResultTypeIsUnsupported: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/contentruleliststorecompilefailed?language=objc)
     #[doc(alias = "WKErrorContentRuleListStoreCompileFailed")]
     pub const ContentRuleListStoreCompileFailed: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/contentruleliststorelookupfailed?language=objc)
     #[doc(alias = "WKErrorContentRuleListStoreLookUpFailed")]
     pub const ContentRuleListStoreLookUpFailed: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/contentruleliststoreremovefailed?language=objc)
     #[doc(alias = "WKErrorContentRuleListStoreRemoveFailed")]
     pub const ContentRuleListStoreRemoveFailed: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/contentruleliststoreversionmismatch?language=objc)
     #[doc(alias = "WKErrorContentRuleListStoreVersionMismatch")]
     pub const ContentRuleListStoreVersionMismatch: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/attributedstringcontentfailedtoload?language=objc)
     #[doc(alias = "WKErrorAttributedStringContentFailedToLoad")]
     pub const AttributedStringContentFailedToLoad: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/attributedstringcontentloadtimedout?language=objc)
     #[doc(alias = "WKErrorAttributedStringContentLoadTimedOut")]
     pub const AttributedStringContentLoadTimedOut: Self = Self(11);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/javascriptinvalidframetarget?language=objc)
     #[doc(alias = "WKErrorJavaScriptInvalidFrameTarget")]
     pub const JavaScriptInvalidFrameTarget: Self = Self(12);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/navigationappbounddomain?language=objc)
     #[doc(alias = "WKErrorNavigationAppBoundDomain")]
     pub const NavigationAppBoundDomain: Self = Self(13);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/javascriptappbounddomain?language=objc)
     #[doc(alias = "WKErrorJavaScriptAppBoundDomain")]
     pub const JavaScriptAppBoundDomain: Self = Self(14);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/duplicatecredential?language=objc)
     #[doc(alias = "WKErrorDuplicateCredential")]
     pub const DuplicateCredential: Self = Self(15);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/malformedcredential?language=objc)
     #[doc(alias = "WKErrorMalformedCredential")]
     pub const MalformedCredential: Self = Self(16);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/credentialnotfound?language=objc)
     #[doc(alias = "WKErrorCredentialNotFound")]
     pub const CredentialNotFound: Self = Self(17);
 }

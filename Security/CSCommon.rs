@@ -338,24 +338,34 @@ pub const kSecNoGuest: SecGuestRef = 0;
 pub struct SecCSFlags(pub u32);
 bitflags::bitflags! {
     impl SecCSFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags?language=objc)
         #[doc(alias = "kSecCSDefaultFlags")]
         const DefaultFlags = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/considerexpiration?language=objc)
         #[doc(alias = "kSecCSConsiderExpiration")]
         const ConsiderExpiration = 1<<31;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/enforcerevocationchecks?language=objc)
         #[doc(alias = "kSecCSEnforceRevocationChecks")]
         const EnforceRevocationChecks = 1<<30;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/nonetworkaccess?language=objc)
         #[doc(alias = "kSecCSNoNetworkAccess")]
         const NoNetworkAccess = 1<<29;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/reportprogress?language=objc)
         #[doc(alias = "kSecCSReportProgress")]
         const ReportProgress = 1<<28;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/checktrustedanchors?language=objc)
         #[doc(alias = "kSecCSCheckTrustedAnchors")]
         const CheckTrustedAnchors = 1<<27;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/quickcheck?language=objc)
         #[doc(alias = "kSecCSQuickCheck")]
         const QuickCheck = 1<<26;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/applyembeddedpolicy?language=objc)
         #[doc(alias = "kSecCSApplyEmbeddedPolicy")]
         const ApplyEmbeddedPolicy = 1<<25;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/stripdisallowedxattrs?language=objc)
         #[doc(alias = "kSecCSStripDisallowedXattrs")]
         const StripDisallowedXattrs = 1<<24;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/matchguestrequirementinkernel?language=objc)
         #[doc(alias = "kSecCSMatchGuestRequirementInKernel")]
         const MatchGuestRequirementInKernel = 1<<23;
     }
@@ -413,24 +423,34 @@ unsafe impl RefEncode for SecCSFlags {
 pub struct SecCodeSignatureFlags(pub u32);
 bitflags::bitflags! {
     impl SecCodeSignatureFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/host?language=objc)
         #[doc(alias = "kSecCodeSignatureHost")]
         const Host = 0x0001;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/adhoc?language=objc)
         #[doc(alias = "kSecCodeSignatureAdhoc")]
         const Adhoc = 0x0002;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/forcehard?language=objc)
         #[doc(alias = "kSecCodeSignatureForceHard")]
         const ForceHard = 0x0100;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/forcekill?language=objc)
         #[doc(alias = "kSecCodeSignatureForceKill")]
         const ForceKill = 0x0200;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/forceexpiration?language=objc)
         #[doc(alias = "kSecCodeSignatureForceExpiration")]
         const ForceExpiration = 0x0400;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/restrict?language=objc)
         #[doc(alias = "kSecCodeSignatureRestrict")]
         const Restrict = 0x0800;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/enforcement?language=objc)
         #[doc(alias = "kSecCodeSignatureEnforcement")]
         const Enforcement = 0x1000;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/libraryvalidation?language=objc)
         #[doc(alias = "kSecCodeSignatureLibraryValidation")]
         const LibraryValidation = 0x2000;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/runtime?language=objc)
         #[doc(alias = "kSecCodeSignatureRuntime")]
         const Runtime = 0x10000;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/linkersigned?language=objc)
         #[doc(alias = "kSecCodeSignatureLinkerSigned")]
         const LinkerSigned = 0x20000;
     }
@@ -498,14 +518,19 @@ unsafe impl RefEncode for SecCodeSignatureFlags {
 pub struct SecCodeStatus(pub u32);
 bitflags::bitflags! {
     impl SecCodeStatus: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus/valid?language=objc)
         #[doc(alias = "kSecCodeStatusValid")]
         const Valid = 0x00000001;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus/hard?language=objc)
         #[doc(alias = "kSecCodeStatusHard")]
         const Hard = 0x00000100;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus/kill?language=objc)
         #[doc(alias = "kSecCodeStatusKill")]
         const Kill = 0x00000200;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus/debugged?language=objc)
         #[doc(alias = "kSecCodeStatusDebugged")]
         const Debugged = 0x10000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus/platform?language=objc)
         #[doc(alias = "kSecCodeStatusPlatform")]
         const Platform = 0x04000000;
     }
@@ -529,18 +554,25 @@ unsafe impl RefEncode for SecCodeStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecRequirementType(pub u32);
 impl SecRequirementType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/hostrequirementtype?language=objc)
     #[doc(alias = "kSecHostRequirementType")]
     pub const HostRequirementType: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/guestrequirementtype?language=objc)
     #[doc(alias = "kSecGuestRequirementType")]
     pub const GuestRequirementType: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/designatedrequirementtype?language=objc)
     #[doc(alias = "kSecDesignatedRequirementType")]
     pub const DesignatedRequirementType: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/libraryrequirementtype?language=objc)
     #[doc(alias = "kSecLibraryRequirementType")]
     pub const LibraryRequirementType: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/pluginrequirementtype?language=objc)
     #[doc(alias = "kSecPluginRequirementType")]
     pub const PluginRequirementType: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/invalidrequirementtype?language=objc)
     #[doc(alias = "kSecInvalidRequirementType")]
     pub const InvalidRequirementType: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/requirementtypecount?language=objc)
     #[doc(alias = "kSecRequirementTypeCount")]
     pub const RequirementTypeCount: Self = Self(SecRequirementType::InvalidRequirementType.0);
 }
@@ -572,16 +604,22 @@ unsafe impl RefEncode for SecRequirementType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecCSDigestAlgorithm(pub u32);
 impl SecCSDigestAlgorithm {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturenohash?language=objc)
     #[doc(alias = "kSecCodeSignatureNoHash")]
     pub const CodeSignatureNoHash: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturehashsha1?language=objc)
     #[doc(alias = "kSecCodeSignatureHashSHA1")]
     pub const CodeSignatureHashSHA1: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturehashsha256?language=objc)
     #[doc(alias = "kSecCodeSignatureHashSHA256")]
     pub const CodeSignatureHashSHA256: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturehashsha256truncated?language=objc)
     #[doc(alias = "kSecCodeSignatureHashSHA256Truncated")]
     pub const CodeSignatureHashSHA256Truncated: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturehashsha384?language=objc)
     #[doc(alias = "kSecCodeSignatureHashSHA384")]
     pub const CodeSignatureHashSHA384: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturehashsha512?language=objc)
     #[doc(alias = "kSecCodeSignatureHashSHA512")]
     pub const CodeSignatureHashSHA512: Self = Self(5);
 }

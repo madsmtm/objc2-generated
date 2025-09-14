@@ -301,6 +301,8 @@ pub type OSLMarkUPP = OSLMarkProcPtr;
 pub type OSLAdjustMarksUPP = OSLAdjustMarksProcPtr;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449584-newoslaccessorupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -309,6 +311,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444603-newoslcompareupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -317,6 +321,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448156-newoslcountupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -325,6 +331,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450027-newosldisposetokenupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -333,6 +341,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445166-newoslgetmarktokenupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -341,6 +351,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447934-newoslgeterrdescupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -349,6 +361,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446942-newoslmarkupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -357,6 +371,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443347-newosladjustmarksupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -365,6 +381,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444684-disposeoslaccessorupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -373,6 +391,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448398-disposeoslcompareupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -381,6 +401,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443984-disposeoslcountupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -389,6 +411,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442670-disposeosldisposetokenupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -397,6 +421,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442377-disposeoslgetmarktokenupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -405,6 +431,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446061-disposeoslgeterrdescupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -413,6 +441,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449253-disposeoslmarkupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -421,6 +451,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443940-disposeosladjustmarksupp?language=objc)
+    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -429,6 +461,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448978-invokeoslaccessorupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `container` must be a valid pointer.
@@ -450,6 +484,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443110-invokeoslcompareupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `obj1` must be a valid pointer.
@@ -467,6 +503,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448030-invokeoslcountupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `container` must be a valid pointer.
@@ -483,6 +521,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443963-invokeosldisposetokenupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `unneeded_token` must be a valid pointer.
@@ -495,6 +535,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441894-invokeoslgetmarktokenupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `d_container_token` must be a valid pointer.
@@ -510,6 +552,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448420-invokeoslgeterrdescupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `app_desc_ptr` must be a valid pointer.
@@ -522,6 +566,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447444-invokeoslmarkupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `d_token` must be a valid pointer.
@@ -537,6 +583,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448506-invokeosladjustmarksupp?language=objc)
+    ///
     /// # Safety
     ///
     /// - `mark_token` must be a valid pointer.
@@ -551,10 +599,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447372-aeobjectinit?language=objc)
     pub fn AEObjectInit() -> OSErr;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447756-aesetobjectcallbacks?language=objc)
+    ///
     /// # Safety
     ///
     /// - `my_compare_proc` must be implemented correctly.
@@ -577,6 +628,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449720-aeresolve?language=objc)
+    ///
     /// # Safety
     ///
     /// - `object_specifier` must be a valid pointer.
@@ -589,6 +642,8 @@ extern "C-unwind" {
     ) -> OSErr;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447905-aeinstallobjectaccessor?language=objc)
+///
 /// # Safety
 ///
 /// - `the_accessor` must be implemented correctly.
@@ -622,6 +677,8 @@ pub unsafe extern "C-unwind" fn AEInstallObjectAccessor(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442552-aeremoveobjectaccessor?language=objc)
+///
 /// # Safety
 ///
 /// `the_accessor` must be implemented correctly.
@@ -651,6 +708,8 @@ pub unsafe extern "C-unwind" fn AERemoveObjectAccessor(
     }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449054-aegetobjectaccessor?language=objc)
+///
 /// # Safety
 ///
 /// - `accessor` must be a valid pointer.
@@ -685,6 +744,8 @@ pub unsafe extern "C-unwind" fn AEGetObjectAccessor(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken?language=objc)
+    ///
     /// # Safety
     ///
     /// `the_token` must be a valid pointer.
@@ -693,6 +754,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447059-aecallobjectaccessor?language=objc)
+    ///
     /// # Safety
     ///
     /// - `container_token` must be a valid pointer.

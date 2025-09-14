@@ -12,20 +12,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCancelWorkoutIntentResponseCode(pub NSInteger);
 impl INCancelWorkoutIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INCancelWorkoutIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/ready?language=objc)
     #[doc(alias = "INCancelWorkoutIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INCancelWorkoutIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/failure?language=objc)
     #[doc(alias = "INCancelWorkoutIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INCancelWorkoutIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/failurenomatchingworkout?language=objc)
     #[doc(alias = "INCancelWorkoutIntentResponseCodeFailureNoMatchingWorkout")]
     pub const FailureNoMatchingWorkout: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/handleinapp?language=objc)
     #[doc(alias = "INCancelWorkoutIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/success?language=objc)
     #[doc(alias = "INCancelWorkoutIntentResponseCodeSuccess")]
     pub const Success: Self = Self(7);
 }

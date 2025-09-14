@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SLRequestMethod(pub NSInteger);
 impl SLRequestMethod {
+    /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequestmethod/get?language=objc)
     #[doc(alias = "SLRequestMethodGET")]
     pub const GET: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequestmethod/post?language=objc)
     #[doc(alias = "SLRequestMethodPOST")]
     pub const POST: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequestmethod/delete?language=objc)
     #[doc(alias = "SLRequestMethodDELETE")]
     pub const DELETE: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequestmethod/put?language=objc)
     #[doc(alias = "SLRequestMethodPUT")]
     pub const PUT: Self = Self(3);
 }

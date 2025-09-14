@@ -20,16 +20,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INUIAddVoiceShortcutButtonStyle(pub NSUInteger);
 impl INUIAddVoiceShortcutButtonStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/white?language=objc)
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleWhite")]
     pub const White: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/whiteoutline?language=objc)
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleWhiteOutline")]
     pub const WhiteOutline: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/black?language=objc)
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleBlack")]
     pub const Black: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/blackoutline?language=objc)
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleBlackOutline")]
     pub const BlackOutline: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/automatic?language=objc)
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleAutomatic")]
     pub const Automatic: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/automaticoutline?language=objc)
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleAutomaticOutline")]
     pub const AutomaticOutline: Self = Self(5);
 }

@@ -14,24 +14,31 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAppendToNoteIntentResponseCode(pub NSInteger);
 impl INAppendToNoteIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INAppendToNoteIntentResponseCodeUnspecified")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/ready?language=objc)
     #[doc(alias = "INAppendToNoteIntentResponseCodeReady")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INAppendToNoteIntentResponseCodeInProgress")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/success?language=objc)
     #[doc(alias = "INAppendToNoteIntentResponseCodeSuccess")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/failure?language=objc)
     #[doc(alias = "INAppendToNoteIntentResponseCodeFailure")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INAppendToNoteIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/failurecannotupdatepasswordprotectednote?language=objc)
     #[doc(alias = "INAppendToNoteIntentResponseCodeFailureCannotUpdatePasswordProtectedNote")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureCannotUpdatePasswordProtectedNote: Self = Self(6);

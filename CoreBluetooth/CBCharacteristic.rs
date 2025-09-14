@@ -23,24 +23,34 @@ use crate::*;
 pub struct CBCharacteristicProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl CBCharacteristicProperties: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/broadcast?language=objc)
         #[doc(alias = "CBCharacteristicPropertyBroadcast")]
         const Broadcast = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/read?language=objc)
         #[doc(alias = "CBCharacteristicPropertyRead")]
         const Read = 0x02;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/writewithoutresponse?language=objc)
         #[doc(alias = "CBCharacteristicPropertyWriteWithoutResponse")]
         const WriteWithoutResponse = 0x04;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/write?language=objc)
         #[doc(alias = "CBCharacteristicPropertyWrite")]
         const Write = 0x08;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/notify?language=objc)
         #[doc(alias = "CBCharacteristicPropertyNotify")]
         const Notify = 0x10;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/indicate?language=objc)
         #[doc(alias = "CBCharacteristicPropertyIndicate")]
         const Indicate = 0x20;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/authenticatedsignedwrites?language=objc)
         #[doc(alias = "CBCharacteristicPropertyAuthenticatedSignedWrites")]
         const AuthenticatedSignedWrites = 0x40;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/extendedproperties?language=objc)
         #[doc(alias = "CBCharacteristicPropertyExtendedProperties")]
         const ExtendedProperties = 0x80;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/notifyencryptionrequired?language=objc)
         #[doc(alias = "CBCharacteristicPropertyNotifyEncryptionRequired")]
         const NotifyEncryptionRequired = 0x100;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/indicateencryptionrequired?language=objc)
         #[doc(alias = "CBCharacteristicPropertyIndicateEncryptionRequired")]
         const IndicateEncryptionRequired = 0x200;
     }
@@ -136,12 +146,16 @@ impl CBCharacteristic {
 pub struct CBAttributePermissions(pub NSUInteger);
 bitflags::bitflags! {
     impl CBAttributePermissions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions/readable?language=objc)
         #[doc(alias = "CBAttributePermissionsReadable")]
         const Readable = 0x01;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions/writeable?language=objc)
         #[doc(alias = "CBAttributePermissionsWriteable")]
         const Writeable = 0x02;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions/readencryptionrequired?language=objc)
         #[doc(alias = "CBAttributePermissionsReadEncryptionRequired")]
         const ReadEncryptionRequired = 0x04;
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions/writeencryptionrequired?language=objc)
         #[doc(alias = "CBAttributePermissionsWriteEncryptionRequired")]
         const WriteEncryptionRequired = 0x08;
     }

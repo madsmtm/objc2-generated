@@ -17,12 +17,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNTrackOpticalFlowRequestComputationAccuracy(pub NSUInteger);
 impl VNTrackOpticalFlowRequestComputationAccuracy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.enum/low?language=objc)
     #[doc(alias = "VNTrackOpticalFlowRequestComputationAccuracyLow")]
     pub const Low: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.enum/medium?language=objc)
     #[doc(alias = "VNTrackOpticalFlowRequestComputationAccuracyMedium")]
     pub const Medium: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.enum/high?language=objc)
     #[doc(alias = "VNTrackOpticalFlowRequestComputationAccuracyHigh")]
     pub const High: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.enum/veryhigh?language=objc)
     #[doc(alias = "VNTrackOpticalFlowRequestComputationAccuracyVeryHigh")]
     pub const VeryHigh: Self = Self(3);
 }

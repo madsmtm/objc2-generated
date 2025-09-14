@@ -22,18 +22,25 @@ use crate::*;
 pub struct NSAutoresizingMaskOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAutoresizingMaskOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/none?language=objc)
         #[doc(alias = "NSViewNotSizable")]
         const ViewNotSizable = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/minxmargin?language=objc)
         #[doc(alias = "NSViewMinXMargin")]
         const ViewMinXMargin = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/width?language=objc)
         #[doc(alias = "NSViewWidthSizable")]
         const ViewWidthSizable = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/maxxmargin?language=objc)
         #[doc(alias = "NSViewMaxXMargin")]
         const ViewMaxXMargin = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/minymargin?language=objc)
         #[doc(alias = "NSViewMinYMargin")]
         const ViewMinYMargin = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/height?language=objc)
         #[doc(alias = "NSViewHeightSizable")]
         const ViewHeightSizable = 16;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/maxymargin?language=objc)
         #[doc(alias = "NSViewMaxYMargin")]
         const ViewMaxYMargin = 32;
     }
@@ -53,12 +60,16 @@ unsafe impl RefEncode for NSAutoresizingMaskOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBorderType(pub NSUInteger);
 impl NSBorderType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbordertype/noborder?language=objc)
     #[doc(alias = "NSNoBorder")]
     pub const NoBorder: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbordertype/lineborder?language=objc)
     #[doc(alias = "NSLineBorder")]
     pub const LineBorder: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbordertype/bezelborder?language=objc)
     #[doc(alias = "NSBezelBorder")]
     pub const BezelBorder: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbordertype/grooveborder?language=objc)
     #[doc(alias = "NSGrooveBorder")]
     pub const GrooveBorder: Self = Self(3);
 }
@@ -77,14 +88,19 @@ unsafe impl RefEncode for NSBorderType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSViewLayerContentsRedrawPolicy(pub NSInteger);
 impl NSViewLayerContentsRedrawPolicy {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/never?language=objc)
     #[doc(alias = "NSViewLayerContentsRedrawNever")]
     pub const Never: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/onsetneedsdisplay?language=objc)
     #[doc(alias = "NSViewLayerContentsRedrawOnSetNeedsDisplay")]
     pub const OnSetNeedsDisplay: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/duringviewresize?language=objc)
     #[doc(alias = "NSViewLayerContentsRedrawDuringViewResize")]
     pub const DuringViewResize: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/beforeviewresize?language=objc)
     #[doc(alias = "NSViewLayerContentsRedrawBeforeViewResize")]
     pub const BeforeViewResize: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/crossfade?language=objc)
     #[doc(alias = "NSViewLayerContentsRedrawCrossfade")]
     pub const Crossfade: Self = Self(4);
 }
@@ -103,28 +119,40 @@ unsafe impl RefEncode for NSViewLayerContentsRedrawPolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSViewLayerContentsPlacement(pub NSInteger);
 impl NSViewLayerContentsPlacement {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/scaleaxesindependently?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementScaleAxesIndependently")]
     pub const ScaleAxesIndependently: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/scaleproportionallytofit?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementScaleProportionallyToFit")]
     pub const ScaleProportionallyToFit: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/scaleproportionallytofill?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementScaleProportionallyToFill")]
     pub const ScaleProportionallyToFill: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/center?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementCenter")]
     pub const Center: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/top?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementTop")]
     pub const Top: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/topright?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementTopRight")]
     pub const TopRight: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/right?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementRight")]
     pub const Right: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/bottomright?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementBottomRight")]
     pub const BottomRight: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/bottom?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementBottom")]
     pub const Bottom: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/bottomleft?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementBottomLeft")]
     pub const BottomLeft: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/left?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementLeft")]
     pub const Left: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/topleft?language=objc)
     #[doc(alias = "NSViewLayerContentsPlacementTopLeft")]
     pub const TopLeft: Self = Self(11);
 }

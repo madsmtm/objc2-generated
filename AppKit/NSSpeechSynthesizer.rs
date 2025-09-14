@@ -222,12 +222,15 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSpeechBoundary(pub NSUInteger);
 impl NSSpeechBoundary {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/boundary/immediateboundary?language=objc)
     #[doc(alias = "NSSpeechImmediateBoundary")]
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub const ImmediateBoundary: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/boundary/wordboundary?language=objc)
     #[doc(alias = "NSSpeechWordBoundary")]
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub const WordBoundary: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/boundary/sentenceboundary?language=objc)
     #[doc(alias = "NSSpeechSentenceBoundary")]
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub const SentenceBoundary: Self = Self(2);

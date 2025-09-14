@@ -12,12 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSendRideFeedbackIntentResponseCode(pub NSInteger);
 impl INSendRideFeedbackIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INSendRideFeedbackIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponsecode/ready?language=objc)
     #[doc(alias = "INSendRideFeedbackIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponsecode/success?language=objc)
     #[doc(alias = "INSendRideFeedbackIntentResponseCodeSuccess")]
     pub const Success: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponsecode/failure?language=objc)
     #[doc(alias = "INSendRideFeedbackIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
 }

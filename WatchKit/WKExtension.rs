@@ -21,10 +21,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKApplicationState(pub NSInteger);
 impl WKApplicationState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationstate/active?language=objc)
     #[doc(alias = "WKApplicationStateActive")]
     pub const Active: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationstate/inactive?language=objc)
     #[doc(alias = "WKApplicationStateInactive")]
     pub const Inactive: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationstate/background?language=objc)
     #[doc(alias = "WKApplicationStateBackground")]
     pub const Background: Self = Self(2);
 }
@@ -43,10 +46,13 @@ unsafe impl RefEncode for WKApplicationState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKBackgroundFetchResult(pub NSUInteger);
 impl WKBackgroundFetchResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkbackgroundfetchresult/newdata?language=objc)
     #[doc(alias = "WKBackgroundFetchResultNewData")]
     pub const NewData: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkbackgroundfetchresult/nodata?language=objc)
     #[doc(alias = "WKBackgroundFetchResultNoData")]
     pub const NoData: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkbackgroundfetchresult/failed?language=objc)
     #[doc(alias = "WKBackgroundFetchResultFailed")]
     pub const Failed: Self = Self(2);
 }

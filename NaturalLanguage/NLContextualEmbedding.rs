@@ -32,10 +32,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLContextualEmbeddingAssetsResult(pub NSInteger);
 impl NLContextualEmbeddingAssetsResult {
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembedding/assetsresult/available?language=objc)
     #[doc(alias = "NLContextualEmbeddingAssetsResultAvailable")]
     pub const Available: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembedding/assetsresult/notavailable?language=objc)
     #[doc(alias = "NLContextualEmbeddingAssetsResultNotAvailable")]
     pub const NotAvailable: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembedding/assetsresult/error?language=objc)
     #[doc(alias = "NLContextualEmbeddingAssetsResultError")]
     pub const Error: Self = Self(2);
 }

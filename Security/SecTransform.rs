@@ -105,6 +105,8 @@ pub type SecGroupTransform = CFType;
 /// Return the CFTypeID for a SecTransform.
 ///
 /// Returns: The CFTypeID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformgettypeid()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub extern "C-unwind" fn SecTransformGetTypeID() -> CFTypeID {
@@ -117,6 +119,8 @@ pub extern "C-unwind" fn SecTransformGetTypeID() -> CFTypeID {
 /// Return the CFTypeID for a SecTransformGroup.
 ///
 /// Returns: The CFTypeID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secgrouptransformgettypeid()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub extern "C-unwind" fn SecGroupTransformGetTypeID() -> CFTypeID {
@@ -197,6 +201,8 @@ extern "C" {
 /// - `dictionary` generic must be of the correct type.
 /// - `dictionary` generic must be of the correct type.
 /// - `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreatefromexternalrepresentation(_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCreateFromExternalRepresentation(
@@ -233,6 +239,8 @@ pub unsafe extern "C-unwind" fn SecTransformCreateFromExternalRepresentation(
 /// # Safety
 ///
 /// `transform_ref` should be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcopyexternalrepresentation(_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCopyExternalRepresentation(
@@ -267,6 +275,8 @@ pub unsafe extern "C-unwind" fn SecTransformCopyExternalRepresentation(
 /// SecTransformConnectTransforms,
 /// SecTransformSetAttribute and
 /// SecTransformGetAttribute is undefined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreategrouptransform()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCreateGroupTransform() -> CFRetained<SecGroupTransform>
@@ -382,6 +392,8 @@ pub unsafe extern "C-unwind" fn SecTransformCreateGroupTransform() -> CFRetained
 /// - `destination_transform_ref` should be of the correct type.
 /// - `group` should be of the correct type.
 /// - `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformconnecttransforms(_:_:_:_:_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
@@ -451,6 +463,8 @@ pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
 /// - `transform_ref` should be of the correct type.
 /// - `value` should be of the correct type.
 /// - `error` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformsetattribute(_:_:_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformSetAttribute(
@@ -492,6 +506,8 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttribute(
 /// # Safety
 ///
 /// `transform_ref` should be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformgetattribute(_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformGetAttribute(
@@ -531,6 +547,8 @@ pub unsafe extern "C-unwind" fn SecTransformGetAttribute(
 /// # Safety
 ///
 /// `transform` should be of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformfindbyname(_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformFindByName(
@@ -587,6 +605,8 @@ pub unsafe extern "C-unwind" fn SecTransformFindByName(
 ///
 /// - `transform_ref` should be of the correct type.
 /// - `error_ref` must be a valid pointer or null.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformexecute(_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformExecute(

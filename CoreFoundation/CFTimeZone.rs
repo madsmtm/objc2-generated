@@ -9,6 +9,7 @@ use crate::*;
 
 #[cfg(feature = "CFDate")]
 unsafe impl ConcreteType for CFTimeZone {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegettypeid()?language=objc)
     #[doc(alias = "CFTimeZoneGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -21,6 +22,7 @@ unsafe impl ConcreteType for CFTimeZone {
 
 #[cfg(feature = "CFDate")]
 impl CFTimeZone {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopysystem()?language=objc)
     #[doc(alias = "CFTimeZoneCopySystem")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -32,6 +34,7 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezoneresetsystem()?language=objc)
     #[doc(alias = "CFTimeZoneResetSystem")]
     #[inline]
     pub fn reset_system() {
@@ -41,6 +44,7 @@ impl CFTimeZone {
         unsafe { CFTimeZoneResetSystem() }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopydefault()?language=objc)
     #[doc(alias = "CFTimeZoneCopyDefault")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -52,6 +56,7 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonesetdefault(_:)?language=objc)
     #[doc(alias = "CFTimeZoneSetDefault")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -62,6 +67,7 @@ impl CFTimeZone {
         unsafe { CFTimeZoneSetDefault(self) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopyknownnames()?language=objc)
     #[doc(alias = "CFTimeZoneCopyKnownNames")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -73,6 +79,7 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopyabbreviationdictionary()?language=objc)
     #[doc(alias = "CFTimeZoneCopyAbbreviationDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -84,6 +91,8 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonesetabbreviationdictionary(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `dict` generic must be of the correct type.
@@ -99,6 +108,8 @@ impl CFTimeZone {
         unsafe { CFTimeZoneSetAbbreviationDictionary(dict) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecreate(_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -123,6 +134,7 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecreatewithtimeintervalfromgmt(_:_:)?language=objc)
     #[doc(alias = "CFTimeZoneCreateWithTimeIntervalFromGMT")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -140,6 +152,7 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecreatewithname(_:_:_:)?language=objc)
     #[doc(alias = "CFTimeZoneCreateWithName")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -159,6 +172,7 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegetname(_:)?language=objc)
     #[doc(alias = "CFTimeZoneGetName")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -170,6 +184,7 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegetdata(_:)?language=objc)
     #[doc(alias = "CFTimeZoneGetData")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -181,6 +196,7 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegetsecondsfromgmt(_:_:)?language=objc)
     #[doc(alias = "CFTimeZoneGetSecondsFromGMT")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -191,6 +207,7 @@ impl CFTimeZone {
         unsafe { CFTimeZoneGetSecondsFromGMT(self, at) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopyabbreviation(_:_:)?language=objc)
     #[doc(alias = "CFTimeZoneCopyAbbreviation")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -205,6 +222,7 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezoneisdaylightsavingtime(_:_:)?language=objc)
     #[doc(alias = "CFTimeZoneIsDaylightSavingTime")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -216,6 +234,7 @@ impl CFTimeZone {
         ret != 0
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegetdaylightsavingtimeoffset(_:_:)?language=objc)
     #[doc(alias = "CFTimeZoneGetDaylightSavingTimeOffset")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -229,6 +248,7 @@ impl CFTimeZone {
         unsafe { CFTimeZoneGetDaylightSavingTimeOffset(self, at) }
     }
 
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegetnextdaylightsavingtimetransition(_:_:)?language=objc)
     #[doc(alias = "CFTimeZoneGetNextDaylightSavingTimeTransition")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -249,16 +269,22 @@ impl CFTimeZone {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFTimeZoneNameStyle(pub CFIndex);
 impl CFTimeZoneNameStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/standard?language=objc)
     #[doc(alias = "kCFTimeZoneNameStyleStandard")]
     pub const Standard: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/shortstandard?language=objc)
     #[doc(alias = "kCFTimeZoneNameStyleShortStandard")]
     pub const ShortStandard: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/daylightsaving?language=objc)
     #[doc(alias = "kCFTimeZoneNameStyleDaylightSaving")]
     pub const DaylightSaving: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/shortdaylightsaving?language=objc)
     #[doc(alias = "kCFTimeZoneNameStyleShortDaylightSaving")]
     pub const ShortDaylightSaving: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/generic?language=objc)
     #[doc(alias = "kCFTimeZoneNameStyleGeneric")]
     pub const Generic: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/shortgeneric?language=objc)
     #[doc(alias = "kCFTimeZoneNameStyleShortGeneric")]
     pub const ShortGeneric: Self = Self(5);
 }
@@ -275,6 +301,7 @@ unsafe impl RefEncode for CFTimeZoneNameStyle {
 
 #[cfg(feature = "CFDate")]
 impl CFTimeZone {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopylocalizedname(_:_:_:)?language=objc)
     #[doc(alias = "CFTimeZoneCopyLocalizedName")]
     #[cfg(all(feature = "CFDate", feature = "CFLocale"))]
     #[inline]

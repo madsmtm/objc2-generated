@@ -237,10 +237,13 @@ pub type NXMouseScaling = evsioMouseScaling;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NXMouseButton(pub c_uint);
 impl NXMouseButton {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxmousebutton/nx_onebutton?language=objc)
     #[doc(alias = "NX_OneButton")]
     pub const OneButton: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxmousebutton/nx_leftbutton?language=objc)
     #[doc(alias = "NX_LeftButton")]
     pub const LeftButton: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxmousebutton/nx_rightbutton?language=objc)
     #[doc(alias = "NX_RightButton")]
     pub const RightButton: Self = Self(2);
 }
@@ -329,10 +332,15 @@ unsafe impl RefEncode for NXEventSystemDeviceList {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EvCmd(pub c_uint);
 impl EvCmd {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evcmd/evnop?language=objc)
     pub const EVNOP: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evcmd/evhide?language=objc)
     pub const EVHIDE: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evcmd/evshow?language=objc)
     pub const EVSHOW: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evcmd/evmove?language=objc)
     pub const EVMOVE: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evcmd/evlevel?language=objc)
     pub const EVLEVEL: Self = Self(4);
 }
 
@@ -984,10 +992,13 @@ unsafe impl RefEncode for NXEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDButtonModes(pub c_uint);
 impl IOHIDButtonModes {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidbuttonmodes/kiohidbuttonmode_bothleftclicks?language=objc)
     #[doc(alias = "kIOHIDButtonMode_BothLeftClicks")]
     pub const BothLeftClicks: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidbuttonmodes/kiohidbuttonmode_reverseleftrightclicks?language=objc)
     #[doc(alias = "kIOHIDButtonMode_ReverseLeftRightClicks")]
     pub const ReverseLeftRightClicks: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidbuttonmodes/kiohidbuttonmode_enablerightclick?language=objc)
     #[doc(alias = "kIOHIDButtonMode_EnableRightClick")]
     pub const EnableRightClick: Self = Self(2);
 }
@@ -1007,7 +1018,9 @@ unsafe impl RefEncode for IOHIDButtonModes {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct evsioEVSIOSCSIndices(pub c_uint);
 impl evsioEVSIOSCSIndices {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evsioevsioscsindices/evsioscs_x?language=objc)
     pub const EVSIOSCS_X: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evsioevsioscsindices/evsioscs_y?language=objc)
     pub const EVSIOSCS_Y: Self = Self(1);
 }
 
@@ -1026,7 +1039,9 @@ unsafe impl RefEncode for evsioEVSIOSCSIndices {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct evsioEVSIOCCSIndices(pub c_uint);
 impl evsioEVSIOCCSIndices {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evsioevsioccsindices/evsioccs_x?language=objc)
     pub const EVSIOCCS_X: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evsioevsioccsindices/evsioccs_y?language=objc)
     pub const EVSIOCCS_Y: Self = Self(1);
 }
 
@@ -1218,6 +1233,7 @@ pub const kIOHIDOpenedByEventSystem: c_uint = 0x10000;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2854427-anonymous/kiohidopenedbyfastpathclient?language=objc)
 pub const kIOHIDOpenedByFastPathClient: c_uint = 0x20000;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555393-iohidcreatesharedmemory?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOHIDCreateSharedMemory(
@@ -1230,6 +1246,7 @@ pub extern "C-unwind" fn IOHIDCreateSharedMemory(
     unsafe { IOHIDCreateSharedMemory(connect, version) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555396-iohidseteventsenable?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOHIDSetEventsEnable(
@@ -1245,6 +1262,7 @@ pub extern "C-unwind" fn IOHIDSetEventsEnable(
     unsafe { IOHIDSetEventsEnable(connect, enable as _) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555409-iohidsetcursorenable?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1271,6 +1289,8 @@ pub const kIOHIDSetRelativeCursorPosition: c_uint = 0x00000004;
 pub const kIOHIDPostHIDManagerEvent: c_uint = 0x00000008;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555406-iohidpostevent?language=objc)
+    ///
     /// # Safety
     ///
     /// `event_data` must be a valid pointer.
@@ -1287,6 +1307,7 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555402-iohidsetmouselocation?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1302,6 +1323,8 @@ pub extern "C-unwind" fn IOHIDSetMouseLocation(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555407-iohidgetbuttoneventnum?language=objc)
+    ///
     /// # Safety
     ///
     /// `event_num` must be a valid pointer.
@@ -1315,6 +1338,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555389-iohidgetscrollacceleration?language=objc)
+    ///
     /// # Safety
     ///
     /// `acceleration` must be a valid pointer.
@@ -1326,6 +1351,7 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555391-iohidsetscrollacceleration?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1343,6 +1369,8 @@ pub extern "C-unwind" fn IOHIDSetScrollAcceleration(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555417-iohidgetmouseacceleration?language=objc)
+    ///
     /// # Safety
     ///
     /// `acceleration` must be a valid pointer.
@@ -1354,6 +1382,7 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555390-iohidsetmouseacceleration?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1371,6 +1400,8 @@ pub extern "C-unwind" fn IOHIDSetMouseAcceleration(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555413-iohidgetmousebuttonmode?language=objc)
+    ///
     /// # Safety
     ///
     /// `mode` must be a valid pointer.
@@ -1379,6 +1410,7 @@ extern "C-unwind" {
     pub fn IOHIDGetMouseButtonMode(handle: io_connect_t, mode: *mut c_int) -> libc::kern_return_t;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555399-iohidsetmousebuttonmode?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1393,6 +1425,8 @@ pub extern "C-unwind" fn IOHIDSetMouseButtonMode(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555418-iohidgetaccelerationwithkey?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` might not allow `None`.
@@ -1407,6 +1441,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555398-iohidsetaccelerationwithkey?language=objc)
+    ///
     /// # Safety
     ///
     /// `key` might not allow `None`.
@@ -1420,6 +1456,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555405-iohidgetparameter?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` might not allow `None`.
@@ -1437,6 +1475,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555394-iohidsetparameter?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` might not allow `None`.
@@ -1452,6 +1492,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555415-iohidcopycftypeparameter?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` might not allow `None`.
@@ -1465,6 +1507,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555395-iohidsetcftypeparameter?language=objc)
+    ///
     /// # Safety
     ///
     /// - `key` might not allow `None`.
@@ -1479,6 +1523,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555411-iohidgetstateforselector?language=objc)
+    ///
     /// # Safety
     ///
     /// `state` must be a valid pointer.
@@ -1490,6 +1536,7 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555397-iohidsetstateforselector?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOHIDSetStateForSelector(
@@ -1508,6 +1555,8 @@ pub extern "C-unwind" fn IOHIDSetStateForSelector(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555400-iohidgetmodifierlockstate?language=objc)
+    ///
     /// # Safety
     ///
     /// `state` must be a valid pointer.
@@ -1519,6 +1568,7 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555420-iohidsetmodifierlockstate?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOHIDSetModifierLockState(
@@ -1537,6 +1587,8 @@ pub extern "C-unwind" fn IOHIDSetModifierLockState(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555416-iohidregistervirtualdisplay?language=objc)
+    ///
     /// # Safety
     ///
     /// `display_token` must be a valid pointer.
@@ -1548,6 +1600,7 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555410-iohidunregistervirtualdisplay?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1565,6 +1618,8 @@ pub extern "C-unwind" fn IOHIDUnregisterVirtualDisplay(
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555392-iohidsetvirtualdisplaybounds?language=objc)
+    ///
     /// # Safety
     ///
     /// `bounds` must be a valid pointer.
@@ -1578,6 +1633,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555412-iohidgetactivitystate?language=objc)
+    ///
     /// # Safety
     ///
     /// `hid_activity_idle` must be a valid pointer.
@@ -1594,8 +1651,10 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDRequestType(pub c_uint);
 impl IOHIDRequestType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidrequesttype/kiohidrequesttypepostevent?language=objc)
     #[doc(alias = "kIOHIDRequestTypePostEvent")]
     pub const PostEvent: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidrequesttype/kiohidrequesttypelistenevent?language=objc)
     #[doc(alias = "kIOHIDRequestTypeListenEvent")]
     pub const ListenEvent: Self = Self(1);
 }
@@ -1615,10 +1674,13 @@ unsafe impl RefEncode for IOHIDRequestType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDAccessType(pub c_uint);
 impl IOHIDAccessType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidaccesstype/kiohidaccesstypegranted?language=objc)
     #[doc(alias = "kIOHIDAccessTypeGranted")]
     pub const Granted: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidaccesstype/kiohidaccesstypedenied?language=objc)
     #[doc(alias = "kIOHIDAccessTypeDenied")]
     pub const Denied: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidaccesstype/kiohidaccesstypeunknown?language=objc)
     #[doc(alias = "kIOHIDAccessTypeUnknown")]
     pub const Unknown: Self = Self(2);
 }
@@ -1641,6 +1703,8 @@ unsafe impl RefEncode for IOHIDAccessType {
 ///
 ///
 /// Returns: Returns an access type defined in the IOHIDAccessType enumerator.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3181573-iohidcheckaccess?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOHIDCheckAccess(request_type: IOHIDRequestType) -> IOHIDAccessType {
     extern "C-unwind" {
@@ -1662,6 +1726,8 @@ pub extern "C-unwind" fn IOHIDCheckAccess(request_type: IOHIDRequestType) -> IOH
 ///
 ///
 /// Returns: Returns true if access was granted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3181574-iohidrequestaccess?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOHIDRequestAccess(request_type: IOHIDRequestType) -> bool {
     extern "C-unwind" {
@@ -1674,6 +1740,7 @@ pub extern "C-unwind" fn IOHIDRequestAccess(request_type: IOHIDRequestType) -> b
 #[cfg(feature = "libc")]
 pub type NXEventHandle = libc::mach_port_t;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574517-nxopeneventstatus?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1684,6 +1751,7 @@ pub extern "C-unwind" fn NXOpenEventStatus() -> NXEventHandle {
     unsafe { NXOpenEventStatus() }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574524-nxcloseeventstatus?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1695,6 +1763,8 @@ pub extern "C-unwind" fn NXCloseEventStatus(handle: NXEventHandle) {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574527-nxeventsysteminfo?language=objc)
+    ///
     /// # Safety
     ///
     /// - `flavor` must be a valid pointer.
@@ -1710,6 +1780,7 @@ extern "C-unwind" {
     ) -> NXEventSystemInfoType;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574519-nxsetkeyrepeatinterval?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1720,6 +1791,7 @@ pub extern "C-unwind" fn NXSetKeyRepeatInterval(handle: NXEventHandle, seconds: 
     unsafe { NXSetKeyRepeatInterval(handle, seconds) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574515-nxkeyrepeatinterval?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1730,6 +1802,7 @@ pub extern "C-unwind" fn NXKeyRepeatInterval(handle: NXEventHandle) -> c_double 
     unsafe { NXKeyRepeatInterval(handle) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574516-nxsetkeyrepeatthreshold?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1740,6 +1813,7 @@ pub extern "C-unwind" fn NXSetKeyRepeatThreshold(handle: NXEventHandle, threshol
     unsafe { NXSetKeyRepeatThreshold(handle, threshold) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574514-nxkeyrepeatthreshold?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1750,6 +1824,7 @@ pub extern "C-unwind" fn NXKeyRepeatThreshold(handle: NXEventHandle) -> c_double
     unsafe { NXKeyRepeatThreshold(handle) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574523-nxresetkeyboard?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1760,6 +1835,7 @@ pub extern "C-unwind" fn NXResetKeyboard(handle: NXEventHandle) {
     unsafe { NXResetKeyboard(handle) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574522-nxsetclicktime?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1770,6 +1846,7 @@ pub extern "C-unwind" fn NXSetClickTime(handle: NXEventHandle, seconds: c_double
     unsafe { NXSetClickTime(handle, seconds) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574526-nxclicktime?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1781,6 +1858,8 @@ pub extern "C-unwind" fn NXClickTime(handle: NXEventHandle) -> c_double {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574525-nxsetclickspace?language=objc)
+    ///
     /// # Safety
     ///
     /// `area` must be a valid pointer.
@@ -1790,6 +1869,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574518-nxgetclickspace?language=objc)
+    ///
     /// # Safety
     ///
     /// `area` must be a valid pointer.
@@ -1798,6 +1879,7 @@ extern "C-unwind" {
     pub fn NXGetClickSpace(handle: NXEventHandle, area: *mut NXSize);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574520-nxresetmouse?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -1904,6 +1986,8 @@ impl IOHIDEventSystemClient {
     /// on success.
     /// Caller should CFRelease the client when they are finished with it, or keep a
     /// reference to the client if multiple properties need to be set/read.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2269514-iohideventsystemclientcreatesimp?language=objc)
     #[doc(alias = "IOHIDEventSystemClientCreateSimpleClient")]
     #[inline]
     pub fn new_simple_client(
@@ -1945,6 +2029,8 @@ impl IOHIDEventSystemClient {
     /// # Safety
     ///
     /// `property` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2269517-iohideventsystemclientsetpropert?language=objc)
     #[doc(alias = "IOHIDEventSystemClientSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -1978,6 +2064,8 @@ impl IOHIDEventSystemClient {
     ///
     /// Returns: Returns a CFTypeRef of the property to be copied on success, otherwise NULL.
     /// Caller is responsible for calling CFRelease on the property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2269513-iohideventsystemclientcopyproper?language=objc)
     #[doc(alias = "IOHIDEventSystemClientCopyProperty")]
     #[inline]
     pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
@@ -1998,6 +2086,8 @@ unsafe impl ConcreteType for IOHIDEventSystemClient {
     /// IOHIDEventSystemClient
     /// </code>
     /// class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2269512-iohideventsystemclientgettypeid?language=objc)
     #[doc(alias = "IOHIDEventSystemClientGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -2033,6 +2123,8 @@ impl IOHIDEventSystemClient {
     /// </code>
     /// that are
     /// available to the client. Caller is responsible for releasing the array.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2269511-iohideventsystemclientcopyservic?language=objc)
     #[doc(alias = "IOHIDEventSystemClientCopyServices")]
     #[inline]
     pub fn services(&self) -> Option<CFRetained<CFArray>> {
@@ -2092,6 +2184,8 @@ impl IOHIDServiceClient {
     /// # Safety
     ///
     /// `property` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2269429-iohidserviceclientsetproperty?language=objc)
     #[doc(alias = "IOHIDServiceClientSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -2121,6 +2215,8 @@ impl IOHIDServiceClient {
     ///
     /// Returns: Returns a CFTypeRef of the property to be copied on success, otherwise NULL.
     /// Caller is responsible for calling CFRelease on the property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2269430-iohidserviceclientcopyproperty?language=objc)
     #[doc(alias = "IOHIDServiceClientCopyProperty")]
     #[inline]
     pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
@@ -2141,6 +2237,8 @@ unsafe impl ConcreteType for IOHIDServiceClient {
     /// IOHIDServiceClient
     /// </code>
     /// class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2269431-iohidserviceclientgettypeid?language=objc)
     #[doc(alias = "IOHIDServiceClientGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -2156,6 +2254,8 @@ impl IOHIDServiceClient {
     ///
     ///
     /// Returns: Returns a CFTypeRef containing the registry ID for the service.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2269426-iohidserviceclientgetregistryid?language=objc)
     #[doc(alias = "IOHIDServiceClientGetRegistryID")]
     #[inline]
     pub fn registry_id(&self) -> CFRetained<CFType> {
@@ -2188,6 +2288,8 @@ impl IOHIDServiceClient {
     ///
     ///
     /// Returns: Returns true if the service conforms to the provided usage page and usage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2269428-iohidserviceclientconformsto?language=objc)
     #[doc(alias = "IOHIDServiceClientConformsTo")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -2273,6 +2375,7 @@ pub type IOHIDUserDeviceGetReportBlock =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDUserDeviceOptions(pub IOOptionBits);
 impl IOHIDUserDeviceOptions {
+    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiduserdeviceoptions/iohiduserdeviceoptionscreateonactivate?language=objc)
     #[doc(alias = "IOHIDUserDeviceOptionsCreateOnActivate")]
     pub const CreateOnActivate: Self = Self(1 << 0);
 }
@@ -2289,6 +2392,8 @@ unsafe impl RefEncode for IOHIDUserDeviceOptions {
 
 unsafe impl ConcreteType for IOHIDUserDevice {
     /// Returns the type identifier of all IOHIDUserDevice instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334954-iohiduserdevicegettypeid?language=objc)
     #[doc(alias = "IOHIDUserDeviceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -2326,6 +2431,8 @@ impl IOHIDUserDevice {
     ///
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334952-iohiduserdevicecreatewithpropert?language=objc)
     #[doc(alias = "IOHIDUserDeviceCreateWithProperties")]
     #[inline]
     pub unsafe fn with_properties(
@@ -2360,6 +2467,8 @@ impl IOHIDUserDevice {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334959-iohiduserdeviceregistergetreport?language=objc)
     #[doc(alias = "IOHIDUserDeviceRegisterGetReportBlock")]
     #[cfg(all(feature = "block2", feature = "hid"))]
     #[inline]
@@ -2389,6 +2498,8 @@ impl IOHIDUserDevice {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334960-iohiduserdeviceregistersetreport?language=objc)
     #[doc(alias = "IOHIDUserDeviceRegisterSetReportBlock")]
     #[cfg(all(feature = "block2", feature = "hid"))]
     #[inline]
@@ -2422,6 +2533,8 @@ impl IOHIDUserDevice {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334962-iohiduserdevicesetdispatchqueue?language=objc)
     #[doc(alias = "IOHIDUserDeviceSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -2460,6 +2573,8 @@ impl IOHIDUserDevice {
     /// # Safety
     ///
     /// `handler` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334961-iohiduserdevicesetcancelhandler?language=objc)
     #[doc(alias = "IOHIDUserDeviceSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -2488,6 +2603,8 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Parameter `device`: Reference to an IOHIDUserDevice.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334949-iohiduserdeviceactivate?language=objc)
     #[doc(alias = "IOHIDUserDeviceActivate")]
     #[inline]
     pub fn activate(&self) {
@@ -2523,6 +2640,8 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Parameter `device`: Reference to an IOHIDUserDevice
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334950-iohiduserdevicecancel?language=objc)
     #[doc(alias = "IOHIDUserDeviceCancel")]
     #[inline]
     pub fn cancel(&self) {
@@ -2539,6 +2658,8 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Returns: Returns the property on success.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334951-iohiduserdevicecopyproperty?language=objc)
     #[doc(alias = "IOHIDUserDeviceCopyProperty")]
     #[inline]
     pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
@@ -2566,6 +2687,8 @@ impl IOHIDUserDevice {
     /// # Safety
     ///
     /// `property` should be of the correct type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334963-iohiduserdevicesetproperty?language=objc)
     #[doc(alias = "IOHIDUserDeviceSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -2600,6 +2723,8 @@ impl IOHIDUserDevice {
     /// # Safety
     ///
     /// `report` must be a valid pointer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3334955-iohiduserdevicehandlereportwitht?language=objc)
     #[doc(alias = "IOHIDUserDeviceHandleReportWithTimeStamp")]
     #[inline]
     pub unsafe fn handle_report_with_time_stamp(

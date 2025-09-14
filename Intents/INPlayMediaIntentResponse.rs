@@ -13,28 +13,40 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPlayMediaIntentResponseCode(pub NSInteger);
 impl INPlayMediaIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/ready?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/success?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeSuccess")]
     pub const Success: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/handleinapp?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failure?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeFailure")]
     pub const Failure: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failureunknownmediatype?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeFailureUnknownMediaType")]
     pub const FailureUnknownMediaType: Self = Self(8);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failurenounplayedcontent?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeFailureNoUnplayedContent")]
     pub const FailureNoUnplayedContent: Self = Self(9);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failurerestrictedcontent?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeFailureRestrictedContent")]
     pub const FailureRestrictedContent: Self = Self(10);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failuremaxstreamlimitreached?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeFailureMaxStreamLimitReached")]
     pub const FailureMaxStreamLimitReached: Self = Self(11);
 }

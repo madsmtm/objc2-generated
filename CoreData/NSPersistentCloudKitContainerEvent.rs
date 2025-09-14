@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersistentCloudKitContainerEventType(pub NSInteger);
 impl NSPersistentCloudKitContainerEventType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventtype/setup?language=objc)
     #[doc(alias = "NSPersistentCloudKitContainerEventTypeSetup")]
     pub const Setup: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventtype/import?language=objc)
     #[doc(alias = "NSPersistentCloudKitContainerEventTypeImport")]
     pub const Import: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventtype/export?language=objc)
     #[doc(alias = "NSPersistentCloudKitContainerEventTypeExport")]
     pub const Export: Self = Self(2);
 }

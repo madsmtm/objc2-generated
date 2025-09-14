@@ -25,10 +25,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationControllerOperation(pub NSInteger);
 impl UINavigationControllerOperation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller/operation/none?language=objc)
     #[doc(alias = "UINavigationControllerOperationNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller/operation/push?language=objc)
     #[doc(alias = "UINavigationControllerOperationPush")]
     pub const Push: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller/operation/pop?language=objc)
     #[doc(alias = "UINavigationControllerOperationPop")]
     pub const Pop: Self = Self(2);
 }

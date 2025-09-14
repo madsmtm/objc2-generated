@@ -11,8 +11,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceAuthorizationAppleIDButtonStyle(pub NSInteger);
 impl WKInterfaceAuthorizationAppleIDButtonStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceauthorizationappleidbutton/style/default?language=objc)
     #[doc(alias = "WKInterfaceAuthorizationAppleIDButtonStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceauthorizationappleidbutton/style/white?language=objc)
     #[doc(alias = "WKInterfaceAuthorizationAppleIDButtonStyleWhite")]
     pub const White: Self = Self(1);
 }

@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTCellularDataRestrictedState(pub NSUInteger);
 impl CTCellularDataRestrictedState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellulardatarestrictedstate/restrictedstateunknown?language=objc)
     #[doc(alias = "kCTCellularDataRestrictedStateUnknown")]
     pub const RestrictedStateUnknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellulardatarestrictedstate/restricted?language=objc)
     #[doc(alias = "kCTCellularDataRestricted")]
     pub const Restricted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellulardatarestrictedstate/notrestricted?language=objc)
     #[doc(alias = "kCTCellularDataNotRestricted")]
     pub const NotRestricted: Self = Self(2);
 }

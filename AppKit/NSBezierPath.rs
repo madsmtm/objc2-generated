@@ -18,10 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineCapStyle(pub NSUInteger);
 impl NSLineCapStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linecapstyle-swift.enum/butt?language=objc)
     #[doc(alias = "NSLineCapStyleButt")]
     pub const Butt: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linecapstyle-swift.enum/round?language=objc)
     #[doc(alias = "NSLineCapStyleRound")]
     pub const Round: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linecapstyle-swift.enum/square?language=objc)
     #[doc(alias = "NSLineCapStyleSquare")]
     pub const Square: Self = Self(2);
 }
@@ -40,10 +43,13 @@ unsafe impl RefEncode for NSLineCapStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineJoinStyle(pub NSUInteger);
 impl NSLineJoinStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linejoinstyle-swift.enum/miter?language=objc)
     #[doc(alias = "NSLineJoinStyleMiter")]
     pub const Miter: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linejoinstyle-swift.enum/round?language=objc)
     #[doc(alias = "NSLineJoinStyleRound")]
     pub const Round: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linejoinstyle-swift.enum/bevel?language=objc)
     #[doc(alias = "NSLineJoinStyleBevel")]
     pub const Bevel: Self = Self(2);
 }
@@ -62,8 +68,10 @@ unsafe impl RefEncode for NSLineJoinStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindingRule(pub NSUInteger);
 impl NSWindingRule {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/windingrule-swift.enum/nonzero?language=objc)
     #[doc(alias = "NSWindingRuleNonZero")]
     pub const NonZero: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/windingrule-swift.enum/evenodd?language=objc)
     #[doc(alias = "NSWindingRuleEvenOdd")]
     pub const EvenOdd: Self = Self(1);
 }
@@ -82,16 +90,22 @@ unsafe impl RefEncode for NSWindingRule {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBezierPathElement(pub NSUInteger);
 impl NSBezierPathElement {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/moveto?language=objc)
     #[doc(alias = "NSBezierPathElementMoveTo")]
     pub const MoveTo: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/lineto?language=objc)
     #[doc(alias = "NSBezierPathElementLineTo")]
     pub const LineTo: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/cubiccurveto?language=objc)
     #[doc(alias = "NSBezierPathElementCubicCurveTo")]
     pub const CubicCurveTo: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/closepath?language=objc)
     #[doc(alias = "NSBezierPathElementClosePath")]
     pub const ClosePath: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/quadraticcurveto?language=objc)
     #[doc(alias = "NSBezierPathElementQuadraticCurveTo")]
     pub const QuadraticCurveTo: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/curveto?language=objc)
     #[doc(alias = "NSBezierPathElementCurveTo")]
     #[deprecated]
     pub const CurveTo: Self = Self(NSBezierPathElement::CubicCurveTo.0);

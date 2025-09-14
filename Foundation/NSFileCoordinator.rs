@@ -13,12 +13,16 @@ use crate::*;
 pub struct NSFileCoordinatorReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileCoordinatorReadingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/readingoptions/withoutchanges?language=objc)
         #[doc(alias = "NSFileCoordinatorReadingWithoutChanges")]
         const WithoutChanges = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/readingoptions/resolvessymboliclink?language=objc)
         #[doc(alias = "NSFileCoordinatorReadingResolvesSymbolicLink")]
         const ResolvesSymbolicLink = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/readingoptions/immediatelyavailablemetadataonly?language=objc)
         #[doc(alias = "NSFileCoordinatorReadingImmediatelyAvailableMetadataOnly")]
         const ImmediatelyAvailableMetadataOnly = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/readingoptions/foruploading?language=objc)
         #[doc(alias = "NSFileCoordinatorReadingForUploading")]
         const ForUploading = 1<<3;
     }
@@ -39,14 +43,19 @@ unsafe impl RefEncode for NSFileCoordinatorReadingOptions {
 pub struct NSFileCoordinatorWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileCoordinatorWritingOptions: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/fordeleting?language=objc)
         #[doc(alias = "NSFileCoordinatorWritingForDeleting")]
         const ForDeleting = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/formoving?language=objc)
         #[doc(alias = "NSFileCoordinatorWritingForMoving")]
         const ForMoving = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/formerging?language=objc)
         #[doc(alias = "NSFileCoordinatorWritingForMerging")]
         const ForMerging = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/forreplacing?language=objc)
         #[doc(alias = "NSFileCoordinatorWritingForReplacing")]
         const ForReplacing = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/contentindependentmetadataonly?language=objc)
         #[doc(alias = "NSFileCoordinatorWritingContentIndependentMetadataOnly")]
         const ContentIndependentMetadataOnly = 1<<4;
     }

@@ -13,30 +13,39 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartVideoCallIntentResponseCode(pub NSInteger);
 impl INStartVideoCallIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INStartVideoCallIntentResponseCodeUnspecified")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/ready?language=objc)
     #[doc(alias = "INStartVideoCallIntentResponseCodeReady")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INStartVideoCallIntentResponseCodeContinueInApp")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failure?language=objc)
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailure")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Failure: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureRequiringAppLaunch: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failureappconfigurationrequired?language=objc)
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureAppConfigurationRequired: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failurecallingservicenotavailable?language=objc)
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureCallingServiceNotAvailable")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureCallingServiceNotAvailable: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failurecontactnotsupportedbyapp?language=objc)
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureContactNotSupportedByApp")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureContactNotSupportedByApp: Self = Self(7);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failureinvalidnumber?language=objc)
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureInvalidNumber")]
     pub const FailureInvalidNumber: Self = Self(8);
 }

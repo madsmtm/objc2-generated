@@ -14,9 +14,13 @@ use crate::*;
 pub struct CPInformationTemplateLayout(pub NSInteger);
 impl CPInformationTemplateLayout {
     /// A layout that will align all items on the leading edge of the template.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinformationtemplatelayout/leading?language=objc)
     #[doc(alias = "CPInformationTemplateLayoutLeading")]
     pub const Leading: Self = Self(0);
     /// A layout that will split each item into two columns.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinformationtemplatelayout/twocolumn?language=objc)
     #[doc(alias = "CPInformationTemplateLayoutTwoColumn")]
     pub const TwoColumn: Self = Self(1);
 }

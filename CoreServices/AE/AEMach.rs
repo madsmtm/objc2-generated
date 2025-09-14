@@ -13,11 +13,14 @@ pub const keyReplyPortAttr: AEKeyword = 0x72657070;
 pub const typeReplyPortAttr: DescType = keyReplyPortAttr;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449736-aegetregisteredmachport?language=objc)
     #[cfg(feature = "libc")]
     pub fn AEGetRegisteredMachPort() -> libc::mach_port_t;
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442994-aesendmessage?language=objc)
+    ///
     /// # Safety
     ///
     /// - `event` must be a valid pointer.

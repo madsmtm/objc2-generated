@@ -13,15 +13,23 @@ use crate::*;
 pub struct GKGameActivityState(pub NSUInteger);
 impl GKGameActivityState {
     /// The game activity is initialized but has not started.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.enum/initialized?language=objc)
     #[doc(alias = "GKGameActivityStateInitialized")]
     pub const Initialized: Self = Self(0);
     /// The game activity is active.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.enum/active?language=objc)
     #[doc(alias = "GKGameActivityStateActive")]
     pub const Active: Self = Self(1);
     /// The game activity is paused.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.enum/paused?language=objc)
     #[doc(alias = "GKGameActivityStatePaused")]
     pub const Paused: Self = Self(2);
     /// The game activity has ended. This is a terminal state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.enum/ended?language=objc)
     #[doc(alias = "GKGameActivityStateEnded")]
     pub const Ended: Self = Self(4);
 }

@@ -119,12 +119,16 @@ pub const kVTVideoEncoderAutoWhiteBalanceNotLockedErr: OSStatus = -19512;
 pub struct VTDecodeFrameFlags(pub u32);
 bitflags::bitflags! {
     impl VTDecodeFrameFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags/kvtdecodeframe_enableasynchronousdecompression?language=objc)
 #[doc(alias = "kVTDecodeFrame_EnableAsynchronousDecompression")]
         const Frame_EnableAsynchronousDecompression = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags/kvtdecodeframe_donotoutputframe?language=objc)
 #[doc(alias = "kVTDecodeFrame_DoNotOutputFrame")]
         const Frame_DoNotOutputFrame = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags/kvtdecodeframe_1xrealtimeplayback?language=objc)
 #[doc(alias = "kVTDecodeFrame_1xRealTimePlayback")]
         const Frame_1xRealTimePlayback = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags/kvtdecodeframe_enabletemporalprocessing?language=objc)
 #[doc(alias = "kVTDecodeFrame_EnableTemporalProcessing")]
         const Frame_EnableTemporalProcessing = 1<<3;
     }
@@ -166,14 +170,19 @@ unsafe impl RefEncode for VTDecodeFrameFlags {
 pub struct VTDecodeInfoFlags(pub u32);
 bitflags::bitflags! {
     impl VTDecodeInfoFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/asynchronous?language=objc)
         #[doc(alias = "kVTDecodeInfo_Asynchronous")]
         const Asynchronous = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/framedropped?language=objc)
         #[doc(alias = "kVTDecodeInfo_FrameDropped")]
         const FrameDropped = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/imagebuffermodifiable?language=objc)
         #[doc(alias = "kVTDecodeInfo_ImageBufferModifiable")]
         const ImageBufferModifiable = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/skippedleadingframedropped?language=objc)
         #[doc(alias = "kVTDecodeInfo_SkippedLeadingFrameDropped")]
         const SkippedLeadingFrameDropped = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/frameinterrupted?language=objc)
         #[doc(alias = "kVTDecodeInfo_FrameInterrupted")]
         const FrameInterrupted = 1<<4;
     }
@@ -196,8 +205,10 @@ unsafe impl RefEncode for VTDecodeInfoFlags {
 pub struct VTEncodeInfoFlags(pub u32);
 bitflags::bitflags! {
     impl VTEncodeInfoFlags: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/asynchronous?language=objc)
         #[doc(alias = "kVTEncodeInfo_Asynchronous")]
         const Asynchronous = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/framedropped?language=objc)
         #[doc(alias = "kVTEncodeInfo_FrameDropped")]
         const FrameDropped = 1<<1;
     }

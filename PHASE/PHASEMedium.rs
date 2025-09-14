@@ -13,6 +13,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASEMediumPreset(pub NSInteger);
 impl PHASEMediumPreset {
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasemedium/preset/air?language=objc)
     #[doc(alias = "PHASEMediumPresetAir")]
     pub const Air: Self = Self(0x6d644172);
 }

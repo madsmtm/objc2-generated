@@ -121,14 +121,19 @@ impl WKApplicationRefreshBackgroundTask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKSnapshotReason(pub NSInteger);
 impl WKSnapshotReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason/appscheduled?language=objc)
     #[doc(alias = "WKSnapshotReasonAppScheduled")]
     pub const AppScheduled: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason/returntodefaultstate?language=objc)
     #[doc(alias = "WKSnapshotReasonReturnToDefaultState")]
     pub const ReturnToDefaultState: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason/complicationupdate?language=objc)
     #[doc(alias = "WKSnapshotReasonComplicationUpdate")]
     pub const ComplicationUpdate: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason/prelaunch?language=objc)
     #[doc(alias = "WKSnapshotReasonPrelaunch")]
     pub const Prelaunch: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason/appbackgrounded?language=objc)
     #[doc(alias = "WKSnapshotReasonAppBackgrounded")]
     pub const AppBackgrounded: Self = Self(4);
 }

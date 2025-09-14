@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INAddTasksTemporalEventTriggerUnsupportedReason(pub NSInteger);
 impl INAddTasksTemporalEventTriggerUnsupportedReason {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtaskstemporaleventtriggerunsupportedreason/timeinpast?language=objc)
     #[doc(alias = "INAddTasksTemporalEventTriggerUnsupportedReasonTimeInPast")]
     pub const TimeInPast: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtaskstemporaleventtriggerunsupportedreason/invalidrecurrence?language=objc)
     #[doc(alias = "INAddTasksTemporalEventTriggerUnsupportedReasonInvalidRecurrence")]
     pub const InvalidRecurrence: Self = Self(2);
 }

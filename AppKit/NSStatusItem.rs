@@ -19,8 +19,10 @@ pub type NSStatusItemAutosaveName = NSString;
 pub struct NSStatusItemBehavior(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStatusItemBehavior: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem/behavior-swift.struct/removalallowed?language=objc)
         #[doc(alias = "NSStatusItemBehaviorRemovalAllowed")]
         const RemovalAllowed = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem/behavior-swift.struct/terminationonremoval?language=objc)
         #[doc(alias = "NSStatusItemBehaviorTerminationOnRemoval")]
         const TerminationOnRemoval = 1<<2;
     }

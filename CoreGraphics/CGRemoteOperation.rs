@@ -8,14 +8,19 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgmousedowneventmaskingdeadswitchtimeout?language=objc)
 pub const kCGMouseDownEventMaskingDeadSwitchTimeout: c_float = 60.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgeventfiltermaskpermitallevents?language=objc)
 pub const kCGEventFilterMaskPermitAllEvents: c_uint = CGEventFilterMask::PermitLocalMouseEvents.0
     | CGEventFilterMask::PermitLocalKeyboardEvents.0
     | CGEventFilterMask::PermitSystemDefinedEvents.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgeventsupressionstatesupressioninterval?language=objc)
 pub const kCGEventSupressionStateSupressionInterval: c_uint =
     CGEventSuppressionState::EventSuppressionStateSuppressionInterval.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgeventsupressionstateremotemousedrag?language=objc)
 pub const kCGEventSupressionStateRemoteMouseDrag: c_uint =
     CGEventSuppressionState::EventSuppressionStateRemoteMouseDrag.0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnumberofeventsupressionstates?language=objc)
 pub const kCGNumberOfEventSupressionStates: c_uint =
     CGEventSuppressionState::NumberOfEventSuppressionStates.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventerr?language=objc)
@@ -39,6 +44,8 @@ pub type CGScreenRefreshCallback =
     Option<unsafe extern "C-unwind" fn(u32, NonNull<CGRect>, *mut c_void)>;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgregisterscreenrefreshcallback(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -52,6 +59,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgunregisterscreenrefreshcallback(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -64,6 +73,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwaitforscreenrefreshrects(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `rects` must be a valid pointer or null.
@@ -80,10 +91,13 @@ extern "C-unwind" {
 pub struct CGScreenUpdateOperation(pub u32);
 bitflags::bitflags! {
     impl CGScreenUpdateOperation: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenupdateoperation/refresh?language=objc)
         #[doc(alias = "kCGScreenUpdateOperationRefresh")]
         const Refresh = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenupdateoperation/move?language=objc)
         #[doc(alias = "kCGScreenUpdateOperationMove")]
         const Move = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenupdateoperation/reduceddirtyrectanglecount?language=objc)
         #[doc(alias = "kCGScreenUpdateOperationReducedDirtyRectangleCount")]
         const ReducedDirtyRectangleCount = 1<<31;
     }
@@ -126,6 +140,8 @@ pub type CGScreenUpdateMoveCallback = Option<
 >;
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenregistermovecallback(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -139,6 +155,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenunregistermovecallback(_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -151,6 +169,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwaitforscreenupdaterects(_:_:_:_:_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `current_operation` must be a valid pointer or null.
@@ -169,6 +189,8 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgreleasescreenrefreshrects(_:)?language=objc)
+    ///
     /// # Safety
     ///
     /// `rects` must be a valid pointer or null.
@@ -176,6 +198,7 @@ extern "C-unwind" {
     pub fn CGReleaseScreenRefreshRects(rects: *mut CGRect);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcursorisvisible()?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -187,6 +210,7 @@ pub extern "C-unwind" fn CGCursorIsVisible() -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcursorisdrawninframebuffer()?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -198,6 +222,7 @@ pub extern "C-unwind" fn CGCursorIsDrawnInFramebuffer() -> bool {
     ret != 0
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwarpmousecursorposition(_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint) -> CGError {
@@ -207,6 +232,7 @@ pub extern "C-unwind" fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint)
     unsafe { CGWarpMouseCursorPosition(new_cursor_position) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgassociatemouseandmousecursorposition(_:)?language=objc)
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGAssociateMouseAndMouseCursorPosition(connected: bool) -> CGError {
@@ -216,6 +242,7 @@ pub extern "C-unwind" fn CGAssociateMouseAndMouseCursorPosition(connected: bool)
     unsafe { CGAssociateMouseAndMouseCursorPosition(connected as _) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowservercreateserverport()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGWindowServerCreateServerPort() -> Option<CFRetained<CFMachPort>> {
     extern "C-unwind" {
@@ -225,6 +252,7 @@ pub extern "C-unwind" fn CGWindowServerCreateServerPort() -> Option<CFRetained<C
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgenableeventstatecombining(_:)?language=objc)
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -235,6 +263,7 @@ pub extern "C-unwind" fn CGEnableEventStateCombining(combine_state: bool) -> CGE
     unsafe { CGEnableEventStateCombining(combine_state as _) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginhibitlocalevents(_:)?language=objc)
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -245,6 +274,7 @@ pub extern "C-unwind" fn CGInhibitLocalEvents(inhibit: bool) -> CGError {
     unsafe { CGInhibitLocalEvents(inhibit as _) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpostkeyboardevent(_:_:_:)?language=objc)
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -270,10 +300,13 @@ pub extern "C-unwind" fn CGPostKeyboardEvent(
 pub struct CGEventFilterMask(pub u32);
 bitflags::bitflags! {
     impl CGEventFilterMask: u32 {
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfiltermask/permitlocalmouseevents?language=objc)
         #[doc(alias = "kCGEventFilterMaskPermitLocalMouseEvents")]
         const PermitLocalMouseEvents = 0x00000001;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfiltermask/permitlocalkeyboardevents?language=objc)
         #[doc(alias = "kCGEventFilterMaskPermitLocalKeyboardEvents")]
         const PermitLocalKeyboardEvents = 0x00000002;
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfiltermask/permitsystemdefinedevents?language=objc)
         #[doc(alias = "kCGEventFilterMaskPermitSystemDefinedEvents")]
         const PermitSystemDefinedEvents = 0x00000004;
     }
@@ -295,10 +328,13 @@ unsafe impl RefEncode for CGEventFilterMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventSuppressionState(pub u32);
 impl CGEventSuppressionState {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsuppressionstate/eventsuppressionstatesuppressioninterval?language=objc)
     #[doc(alias = "kCGEventSuppressionStateSuppressionInterval")]
     pub const EventSuppressionStateSuppressionInterval: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsuppressionstate/eventsuppressionstateremotemousedrag?language=objc)
     #[doc(alias = "kCGEventSuppressionStateRemoteMouseDrag")]
     pub const EventSuppressionStateRemoteMouseDrag: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsuppressionstate/numberofeventsuppressionstates?language=objc)
     #[doc(alias = "kCGNumberOfEventSuppressionStates")]
     pub const NumberOfEventSuppressionStates: Self = Self(2);
 }
@@ -313,6 +349,7 @@ unsafe impl RefEncode for CGEventSuppressionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsetlocaleventsfilterduringsuppressionstate(_:_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -329,6 +366,7 @@ pub extern "C-unwind" fn CGSetLocalEventsFilterDuringSuppressionState(
     unsafe { CGSetLocalEventsFilterDuringSuppressionState(filter, state) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsetlocaleventssuppressioninterval(_:)?language=objc)
 #[cfg(feature = "CGError")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -339,6 +377,7 @@ pub extern "C-unwind" fn CGSetLocalEventsSuppressionInterval(seconds: CFTimeInte
     unsafe { CGSetLocalEventsSuppressionInterval(seconds) }
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowservercfmachport()?language=objc)
 #[deprecated = "No longer supported"]
 #[inline]
 pub extern "C-unwind" fn CGWindowServerCFMachPort() -> Option<CFRetained<CFMachPort>> {

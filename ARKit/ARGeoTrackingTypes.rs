@@ -19,15 +19,23 @@ pub struct ARAltitudeSource(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARAltitudeSource {
     /// Altitude could not be determined (yet).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor/altitudesource-swift.enum/unknown?language=objc)
     #[doc(alias = "ARAltitudeSourceUnknown")]
     pub const Unknown: Self = Self(0);
     /// ARKit determined altitude based on a coarse digital elevation model. The provided value is too imprecise to be used at close range, but is sufficient to anchor far away content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor/altitudesource-swift.enum/coarse?language=objc)
     #[doc(alias = "ARAltitudeSourceCoarse")]
     pub const Coarse: Self = Self(1);
     /// ARKit determined altitude based on a high resolution digital elevation model.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor/altitudesource-swift.enum/precise?language=objc)
     #[doc(alias = "ARAltitudeSourcePrecise")]
     pub const Precise: Self = Self(2);
     /// Altitude was provided by the user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor/altitudesource-swift.enum/userdefined?language=objc)
     #[doc(alias = "ARAltitudeSourceUserDefined")]
     pub const UserDefined: Self = Self(3);
 }
@@ -53,15 +61,23 @@ pub struct ARGeoTrackingState(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARGeoTrackingState {
     /// Geo tracking is not available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/notavailable?language=objc)
     #[doc(alias = "ARGeoTrackingStateNotAvailable")]
     pub const NotAvailable: Self = Self(0);
     /// Geo tracking is being initialized.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/initializing?language=objc)
     #[doc(alias = "ARGeoTrackingStateInitializing")]
     pub const Initializing: Self = Self(1);
     /// Geo tracking is attempting to localize against a Map.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing?language=objc)
     #[doc(alias = "ARGeoTrackingStateLocalizing")]
     pub const Localizing: Self = Self(2);
     /// Geo tracking is localized.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localized?language=objc)
     #[doc(alias = "ARGeoTrackingStateLocalized")]
     pub const Localized: Self = Self(3);
 }
@@ -87,15 +103,23 @@ pub struct ARGeoTrackingAccuracy(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARGeoTrackingAccuracy {
     /// Geo tracking has not localized yet. Accuracy is indeterminate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/undetermined?language=objc)
     #[doc(alias = "ARGeoTrackingAccuracyUndetermined")]
     pub const Undetermined: Self = Self(0);
     /// Localized with low accuracy.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/low?language=objc)
     #[doc(alias = "ARGeoTrackingAccuracyLow")]
     pub const Low: Self = Self(1);
     /// Localized with medium accuracy.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/medium?language=objc)
     #[doc(alias = "ARGeoTrackingAccuracyMedium")]
     pub const Medium: Self = Self(2);
     /// Localized with high accuracy.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/high?language=objc)
     #[doc(alias = "ARGeoTrackingAccuracyHigh")]
     pub const High: Self = Self(3);
 }
@@ -121,30 +145,48 @@ pub struct ARGeoTrackingStateReason(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARGeoTrackingStateReason {
     /// No issues reported.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/none?language=objc)
     #[doc(alias = "ARGeoTrackingStateReasonNone")]
     pub const None: Self = Self(0);
     /// Geo tracking is not available at the location.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/notavailableatlocation?language=objc)
     #[doc(alias = "ARGeoTrackingStateReasonNotAvailableAtLocation")]
     pub const NotAvailableAtLocation: Self = Self(1);
     /// Geo tracking needs location permissions from the user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/needlocationpermissions?language=objc)
     #[doc(alias = "ARGeoTrackingStateReasonNeedLocationPermissions")]
     pub const NeedLocationPermissions: Self = Self(2);
     /// World tracking pose is not valid yet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/worldtrackingunstable?language=objc)
     #[doc(alias = "ARGeoTrackingStateReasonWorldTrackingUnstable")]
     pub const WorldTrackingUnstable: Self = Self(3);
     /// Waiting for a location point that meets accuracy threshold before starting geo tracking.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/waitingforlocation?language=objc)
     #[doc(alias = "ARGeoTrackingStateReasonWaitingForLocation")]
     pub const WaitingForLocation: Self = Self(4);
     /// Waiting for availability check on first location point to complete.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/waitingforavailabilitycheck?language=objc)
     #[doc(alias = "ARGeoTrackingStateReasonWaitingForAvailabilityCheck")]
     pub const WaitingForAvailabilityCheck: Self = Self(5);
     /// Geo tracking data hasn't been downloaded yet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/geodatanotloaded?language=objc)
     #[doc(alias = "ARGeoTrackingStateReasonGeoDataNotLoaded")]
     pub const GeoDataNotLoaded: Self = Self(6);
     /// The device is pointed at an angle too far down to use geo tracking.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/devicepointedtoolow?language=objc)
     #[doc(alias = "ARGeoTrackingStateReasonDevicePointedTooLow")]
     pub const DevicePointedTooLow: Self = Self(7);
     /// Visual localization failed, but no errors were found in the input.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/visuallocalizationfailed?language=objc)
     #[doc(alias = "ARGeoTrackingStateReasonVisualLocalizationFailed")]
     pub const VisualLocalizationFailed: Self = Self(8);
 }

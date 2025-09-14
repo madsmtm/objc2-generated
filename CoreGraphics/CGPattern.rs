@@ -32,10 +32,13 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPatternTiling(pub i32);
 impl CGPatternTiling {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterntiling/nodistortion?language=objc)
     #[doc(alias = "kCGPatternTilingNoDistortion")]
     pub const NoDistortion: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterntiling/constantspacingminimaldistortion?language=objc)
     #[doc(alias = "kCGPatternTilingConstantSpacingMinimalDistortion")]
     pub const ConstantSpacingMinimalDistortion: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterntiling/constantspacing?language=objc)
     #[doc(alias = "kCGPatternTilingConstantSpacing")]
     pub const ConstantSpacing: Self = Self(2);
 }
@@ -87,6 +90,7 @@ unsafe impl RefEncode for CGPatternCallbacks {
 }
 
 unsafe impl ConcreteType for CGPattern {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpattern/typeid?language=objc)
     #[doc(alias = "CGPatternGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -98,6 +102,8 @@ unsafe impl ConcreteType for CGPattern {
 }
 
 impl CGPattern {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpattern/init(info:bounds:matrix:xstep:ystep:tiling:iscolored:callbacks:)?language=objc)
+    ///
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.

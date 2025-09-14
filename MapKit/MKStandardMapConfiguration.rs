@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKStandardMapEmphasisStyle(pub NSInteger);
 impl MKStandardMapEmphasisStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.enum/default?language=objc)
     #[doc(alias = "MKStandardMapEmphasisStyleDefault")]
     pub const Default: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.enum/muted?language=objc)
     #[doc(alias = "MKStandardMapEmphasisStyleMuted")]
     pub const Muted: Self = Self(1);
 }

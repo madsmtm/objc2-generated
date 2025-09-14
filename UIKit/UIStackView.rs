@@ -18,14 +18,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIStackViewDistribution(pub NSInteger);
 impl UIStackViewDistribution {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/distribution-swift.enum/fill?language=objc)
     #[doc(alias = "UIStackViewDistributionFill")]
     pub const Fill: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/distribution-swift.enum/fillequally?language=objc)
     #[doc(alias = "UIStackViewDistributionFillEqually")]
     pub const FillEqually: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/distribution-swift.enum/fillproportionally?language=objc)
     #[doc(alias = "UIStackViewDistributionFillProportionally")]
     pub const FillProportionally: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/distribution-swift.enum/equalspacing?language=objc)
     #[doc(alias = "UIStackViewDistributionEqualSpacing")]
     pub const EqualSpacing: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/distribution-swift.enum/equalcentering?language=objc)
     #[doc(alias = "UIStackViewDistributionEqualCentering")]
     pub const EqualCentering: Self = Self(4);
 }
@@ -44,20 +49,28 @@ unsafe impl RefEncode for UIStackViewDistribution {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIStackViewAlignment(pub NSInteger);
 impl UIStackViewAlignment {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/alignment-swift.enum/fill?language=objc)
     #[doc(alias = "UIStackViewAlignmentFill")]
     pub const Fill: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/alignment-swift.enum/leading?language=objc)
     #[doc(alias = "UIStackViewAlignmentLeading")]
     pub const Leading: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/alignment-swift.enum/top?language=objc)
     #[doc(alias = "UIStackViewAlignmentTop")]
     pub const Top: Self = Self(UIStackViewAlignment::Leading.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/alignment-swift.enum/firstbaseline?language=objc)
     #[doc(alias = "UIStackViewAlignmentFirstBaseline")]
     pub const FirstBaseline: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/alignment-swift.enum/center?language=objc)
     #[doc(alias = "UIStackViewAlignmentCenter")]
     pub const Center: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/alignment-swift.enum/trailing?language=objc)
     #[doc(alias = "UIStackViewAlignmentTrailing")]
     pub const Trailing: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/alignment-swift.enum/bottom?language=objc)
     #[doc(alias = "UIStackViewAlignmentBottom")]
     pub const Bottom: Self = Self(UIStackViewAlignment::Trailing.0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview/alignment-swift.enum/lastbaseline?language=objc)
     #[doc(alias = "UIStackViewAlignmentLastBaseline")]
     pub const LastBaseline: Self = Self(5);
 }

@@ -14,27 +14,35 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetVisualCodeIntentResponseCode(pub NSInteger);
 impl INGetVisualCodeIntentResponseCode {
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INGetVisualCodeIntentResponseCodeUnspecified")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/ready?language=objc)
     #[doc(alias = "INGetVisualCodeIntentResponseCodeReady")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INGetVisualCodeIntentResponseCodeContinueInApp")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INGetVisualCodeIntentResponseCodeInProgress")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/success?language=objc)
     #[doc(alias = "INGetVisualCodeIntentResponseCodeSuccess")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/failure?language=objc)
     #[doc(alias = "INGetVisualCodeIntentResponseCodeFailure")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INGetVisualCodeIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/failureappconfigurationrequired?language=objc)
     #[doc(alias = "INGetVisualCodeIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(7);

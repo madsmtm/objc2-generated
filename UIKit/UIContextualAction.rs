@@ -19,8 +19,10 @@ pub type UIContextualActionHandler = *mut block2::DynBlock<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextualActionStyle(pub NSInteger);
 impl UIContextualActionStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualaction/style-swift.enum/normal?language=objc)
     #[doc(alias = "UIContextualActionStyleNormal")]
     pub const Normal: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualaction/style-swift.enum/destructive?language=objc)
     #[doc(alias = "UIContextualActionStyleDestructive")]
     pub const Destructive: Self = Self(1);
 }

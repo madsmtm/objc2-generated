@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRulerOrientation(pub NSUInteger);
 impl NSRulerOrientation {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview/orientation-swift.enum/horizontalruler?language=objc)
     #[doc(alias = "NSHorizontalRuler")]
     pub const HorizontalRuler: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview/orientation-swift.enum/verticalruler?language=objc)
     #[doc(alias = "NSVerticalRuler")]
     pub const VerticalRuler: Self = Self(1);
 }

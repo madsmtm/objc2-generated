@@ -12,12 +12,18 @@ use crate::*;
 pub struct UISplitViewControllerLayoutEnvironment(pub NSInteger);
 impl UISplitViewControllerLayoutEnvironment {
     /// There is no containing split view controller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/layoutenvironment/none?language=objc)
     #[doc(alias = "UISplitViewControllerLayoutEnvironmentNone")]
     pub const None: Self = Self(0);
     /// Contained within an expanded split view controller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/layoutenvironment/expanded?language=objc)
     #[doc(alias = "UISplitViewControllerLayoutEnvironmentExpanded")]
     pub const Expanded: Self = Self(1);
     /// Contained within a collapsed split view controller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/layoutenvironment/collapsed?language=objc)
     #[doc(alias = "UISplitViewControllerLayoutEnvironmentCollapsed")]
     pub const Collapsed: Self = Self(2);
 }

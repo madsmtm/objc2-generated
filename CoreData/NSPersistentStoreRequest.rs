@@ -13,14 +13,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPersistentStoreRequestType(pub NSUInteger);
 impl NSPersistentStoreRequestType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype/fetchrequesttype?language=objc)
     #[doc(alias = "NSFetchRequestType")]
     pub const FetchRequestType: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype/saverequesttype?language=objc)
     #[doc(alias = "NSSaveRequestType")]
     pub const SaveRequestType: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype/batchinsertrequesttype?language=objc)
     #[doc(alias = "NSBatchInsertRequestType")]
     pub const BatchInsertRequestType: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype/batchupdaterequesttype?language=objc)
     #[doc(alias = "NSBatchUpdateRequestType")]
     pub const BatchUpdateRequestType: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype/batchdeleterequesttype?language=objc)
     #[doc(alias = "NSBatchDeleteRequestType")]
     pub const BatchDeleteRequestType: Self = Self(7);
 }

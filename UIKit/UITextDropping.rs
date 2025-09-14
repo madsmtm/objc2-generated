@@ -48,10 +48,13 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropEditability(pub NSUInteger);
 impl UITextDropEditability {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropeditability/no?language=objc)
     #[doc(alias = "UITextDropEditabilityNo")]
     pub const No: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropeditability/temporary?language=objc)
     #[doc(alias = "UITextDropEditabilityTemporary")]
     pub const Temporary: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropeditability/yes?language=objc)
     #[doc(alias = "UITextDropEditabilityYes")]
     pub const Yes: Self = Self(2);
 }

@@ -15,21 +15,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebNavigationType(pub NSInteger);
 impl WebNavigationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/linkclicked?language=objc)
     #[doc(alias = "WebNavigationTypeLinkClicked")]
     #[deprecated]
     pub const LinkClicked: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/formsubmitted?language=objc)
     #[doc(alias = "WebNavigationTypeFormSubmitted")]
     #[deprecated]
     pub const FormSubmitted: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/backforward?language=objc)
     #[doc(alias = "WebNavigationTypeBackForward")]
     #[deprecated]
     pub const BackForward: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/reload?language=objc)
     #[doc(alias = "WebNavigationTypeReload")]
     #[deprecated]
     pub const Reload: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/formresubmitted?language=objc)
     #[doc(alias = "WebNavigationTypeFormResubmitted")]
     #[deprecated]
     pub const FormResubmitted: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/other?language=objc)
     #[doc(alias = "WebNavigationTypeOther")]
     #[deprecated]
     pub const Other: Self = Self(5);

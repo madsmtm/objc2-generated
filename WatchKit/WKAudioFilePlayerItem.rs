@@ -32,12 +32,15 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAudioFilePlayerItemStatus(pub NSInteger);
 impl WKAudioFilePlayerItemStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayeritemstatus/unknown?language=objc)
     #[doc(alias = "WKAudioFilePlayerItemStatusUnknown")]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const Unknown: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayeritemstatus/readytoplay?language=objc)
     #[doc(alias = "WKAudioFilePlayerItemStatusReadyToPlay")]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const ReadyToPlay: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayeritemstatus/failed?language=objc)
     #[doc(alias = "WKAudioFilePlayerItemStatusFailed")]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const Failed: Self = Self(2);

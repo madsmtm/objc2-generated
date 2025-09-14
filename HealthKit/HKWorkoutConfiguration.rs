@@ -17,10 +17,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKWorkoutSessionLocationType(pub NSInteger);
 impl HKWorkoutSessionLocationType {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionlocationtype/unknown?language=objc)
     #[doc(alias = "HKWorkoutSessionLocationTypeUnknown")]
     pub const Unknown: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionlocationtype/indoor?language=objc)
     #[doc(alias = "HKWorkoutSessionLocationTypeIndoor")]
     pub const Indoor: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionlocationtype/outdoor?language=objc)
     #[doc(alias = "HKWorkoutSessionLocationTypeOutdoor")]
     pub const Outdoor: Self = Self(3);
 }

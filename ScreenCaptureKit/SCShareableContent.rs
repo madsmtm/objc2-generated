@@ -19,12 +19,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCShareableContentStyle(pub NSInteger);
 impl SCShareableContentStyle {
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontentstyle/none?language=objc)
     #[doc(alias = "SCShareableContentStyleNone")]
     pub const None: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontentstyle/window?language=objc)
     #[doc(alias = "SCShareableContentStyleWindow")]
     pub const Window: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontentstyle/display?language=objc)
     #[doc(alias = "SCShareableContentStyleDisplay")]
     pub const Display: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontentstyle/application?language=objc)
     #[doc(alias = "SCShareableContentStyleApplication")]
     pub const Application: Self = Self(3);
 }

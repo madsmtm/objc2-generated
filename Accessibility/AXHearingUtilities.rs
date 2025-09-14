@@ -13,12 +13,16 @@ use crate::*;
 pub struct AXHearingDeviceEar(pub NSUInteger);
 bitflags::bitflags! {
     impl AXHearingDeviceEar: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axhearingdeviceear/axhearingdeviceearnone?language=objc)
         #[doc(alias = "AXHearingDeviceEarNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/ear/left?language=objc)
         #[doc(alias = "AXHearingDeviceEarLeft")]
         const Left = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/ear/right?language=objc)
         #[doc(alias = "AXHearingDeviceEarRight")]
         const Right = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/ear/both?language=objc)
         #[doc(alias = "AXHearingDeviceEarBoth")]
         const Both = AXHearingDeviceEar::Left.0|AXHearingDeviceEar::Right.0;
     }
@@ -33,6 +37,7 @@ unsafe impl RefEncode for AXHearingDeviceEar {
 }
 
 extern "C-unwind" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/streamingear()?language=objc)
     pub fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
 }
 
@@ -41,6 +46,7 @@ extern "C" {
     pub static AXMFiHearingDeviceStreamingEarDidChangeNotification: &'static NSNotificationName;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/supportsbidirectionalstreaming()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> bool {
     extern "C-unwind" {
@@ -49,6 +55,7 @@ pub unsafe extern "C-unwind" fn AXSupportsBidirectionalAXMFiHearingDeviceStreami
     unsafe { AXSupportsBidirectionalAXMFiHearingDeviceStreaming() }.as_bool()
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/paireddeviceidentifiers()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXMFiHearingDevicePairedUUIDs() -> Retained<NSArray<NSUUID>> {
     extern "C-unwind" {

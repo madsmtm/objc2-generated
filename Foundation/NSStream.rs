@@ -19,20 +19,28 @@ pub type NSStreamPropertyKey = NSString;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStreamStatus(pub NSUInteger);
 impl NSStreamStatus {
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/notopen?language=objc)
     #[doc(alias = "NSStreamStatusNotOpen")]
     pub const NotOpen: Self = Self(0);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/opening?language=objc)
     #[doc(alias = "NSStreamStatusOpening")]
     pub const Opening: Self = Self(1);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/open?language=objc)
     #[doc(alias = "NSStreamStatusOpen")]
     pub const Open: Self = Self(2);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/reading?language=objc)
     #[doc(alias = "NSStreamStatusReading")]
     pub const Reading: Self = Self(3);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/writing?language=objc)
     #[doc(alias = "NSStreamStatusWriting")]
     pub const Writing: Self = Self(4);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/atend?language=objc)
     #[doc(alias = "NSStreamStatusAtEnd")]
     pub const AtEnd: Self = Self(5);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/closed?language=objc)
     #[doc(alias = "NSStreamStatusClosed")]
     pub const Closed: Self = Self(6);
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/error?language=objc)
     #[doc(alias = "NSStreamStatusError")]
     pub const Error: Self = Self(7);
 }
@@ -52,16 +60,22 @@ unsafe impl RefEncode for NSStreamStatus {
 pub struct NSStreamEvent(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStreamEvent: NSUInteger {
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamevent/nsstreameventnone?language=objc)
         #[doc(alias = "NSStreamEventNone")]
         const None = 0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event/opencompleted?language=objc)
         #[doc(alias = "NSStreamEventOpenCompleted")]
         const OpenCompleted = 1<<0;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event/hasbytesavailable?language=objc)
         #[doc(alias = "NSStreamEventHasBytesAvailable")]
         const HasBytesAvailable = 1<<1;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event/hasspaceavailable?language=objc)
         #[doc(alias = "NSStreamEventHasSpaceAvailable")]
         const HasSpaceAvailable = 1<<2;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event/erroroccurred?language=objc)
         #[doc(alias = "NSStreamEventErrorOccurred")]
         const ErrorOccurred = 1<<3;
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event/endencountered?language=objc)
         #[doc(alias = "NSStreamEventEndEncountered")]
         const EndEncountered = 1<<4;
     }

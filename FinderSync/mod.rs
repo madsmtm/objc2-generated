@@ -224,17 +224,25 @@ pub struct FIMenuKind(pub NSUInteger);
 impl FIMenuKind {
     /// A shortcut menu created when the user control-clicks on an item or a
     /// group of selected items inside the Finder window.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind/contextualmenuforitems?language=objc)
     #[doc(alias = "FIMenuKindContextualMenuForItems")]
     pub const ContextualMenuForItems: Self = Self(0);
     /// A shortcut menu created when the user control-clicks on the Finder
     /// window’s background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind/contextualmenuforcontainer?language=objc)
     #[doc(alias = "FIMenuKindContextualMenuForContainer")]
     pub const ContextualMenuForContainer: Self = Self(1);
     /// A shortcut menu created when the user control-clicks on an item in the
     /// sidebar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind/contextualmenuforsidebar?language=objc)
     #[doc(alias = "FIMenuKindContextualMenuForSidebar")]
     pub const ContextualMenuForSidebar: Self = Self(2);
     /// A menu created when the user clicks on the extension’s toolbar button.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind/toolbaritemmenu?language=objc)
     #[doc(alias = "FIMenuKindToolbarItemMenu")]
     pub const ToolbarItemMenu: Self = Self(3);
 }
